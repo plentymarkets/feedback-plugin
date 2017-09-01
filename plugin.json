@@ -1,0 +1,38 @@
+{
+  "version": "0.6.3",
+  "name": "Feedback",
+  "marketplaceName": {
+  },
+  "description": "Feedback module",
+  "namespace": "Feedback",
+  "author": "plentymarkets GmbH",
+  "type": "general",
+  "serviceProvider": "Feedback\\Providers\\FeedbackServiceProvider",
+  "runOnBuild": [
+  ],
+  "license": "free for commercial use",
+  "price": 0.00,
+  "shortDescription": {
+    "de": "Feedback",
+    "en": "Feedback"
+  },
+  "authorIcon": "",
+  "pluginIcon": "",
+  "email": "",
+  "phone": "",
+  "isClosedSource": true,
+  "categories": [
+    "3521"
+  ],
+  "keywords": [
+    "feedback"
+  ],
+  "require": [],
+  "containers": [],
+  "dataProviders": [
+    { "key":"Feedback\\DataProviders\\Scripts", "name":"Feedback Javascript", "description": "Javascript code für Feedback" },
+    { "key":"Feedback\\DataProviders\\Styles", "name":"Feedback CSS (Ceres)", "description": "CSS-Anpassungen für Ceres" }
+  ],
+  "dependencies":{},
+  "javaScriptFiles": []
+}
