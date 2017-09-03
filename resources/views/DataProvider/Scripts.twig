@@ -1,0 +1,16 @@
+<script type="text/javascript">
+
+    window.onload = function(){
+        var asScript = document.createElement('script');
+        asScript.setAttribute('src', 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js');
+        document.body.appendChild(asScript);
+
+        var bootstrap = document.createElement('script');
+        bootstrap.setAttribute('src', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js');
+        document.body.appendChild(bootstrap);
+
+        var script = document.createElement('script');
+        script.setAttribute('src', '{{ plugin_path('Feedback') }}/js/main.js');
+        document.body.appendChild(script);
+    };
+</script>
