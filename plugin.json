@@ -30,7 +30,8 @@
   "containers": [],
   "dataProviders": [
     { "key":"Feedback\\DataProviders\\Scripts", "name":"Feedback Javascript", "description": "Javascript code für Feedback" },
-    { "key":"Feedback\\DataProviders\\Styles", "name":"Feedback CSS (Ceres)", "description": "CSS-Anpassungen für Ceres" }
+    { "key":"Feedback\\DataProviders\\Styles", "name":"Feedback CSS (Ceres)", "description": "CSS-Anpassungen für Ceres" },
+    { "key":"Feedback\\DataProviders\\Feedback", "name":"Feedback ratings", "description": "Feedback ratings" }
   ],
   "dependencies":{},
   "javaScriptFiles": []
