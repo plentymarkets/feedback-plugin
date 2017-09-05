@@ -1,3 +1,124 @@
-<p class="feedback">
-    Test feedback
-</p>
+<section id="feedbacks">
+
+    <h1 class="maintitle">Reviews</h1>
+
+    <hr>
+
+    <div class="row my-2">
+
+        <div class="col-sm-6">
+
+            <div id="feedback-bars">
+
+                <div class="feedback-bar-wrap">
+                    <p class="feedback-bar-text-before">5 <i class="fa fa-star"></i></p>
+                    <div class="feedback-bar">
+                        <div class="feedback-bar-fill"  style="width:100%"></div>
+                    </div>
+                    <p class="feedback-bar-text-after">35</p>
+                </div>
+
+                <div class="feedback-bar-wrap">
+                    <p class="feedback-bar-text-before">4 <i class="fa fa-star"></i></p>
+                    <div class="feedback-bar">
+                        <div class="feedback-bar-fill" style="width:20%"></div>
+                    </div>
+                    <p class="feedback-bar-text-after">4</p>
+                </div>
+
+                <div class="feedback-bar-wrap">
+                    <p class="feedback-bar-text-before">3 <i class="fa fa-star"></i></p>
+                    <div class="feedback-bar">
+                        <div class="feedback-bar-fill" style="width:0%"></div>
+                    </div>
+                    <p class="feedback-bar-text-after">0</p>
+                </div>
+
+                <div class="feedback-bar-wrap">
+                    <p class="feedback-bar-text-before">2 <i class="fa fa-star"></i></p>
+                    <div class="feedback-bar">
+                        <div class="feedback-bar-fill" style="width:10%"></div>
+                    </div>
+                    <p class="feedback-bar-text-after">2</p>
+                </div>
+
+                <div class="feedback-bar-wrap">
+                    <p class="feedback-bar-text-before">1 <i class="fa fa-star"></i></p>
+                    <div class="feedback-bar">
+                        <div class="feedback-bar-fill" style="width:5%"></div>
+                    </div>
+                    <p class="feedback-bar-text-after">1</p>
+                </div>
+
+            </div>
+
+
+
+            {#<div class="stars_wrap" id="productstars">#}
+                {#<div class="star_back clearfix">#}
+                    {#<div class="star">&#9733;</div>#}
+                    {#<div class="star">&#9733;</div>#}
+                    {#<div class="star">&#9733;</div>#}
+                    {#<div class="star">&#9733;</div>#}
+                    {#<div class="star">&#9733;</div>#}
+                {#</div>#}
+                {#<div class="star_over_wrap">#}
+                    {#<div class="star_over clearfix">#}
+                        {#<div class="star">&#9733;</div>#}
+                        {#<div class="star">&#9733;</div>#}
+                        {#<div class="star">&#9733;</div>#}
+                        {#<div class="star">&#9733;</div>#}
+                        {#<div class="star">&#9733;</div>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+            {#<p id="outof5"></p>#}
+        </div>
+
+
+        <div class="col-sm-6">
+            <form id="createFeedback" action="" method="">
+
+                <div class="stars">
+                    <input class="star star-5" id="star-5" type="radio" name="star"/>
+                    <label class="star star-5" for="star-5"></label>
+                    <input class="star star-4" id="star-4" type="radio" name="star"/>
+                    <label class="star star-4" for="star-4"></label>
+                    <input class="star star-3" id="star-3" type="radio" name="star"/>
+                    <label class="star star-3" for="star-3"></label>
+                    <input class="star star-2" id="star-2" type="radio" name="star"/>
+                    <label class="star star-2" for="star-2"></label>
+                    <input class="star star-1" id="star-1" type="radio" name="star"/>
+                    <label class="star star-1" for="star-1"></label>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Title" required>
+                </div>
+
+                <div class="form-group">
+                    <textarea class="form-control" id="message" name="message" rows="3" placeholder="Review message" required></textarea>
+                </div>
+
+                <!-- These will be set in a different way in the future. This is only for the showcase -->
+                <input type="hidden" name="feedbackRelationTargetId" value="1">
+                <input type="hidden" name="feedbackRelationTargetTypeId" value="2">
+                <input type="hidden" name="feedbackRelationSourceTypeId" value="1">
+                <input type="hidden" name="commentRelationTargetTypeId" value="1">
+                <input type="hidden" name="ratingRelationTargetTypeId" value="1">
+
+
+
+                <button type="submit" class="btn btn-primary">Submit review</button>
+
+            </form>
+        </div>
+
+    </div>
+
+    <h4 class="maintitle">More reviews</h4>
+
+    <div class="alert alert-info">
+        There are no feedbacks for this product
+    </div>
+</section>

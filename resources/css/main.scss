@@ -1,3 +1,156 @@
-.feedback{
-    color:red;
+#feedbacks {
+
+
+    /* Page title */
+    .maintitle {
+        margin-top:20px;
+    }
+
+    .stars_wrap {
+        width:150px;
+        height:40px;
+        position:relative;
+    }
+    .stars_wrap .star {
+        height:30px;
+        width:30px;
+        font-size:24px;
+        float:left;
+        text-align:center;
+    }
+    .stars_wrap .star_back, .stars_wrap .star_over, .stars_wrap .star_over_wrap {
+        position:absolute;
+        top:0px; left:0px;
+        width:150px;
+        height:40px;
+        overflow:hidden;
+    }
+
+
+    .stars_wrap .star_back .star {
+        color: #eee;
+    }
+    .stars_wrap .star_over .star {
+        color: orange;
+    }
+
+    .stars_wrap .star_over_wrap {
+        width:0%;
+    }
+
+    .btn {
+        cursor: pointer;
+    }
+
+    div.stars {
+        width: 165px;
+        display: inline-block;
+    }
+
+    input.star { display: none; }
+
+    label.star {
+        float: right;
+        height: 40px;
+        width: 33px;
+        padding: 0px 2px;
+        font-size: 30px;
+        line-height: 40px;
+        margin-bottom: 0px;
+        color: #444;
+        cursor: pointer;
+    }
+
+    input.star:checked ~ label.star:before {
+        content: '\f005';
+        color: orange;
+    }
+
+    /* if 5 stars is checked */
+    /* input.star-5:checked ~ label.star:before {*/
+    /* } */
+
+    /* When hovering the wrapper that holds the stars make them all basic */
+    div.stars:hover label.star:before { content: '\f006'; color:#444; }
+
+
+    /* hovered star */
+    label.star:hover:before {
+        color:orange !important;
+        content: '\f005' !important;
+    }
+
+    /* stars of lower value */
+    label.star:hover ~ label.star:before {
+        color:orange;
+        content: '\f005';
+    }
+
+    /* all visible stars */
+    label.star:before {
+        content: '\f006';
+        font-family: FontAwesome;
+    }
+
+
+
+    /* Ratings bars */
+    #feedback-bars {
+
+
+        .feedback-bar-wrap {
+            margin-bottom:1px;
+
+            .feedback-bar {
+                width:140px;
+                height:17px;
+                display:inline-block;
+                vertical-align:middle;
+                background:rgba(0,0,0,.08);
+                overflow: hidden;
+                border-radius: 2px;
+                .feedback-bar-fill {
+                    width:0%;
+                    height:100%;
+                    background:#008ebd;
+                }
+            }
+            p {
+                display:inline-block;
+                vertical-align: middle;
+                line-height:17px;
+                margin-bottom:0px;
+            }
+            .feedback-bar-text-before {
+
+            }
+            .feedback-bar-text-after {
+
+            }
+        }
+
+    }
+
+
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
