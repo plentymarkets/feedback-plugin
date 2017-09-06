@@ -19,6 +19,6 @@ class FeedbackRouteServiceProvider extends RouteServiceProvider
 {
     public function map(Router $router)
     {
-        $router->get('feedbacktest', 'Feedback\Controllers\TestController@feedback');
+        $router->get('feedbacktest', 'Feedback\Controllers\TestController@listFeedbacks');
     }
 }
