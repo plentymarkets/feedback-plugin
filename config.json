@@ -1,0 +1,9 @@
+[
+  {
+    "tab": "Feedback App Settings",
+    "key": "releaseFeedbacks",
+    "label": "Release feedbacks automatically",
+    "type": "checkbox",
+    "default": ""
+  }
+]
