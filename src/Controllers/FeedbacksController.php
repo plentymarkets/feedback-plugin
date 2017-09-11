@@ -9,17 +9,19 @@
 namespace Feedback\Controllers;
 
 
+use Feedback\Services\FeedbackService;
 use Plenty\Modules\Feedback\Contracts\FeedbackRepositoryContract;
 use Plenty\Plugin\Controller;
 
 class FeedbacksController extends Controller
 {
     /**
+     * @param FeedbackService $feedbackService
      * @param FeedbackRepositoryContract $feedbackRepository
-     * @return \Illuminate\Support\Collection
+     * @return \Illuminate\Support\Collection|\Plenty\Repositories\Models\PaginatedResult
      */
-    public function listFeedbacks(FeedbackRepositoryContract $feedbackRepository)
+    public function listFeedbacks(FeedbackService $feedbackService, FeedbackRepositoryContract $feedbackRepository)
     {
-        return $feedbackRepository->listFeedbacks();
+        return $feedbackService->listFeedbacks($feedbackRepository);
     }
 }

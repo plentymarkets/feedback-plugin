@@ -1,6 +1,23 @@
+
+
 <section id="feedbacks">
 
-    <h1 class="maintitle">Reviews</h1>
+    <h1 class="title">Customer reviews <small class="feedback-average-count">(23)</small> {#({{ feedback.count }})#}</h1>
+
+    <div class="feedback-stars-average" id="feedback-stars-average">
+        <div class="feedback-stars-background clearfix">
+            {% for i in 1..5 %}
+                <div class="feedback-star"><i class="fa fa-star"></i></div>
+            {% endfor %}
+        </div>
+        <div class="feedback-stars-overlay-wrap">
+            <div class="feedback-stars-overlay clearfix">
+                {% for i in 1..5 %}
+                    <div class="feedback-star"><i class="fa fa-star"></i></div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 
     <hr>
 
@@ -13,7 +30,7 @@
                 <div class="feedback-bar-wrap">
                     <p class="feedback-bar-text-before">5 <i class="fa fa-star"></i></p>
                     <div class="feedback-bar">
-                        <div class="feedback-bar-fill"  style="width:100%"></div>
+                        <div class="feedback-bar-fill" style="width:100%"></div>
                     </div>
                     <p class="feedback-bar-text-after">35</p>
                 </div>
@@ -52,73 +69,87 @@
 
             </div>
 
-
-
-            {#<div class="stars_wrap" id="productstars">#}
-                {#<div class="star_back clearfix">#}
-                    {#<div class="star">&#9733;</div>#}
-                    {#<div class="star">&#9733;</div>#}
-                    {#<div class="star">&#9733;</div>#}
-                    {#<div class="star">&#9733;</div>#}
-                    {#<div class="star">&#9733;</div>#}
-                {#</div>#}
-                {#<div class="star_over_wrap">#}
-                    {#<div class="star_over clearfix">#}
-                        {#<div class="star">&#9733;</div>#}
-                        {#<div class="star">&#9733;</div>#}
-                        {#<div class="star">&#9733;</div>#}
-                        {#<div class="star">&#9733;</div>#}
-                        {#<div class="star">&#9733;</div>#}
-                    {#</div>#}
-                {#</div>#}
-            {#</div>#}
-            {#<p id="outof5"></p>#}
         </div>
 
 
         <div class="col-sm-6">
-            <form id="createFeedback" action="" method="">
 
-                <div class="stars">
-                    <input class="star star-5" id="star-5" type="radio" name="star"/>
-                    <label class="star star-5" for="star-5"></label>
-                    <input class="star star-4" id="star-4" type="radio" name="star"/>
-                    <label class="star star-4" for="star-4"></label>
-                    <input class="star star-3" id="star-3" type="radio" name="star"/>
-                    <label class="star star-3" for="star-3"></label>
-                    <input class="star star-2" id="star-2" type="radio" name="star"/>
-                    <label class="star star-2" for="star-2"></label>
-                    <input class="star star-1" id="star-1" type="radio" name="star"/>
-                    <label class="star star-1" for="star-1"></label>
+
+            {% if authenticatedContact.check %}
+
+                <form id="createFeedback" action="" method="">
+                    <div class="stars">
+                        {% for i in 5..1 %}
+                            <input class="star star-{{ i }}" id="star-{{ i }}" type="radio" value="{{ i }}" name="ratingValue"/>
+                            <label class="star star-{{ i }}" for="star-{{ i }}"></label>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Title" required>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea class="form-control" id="message" name="message" rows="3" placeholder="Review message" required></textarea>
+                    </div>
+
+                    <!-- These will be set in a different way in the future. This is only for the showcase -->
+                    <input type="hidden" name="feedbackRelationTargetId" value="1">
+                    <input type="hidden" name="feedbackRelationSourceType" value="contact">
+                    <input type="hidden" name="feedbackRelationTargetType" value="variation">
+                    <input type="hidden" name="commentRelationTargetType" value="feedbackComment">
+                    <input type="hidden" name="ratingRelationTargetType" value="feedbackRating">
+
+                    <button type="submit" class="btn btn-primary">Submit review</button>
+                </form>
+
+            {% else %}
+
+                <div class="alert alert-info">
+                    Log in to write a customer review
                 </div>
 
-                <div class="form-group">
-                    <input type="text" class="form-control" id="title" name="title" placeholder="Title" required>
-                </div>
+                <a class="btn btn-primary" data-toggle="modal" href="#login">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <span class="hidden-xs-down">Log in</span>
+                </a>
 
-                <div class="form-group">
-                    <textarea class="form-control" id="message" name="message" rows="3" placeholder="Review message" required></textarea>
-                </div>
-
-                <!-- These will be set in a different way in the future. This is only for the showcase -->
-                <input type="hidden" name="feedbackRelationTargetId" value="1">
-                <input type="hidden" name="feedbackRelationTargetTypeId" value="2">
-                <input type="hidden" name="feedbackRelationSourceTypeId" value="1">
-                <input type="hidden" name="commentRelationTargetTypeId" value="1">
-                <input type="hidden" name="ratingRelationTargetTypeId" value="1">
+            {% endif %}
 
 
 
-                <button type="submit" class="btn btn-primary">Submit review</button>
 
-            </form>
+
         </div>
 
     </div>
 
     <h4 class="maintitle">More reviews</h4>
 
-    <div class="alert alert-info">
-        There are no feedbacks for this product
+    <div id="feedbacks-list">
+
+        {% for feedback in feedbacks %}
+            <div class="feedback clearfix">
+                <div class="feedback-creator">
+                    <i class="feedback-user-icon fa fa-2x fa-user"  data-toggle="tooltip" data-placement="top" data-original-title="PayPal"></i>
+                    <p class="feedback-user-name">{{ feedback.sourceRelation[0].sourceRelationLabel }}</p>
+                </div>
+                <div class="feedback-comment">
+                    <p class="feedback-comment-title">{{ feedback.title }}</p>
+                    <div class="feedback-comment-rating">
+                         {#This next line is all in one line because if I change the line it adds spaces between the stars#}
+                        {% for i in 1..5 %}{{ i <= feedback.feedbackRating.rating.ratingValue ? '<i class="fa fa-star full"></i>' : '<i class="fa fa-star-o empty"></i>' }}{% endfor %}
+                    </div>
+                    <p class="feedback-comment-text">{{ feedback.feedbackComment.comment.message }}</p>
+                </div>
+            </div>
+
+        {% else %}
+
+            <div class="alert alert-info">
+                There are no feedbacks for this product
+            </div>
+
+        {% endfor %}
     </div>
 </section>
