@@ -19,6 +19,6 @@ class FeedbackService
      */
     public function listFeedbacks(FeedbackRepositoryContract $feedbackRepository)
     {
-        return $feedbackRepository->listFeedbacks();
+        return $feedbackRepository->listFeedbacks(1, 50, [], ['isVisible' => true]);
     }
 }

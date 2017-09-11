@@ -9,6 +9,7 @@
 namespace Feedback\Providers;
 
 use Plenty\Plugin\RouteServiceProvider;
+use Plenty\Plugin\Routing\ApiRouter;
 use Plenty\Plugin\Routing\Router;
 
 /**
@@ -17,8 +18,26 @@ use Plenty\Plugin\Routing\Router;
  */
 class FeedbackRouteServiceProvider extends RouteServiceProvider
 {
-    public function map(Router $router)
+    public function map(Router $router, ApiRouter $apiRouter)
     {
         $router->get('feedbacktest', 'Feedback\Controllers\FeedbacksController@listFeedbacks');
+
+        $apiRouter->version(['v1'], ['namespace' => 'Feedback\Controllers'],
+            function ($api) {
+                $api->post('feedbacks/feedback/create', 'FeedbacksController@create');
+            }
+        );
+
+        $apiRouter->version(['v1'], ['namespace' => 'Feedback\Controllers'],
+            function ($api) {
+                $api->put('feedbacks/feedback/update/{feedbackId}', 'FeedbacksController@update')->where('feedbackId', '\d+');
+            }
+        );
+
+        $apiRouter->version(['v1'], ['namespace' => 'Feedback\Controllers'],
+            function ($api) {
+                $api->delete('feedbacks/feedback/delete/{feedbackId}', 'FeedbacksController@delete')->where('feedbackId', '\d+');
+            }
+        );
     }
 }

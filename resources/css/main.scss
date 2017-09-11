@@ -154,7 +154,12 @@
     #feedbacks-list {
 
         .feedback {
-            margin:20px 0 30px;
+            padding:20px 0;
+            border-bottom:rgba(0,0,0,.1) dotted 1px;
+
+            .feedback-options {
+                float:right;
+            }
 
             .feedback-creator {
                 width:50px;
@@ -190,6 +195,10 @@
                 .feedback-comment-text {
 
                 }
+            }
+
+            form.feedback-edit {
+                padding-left:70px;
             }
         }
 
