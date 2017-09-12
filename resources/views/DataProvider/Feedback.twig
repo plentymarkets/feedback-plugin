@@ -2,7 +2,7 @@
 
 <section id="feedbacks">
 
-    <h1 class="title">Customer reviews <small class="feedback-average-count">(23)</small> {#({{ feedback.count }})#}</h1>
+    <h1 class="title">Customer reviews <small class="feedback-average-count">({{ counts.total }})</small> {#({{ feedback.count }})#}</h1>
 
     <div class="feedback-stars-average" id="feedback-stars-average">
         <div class="feedback-stars-background clearfix">
@@ -10,7 +10,7 @@
                 <div class="feedback-star"><i class="fa fa-star"></i></div>
             {% endfor %}
         </div>
-        <div class="feedback-stars-overlay-wrap">
+        <div class="feedback-stars-overlay-wrap" style="width:{{ ( counts.average * 100 ) / 5 }}%">
             <div class="feedback-stars-overlay clearfix">
                 {% for i in 1..5 %}
                     <div class="feedback-star"><i class="fa fa-star"></i></div>
@@ -30,41 +30,41 @@
                 <div class="feedback-bar-wrap">
                     <p class="feedback-bar-text-before">5 <i class="fa fa-star"></i></p>
                     <div class="feedback-bar">
-                        <div class="feedback-bar-fill" style="width:100%"></div>
+                        <div class="feedback-bar-fill" style="width:{{ counts.c5 / counts.total * 100 }}%"></div>
                     </div>
-                    <p class="feedback-bar-text-after">35</p>
+                    <p class="feedback-bar-text-after">{{ counts.c5 }}</p>
                 </div>
 
                 <div class="feedback-bar-wrap">
                     <p class="feedback-bar-text-before">4 <i class="fa fa-star"></i></p>
                     <div class="feedback-bar">
-                        <div class="feedback-bar-fill" style="width:20%"></div>
+                        <div class="feedback-bar-fill" style="width:{{ counts.c4 / counts.total * 100 }}%"></div>
                     </div>
-                    <p class="feedback-bar-text-after">4</p>
+                    <p class="feedback-bar-text-after">{{ counts.c4 }}</p>
                 </div>
 
                 <div class="feedback-bar-wrap">
                     <p class="feedback-bar-text-before">3 <i class="fa fa-star"></i></p>
                     <div class="feedback-bar">
-                        <div class="feedback-bar-fill" style="width:0%"></div>
+                        <div class="feedback-bar-fill" style="width:{{ counts.c3 / counts.total * 100}}%"></div>
                     </div>
-                    <p class="feedback-bar-text-after">0</p>
+                    <p class="feedback-bar-text-after">{{ counts.c3 }}</p>
                 </div>
 
                 <div class="feedback-bar-wrap">
                     <p class="feedback-bar-text-before">2 <i class="fa fa-star"></i></p>
                     <div class="feedback-bar">
-                        <div class="feedback-bar-fill" style="width:10%"></div>
+                        <div class="feedback-bar-fill" style="width:{{ counts.c2 / counts.total * 100 }}%"></div>
                     </div>
-                    <p class="feedback-bar-text-after">2</p>
+                    <p class="feedback-bar-text-after">{{ counts.c2 }}</p>
                 </div>
 
                 <div class="feedback-bar-wrap">
                     <p class="feedback-bar-text-before">1 <i class="fa fa-star"></i></p>
                     <div class="feedback-bar">
-                        <div class="feedback-bar-fill" style="width:5%"></div>
+                        <div class="feedback-bar-fill" style="width:{{ counts.c1 / counts.total * 100 }}%"></div>
                     </div>
-                    <p class="feedback-bar-text-after">1</p>
+                    <p class="feedback-bar-text-after">{{ counts.c1 }}</p>
                 </div>
 
             </div>
@@ -154,7 +154,7 @@
 
                 <div class="feedback-comment">
                     <p class="feedback-comment-title">{{ feedback.title }}</p>
-                    <div class="feedback-comment-rating" data-ratingValue="{{ feedback.feedbackRating.rating.ratingValue }}">
+                    <div class="feedback-comment-rating" data-ratingvalue="{{ feedback.feedbackRating.rating.ratingValue }}">
                          {#This next line is all in one line because if I change the line it adds spaces between the stars#}
                         {% for i in 1..5 %}{{ i <= feedback.feedbackRating.rating.ratingValue ? '<i class="fa fa-star full"></i>' : '<i class="fa fa-star-o empty"></i>' }}{% endfor %}
                     </div>

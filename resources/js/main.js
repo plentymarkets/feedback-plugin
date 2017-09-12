@@ -70,7 +70,7 @@ function editFeedback(id) {
 
     var feedbackId = $(wrapper).data('feedbackid');
     var title = $(wrapper +' .feedback-comment .feedback-comment-title').text();
-    var ratingValue = $(wrapper +' .feedback-comment .feedback-comment-rating').data('ratingValue');
+    var ratingValue = $(wrapper +' .feedback-comment .feedback-comment-rating').data('ratingvalue');
     var message = $(wrapper +' .feedback-comment .feedback-comment-text').text();
 
     $(wrapper +' .feedback-comment').hide();
@@ -98,8 +98,12 @@ function editFeedback(id) {
         '                    </div>\n' +
         '                    <input type="hidden" name="id" class="feedbackId" value="'+feedbackId+'">\n' +
         '                    <button type="submit" class="btn btn-primary">Edit review</button>\n' +
+        '                    <a class="btn btn-secondary feedback-edit-cancel" data-id="'+feedbackId+'">Cancel</a>\n' +
         '                </form>');
+
+    $(wrapper).find('input#star-'+feedbackId+'-'+ratingValue).prop("checked", true);
 }
+
 
 // this is the id of the form
 $(document).on('submit','form.feedback-edit',function(e){
@@ -133,7 +137,14 @@ $(document).on('submit','form.feedback-edit',function(e){
     e.preventDefault();
 });
 
+$(document).on('click','.feedback-edit-cancel',function(e) {
+    var wrapper = '#feedback-' + $(this).data('id');
 
+    $(wrapper +' .feedback-comment').show();
+    $(wrapper +' .feedback-options').show();
+    $(wrapper +' .feedback-edit').remove();
+
+});
 
 
 
