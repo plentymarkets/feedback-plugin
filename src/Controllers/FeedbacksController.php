@@ -35,7 +35,7 @@ class FeedbacksController extends Controller
      */
     public function create(Request $request, FeedbackRepositoryContract $feedbackRepository, FeedbackCoreHelper $coreHelper)
     {
-        $isVisible = $coreHelper->configValue('releaseFeedbacks');
+        $isVisible = $coreHelper->configValue(FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY) == 'true' ? true : false; ;
         return $feedbackRepository->createFeedback(array_merge($request->all(), ['isVisible' => $isVisible]));
     }
 

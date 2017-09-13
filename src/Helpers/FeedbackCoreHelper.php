@@ -15,6 +15,8 @@ class FeedbackCoreHelper
 {
 
     const PLUGIN_NAME = 'Feedback';
+    const KEY_RELEASE_FEEDBACKS_AUTOMATICALLY = "releaseFeedbacks";
+    const KEY_MAXIMUM_NR_FEEDBACKS = "numberOfFeedbacks";
 
     /**
      * @var $config
@@ -32,16 +34,10 @@ class FeedbackCoreHelper
 
     /**
      * @param string $key
-     * @return bool
+     * @return mixed
      */
     public function configValue(string $key)
     {
-        $value = $this->config->get(self::PLUGIN_NAME . '.' . $key);
-        if ($value == 'true')
-        {
-            return true;
-        }
-
-        return false;
+        return  $this->config->get(self::PLUGIN_NAME . '.' . $key);
     }
 }
