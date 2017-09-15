@@ -17,6 +17,7 @@ class FeedbackCoreHelper
     const PLUGIN_NAME = 'Feedback';
     const KEY_RELEASE_FEEDBACKS_AUTOMATICALLY = "releaseFeedbacks";
     const KEY_MAXIMUM_NR_FEEDBACKS = "numberOfFeedbacks";
+    const KEY_TIMESTAMP_VISIBILITY = "timestampVisibility";
 
     /**
      * @var $config
