@@ -2,7 +2,7 @@
 
 <section id="feedbacks">
 
-    <h1 class="title">Customer reviews <small class="feedback-average-count">({{ counts.total }})</small> {#({{ feedback.count }})#}</h1>
+    <h1 class="title">{{ trans("Feedback::Feedback.customerReviews") }}<small class="feedback-average-count">({{ counts.total }})</small> {#({{ feedback.count }})#}</h1>
 
     <div class="feedback-stars-average" id="feedback-stars-average">
         <div class="feedback-stars-background clearfix">
@@ -86,11 +86,11 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="text" class="form-control" id="title" name="title" placeholder="Title" required>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="{{ trans("Feedback::Feedback.title") }}" required>
                     </div>
 
                     <div class="form-group">
-                        <textarea class="form-control" id="message" name="message" rows="3" placeholder="Review message" required></textarea>
+                        <textarea class="form-control" id="message" name="message" rows="3" placeholder="{{ trans("Feedback::Feedback.reviewMessage") }}" required></textarea>
                     </div>
 
                     <!-- These will be set in a different way in the future. This is only for the showcase -->
@@ -100,13 +100,13 @@
                     <input type="hidden" name="commentRelationTargetType" value="feedbackComment">
                     <input type="hidden" name="ratingRelationTargetType" value="feedbackRating">
 
-                    <button type="submit" class="btn btn-primary">Submit review</button>
+                    <button type="submit" class="btn btn-primary">{{ trans("Feedback::Feedback.submitReview") }}</button>
                 </form>
 
             {% else %}
 
                 <div class="alert alert-info">
-                    Log in to write a customer review
+                    {{ trans("Feedback::Feedback.logInCustomerReviews") }}
                 </div>
 
                 <a class="btn btn-primary" data-toggle="modal" href="#login">
@@ -115,13 +115,7 @@
                 </a>
 
             {% endif %}
-
-
-
-
-
         </div>
-
     </div>
 
     {#<h4 class="maintitle">More reviews</h4>#}
@@ -136,11 +130,11 @@
 
                 {% if feedback.sourceRelation[0].feedbackRelationSourceId == authenticatedContact.id  %}
                     <div class="feedback-options">
-                        <span class="btn btn-sm btn-secondary" data-toggle="tooltip" data-placement="top" data-original-title="Edit review"
+                        <span class="btn btn-sm btn-secondary" data-toggle="tooltip" data-placement="top" data-original-title="{{ trans("Feedback::Feedback.editReview") }}"
                             onclick="editFeedback({{ feedback.id }})"
                         ><i class="fa fa-pencil"></i></span>
 
-                        <span class="btn btn-sm btn-secondary" data-toggle="tooltip" data-placement="top" data-original-title="Delete review"
+                        <span class="btn btn-sm btn-secondary" data-toggle="tooltip" data-placement="top" data-original-title="{{ trans("Feedback::Feedback.deleteReview") }}"
                            onclick="deleteFeedback({{ feedback.id }})"
                         ><i class="fa fa-trash-o"></i></span>
 
