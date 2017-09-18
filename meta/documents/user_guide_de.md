@@ -4,7 +4,7 @@ Zeigen Sie Kundenrezensionen im Webshop an.
 
 ## Kundenrezensionen einrichten
 
-Bevor die Zahlungsart in Ihrem Webshop verfügbar ist, müssen Sie Einstellungen in Ihrem plentymarkets Backend vornehmen.
+Bevor Kundenrezensionen im Webshop angezeigt werden, müssen Sie Einstellungen in Ihrem plentymarkets Backend vornehmen.
 
 ##### Kundenrezensionen einrichten:
 
@@ -58,13 +58,13 @@ Das Template-Plugin **Ceres** bietet Ihnen in der Einzelansicht eines Artikels e
 ##### Kundenrezensionen im Webshop anzeigen:
 
 1. Gehen Sie zu **Plugins » Content**.
-3. Wählen Sie den Bereich **Feedback Javascript**.
-4. Aktivieren Sie den Container **Script loader: Register/load JS**.
-5. Wählen Sie den Bereich **Feedback CSS (Ceres)**.
-6. Aktivieren Sie den Container **Template: Style**.
-7. Wählen Sie den Bereich **Feedback ratings**.
-8. Aktivieren Sie den Container **Single item: Container for item lists**.
-9. **Speichern** Sie die Einstellungen.<br />→ Kundenrezensionen werden in der Einzelansicht eines Artikels angezeigt.
+2. Wählen Sie den Bereich **Feedback Javascript**.
+3. Aktivieren Sie den Container **Script loader: Register/load JS**.
+4. Wählen Sie den Bereich **Feedback CSS (Ceres)**.
+5. Aktivieren Sie den Container **Template: Style**.
+6. Wählen Sie den Bereich **Feedback ratings**.
+7. Aktivieren Sie den Container **Single item: Container for item lists**.
+8. **Speichern** Sie die Einstellungen.<br />→ Kundenrezensionen werden in der Einzelansicht eines Artikels angezeigt.
 
 ## Lizenz
 
