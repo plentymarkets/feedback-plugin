@@ -30,7 +30,7 @@
                 <div class="feedback-bar-wrap">
                     <p class="feedback-bar-text-before">5 <i class="fa fa-star"></i></p>
                     <div class="feedback-bar">
-                        <div class="feedback-bar-fill" style="width:{{ counts.c5 / counts.total * 100 }}%"></div>
+                        <div class="feedback-bar-fill" style="width:{{ counts.c5 / counts.highestCount * 100 }}%"></div>
                     </div>
                     <p class="feedback-bar-text-after">{{ counts.c5 }}</p>
                 </div>
@@ -38,7 +38,7 @@
                 <div class="feedback-bar-wrap">
                     <p class="feedback-bar-text-before">4 <i class="fa fa-star"></i></p>
                     <div class="feedback-bar">
-                        <div class="feedback-bar-fill" style="width:{{ counts.c4 / counts.total * 100 }}%"></div>
+                        <div class="feedback-bar-fill" style="width:{{ counts.c4 / counts.highestCount * 100 }}%"></div>
                     </div>
                     <p class="feedback-bar-text-after">{{ counts.c4 }}</p>
                 </div>
@@ -46,7 +46,7 @@
                 <div class="feedback-bar-wrap">
                     <p class="feedback-bar-text-before">3 <i class="fa fa-star"></i></p>
                     <div class="feedback-bar">
-                        <div class="feedback-bar-fill" style="width:{{ counts.c3 / counts.total * 100}}%"></div>
+                        <div class="feedback-bar-fill" style="width:{{ counts.c3 / counts.highestCount * 100}}%"></div>
                     </div>
                     <p class="feedback-bar-text-after">{{ counts.c3 }}</p>
                 </div>
@@ -54,7 +54,7 @@
                 <div class="feedback-bar-wrap">
                     <p class="feedback-bar-text-before">2 <i class="fa fa-star"></i></p>
                     <div class="feedback-bar">
-                        <div class="feedback-bar-fill" style="width:{{ counts.c2 / counts.total * 100 }}%"></div>
+                        <div class="feedback-bar-fill" style="width:{{ counts.c2 / counts.highestCount * 100 }}%"></div>
                     </div>
                     <p class="feedback-bar-text-after">{{ counts.c2 }}</p>
                 </div>
@@ -62,7 +62,7 @@
                 <div class="feedback-bar-wrap">
                     <p class="feedback-bar-text-before">1 <i class="fa fa-star"></i></p>
                     <div class="feedback-bar">
-                        <div class="feedback-bar-fill" style="width:{{ counts.c1 / counts.total * 100 }}%"></div>
+                        <div class="feedback-bar-fill" style="width:{{ counts.c1 / counts.highestCount * 100 }}%"></div>
                     </div>
                     <p class="feedback-bar-text-after">{{ counts.c1 }}</p>
                 </div>
@@ -122,7 +122,6 @@
     {% if authenticatedContact.check and feedbacks %}
         <h4 class="minititle">Your reviews</h4>
         <hr>
-
 
         <div id="feedback-list-of-user" class="feedback-list">
             {% include 'Feedback::DataProvider.Feedbacks.FeedbacksList.twig' %}
