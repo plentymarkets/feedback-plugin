@@ -2,7 +2,7 @@
 
 <section id="feedbacks">
 
-    <h1 class="title">{{ trans("Feedback::Feedback.customerReviews") }}<small class="feedback-average-count">({{ counts.total }})</small> {#({{ feedback.count }})#}</h1>
+    <h1 class="title">{{ trans("Feedback::Feedback.customerReviews") }}<small class="feedback-average-count"> ({{ counts.total }})</small> {#({{ feedback.count }})#}</h1>
 
     <div class="feedback-stars-average" id="feedback-stars-average">
         <div class="feedback-stars-background clearfix">
@@ -161,7 +161,7 @@
         {% else %}
 
             <div class="alert alert-info">
-                There are no feedbacks for this product
+                {{ trans("Feedback::Feedback.noReviews") }}
             </div>
 
         {% endfor %}
