@@ -42,8 +42,8 @@ $("#feedbacks #createFeedback").submit(function(e) {
 //      DELETE FEEDBACK
 // ----------------------------------
 
-function deleteFeedback(id) {
-    if (confirm("Are you sure you want to delete the review?")) {
+function deleteFeedback(id, deleteReviewTranslation) {
+    if (confirm(deleteReviewTranslation)) {
         // ajax call
         $.ajax({
             type: "DELETE",
@@ -65,7 +65,7 @@ function deleteFeedback(id) {
 // ----------------------------------
 //  Put the form in the comment and ajax it
 // ----------------------------------
-function editFeedback(id) {
+function editFeedback(id, cancelTranslation, reviewMessageTranslation, editReviewTranslation, titleTranslation) {
     var wrapper = '#feedback-' + id;
 
     var feedbackId = $(wrapper).data('feedbackid');
@@ -91,14 +91,14 @@ function editFeedback(id) {
         '                        <label class="star star-1" for="star-'+feedbackId+'-1"></label>\n' +
         '                    </div>\n' +
         '                    <div class="form-group">\n' +
-        '                        <input type="text" class="form-control" id="title" name="title" value="'+title+'" placeholder="Title" required>\n' +
+        '                        <input type="text" class="form-control" id="title" name="title" value="'+title+'" placeholder="'+titleTranslation+'" required>\n' +
         '                    </div>\n' +
         '                    <div class="form-group">\n' +
-        '                        <textarea class="form-control" id="message" name="message" rows="3" placeholder="Review message" required>'+message+'</textarea>\n' +
+        '                        <textarea class="form-control" id="message" name="message" rows="3" placeholder="'+reviewMessageTranslation+'" required>'+message+'</textarea>\n' +
         '                    </div>\n' +
-        '                    <input type="hidden" name="id" class="feedbackId" value="'+feedbackId+'">\n' +
-        '                    <button type="submit" class="btn btn-primary">Edit review</button>\n' +
-        '                    <a class="btn btn-secondary feedback-edit-cancel" data-id="'+feedbackId+'">Cancel</a>\n' +
+        '                    <input type="hidden" name="id" class="feedbackId" value='+feedbackId+'>\n' +
+        '                    <button type="submit" class="btn btn-primary">'+editReviewTranslation+'</button>\n' +
+        '                    <a class="btn btn-secondary feedback-edit-cancel" data-id="'+feedbackId+'">'+cancelTranslation+'</a>\n' +
         '                </form>');
 
     $(wrapper).find('input#star-'+feedbackId+'-'+ratingValue).prop("checked", true);
