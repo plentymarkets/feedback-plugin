@@ -13,66 +13,64 @@ use Feedback\Services\FeedbackService;
 use Plenty\Modules\Feedback\Contracts\FeedbackRepositoryContract;
 use Plenty\Modules\Feedback\Controllers\FeedbackController;
 use Plenty\Modules\Frontend\Services\AccountService;
+use Plenty\Plugin\Http\Request;
 use Plenty\Plugin\Templates\Twig;
 
 class Feedback
 {
 
     /**
+     * @param Request $request
      * @param Twig $twig
+     * @param FeedbackService $feedbackService
+     * @param FeedbackRepositoryContract $feedbackRepository
+     * @param AccountService $accountService
      * @return string
      */
-    public function call(Twig $twig, FeedbackService $feedbackService, FeedbackRepositoryContract $feedbackRepository, AccountService $accountService)
+    public function call(Request $request, Twig $twig, FeedbackService $feedbackService, FeedbackRepositoryContract $feedbackRepository, AccountService $accountService)
     {
-        // List of feedbacks
-        $feedbacks = $feedbackService->listFeedbacks($feedbackRepository);
 
-        $results = $feedbacks->getResult()->all();
-
-        $count5 = $count4 = $count3 = $count2 = $count1 = $totalcount = $totalValue = 0;
-        foreach($results as $result){
-            if($result->feedbackRating->rating->ratingValue == 5){
-                $count5 ++;
-                $totalValue += 5;
-            }elseif($result->feedbackRating->rating->ratingValue == 4){
-                $count4 ++;
-                $totalValue += 4;
-            }elseif($result->feedbackRating->rating->ratingValue == 3){
-                $count3 ++;
-                $totalValue += 3;
-            }elseif($result->feedbackRating->rating->ratingValue == 2){
-                $count2 ++;
-                $totalValue += 2;
-            }elseif($result->feedbackRating->rating->ratingValue == 1){
-                $count1 ++;
-                $totalValue += 1;
-            };
-            $totalcount ++;
-        }
-
-        $average = $totalValue / $totalcount;
-
-        $counts = [
-            'total' => $totalcount,
-            'totalValue' => $totalValue,
-            'average' => $average,
-            'c5' => $count5,
-            'c4' => $count4,
-            'c3' => $count3,
-            'c2' => $count2,
-            'c1' => $count1
-        ];
-        // Details about the user currently authenticated in the app
+        // Details about the user currently authenticated
         $authenticatedContact = [
             'id' => $accountService->getAccountContactId(),
             'check' => $accountService->getIsAccountLoggedIn()
         ];
 
-        $data = [
-            'feedbacks' => $results,
-            'authenticatedContact' => $authenticatedContact,
-            'counts' => $counts
+        $counts = [
+            'total' => 120,
+            'average' => 4.2,
+            'highestCount' => 40,
+            'c1' => 10,
+            'c2' => 20,
+            'c3' => 30,
+            'c4' => 40,
+            'c5' => 20
         ];
+
+
+        if($authenticatedContact['check']){
+
+            // Pagination settings for currently authenticated user's feedbacks
+            $page = $request->get('page');
+            $page = isset($page) && $page != 0 ? $page : 1;
+            $itemsPerPage = 50;
+            $with = [];
+            $filters = [
+                'targetId' => 1,
+                'sourceId' => $authenticatedContact['id']
+            ];
+
+            // List of currently authenticated user's feedbacks
+            $feedbacks = $feedbackService->listFeedbacks($feedbackRepository, $page, $itemsPerPage, $with, $filters);
+            $results = $feedbacks->getResult()->all();
+
+            $data['feedbacks'] = $results;
+
+        }
+
+
+        $data['counts'] = $counts;
+        $data['authenticatedContact'] = $authenticatedContact;
 
         return $twig->render('Feedback::DataProvider.Feedback', $data);
     }

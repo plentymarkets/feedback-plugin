@@ -148,6 +148,49 @@ $(document).on('click','.feedback-edit-cancel',function(e) {
 
 
 
+// ----------------------------------
+//     PAGINATION
+// ----------------------------------
+
+var feedbackPage = 1;
+feedbackLoadMore(feedbackPage);
+
+$(document).on('click', '#feedback-loadmore', function(e) {
+    feedbackPage ++;
+    feedbackLoadMore(feedbackPage);
+
+});
+
+
+// ----------------------------------
+//     Helper functions
+// ----------------------------------
+
+function feedbackLoadMore(page){
+    $("#feedback-list-reviews").append($('<div>').load("/feedbacks/feedback/helper/feedbacklist/"+ page +" #feedback-list>*"));
+}
+
+
+
+// ----------------------------------
+//     Developed but unused functions
+// ----------------------------------
+//
+// function getSearchParams(k){
+//     var p={};
+//     location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(s,k,v){p[k]=v})
+//     return k?p[k]:p;
+// }
+//
+// function replaceUrlParam(url, paramName, paramValue){
+//     if(paramValue == null)
+//         paramValue = '';
+//     var pattern = new RegExp('\\b('+paramName+'=).*?(&|$)')
+//     if(url.search(pattern)>=0){
+//         return url.replace(pattern,'$1' + paramValue + '$2');
+//     }
+//     return url + (url.indexOf('?')>0 ? '&' : '?') + paramName + '=' + paramValue
+// }
 
 
 

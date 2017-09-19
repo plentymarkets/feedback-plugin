@@ -20,7 +20,7 @@ class FeedbackRouteServiceProvider extends RouteServiceProvider
 {
     public function map(Router $router, ApiRouter $apiRouter)
     {
-        $router->get('feedbacktest', 'Feedback\Controllers\FeedbacksController@listFeedbacks');
+//        $router->get('feedbacktest', 'Feedback\Controllers\FeedbacksController@listFeedbacks');
 
         $apiRouter->version(['v1'], ['namespace' => 'Feedback\Controllers'],
             function ($api) {
@@ -39,5 +39,11 @@ class FeedbackRouteServiceProvider extends RouteServiceProvider
                 $api->delete('feedbacks/feedback/delete/{feedbackId}', 'FeedbacksController@delete')->where('feedbackId', '\d+');
             }
         );
+
+
+
+        // Pagination
+        $router->get('feedbacks/feedback/helper/feedbacklist/{page}', 'Feedback\Controllers\FeedbacksController@paginate')->where('page', '\d+');
+
     }
 }

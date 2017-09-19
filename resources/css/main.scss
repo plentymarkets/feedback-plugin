@@ -8,6 +8,10 @@
         vertical-align: bottom;
     }
 
+    .minititle {
+        margin-top:40px;
+    }
+
     /* Feedback stars next to section title */
     .feedback-stars-average {
         width:130px;
@@ -44,7 +48,7 @@
 
         /* overlay wrapper that colors the stars */
         .feedback-stars-overlay-wrap {
-            width:50%;
+            width:0%;
         }
 
     }
@@ -112,6 +116,7 @@
 
     /* Ratings bars */
     #feedback-bars {
+        margin-bottom:40px;
 
         .feedback-bar-wrap {
             margin-bottom:1px;
@@ -151,10 +156,11 @@
 
     /* Comments */
 
-    #feedbacks-list {
+    .feedback-list {
 
         .feedback {
-            padding:20px 0;
+            padding-bottom:15px;
+            margin-bottom:15px;
             border-bottom:rgba(0,0,0,.1) dotted 1px;
 
             .feedback-options {
@@ -189,11 +195,11 @@
                     font-weight:bold;
                 }
                 .feedback-comment-rating {
-                    color:rgba(0,0,0,.2);
+                    color:rgba(0,0,0,.1);
                     .full { color:orange; }
                 }
                 .feedback-comment-text {
-
+                    margin-bottom:0px;
                 }
             }
 
@@ -206,7 +212,10 @@
 
     }
 
-
+    #feedback-loadmore {
+        width:50%;
+        margin:20px auto;
+    }
 
 
 }

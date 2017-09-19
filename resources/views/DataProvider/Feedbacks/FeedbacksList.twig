@@ -1,0 +1,14 @@
+<div id="feedbacks-list">
+
+    {% for feedback in feedbacks %}
+
+        {% include 'Feedback::DataProvider.Feedbacks.FeedbackSingle.twig' %}
+
+    {% else %}
+
+        <div class="alert alert-info">
+            {{ trans("Feedback::Feedback.noReviews") }}
+        </div>
+
+    {% endfor %}
+</div>
