@@ -131,11 +131,11 @@
                 {% if feedback.sourceRelation[0].feedbackRelationSourceId == authenticatedContact.id  %}
                     <div class="feedback-options">
                         <span class="btn btn-sm btn-secondary" data-toggle="tooltip" data-placement="top" data-original-title="{{ trans("Feedback::Feedback.editReview") }}"
-                            onclick="editFeedback({{ feedback.id }})"
+                            onclick="editFeedback({{ feedback.id }} , '{{ trans("Feedback::Feedback.cancel") }}', '{{ trans("Feedback::Feedback.reviewMessage") }}', '{{ trans("Feedback::Feedback.editReview") }}', '{{ trans("Feedback::Feedback.title") }}')"
                         ><i class="fa fa-pencil"></i></span>
 
                         <span class="btn btn-sm btn-secondary" data-toggle="tooltip" data-placement="top" data-original-title="{{ trans("Feedback::Feedback.deleteReview") }}"
-                           onclick="deleteFeedback({{ feedback.id }})"
+                           onclick="deleteFeedback({{ feedback.id }}, '{{ trans("Feedback::Feedback.deleteReviewConfirmation") }}')"
                         ><i class="fa fa-trash-o"></i></span>
 
                     </div>
