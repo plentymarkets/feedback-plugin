@@ -109,16 +109,6 @@ class FeedbacksController extends Controller
      */
     public function paginate($page, Twig $twig, FeedbackService $feedbackService, AccountService $accountService, FeedbackRepositoryContract $feedbackRepository)
     {
-        $page = isset($page) && $page != 0 ? $page : 1;
-        $itemsPerPage = 3;
-        $with = [];
-        $filters = [
-            'isVisible' => 1,
-            'targetId' => 1
-        ];
-
-        $feedbacks = $feedbackService->listFeedbacks($feedbackRepository, $page, $itemsPerPage, $with, $filters);
-        $results = $feedbacks->getResult()->all();
 
         // Details about the user currently authenticated
         $authenticatedContact = [
@@ -126,6 +116,17 @@ class FeedbacksController extends Controller
             'check' => $accountService->getIsAccountLoggedIn()
         ];
 
+        $page = isset($page) && $page != 0 ? $page : 1;
+        $itemsPerPage = 2;
+        $with = [];
+        $filters = [
+            'isVisible' => 1,
+            'targetId' => 1,
+            'hideSourceId' => $authenticatedContact['id']
+        ];
+
+        $feedbacks = $feedbackService->listFeedbacks($feedbackRepository, $page, $itemsPerPage, $with, $filters);
+        $results = $feedbacks->getResult()->all();
 
         $data = [
             'feedbacks' => $results,
