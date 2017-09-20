@@ -2,9 +2,16 @@
 
     {% if feedback.sourceRelation[0].feedbackRelationSourceId == authenticatedContact.id  %}
         <div class="feedback-options">
-                        <span class="btn btn-sm btn-secondary" data-toggle="tooltip" data-placement="top" data-original-title="{{ trans("Feedback::Feedback.editReview") }}"
-                              onclick="editFeedback({{ feedback.id }} , '{{ trans("Feedback::Feedback.cancel") }}', '{{ trans("Feedback::Feedback.reviewMessage") }}', '{{ trans("Feedback::Feedback.editReview") }}', '{{ trans("Feedback::Feedback.title") }}')"
-                        ><i class="fa fa-pencil"></i></span>
+
+            {% if feedback.isVisible == 0 %}
+            <span class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" data-original-title="{{ trans("Feedback::Feedback.moderationMessage") }}">
+                <i class="fa fa-eye-slash"></i>
+            </span>
+            {% endif %}
+
+            <span class="btn btn-sm btn-secondary" data-toggle="tooltip" data-placement="top" data-original-title="{{ trans("Feedback::Feedback.editReview") }}"
+                  onclick="editFeedback({{ feedback.id }} , '{{ trans("Feedback::Feedback.cancel") }}', '{{ trans("Feedback::Feedback.reviewMessage") }}', '{{ trans("Feedback::Feedback.editReview") }}', '{{ trans("Feedback::Feedback.title") }}')"
+            ><i class="fa fa-pencil"></i></span>
 
             <span class="btn btn-sm btn-secondary" data-toggle="tooltip" data-placement="top" data-original-title="{{ trans("Feedback::Feedback.deleteReview") }}"
                   onclick="deleteFeedback({{ feedback.id }}, '{{ trans("Feedback::Feedback.deleteReviewConfirmation") }}')"
