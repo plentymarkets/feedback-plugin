@@ -41,7 +41,6 @@ class FeedbacksController extends Controller
 
         // Limit the feedbacks count of a user per item
         $limitPerUserPerItem = $coreHelper->configValue(FeedbackCoreHelper::KEY_MAXIMUM_NR_FEEDBACKS);
-//        $limitPerUserPerItem = 3;
 
         // if the setting is not set, ignore it
         if(is_null($limitPerUserPerItem) || $limitPerUserPerItem == 0){
@@ -105,9 +104,14 @@ class FeedbacksController extends Controller
 
 
     /**
-     *
+     * @param $page
+     * @param Twig $twig
+     * @param FeedbackService $feedbackService
+     * @param AccountService $accountService
+     * @param FeedbackRepositoryContract $feedbackRepository
+     * @return string
      */
-    public function paginate($page, Twig $twig, FeedbackService $feedbackService, AccountService $accountService, FeedbackRepositoryContract $feedbackRepository)
+    public function paginate($page, Twig $twig, FeedbackService $feedbackService, FeedbackCoreHelper $coreHelper, AccountService $accountService, FeedbackRepositoryContract $feedbackRepository)
     {
 
         // Details about the user currently authenticated
@@ -115,6 +119,8 @@ class FeedbacksController extends Controller
             'id' => $accountService->getAccountContactId(),
             'check' => $accountService->getIsAccountLoggedIn()
         ];
+
+        $options['timestampVisibility'] = $coreHelper->configValue(FeedbackCoreHelper::KEY_TIMESTAMP_VISIBILITY) == 'true' ? true : false;
 
         $page = isset($page) && $page != 0 ? $page : 1;
         $itemsPerPage = 2;
@@ -130,7 +136,8 @@ class FeedbacksController extends Controller
 
         $data = [
             'feedbacks' => $results,
-            'authenticatedContact' => $authenticatedContact
+            'authenticatedContact' => $authenticatedContact,
+            'options' => $options
 
         ];
 

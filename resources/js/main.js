@@ -94,7 +94,7 @@ function editFeedback(id, cancelTranslation, reviewMessageTranslation, editRevie
         '                        <input type="text" class="form-control" id="title" name="title" value="'+title+'" placeholder="'+titleTranslation+'" required>\n' +
         '                    </div>\n' +
         '                    <div class="form-group">\n' +
-        '                        <textarea class="form-control" id="message" name="message" rows="3" placeholder="'+reviewMessageTranslation+'" required>'+message+'</textarea>\n' +
+        '                        <textarea class="form-control" id="message" name="message" rows="3" placeholder="'+reviewMessageTranslation+'">'+message+'</textarea>\n' +
         '                    </div>\n' +
         '                    <input type="hidden" name="id" class="feedbackId" value='+feedbackId+'>\n' +
         '                    <button type="submit" class="btn btn-primary">'+editReviewTranslation+'</button>\n' +

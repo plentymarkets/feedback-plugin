@@ -217,6 +217,20 @@
         margin:20px auto;
     }
 
+    .feedback-tooltip-wrapper {
+        display:inline-block;
+        button {
+            pointer-events: none;
+        }
+    }
+
+    .feedback-review-date {
+        margin-bottom:0;
+        i.fa {
+            margin-right:3px;
+        }
+    }
+
 
 }
 

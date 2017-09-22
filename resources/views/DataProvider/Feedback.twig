@@ -2,7 +2,7 @@
 
 <section id="feedbacks">
 
-    <h1 class="title">{{ trans("Feedback::Feedback.customerReviews") }}<small class="feedback-average-count"> ({{ counts.total }})</small> {#({{ feedback.count }})#}</h1>
+    <h1 class="title">{{ trans("Feedback::Feedback.customerReviews") }}<small class="feedback-average-count"> ({{ counts.ratingsCountTotal }})</small></h1>
 
     <div class="feedback-stars-average" id="feedback-stars-average">
         <div class="feedback-stars-background clearfix">
@@ -10,7 +10,7 @@
                 <div class="feedback-star"><i class="fa fa-star"></i></div>
             {% endfor %}
         </div>
-        <div class="feedback-stars-overlay-wrap" style="width:{{ ( counts.average * 100 ) / 5 }}%">
+        <div class="feedback-stars-overlay-wrap" style="width:{{ ( counts.averageValue * 100 ) / 5 }}%">
             <div class="feedback-stars-overlay clearfix">
                 {% for i in 1..5 %}
                     <div class="feedback-star"><i class="fa fa-star"></i></div>
@@ -30,41 +30,41 @@
                 <div class="feedback-bar-wrap">
                     <p class="feedback-bar-text-before">5 <i class="fa fa-star"></i></p>
                     <div class="feedback-bar">
-                        <div class="feedback-bar-fill" style="width:{{ counts.c5 / counts.highestCount * 100 }}%"></div>
+                        <div class="feedback-bar-fill" style="width:{{ counts.ratingsCountOf5 / counts.highestCount * 100 }}%"></div>
                     </div>
-                    <p class="feedback-bar-text-after">{{ counts.c5 }}</p>
+                    <p class="feedback-bar-text-after">{{ counts.ratingsCountOf5 }}</p>
                 </div>
 
                 <div class="feedback-bar-wrap">
                     <p class="feedback-bar-text-before">4 <i class="fa fa-star"></i></p>
                     <div class="feedback-bar">
-                        <div class="feedback-bar-fill" style="width:{{ counts.c4 / counts.highestCount * 100 }}%"></div>
+                        <div class="feedback-bar-fill" style="width:{{ counts.ratingsCountOf4 / counts.highestCount * 100 }}%"></div>
                     </div>
-                    <p class="feedback-bar-text-after">{{ counts.c4 }}</p>
+                    <p class="feedback-bar-text-after">{{ counts.ratingsCountOf4 }}</p>
                 </div>
 
                 <div class="feedback-bar-wrap">
                     <p class="feedback-bar-text-before">3 <i class="fa fa-star"></i></p>
                     <div class="feedback-bar">
-                        <div class="feedback-bar-fill" style="width:{{ counts.c3 / counts.highestCount * 100}}%"></div>
+                        <div class="feedback-bar-fill" style="width:{{ counts.ratingsCountOf3 / counts.highestCount * 100}}%"></div>
                     </div>
-                    <p class="feedback-bar-text-after">{{ counts.c3 }}</p>
+                    <p class="feedback-bar-text-after">{{ counts.ratingsCountOf3 }}</p>
                 </div>
 
                 <div class="feedback-bar-wrap">
                     <p class="feedback-bar-text-before">2 <i class="fa fa-star"></i></p>
                     <div class="feedback-bar">
-                        <div class="feedback-bar-fill" style="width:{{ counts.c2 / counts.highestCount * 100 }}%"></div>
+                        <div class="feedback-bar-fill" style="width:{{ counts.ratingsCountOf2 / counts.highestCount * 100 }}%"></div>
                     </div>
-                    <p class="feedback-bar-text-after">{{ counts.c2 }}</p>
+                    <p class="feedback-bar-text-after">{{ counts.ratingsCountOf2 }}</p>
                 </div>
 
                 <div class="feedback-bar-wrap">
                     <p class="feedback-bar-text-before">1 <i class="fa fa-star"></i></p>
                     <div class="feedback-bar">
-                        <div class="feedback-bar-fill" style="width:{{ counts.c1 / counts.highestCount * 100 }}%"></div>
+                        <div class="feedback-bar-fill" style="width:{{ counts.ratingsCountOf1 / counts.highestCount * 100 }}%"></div>
                     </div>
-                    <p class="feedback-bar-text-after">{{ counts.c1 }}</p>
+                    <p class="feedback-bar-text-after">{{ counts.ratingsCountOf1 }}</p>
                 </div>
 
             </div>
@@ -86,11 +86,11 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="text" class="form-control" id="title" name="title" placeholder="{{ trans("Feedback::Feedback.title") }}" required>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="{{ trans("Feedback::Feedback.title") }}" required {{ authenticatedContact.limitReached ? 'disabled' : '' }}>
                     </div>
 
                     <div class="form-group">
-                        <textarea class="form-control" id="message" name="message" rows="3" placeholder="{{ trans("Feedback::Feedback.reviewMessage") }}" required></textarea>
+                        <textarea class="form-control" id="message" name="message" rows="3" placeholder="{{ trans("Feedback::Feedback.reviewMessage") }}" {{ authenticatedContact.limitReached ? 'disabled' : '' }}></textarea>
                     </div>
 
                     <!-- These will be set in a different way in the future. This is only for the showcase -->
@@ -100,7 +100,14 @@
                     <input type="hidden" name="commentRelationTargetType" value="feedbackComment">
                     <input type="hidden" name="ratingRelationTargetType" value="feedbackRating">
 
-                    <button type="submit" class="btn btn-primary">{{ trans("Feedback::Feedback.submitReview") }}</button>
+                    {% if authenticatedContact.limitReached %}
+                        <div class="feedback-tooltip-wrapper" data-toggle="tooltip" data-placement="top" data-original-title="{{ trans("Feedback::Feedback.maximumNumberOfFeedbacksReached") }}" >
+                            <button type="submit" class="btn btn-primary" {{ authenticatedContact.limitReached ? 'disabled' : '' }}>{{ trans("Feedback::Feedback.submitReview") }}</button>
+                        </div>
+                    {% else %}
+                        <button type="submit" class="btn btn-primary">{{ trans("Feedback::Feedback.submitReview") }}</button>
+                    {% endif %}
+
                 </form>
 
             {% else %}
@@ -118,22 +125,14 @@
         </div>
     </div>
 
-
-    {% if authenticatedContact.check and feedbacks %}
-        <h4 class="minititle">Your reviews</h4>
-        <hr>
-
-        <div id="feedback-list-of-user" class="feedback-list">
-            {% include 'Feedback::DataProvider.Feedbacks.FeedbacksList.twig' %}
-        </div>
-    {% endif %}
-
-
-
-    <h4 class="minititle">More reviews</h4>
     <hr>
 
     <div id="feedback-list-reviews" class="feedback-list">
+        {% if authenticatedContact.check and feedbacks %}
+            <div id="feedback-list-of-user">
+                {% include 'Feedback::DataProvider.Feedbacks.FeedbacksList.twig' %}
+            </div>
+        {% endif %}
         {# List of feedbacks gets loaded here via js #}
     </div>
 

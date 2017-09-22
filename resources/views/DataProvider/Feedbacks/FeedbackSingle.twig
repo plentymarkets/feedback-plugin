@@ -26,12 +26,18 @@
     </div>
 
     <div class="feedback-comment">
+
         <p class="feedback-comment-title">{{ feedback.title }}</p>
+
         <div class="feedback-comment-rating" data-ratingvalue="{{ feedback.feedbackRating.rating.ratingValue }}">
             {#This next line is all in one line because if I change the line it adds spaces between the stars#}
             {% for i in 1..5 %}{{ i <= feedback.feedbackRating.rating.ratingValue ? '<i class="fa fa-star full"></i>' : '<i class="fa fa-star empty"></i>' }}{% endfor %}
         </div>
+        {% if options.timestampVisibility %}
+        <p class="feedback-review-date"><small><i class="fa fa-calendar text-muted"></i> {{ feedback.createdAt|date("d.m.Y") }}{# H:i for hours #}</small></p>
+        {% endif %}
         <p class="feedback-comment-text">{{ feedback.feedbackComment.comment.message|nl2br }}</p>
+
     </div>
 
 
