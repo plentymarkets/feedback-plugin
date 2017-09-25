@@ -43,6 +43,7 @@ class Feedback
         ];
 
         $options['timestampVisibility'] = $coreHelper->configValue(FeedbackCoreHelper::KEY_TIMESTAMP_VISIBILITY) == 'true' ? true : false;
+        $limitFeedbacksPerUserPerItem = $coreHelper->configValue(FeedbackCoreHelper::KEY_MAXIMUM_NR_FEEDBACKS);
 
         $average = $feedbackAverageRepository->getFeedbackAverage($targetId);
 
@@ -99,7 +100,12 @@ class Feedback
             $feedbacks = $feedbackService->listFeedbacks($feedbackRepository, $page, $itemsPerPage, $with, $filters);
             $results = $feedbacks->getResult()->all();
 
-            $authenticatedContact['limitReached'] = $coreHelper->configValue(FeedbackCoreHelper::KEY_MAXIMUM_NR_FEEDBACKS) <= $feedbacks->getTotalCount() ? true : false;
+
+            if(!is_null($limitFeedbacksPerUserPerItem) && $limitFeedbacksPerUserPerItem != 0){
+                $authenticatedContact['limitReached'] = $limitFeedbacksPerUserPerItem <= $feedbacks->getTotalCount() ? true : false;
+            }else{
+                $authenticatedContact['limitReached'] = false;
+            }
 
             $data['feedbacks'] = $results;
 
