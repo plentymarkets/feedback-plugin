@@ -21,7 +21,10 @@ use Plenty\Plugin\Templates\Twig;
 class Feedback
 {
 
+
+
     /**
+     * @param $item
      * @param Request $request
      * @param Twig $twig
      * @param FeedbackService $feedbackService
@@ -31,10 +34,10 @@ class Feedback
      * @param AccountService $accountService
      * @return string
      */
-    public function call(Request $request, Twig $twig, FeedbackService $feedbackService, FeedbackCoreHelper $coreHelper, FeedbackRepositoryContract $feedbackRepository, FeedbackAverageRepositoryContract $feedbackAverageRepository, AccountService $accountService)
+    public function call(Request $request, Twig $twig, FeedbackService $feedbackService, FeedbackCoreHelper $coreHelper, FeedbackRepositoryContract $feedbackRepository, FeedbackAverageRepositoryContract $feedbackAverageRepository, AccountService $accountService, $item)
     {
 
-        $targetId = 1;
+        $targetId = $item[0]['documents'][0]['data']['variation']['id'];
 
         // Details about the user currently authenticated
         $authenticatedContact = [
@@ -81,9 +84,6 @@ class Feedback
         }
 
 
-
-
-
         if($authenticatedContact['check']){
 
             // Pagination settings for currently authenticated user's feedbacks
@@ -114,6 +114,7 @@ class Feedback
         $data['options'] = $options;
         $data['counts'] = $counts;
         $data['authenticatedContact'] = $authenticatedContact;
+        $data['item'] = $item;
 
         return $twig->render('Feedback::DataProvider.Feedback', $data);
     }

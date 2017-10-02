@@ -1,8 +1,8 @@
-
+{# {{ item[0].documents[0].data.variation.id }}  #}
 
 <section id="feedbacks">
 
-    <h1 class="title">{{ trans("Feedback::Feedback.customerReviews") }}<small class="feedback-average-count"> ({{ counts.ratingsCountTotal }})</small></h1>
+    <h1 class="title"> {{ trans("Feedback::Feedback.customerReviews") }}<small class="feedback-average-count"> ({{ counts.ratingsCountTotal }})</small></h1>
 
     <div class="feedback-stars-average" id="feedback-stars-average">
         <div class="feedback-stars-background clearfix">
@@ -77,11 +77,13 @@
 
             {% if authenticatedContact.check %}
 
-                <form id="createFeedback" action="" method="">
+                <form id="createFeedback" class="createFeedback" action="" method="">
                     <div class="stars">
                         {% for i in 5..1 %}
+
                             <input class="star star-{{ i }}" id="star-{{ i }}" type="radio" value="{{ i }}" name="ratingValue"/>
                             <label class="star star-{{ i }}" for="star-{{ i }}"></label>
+
                         {% endfor %}
                     </div>
 
@@ -93,19 +95,19 @@
                         <textarea class="form-control" id="message" name="message" rows="3" placeholder="{{ trans("Feedback::Feedback.reviewMessage") }}" {{ authenticatedContact.limitReached ? 'disabled' : '' }}></textarea>
                     </div>
 
-                    <!-- These will be set in a different way in the future. This is only for the showcase -->
-                    <input type="hidden" name="feedbackRelationTargetId" value="1">
-                    <input type="hidden" name="feedbackRelationSourceType" value="contact">
-                    <input type="hidden" name="feedbackRelationTargetType" value="variation">
-                    <input type="hidden" name="commentRelationTargetType" value="feedbackComment">
-                    <input type="hidden" name="ratingRelationTargetType" value="feedbackRating">
+                    <input type="hidden" name="targetId" value="{{ item[0].documents[0].data.variation.id }}">
+                    <input type="hidden" name="type" value="review">
 
                     {% if authenticatedContact.limitReached %}
+
                         <div class="feedback-tooltip-wrapper" data-toggle="tooltip" data-placement="top" data-original-title="{{ trans("Feedback::Feedback.maximumNumberOfFeedbacksReached") }}" >
                             <button type="submit" class="btn btn-primary" {{ authenticatedContact.limitReached ? 'disabled' : '' }}>{{ trans("Feedback::Feedback.submitReview") }}</button>
                         </div>
+
                     {% else %}
+
                         <button type="submit" class="btn btn-primary">{{ trans("Feedback::Feedback.submitReview") }}</button>
+
                     {% endif %}
 
                 </form>
@@ -128,14 +130,31 @@
     <hr>
 
     <div id="feedback-list-reviews" class="feedback-list">
+
         {% if authenticatedContact.check and feedbacks %}
+
             <div id="feedback-list-of-user">
                 {% include 'Feedback::DataProvider.Feedbacks.FeedbacksList.twig' %}
             </div>
+
         {% endif %}
+
         {# List of feedbacks gets loaded here via js #}
+
     </div>
 
     <a id="feedback-loadmore" class="btn btn-secondary btn-block">Load more</a>
 
 </section>
+
+
+
+<script>
+    var itemVariationId = '{{ item[0].documents[0].data.variation.id }}';
+</script>
+
+{# {{ item[0].documents[0].data.variation.id }}  #}
+{#
+<input type="hidden" v-resource-bind:currentVariation="documents.0.data.variation.id" id="feedbackRelationTargetId" name="feedbackRelationTargetId"
+value="{{ item.documents[0].data.variation.id }}">
+ #}

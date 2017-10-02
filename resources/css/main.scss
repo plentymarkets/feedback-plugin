@@ -1,5 +1,6 @@
 #feedbacks {
 
+    margin-bottom:40px;
 
     /* Section title */
     .title {
@@ -201,6 +202,15 @@
                 .feedback-comment-text {
                     margin-bottom:0px;
                 }
+                .feedback-replies {
+                    margin-top:20px;
+                    display:none;
+                }
+                .feedback-add-reply {
+                    margin-top:20px;
+                    display:none;
+                }
+
             }
 
             form.feedback-edit {
@@ -224,8 +234,23 @@
         }
     }
 
-    .feedback-review-date {
-        margin-bottom:0;
+    .feedback-info {
+        margin:5px 0 0;
+
+        .feedback-info-segment {
+            margin-right:10px;
+            font-size:.875rem;
+        }
+
+        .btn-secondary {
+            border:none;
+            background:rgba(0,0,0,.05);
+
+            &:hover {
+                background:rgba(0,0,0,.1);
+            }
+        }
+
         i.fa {
             margin-right:3px;
         }

@@ -1,42 +1,63 @@
 <div class="feedback clearfix" id="feedback-{{ feedback.id }}" data-feedbackid="{{ feedback.id }}">
 
-    {% if feedback.sourceRelation[0].feedbackRelationSourceId == authenticatedContact.id  %}
-        <div class="feedback-options">
-
-            {% if feedback.isVisible == 0 %}
-            <span class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" data-original-title="{{ trans("Feedback::Feedback.moderationMessage") }}">
-                <i class="fa fa-eye-slash"></i>
-            </span>
-            {% endif %}
-
-            <span class="btn btn-sm btn-secondary" data-toggle="tooltip" data-placement="top" data-original-title="{{ trans("Feedback::Feedback.editReview") }}"
-                  onclick="editFeedback({{ feedback.id }} , '{{ trans("Feedback::Feedback.cancel") }}', '{{ trans("Feedback::Feedback.reviewMessage") }}', '{{ trans("Feedback::Feedback.editReview") }}', '{{ trans("Feedback::Feedback.title") }}')"
-            ><i class="fa fa-pencil"></i></span>
-
-            <span class="btn btn-sm btn-secondary" data-toggle="tooltip" data-placement="top" data-original-title="{{ trans("Feedback::Feedback.deleteReview") }}"
-                  onclick="deleteFeedback({{ feedback.id }}, '{{ trans("Feedback::Feedback.deleteReviewConfirmation") }}')"
-            ><i class="fa fa-trash-o"></i></span>
-
-        </div>
-    {% endif %}
+    {% include 'Feedback::DataProvider.Feedbacks.Components.FeedbackOptions.twig' %}
 
     <div class="feedback-creator">
         <i class="feedback-user-icon fa fa-2x fa-user"></i>
-        <p class="feedback-user-name">{{ feedback.sourceRelation[0].sourceRelationLabel }}</p>
+
+        {% if not isReply %}
+            <p class="feedback-user-name">{{ feedback.sourceRelation[0].sourceRelationLabel }}</p>
+        {% endif %}
     </div>
 
     <div class="feedback-comment">
 
+        {% if not isReply %}
         <p class="feedback-comment-title">{{ feedback.title }}</p>
 
         <div class="feedback-comment-rating" data-ratingvalue="{{ feedback.feedbackRating.rating.ratingValue }}">
-            {#This next line is all in one line because if I change the line it adds spaces between the stars#}
             {% for i in 1..5 %}{{ i <= feedback.feedbackRating.rating.ratingValue ? '<i class="fa fa-star full"></i>' : '<i class="fa fa-star empty"></i>' }}{% endfor %}
         </div>
-        {% if options.timestampVisibility %}
-        <p class="feedback-review-date"><small><i class="fa fa-calendar text-muted"></i> {{ feedback.createdAt|date("d.m.Y") }}{# H:i for hours #}</small></p>
         {% endif %}
+
         <p class="feedback-comment-text">{{ feedback.feedbackComment.comment.message|nl2br }}</p>
+
+        <p class="feedback-info">
+
+                {% if isReply %}
+                    <span class="feedback-info-segment">{{ feedback.sourceRelation[0].sourceRelationLabel }} </span>
+                {% endif %}
+
+                {% if options.timestampVisibility %}
+                    <span class="feedback-info-segment"><i class="fa fa-calendar text-muted"></i> {{ feedback.createdAt|date("d.m.Y") }}</span>
+                {% endif %}
+
+                {% if not isReply and authenticatedContact.check %}
+                <span class="feedback-info-segment btn btn-sm btn-secondary" onclick="toggleAddReply({{ feedback.id }})">Add comment</span>
+                {% endif %}
+
+                {% if feedback.replies is not empty %}
+                    <span class="feedback-info-segment btn btn-sm btn-secondary" onclick="toggleViewReplies({{ feedback.id }})">View comments ({{ feedback.replies|length }})</span>
+                {% endif %}
+
+        </p>
+
+        {% if not isReply and authenticatedContact.check %}
+        <div class="feedback-add-reply" id="feedback-add-reply-{{ feedback.id }}">
+            {% include 'Feedback::DataProvider.Feedbacks.Components.FeedbackAddReply.twig' %}
+        </div>
+        {% endif %}
+
+        {% if feedback.replies is not empty %}
+
+         <div class="feedback-replies" id="feedback-replies-{{ feedback.id }}">
+            {% for feedback in feedback.replies %}
+                {% include 'Feedback::DataProvider.Feedbacks.FeedbackSingle.twig' with {isReply: true} %}
+            {% endfor %}
+         </div>
+
+        {% endif %}
+
 
     </div>
 

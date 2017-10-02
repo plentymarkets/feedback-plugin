@@ -1,13 +1,9 @@
-$(document).ready(function() {
-
-});
-
 
 // ----------------------------------
 //      CREATE FEEDBACK
 // ----------------------------------
 // this is the id of the form
-$("#feedbacks #createFeedback").submit(function(e) {
+$("#feedbacks form.createFeedback").submit(function(e) {
 
     var formFields = {};
     $.each(
@@ -65,41 +61,52 @@ function deleteFeedback(id, deleteReviewTranslation) {
 // ----------------------------------
 //  Put the form in the comment and ajax it
 // ----------------------------------
-function editFeedback(id, cancelTranslation, reviewMessageTranslation, editReviewTranslation, titleTranslation) {
+function editFeedback(id, isReply, cancelTranslation, reviewMessageTranslation, editReviewTranslation, titleTranslation) {
     var wrapper = '#feedback-' + id;
 
     var feedbackId = $(wrapper).data('feedbackid');
     var title = $(wrapper +' .feedback-comment .feedback-comment-title').text();
     var ratingValue = $(wrapper +' .feedback-comment .feedback-comment-rating').data('ratingvalue');
-    var message = $(wrapper +' .feedback-comment .feedback-comment-text').text();
+    var message = $(wrapper +' .feedback-comment .feedback-comment-text').first().text();
 
     $(wrapper +' .feedback-comment').hide();
     $(wrapper +' .feedback-options').hide();
 
+    if(isReply){
+        $(wrapper).append('  <form class="feedback-edit" action="" method="">\n' +
+            '                    <div class="form-group">\n' +
+            '                        <textarea class="form-control" id="message" name="message" rows="3" placeholder="'+reviewMessageTranslation+'">'+message+'</textarea>\n' +
+            '                    </div>\n' +
+            '                    <input type="hidden" name="id" class="feedbackId" value='+feedbackId+'>\n' +
+            '                    <button type="submit" class="btn btn-primary">'+editReviewTranslation+'</button>\n' +
+            '                    <a class="btn btn-secondary feedback-edit-cancel" data-id="'+feedbackId+'">'+cancelTranslation+'</a>\n' +
+            '                </form>');
+    }else{
+        $(wrapper).append('  <form class="feedback-edit" action="" method="">\n' +
+            '                    <div class="stars">\n' +
+            '                        <input class="star star-5" id="star-'+feedbackId+'-5" type="radio" value="5" name="ratingValue">\n' +
+            '                        <label class="star star-5" for="star-'+feedbackId+'-5"></label>\n' +
+            '                        <input class="star star-4" id="star-'+feedbackId+'-4" type="radio" value="4" name="ratingValue">\n' +
+            '                        <label class="star star-4" for="star-'+feedbackId+'-4"></label>\n' +
+            '                        <input class="star star-3" id="star-'+feedbackId+'-3" type="radio" value="3" name="ratingValue">\n' +
+            '                        <label class="star star-3" for="star-'+feedbackId+'-3"></label>\n' +
+            '                        <input class="star star-2" id="star-'+feedbackId+'-2" type="radio" value="2" name="ratingValue">\n' +
+            '                        <label class="star star-2" for="star-'+feedbackId+'-2"></label>\n' +
+            '                        <input class="star star-1" id="star-'+feedbackId+'-1" type="radio" value="1" name="ratingValue">\n' +
+            '                        <label class="star star-1" for="star-'+feedbackId+'-1"></label>\n' +
+            '                    </div>\n' +
+            '                    <div class="form-group">\n' +
+            '                        <input type="text" class="form-control" id="title" name="title" value="'+title+'" placeholder="'+titleTranslation+'" required>\n' +
+            '                    </div>\n' +
+            '                    <div class="form-group">\n' +
+            '                        <textarea class="form-control" id="message" name="message" rows="3" placeholder="'+reviewMessageTranslation+'">'+message+'</textarea>\n' +
+            '                    </div>\n' +
+            '                    <input type="hidden" name="id" class="feedbackId" value='+feedbackId+'>\n' +
+            '                    <button type="submit" class="btn btn-primary">'+editReviewTranslation+'</button>\n' +
+            '                    <a class="btn btn-secondary feedback-edit-cancel" data-id="'+feedbackId+'">'+cancelTranslation+'</a>\n' +
+            '                </form>');
+    }
 
-    $(wrapper).append('  <form class="feedback-edit" action="" method="">\n' +
-        '                    <div class="stars">\n' +
-        '                        <input class="star star-5" id="star-'+feedbackId+'-5" type="radio" value="5" name="ratingValue">\n' +
-        '                        <label class="star star-5" for="star-'+feedbackId+'-5"></label>\n' +
-        '                        <input class="star star-4" id="star-'+feedbackId+'-4" type="radio" value="4" name="ratingValue">\n' +
-        '                        <label class="star star-4" for="star-'+feedbackId+'-4"></label>\n' +
-        '                        <input class="star star-3" id="star-'+feedbackId+'-3" type="radio" value="3" name="ratingValue">\n' +
-        '                        <label class="star star-3" for="star-'+feedbackId+'-3"></label>\n' +
-        '                        <input class="star star-2" id="star-'+feedbackId+'-2" type="radio" value="2" name="ratingValue">\n' +
-        '                        <label class="star star-2" for="star-'+feedbackId+'-2"></label>\n' +
-        '                        <input class="star star-1" id="star-'+feedbackId+'-1" type="radio" value="1" name="ratingValue">\n' +
-        '                        <label class="star star-1" for="star-'+feedbackId+'-1"></label>\n' +
-        '                    </div>\n' +
-        '                    <div class="form-group">\n' +
-        '                        <input type="text" class="form-control" id="title" name="title" value="'+title+'" placeholder="'+titleTranslation+'" required>\n' +
-        '                    </div>\n' +
-        '                    <div class="form-group">\n' +
-        '                        <textarea class="form-control" id="message" name="message" rows="3" placeholder="'+reviewMessageTranslation+'">'+message+'</textarea>\n' +
-        '                    </div>\n' +
-        '                    <input type="hidden" name="id" class="feedbackId" value='+feedbackId+'>\n' +
-        '                    <button type="submit" class="btn btn-primary">'+editReviewTranslation+'</button>\n' +
-        '                    <a class="btn btn-secondary feedback-edit-cancel" data-id="'+feedbackId+'">'+cancelTranslation+'</a>\n' +
-        '                </form>');
 
     $(wrapper).find('input#star-'+feedbackId+'-'+ratingValue).prop("checked", true);
 }
@@ -148,28 +155,61 @@ $(document).on('click','.feedback-edit-cancel',function(e) {
 
 
 
+
 // ----------------------------------
 //     PAGINATION
 // ----------------------------------
 
 var feedbackPage = 1;
-feedbackLoadMore(feedbackPage);
+var feedbackTargetId = itemVariationId;
+console.log(feedbackTargetId);
+
+// feedbackLoadUserFeedbacks(feedbackTargetId, feedbackPage);
+feedbackLoadMore(feedbackTargetId, feedbackPage);
 
 $(document).on('click', '#feedback-loadmore', function(e) {
     feedbackPage ++;
-    feedbackLoadMore(feedbackPage);
+    feedbackLoadMore(feedbackTargetId, feedbackPage);
 
 });
+
+
+
+// ----------------------------------
+//     VIEW REPLIES
+// ----------------------------------
+
+function toggleViewReplies(feedbackId){
+    $("#feedback-replies-" + feedbackId).slideToggle();
+}
+
+function toggleAddReply(feedbackId){
+    $("#feedback-add-reply-" + feedbackId).slideToggle();
+}
+
 
 
 // ----------------------------------
 //     Helper functions
 // ----------------------------------
 
-function feedbackLoadMore(page){
-    $("#feedback-list-reviews").append($('<div>').load("/feedbacks/feedback/helper/feedbacklist/"+ page +" #feedback-list>*"));
+function feedbackLoadMore(targetId, page){
+
+    $("#feedback-list-reviews")
+        .append(
+            $('<div>').load("/feedbacks/feedback/helper/feedbacklist/"+ targetId +"/"+ page,
+                function (responseText, textStatus, req) {
+                if (textStatus == "error") {
+                    $('#feedback-loadmore').remove();
+                }
+            })
+        );
+
 }
 
+// function feedbackLoadUserFeedbacks(targetId){
+//     $("#feedback-list-of-user").append($('<div>').load("/feedbacks/feedback/helper/userfeedbacklist/"+ targetId +"/1"));
+// }
 
 
 // ----------------------------------

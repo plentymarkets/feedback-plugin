@@ -1,0 +1,12 @@
+<form id="addReply" class="createFeedback" action="" method="">
+
+    <div class="form-group">
+        <textarea class="form-control" id="message" name="message" rows="3" placeholder="{{ trans("Feedback::Feedback.commentMessage") }}" {{ authenticatedContact.limitReached ? 'disabled' : '' }}></textarea>
+    </div>
+
+    <input type="hidden" name="targetId" value="{{ feedback.id }}">
+    <input type="hidden" name="type" value="reply">
+
+    <button type="submit" class="btn btn-primary">{{ trans("Feedback::Feedback.submitComment") }}</button>
+
+</form>

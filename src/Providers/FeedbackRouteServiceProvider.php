@@ -43,7 +43,9 @@ class FeedbackRouteServiceProvider extends RouteServiceProvider
 
 
         // Pagination
-        $router->get('feedbacks/feedback/helper/feedbacklist/{page}', 'Feedback\Controllers\FeedbacksController@paginate')->where('page', '\d+');
+        $router->get('feedbacks/feedback/helper/feedbacklist/{targetId}/{page}', 'Feedback\Controllers\FeedbacksController@paginate')->where('page', '\d+')->where('targetId', '\d+');
+//        $router->get('feedbacks/feedback/helper/userfeedbacklist/{targetId}/{page}', 'Feedback\Controllers\FeedbacksController@userPaginate')->where('page', '\d+')->where('targetId', '\d+');
+
 
     }
 }

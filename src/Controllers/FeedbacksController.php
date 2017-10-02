@@ -36,16 +36,44 @@ class FeedbacksController extends Controller
      */
     public function create(Request $request, FeedbackRepositoryContract $feedbackRepository, FeedbackCoreHelper $coreHelper, AccountService $accountService)
     {
-        // Set the default visibility of the item. Setting in shop owner's configuration
-        $isVisible = $coreHelper->configValue(FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY) == 'true' ? true : false;
+        // Set options
+        $options = [
+            'feedbackRelationTargetId' => $request->input('targetId'),
+            'feedbackRelationSourceType' => 'contact',
+            'commentRelationTargetType' => 'feedbackComment',
+            'ratingRelationTargetType' => 'feedbackRating'
+        ];
+
+        // Check the type and set the target accordingly
+        if($request->input('type') == 'review'){
+
+            $feedbackRelationTargetType = 'variation';
+            // Set the default visibility of the feedback. Setting in shop owner's configuration
+            $options['isVisible'] = $coreHelper->configValue(FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY) == 'true' ? true : false;
+
+        }elseif($request->input('type') == 'reply'){
+
+            $feedbackRelationTargetType = 'feedback';
+            $options['isVisible'] = true;
+
+        }else{
+
+            $feedbackRelationTargetType = 'incorrectSetting';
+            $options['isVisible'] = false;
+
+        }
+
+        $options['feedbackRelationTargetType'] = $feedbackRelationTargetType;
+
+
 
         // Limit the feedbacks count of a user per item
         $limitPerUserPerItem = $coreHelper->configValue(FeedbackCoreHelper::KEY_MAXIMUM_NR_FEEDBACKS);
 
         // if the setting is not set, ignore it
-        if(is_null($limitPerUserPerItem) || $limitPerUserPerItem == 0){
+        if(is_null($limitPerUserPerItem) || $limitPerUserPerItem == 0 || $request->input('type') == 'reply'){
 
-            return $feedbackRepository->createFeedback(array_merge($request->all(), ['isVisible' => $isVisible]));
+            return $feedbackRepository->createFeedback(array_merge($request->all(), $options));
 
         }else{
 
@@ -58,7 +86,7 @@ class FeedbacksController extends Controller
 
 
             if($countFeedbacksOfUserPerItem < $limitPerUserPerItem) {
-                return $feedbackRepository->createFeedback(array_merge($request->all(), ['isVisible' => $isVisible]));
+                return $feedbackRepository->createFeedback(array_merge($request->all(), $options));
             }else{
                 return false;
             }
@@ -111,7 +139,7 @@ class FeedbacksController extends Controller
      * @param FeedbackRepositoryContract $feedbackRepository
      * @return string
      */
-    public function paginate($page, Twig $twig, FeedbackService $feedbackService, FeedbackCoreHelper $coreHelper, AccountService $accountService, FeedbackRepositoryContract $feedbackRepository)
+    public function paginate($targetId, $page, Twig $twig, FeedbackService $feedbackService, FeedbackCoreHelper $coreHelper, AccountService $accountService, FeedbackRepositoryContract $feedbackRepository)
     {
 
         // Details about the user currently authenticated
@@ -127,22 +155,79 @@ class FeedbacksController extends Controller
         $with = [];
         $filters = [
             'isVisible' => 1,
-            'targetId' => 1,
+            'targetId' => $targetId,
             'hideSourceId' => $authenticatedContact['id']
         ];
 
         $feedbacks = $feedbackService->listFeedbacks($feedbackRepository, $page, $itemsPerPage, $with, $filters);
         $results = $feedbacks->getResult()->all();
 
+        $pagination = [
+            'page' => $page,
+            'lastPage' => $feedbacks->getLastPage(),
+            'isLastPage' => $feedbacks->isLastPage()
+        ];
+
         $data = [
             'feedbacks' => $results,
             'authenticatedContact' => $authenticatedContact,
-            'options' => $options
+            'options' => $options,
+            'pagination' => $pagination
 
         ];
 
-        return $twig->render('Feedback::DataProvider.Feedbacks.FeedbacksList', $data);
+        if($feedbacks->getLastPage() < $page){
+            return false;
+        }else{
+            return $twig->render('Feedback::DataProvider.Feedbacks.FeedbacksList', $data);
+        }
+    }
 
+    /**
+     * @param $page
+     * @param Twig $twig
+     * @param FeedbackService $feedbackService
+     * @param AccountService $accountService
+     * @param FeedbackRepositoryContract $feedbackRepository
+     * @return string
+     */
+    public function userPaginate($targetId, $page, Twig $twig, FeedbackService $feedbackService, FeedbackCoreHelper $coreHelper, AccountService $accountService, FeedbackRepositoryContract $feedbackRepository)
+    {
+
+        // Details about the user currently authenticated
+        $authenticatedContact = [
+            'id' => $accountService->getAccountContactId(),
+            'check' => $accountService->getIsAccountLoggedIn()
+        ];
+
+        $options['timestampVisibility'] = $coreHelper->configValue(FeedbackCoreHelper::KEY_TIMESTAMP_VISIBILITY) == 'true' ? true : false;
+
+        $page = isset($page) && $page != 0 ? $page : 1;
+        $itemsPerPage = 50;
+        $with = [];
+        $filters = [
+            'isVisible' => 1,
+            'targetId' => $targetId
+        ];
+
+        $feedbacks = $feedbackService->listFeedbacks($feedbackRepository, $page, $itemsPerPage, $with, $filters);
+        $results = $feedbacks->getResult()->all();
+
+        $pagination = [
+            'page' => $page,
+            'lastPage' => $feedbacks->getLastPage(),
+            'isLastPage' => $feedbacks->isLastPage()
+        ];
+
+        $data = [
+            'feedbacks' => $results,
+            'authenticatedContact' => $authenticatedContact,
+            'options' => $options,
+            'pagination' => $pagination
+        ];
+
+
+        return $twig->render('Feedback::DataProvider.Feedbacks.FeedbacksList', $data);
 
     }
 
