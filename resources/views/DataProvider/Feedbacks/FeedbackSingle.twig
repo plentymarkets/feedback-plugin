@@ -33,11 +33,11 @@
                 {% endif %}
 
                 {% if not isReply and authenticatedContact.check %}
-                <span class="feedback-info-segment btn btn-sm btn-secondary" onclick="toggleAddReply({{ feedback.id }})">Add comment</span>
+                <span class="feedback-info-segment btn btn-sm btn-secondary" onclick="toggleAddReply({{ feedback.id }})">{{ trans("Feedback::Feedback.addComment") }}</span>
                 {% endif %}
 
                 {% if feedback.replies is not empty %}
-                    <span class="feedback-info-segment btn btn-sm btn-secondary" onclick="toggleViewReplies({{ feedback.id }})">View comments ({{ feedback.replies|length }})</span>
+                    <span class="feedback-info-segment btn btn-sm btn-secondary" onclick="toggleViewReplies({{ feedback.id }})">{{ trans("Feedback::Feedback.viewComments") }} ({{ feedback.replies|length }})</span>
                 {% endif %}
 
         </p>
@@ -58,8 +58,6 @@
 
         {% endif %}
 
-
     </div>
-
 
 </div>
