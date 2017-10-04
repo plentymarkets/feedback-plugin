@@ -30,7 +30,7 @@ In order to display customer reviews in your online store, you have to carry out
 				<b>Release feedbacks automatically</b>
 			</td>
 			<td>
-                Activate to release customer reviews automatically in the online store. If this setting is deactivated, customer reviews must be manually released in the ##TODO## menu.
+                Activate to release customer reviews automatically in the online store. If this setting is deactivated, customer reviews must be manually released in the **CMS » Feedback ratings** menu. Only customer reviews created after activating this function will be released automatically.
 			</td>
 		</tr>
         <tr>
