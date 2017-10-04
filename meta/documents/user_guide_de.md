@@ -30,12 +30,12 @@ Bevor Kundenrezensionen im Webshop angezeigt werden, müssen Sie Einstellungen i
 				<b>Release feedbacks automatically</b>
 			</td>
 			<td>
-                Aktivieren, um Kundenrezensionen automatisch im Webshop freizuschalten. Wenn diese Einstellung deaktiviert ist, müssen Kundenrezensionen manuell im Menü ##TODO## freigeschaltet werden.
+                Aktivieren, um Kundenrezensionen automatisch im Webshop freizuschalten. Wenn diese Einstellung deaktiviert ist, müssen Kundenrezensionen manuell im Menü **CMS » Feedback-Bewertungen** freigeschaltet werden. Nur Kundenrezensionen, die erstellt wurden, nachdem diese Funktion aktiviert wurde, werden automatisch freigeschaltet.
 			</td>
 		</tr>
         <tr>
 			<td>
-				<b>Show timestamp for the feedback</b>
+				<b>Show date for the feedback</b>
 			</td>
 			<td>
 				Aktivieren, um das Erstellungsdatum der Kundenrezension im Webshop anzuzeigen.
@@ -63,7 +63,7 @@ Das Template-Plugin **Ceres** bietet Ihnen in der Einzelansicht eines Artikels e
 4. Wählen Sie den Bereich **Feedback CSS (Ceres)**.
 5. Aktivieren Sie den Container **Template: Style**.
 6. Wählen Sie den Bereich **Feedback ratings**.
-7. Aktivieren Sie den Container **Single item: Container for item lists**.
+7. Aktivieren Sie den Container **Single item: Container for customer feedback**.
 8. **Speichern** Sie die Einstellungen.<br />→ Kundenrezensionen werden in der Einzelansicht eines Artikels angezeigt.
 
 ## Lizenz

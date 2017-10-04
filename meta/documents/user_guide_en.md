@@ -30,12 +30,12 @@ In order to display customer reviews in your online store, you have to carry out
 				<b>Release feedbacks automatically</b>
 			</td>
 			<td>
-                Activate to release customer reviews automatically in the online store. If this setting is deactivated, customer reviews must be manually released in the ##TODO## menu.
+                Activate to release customer reviews automatically in the online store. If this setting is deactivated, customer reviews must be manually released in the **CMS » Feedback ratings** menu. Only customer reviews created after activating this function will be released automatically.
 			</td>
 		</tr>
         <tr>
 			<td>
-				<b>Show timestamp for the feedback</b>
+				<b>Show date for the feedback</b>
 			</td>
 			<td>
 				Activate to display the date of creation of the customer review in the online store.
@@ -63,7 +63,7 @@ The template plugin **Ceres** allows you to display customer reviews in the sing
 4. Go to the **Feedback CSS (Ceres)** area. 
 5. Activate the container **Template: Style**. 
 6. Go to the **Feedback ratings** area. 
-7. Activate the container **Single item: Container for item lists**. 
+7. Activate the container **Single item: Container for customer feedback**. 
 8. **Save** the settings.<br />→ Customer reviews will be displayed in single item view.
 
 ## License

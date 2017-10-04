@@ -9,7 +9,7 @@
   {
     "tab": "Feedback settings",
     "key": "timestampVisibility",
-    "label": "Show timestamp for the feedback",
+    "label": "Show date for the feedback",
     "type": "checkbox",
     "default": ""
   },
