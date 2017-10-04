@@ -35,7 +35,7 @@ Bevor Kundenrezensionen im Webshop angezeigt werden, müssen Sie Einstellungen i
 		</tr>
         <tr>
 			<td>
-				<b>Show timestamp for the feedback</b>
+				<b>Show date for the feedback</b>
 			</td>
 			<td>
 				Aktivieren, um das Erstellungsdatum der Kundenrezension im Webshop anzuzeigen.
@@ -63,7 +63,7 @@ Das Template-Plugin **Ceres** bietet Ihnen in der Einzelansicht eines Artikels e
 4. Wählen Sie den Bereich **Feedback CSS (Ceres)**.
 5. Aktivieren Sie den Container **Template: Style**.
 6. Wählen Sie den Bereich **Feedback ratings**.
-7. Aktivieren Sie den Container **Single item: Container for item lists**.
+7. Aktivieren Sie den Container **Single item: Container for customer feedback**.
 8. **Speichern** Sie die Einstellungen.<br />→ Kundenrezensionen werden in der Einzelansicht eines Artikels angezeigt.
 
 ## Lizenz
