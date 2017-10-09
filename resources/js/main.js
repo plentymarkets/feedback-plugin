@@ -3,33 +3,44 @@
 //      CREATE FEEDBACK
 // ----------------------------------
 // this is the id of the form
+var allowCreateFeedback = true;
 $("#feedbacks form.createFeedback").submit(function(e) {
 
-    var formFields = {};
-    $.each(
-        $(this).serializeArray(),
-        function (_, kv) {
-            formFields[kv.name] = kv.value;
-        }
-    );
+    if(allowCreateFeedback){
+        allowCreateFeedback = false;
 
-    // ajax call
-    $.ajax({
-        type: "POST",
-        url: '/rest/feedbacks/feedback/create',
-        data: JSON.stringify(formFields),
-        xhrFields: {
-            withCredentials: true
-        },
-        success: function(data)
-        {
-            location.reload();
-        },
-        contentType: "application/json; charset=utf-8",
-        dataType: "json"
-    });
+        var formFields = {};
+        $.each(
+            $(this).serializeArray(),
+            function (_, kv) {
+                formFields[kv.name] = kv.value;
+            }
+        );
+
+        // ajax call
+        $.ajax({
+            type: "POST",
+            url: '/rest/feedbacks/feedback/create',
+            data: JSON.stringify(formFields),
+            xhrFields: {
+                withCredentials: true
+            },
+            success: function(data)
+            {
+                location.reload();
+            },
+            complete: function (){
+                allowCreateFeedback = true;
+            },
+            contentType: "application/json; charset=utf-8",
+            dataType: "json"
+        });
+
+
+    }
 
     e.preventDefault();
+
 });
 
 
