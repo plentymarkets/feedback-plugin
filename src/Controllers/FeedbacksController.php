@@ -151,7 +151,7 @@ class FeedbacksController extends Controller
         $options['timestampVisibility'] = $coreHelper->configValue(FeedbackCoreHelper::KEY_TIMESTAMP_VISIBILITY) == 'true' ? true : false;
 
         $page = isset($page) && $page != 0 ? $page : 1;
-        $itemsPerPage = 2;
+        $itemsPerPage = 10;
         $with = [];
         $filters = [
             'isVisible' => 1,
@@ -182,57 +182,4 @@ class FeedbacksController extends Controller
             return $twig->render('Feedback::DataProvider.Feedbacks.FeedbacksList', $data);
         }
     }
-
-    /**
-     * @param $page
-     * @param Twig $twig
-     * @param FeedbackService $feedbackService
-     * @param AccountService $accountService
-     * @param FeedbackRepositoryContract $feedbackRepository
-     * @return string
-     */
-    public function userPaginate($targetId, $page, Twig $twig, FeedbackService $feedbackService, FeedbackCoreHelper $coreHelper, AccountService $accountService, FeedbackRepositoryContract $feedbackRepository)
-    {
-
-        // Details about the user currently authenticated
-        $authenticatedContact = [
-            'id' => $accountService->getAccountContactId(),
-            'check' => $accountService->getIsAccountLoggedIn()
-        ];
-
-        $options['timestampVisibility'] = $coreHelper->configValue(FeedbackCoreHelper::KEY_TIMESTAMP_VISIBILITY) == 'true' ? true : false;
-
-        $page = isset($page) && $page != 0 ? $page : 1;
-        $itemsPerPage = 50;
-        $with = [];
-        $filters = [
-            'isVisible' => 1,
-            'targetId' => $targetId
-        ];
-
-        $feedbacks = $feedbackService->listFeedbacks($feedbackRepository, $page, $itemsPerPage, $with, $filters);
-        $results = $feedbacks->getResult()->all();
-
-        $pagination = [
-            'page' => $page,
-            'lastPage' => $feedbacks->getLastPage(),
-            'isLastPage' => $feedbacks->isLastPage()
-        ];
-
-        $data = [
-            'feedbacks' => $results,
-            'authenticatedContact' => $authenticatedContact,
-            'options' => $options,
-            'pagination' => $pagination
-        ];
-
-
-        return $twig->render('Feedback::DataProvider.Feedbacks.FeedbacksList', $data);
-
-    }
-
-
-
-
-
 }

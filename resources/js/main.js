@@ -218,30 +218,6 @@ function feedbackLoadMore(targetId, page){
 
 }
 
-// function feedbackLoadUserFeedbacks(targetId){
-//     $("#feedback-list-of-user").append($('<div>').load("/feedbacks/feedback/helper/userfeedbacklist/"+ targetId +"/1"));
-// }
-
-
-// ----------------------------------
-//     Developed but unused functions
-// ----------------------------------
-//
-// function getSearchParams(k){
-//     var p={};
-//     location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(s,k,v){p[k]=v})
-//     return k?p[k]:p;
-// }
-//
-// function replaceUrlParam(url, paramName, paramValue){
-//     if(paramValue == null)
-//         paramValue = '';
-//     var pattern = new RegExp('\\b('+paramName+'=).*?(&|$)')
-//     if(url.search(pattern)>=0){
-//         return url.replace(pattern,'$1' + paramValue + '$2');
-//     }
-//     return url + (url.indexOf('?')>0 ? '&' : '?') + paramName + '=' + paramValue
-// }
 
 
 

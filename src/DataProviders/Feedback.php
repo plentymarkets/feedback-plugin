@@ -20,9 +20,6 @@ use Plenty\Plugin\Templates\Twig;
 
 class Feedback
 {
-
-
-
     /**
      * @param $item
      * @param Request $request
@@ -89,7 +86,7 @@ class Feedback
             // Pagination settings for currently authenticated user's feedbacks
             $page = $request->get('page');
             $page = isset($page) && $page != 0 ? $page : 1;
-            $itemsPerPage = 50;
+            $itemsPerPage = $request->get('itemsPerPage');
             $with = [];
             $filters = [
                 'targetId' => $targetId,
