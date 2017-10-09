@@ -176,10 +176,7 @@ class FeedbacksController extends Controller
 
         ];
 
-        if($feedbacks->getLastPage() < $page){
-            return ' ';
-        }else{
-            return $twig->render('Feedback::DataProvider.Feedbacks.FeedbacksList', $data);
-        }
+        return $twig->render('Feedback::DataProvider.Feedbacks.FeedbacksList', $data);
+
     }
 }

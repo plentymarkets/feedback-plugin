@@ -171,18 +171,19 @@ $(document).on('click','.feedback-edit-cancel',function(e) {
 //     PAGINATION
 // ----------------------------------
 
-var feedbackPage = 1;
 var feedbackTargetId = itemVariationId;
-console.log(feedbackTargetId);
+var feedbackIgnorePageLoad = 1;
 
-// feedbackLoadUserFeedbacks(feedbackTargetId, feedbackPage);
-feedbackLoadMore(feedbackTargetId, feedbackPage);
+// initial feedbacks list load
+feedbackLoadMore(feedbackTargetId, 1);
 
-$(document).on('click', '#feedback-loadmore', function(e) {
-    feedbackPage ++;
-    feedbackLoadMore(feedbackTargetId, feedbackPage);
-
-});
+function feedbackClickLoadMore(feedbackPage){
+    if(feedbackPage > feedbackIgnorePageLoad){
+        $(".feedback-loadmore").slideUp().fadeOut();
+        feedbackLoadMore(feedbackTargetId, feedbackPage);
+    }
+    feedbackIgnorePageLoad = feedbackPage;
+}
 
 
 
@@ -206,15 +207,7 @@ function toggleAddReply(feedbackId){
 
 function feedbackLoadMore(targetId, page){
 
-    $("#feedback-list-reviews")
-        .append(
-            $('<div>').load("/feedbacks/feedback/helper/feedbacklist/"+ targetId +"/"+ page,
-                function (responseText, textStatus, req) {
-                if (textStatus == "error") {
-                    $('#feedback-loadmore').remove();
-                }
-            })
-        );
+    $("#feedback-list-reviews").append( $('<div>').load("/feedbacks/feedback/helper/feedbacklist/"+ targetId +"/"+ page) );
 
 }
 
