@@ -207,7 +207,7 @@ function toggleAddReply(feedbackId){
 
 function feedbackLoadMore(targetId, page){
 
-    $("#feedback-list-reviews").append( $('<div>').load("/feedbacks/feedback/helper/feedbacklist/"+ targetId +"/"+ page) );
+    $("#feedback-list-reviews").append( $('<div>').load("/rest/feedbacks/feedback/helper/feedbacklist/"+ targetId +"/"+ page) );
 
 }
 
