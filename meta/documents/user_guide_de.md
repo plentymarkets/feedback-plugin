@@ -1,6 +1,10 @@
 # Feedback
 
-Zeigen Sie Kundenrezensionen im Webshop an.
+Zeigen Sie Kundenrezensionen im Webshop an und antworten Sie auf Feedbacks.
+
+<div class="alert alert-warning" role="alert">
+    Beachten Sie, dass das Menü <b>CMS » Feedback-Bewertungen</b> nur über den zentralen Login erreicht werden kann.
+</div>
 
 ## Kundenrezensionen einrichten
 
@@ -57,7 +61,7 @@ Das Template-Plugin **Ceres** bietet Ihnen in der Einzelansicht eines Artikels e
 
 ##### Kundenrezensionen im Webshop anzeigen:
 
-1. Gehen Sie zu **Plugins » Content**.
+1. Öffnen Sie das Menü **Plugins » Content**.
 2. Wählen Sie den Bereich **Feedback Javascript**.
 3. Aktivieren Sie den Container **Script loader: Register/load JS**.
 4. Wählen Sie den Bereich **Feedback CSS (Ceres)**.
@@ -66,6 +70,47 @@ Das Template-Plugin **Ceres** bietet Ihnen in der Einzelansicht eines Artikels e
 7. Aktivieren Sie den Container **Single item: Container for customer feedback**.
 8. **Speichern** Sie die Einstellungen.<br />→ Kundenrezensionen werden in der Einzelansicht eines Artikels angezeigt.
 
-## Lizenz
+## Kundenrezensionen manuell freischalten
 
-Das gesamte Projekt unterliegt der GNU AFFERO GENERAL PUBLIC LICENSE – weitere Informationen finden Sie in der [LICENSE.md](https://github.com/plentymarkets/feedback-plugin/blob/master/LICENSE.md).
+Wenn Sie die automatische Freischaltung von Kundenrezensionen deaktivieren, schalten Sie diese im Menü **CMS » Feedback-Bewertungen** frei.
+
+##### Kundenrezensionen manuell freischalten
+
+1. Öffnen Sie das Menü **CMS » Feedback-Bewertungen**.
+2. Aktivieren Sie eine oder mehrere Kundenrezensionen.
+3. Klicken Sie auf **Sichtbar**, um die Rezensionen sichtbar zu schalten.<br />→ Kundenrezensionen werden in der Einzelansicht eines Artikels angezeigt.
+
+## Kundenrezensionen beantworten
+
+Wenn Sie auf eine Kundenrezension antworten möchten, gehen Sie wie folgt vor.
+
+##### Kundenrezensionen beantworten
+
+1. Öffnen Sie das Menü **CMS » Feedback-Bewertungen**.
+2. Klicken Sie auf die gewünschte Kundenrezension.<br />→ Die Kundenrezension wird geöffnet.
+3. Klicken Sie auf **Antworten**.<br />→ Das Antwortfeld wird geöffnet.
+4. Geben Sie eine Antwort ein.
+5. **Speichern** Sie die Einstellungen.<br />→ Die Antwort wird hinzugefügt und im Webshop angezeigt.
+
+## Kundenrezensionen bearbeiten
+
+Wenn Sie einen Rezensionstext bearbeiten möchten, gehen Sie wie folgt vor.
+
+##### Kundenrezensionen bearbeiten
+
+1. Öffnen Sie das Menü **CMS » Feedback-Bewertungen**.
+2. Klicken Sie auf die gewünschte Kundenrezension.<br />→ Die Kundenrezension wird geöffnet.
+3. Ändern Sie den Titel.
+4. Ändern Sie den Rezensionstext.
+5. **Speichern** Sie die Einstellungen.<br />→ Die Kundenrezension wird im Webshop aktualisiert.
+
+## Kundenrezensionen löschen
+
+Löschen Sie Kundenrezensionen, um diese aus dem Webshop zu entfernen. Alternativ schalten Sie Kundenrezensionen unsichtbar.
+
+##### Kundenrezensionen löschen
+
+1. Öffnen Sie das Menü **CMS » Feedback-Bewertungen**.
+2. Aktivieren Sie eine oder mehrere Kundenrezensionen.
+3. Klicken Sie auf **Löschen**.<br />→ Das Fenster **Feedbacks löschen** wird geöffnet.
+4. Klicken Sie auf **Ok**, um die Rezensionen zu löschen.<br />→ Die Kundenrezensionen werden gelöscht.

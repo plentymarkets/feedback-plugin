@@ -1,8 +1,8 @@
 # Release Notes for Feedback
 
 
-## v1.0.0 (TBA)
+## v1.0.0 (2017-10-10)
 
 ### Added
 
-- Initial program files
+- Initial program files. Logged in users can enter feedbacks for items and save comments in the online store (e.g. Ceres). Store managers can make customer feedbacks visible/invisible, delete feedbacks or write an answer.

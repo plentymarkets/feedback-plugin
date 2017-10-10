@@ -1,11 +1,12 @@
 {
-  "version": "0.6.3",
+  "version": "1.0.0",
   "name": "Feedback",
   "marketplaceName" : {"de": "Kunden-Feedback","en": "Customer feedback"},
   "description": "This is the official feedback plugin developed by plentymarkets.",
   "namespace": "Feedback",
   "author": "plentymarkets GmbH",
   "type": "general",
+  "isClosedSource": true,
   "serviceProvider": "Feedback\\Providers\\FeedbackServiceProvider",
   "runOnBuild": [
   ],
