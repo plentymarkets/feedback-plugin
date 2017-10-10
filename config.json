@@ -1,0 +1,23 @@
+[
+  {
+    "tab": "Feedback settings",
+    "key": "releaseFeedbacks",
+    "label": "Release feedbacks automatically",
+    "type": "checkbox",
+    "default": ""
+  },
+  {
+    "tab": "Feedback settings",
+    "key": "timestampVisibility",
+    "label": "Show date for the feedback",
+    "type": "checkbox",
+    "default": ""
+  },
+  {
+    "tab": "Feedback settings",
+    "key": "numberOfFeedbacks",
+    "label": "Maximum number of feedbacks per author and item",
+    "type": "text",
+    "default": ""
+  }
+]

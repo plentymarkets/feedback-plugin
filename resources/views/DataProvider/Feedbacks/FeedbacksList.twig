@@ -1,0 +1,10 @@
+
+    {% for feedback in feedbacks %}
+
+        {% include 'Feedback::DataProvider.Feedbacks.FeedbackSingle.twig' with {isReply: false} %}
+
+    {% endfor %}
+
+    {% if feedbacks is not empty and pagination.page < pagination.lastPage %}
+        <a id="feedback-loadmore" onclick="feedbackClickLoadMore({{ pagination.page + 1 }})" class="btn btn-secondary btn-block feedback-loadmore">Load more</a>
+    {% endif %}

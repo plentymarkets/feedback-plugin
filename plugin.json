@@ -1,36 +1,35 @@
 {
   "version": "0.6.3",
   "name": "Feedback",
-  "marketplaceName": {
-  },
-  "description": "Feedback module",
+  "marketplaceName" : {"de": "Kunden-Feedback","en": "Customer feedback"},
+  "description": "This is the official feedback plugin developed by plentymarkets.",
   "namespace": "Feedback",
   "author": "plentymarkets GmbH",
   "type": "general",
   "serviceProvider": "Feedback\\Providers\\FeedbackServiceProvider",
   "runOnBuild": [
   ],
-  "license": "free for commercial use",
+  "license": "AGPL-3.0",
   "price": 0.00,
   "shortDescription": {
-    "de": "Feedback",
-    "en": "Feedback"
+    "de": "Das offizielle, von plentymarkets entwickelte Feedback-Plugin. Zeigen Sie Kundenrezensionen im Webshop an.",
+    "en": "The official feedback plugin developed by plentymarkets. Display customer reviews in your online store."
   },
-  "authorIcon": "",
-  "pluginIcon": "",
-  "email": "",
-  "phone": "",
+  "authorIcon": "icon_author_xs.png",
+  "pluginIcon": "icon_plugin_xs.png",
+  "email": "sales@plentymarkets.com",
+  "phone": "+49 561 98 681 100",
   "categories": [
     "3519"
   ],
   "keywords": [
-    "feedback"
+    "feedback", "customer feedback", "rating"
   ],
   "require": [],
   "containers": [],
   "dataProviders": [
-    { "key":"Feedback\\DataProviders\\Scripts", "name":"Feedback Javascript", "description": "Javascript code für Feedback" },
-    { "key":"Feedback\\DataProviders\\Styles", "name":"Feedback CSS (Ceres)", "description": "CSS-Anpassungen für Ceres" },
+    { "key":"Feedback\\DataProviders\\Scripts", "name":"Feedback Javascript", "description": "Javascript code for feedbacks" },
+    { "key":"Feedback\\DataProviders\\Styles", "name":"Feedback CSS (Ceres)", "description": "CSS extension for Ceres" },
     { "key":"Feedback\\DataProviders\\Feedback", "name":"Feedback ratings", "description": "Feedback ratings" }
   ],
   "dependencies":{},
