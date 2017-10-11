@@ -95,7 +95,7 @@ class Feedback
 
             // List of currently authenticated user's feedbacks
             $feedbacks = $feedbackService->listFeedbacks($feedbackRepository, $page, $itemsPerPage, $with, $filters);
-            $results = $feedbacks->getResult()->all();
+            $results = $feedbacks->getResult();
 
 
             if(!is_null($limitFeedbacksPerUserPerItem) && $limitFeedbacksPerUserPerItem != 0){

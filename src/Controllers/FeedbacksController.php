@@ -160,7 +160,7 @@ class FeedbacksController extends Controller
         ];
 
         $feedbacks = $feedbackService->listFeedbacks($feedbackRepository, $page, $itemsPerPage, $with, $filters);
-        $results = $feedbacks->getResult()->all();
+        $results = $feedbacks->getResult();
 
         $pagination = [
             'page' => $page,

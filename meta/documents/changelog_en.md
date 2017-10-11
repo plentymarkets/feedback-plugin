@@ -1,5 +1,10 @@
 # Release Notes for Feedback
 
+## v1.0.1 (2017-10-11)
+
+### Fix
+
+- Fix build issue
 
 ## v1.0.0 (2017-10-10)
 
