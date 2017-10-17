@@ -144,16 +144,36 @@
     </div>
 
 
+    <!-- Modal -->
+    <div class="modal fade" id="feedbackConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                    <h5 class="modal-title" id="exampleModalLabel">Confirm feedback delete</h5>
+
+                </div>
+                <div class="modal-body">
+                    <p>{{ trans("Feedback::Feedback.deleteReviewConfirmation") }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="deleteFeedback()">Yes, delete it</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        var itemVariationId = '{{ item[0].documents[0].data.item.id }}';
+    </script>
+
 </section>
 
 
 
-<script>
-    var itemVariationId = '{{ item[0].documents[0].data.variation.id }}';
-</script>
-
-{# {{ item[0].documents[0].data.variation.id }}  #}
-{#
-<input type="hidden" v-resource-bind:currentVariation="documents.0.data.variation.id" id="feedbackRelationTargetId" name="feedbackRelationTargetId"
-value="{{ item.documents[0].data.variation.id }}">
- #}

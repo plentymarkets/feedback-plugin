@@ -155,12 +155,12 @@ class FeedbacksController extends Controller
         $with = [];
         $filters = [
             'isVisible' => 1,
-            'targetId' => $targetId,
+            'itemId' => $targetId,
             'hideSourceId' => $authenticatedContact['id']
         ];
 
         $feedbacks = $feedbackService->listFeedbacks($feedbackRepository, $page, $itemsPerPage, $with, $filters);
-        $results = $feedbacks->getResult()->all();
+        $results = $feedbacks->getResult();
 
         $pagination = [
             'page' => $page,

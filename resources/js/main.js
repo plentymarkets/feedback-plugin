@@ -1,3 +1,7 @@
+$("body").tooltip({
+    selector: '[data-toggle="tooltip"]'
+});
+
 
 // ----------------------------------
 //      CREATE FEEDBACK
@@ -48,13 +52,18 @@ $("#feedbacks form.createFeedback").submit(function(e) {
 // ----------------------------------
 //      DELETE FEEDBACK
 // ----------------------------------
+var feedbackToBeDeleted = 0;
+function openFeedbackConfirmDelete(id) {
+    feedbackToBeDeleted = id;
+    $('#feedbackConfirmDelete').modal('show');
+}
 
-function deleteFeedback(id, deleteReviewTranslation) {
-    if (confirm(deleteReviewTranslation)) {
+function deleteFeedback(){
+    if(feedbackToBeDeleted != 0){
         // ajax call
         $.ajax({
             type: "DELETE",
-            url: '/rest/feedbacks/feedback/delete/' + id,
+            url: '/rest/feedbacks/feedback/delete/' + feedbackToBeDeleted,
             xhrFields: {
                 withCredentials: true
             },
@@ -65,6 +74,7 @@ function deleteFeedback(id, deleteReviewTranslation) {
         });
     }
 }
+
 
 
 // ----------------------------------

@@ -35,6 +35,7 @@ class Feedback
     {
 
         $targetId = $item[0]['documents'][0]['data']['variation']['id'];
+        $itemId = $item[0]['documents'][0]['data']['item']['id'];
 
         // Details about the user currently authenticated
         $authenticatedContact = [
@@ -45,7 +46,7 @@ class Feedback
         $options['timestampVisibility'] = $coreHelper->configValue(FeedbackCoreHelper::KEY_TIMESTAMP_VISIBILITY) == 'true' ? true : false;
         $limitFeedbacksPerUserPerItem = $coreHelper->configValue(FeedbackCoreHelper::KEY_MAXIMUM_NR_FEEDBACKS);
 
-        $average = $feedbackAverageRepository->getFeedbackAverage($targetId);
+        $average = $feedbackAverageRepository->getFeedbackAverage($itemId);
 
 
         if(empty($average)){
@@ -89,13 +90,13 @@ class Feedback
 
             $with = [];
             $filters = [
-                'targetId' => $targetId,
+                'itemId' => $itemId,
                 'sourceId' => $authenticatedContact['id']
             ];
 
             // List of currently authenticated user's feedbacks
             $feedbacks = $feedbackService->listFeedbacks($feedbackRepository, $page, $itemsPerPage, $with, $filters);
-            $results = $feedbacks->getResult()->all();
+            $results = $feedbacks->getResult();
 
 
             if(!is_null($limitFeedbacksPerUserPerItem) && $limitFeedbacksPerUserPerItem != 0){
