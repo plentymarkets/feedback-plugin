@@ -15,6 +15,13 @@
   },
   {
     "tab": "Feedback settings",
+    "key": "allowNoRatingFeedback",
+    "label": "Allow feedbacks with no rating",
+    "type": "checkbox",
+    "default": ""
+  },
+  {
+    "tab": "Feedback settings",
     "key": "numberOfFeedbacks",
     "label": "Maximum number of feedbacks per author and item",
     "type": "text",
