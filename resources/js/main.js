@@ -8,9 +8,10 @@ $("body").tooltip({
 // ----------------------------------
 // this is the id of the form
 var allowCreateFeedback = true;
-$("#feedbacks form.createFeedback").submit(function(e) {
+$("form.createFeedback").submit(function(e) {
 
     if(allowCreateFeedback){
+
         allowCreateFeedback = false;
 
         var formFields = {};
@@ -33,13 +34,12 @@ $("#feedbacks form.createFeedback").submit(function(e) {
             {
                 location.reload();
             },
-            complete: function (){
+            error: function (){
                 allowCreateFeedback = true;
             },
             contentType: "application/json; charset=utf-8",
             dataType: "json"
         });
-
 
     }
 
@@ -87,7 +87,7 @@ function editFeedback(id, isReply, cancelTranslation, reviewMessageTranslation, 
 
     var feedbackId = $(wrapper).data('feedbackid');
     var title = $(wrapper +' .feedback-comment .feedback-comment-title').text();
-    var ratingValue = $(wrapper +' .feedback-comment .feedback-comment-rating').data('ratingvalue');
+    var ratingValue = $(wrapper +' .feedback-comment .feedback-rating').data('ratingvalue');
     var message = $(wrapper +' .feedback-comment .feedback-comment-text').first().text();
 
     $(wrapper +' .feedback-comment').hide();

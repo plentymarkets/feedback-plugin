@@ -194,9 +194,19 @@
                     font-weight:bold;
                     margin-bottom:10px;
                 }
-                .feedback-comment-rating {
+                .feedback-rating {
                     color:rgba(0,0,0,.1);
                     .full { color:orange; }
+                }
+                .feedback-verified-purchase {
+                    p {
+                        span.fa-stack {
+                            font-size:80%;
+                            vertical-align: bottom;
+                        }
+                        color:#090;
+                        margin:10px 0;
+                    }
                 }
                 .feedback-comment-text {
                     margin-bottom:0px;

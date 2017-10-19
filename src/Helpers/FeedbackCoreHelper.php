@@ -18,6 +18,10 @@ class FeedbackCoreHelper
     const KEY_RELEASE_FEEDBACKS_AUTOMATICALLY = "releaseFeedbacks";
     const KEY_MAXIMUM_NR_FEEDBACKS = "numberOfFeedbacks";
     const KEY_TIMESTAMP_VISIBILITY = "timestampVisibility";
+    const KEY_ALLOW_NO_RATING_FEEDBACK = "allowNoRatingFeedback";
+    const KEY_ALLOW_FEEDBACKS_ONLY_IF_PURCHASED = "allowFeedbacksOnlyIfPurchased";
+
+
 
     /**
      * @var $config

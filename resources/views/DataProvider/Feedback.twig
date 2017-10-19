@@ -81,7 +81,7 @@
                     <div class="stars">
                         {% for i in 5..1 %}
 
-                            <input class="star star-{{ i }}" id="star-{{ i }}" type="radio" value="{{ i }}" name="ratingValue"/>
+                            <input class="star star-{{ i }}" id="star-{{ i }}" type="radio" value="{{ i }}" name="ratingValue" {{ options.allowNoRatingFeedback ? '' : 'required' }}/>
                             <label class="star star-{{ i }}" for="star-{{ i }}"></label>
 
                         {% endfor %}
