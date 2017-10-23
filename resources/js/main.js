@@ -31,7 +31,7 @@ $("form.createFeedback").submit(function(e) {
                 allowCreateFeedback = true;
                 $('.createFeedback button[type="submit"]').prop('disabled', false);
                 return false;
-            }d
+            }
         }
 
 
