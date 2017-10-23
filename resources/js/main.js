@@ -10,6 +10,8 @@ $("body").tooltip({
 var allowCreateFeedback = true;
 $("form.createFeedback").submit(function(e) {
 
+    e.preventDefault();
+
     var formFields = {};
     $.each(
         $(this).serializeArray(),
@@ -21,11 +23,13 @@ $("form.createFeedback").submit(function(e) {
     if(allowCreateFeedback){
 
         allowCreateFeedback = false;
+        $('.createFeedback button[type="submit"]').prop('disabled', true);
 
         if(formFields['allowNoRatingFeedback'] == 'true'){
             if(formFields['type'] == 'review' && !formFields['ratingValue']){
                 $('#feedback-error-no-rating').removeClass('feedback-error-hidden');
                 allowCreateFeedback = true;
+                $('.createFeedback button[type="submit"]').prop('disabled', false);
                 return false;
             }d
         }
@@ -45,14 +49,13 @@ $("form.createFeedback").submit(function(e) {
             },
             error: function (){
                 allowCreateFeedback = true;
+                $('.createFeedback button[type="submit"]').prop('disabled', false);
             },
             contentType: "application/json; charset=utf-8",
             dataType: "json"
         });
 
     }
-
-    e.preventDefault();
 
 });
 
