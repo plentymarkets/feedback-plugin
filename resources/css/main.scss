@@ -276,6 +276,15 @@
         }
     }
 
+    #feedback-error-no-rating {
+        display: inline-block;
+        vertical-align: bottom;
+        padding: 1px 10px;
+        margin-left: 10px;
+    }
+    #feedback-error-no-rating.feedback-error-hidden {
+        display:none;
+    }
 
 }
 

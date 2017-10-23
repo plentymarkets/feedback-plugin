@@ -10,17 +10,26 @@ $("body").tooltip({
 var allowCreateFeedback = true;
 $("form.createFeedback").submit(function(e) {
 
+    var formFields = {};
+    $.each(
+        $(this).serializeArray(),
+        function (_, kv) {
+            formFields[kv.name] = kv.value;
+        }
+    );
+
     if(allowCreateFeedback){
 
         allowCreateFeedback = false;
 
-        var formFields = {};
-        $.each(
-            $(this).serializeArray(),
-            function (_, kv) {
-                formFields[kv.name] = kv.value;
-            }
-        );
+        if(formFields['allowNoRatingFeedback'] == 'true'){
+            if(formFields['type'] == 'review' && !formFields['ratingValue']){
+                $('#feedback-error-no-rating').removeClass('feedback-error-hidden');
+                allowCreateFeedback = true;
+                return false;
+            }d
+        }
+
 
         // ajax call
         $.ajax({
@@ -47,7 +56,9 @@ $("form.createFeedback").submit(function(e) {
 
 });
 
-
+$('#createFeedback input.star').change(function() {
+    $('#feedback-error-no-rating').addClass('feedback-error-hidden');
+});
 
 // ----------------------------------
 //      DELETE FEEDBACK

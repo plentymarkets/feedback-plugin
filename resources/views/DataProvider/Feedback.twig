@@ -81,11 +81,19 @@
                     <div class="stars">
                         {% for i in 5..1 %}
 
-                            <input class="star star-{{ i }}" id="star-{{ i }}" type="radio" value="{{ i }}" name="ratingValue" {{ options.allowNoRatingFeedback ? '' : 'required' }}/>
+                            <input class="star star-{{ i }}" id="star-{{ i }}" type="radio" value="{{ i }}" name="ratingValue"/>
                             <label class="star star-{{ i }}" for="star-{{ i }}"></label>
 
                         {% endfor %}
                     </div>
+
+
+                    {% if not options.allowNoRatingFeedback %}
+
+                    <p class="feedback-error feedback-error-hidden alert alert-danger" id="feedback-error-no-rating">Rating required</p>
+                    <input type="hidden" name="allowNoRatingFeedback" value="true">
+
+                    {% endif %}
 
                     <div class="form-group">
                         <input type="text" class="form-control" id="title" name="title" placeholder="{{ trans("Feedback::Feedback.title") }}" required {{ authenticatedContact.limitReached ? 'disabled' : '' }}>
@@ -120,7 +128,7 @@
 
                 <a class="btn btn-primary" data-toggle="modal" href="#login">
                     <i class="fa fa-user" aria-hidden="true"></i>
-                    <span class="hidden-xs-down">{{ trans("Feedback::Feedback.login") }}</span>
+                    <span>{{ trans("Feedback::Feedback.login") }}</span>
                 </a>
 
             {% endif %}

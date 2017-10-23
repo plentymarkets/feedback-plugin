@@ -92,6 +92,8 @@ class FeedbacksController extends Controller
                             "feedbackRelationSourceId" => $options['feedbackRelationTargetId']
                         ]
                     ];
+                }else{
+                    return 'Not allowed to create review without purchasing the item first';
                 }
 
             }
