@@ -39,7 +39,7 @@
                 <strong>
                 {% if feedback.sourceRelation[0].feedbackRelationType == "user" %}
 
-                    <span class="feedback-admin" data-toggle="tooltip" data-placement="top" data-original-title="Shop manager">
+                    <span class="feedback-admin" data-toggle="tooltip" data-placement="top" data-original-title="{{ trans("Feedback::Feedback.shopManagerLabel") }}">
                     <i class="fa fa-check-square"></i>
                     {{ feedback.sourceRelation[0].sourceRelationLabel }}
                     </span>
