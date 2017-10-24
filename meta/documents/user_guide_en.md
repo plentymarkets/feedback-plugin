@@ -50,7 +50,7 @@ In order to display customer reviews in your online store, you have to carry out
 				<b>Allow feedbacks with no rating</b>
 			</td>
 			<td>
-				Activate to allow adding feedbacks with no rating.
+				Activate to allow adding feedbacks without ratings.
 			</td>
 		</tr>
 		<tr>

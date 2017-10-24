@@ -50,7 +50,7 @@ Bevor Kundenrezensionen im Webshop angezeigt werden, müssen Sie Einstellungen i
 				<b>Allow feedbacks with no rating</b>
 			</td>
 			<td>
-				Aktivieren, um Feedbacks ohne Rating zu erlauben.
+				Aktivieren, um Feedbacks ohne Bewertung zu erlauben.
 			</td>
 		</tr>
 		<tr>
@@ -58,7 +58,7 @@ Bevor Kundenrezensionen im Webshop angezeigt werden, müssen Sie Einstellungen i
 				<b>Allow adding feedbacks only if the item was purchased</b>
 			</td>
 			<td>
-				Aktivieren, um Feedbacks nur bei eingekauften Artikeln zu erlauben.
+				Aktivieren, um Feedbacks nur bei gekauften Artikeln zu erlauben.
 			</td>
 		</tr>
 		<tr>
@@ -134,4 +134,4 @@ Löschen Sie Kundenrezensionen, um diese aus dem Webshop zu entfernen. Alternati
 ##### Bestehende Feedbacks migrieren
 
 1. Öffnen Sie das Menü **CMS » Feedback-Bewertungen**.
-2. Klicken Sie auf **Bestehende Feedbacks migrieren**.<br />→ Die existierenden Feedbacks migrieren
+2. Klicken Sie auf **Bestehende Feedbacks migrieren**.<br />→ Die bestehenden Feedbacks werden migriert.
