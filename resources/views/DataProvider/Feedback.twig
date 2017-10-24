@@ -168,15 +168,15 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
 
-                    <h5 class="modal-title" id="exampleModalLabel">Confirm feedback delete</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{ trans("Feedback::Feedback.deleteConfirm") }}</h5>
 
                 </div>
                 <div class="modal-body">
                     <p>{{ trans("Feedback::Feedback.deleteReviewConfirmation") }}</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" onclick="deleteFeedback()">Yes, delete it</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ trans("Feedback::Feedback.cancel") }}</button>
+                    <button type="button" class="btn btn-primary" onclick="deleteFeedback()">{{ trans("Feedback::Feedback.yesDeleteIt") }}</button>
                 </div>
             </div>
         </div>
