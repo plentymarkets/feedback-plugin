@@ -114,7 +114,7 @@
 
                     {% elseif options.allowFeedbacksOnlyIfPurchased and not authenticatedContact.hasPurchased %}
 
-                        <div class="feedback-tooltip-wrapper" data-toggle="tooltip" data-placement="top" data-original-title="You can't submit a review if you don't own the product" >
+                        <div class="feedback-tooltip-wrapper" data-toggle="tooltip" data-placement="top" data-original-title="{{ trans("Feedback::Feedback.errorDoesntOwnProduct") }}" >
                             <button type="submit" class="btn btn-primary" disabled>{{ trans("Feedback::Feedback.submitReview") }}</button>
                         </div>
 

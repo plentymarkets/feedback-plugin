@@ -47,6 +47,22 @@ In order to display customer reviews in your online store, you have to carry out
 		</tr>
 		<tr>
 			<td>
+				<b>Allow feedbacks with no rating</b>
+			</td>
+			<td>
+				Activate to allow adding feedbacks without ratings.
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<b>Allow adding feedbacks only if the item was purchased</b>
+			</td>
+			<td>
+				Activate to allow adding feedbacks only for items that were purchased.
+			</td>
+		</tr>
+		<tr>
+			<td>
 				<b>Maximum number of feedbacks per author and item</b>
 			</td>
 			<td>Enter a value to limit the customer reviews of an author for an item. If now value is entered, a logged in customer can create an unlimited number of reviews for an item.
@@ -114,3 +130,9 @@ Delete customer reviews in order to remove them from the online store. Alternati
 2. Activate one or multiple customer reviews.
 3. Click on **Delete**.<br />→ The **Delete feedbacks** window will open.
 4. Klick on **Ok** to delete the reviews.<br />→ The customer reviews will be deleted.
+
+##### Migrate existing feedbacks
+
+1. Go to **CMS » Feedback ratings**.
+2. Click on **Migrate existing feedbacks**.<br />→ The existing feedbacks will be migrated
+

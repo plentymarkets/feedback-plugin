@@ -47,6 +47,22 @@ Bevor Kundenrezensionen im Webshop angezeigt werden, müssen Sie Einstellungen i
 		</tr>
 		<tr>
 			<td>
+				<b>Allow feedbacks with no rating</b>
+			</td>
+			<td>
+				Aktivieren, um Feedbacks ohne Bewertung zu erlauben.
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<b>Allow adding feedbacks only if the item was purchased</b>
+			</td>
+			<td>
+				Aktivieren, um Feedbacks nur bei gekauften Artikeln zu erlauben.
+			</td>
+		</tr>
+		<tr>
+			<td>
 				<b>Maximum number of feedbacks per author and item</b>
 			</td>
 			<td>Wert eingeben, um Kundenrezensionen eines Autors zu einem Artikel zu beschränken. Wenn kein Wert eingeben wird, kann ein eingeloggter Webshop-Besucher beliebig viele Rezensionen für einen Artikel erstellen.
@@ -114,3 +130,8 @@ Löschen Sie Kundenrezensionen, um diese aus dem Webshop zu entfernen. Alternati
 2. Aktivieren Sie eine oder mehrere Kundenrezensionen.
 3. Klicken Sie auf **Löschen**.<br />→ Das Fenster **Feedbacks löschen** wird geöffnet.
 4. Klicken Sie auf **Ok**, um die Rezensionen zu löschen.<br />→ Die Kundenrezensionen werden gelöscht.
+
+##### Bestehende Feedbacks migrieren
+
+1. Öffnen Sie das Menü **CMS » Feedback-Bewertungen**.
+2. Klicken Sie auf **Bestehende Feedbacks migrieren**.<br />→ Die bestehenden Feedbacks werden migriert.
