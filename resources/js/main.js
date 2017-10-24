@@ -8,7 +8,7 @@ $("body").tooltip({
 // ----------------------------------
 // this is the id of the form
 var allowCreateFeedback = true;
-$("form.createFeedback").submit(function(e) {
+$(document).on('submit','form.createFeedback',function(e){
 
     e.preventDefault();
 
