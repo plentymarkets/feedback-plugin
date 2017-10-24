@@ -45,22 +45,22 @@ In order to display customer reviews in your online store, you have to carry out
 				Activate to display the date of creation of the customer review in the online store.
 			</td>
 		</tr>
-		  <tr>
+		<tr>
 			<td>
 				<b>Allow feedbacks with no rating</b>
 			</td>
 			<td>
 				Activate to allow adding feedbacks with no rating.
 			</td>
-		  </tr>
-		  <tr>
+		</tr>
+		<tr>
 			<td>
 				<b>Allow adding feedbacks only if the item was purchased</b>
 			</td>
 			<td>
 				Activate to allow adding feedbacks only for items that were purchased.
 			</td>
-			</tr>
+		</tr>
 		<tr>
 			<td>
 				<b>Maximum number of feedbacks per author and item</b>
