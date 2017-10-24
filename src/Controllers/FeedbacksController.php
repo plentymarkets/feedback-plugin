@@ -103,12 +103,10 @@ class FeedbacksController extends Controller
             if(!empty($limitPerUserPerItem) && $limitPerUserPerItem != 0){
 
                 // Get the feedbacks that this user created on this item
-                $feedbacksOfUserPerItem = $feedbackRepository->listFeedbacks(1,50,[],[
+                $countFeedbacksOfUserPerItem = $feedbackRepository->listFeedbacks(1,50,[],[
                     'sourceId' => $creatorContactId,
-                    'targetId' => $request->input('feedbackRelationTargetId')
-                ])->getResult();
-                $countFeedbacksOfUserPerItem = count($feedbacksOfUserPerItem);
-
+                    'targetId' => $options['feedbackRelationTargetId']
+                ])->getTotalCount();
 
                 if($countFeedbacksOfUserPerItem >= $limitPerUserPerItem) {
                     return 'Too many reviews';
