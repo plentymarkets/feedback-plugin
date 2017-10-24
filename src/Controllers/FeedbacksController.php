@@ -35,8 +35,12 @@ class FeedbacksController extends Controller
         // Set options
         $options = [
             'feedbackRelationTargetId' => $request->input('targetId'),
-            'feedbackRelationSourceType' => 'contact',
-            'feedbackRelationSourceId' => $creatorContactId,
+            'feedbackRelationSources' => [
+                [
+                'feedbackRelationSourceType' => 'contact',
+                'feedbackRelationSourceId' => $creatorContactId
+                ]
+            ],
             'commentRelationTargetType' => 'feedbackComment',
             'ratingRelationTargetType' => 'feedbackRating'
         ];
@@ -68,34 +72,30 @@ class FeedbacksController extends Controller
             // Allow creation of feedbacks only if the item/variation was already bought
             $allowFeedbacksOnlyIfPurchased = $coreHelper->configValue(FeedbackCoreHelper::KEY_ALLOW_FEEDBACKS_ONLY_IF_PURCHASED) == 'true' ? true : false;
 
-            if($allowFeedbacksOnlyIfPurchased){
+            // get variations bought
+            $orders = pluginApp(OrderRepositoryContract::class)->allOrdersByContact($creatorContactId);
 
-                // get variations bought
-                $orders = pluginApp(OrderRepositoryContract::class)->allOrdersByContact($creatorContactId);
+            $purchasedVariations = [];
 
-                $purchasedVariations = [];
-
-                foreach($orders->getResult() as $order){
-                    foreach($order->orderItems as $orderItem){
-                        $purchasedVariations[] = $orderItem->itemVariationId;
-                    }
+            foreach($orders->getResult() as $order){
+                foreach($order->orderItems as $orderItem){
+                    $purchasedVariations[] = $orderItem->itemVariationId;
                 }
+            }
 
-                if(in_array($request->input('targetId'), $purchasedVariations)){
-                    $options['feedbackRelationSources'] = [
-                        [
-                            "feedbackRelationSourceType" => $options['feedbackRelationSourceType'], // contact
-                            "feedbackRelationSourceId" => $creatorContactId
-                        ],
-                        [
-                            "feedbackRelationSourceType" => 'orderItem',
-                            "feedbackRelationSourceId" => $options['feedbackRelationTargetId']
-                        ]
-                    ];
-                }else{
-                    return 'Not allowed to create review without purchasing the item first';
-                }
+            if(in_array($request->input('targetId'), $purchasedVariations)){
 
+                $creatorPurchasedThisVariation = true;
+                $options['feedbackRelationSources'][] =
+                    [
+                        "feedbackRelationSourceType" => 'orderItem',
+                        "feedbackRelationSourceId" => $options['feedbackRelationTargetId']
+                    ]
+                ;
+            }
+
+            if($allowFeedbacksOnlyIfPurchased && !$creatorPurchasedThisVariation){
+                return 'Not allowed to create review without purchasing the item first';
             }
 
 
