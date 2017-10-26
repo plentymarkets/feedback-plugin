@@ -4,9 +4,9 @@
 
 ### Hinzugefügt
 
-- Bestehende Feedbacks migrieren
-- Option hinzufügen, um das Hinzufügen von Rezensionen ohne Bewertungen zu ermöglichen
-- Option hinzufügen, um dass addieren von Rückmeldungen nur für Artikel zu ermöglichen, die gekauft wurden
+- Feedbacks aus dem alten CMS können nun migriert werden.
+- Neue Option: Hinzufügen von Feedbacks ohne Bewertungen ermöglichen.
+- Neue Option: Hinzufügen von Feedbacks nur für gekaufte Artikel. 
 
 ## v1.0.1 (2017-10-11)
 
