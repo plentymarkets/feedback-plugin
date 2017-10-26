@@ -15,6 +15,7 @@ use Plenty\Modules\Feedback\Contracts\FeedbackAverageRepositoryContract;
 use Plenty\Modules\Feedback\Contracts\FeedbackRepositoryContract;
 use Plenty\Modules\Feedback\Controllers\FeedbackController;
 use Plenty\Modules\Frontend\Services\AccountService;
+use Plenty\Modules\Order\Contracts\OrderRepositoryContract;
 use Plenty\Plugin\Http\Request;
 use Plenty\Plugin\Templates\Twig;
 
@@ -34,18 +35,45 @@ class Feedback
     public function call(Request $request, Twig $twig, FeedbackService $feedbackService, FeedbackCoreHelper $coreHelper, FeedbackRepositoryContract $feedbackRepository, FeedbackAverageRepositoryContract $feedbackAverageRepository, AccountService $accountService, $item)
     {
 
-        $targetId = $item[0]['documents'][0]['data']['variation']['id'];
+        $variationId = $item[0]['documents'][0]['data']['variation']['id'];
+        $itemId = $item[0]['documents'][0]['data']['item']['id'];
 
         // Details about the user currently authenticated
         $authenticatedContact = [
             'id' => $accountService->getAccountContactId(),
-            'check' => $accountService->getIsAccountLoggedIn()
+            'check' => $accountService->getIsAccountLoggedIn(),
+            'hasPurchased' => false
         ];
 
         $options['timestampVisibility'] = $coreHelper->configValue(FeedbackCoreHelper::KEY_TIMESTAMP_VISIBILITY) == 'true' ? true : false;
+        $options['allowNoRatingFeedback'] = $coreHelper->configValue(FeedbackCoreHelper::KEY_ALLOW_NO_RATING_FEEDBACK) == 'true' ? true : false;
+
+        $allowFeedbacksOnlyIfPurchased = $coreHelper->configValue(FeedbackCoreHelper::KEY_ALLOW_FEEDBACKS_ONLY_IF_PURCHASED) == 'true' ? true : false;
+        $options['allowFeedbacksOnlyIfPurchased'] = $allowFeedbacksOnlyIfPurchased;
+
+
         $limitFeedbacksPerUserPerItem = $coreHelper->configValue(FeedbackCoreHelper::KEY_MAXIMUM_NR_FEEDBACKS);
 
-        $average = $feedbackAverageRepository->getFeedbackAverage($targetId);
+        $average = $feedbackAverageRepository->getFeedbackAverage($itemId);
+
+
+
+        if($allowFeedbacksOnlyIfPurchased && $accountService->getIsAccountLoggedIn()) {
+
+            // get variations bought
+            $orders = pluginApp(OrderRepositoryContract::class)->allOrdersByContact($accountService->getAccountContactId());
+
+            $purchasedVariations = [];
+
+            foreach ($orders->getResult() as $order) {
+                foreach ($order->orderItems as $orderItem) {
+                    $purchasedVariations[] = $orderItem->itemVariationId;
+                }
+            }
+
+            $authenticatedContact['hasPurchased'] = in_array($variationId, $purchasedVariations) ? true : false;
+
+        }
 
 
         if(empty($average)){
@@ -89,7 +117,7 @@ class Feedback
 
             $with = [];
             $filters = [
-                'targetId' => $targetId,
+                'itemId' => $itemId,
                 'sourceId' => $authenticatedContact['id']
             ];
 

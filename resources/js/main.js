@@ -1,21 +1,39 @@
+$("body").tooltip({
+    selector: '[data-toggle="tooltip"]'
+});
+
 
 // ----------------------------------
 //      CREATE FEEDBACK
 // ----------------------------------
 // this is the id of the form
 var allowCreateFeedback = true;
-$("#feedbacks form.createFeedback").submit(function(e) {
+$(document).on('submit','form.createFeedback',function(e){
+
+    e.preventDefault();
+
+    var formFields = {};
+    $.each(
+        $(this).serializeArray(),
+        function (_, kv) {
+            formFields[kv.name] = kv.value;
+        }
+    );
 
     if(allowCreateFeedback){
-        allowCreateFeedback = false;
 
-        var formFields = {};
-        $.each(
-            $(this).serializeArray(),
-            function (_, kv) {
-                formFields[kv.name] = kv.value;
+        allowCreateFeedback = false;
+        $('.createFeedback button[type="submit"]').prop('disabled', true);
+
+        if(formFields['allowNoRatingFeedback'] == 'true'){
+            if(formFields['type'] == 'review' && !formFields['ratingValue']){
+                $('#feedback-error-no-rating').removeClass('feedback-error-hidden');
+                allowCreateFeedback = true;
+                $('.createFeedback button[type="submit"]').prop('disabled', false);
+                return false;
             }
-        );
+        }
+
 
         // ajax call
         $.ajax({
@@ -29,32 +47,37 @@ $("#feedbacks form.createFeedback").submit(function(e) {
             {
                 location.reload();
             },
-            complete: function (){
+            error: function (){
                 allowCreateFeedback = true;
+                $('.createFeedback button[type="submit"]').prop('disabled', false);
             },
             contentType: "application/json; charset=utf-8",
             dataType: "json"
         });
 
-
     }
-
-    e.preventDefault();
 
 });
 
-
+$('#createFeedback input.star').change(function() {
+    $('#feedback-error-no-rating').addClass('feedback-error-hidden');
+});
 
 // ----------------------------------
 //      DELETE FEEDBACK
 // ----------------------------------
+var feedbackToBeDeleted = 0;
+function openFeedbackConfirmDelete(id) {
+    feedbackToBeDeleted = id;
+    $('#feedbackConfirmDelete').modal('show');
+}
 
-function deleteFeedback(id, deleteReviewTranslation) {
-    if (confirm(deleteReviewTranslation)) {
+function deleteFeedback(){
+    if(feedbackToBeDeleted != 0){
         // ajax call
         $.ajax({
             type: "DELETE",
-            url: '/rest/feedbacks/feedback/delete/' + id,
+            url: '/rest/feedbacks/feedback/delete/' + feedbackToBeDeleted,
             xhrFields: {
                 withCredentials: true
             },
@@ -67,6 +90,7 @@ function deleteFeedback(id, deleteReviewTranslation) {
 }
 
 
+
 // ----------------------------------
 //      UPDATE FEEDBACK
 // ----------------------------------
@@ -77,7 +101,7 @@ function editFeedback(id, isReply, cancelTranslation, reviewMessageTranslation, 
 
     var feedbackId = $(wrapper).data('feedbackid');
     var title = $(wrapper +' .feedback-comment .feedback-comment-title').text();
-    var ratingValue = $(wrapper +' .feedback-comment .feedback-comment-rating').data('ratingvalue');
+    var ratingValue = $(wrapper +' .feedback-comment .feedback-rating').data('ratingvalue');
     var message = $(wrapper +' .feedback-comment .feedback-comment-text').first().text();
 
     $(wrapper +' .feedback-comment').hide();

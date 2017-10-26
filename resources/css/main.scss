@@ -190,31 +190,42 @@
 
             .feedback-comment {
 
-                padding-left:70px;
-
                 .feedback-comment-title {
                     font-weight:bold;
+                    margin-bottom:10px;
                 }
-                .feedback-comment-rating {
+                .feedback-rating {
                     color:rgba(0,0,0,.1);
                     .full { color:orange; }
+                }
+                .feedback-verified-purchase {
+                    p {
+                        span.fa-stack {
+                            font-size:80%;
+                            vertical-align: bottom;
+                        }
+                        color:#090;
+                        margin:10px 0;
+                    }
                 }
                 .feedback-comment-text {
                     margin-bottom:0px;
                 }
                 .feedback-replies {
                     margin-top:20px;
+                    padding-left:30px;
                     display:none;
                 }
                 .feedback-add-reply {
                     margin-top:20px;
+                    padding-left:30px;
                     display:none;
                 }
 
             }
 
             form.feedback-edit {
-                padding-left:70px;
+                padding-left:20px;
             }
         }
 
@@ -240,7 +251,16 @@
         .feedback-info-segment {
             margin-right:10px;
             font-size:.875rem;
+
+            .feedback-admin {
+
+                i.fa {
+                    color: #008ebd;
+                }
+            }
         }
+
+
 
         .btn-secondary {
             border:none;
@@ -256,6 +276,15 @@
         }
     }
 
+    #feedback-error-no-rating {
+        display: inline-block;
+        vertical-align: bottom;
+        padding: 1px 10px;
+        margin-left: 10px;
+    }
+    #feedback-error-no-rating.feedback-error-hidden {
+        display:none;
+    }
 
 }
 

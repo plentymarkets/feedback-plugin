@@ -10,24 +10,17 @@ namespace Feedback\Controllers;
 
 use Feedback\Helpers\FeedbackCoreHelper;
 use Feedback\Services\FeedbackService;
+use Illuminate\Support\Facades\Redirect;
 use Plenty\Modules\Feedback\Contracts\FeedbackRepositoryContract;
 use Plenty\Modules\Feedback\Models\Feedback;
 use Plenty\Modules\Frontend\Services\AccountService;
+use Plenty\Modules\Order\Contracts\OrderRepositoryContract;
 use Plenty\Plugin\Controller;
 use Plenty\Plugin\Http\Request;
 use Plenty\Plugin\Templates\Twig;
 
 class FeedbacksController extends Controller
 {
-//    /**
-//     * @param FeedbackService $feedbackService
-//     * @param FeedbackRepositoryContract $feedbackRepository
-//     * @return \Illuminate\Support\Collection|\Plenty\Repositories\Models\PaginatedResult
-//     */
-//    public function listFeedbacks(FeedbackService $feedbackService, FeedbackRepositoryContract $feedbackRepository)
-//    {
-//        return $feedbackService->listFeedbacks($feedbackRepository);
-//    }
 
     /**
      * @param Request $request
@@ -36,60 +29,102 @@ class FeedbacksController extends Controller
      */
     public function create(Request $request, FeedbackRepositoryContract $feedbackRepository, FeedbackCoreHelper $coreHelper, AccountService $accountService)
     {
+
+        $creatorContactId = $accountService->getAccountContactId();
+
         // Set options
         $options = [
             'feedbackRelationTargetId' => $request->input('targetId'),
-            'feedbackRelationSourceType' => 'contact',
+            'feedbackRelationSources' => [
+                [
+                'feedbackRelationSourceType' => 'contact',
+                'feedbackRelationSourceId' => $creatorContactId
+                ]
+            ],
             'commentRelationTargetType' => 'feedbackComment',
             'ratingRelationTargetType' => 'feedbackRating'
         ];
 
+
+
         // Check the type and set the target accordingly
         if($request->input('type') == 'review'){
 
-            $feedbackRelationTargetType = 'variation';
-            // Set the default visibility of the feedback. Setting in shop owner's configuration
+            $options['feedbackRelationTargetType'] = 'variation';
+
+            // Limit the feedbacks count of a user per item
+            $limitPerUserPerItem = $coreHelper->configValue(FeedbackCoreHelper::KEY_MAXIMUM_NR_FEEDBACKS);
+
+            // Default visibility of the feedback
             $options['isVisible'] = $coreHelper->configValue(FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY) == 'true' ? true : false;
 
-        }elseif($request->input('type') == 'reply'){
 
-            $feedbackRelationTargetType = 'feedback';
-            $options['isVisible'] = true;
 
-        }else{
+            // Allow feedbacks with no rating
+            $allowNoRatingFeedbacks = $coreHelper->configValue(FeedbackCoreHelper::KEY_ALLOW_NO_RATING_FEEDBACK) == 'true' ? true : false;
 
-            $feedbackRelationTargetType = 'incorrectSetting';
-            $options['isVisible'] = false;
-
-        }
-
-        $options['feedbackRelationTargetType'] = $feedbackRelationTargetType;
+            if( !$allowNoRatingFeedbacks && empty($request->input('ratingValue')) ){
+                return 'Can\'t create review with no rating';
+            }
 
 
 
-        // Limit the feedbacks count of a user per item
-        $limitPerUserPerItem = $coreHelper->configValue(FeedbackCoreHelper::KEY_MAXIMUM_NR_FEEDBACKS);
+            // Allow creation of feedbacks only if the item/variation was already bought
+            $allowFeedbacksOnlyIfPurchased = $coreHelper->configValue(FeedbackCoreHelper::KEY_ALLOW_FEEDBACKS_ONLY_IF_PURCHASED) == 'true' ? true : false;
 
-        // if the setting is not set, ignore it
-        if(is_null($limitPerUserPerItem) || $limitPerUserPerItem == 0 || $request->input('type') == 'reply'){
+            // get variations bought
+            $orders = pluginApp(OrderRepositoryContract::class)->allOrdersByContact($creatorContactId);
+
+            $purchasedVariations = [];
+
+            foreach($orders->getResult() as $order){
+                foreach($order->orderItems as $orderItem){
+                    $purchasedVariations[] = $orderItem->itemVariationId;
+                }
+            }
+
+            if(in_array($request->input('targetId'), $purchasedVariations)){
+
+                $creatorPurchasedThisVariation = true;
+                $options['feedbackRelationSources'][] =
+                    [
+                        "feedbackRelationSourceType" => 'orderItem',
+                        "feedbackRelationSourceId" => $options['feedbackRelationTargetId']
+                    ]
+                ;
+            }
+
+            if($allowFeedbacksOnlyIfPurchased && !$creatorPurchasedThisVariation){
+                return 'Not allowed to create review without purchasing the item first';
+            }
+
+
+
+            if(!empty($limitPerUserPerItem) && $limitPerUserPerItem != 0){
+
+                // Get the feedbacks that this user created on this item
+                $countFeedbacksOfUserPerItem = $feedbackRepository->listFeedbacks(1,50,[],[
+                    'sourceId' => $creatorContactId,
+                    'targetId' => $options['feedbackRelationTargetId']
+                ])->getTotalCount();
+
+                if($countFeedbacksOfUserPerItem >= $limitPerUserPerItem) {
+                    return 'Too many reviews';
+                }
+
+            }
 
             return $feedbackRepository->createFeedback(array_merge($request->all(), $options));
 
-        }else{
-
-            // Get the feedbacks that this user created on this item
-            $feedbacksOfUserPerItem = $feedbackRepository->listFeedbacks(1,50,[],[
-                'sourceId' => $accountService->getAccountContactId(),
-                'targetId' => $request->input('feedbackRelationTargetId')
-            ])->getResult();
-            $countFeedbacksOfUserPerItem = count($feedbacksOfUserPerItem);
 
 
-            if($countFeedbacksOfUserPerItem < $limitPerUserPerItem) {
-                return $feedbackRepository->createFeedback(array_merge($request->all(), $options));
-            }else{
-                return false;
-            }
+        }elseif($request->input('type') == 'reply'){
+
+            $options['feedbackRelationTargetType'] = 'feedback';
+            $options['isVisible'] = true;
+
+            return $feedbackRepository->createFeedback(array_merge($request->all(), $options));
+
         }
 
 
@@ -104,10 +139,6 @@ class FeedbacksController extends Controller
      */
     public function delete($feedbackId, FeedbackRepositoryContract $feedbackRepository, AccountService $accountService)
     {
-
-        /**
-         * @var Feedback
-         */
         $feedback = $feedbackRepository->getFeedback($feedbackId);
 
         // Check if frontend user is the creator
@@ -155,7 +186,7 @@ class FeedbacksController extends Controller
         $with = [];
         $filters = [
             'isVisible' => 1,
-            'targetId' => $targetId,
+            'itemId' => $targetId,
             'hideSourceId' => $authenticatedContact['id']
         ];
 

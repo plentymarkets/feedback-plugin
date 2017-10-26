@@ -87,12 +87,20 @@
                         {% endfor %}
                     </div>
 
+
+                    {% if not options.allowNoRatingFeedback %}
+
+                    <p class="feedback-error feedback-error-hidden alert alert-danger" id="feedback-error-no-rating">Rating required</p>
+                    <input type="hidden" name="allowNoRatingFeedback" value="true">
+
+                    {% endif %}
+
                     <div class="form-group">
-                        <input type="text" class="form-control" id="title" name="title" placeholder="{{ trans("Feedback::Feedback.title") }}" required {{ authenticatedContact.limitReached ? 'disabled' : '' }}>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="{{ trans("Feedback::Feedback.title") }}" required {{ authenticatedContact.limitReached ? 'disabled' : '' }} {{ ( options.allowFeedbacksOnlyIfPurchased and authenticatedContact.hasPurchased ) or not options.allowFeedbacksOnlyIfPurchased ? '' : 'disabled' }}>
                     </div>
 
                     <div class="form-group">
-                        <textarea class="form-control" id="message" name="message" rows="3" placeholder="{{ trans("Feedback::Feedback.reviewMessage") }}" {{ authenticatedContact.limitReached ? 'disabled' : '' }}></textarea>
+                        <textarea class="form-control" id="message" name="message" rows="3" placeholder="{{ trans("Feedback::Feedback.reviewMessage") }}" {{ authenticatedContact.limitReached ? 'disabled' : '' }} {{ ( options.allowFeedbacksOnlyIfPurchased and authenticatedContact.hasPurchased ) or not options.allowFeedbacksOnlyIfPurchased ? '' : 'disabled' }}></textarea>
                     </div>
 
                     <input type="hidden" name="targetId" value="{{ item[0].documents[0].data.variation.id }}">
@@ -102,6 +110,12 @@
 
                         <div class="feedback-tooltip-wrapper" data-toggle="tooltip" data-placement="top" data-original-title="{{ trans("Feedback::Feedback.maximumNumberOfFeedbacksReached") }}" >
                             <button type="submit" class="btn btn-primary" {{ authenticatedContact.limitReached ? 'disabled' : '' }}>{{ trans("Feedback::Feedback.submitReview") }}</button>
+                        </div>
+
+                    {% elseif options.allowFeedbacksOnlyIfPurchased and not authenticatedContact.hasPurchased %}
+
+                        <div class="feedback-tooltip-wrapper" data-toggle="tooltip" data-placement="top" data-original-title="{{ trans("Feedback::Feedback.errorDoesntOwnProduct") }}" >
+                            <button type="submit" class="btn btn-primary" disabled>{{ trans("Feedback::Feedback.submitReview") }}</button>
                         </div>
 
                     {% else %}
@@ -120,7 +134,7 @@
 
                 <a class="btn btn-primary" data-toggle="modal" href="#login">
                     <i class="fa fa-user" aria-hidden="true"></i>
-                    <span class="hidden-xs-down">{{ trans("Feedback::Feedback.login") }}</span>
+                    <span>{{ trans("Feedback::Feedback.login") }}</span>
                 </a>
 
             {% endif %}
@@ -144,16 +158,36 @@
     </div>
 
 
+    <!-- Modal -->
+    <div class="modal fade" id="feedbackConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                    <h5 class="modal-title" id="exampleModalLabel">{{ trans("Feedback::Feedback.deleteConfirm") }}</h5>
+
+                </div>
+                <div class="modal-body">
+                    <p>{{ trans("Feedback::Feedback.deleteReviewConfirmation") }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ trans("Feedback::Feedback.cancel") }}</button>
+                    <button type="button" class="btn btn-primary" onclick="deleteFeedback()">{{ trans("Feedback::Feedback.yesDeleteIt") }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        var itemVariationId = '{{ item[0].documents[0].data.item.id }}';
+    </script>
+
 </section>
 
 
 
-<script>
-    var itemVariationId = '{{ item[0].documents[0].data.variation.id }}';
-</script>
-
-{# {{ item[0].documents[0].data.variation.id }}  #}
-{#
-<input type="hidden" v-resource-bind:currentVariation="documents.0.data.variation.id" id="feedbackRelationTargetId" name="feedbackRelationTargetId"
-value="{{ item.documents[0].data.variation.id }}">
- #}

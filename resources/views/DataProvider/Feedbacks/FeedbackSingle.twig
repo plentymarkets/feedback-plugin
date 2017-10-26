@@ -2,43 +2,71 @@
 
     {% include 'Feedback::DataProvider.Feedbacks.Components.FeedbackOptions.twig' %}
 
-    <div class="feedback-creator">
-        <i class="feedback-user-icon fa fa-2x fa-user"></i>
+    {#<div class="feedback-creator">#}
+        {#<i class="feedback-user-icon fa fa-2x fa-user"></i>#}
 
-        {% if not isReply %}
-            <p class="feedback-user-name">{{ feedback.sourceRelation[0].sourceRelationLabel }}</p>
-        {% endif %}
-    </div>
+        {#{% if not isReply %}#}
+            {#<p class="feedback-user-name">{{ feedback.sourceRelation[0].sourceRelationLabel }}</p>#}
+        {#{% endif %}#}
+    {#</div>#}
 
     <div class="feedback-comment">
 
         {% if not isReply %}
-        <p class="feedback-comment-title">{{ feedback.title }}</p>
 
-        <div class="feedback-comment-rating" data-ratingvalue="{{ feedback.feedbackRating.rating.ratingValue }}">
-            {% for i in 1..5 %}{{ i <= feedback.feedbackRating.rating.ratingValue ? '<i class="fa fa-star full"></i>' : '<i class="fa fa-star empty"></i>' }}{% endfor %}
-        </div>
+            <p class="feedback-comment-title">{{ feedback.title }}</p>
+
+            <div class="feedback-rating" data-ratingvalue="{{ feedback.feedbackRating.rating.ratingValue }}">
+                {% for i in 1..5 %}{{ i <= feedback.feedbackRating.rating.ratingValue ? '<i class="fa fa-star full"></i>' : '<i class="fa fa-star empty"></i>' }}{% endfor %}
+            </div>
+
+            {% if feedback.sourceRelation[1].feedbackRelationType == "orderItem" %}
+                <div class="feedback-verified-purchase">
+                    <p><span class="fa-stack">
+                      <i class="fa fa-certificate fa-stack-2x"></i>
+                      <i class="fa fa-check fa-inverse fa-stack-1x"></i>
+                    </span> Verified purchase</p>
+                </div>
+            {% endif %}
+
         {% endif %}
 
         <p class="feedback-comment-text">{{ feedback.feedbackComment.comment.message|nl2br }}</p>
 
         <p class="feedback-info">
 
-                {% if isReply %}
-                    <span class="feedback-info-segment">{{ feedback.sourceRelation[0].sourceRelationLabel }} </span>
-                {% endif %}
+            <span class="feedback-info-segment">
+                <strong>
+                {% if feedback.sourceRelation[0].feedbackRelationType == "user" %}
 
-                {% if options.timestampVisibility %}
-                    <span class="feedback-info-segment"><i class="fa fa-calendar text-muted"></i> {{ feedback.createdAt|date("d.m.Y") }}</span>
-                {% endif %}
+                    <span class="feedback-admin" data-toggle="tooltip" data-placement="top" data-original-title="{{ trans("Feedback::Feedback.shopManagerLabel") }}">
+                    <i class="fa fa-check-square"></i>
+                    {{ feedback.sourceRelation[0].sourceRelationLabel }}
+                    </span>
 
-                {% if not isReply and authenticatedContact.check %}
-                <span class="feedback-info-segment btn btn-sm btn-secondary" onclick="toggleAddReply({{ feedback.id }})">{{ trans("Feedback::Feedback.addComment") }}</span>
-                {% endif %}
+                {% else %}
 
-                {% if feedback.replies is not empty %}
-                    <span class="feedback-info-segment btn btn-sm btn-secondary" onclick="toggleViewReplies({{ feedback.id }})">{{ trans("Feedback::Feedback.viewComments") }} ({{ feedback.replies|length }})</span>
+                    {{ feedback.sourceRelation[0].sourceRelationLabel }}
+
                 {% endif %}
+                </strong>
+            </span>
+
+            {% if not isReply and feedback.targetRelation.targetRelationName is not empty %}
+            <span class="feedback-info-segment" data-toggle="tooltip" data-placement="top" data-original-title="{{ feedback.targetRelation.targetRelationName }}"><i class="fa fa-bookmark"></i></span>
+            {% endif %}
+
+            {% if options.timestampVisibility %}
+                <span class="feedback-info-segment"><i class="fa fa-calendar text-muted"></i> {{ feedback.createdAt|date("d.m.Y") }}</span>
+            {% endif %}
+
+            {% if not isReply and authenticatedContact.check %}
+            <span class="feedback-info-segment btn btn-sm btn-secondary" onclick="toggleAddReply({{ feedback.id }})">{{ trans("Feedback::Feedback.addComment") }}</span>
+            {% endif %}
+
+            {% if feedback.replies is not empty %}
+                <span class="feedback-info-segment btn btn-sm btn-secondary" onclick="toggleViewReplies({{ feedback.id }})">{{ trans("Feedback::Feedback.viewComments") }} ({{ feedback.replies|length }})</span>
+            {% endif %}
 
         </p>
 

@@ -1,5 +1,13 @@
 # Release Notes für Feedback
 
+## v1.0.2 (2017-10-26)
+
+### Hinzugefügt
+
+- Feedbacks aus dem alten CMS können nun migriert werden.
+- Neue Option: Hinzufügen von Feedbacks ohne Bewertungen ermöglichen.
+- Neue Option: Hinzufügen von Feedbacks nur für gekaufte Artikel. 
+
 ## v1.0.1 (2017-10-11)
 
 ### Fix
