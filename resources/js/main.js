@@ -216,11 +216,11 @@ function feedbackClickLoadMore(feedbackPage){
 // ----------------------------------
 
 function toggleViewReplies(feedbackId){
-    $("#feedback-replies-" + feedbackId).stop().slideToggle();
+    $("#feedback-replies-" + feedbackId).stop().slideToggle(150);
 }
 
 function toggleAddReply(feedbackId){
-    $("#feedback-add-reply-" + feedbackId).stop().slideToggle();
+    $("#feedback-add-reply-" + feedbackId).stop().slideToggle(150);
 }
 
 

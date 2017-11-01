@@ -54,7 +54,7 @@ class Feedback
 
         $itemAttributes = [];
         foreach($itemVariations as $itemVariation){
-            $variationAttributes = pluginApp(VariationRepositoryContract::class)->show($itemVariation,['variationAttributeValues' => 'Zorro the Magneficent'],'*');
+            $variationAttributes = pluginApp(VariationRepositoryContract::class)->show($itemVariation,['variationAttributeValues' => true],'*');
 
             $a[0] = $variationAttributes;
             $b[0] = $a;

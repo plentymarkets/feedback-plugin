@@ -30,7 +30,8 @@
                         {% for variationAttribute in feedback.targetRelation.variationAttributes %}
                         <span class="feedback-attributes">
                             {{ options.itemAttributes[feedback.targetRelation.feedbackRelationTargetId][variationAttribute.attributeId][variationAttribute.valueId].attributeName }}:
-                            {{ options.itemAttributes[feedback.targetRelation.feedbackRelationTargetId][variationAttribute.attributeId][variationAttribute.valueId].attributeValue }}</span>
+                            {{ options.itemAttributes[feedback.targetRelation.feedbackRelationTargetId][variationAttribute.attributeId][variationAttribute.valueId].attributeValue }}
+                        </span>
                         {% endfor %}
                     {% endif %}
 
