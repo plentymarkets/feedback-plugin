@@ -1,6 +1,7 @@
 {# {{ item[0].documents[0].data.variation.id }}  #}
 
 {% set secondView = config('Feedback.secondView') == 'true' ? true : false %}
+{% set secondViewPosition = config('Feedback.secondView_center') == 'true' ? true : false %}
 {% set columns = secondView ? '12' : '6' %}
 
 <section id="feedbacks">
@@ -15,7 +16,7 @@
 
     <div class="row m-y-2">
 
-        <div class="col-sm-{{ columns }}" {% if secondView %}style="text-align: center;"{% endif %}>
+        <div class="col-sm-{{ columns }}" {% if secondViewPosition and secondView %}style="text-align: center;"{% endif %}>
 
             {% if secondView %}
                 <div class="feedback-second-view m-r-3">
@@ -131,7 +132,7 @@
                 </form>
 
             {% elseif secondView %}
-                <div class="feedback-write-review">
+                <div {% if secondViewPosition %}style="text-align: center;"{% endif %}>
                     <a class="btn btn-primary feedback-write-review-btn" data-toggle="modal" href="#login">
                         <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
                         <span>{{ trans("Feedback::Feedback.reviewWrite") }}</span>

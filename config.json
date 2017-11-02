@@ -40,5 +40,12 @@
     "label": "Show rating average and number of reviews as number.",
     "type": "checkbox",
     "default": "false"
+  },
+  {
+    "tab": "Feedback view",
+    "key": "secondView_center",
+    "label": "Set position of 'rating average and number of reviews as number' to center.",
+    "type": "checkbox",
+    "default": "false"
   }
 ]

@@ -26,10 +26,10 @@
     .feedback-second-view{
         display: inline-block;
         text-align: center;
-    }
 
-    .feedback-write-review{
-        text-align: center;
+        .feedback-stars-average{
+            margin-left: 0;
+        }
     }
 
     /* Feedback stars next to section title */
