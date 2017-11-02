@@ -1,31 +1,35 @@
 {# {{ item[0].documents[0].data.variation.id }}  #}
 
+{% set secondView = config('Feedback.secondView') == 'true' ? true : false %}
+{% set columns = secondView ? '12' : '6' %}
+
 <section id="feedbacks">
 
-    <h1 class="title"> {{ trans("Feedback::Feedback.customerReviews") }}<small class="feedback-average-count"> ({{ counts.ratingsCountTotal }})</small></h1>
+    {% if not secondView %}
+        <h1 class="title"> {{ trans("Feedback::Feedback.customerReviews") }}<small class="feedback-average-count"> ({{ counts.ratingsCountTotal }})</small></h1>
 
-    <div class="feedback-stars-average" id="feedback-stars-average">
-        <div class="feedback-stars-background clearfix">
-            {% for i in 1..5 %}
-                <div class="feedback-star"><i class="fa fa-star"></i></div>
-            {% endfor %}
-        </div>
-        <div class="feedback-stars-overlay-wrap" style="width:{{ ( counts.averageValue * 100 ) / 5 }}%">
-            <div class="feedback-stars-overlay clearfix">
-                {% for i in 1..5 %}
-                    <div class="feedback-star"><i class="fa fa-star"></i></div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
+        {% include "Feedback::DataProvider.Feedbacks.Components.FeedbackStarsAverage" %}
 
-    <hr>
+        <hr>
+    {% endif %}
 
-    <div class="row my-2">
+    <div class="row m-y-2">
 
-        <div class="col-sm-6">
+        <div class="col-sm-{{ columns }}" {% if secondView %}style="text-align: center;"{% endif %}>
 
-            <div id="feedback-bars">
+            {% if secondView %}
+                <div class="feedback-second-view m-r-2">
+                    <p class="feedback-big-average">
+                        {{ counts.averageValue }}
+                    </p>
+
+                    {% include "Feedback::DataProvider.Feedbacks.Components.FeedbackStarsAverage" %}
+
+                    <p><i class="fa fa-user-o fa-fw" aria-hidden="true"></i> {{ counts.ratingsCountTotal }} {{ trans("Feedback::Feedback.reviews") }}</p>
+                </div>
+            {% endif %}
+
+            <div id="feedback-bars" {% if secondView %}style="display: inline-block;"{% endif %}>
 
                 <div class="feedback-bar-wrap">
                     <p class="feedback-bar-text-before">5 <i class="fa fa-star"></i></p>
@@ -72,7 +76,7 @@
         </div>
 
 
-        <div class="col-sm-6">
+        <div class="col-sm-{{ columns }}">
 
 
             {% if authenticatedContact.check %}
@@ -126,6 +130,13 @@
 
                 </form>
 
+            {% elseif secondView %}
+                <div class="feedback-write-review">
+                    <a class="btn btn-primary feedback-write-review-btn" data-toggle="modal" href="#login">
+                        <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
+                        <span>{{ trans("Feedback::Feedback.reviewWrite") }}</span>
+                    </a>
+                </div>
             {% else %}
 
                 <div class="alert alert-info">

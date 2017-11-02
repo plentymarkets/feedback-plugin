@@ -235,6 +235,13 @@ function feedbackLoadMore(targetId, page){
 
 }
 
+function scrollToFeedbacks(){
+
+    $("html, body").animate({scrollTop : $("#feedbacks").offset().top - 200 }, 400);
+
+    return false;
+}
+
 
 
 
