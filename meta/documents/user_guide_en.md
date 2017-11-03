@@ -86,53 +86,6 @@ The template plugin **Ceres** allows you to display customer reviews in the sing
 7. Activate the container **Single item: Container for customer feedback**. 
 8. **Save** the settings.<br />→ Customer reviews will be displayed in single item view.
 
-## Manually release customer reviews
+## Managing customer reviews
 
-If you do not want to release customer reviews automatically, release them manually in the **CMS » Feedback ratings** menu.
-
-##### Manually release customer reviews
-
-1. Go to **CMS » Feedback ratings**.
-2. Activate one or multiple customer reviews.
-3. Click on **Visible** to make the reviews visible.<br />→ Customer reviews will be displayed in the single item view.
-
-## Replying to customer reviews
-
-If you want to reply to a customer review, proceed as follows.
-
-##### Replying to customer reviews
-
-1. Go to **CMS » Feedback ratings**.
-2. Click on the respective customer review.<br />→ The customer review will open.
-3. Click on **Reply**.<br />→ The reply field will open.
-4. Enter a reply.
-5. **Save** the settings.<br />→ The reply will be added and displayed in the online store.
-
-## Editing customer reviews
-
-If you want to edit a customer review, proceed as follows.
-
-##### Editing customer reviews
-
-1. Go to **CMS » Feedback ratings**.
-2. Click on the respective customer review.<br />→ The customer review will open.
-3. Edit the title.
-4. Edit the review text.
-5. **Save** the settings.<br />→ The customer review will be updated in the online store.
-
-## Deleting customer reviews
-
-Delete customer reviews in order to remove them from the online store. Alternatively, make customer reviews invisible.
-
-##### Deleting customer reviews
-
-1. Go to **CMS » Feedback ratings**.
-2. Activate one or multiple customer reviews.
-3. Click on **Delete**.<br />→ The **Delete feedbacks** window will open.
-4. Klick on **Ok** to delete the reviews.<br />→ The customer reviews will be deleted.
-
-##### Migrate existing feedbacks
-
-1. Go to **CMS » Feedback ratings**.
-2. Click on **Migrate existing feedbacks**.<br />→ The existing feedbacks will be migrated
-
+Manage your customer reviews in the **CMS » Feedback ratings** menu. For further information about this topic, refer to the <a href="https://knowledge.plentymarkets.com/en/omni-channel/online-store/managing-feedbacks" target="_blank"><b>Managing customer reviews</b></a> page of the manual.

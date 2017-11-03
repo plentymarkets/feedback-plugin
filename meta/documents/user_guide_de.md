@@ -86,52 +86,6 @@ Das Template-Plugin **Ceres** bietet Ihnen in der Einzelansicht eines Artikels e
 7. Aktivieren Sie den Container **Single item: Container for customer feedback**.
 8. **Speichern** Sie die Einstellungen.<br />→ Kundenrezensionen werden in der Einzelansicht eines Artikels angezeigt.
 
-## Kundenrezensionen manuell freischalten
+## Kundenrezensionen verwalten
 
-Wenn Sie die automatische Freischaltung von Kundenrezensionen deaktivieren, schalten Sie diese im Menü **CMS » Feedback-Bewertungen** frei.
-
-##### Kundenrezensionen manuell freischalten
-
-1. Öffnen Sie das Menü **CMS » Feedback-Bewertungen**.
-2. Aktivieren Sie eine oder mehrere Kundenrezensionen.
-3. Klicken Sie auf **Sichtbar**, um die Rezensionen sichtbar zu schalten.<br />→ Kundenrezensionen werden in der Einzelansicht eines Artikels angezeigt.
-
-## Kundenrezensionen beantworten
-
-Wenn Sie auf eine Kundenrezension antworten möchten, gehen Sie wie folgt vor.
-
-##### Kundenrezensionen beantworten
-
-1. Öffnen Sie das Menü **CMS » Feedback-Bewertungen**.
-2. Klicken Sie auf die gewünschte Kundenrezension.<br />→ Die Kundenrezension wird geöffnet.
-3. Klicken Sie auf **Antworten**.<br />→ Das Antwortfeld wird geöffnet.
-4. Geben Sie eine Antwort ein.
-5. **Speichern** Sie die Einstellungen.<br />→ Die Antwort wird hinzugefügt und im Webshop angezeigt.
-
-## Kundenrezensionen bearbeiten
-
-Wenn Sie einen Rezensionstext bearbeiten möchten, gehen Sie wie folgt vor.
-
-##### Kundenrezensionen bearbeiten
-
-1. Öffnen Sie das Menü **CMS » Feedback-Bewertungen**.
-2. Klicken Sie auf die gewünschte Kundenrezension.<br />→ Die Kundenrezension wird geöffnet.
-3. Ändern Sie den Titel.
-4. Ändern Sie den Rezensionstext.
-5. **Speichern** Sie die Einstellungen.<br />→ Die Kundenrezension wird im Webshop aktualisiert.
-
-## Kundenrezensionen löschen
-
-Löschen Sie Kundenrezensionen, um diese aus dem Webshop zu entfernen. Alternativ schalten Sie Kundenrezensionen unsichtbar.
-
-##### Kundenrezensionen löschen
-
-1. Öffnen Sie das Menü **CMS » Feedback-Bewertungen**.
-2. Aktivieren Sie eine oder mehrere Kundenrezensionen.
-3. Klicken Sie auf **Löschen**.<br />→ Das Fenster **Feedbacks löschen** wird geöffnet.
-4. Klicken Sie auf **Ok**, um die Rezensionen zu löschen.<br />→ Die Kundenrezensionen werden gelöscht.
-
-##### Bestehende Feedbacks migrieren
-
-1. Öffnen Sie das Menü **CMS » Feedback-Bewertungen**.
-2. Klicken Sie auf **Bestehende Feedbacks migrieren**.<br />→ Die bestehenden Feedbacks werden migriert.
+Kundenrezensionen verwalten Sie im Menü **CMS » Feedback-Bewertungen**. Weitere Informationen dazu finden Sie auf der Handbuchseite <a href="https://knowledge.plentymarkets.com/omni-channel/online-shop/feedbacks-verwalten" target="_blank"><b>Kundenrezensionen verwalten</b></a>.
