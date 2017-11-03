@@ -9,14 +9,29 @@
 namespace Feedback\Providers;
 
 
-use Hanseatic\Providers\HanseaticRouteServiceProvider;
+use Feedback\Extensions\FeedbackFacet;
+use IO\Services\ItemLoader\Services\FacetExtensionContainer;
+use IO\Services\ItemService;
+use Plenty\Plugin\ConfigRepository;
+use Plenty\Plugin\Events\Dispatcher;
 use Plenty\Plugin\ServiceProvider;
 
 class FeedbackServiceProvider extends ServiceProvider
 {
-    public function boot()
+    /**
+     * @param Dispatcher $dispatcher
+     */
+    public function boot(Dispatcher $dispatcher, ConfigRepository $configRepository)
     {
+        //add feedback facet extension
+        $dispatcher->listen('IO.initFacetExtensions', function (FacetExtensionContainer $facetExtensionContainer) {
+            $facetExtensionContainer->addFacetExtension(pluginApp(FeedbackFacet::class));
+        });
 
+        //add feedback sorting
+        $dispatcher->listen('IO.initAdditionalSorting', function (ItemService $itemService) {
+            $itemService->addAdditionalItemSorting('item.feedbackDecimal', 'Feedback::Feedback.customerReviews');
+        });
     }
 
     public function register()
