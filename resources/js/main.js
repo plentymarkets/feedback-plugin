@@ -12,6 +12,10 @@ $(document).on('submit','form.createFeedback',function(e){
 
     e.preventDefault();
 
+    if($('#feedback-variation-id').text() != $('#feedback-form-variation-id').val()){
+        $('#feedback-form-variation-id').val($('#feedback-variation-id').text());
+    }
+
     var formFields = {};
     $.each(
         $(this).serializeArray(),
@@ -195,19 +199,24 @@ $(document).on('click','.feedback-edit-cancel',function(e) {
 //     PAGINATION
 // ----------------------------------
 
-var feedbackTargetId = itemVariationId;
-var feedbackIgnorePageLoad = 1;
+if (typeof itemVariationId !== 'undefined') {
+    var feedbackTargetId = itemVariationId;
 
-// initial feedbacks list load
-feedbackLoadMore(feedbackTargetId, 1);
+    var feedbackIgnorePageLoad = 1;
 
-function feedbackClickLoadMore(feedbackPage){
-    if(feedbackPage > feedbackIgnorePageLoad){
-        $(".feedback-loadmore").slideUp().fadeOut();
-        feedbackLoadMore(feedbackTargetId, feedbackPage);
+    // initial feedbacks list load
+    feedbackLoadMore(feedbackTargetId, 1);
+
+    function feedbackClickLoadMore(feedbackPage){
+        if(feedbackPage > feedbackIgnorePageLoad){
+            $(".feedback-loadmore").slideUp().fadeOut();
+            feedbackLoadMore(feedbackTargetId, feedbackPage);
+        }
+        feedbackIgnorePageLoad = feedbackPage;
     }
-    feedbackIgnorePageLoad = feedbackPage;
 }
+
+
 
 
 
@@ -216,11 +225,11 @@ function feedbackClickLoadMore(feedbackPage){
 // ----------------------------------
 
 function toggleViewReplies(feedbackId){
-    $("#feedback-replies-" + feedbackId).slideToggle();
+    $("#feedback-replies-" + feedbackId).stop().slideToggle(150);
 }
 
 function toggleAddReply(feedbackId){
-    $("#feedback-add-reply-" + feedbackId).slideToggle();
+    $("#feedback-add-reply-" + feedbackId).stop().slideToggle(150);
 }
 
 

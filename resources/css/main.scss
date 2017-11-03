@@ -198,14 +198,34 @@
                     color:rgba(0,0,0,.1);
                     .full { color:orange; }
                 }
-                .feedback-verified-purchase {
+                .feedback-attributes-list {
                     p {
+                        font-size:12px;
+                        margin:0px;
+                        span {
+                            display:inline-block;
+                            border-right:rgba(0,0,0,.2) solid 1px;
+                            margin:10px 4px 10px 0;
+                            padding-right:7px;
+                        }
+                        span:last-of-type {
+                            border-right:none;
+                            margin-right:0;
+                            padding-right:0;
+                        }
+                        span.feedback-verified-tag {
+                            color:#090;
+                            font-weight:bold;
+                        }
                         span.fa-stack {
-                            font-size:80%;
+                            color:#090;
+                            font-size:75%;
                             vertical-align: bottom;
                         }
-                        color:#090;
-                        margin:10px 0;
+                        span.feedback-attributes {
+
+                        }
+
                     }
                 }
                 .feedback-comment-text {
@@ -283,6 +303,9 @@
         margin-left: 10px;
     }
     #feedback-error-no-rating.feedback-error-hidden {
+        display:none;
+    }
+    .feedback-hidden {
         display:none;
     }
 

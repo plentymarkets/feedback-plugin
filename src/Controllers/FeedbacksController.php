@@ -11,9 +11,14 @@ namespace Feedback\Controllers;
 use Feedback\Helpers\FeedbackCoreHelper;
 use Feedback\Services\FeedbackService;
 use Illuminate\Support\Facades\Redirect;
+use IO\Services\SessionStorageService;
 use Plenty\Modules\Feedback\Contracts\FeedbackRepositoryContract;
 use Plenty\Modules\Feedback\Models\Feedback;
 use Plenty\Modules\Frontend\Services\AccountService;
+use Plenty\Modules\Item\Attribute\Contracts\AttributeNameRepositoryContract;
+use Plenty\Modules\Item\Attribute\Contracts\AttributeValueNameRepositoryContract;
+use Plenty\Modules\Item\Item\Contracts\ItemRepositoryContract;
+use Plenty\Modules\Item\Variation\Contracts\VariationRepositoryContract;
 use Plenty\Modules\Order\Contracts\OrderRepositoryContract;
 use Plenty\Plugin\Controller;
 use Plenty\Plugin\Http\Request;
@@ -170,14 +175,47 @@ class FeedbacksController extends Controller
      * @param FeedbackRepositoryContract $feedbackRepository
      * @return string
      */
-    public function paginate($targetId, $page, Twig $twig, FeedbackService $feedbackService, FeedbackCoreHelper $coreHelper, AccountService $accountService, FeedbackRepositoryContract $feedbackRepository)
+    public function paginate($itemId, $page, Twig $twig, FeedbackService $feedbackService, FeedbackCoreHelper $coreHelper, AccountService $accountService, FeedbackRepositoryContract $feedbackRepository, SessionStorageService $sessionStorage)
     {
+        $systemLanguage = $sessionStorage->getLang();
+
+
+
+        $itemVariations = [];
+        $itemDatas = pluginApp(ItemRepositoryContract::class)->show($itemId,[],$systemLanguage,['variations']);
+        foreach($itemDatas['variations'] as $itemData){
+            $itemVariations[] = $itemData['id'];
+        }
+
+        $itemAttributes = [];
+        foreach($itemVariations as $itemVariation){
+            $variationAttributes = pluginApp(VariationRepositoryContract::class)->show($itemVariation,['variationAttributeValues' => true],'*');
+
+            $a[0] = $variationAttributes;
+            $b[0] = $a;
+            $actualVariationAttributes = $b[0][0]['variationAttributeValues'];
+
+            foreach($actualVariationAttributes as $variationAttribute){
+                $attributeName = pluginApp(AttributeNameRepositoryContract::class)->findOne($variationAttribute->attribute_id, $systemLanguage);
+                $attributeValue = pluginApp(AttributeValueNameRepositoryContract::class)->findOne($variationAttribute->value_id, $systemLanguage);
+
+                $itemAttributes[$itemVariation][$variationAttribute->attribute_id][$variationAttribute->value_id] = [
+                    'attributeName' => $attributeName->name,
+                    'attributeValue' => $attributeValue->name
+                ];
+            }
+        }
+
+
 
         // Details about the user currently authenticated
         $authenticatedContact = [
             'id' => $accountService->getAccountContactId(),
             'check' => $accountService->getIsAccountLoggedIn()
         ];
+
+        $options['systemLanguage'] = $systemLanguage;
+        $options['itemAttributes'] = $itemAttributes;
 
         $options['timestampVisibility'] = $coreHelper->configValue(FeedbackCoreHelper::KEY_TIMESTAMP_VISIBILITY) == 'true' ? true : false;
 
@@ -186,12 +224,18 @@ class FeedbacksController extends Controller
         $with = [];
         $filters = [
             'isVisible' => 1,
-            'itemId' => $targetId,
+            'itemId' => $itemId,
             'hideSourceId' => $authenticatedContact['id']
         ];
 
         $feedbacks = $feedbackService->listFeedbacks($feedbackRepository, $page, $itemsPerPage, $with, $filters);
-        $results = $feedbacks->getResult();
+        $feedbackResults = $feedbacks->getResult();
+
+        foreach($feedbackResults as &$feedback){
+            if($feedback->targetRelation->feedbackRelationType == 'variation'){
+                $feedback->targetRelation->variationAttributes = json_decode($feedback->targetRelation->targetRelationName);
+            }
+        }
 
         $pagination = [
             'page' => $page,
@@ -200,7 +244,7 @@ class FeedbacksController extends Controller
         ];
 
         $data = [
-            'feedbacks' => $results,
+            'feedbacks' => $feedbackResults,
             'authenticatedContact' => $authenticatedContact,
             'options' => $options,
             'pagination' => $pagination

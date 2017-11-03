@@ -20,15 +20,24 @@
                 {% for i in 1..5 %}{{ i <= feedback.feedbackRating.rating.ratingValue ? '<i class="fa fa-star full"></i>' : '<i class="fa fa-star empty"></i>' }}{% endfor %}
             </div>
 
-            {% if feedback.sourceRelation[1].feedbackRelationType == "orderItem" %}
-                <div class="feedback-verified-purchase">
-                    <p><span class="fa-stack">
-                      <i class="fa fa-certificate fa-stack-2x"></i>
-                      <i class="fa fa-check fa-inverse fa-stack-1x"></i>
-                    </span> Verified purchase</p>
-                </div>
-            {% endif %}
+            <div class="feedback-attributes-list">
+                <p>
+                    {% if feedback.sourceRelation[1].feedbackRelationType == "orderItem" %}
+                        <span class="feedback-verified-tag">Verified purchase</span>
+                    {% endif %}
 
+                    {% if feedback.targetRelation.feedbackRelationType == "variation" and feedback.targetRelation.targetRelationName is not empty %}
+                        {% for variationAttribute in feedback.targetRelation.variationAttributes %}
+                        <span class="feedback-attributes">
+                            {{ options.itemAttributes[feedback.targetRelation.feedbackRelationTargetId][variationAttribute.attributeId][variationAttribute.valueId].attributeName }}:
+                            {{ options.itemAttributes[feedback.targetRelation.feedbackRelationTargetId][variationAttribute.attributeId][variationAttribute.valueId].attributeValue }}
+                        </span>
+                        {% endfor %}
+                    {% endif %}
+
+
+                </p>
+            </div>
         {% endif %}
 
         <p class="feedback-comment-text">{{ feedback.feedbackComment.comment.message|nl2br }}</p>
@@ -51,10 +60,6 @@
                 {% endif %}
                 </strong>
             </span>
-
-            {% if not isReply and feedback.targetRelation.targetRelationName is not empty %}
-            <span class="feedback-info-segment" data-toggle="tooltip" data-placement="top" data-original-title="{{ feedback.targetRelation.targetRelationName }}"><i class="fa fa-bookmark"></i></span>
-            {% endif %}
 
             {% if options.timestampVisibility %}
                 <span class="feedback-info-segment"><i class="fa fa-calendar text-muted"></i> {{ feedback.createdAt|date("d.m.Y") }}</span>
