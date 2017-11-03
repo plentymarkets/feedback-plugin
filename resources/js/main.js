@@ -199,19 +199,24 @@ $(document).on('click','.feedback-edit-cancel',function(e) {
 //     PAGINATION
 // ----------------------------------
 
-var feedbackTargetId = itemVariationId;
-var feedbackIgnorePageLoad = 1;
+if (typeof itemVariationId !== 'undefined') {
+    var feedbackTargetId = itemVariationId;
 
-// initial feedbacks list load
-feedbackLoadMore(feedbackTargetId, 1);
+    var feedbackIgnorePageLoad = 1;
 
-function feedbackClickLoadMore(feedbackPage){
-    if(feedbackPage > feedbackIgnorePageLoad){
-        $(".feedback-loadmore").slideUp().fadeOut();
-        feedbackLoadMore(feedbackTargetId, feedbackPage);
+    // initial feedbacks list load
+    feedbackLoadMore(feedbackTargetId, 1);
+
+    function feedbackClickLoadMore(feedbackPage){
+        if(feedbackPage > feedbackIgnorePageLoad){
+            $(".feedback-loadmore").slideUp().fadeOut();
+            feedbackLoadMore(feedbackTargetId, feedbackPage);
+        }
+        feedbackIgnorePageLoad = feedbackPage;
     }
-    feedbackIgnorePageLoad = feedbackPage;
 }
+
+
 
 
 
