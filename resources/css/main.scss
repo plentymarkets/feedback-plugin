@@ -311,20 +311,32 @@
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* Facet extension */
+.filter-wrapper #filterCollapse
+{
+    [for="option-feedback-5"]::after{
+        content: "\f005 \f005 \f005 \f005 \f005" !important;
+        font-family: FontAwesome;
+        letter-spacing: 3px;
+    }
+    [for="option-feedback-4"]::after{
+        content: "\f005 \f005 \f005 \f005" !important;
+        font-family: FontAwesome;
+        letter-spacing: 3px;
+    }
+    [for="option-feedback-3"]::after{
+        content: "\f005 \f005 \f005" !important;
+        font-family: FontAwesome;
+        letter-spacing: 3px;
+    }
+    [for="option-feedback-2"]::after{
+        content: "\f005 \f005" !important;
+        font-family: FontAwesome;
+        letter-spacing: 3px;
+    }
+    [for="option-feedback-1"]::after{
+        content: "\f005" !important;
+        font-family: FontAwesome;
+        letter-spacing: 3px;
+    }
+}
