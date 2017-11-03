@@ -12,6 +12,10 @@ $(document).on('submit','form.createFeedback',function(e){
 
     e.preventDefault();
 
+    if($('#feedback-variation-id').text() != $('#feedback-form-variation-id').val()){
+        $('#feedback-form-variation-id').val($('#feedback-variation-id').text());
+    }
+
     var formFields = {};
     $.each(
         $(this).serializeArray(),
