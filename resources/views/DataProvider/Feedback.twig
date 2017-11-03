@@ -74,7 +74,6 @@
 
         <div class="col-sm-6">
 
-
             {% if authenticatedContact.check %}
 
                 <form id="createFeedback" class="createFeedback" action="" method="">
@@ -103,7 +102,7 @@
                         <textarea class="form-control" id="message" name="message" rows="3" placeholder="{{ trans("Feedback::Feedback.reviewMessage") }}" {{ authenticatedContact.limitReached ? 'disabled' : '' }} {{ ( options.allowFeedbacksOnlyIfPurchased and authenticatedContact.hasPurchased ) or not options.allowFeedbacksOnlyIfPurchased ? '' : 'disabled' }}></textarea>
                     </div>
 
-                    <input type="hidden" name="targetId" value="{{ item[0].documents[0].data.variation.id }}">
+                    <input v-resource-bind:currentVariation="documents.0.data.variation.id" type="hidden" name="targetId" value="{{ item.documents[0].data.variation.id }}">
                     <input type="hidden" name="type" value="review">
 
                     {% if authenticatedContact.limitReached %}
