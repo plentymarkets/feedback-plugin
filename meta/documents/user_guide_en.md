@@ -88,4 +88,4 @@ The template plugin **Ceres** allows you to display customer reviews in the sing
 
 ## Managing customer reviews
 
-Manage your customer reviews in the **CMS » Feedback ratings** menu. For further information about this topic, refer to the <a href="https://knowledge.plentymarkets.com/en/omni-channel/online-store/managing-feedbacks" target="_blank"><b>Managing customer reviews</b></a> page of the manual.
+Manage your customer reviews in the **CMS » Feedback ratings** menu. For further information about customer reviews, refer to the <a href="https://knowledge.plentymarkets.com/en/omni-channel/online-store/managing-feedbacks" target="_blank"><b>Managing feedbacks</b></a> page of the manual.

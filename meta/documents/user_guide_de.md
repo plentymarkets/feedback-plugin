@@ -88,4 +88,4 @@ Das Template-Plugin **Ceres** bietet Ihnen in der Einzelansicht eines Artikels e
 
 ## Kundenrezensionen verwalten
 
-Kundenrezensionen verwalten Sie im Menü **CMS » Feedback-Bewertungen**. Weitere Informationen dazu finden Sie auf der Handbuchseite <a href="https://knowledge.plentymarkets.com/omni-channel/online-shop/feedbacks-verwalten" target="_blank"><b>Kundenrezensionen verwalten</b></a>.
+Kundenrezensionen verwalten Sie im Menü **CMS » Feedback-Bewertungen**. Weitere Informationen zu Kundenrezensionen finden Sie auf der Handbuchseite <a href="https://knowledge.plentymarkets.com/omni-channel/online-shop/feedbacks-verwalten" target="_blank"><b>Feedbacks verwalten</b></a>.
