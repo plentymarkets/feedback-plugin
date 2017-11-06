@@ -30,7 +30,7 @@ class FeedbackServiceProvider extends ServiceProvider
 
         //add feedback sorting
         $dispatcher->listen('IO.initAdditionalSorting', function (ItemService $itemService) {
-            $itemService->addAdditionalItemSorting('item.feedbackDecimal', 'Feedback::Feedback.customerReviews');
+            $itemService->addAdditionalItemSorting('item.feedbackDecimal_desc', 'Feedback::Feedback.customerReviews');
         });
     }
 

@@ -32,7 +32,8 @@ class FeedbackFacet implements FacetExtension
             $feedback = [
                 'id' => 'feedback',
                 'names' => [
-                    ['lang' => 'de', 'name' => 'Artikelbewertung']
+                    ['lang' => 'de', 'name' => 'Artikelbewertung'],
+                    ['lang' => 'en', 'name' => 'Item rating'],
                 ],
                 'values' => []
             ];
@@ -53,15 +54,6 @@ class FeedbackFacet implements FacetExtension
         }
 
         return $result;
-    }
-
-    private function buildStartsMarkup($stars)
-    {
-        $markup = '';
-        for($i = 1; $i<=5; $i++){
-            $markup .= '<div class="feedback-star" '.($i <= $stars ? 'style="color:orange"':'').'><i class="fa fa-star"></i></div>';
-        }
-        return $markup;
     }
 
     /**
