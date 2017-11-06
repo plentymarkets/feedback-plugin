@@ -8,6 +8,7 @@
 - Display the attributes for the variation on which the feedback was added
 - Filter by ratings in the category view
 - Sort by ratings in the category view
+- Show item rating at category view level
 
 ## v1.0.2 (2017-10-26)
 
