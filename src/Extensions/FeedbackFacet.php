@@ -6,6 +6,7 @@ use Plenty\Modules\Cloud\ElasticSearch\Lib\Search\Aggregation\AggregationInterfa
 use Plenty\Modules\Item\Search\Aggregations\FeedbackAggregation;
 use Plenty\Modules\Item\Search\Aggregations\FeedbackAggregationProcessor;
 use Plenty\Modules\Item\Search\Filter\FeedbackRangeFilter;
+use Plenty\Plugin\Log\Loggable;
 
 /**
  * Class FeedbackFacet
@@ -13,6 +14,8 @@ use Plenty\Modules\Item\Search\Filter\FeedbackRangeFilter;
  */
 class FeedbackFacet implements FacetExtension
 {
+    use Loggable;
+
     /**
      * @var null
      */
@@ -34,6 +37,9 @@ class FeedbackFacet implements FacetExtension
     public function mergeIntoFacetsList($result): array
     {
         if (array_key_exists('feedback', $result) && !empty($result['feedback'])) {
+
+            $this->getLogger('merge into facets')->debug('Feedback::Debug.filterResponse', $result['feedback']);
+
             $feedback = [
                 'id' => 'feedback',
                 'names' => [
