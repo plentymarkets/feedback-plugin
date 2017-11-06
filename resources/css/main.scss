@@ -13,47 +13,6 @@
         margin-top:40px;
     }
 
-    /* Feedback stars next to section title */
-    .feedback-stars-average {
-        width:120px;
-        height:30px;
-        margin-left:10px;
-        position:relative;
-        display:inline-block;
-        vertical-align: bottom;
-
-        /* each individual star */
-        .feedback-star {
-            height:30px;
-            width:24px;
-            line-height:32px;
-            font-size:24px;
-            float:left;
-            text-align:center;
-            color: orange;
-        }
-
-        /* each wrapper */
-        .feedback-stars-background, .feedback-stars-overlay, .feedback-stars-overlay-wrap {
-            position:absolute;
-            top:0px; left:0px;
-            width:120px;
-            height:30px;
-            overflow:hidden;
-        }
-
-        /* background individual stars */
-        .feedback-stars-background .feedback-star {
-            color: rgba(0,0,0,.1);
-        }
-
-        /* overlay wrapper that colors the stars */
-        .feedback-stars-overlay-wrap {
-            width:0%;
-        }
-
-    }
-
 
     /* form button didn't show the hand cursor when hovered */
     .btn {
@@ -338,5 +297,58 @@
         content: "\f005" !important;
         font-family: FontAwesome;
         letter-spacing: 3px;
+    }
+}
+
+
+/* Feedback average stars */
+.feedback-stars-average {
+    width:120px;
+    height:30px;
+    margin-left:10px;
+    position:relative;
+    display:inline-block;
+    vertical-align: bottom;
+
+    /* each individual star */
+    .feedback-star {
+        height:30px;
+        width:24px;
+        line-height:32px;
+        font-size:24px;
+        float:left;
+        text-align:center;
+        color: orange;
+    }
+
+    /* each wrapper */
+    .feedback-stars-background, .feedback-stars-overlay, .feedback-stars-overlay-wrap {
+        position:absolute;
+        top:0px; left:0px;
+        width:120px;
+        height:30px;
+        overflow:hidden;
+    }
+
+    /* background individual stars */
+    .feedback-stars-background .feedback-star {
+        color: rgba(0,0,0,.1);
+    }
+
+    /* overlay wrapper that colors the stars */
+    .feedback-stars-overlay-wrap {
+        width:0%;
+    }
+
+}
+
+.feedback-stars-average.feedback-category-view {
+    margin-left:0px;
+    width:85px;
+    .feedback-star {
+        height:20px;
+        width:17px;
+        line-height:22px;
+        font-size:17px;
     }
 }

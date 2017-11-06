@@ -9,6 +9,7 @@
 namespace Feedback\DataProviders;
 
 
+use Plenty\Modules\Feedback\Contracts\FeedbackAverageRepositoryContract;
 use Plenty\Plugin\Http\Request;
 use Plenty\Plugin\Templates\Twig;
 
@@ -19,8 +20,21 @@ class FeedbackCategoryRatings
      * @param Request $request
      * @param Twig $twig
      */
-    public function call(Request $request, Twig $twig, $item)
+    public function call(Request $request, FeedbackAverageRepositoryContract $feedbackAverageRepository, Twig $twig, $itemData)
     {
+        $itemId = $itemData[0]['item']['id'];
+
+        $average = $feedbackAverageRepository->getFeedbackAverage($itemId);
+
+        if(empty($average)){
+            $counts['averageValue'] = 0;
+        }else{
+            $counts['averageValue'] = $average->averageValue;
+        }
+
+        $data['counts'] = $counts;
+
+        return $twig->render('Feedback::DataProvider.CategoryRatings.CategoryAverageRating', $data);
 
     }
 }
