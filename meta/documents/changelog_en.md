@@ -1,5 +1,14 @@
 # Release Notes for Feedback
 
+## v1.0.3 (2017-11-08)
+
+### Added
+
+- Migrate existing feedbacks with ratings of up to 10 stars
+- Display the attributes for the variation on which the feedback was added
+- Filter by ratings in the category view
+- Sort by ratings in the category view
+
 ## v1.0.2 (2017-10-26)
 
 ### Added
