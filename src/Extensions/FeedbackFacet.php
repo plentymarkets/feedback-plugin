@@ -14,6 +14,11 @@ use Plenty\Modules\Item\Search\Filter\FeedbackRangeFilter;
 class FeedbackFacet implements FacetExtension
 {
     /**
+     * @var null
+     */
+    private $currentActiveRatingFilter = null;
+
+    /**
      * @return AggregationInterface
      */
     public function getAggregation(): AggregationInterface
@@ -39,7 +44,7 @@ class FeedbackFacet implements FacetExtension
             ];
 
             for ($i = 1; $i <= 5; $i++) {
-                if (isset($result['feedback'][$i])) {
+                if (isset($result['feedback'][$i]) && (is_null($this->currentActiveRatingFilter) || $this->currentActiveRatingFilter == $i)) {
                     $feedback['values'][] = [
                         'id' => 'feedback-' . $i,
                         'names' => [
@@ -65,9 +70,11 @@ class FeedbackFacet implements FacetExtension
         foreach ($filtersList as $filter) {
             if (strpos($filter, 'feedback-') === 0) {
 
+                $this->currentActiveRatingFilter = (INT)substr($filter, 9);
+
                 /** @var FeedbackRangeFilter $rangeFilter */
                 $rangeFilter = pluginApp(FeedbackRangeFilter::class);
-                $rangeFilter->hasFeedbackGreaterThan((INT)substr($filter, 9));
+                $rangeFilter->hasFeedbackGreaterThan($this->currentActiveRatingFilter);
 
                 return $rangeFilter;
             }
