@@ -83,8 +83,10 @@ The template plugin **Ceres** allows you to display customer reviews in the sing
 4. Go to the **Feedback CSS (Ceres)** area. 
 5. Activate the container **Template: Style**. 
 6. Go to the **Feedback ratings** area. 
-7. Activate the container **Single item: Container for customer feedback**. 
-8. **Save** the settings.<br />→ Customer reviews will be displayed in single item view.
+7. Activate the container **Single item: Container for customer feedback**.
+8. Go to the **Feedback category ratings** area.
+9. Activate the container **Category item list: Before prices container**. 
+10. **Save** the settings.<br />→ Customer reviews will be displayed in single item view.
 
 ## Managing customer reviews
 

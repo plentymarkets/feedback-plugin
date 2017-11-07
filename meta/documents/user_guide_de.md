@@ -84,7 +84,9 @@ Das Template-Plugin **Ceres** bietet Ihnen in der Einzelansicht eines Artikels e
 5. Aktivieren Sie den Container **Template: Style**.
 6. Wählen Sie den Bereich **Feedback ratings**.
 7. Aktivieren Sie den Container **Single item: Container for customer feedback**.
-8. **Speichern** Sie die Einstellungen.<br />→ Kundenrezensionen werden in der Einzelansicht eines Artikels angezeigt.
+8. Wählen Sie den Bereich **Feedback category ratings**.
+9. Aktivieren Sie den Container **Category item list: Before prices container**.
+10. **Speichern** Sie die Einstellungen.<br />→ Kundenrezensionen werden in der Einzelansicht eines Artikels angezeigt.
 
 ## Kundenrezensionen verwalten
 
