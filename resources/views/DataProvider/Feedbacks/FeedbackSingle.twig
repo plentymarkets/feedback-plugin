@@ -23,7 +23,7 @@
             <div class="feedback-attributes-list">
                 <p>
                     {% if feedback.sourceRelation[1].feedbackRelationType == "orderItem" %}
-                        <span class="feedback-verified-tag">Verified purchase</span>
+                        <span class="feedback-verified-tag">{{ trans("Feedback::Feedback.verifiedPurchase") }}</span>
                     {% endif %}
 
                     {% if feedback.targetRelation.feedbackRelationType == "variation" and feedback.targetRelation.targetRelationName is not empty %}
