@@ -8,7 +8,7 @@
 - Attributes are now displayed in the title row of a customer review for the variation the customer review was added for.
 - It is possible to filter by ratings in the category view.
 - It is possible to sort items by ratings in the category view.
-- The ratings of an item can now be displayed for items in the category view.
+- The ratings of an item can now be displayed for items in the category view. To do so, go to the **Plugins » Content** menu and in the **Feedback category ratings** area, activate the **Category item list: Before prices container** container.
 
 ## v1.0.2 (2017-10-26)
 
