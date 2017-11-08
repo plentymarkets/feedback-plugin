@@ -71,10 +71,14 @@ $('#createFeedback input.star').change(function() {
 //      DELETE FEEDBACK
 // ----------------------------------
 var feedbackToBeDeleted = 0;
-function openFeedbackConfirmDelete(id) {
+function openFeedbackConfirmDelete(id, translation) {
     feedbackToBeDeleted = id;
-    $('#feedbackConfirmDelete').modal('show');
+    var feedbackDeleteModal = $('#feedbackConfirmDelete');
+
+    feedbackDeleteModal.find('p.feedback-delete-confirmation').text(translation);
+    feedbackDeleteModal.modal('show');
 }
+
 
 function deleteFeedback(){
     if(feedbackToBeDeleted != 0){
