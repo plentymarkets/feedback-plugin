@@ -33,5 +33,12 @@
     "label": "Maximum number of feedbacks per author and item",
     "type": "text",
     "default": ""
+  },
+  {
+    "tab": "Feedback view",
+    "key": "secondView",
+    "label": "Show rating average and number of reviews as number.",
+    "type": "checkbox",
+    "default": "false"
   }
 ]

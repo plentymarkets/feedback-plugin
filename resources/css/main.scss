@@ -72,7 +72,15 @@
         font-family: FontAwesome;
     }
 
-
+    .feedback-big-average {
+        font-size: 40px;
+        font-weight: bold;
+        margin-bottom: 0;
+        margin-left: 10px;
+        letter-spacing: 2px;
+        -webkit-margin-after: 0;
+        -webkit-margin-before: 0;
+    }
 
     /* Ratings bars */
     #feedback-bars {
@@ -351,4 +359,9 @@
         line-height:22px;
         font-size:17px;
     }
+}
+
+.feedback-item-average-count{
+    display: inline-block;
+    height: 30px;
 }

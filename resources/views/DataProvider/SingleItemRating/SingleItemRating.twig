@@ -1,0 +1,18 @@
+<div class="feedback-stars-average feedback-category-view" id="feedback-single-average" onclick="scrollToFeedBacks()">
+    <div class="feedback-stars-background clearfix">
+        {% for i in 1..5 %}
+            <div class="feedback-star"><i class="fa fa-star"></i></div>
+        {% endfor %}
+    </div>
+    <div class="feedback-stars-overlay-wrap" style="width:{{ ( counts.averageValue * 100 ) / 5 }}%">
+        <div class="feedback-stars-overlay clearfix">
+            {% for i in 1..5 %}
+                <div class="feedback-star"><i class="fa fa-star"></i></div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="feedback-item-average-count">
+    ({{ counts.ratingsCountTotal }})
+</div>

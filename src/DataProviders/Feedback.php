@@ -141,7 +141,7 @@ class Feedback
             $highestCount = max($counts);
 
             $counts['ratingsCountTotal'] = $average->ratingsCountTotal;
-            $counts['averageValue'] = $average->averageValue;
+            $counts['averageValue'] = number_format($average->averageValue, 1, '.', '');
             $counts['highestCount'] = $highestCount;
 
         }
