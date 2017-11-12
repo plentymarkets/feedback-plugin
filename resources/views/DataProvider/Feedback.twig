@@ -138,6 +138,8 @@
                     <input type="hidden" id="feedback-form-variation-id" name="targetId" value="{{ item[0].documents[0].data.variation.id }}">
                     <input type="hidden" name="type" value="review">
 
+                    <input type="hidden" name="itemId" value="{{ item[0].documents[0].data.item.id }}">
+
                     {% if authenticatedContact.limitReached %}
 
                         <div class="feedback-tooltip-wrapper" data-toggle="tooltip" data-placement="top" data-original-title="{{ trans("Feedback::Feedback.maximumNumberOfFeedbacksReached") }}" >

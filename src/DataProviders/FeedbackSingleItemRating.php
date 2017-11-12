@@ -24,6 +24,7 @@ class FeedbackSingleItemRating
 
         if(empty($average)){
             $counts['averageValue'] = 0;
+            $counts['ratingsCountTotal'] = 0;
         }else{
             $counts['averageValue'] = $average->averageValue;
             $counts['ratingsCountTotal'] = $average->ratingsCountTotal;

@@ -84,11 +84,11 @@ class FeedbacksController extends Controller
 
             foreach($orders->getResult() as $order){
                 foreach($order->orderItems as $orderItem){
-                    $purchasedVariations[] = $orderItem->itemVariationId;
+                    $purchasedVariations[] = $orderItem->variation->itemId;
                 }
             }
 
-            if(in_array($request->input('targetId'), $purchasedVariations)){
+            if(in_array($request->input('itemId'), $purchasedVariations)){
 
                 $creatorPurchasedThisVariation = true;
                 $options['feedbackRelationSources'][] =

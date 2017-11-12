@@ -105,11 +105,11 @@ class Feedback
 
             foreach ($orders->getResult() as $order) {
                 foreach ($order->orderItems as $orderItem) {
-                    $purchasedVariations[] = $orderItem->itemVariationId;
+                    $purchasedVariations[] = $orderItem->variation->itemId;
                 }
             }
 
-            $authenticatedContact['hasPurchased'] = in_array($variationId, $purchasedVariations) ? true : false;
+            $authenticatedContact['hasPurchased'] = in_array($itemId, $purchasedVariations) ? true : false;
 
         }
 
