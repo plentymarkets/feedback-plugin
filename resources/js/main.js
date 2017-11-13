@@ -251,6 +251,12 @@ function feedbackLoadMore(targetId, page){
 
 function scrollToFeedBacks(){
 
+    $('.nav-link').removeClass('active');
+    $('.tab-pane').removeClass('active');
+
+    $('.feedBack-Tab').addClass('active');
+    $('#feedBack').addClass('active');
+
     $("html, body").animate({scrollTop : $("#feedbacks").offset().top - 200 }, 400);
 
     return false;
