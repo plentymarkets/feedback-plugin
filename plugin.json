@@ -27,7 +27,7 @@
     "feedback", "customer feedback", "rating"
   ],
   "require": {
-    "Ceres":">=2.0.0"
+    "Ceres":"~2.0"
   },
   "containers": [],
   "dataProviders": [
