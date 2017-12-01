@@ -1,5 +1,11 @@
 # Release Notes für Feedback
 
+## v1.1.0 (2017-12-01)
+
+### Change
+
+- Ceres 2 Kompatibilität
+
 ## v1.0.3 (2017-11-08)
 
 ### Hinzugefügt

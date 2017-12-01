@@ -181,7 +181,8 @@
         </div>
     </div>
 
-    <p v-resource-bind:currentVariation="documents.0.data.variation.id" class="feedback-hidden" id="feedback-variation-id">{{ item[0].documents[0].data.variation.id }}</p>
+    <p class="feedback-hidden" v-if="$store.state.item.variation.documents" id="feedback-variation-id">${ $store.state.item.variation.documents[0].data.variation.id }</p>
+
     <script>
         var itemVariationId = '{{ item[0].documents[0].data.item.id }}';
     </script>
