@@ -2,6 +2,7 @@
 namespace Feedback\Extensions;
 
 use IO\Services\ItemLoader\Contracts\FacetExtension;
+use IO\Services\SessionStorageService;
 use Plenty\Modules\Cloud\ElasticSearch\Lib\Search\Aggregation\AggregationInterface;
 use Plenty\Modules\Item\Search\Aggregations\FeedbackAggregation;
 use Plenty\Modules\Item\Search\Aggregations\FeedbackAggregationProcessor;
@@ -40,8 +41,24 @@ class FeedbackFacet implements FacetExtension
 
             $this->getLogger('merge into facets')->debug('Feedback::Debug.filterResponse', $result['feedback']);
 
+            $facetName = '';
+            
+            // TODO: get facet name from property file
+            $lang = pluginApp( SessionStorageService::class )->getLang();
+            if ( $lang === 'de' )
+            {
+                $facetName = 'Artikelbewertung';
+            }
+            else
+            {
+                $facetName = 'Item rating';
+            }
+            
             $feedback = [
                 'id' => 'feedback',
+                'name' => $facetName,
+                'position' => 10, //TODO: load from config
+                // TODO: still required?
                 'names' => [
                     ['lang' => 'de', 'name' => 'Artikelbewertung'],
                     ['lang' => 'en', 'name' => 'Item rating'],
@@ -54,9 +71,10 @@ class FeedbackFacet implements FacetExtension
                     $feedback['values'][] = [
                         'id' => 'feedback-' . $i,
                         'names' => [
-                            ['lange' => 'de', 'name' => '']
+                            ['lang' => 'de', 'name' => '']
                         ],
-                        'total' => $result['feedback'][$i]
+                        'count' => $result['feedback'][$i],
+                        'total' => $result['feedback'][$i] //TODO: remove after release of Ceres with new facet logic
                     ];
                 }
             }
