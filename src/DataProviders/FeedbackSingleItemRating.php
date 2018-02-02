@@ -18,7 +18,7 @@ class FeedbackSingleItemRating
      */
     public function call(Request $request, FeedbackAverageRepositoryContract $feedbackAverageRepository, Twig $twig, $itemData)
     {
-        $itemId = $itemData[0]['item']['id'];
+        $itemId = $itemData[0]['item']['id'] ? $itemData[0]['item']['id'] : 0;
 
         $average = $feedbackAverageRepository->getFeedbackAverage($itemId);
 
