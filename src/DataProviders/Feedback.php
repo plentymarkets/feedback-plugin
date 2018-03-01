@@ -169,11 +169,7 @@ class Feedback
                 }
             }
 
-            if(!is_null($limitFeedbacksPerUserPerItem) && $limitFeedbacksPerUserPerItem != 0){
-                $authenticatedContact['limitReached'] = $limitFeedbacksPerUserPerItem <= $feedbacks->getTotalCount() ? true : false;
-            }else{
-                $authenticatedContact['limitReached'] = false;
-            }
+            $authenticatedContact['limitReached'] = 1 <= $feedbacks->getTotalCount() ? true : false;
 
             $data['feedbacks'] = $feedbackResults;
 
