@@ -163,7 +163,7 @@ class Feedback
             $feedbacks = $feedbackService->listFeedbacks($feedbackRepository, $page, $itemsPerPage, $with, $filters);
             $feedbackResults = $feedbacks->getResult();
 
-            foreach($feedbackResults as &$feedback){
+            foreach($feedbackResults as $feedback){
                 if($feedback->targetRelation->feedbackRelationType == 'variation'){
                     $feedback->targetRelation->variationAttributes = json_decode($feedback->targetRelation->targetRelationName);
                 }
