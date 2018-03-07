@@ -63,7 +63,9 @@ class FeedbackFacet implements FacetExtension
                     ['lang' => 'de', 'name' => 'Artikelbewertung'],
                     ['lang' => 'en', 'name' => 'Item rating'],
                 ],
-                'values' => []
+                'values' => [],
+                'minHitCount' => 1,
+                'maxResultCount' => 5
             ];
 
             for ($i = 1; $i <= 5; $i++) {
@@ -78,7 +80,7 @@ class FeedbackFacet implements FacetExtension
                     ];
                 }
             }
-
+            $feedback['count'] = count($feedback['values']);
             $result['facets'][] = $feedback;
         }
 
