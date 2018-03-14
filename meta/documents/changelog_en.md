@@ -1,5 +1,11 @@
 # Release Notes for Feedback
 
+## v1.1.1 (2017-03-08)
+
+### Fix
+
+- Due to an error feedback ratings could not be filtered in the category view of Ceres version 2.2.2 or higher. This has been fixed.
+
 ## v1.1.0 (2017-12-01)
 
 ### Change

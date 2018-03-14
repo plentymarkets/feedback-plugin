@@ -1,5 +1,11 @@
 # Release Notes für Feedback
 
+## v1.1.1 (2017-03-08)
+
+### Fix
+
+- Ein Fehler führte dazu, dass Bewertungen in der Kategorieansicht von Ceres ab Version 2.2.2 nicht gefiltert werden konnten. Dies wurde behoben.
+
 ## v1.1.0 (2017-12-01)
 
 ### Change
