@@ -16,13 +16,15 @@ use Plenty\Plugin\Templates\Twig;
 class FeedbackCategoryRatings
 {
     /**
-     * @param $item
      * @param Request $request
+     * @param FeedbackAverageRepositoryContract $feedbackAverageRepository
      * @param Twig $twig
+     * @param $itemData
+     * @return string
      */
     public function call(Request $request, FeedbackAverageRepositoryContract $feedbackAverageRepository, Twig $twig, $itemData)
     {
-        $itemId = $itemData[0]['item']['id'];
+        $itemId = (int)$itemData[0]['item']['id'];
 
         $average = $feedbackAverageRepository->getFeedbackAverage($itemId);
 

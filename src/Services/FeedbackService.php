@@ -17,6 +17,10 @@ class FeedbackService
 
     /**
      * @param FeedbackRepositoryContract $feedbackRepository
+     * @param int $page
+     * @param int $itemsPerPage
+     * @param array $with
+     * @param array $filters
      * @return \Plenty\Repositories\Models\PaginatedResult
      */
     public function listFeedbacks(FeedbackRepositoryContract $feedbackRepository, int $page = 1, int $itemsPerPage = 50, array $with = [], array $filters = [])
