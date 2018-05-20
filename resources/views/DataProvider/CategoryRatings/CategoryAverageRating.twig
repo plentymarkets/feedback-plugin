@@ -1,5 +1,6 @@
 
 <div class="feedback-stars-average feedback-category-view" id="feedback-stars-average">
+    {% if counts.averageValue > 0 or options.showEmptyRatingsInCategoryView %}
     <div class="feedback-stars-background clearfix">
         {% for i in 1..5 %}
             <div class="feedback-star"><i class="fa fa-star"></i></div>
@@ -12,4 +13,5 @@
             {% endfor %}
         </div>
     </div>
+    {% endif %}
 </div>
