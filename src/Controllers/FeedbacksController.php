@@ -161,9 +161,13 @@ class FeedbacksController extends Controller
      * @param FeedbackRepositoryContract $feedbackRepository
      * @return mixed
      */
-    public function update(Request $request, FeedbackRepositoryContract $feedbackRepository)
+    public function update(Request $request, FeedbackRepositoryContract $feedbackRepository, FeedbackCoreHelper $coreHelper)
     {
-        return $feedbackRepository->updateFeedback($request->all(), $request->input('id'));
+        $data = $request->all();
+        $isVisibleAutomatically =  $coreHelper->configValue(FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY) == 'true' ? true : false;
+        $data['isVisible'] = $isVisibleAutomatically;
+
+        return $feedbackRepository->updateFeedback($data, $request->input('id'));
     }
 
 
