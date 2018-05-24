@@ -1,6 +1,21 @@
 # Release Notes for Feedback
 
-## v1.1.1 (2017-03-08)
+## v1.2.0 (2018-05-24)
+
+### Fix
+
+- If reviews have been edited by customer, they keep their visibility status. Now the configuration value is considered.
+
+### CHANGE
+
+- h1-Tag changed to div-tag 
+- The last name of the author is now shortened
+
+### FEATURE
+
+- If an item has no rating, the star rating will be hidden by default in the category. These can be reactivated in the configuration.
+
+## v1.1.1 (2018-03-08)
 
 ### Fix
 
