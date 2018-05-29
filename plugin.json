@@ -1,10 +1,10 @@
 {
   "version": "1.2.0",
-  "name": "Feedback",
+  "name": "Feedback (Marketplace Version)",
   "marketplaceName" : {"de": "Kunden-Feedback","en": "Customer feedback"},
   "description": "This is the official feedback plugin developed by plentymarkets.",
   "namespace": "Feedback",
-  "author": "plentymarkets GmbH",
+  "author": "plentymarkets GmbH / Ihab",
   "type": "general",
   "isClosedSource": true,
   "serviceProvider": "Feedback\\Providers\\FeedbackServiceProvider",
@@ -26,9 +26,6 @@
   "keywords": [
     "feedback", "customer feedback", "rating"
   ],
-  "require": {
-    "Ceres":"~2.0"
-  },
   "containers": [],
   "dataProviders": [
     { "key":"Feedback\\DataProviders\\Scripts", "name":"Feedback Javascript", "description": "Javascript code for feedbacks" },

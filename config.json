@@ -1,44 +1,66 @@
-[
-  {
-    "tab": "Feedback settings",
-    "key": "releaseFeedbacks",
-    "label": "Release feedbacks automatically",
-    "type": "checkbox",
-    "default": ""
-  },
-  {
-    "tab": "Feedback settings",
-    "key": "timestampVisibility",
-    "label": "Show date for the feedback",
-    "type": "checkbox",
-    "default": ""
-  },
-  {
-    "tab": "Feedback settings",
-    "key": "allowNoRatingFeedback",
-    "label": "Allow feedbacks with no rating",
-    "type": "checkbox",
-    "default": ""
-  },
-  {
-    "tab": "Feedback settings",
-    "key": "allowFeedbacksOnlyIfPurchased",
-    "label": "Allow adding feedbacks only if the item was purchased",
-    "type": "checkbox",
-    "default": ""
-  },
-  {
-    "tab": "Feedback settings",
-    "key": "numberOfFeedbacks",
-    "label": "Maximum number of feedbacks per author and item",
-    "type": "text",
-    "default": ""
-  },
-  {
-    "tab": "Feedback view",
-    "key": "secondView",
-    "label": "Show rating average and number of reviews as number.",
-    "type": "checkbox",
-    "default": "false"
+{
+  "formatVersion": 1,
+  "menu": {
+    "Config.FeedbackSettingsTab": {
+      "label": "Config.FeedbackSettingsTab",
+      "formFields": {
+        "releaseFeedbacks": {
+          "type": "checkBox",
+          "required": false,
+          "label": "Config.releaseFeedbacksLabel",
+          "options": {
+            "defaultValue": ""
+          }
+        },
+        "timestampVisibility": {
+          "type": "checkBox",
+          "required": false,
+          "label": "Config.timestampVisibilityLabel",
+          "options": {
+            "defaultValue": ""
+          }
+        },
+        "allowNoRatingFeedback": {
+          "type": "checkBox",
+          "required": false,
+          "label": "Config.allowNoRatingFeedbackLabel",
+          "options": {
+            "defaultValue": ""
+          }
+        },
+        "allowFeedbacksOnlyIfPurchased": {
+          "type": "checkBox",
+          "required": false,
+          "label": "Config.allowFeedbacksOnlyIfPurchasedLabel",
+          "options": {
+            "defaultValue": ""
+          }
+        },
+        "showEmptyRatingsInCategoryView": {
+          "type": "checkBox",
+          "required": false,
+          "label": "Config.showEmptyRatingsInCategoryViewLabel",
+          "options": {
+            "defaultValue": "false"
+          }
+        },
+        "secondView":{
+          "type": "checkbox",
+          "required": false,
+          "label": "Config.secondView",
+          "options": {
+            "defaultValue": "false"
+          }
+        },
+        "numberOfFeedbacks": {
+          "type": "inputText",
+          "required": false,
+          "label": "Config.numberOfFeedbacksLabel",
+          "options": {
+            "defaultValue": ""
+          }
+        }
+      }
+    }
   }
-]
+}
