@@ -104,84 +104,85 @@
 
         </div>
 
+        {% if authenticatedContact.limitReached %}
+            <div class="col-sm-{{ columns }}">
 
-        <div class="col-sm-{{ columns }}">
+                {% if authenticatedContact.check %}
 
-            {% if authenticatedContact.check %}
+                    <form id="createFeedback" class="createFeedback" action="" method="">
+                        <div class="stars">
+                            {% for i in 5..1 %}
 
-                <form id="createFeedback" class="createFeedback" action="" method="">
-                    <div class="stars">
-                        {% for i in 5..1 %}
+                                <input class="star star-{{ i }}" id="star-{{ i }}" type="radio" value="{{ i }}" name="ratingValue"/>
+                                <label class="star star-{{ i }}" for="star-{{ i }}"></label>
 
-                            <input class="star star-{{ i }}" id="star-{{ i }}" type="radio" value="{{ i }}" name="ratingValue"/>
-                            <label class="star star-{{ i }}" for="star-{{ i }}"></label>
-
-                        {% endfor %}
-                    </div>
-
-
-                    {% if not options.allowNoRatingFeedback %}
-
-                    <p class="feedback-error feedback-error-hidden alert alert-danger" id="feedback-error-no-rating">Rating required</p>
-                    <input type="hidden" name="allowNoRatingFeedback" value="true">
-
-                    {% endif %}
-
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="title" name="title" placeholder="{{ trans("Feedback::Feedback.title") }}" required {{ authenticatedContact.limitReached ? 'disabled' : '' }} {{ ( options.allowFeedbacksOnlyIfPurchased and authenticatedContact.hasPurchased ) or not options.allowFeedbacksOnlyIfPurchased ? '' : 'disabled' }}>
-                    </div>
-
-                    <div class="form-group">
-                        <textarea class="form-control" id="message" name="message" rows="3" placeholder="{{ trans("Feedback::Feedback.reviewMessage") }}" {{ authenticatedContact.limitReached ? 'disabled' : '' }} {{ ( options.allowFeedbacksOnlyIfPurchased and authenticatedContact.hasPurchased ) or not options.allowFeedbacksOnlyIfPurchased ? '' : 'disabled' }}></textarea>
-                    </div>
-
-                    <input type="hidden" id="feedback-form-variation-id" name="targetId" value="{{ item[0].documents[0].data.variation.id }}">
-                    <input type="hidden" name="type" value="review">
-
-                    <input type="hidden" name="itemId" value="{{ item[0].documents[0].data.item.id }}">
-
-                    {% if authenticatedContact.limitReached %}
-
-                        <div class="feedback-tooltip-wrapper" data-toggle="tooltip" data-placement="top" data-original-title="{{ trans("Feedback::Feedback.maximumNumberOfFeedbacksReached") }}" >
-                            <button type="submit" class="btn btn-primary" {{ authenticatedContact.limitReached ? 'disabled' : '' }}>{{ trans("Feedback::Feedback.submitReview") }}</button>
+                            {% endfor %}
                         </div>
 
-                    {% elseif options.allowFeedbacksOnlyIfPurchased and not authenticatedContact.hasPurchased %}
 
-                        <div class="feedback-tooltip-wrapper" data-toggle="tooltip" data-placement="top" data-original-title="{{ trans("Feedback::Feedback.errorDoesntOwnProduct") }}" >
-                            <button type="submit" class="btn btn-primary" disabled>{{ trans("Feedback::Feedback.submitReview") }}</button>
+                        {% if not options.allowNoRatingFeedback %}
+
+                        <p class="feedback-error feedback-error-hidden alert alert-danger" id="feedback-error-no-rating">Rating required</p>
+                        <input type="hidden" name="allowNoRatingFeedback" value="true">
+
+                        {% endif %}
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="title" name="title" placeholder="{{ trans("Feedback::Feedback.title") }}" required {{ authenticatedContact.limitReached ? 'disabled' : '' }} {{ ( options.allowFeedbacksOnlyIfPurchased and authenticatedContact.hasPurchased ) or not options.allowFeedbacksOnlyIfPurchased ? '' : 'disabled' }}>
                         </div>
 
-                    {% else %}
+                        <div class="form-group">
+                            <textarea class="form-control" id="message" name="message" rows="3" placeholder="{{ trans("Feedback::Feedback.reviewMessage") }}" {{ authenticatedContact.limitReached ? 'disabled' : '' }} {{ ( options.allowFeedbacksOnlyIfPurchased and authenticatedContact.hasPurchased ) or not options.allowFeedbacksOnlyIfPurchased ? '' : 'disabled' }}></textarea>
+                        </div>
 
-                        <button type="submit" class="btn btn-primary">{{ trans("Feedback::Feedback.submitReview") }}</button>
+                        <input type="hidden" id="feedback-form-variation-id" name="targetId" value="{{ item[0].documents[0].data.variation.id }}">
+                        <input type="hidden" name="type" value="review">
 
-                    {% endif %}
+                        <input type="hidden" name="itemId" value="{{ item[0].documents[0].data.item.id }}">
 
-                </form>
+                        {% if authenticatedContact.limitReached %}
 
-            {% elseif secondView %}
+                            <div class="feedback-tooltip-wrapper" data-toggle="tooltip" data-placement="top" data-original-title="{{ trans("Feedback::Feedback.maximumNumberOfFeedbacksReached") }}" >
+                                <button type="submit" class="btn btn-primary" {{ authenticatedContact.limitReached ? 'disabled' : '' }}>{{ trans("Feedback::Feedback.submitReview") }}</button>
+                            </div>
 
-                <div class="feedback-write-review" style="text-align: center;">
-                    <a class="btn btn-primary feedback-write-review-btn" data-toggle="modal" href="#login">
-                        <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
-                        <span>{{ trans("Feedback::Feedback.reviewWrite") }}</span>
+                        {% elseif options.allowFeedbacksOnlyIfPurchased and not authenticatedContact.hasPurchased %}
+
+                            <div class="feedback-tooltip-wrapper" data-toggle="tooltip" data-placement="top" data-original-title="{{ trans("Feedback::Feedback.errorDoesntOwnProduct") }}" >
+                                <button type="submit" class="btn btn-primary" disabled>{{ trans("Feedback::Feedback.submitReview") }}</button>
+                            </div>
+
+                        {% else %}
+
+                            <button type="submit" class="btn btn-primary">{{ trans("Feedback::Feedback.submitReview") }}</button>
+
+                        {% endif %}
+
+                    </form>
+
+                {% elseif secondView %}
+
+                    <div class="feedback-write-review" style="text-align: center;">
+                        <a class="btn btn-primary feedback-write-review-btn" data-toggle="modal" href="#login">
+                            <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
+                            <span>{{ trans("Feedback::Feedback.reviewWrite") }}</span>
+                        </a>
+                    </div>
+
+                {% else %}
+
+                    <div class="alert alert-info">
+                        {{ trans("Feedback::Feedback.logInCustomerReviews") }}
+                    </div>
+
+                    <a class="btn btn-primary" data-toggle="modal" href="#login">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <span>{{ trans("Feedback::Feedback.login") }}</span>
                     </a>
-                </div>
 
-            {% else %}
-
-                <div class="alert alert-info">
-                    {{ trans("Feedback::Feedback.logInCustomerReviews") }}
-                </div>
-
-                <a class="btn btn-primary" data-toggle="modal" href="#login">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                    <span>{{ trans("Feedback::Feedback.login") }}</span>
-                </a>
-
-            {% endif %}
-        </div>
+                {% endif %}
+            </div>
+        {% endif %}
     </div>
 
     <hr>

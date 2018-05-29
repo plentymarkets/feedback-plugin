@@ -1,6 +1,6 @@
 {
   "version": "1.2.0",
-  "name": "Feedback (Marketplace Version)",
+  "name": "Feedback",
   "marketplaceName" : {"de": "Kunden-Feedback","en": "Customer feedback"},
   "description": "This is the official feedback plugin developed by plentymarkets.",
   "namespace": "Feedback",
