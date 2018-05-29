@@ -54,9 +54,14 @@
                     </span>
 
                 {% else %}
-
-                    {{ feedback.sourceRelation[0].sourceRelationLabel }}
-
+                    {% set names = feedback.sourceRelation[0].sourceRelationLabel | split(" ") %}
+                    {% for name in names %}
+                        {% if loop.first %}
+                            {{ name  }}
+                        {% else %}
+                            {{ name | slice(0, 1) }}.
+                        {% endif %}
+                    {% endfor %}
                 {% endif %}
                 </strong>
             </span>

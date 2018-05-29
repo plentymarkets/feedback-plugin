@@ -7,7 +7,7 @@
 
     {% if not secondView %}
 
-        <h1 class="title"> {{ trans("Feedback::Feedback.customerReviews") }}<small class="feedback-average-count"> ({{ counts.ratingsCountTotal }})</small></h1>
+        <div class="title"> {{ trans("Feedback::Feedback.customerReviews") }}<small class="feedback-average-count"> ({{ counts.ratingsCountTotal }})</small></div>
 
         <div class="feedback-stars-average" id="feedback-stars-average">
             <div class="feedback-stars-background clearfix">
@@ -226,6 +226,9 @@
     </div>
 
     <p v-resource-bind:currentVariation="documents.0.data.variation.id" class="feedback-hidden" id="feedback-variation-id">{{ item[0].documents[0].data.variation.id }}</p>
+
+    <!--<p class="feedback-hidden" v-if="$store.state.item.variation.documents" id="feedback-variation-id">${ $store.state.item.variation.documents[0].data.variation.id }</p>-->
+
     <script>
         var itemVariationId = '{{ item[0].documents[0].data.item.id }}';
     </script>

@@ -1,5 +1,33 @@
 # Release Notes für Feedback
 
+## v1.2.0 (2018-05-24)
+
+### Fix
+
+- Wenn Bewertungen vom Kunden bearbeitet wurden, haben diese ihren Sichtbarkeits Status. Jetzt wird der Konfigurationswert berücksichtigt.
+
+### CHANGE
+
+- h1-Tag wurde in ein div-tag umgewandelt
+- Der Nachname vom Autor wird jetzt gekürzt dargestellt
+
+### FEATURE
+
+- Wenn ein Artikel keine Bewertung hat, werden die Sternebewertung standardmässig in der Kategorie ausgeblendet. Diese können über die Konfiguration wieder aktiviert werden.
+
+
+## v1.1.1 (2018-03-08)
+
+### Fix
+
+- Ein Fehler führte dazu, dass Bewertungen in der Kategorieansicht von Ceres ab Version 2.2.2 nicht gefiltert werden konnten. Dies wurde behoben.
+
+## v1.1.0 (2017-12-01)
+
+### Change
+
+- Ceres 2 Kompatibilität
+
 ## v1.0.3 (2017-11-08)
 
 ### Hinzugefügt

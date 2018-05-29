@@ -1,5 +1,32 @@
 # Release Notes for Feedback
 
+## v1.2.0 (2018-05-24)
+
+### Fix
+
+- If reviews have been edited by customer, they keep their visibility status. Now the configuration value is considered.
+
+### CHANGE
+
+- h1-Tag changed to div-tag 
+- The last name of the author is now shortened
+
+### FEATURE
+
+- If an item has no rating, the star rating will be hidden by default in the category. These can be reactivated in the configuration.
+
+## v1.1.1 (2018-03-08)
+
+### Fix
+
+- Due to an error feedback ratings could not be filtered in the category view of Ceres version 2.2.2 or higher. This has been fixed.
+
+## v1.1.0 (2017-12-01)
+
+### Change
+
+- Ceres 2 compatibility
+
 ## v1.0.3 (2017-11-08)
 
 ### Added
