@@ -49,7 +49,7 @@
           "required": false,
           "label": "Config.secondView",
           "options": {
-            "defaultValue": "false"
+            "defaultValue": "true"
           }
         },
         "numberOfFeedbacks": {
