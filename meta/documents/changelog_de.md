@@ -1,5 +1,11 @@
 # Release Notes für Feedback
 
+## v1.2.1 (2018-07-05)
+
+### Fix
+
+- Migrierte Gastbewertungen werden jetzt angezeigt.
+
 ## v1.2.0 (2018-05-24)
 
 ### Fix

@@ -42,8 +42,8 @@ class FeedbacksController extends Controller
             'feedbackRelationTargetId' => $request->input('targetId'),
             'feedbackRelationSources' => [
                 [
-                'feedbackRelationSourceType' => 'contact',
-                'feedbackRelationSourceId' => $creatorContactId
+                    'feedbackRelationSourceType' => 'contact',
+                    'feedbackRelationSourceId' => $creatorContactId
                 ]
             ],
             'commentRelationTargetType' => 'feedbackComment',
@@ -229,9 +229,13 @@ class FeedbacksController extends Controller
         $filters = [
             'isVisible' => 1,
             'itemId' => $itemId,
-            'hideSourceId' => $authenticatedContact['id']
         ];
 
+        if($authenticatedContact['id'] > 0)
+        {
+            $filters['hideSourceId'] = $authenticatedContact['id'];
+
+        }
         $feedbacks = $feedbackService->listFeedbacks($feedbackRepository, $page, $itemsPerPage, $with, $filters);
         $feedbackResults = $feedbacks->getResult();
 
