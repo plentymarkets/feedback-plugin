@@ -61,10 +61,9 @@
                         {% for name in names %}
                             {% if loop.first %}
                                 {{ name  }}
-                                HAHA
                             {% else %}
                                 {{ name | slice(0, 1) }}.
-                                BUBU
+                                
                             {% endif %}
                         {% endfor %}
                     {% endif %}
