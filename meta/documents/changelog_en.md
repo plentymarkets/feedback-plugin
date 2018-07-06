@@ -1,5 +1,11 @@
 # Release Notes for Feedback
 
+## v1.2.1 (2018-07-05)
+
+### Fix
+
+- Migrated guest reviews are now displayed.
+
 ## v1.2.0 (2018-05-24)
 
 ### Fix

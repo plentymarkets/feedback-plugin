@@ -3,11 +3,11 @@
     {% include 'Feedback::DataProvider.Feedbacks.Components.FeedbackOptions.twig' %}
 
     {#<div class="feedback-creator">#}
-        {#<i class="feedback-user-icon fa fa-2x fa-user"></i>#}
+    {#<i class="feedback-user-icon fa fa-2x fa-user"></i>#}
 
-        {#{% if not isReply %}#}
-            {#<p class="feedback-user-name">{{ feedback.sourceRelation[0].sourceRelationLabel }}</p>#}
-        {#{% endif %}#}
+    {#{% if not isReply %}#}
+    {#<p class="feedback-user-name">{{ feedback.sourceRelation[0].sourceRelationLabel }}</p>#}
+    {#{% endif %}#}
     {#</div>#}
 
     <div class="feedback-comment">
@@ -28,9 +28,9 @@
 
                     {% if feedback.targetRelation.feedbackRelationType == "variation" and feedback.targetRelation.targetRelationName is not empty %}
                         {% for variationAttribute in feedback.targetRelation.variationAttributes %}
-                        <span class="feedback-attributes">
+                            <span class="feedback-attributes">
                             {{ options.itemAttributes[feedback.targetRelation.feedbackRelationTargetId][variationAttribute.attributeId][variationAttribute.valueId].attributeName }}:
-                            {{ options.itemAttributes[feedback.targetRelation.feedbackRelationTargetId][variationAttribute.attributeId][variationAttribute.valueId].attributeValue }}
+                                {{ options.itemAttributes[feedback.targetRelation.feedbackRelationTargetId][variationAttribute.attributeId][variationAttribute.valueId].attributeValue }}
                         </span>
                         {% endfor %}
                     {% endif %}
@@ -50,18 +50,23 @@
 
                     <span class="feedback-admin" data-toggle="tooltip" data-placement="top" data-original-title="{{ trans("Feedback::Feedback.shopManagerLabel") }}">
                     <i class="fa fa-check-square"></i>
-                    {{ feedback.sourceRelation[0].sourceRelationLabel }}
+                        {{ feedback.sourceRelation[0].sourceRelationLabel }}
                     </span>
-
                 {% else %}
-                    {% set names = feedback.sourceRelation[0].sourceRelationLabel | split(" ") %}
-                    {% for name in names %}
-                        {% if loop.first %}
-                            {{ name  }}
-                        {% else %}
-                            {{ name | slice(0, 1) }}.
-                        {% endif %}
-                    {% endfor %}
+
+                    {% if feedback.sourceRelation[0].feedbackRelationSourceId  == 0 %}
+                        {{ trans("Feedback::Feedback.guestName") }}
+                    {% else %}
+                        {% set names = feedback.sourceRelation[0].sourceRelationLabel | split(" ") %}
+                        {% for name in names %}
+                            {% if loop.first %}
+                                {{ name  }}
+                            {% else %}
+                                {{ name | slice(0, 1) }}.
+                                
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                 {% endif %}
                 </strong>
             </span>
@@ -71,7 +76,7 @@
             {% endif %}
 
             {% if not isReply and authenticatedContact.check %}
-            <span class="feedback-info-segment btn btn-sm btn-secondary" onclick="toggleAddReply({{ feedback.id }})">{{ trans("Feedback::Feedback.addComment") }}</span>
+                <span class="feedback-info-segment btn btn-sm btn-secondary" onclick="toggleAddReply({{ feedback.id }})">{{ trans("Feedback::Feedback.addComment") }}</span>
             {% endif %}
 
             {% if feedback.replies is not empty %}
@@ -81,18 +86,18 @@
         </p>
 
         {% if not isReply and authenticatedContact.check %}
-        <div class="feedback-add-reply" id="feedback-add-reply-{{ feedback.id }}">
-            {% include 'Feedback::DataProvider.Feedbacks.Components.FeedbackAddReply.twig' %}
-        </div>
+            <div class="feedback-add-reply" id="feedback-add-reply-{{ feedback.id }}">
+                {% include 'Feedback::DataProvider.Feedbacks.Components.FeedbackAddReply.twig' %}
+            </div>
         {% endif %}
 
         {% if feedback.replies is not empty %}
 
-         <div class="feedback-replies" id="feedback-replies-{{ feedback.id }}">
-            {% for feedback in feedback.replies %}
-                {% include 'Feedback::DataProvider.Feedbacks.FeedbackSingle.twig' with {isReply: true} %}
-            {% endfor %}
-         </div>
+            <div class="feedback-replies" id="feedback-replies-{{ feedback.id }}">
+                {% for feedback in feedback.replies %}
+                    {% include 'Feedback::DataProvider.Feedbacks.FeedbackSingle.twig' with {isReply: true} %}
+                {% endfor %}
+            </div>
 
         {% endif %}
 

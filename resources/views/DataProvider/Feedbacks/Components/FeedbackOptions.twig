@@ -1,6 +1,5 @@
-{% if feedback.sourceRelation[0].feedbackRelationSourceId == authenticatedContact.id  %}
+{% if feedback.sourceRelation[0].feedbackRelationSourceId == authenticatedContact.id and authenticatedContact.id > 0  %}
     <div class="feedback-options">
-
         {% if feedback.isVisible == 0 %}
             <span class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" data-original-title="{{ trans("Feedback::Feedback.moderationMessage") }}">
                 <i class="fa fa-eye-slash"></i>
