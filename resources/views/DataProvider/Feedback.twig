@@ -28,12 +28,12 @@
 
     {% endif %}
 
-    <div class="row m-y-2">
+    <div class="row py-2">
 
         <div class="col-sm-{{ columns }}" {% if secondView %}style="text-align: center; display: inline-block;"{% endif %}>
 
             {% if secondView %}
-                <div class="feedback-second-view m-r-2" style="display: inline-block;">
+                <div class="feedback-second-view mr-4" style="display: inline-block;">
                     <p class="feedback-big-average">
                         {{ counts.averageValue }}
                     </p>
@@ -53,7 +53,14 @@
                         </div>
                     </div>
 
-                    <p><i class="fa fa-user-o fa-fw" aria-hidden="true"></i> {{ counts.ratingsCountTotal }} {{ trans("Feedback::Feedback.reviews") }}</p>
+                    <p><i class="fa fa-user-o fa-fw" aria-hidden="true"></i>
+                        {% if counts.ratingsCountTotal > 0 %}
+                            {{ counts.ratingsCountTotal }}
+                        {% else %}
+                            {{ trans("Feedback::Feedback.reviewsNo") }}
+                        {% endif %}
+                        {{ trans("Feedback::Feedback.reviews") }}
+                    </p>
                 </div>
             {% endif %}
 
