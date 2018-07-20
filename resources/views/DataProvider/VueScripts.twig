@@ -1,0 +1,87 @@
+<script type="text/javascript">
+(function($) {
+    Vue.component('feedback-form', {
+
+        template: '#vue-feedback-form',
+
+        props: ['itemId', 'variationId', 'ratingRequired'],
+
+        data: function()
+        {
+            return {
+                authenticatedUser: {
+                    id: 0,
+                    isLoggedIn: false,
+                    hasPurchased: false,
+                    limitReached: false
+                },
+                feedback: {
+                    rating: 0,
+                    title: "",
+                    message: "",
+                    type: 'review',
+                    targetId: this.variationId
+                },
+                isLoading: false,
+                titleMissing: false,
+                ratingMissing: false
+            };
+        },
+
+        mounted: function()
+        {
+            var _self = this;
+            $.ajax({
+                type:           'GET',
+                url:            '/rest/feedbacks/user/' + _self.itemId + '/' + _self.variationId,
+                success:        function(data)
+                {
+                    _self.authenticatedUser = data;
+                },
+                error:          function(jqXHR, textStatus, errorThrown)
+                {
+                    console.error(errorThrown);
+                }
+            })
+        },
+
+        methods: {
+            createFeedback: function()
+            {
+
+                if( this.isLoading )
+                {
+                    return;
+                }
+
+                if ( this.ratingRequired && this.feedback.rating <= 0 )
+                {
+                    this.ratingMissing = true;
+                    return;
+                }
+
+                if ( !this.feedback.title )
+                {
+                    this.titleMissing = true;
+                    return;
+                }
+
+                this.isLoading = true;
+
+                var _self = this;
+                $.ajax({
+                    type: 'POST',
+                    url: '/rest/feedbacks/feedback/create',
+                    data: this.feedback,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function()
+                    {
+                        _self.isLoading = false;
+                    }
+                });
+            }
+        }
+    });
+})(jQuery);
+</script>

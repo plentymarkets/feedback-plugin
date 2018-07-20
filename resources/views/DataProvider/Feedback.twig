@@ -1,4 +1,4 @@
-{# {{ item[0].documents[0].data.variation.id }}  #}
+{{ component("Feedback::Components.FeedbackForm") }}
 
 <section id="feedbacks">
 
@@ -73,70 +73,12 @@
 
 
         <div class="col-sm-6">
-
-            {% if authenticatedContact.check %}
-
-                <form id="createFeedback" class="createFeedback" action="" method="">
-                    <div class="stars">
-                        {% for i in 5..1 %}
-
-                            <input class="star star-{{ i }}" id="star-{{ i }}" type="radio" value="{{ i }}" name="ratingValue"/>
-                            <label class="star star-{{ i }}" for="star-{{ i }}"></label>
-
-                        {% endfor %}
-                    </div>
-
-
-                    {% if not options.allowNoRatingFeedback %}
-
-                    <p class="feedback-error feedback-error-hidden alert alert-danger" id="feedback-error-no-rating">Rating required</p>
-                    <input type="hidden" name="allowNoRatingFeedback" value="true">
-
-                    {% endif %}
-
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="title" name="title" placeholder="{{ trans("Feedback::Feedback.title") }}" required {{ authenticatedContact.limitReached ? 'disabled' : '' }} {{ ( options.allowFeedbacksOnlyIfPurchased and authenticatedContact.hasPurchased ) or not options.allowFeedbacksOnlyIfPurchased ? '' : 'disabled' }}>
-                    </div>
-
-                    <div class="form-group">
-                        <textarea class="form-control" id="message" name="message" rows="3" placeholder="{{ trans("Feedback::Feedback.reviewMessage") }}" {{ authenticatedContact.limitReached ? 'disabled' : '' }} {{ ( options.allowFeedbacksOnlyIfPurchased and authenticatedContact.hasPurchased ) or not options.allowFeedbacksOnlyIfPurchased ? '' : 'disabled' }}></textarea>
-                    </div>
-
-                    <input type="hidden" id="feedback-form-variation-id" name="targetId" value="{{ item[0].documents[0].data.variation.id }}">
-                    <input type="hidden" name="type" value="review">
-
-                    {% if authenticatedContact.limitReached %}
-
-                        <div class="feedback-tooltip-wrapper" data-toggle="tooltip" data-placement="top" data-original-title="{{ trans("Feedback::Feedback.maximumNumberOfFeedbacksReached") }}" >
-                            <button type="submit" class="btn btn-primary" {{ authenticatedContact.limitReached ? 'disabled' : '' }}>{{ trans("Feedback::Feedback.submitReview") }}</button>
-                        </div>
-
-                    {% elseif options.allowFeedbacksOnlyIfPurchased and not authenticatedContact.hasPurchased %}
-
-                        <div class="feedback-tooltip-wrapper" data-toggle="tooltip" data-placement="top" data-original-title="{{ trans("Feedback::Feedback.errorDoesntOwnProduct") }}" >
-                            <button type="submit" class="btn btn-primary" disabled>{{ trans("Feedback::Feedback.submitReview") }}</button>
-                        </div>
-
-                    {% else %}
-
-                        <button type="submit" class="btn btn-primary">{{ trans("Feedback::Feedback.submitReview") }}</button>
-
-                    {% endif %}
-
-                </form>
-
-            {% else %}
-
-                <div class="alert alert-info">
-                    {{ trans("Feedback::Feedback.logInCustomerReviews") }}
-                </div>
-
-                <a class="btn btn-primary" data-toggle="modal" href="#login">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                    <span>{{ trans("Feedback::Feedback.login") }}</span>
-                </a>
-
-            {% endif %}
+            <feedback-form
+                    :item-id="{{ item[0].documents[0].data.item.id }}"
+                    :variation-id="{{ item[0].documents[0].data.variation.id }}"
+                    :rating-required="{% if options.allowNoRatingFeedback %}false{% else %}true{% endif %}">
+                {% include "Feedback::Partials.LogInHint" %}
+            </feedback-form>
         </div>
     </div>
 

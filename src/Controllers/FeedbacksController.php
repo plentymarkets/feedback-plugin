@@ -262,4 +262,68 @@ class FeedbacksController extends Controller
         return $twig->render('Feedback::DataProvider.Feedbacks.FeedbacksList', $data);
 
     }
+
+    public function getAuthenticatedUser(
+        int $itemId,
+        int $variationId,
+        Request $request,
+        FeedbackService $feedbackService,
+        FeedbackRepositoryContract $feedbackRepository,
+        AccountService $accountService,
+        FeedbackCoreHelper $coreHelper)
+    {
+        $contactId      = $accountService->getAccountContactId();
+        $isLoggedIn     = $accountService->getIsAccountLoggedIn();
+        $hasPurchased   = true;
+        $limitReached   = false;
+
+        if ( $isLoggedIn )
+        {
+            $allowFeedbacksOnlyIfPurchased = $coreHelper->configValue(FeedbackCoreHelper::KEY_ALLOW_FEEDBACKS_ONLY_IF_PURCHASED) == 'true';
+
+            if ( $allowFeedbacksOnlyIfPurchased )
+            {
+
+                // get variations bought
+                $orders = pluginApp(OrderRepositoryContract::class)->allOrdersByContact($contactId);
+
+                $purchasedVariations = [];
+
+                foreach ($orders->getResult() as $order) {
+                    foreach ($order->orderItems as $orderItem) {
+                        $purchasedVariations[] = $orderItem->itemVariationId;
+                    }
+                }
+
+                $hasPurchased = in_array($variationId, $purchasedVariations);
+
+            }
+
+            $limitFeedbacksPerUserPerItem = $coreHelper->configValue(FeedbackCoreHelper::KEY_MAXIMUM_NR_FEEDBACKS);
+            if( !is_null($limitFeedbacksPerUserPerItem) && $limitFeedbacksPerUserPerItem > 0 )
+            {
+                // Pagination settings for currently authenticated user's feedbacks
+                $page = $request->get('page', 1);
+                $itemsPerPage = $request->get('itemsPerPage', 50);
+
+                $with = [];
+                $filters = [
+                    'itemId' => $itemId,
+                    'sourceId' => $contactId
+                ];
+
+                // List of currently authenticated user's feedbacks
+                $feedbacks = $feedbackService->listFeedbacks($feedbackRepository, $page, $itemsPerPage, $with, $filters);
+
+                $limitReached = $limitFeedbacksPerUserPerItem <= $feedbacks->getTotalCount();
+            }
+        }
+
+        return [
+            'id'            => $contactId,
+            'isLoggedIn'    => $isLoggedIn,
+            'limitReached'  => $limitReached,
+            'hasPurchased'  => $hasPurchased
+        ];
+    }
 }
