@@ -16,7 +16,7 @@
                     limitReached: false
                 },
                 feedback: {
-                    rating: 0,
+                    ratingValue: 0,
                     title: "",
                     message: "",
                     type: 'review',
@@ -54,7 +54,7 @@
                     return;
                 }
 
-                if ( this.ratingRequired && this.feedback.rating <= 0 )
+                if ( this.ratingRequired && this.feedback.ratingValue <= 0 )
                 {
                     this.ratingMissing = true;
                     return;
@@ -73,8 +73,6 @@
                     type: 'POST',
                     url: '/rest/feedbacks/feedback/create',
                     data: this.feedback,
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
                     success: function()
                     {
                         _self.isLoading = false;
