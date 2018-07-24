@@ -32,7 +32,6 @@
   "containers": [],
   "dataProviders": [
     { "key":"Feedback\\DataProviders\\Scripts", "name":"Feedback Javascript", "description": "Javascript code for feedbacks" },
-    { "key":"Feedback\\DataProviders\\VueScripts", "name":"Feedback Javascript Components", "description": "Javascript code for feedbacks" },
     { "key":"Feedback\\DataProviders\\Styles", "name":"Feedback CSS (Ceres)", "description": "CSS extension for Ceres" },
     { "key":"Feedback\\DataProviders\\Feedback", "name":"Feedback ratings", "description": "Feedback ratings" },
     { "key":"Feedback\\DataProviders\\FeedbackCategoryRatings", "name":"Feedback category ratings", "description": "Feedback category ratings" }

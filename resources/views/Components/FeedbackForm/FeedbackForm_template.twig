@@ -1,6 +1,5 @@
 <script type="x/template" id="vue-feedback-form">
     <div>
-        {#<form id="createFeedback" class="createFeedback" action="" method="" v-if="authenticatedUser.isLoggedIn">#}
         <div class="createFeedback" v-if="authenticatedUser.isLoggedIn">
             <div class="stars">
                 {% for i in 5..1 %}
@@ -17,10 +16,9 @@
             </div>
 
 
-            {% if not options.allowNoRatingFeedback %}
-                <p v-if="ratingMissing"
-                   class="feedback-error alert alert-danger">
-                    Rating required
+            {% if config('Feedback.allowNoRatingFeedback') == 'true' %}
+                <p v-if="ratingMissing" class="feedback-error alert alert-danger">
+                    {{ trans("Feedback::Feedback.ratingRequired") }}
                 </p>
             {% endif %}
 
@@ -67,7 +65,14 @@
 
         </div>
         <div v-else>
-            {% include "Feedback::Partials.LogInHint" %}
+            <div class="alert alert-info">
+                {{ trans("Feedback::Feedback.logInCustomerReviews") }}
+            </div>
+
+            <a class="btn btn-primary" data-toggle="modal" href="#login">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <span>{{ trans("Feedback::Feedback.login") }}</span>
+            </a>
         </div>
     </div>
 </script>

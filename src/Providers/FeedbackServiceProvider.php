@@ -10,6 +10,7 @@ namespace Feedback\Providers;
 
 
 use Feedback\Extensions\FeedbackFacet;
+use IO\Helper\ResourceContainer;
 use IO\Services\ItemLoader\Services\FacetExtensionContainer;
 use IO\Services\ItemService;
 use Plenty\Plugin\ConfigRepository;
@@ -31,6 +32,10 @@ class FeedbackServiceProvider extends ServiceProvider
         //add feedback sorting
         $dispatcher->listen('IO.initAdditionalSorting', function (ItemService $itemService) {
             $itemService->addAdditionalItemSorting('item.feedbackDecimal_desc', 'Feedback::Feedback.customerReviews');
+        });
+
+        $dispatcher->listen('IO.Resources.Import', function(ResourceContainer $resourceContainer) {
+            $resourceContainer->addScriptTemplate('Feedback::Components.Components' );
         });
     }
 

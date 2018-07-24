@@ -1,0 +1,147 @@
+<script type="text/javascript">
+    (function($) {
+        Vue.component('feedback-container', {
+
+            template: '#vue-feedback-container',
+            delimiters: ["${", "}"],
+            props: ['itemId', 'variationId', 'counts'],
+
+            data: function()
+            {
+                return {
+                    authenticatedUser: {
+                        id: 0,
+                        isLoggedIn: false,
+                        hasPurchased: false,
+                        limitReached: false,
+                        feedbacks: []
+                    },
+                    feedbacks: [],
+                    currentPage: 1,
+                    lastPage: 0,
+                    isLastPage: true,
+                    isLoading: true,
+                    itemAttributes: [],
+                    feedbackToDelete: null
+                };
+            },
+
+            mounted: function()
+            {
+                var _self = this;
+                $.when(
+                    this.getUser(),
+                    this.loadFeedbacks()
+                ).done(function() {
+                    _self.isLoading = false;
+                });
+            },
+
+            methods: {
+                getUser: function()
+                {
+                    var _self = this;
+                    return $.ajax({
+                        type:           'GET',
+                        url:            '/rest/feedbacks/user/' + _self.itemId + '/' + _self.variationId,
+                        success:        function(data)
+                        {
+                            _self.authenticatedUser = data;
+                        },
+                        error:          function(jqXHR, textStatus, errorThrown)
+                        {
+                            console.error(errorThrown);
+                        }
+                    });
+                },
+                loadFeedbacks: function()
+                {
+                    var _self = this;
+                    var page = this.currentPage++;
+                    return $.ajax({
+                        type:           'GET',
+                        url:            '/rest/feedbacks/feedback/helper/feedbacklist/' + _self.itemId + '/' + page,
+                        success:        function(data)
+                        {
+                            _self.feedbacks = _self.feedbacks.concat( data.feedbacks );
+                            _self.itemAttributes = data.itemAttributes;
+                            _self.lastPage = data.pagination.lastPage;
+                            _self.isLastPage = data.pagination.isLastPage;
+                        },
+                        error:          function(jqXHR, textStatus, errorThrown)
+                        {
+                            console.error(errorThrown);
+                        }
+                    });
+                },
+                showDeleteConfirmation: function(feedbackToDelete)
+                {
+                    this.feedbackToDelete = feedbackToDelete;
+                    $(this.$refs.confirmDeleteModal).modal('show');
+                },
+                deleteFeedback: function()
+                {
+                    if ( this.feedbackToDelete !== null )
+                    {
+                        var feedbackId = this.feedbackToDelete.feedbackId;
+                        var parentFeedbackId = this.feedbackToDelete.parentFeedbackId;
+                        var _self = this;
+                        $.ajax({
+                            type: "DELETE",
+                            url: '/rest/feedbacks/feedback/delete/' + feedbackId,
+                            success: function(data)
+                            {
+                                function filterFeedbackList(feedbackList, feedbackId)
+                                {
+                                    return feedbackList.filter(function(feedback)
+                                    {
+                                        return feedback.id !== feedbackId;
+                                    });
+                                }
+
+                                function filterReplyList(feedbackList, feedbackId, replyId)
+                                {
+                                    return feedbackList.map(function(feedback)
+                                    {
+                                        if (feedbackId === feedback.id)
+                                        {
+                                            feedback.replies = feedback.replies.filter(function(reply)
+                                            {
+                                                return reply.id !== replyId;
+                                            });
+                                        }
+                                        return feedback;
+                                    });
+                                }
+                                if ( parentFeedbackId === null )
+                                {
+                                    _self.feedbacks = filterFeedbackList(_self.feedbacks, feedbackId);
+                                    _self.authenticatedUser.feedbacks = filterFeedbackList(_self.authenticatedUser.feedbacks, feedbackId);
+                                }
+                                else
+                                {
+                                    _self.feedbacks = filterReplyList(_self.feedbacks, parentFeedbackId, feedbackId);
+                                    _self.authenticatedUser.feedbacks = filterReplyList(_self.authenticatedUser.feedbacks, parentFeedbackId, feedbackId);
+                                }
+                            }
+                        });
+                    }
+                    $(this.$refs.confirmDeleteModal).modal('hide');
+                    this.feedbackToDelete = null;
+
+                },
+                onFeedbackAdded(feedback)
+                {
+                    if ( feedback.isVisible === "1" )
+                    {
+                        this.feedbacks.unshift(feedback);
+                    }
+                    else
+                    {
+                        this.authenticatedUser.feedbacks.unshift(feedback);
+                    }
+                }
+            }
+        });
+    })(jQuery);
+</script>

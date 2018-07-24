@@ -1,0 +1,309 @@
+@charset "UTF-8";
+.feedback-container {
+    margin-bottom: 40px;
+    /* Section title */
+    /* form button didn't show the hand cursor when hovered */
+    /* form stars wrapper */
+    /* hide the radio inputs */
+    /* each label ( star in :before ) */
+    /* color lower value stars when the radio is checked */
+    /* stars are added from 5 to 1 and positioned right to left so that "~" works */
+    /* if 5 stars is checked */
+    /* input.star-5:checked ~ label.star:before {*/
+    /* } */
+    /* when hovering the wrapper that holds the stars make them all empty and colorless */
+    /* hovered star ( full and colored ) */
+    /* stars of lower value on hover ( full and colored ) */
+    /* all visible stars ( full but colorless ) */
+    /* Ratings bars */
+    /* Comments */
+}
+.feedback-container .title {
+    font-size: 2rem;
+    margin: 20px 0 0 0;
+    display: inline-block;
+    vertical-align: bottom;
+}
+.feedback-container .minititle {
+    margin-top: 40px;
+}
+.feedback-container .btn {
+    cursor: pointer;
+}
+.feedback-container .loading-hint {
+    text-align: center;
+    font-style: italic;
+    color: rgba(0, 0, 0, 0.7);
+}
+.feedback-container div.stars {
+    width: 165px;
+    display: inline-block;
+}
+.feedback-container input.star {
+    display: none;
+}
+.feedback-container label.star {
+    float: right;
+    height: 40px;
+    width: 33px;
+    padding: 0px 2px;
+    font-size: 30px;
+    line-height: 40px;
+    margin-bottom: 0px;
+    color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+.feedback-container input.star:checked ~ label.star:before {
+    content: "";
+    color: orange;
+}
+.feedback-container div.stars:hover label.star:before {
+    color: rgba(0, 0, 0, 0.1);
+}
+.feedback-container label.star:hover:before {
+    color: orange !important;
+}
+.feedback-container label.star:hover ~ label.star:before {
+    color: orange;
+}
+.feedback-container label.star:before {
+    content: "";
+    font-family: FontAwesome;
+}
+.feedback-container .feedback-bars {
+    margin-bottom: 40px;
+}
+.feedback-container .feedback-bars .feedback-bar-wrap {
+    margin-bottom: 1px;
+}
+.feedback-container .feedback-bars .feedback-bar-wrap .feedback-bar {
+    width: 140px;
+    height: 17px;
+    display: inline-block;
+    vertical-align: middle;
+    background: rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border-radius: 2px;
+}
+.feedback-container .feedback-bars .feedback-bar-wrap .feedback-bar .feedback-bar-fill {
+    width: 0%;
+    height: 100%;
+    background: #008ebd;
+}
+.feedback-container .feedback-bars .feedback-bar-wrap p {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 17px;
+    margin-bottom: 0px;
+}
+.feedback-container .feedback-list .feedback {
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: rgba(0, 0, 0, 0.1) dotted 1px;
+}
+.feedback-container .feedback-list .feedback.loading {
+    pointer-events: none;
+    opacity: 0.5;
+}
+.feedback-container .feedback-list .feedback .feedback-options {
+    float: right;
+}
+.feedback-container .feedback-list .feedback .feedback-creator {
+    width: 50px;
+    float: left;
+}
+.feedback-container .feedback-list .feedback .feedback-creator .feedback-user-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.1);
+    line-height: 50px;
+    text-align: center;
+}
+.feedback-container .feedback-list .feedback .feedback-creator .feedback-user-name {
+    font-size: 12px;
+    text-align: center;
+    line-height: 1.2em;
+    margin-top: 6px;
+    margin-bottom: 0px;
+}
+.feedback-container .feedback-list .feedback .feedback-comment .feedback-comment-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.feedback-container .feedback-list .feedback .feedback-comment .feedback-rating {
+    color: rgba(0, 0, 0, 0.1);
+}
+.feedback-container .feedback-list .feedback .feedback-comment .feedback-rating .full {
+    color: orange;
+}
+.feedback-container .feedback-list .feedback .feedback-comment .feedback-attributes-list p {
+    font-size: 12px;
+    margin: 0px;
+}
+.feedback-container .feedback-list .feedback .feedback-comment .feedback-attributes-list p span {
+    display: inline-block;
+    border-right: rgba(0, 0, 0, 0.2) solid 1px;
+    margin: 10px 4px 10px 0;
+    padding-right: 7px;
+}
+.feedback-container .feedback-list .feedback .feedback-comment .feedback-attributes-list p span:last-of-type {
+    border-right: none;
+    margin-right: 0;
+    padding-right: 0;
+}
+.feedback-container .feedback-list .feedback .feedback-comment .feedback-attributes-list p span.feedback-verified-tag {
+    color: #090;
+    font-weight: bold;
+}
+.feedback-container .feedback-list .feedback .feedback-comment .feedback-attributes-list p span.fa-stack {
+    color: #090;
+    font-size: 75%;
+    vertical-align: bottom;
+}
+.feedback-container .feedback-list .feedback .feedback-comment .feedback-comment-text {
+    margin-bottom: 0px;
+}
+.feedback-container .feedback-list .feedback .feedback-comment .feedback-replies {
+    margin-top: 20px;
+    padding-left: 30px;
+}
+.feedback-container .feedback-list .feedback .feedback-comment .feedback-add-reply {
+    margin-top: 20px;
+    padding-left: 30px;
+}
+.feedback-container .feedback-list .feedback form.feedback-edit {
+    padding-left: 20px;
+}
+.feedback-container .feedback-loadmore {
+    width: 50%;
+    margin: 20px auto;
+}
+.feedback-container .feedback-tooltip-wrapper {
+    display: inline-block;
+}
+.feedback-container .feedback-tooltip-wrapper button {
+    pointer-events: none;
+}
+.feedback-container .feedback-info {
+    margin: 5px 0 0;
+}
+.feedback-container .feedback-info .feedback-info-segment {
+    margin-right: 10px;
+    font-size: 0.875rem;
+}
+.feedback-container .feedback-info .feedback-info-segment .feedback-admin i.fa {
+    color: #008ebd;
+}
+.feedback-container .feedback-info .btn-secondary {
+    border: none;
+    background: rgba(0, 0, 0, 0.05);
+}
+.feedback-container .feedback-info .btn-secondary:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+.feedback-container .feedback-info i.fa {
+    margin-right: 3px;
+}
+.feedback-container #feedback-error-no-rating {
+    display: inline-block;
+    vertical-align: bottom;
+    padding: 1px 10px;
+    margin-left: 10px;
+}
+.feedback-container #feedback-error-no-rating.feedback-error-hidden {
+    display: none;
+}
+.feedback-container .feedback-hidden {
+    display: none;
+}
+
+/* Facet extension */
+.filter-wrapper #filterCollapse [for=option-feedback-5]::after,
+.filter-wrapper #filterCollapse .filter-feedback-5::before,
+.selected-filters [for=option-feedback-5]::after,
+.selected-filters .filter-feedback-5::before {
+    content: "" !important;
+    font-family: FontAwesome;
+    letter-spacing: 3px;
+}
+.filter-wrapper #filterCollapse [for=option-feedback-4]::after,
+.filter-wrapper #filterCollapse .filter-feedback-4::before,
+.selected-filters [for=option-feedback-4]::after,
+.selected-filters .filter-feedback-4::before {
+    content: " " !important;
+    font-family: FontAwesome;
+    letter-spacing: 3px;
+}
+.filter-wrapper #filterCollapse [for=option-feedback-3]::after,
+.filter-wrapper #filterCollapse .filter-feedback-3::before,
+.selected-filters [for=option-feedback-3]::after,
+.selected-filters .filter-feedback-3::before {
+    content: " " !important;
+    font-family: FontAwesome;
+    letter-spacing: 3px;
+}
+.filter-wrapper #filterCollapse [for=option-feedback-2]::after,
+.filter-wrapper #filterCollapse .filter-feedback-2::before,
+.selected-filters [for=option-feedback-2]::after,
+.selected-filters .filter-feedback-2::before {
+    content: " " !important;
+    font-family: FontAwesome;
+    letter-spacing: 3px;
+}
+.filter-wrapper #filterCollapse [for=option-feedback-1]::after,
+.filter-wrapper #filterCollapse .filter-feedback-1::before,
+.selected-filters [for=option-feedback-1]::after,
+.selected-filters .filter-feedback-1::before {
+    content: " " !important;
+    font-family: FontAwesome;
+    letter-spacing: 3px;
+}
+
+/* Feedback average stars */
+.feedback-stars-average {
+    width: 120px;
+    height: 30px;
+    margin-left: 10px;
+    position: relative;
+    display: inline-block;
+    vertical-align: bottom;
+    /* each individual star */
+    /* each wrapper */
+    /* background individual stars */
+    /* overlay wrapper that colors the stars */
+}
+.feedback-stars-average .feedback-star {
+    height: 30px;
+    width: 24px;
+    line-height: 32px;
+    font-size: 24px;
+    float: left;
+    text-align: center;
+    color: orange;
+}
+.feedback-stars-average .feedback-stars-background, .feedback-stars-average .feedback-stars-overlay, .feedback-stars-average .feedback-stars-overlay-wrap {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 120px;
+    height: 30px;
+    overflow: hidden;
+}
+.feedback-stars-average .feedback-stars-background .feedback-star {
+    color: rgba(0, 0, 0, 0.1);
+}
+.feedback-stars-average .feedback-stars-overlay-wrap {
+    width: 0%;
+}
+
+.feedback-stars-average.feedback-category-view {
+    margin-left: 0px;
+    width: 85px;
+}
+.feedback-stars-average.feedback-category-view .feedback-star {
+    height: 20px;
+    width: 17px;
+    line-height: 22px;
+    font-size: 17px;
+}
