@@ -34,11 +34,11 @@
         float: right;
         height: 40px;
         width: 33px;
-        padding: 0px 2px;
+        padding: 0 2px;
         font-size: 30px;
         line-height: 40px;
-        margin-bottom: 0px;
-        color: rgba(0,0,0,.1);
+        margin-bottom: 0;
+        color: rgba(0,0,0,.15);
         cursor: pointer;
     }
 
@@ -54,7 +54,7 @@
     /* } */
 
     /* when hovering the wrapper that holds the stars make them all empty and colorless */
-    div.stars:hover label.star:before { color:rgba(0,0,0,.1); }
+    div.stars:hover label.star:before { color:rgba(0,0,0,.15); }
 
 
     /* hovered star ( full and colored ) */
@@ -108,7 +108,7 @@
                 display:inline-block;
                 vertical-align: middle;
                 line-height:17px;
-                margin-bottom:0px;
+                margin-bottom:0;
             }
             .feedback-bar-text-before {
 
@@ -152,7 +152,7 @@
                     text-align: center;
                     line-height: 1.2em;
                     margin-top: 6px;
-                    margin-bottom:0px;
+                    margin-bottom:0;
                 }
             }
 
@@ -163,13 +163,13 @@
                     margin-bottom:10px;
                 }
                 .feedback-rating {
-                    color:rgba(0,0,0,.1);
+                    color:rgba(0,0,0,.15);
                     .full { color:orange; }
                 }
                 .feedback-attributes-list {
                     p {
                         font-size:12px;
-                        margin:0px;
+                        margin:0;
                         span {
                             display:inline-block;
                             border-right:rgba(0,0,0,.2) solid 1px;
@@ -197,7 +197,7 @@
                     }
                 }
                 .feedback-comment-text {
-                    margin-bottom:0px;
+                    margin-bottom:0;
                 }
                 .feedback-replies {
                     margin-top:20px;
@@ -255,7 +255,7 @@
             background:rgba(0,0,0,.05);
 
             &:hover {
-                background:rgba(0,0,0,.1);
+                background:rgba(0,0,0,.15);
             }
         }
 
@@ -347,7 +347,7 @@
 
     /* background individual stars */
     .feedback-stars-background .feedback-star {
-        color: rgba(0,0,0,.1);
+        color: rgba(0,0,0,.15);
     }
 
     /* overlay wrapper that colors the stars */
@@ -358,7 +358,7 @@
 }
 
 .feedback-stars-average.feedback-category-view {
-    margin-left:0px;
+    margin-left:0;
     width:85px;
     .feedback-star {
         height:20px;
