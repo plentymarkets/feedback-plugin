@@ -73,6 +73,7 @@
                             success: function(data)
                             {
                                 _self.feedback.feedbackComment.comment.message = editableFeedback.message;
+                                _self.feedback.isVisible = data.isVisible;
 
                                 if ( !editableFeedback.isReply )
                                 {

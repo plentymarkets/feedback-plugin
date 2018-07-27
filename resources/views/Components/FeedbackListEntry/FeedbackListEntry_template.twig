@@ -5,7 +5,7 @@
                   data-toggle="tooltip"
                   data-placement="top"
                   data-original-title="{{ trans("Feedback::Feedback.moderationMessage") }}"
-                  v-if="feedback.isVisible === '0'">
+                  v-if="!feedback.isVisible">
                 <i class="fa fa-eye-slash"></i>
             </span>
 
@@ -34,6 +34,7 @@
                 :item-attributes="itemAttributes"
                 :authenticated-user="authenticatedUser"
                 :is-reply="isReply"
+                :show-controls="showControls"
                 @delete="$emit('delete', $event)">
         </feedback-comment>
 
