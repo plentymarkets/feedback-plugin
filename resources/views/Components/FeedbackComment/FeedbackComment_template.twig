@@ -13,7 +13,7 @@
         <div class="feedback-attributes-list">
             <p>
                 <span class="feedback-verified-tag"
-                      v-if="feedback.sourceRelation[1].feedbackRelationType === 'orderItem'">
+                      v-if="isPurchased">
                     {{ trans("Feedback::Feedback.verifiedPurchase") }}
                 </span>
 
@@ -96,6 +96,7 @@
                 :item-attributes="itemAttributes"
                 :authenticated-user="authenticatedUser"
                 :is-reply="true"
+                :show-controls="true"
                 @delete="$emit('delete', $event)">
         </feedback-list-entry>
     </div>

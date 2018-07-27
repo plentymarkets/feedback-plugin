@@ -77,6 +77,15 @@
                         .comment
                         .message.split('\n')
                         .join('<br />');
+                },
+                isPurchased: function()
+                {
+                    return this.feedback
+                        .sourceRelation
+                        .find(function(relation)
+                        {
+                            return relation.feedbackRelationType === 'orderItem';
+                        });
                 }
             },
 
