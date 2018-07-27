@@ -58,6 +58,9 @@
                         {
                             _self.$emit('feedback-added', data);
                             _self.isLoading = false;
+                            _self.feedback['message'] = '';
+                            _self.feedback['title'] = '';
+                            _self.feedback['ratingValue'] = 0
                         },
                         error: function (jqXHR, textStatus, errorThrown)
                         {

@@ -132,13 +132,15 @@
                 },
                 onFeedbackAdded(feedback)
                 {
-                    if ( feedback.isVisible === "1" )
+                    this.authenticatedUser.feedbacks.unshift(feedback);
+                    if ( feedback.isVisible )
                     {
-                        this.feedbacks.unshift(feedback);
-                    }
-                    else
-                    {
-                        this.authenticatedUser.feedbacks.unshift(feedback);
+                        var ratingValue = parseInt(feedback.feedbackRating.rating.ratingValue);
+                        if ( ratingValue > 0 && ratingValue <= 5 )
+                        {
+                            counts['ratingsCountOf' + ratingValue]++;
+                        }
+                        counts.ratingsCountTotal++;
                     }
                 }
             }
