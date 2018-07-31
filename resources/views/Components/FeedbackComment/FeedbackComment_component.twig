@@ -1,0 +1,130 @@
+<script type="text/javascript">
+    (function($) {
+        Vue.component('feedback-comment', {
+
+            template: '#vue-feedback-comment',
+            delimiters: ["${", "}"],
+            props: ['feedback', 'itemAttributes', 'authenticatedUser', 'isReply', 'showControls'],
+
+            data: function()
+            {
+                return {
+                    replyMessage: '',
+                    replyFormVisible: false,
+                    replyListVisible: false
+                };
+            },
+
+            computed: {
+                variationAttributes: function()
+                {
+                    if ( this.feedback.targetRelation.feedbackRelationType !== 'variation'
+                        || this.feedback.targetRelation.targetRelationName.length <= 0
+                        || !this.feedback.targetRelation.variationAttributes
+                        || !this.itemAttributes )
+                    {
+                        return [];
+                    }
+
+                    var _self = this;
+                    return this.feedback
+                        .targetRelation
+                        .variationAttributes
+                        .map(function(attributeIds) {
+                            var targetId = _self.feedback.targetRelation.feedbackRelationTargetId;
+                            if ( !_self.itemAttributes.hasOwnProperty(targetId)
+                                || !_self.itemAttributes[targetId].hasOwnProperty(attributeIds.attributeId)
+                                || !_self.itemAttributes[targetId][attributeIds.attributeId].hasOwnProperty(attributeIds.valueId) )
+                            {
+                                return null;
+                            }
+                            var attribute = _self.itemAttributes[targetId][attributeIds.attributeId][attributeIds.valueId];
+                            return {
+                                name: attribute.attributeName,
+                                value: attribute.attributeValue
+                            };
+                        })
+                        .filter(function(entry)
+                        {
+                            return entry !== null;
+                        })
+                },
+
+                displayName: function()
+                {
+                    return this.feedback
+                        .sourceRelation[0]
+                        .sourceRelationLabel
+                        .split(" ")
+                        .map(function(namePart, index)
+                        {
+                            if ( index === 0 )
+                            {
+                                return namePart + " "
+                            }
+                            return namePart.substr(0, 1) + ".";
+                        })
+                        .join("");
+                },
+                message: function()
+                {
+                    if ( !this.feedback.feedbackComment )
+                    {
+                        return "";
+                    }
+                    return this.feedback
+                        .feedbackComment
+                        .comment
+                        .message.split('\n')
+                        .join('<br />');
+                },
+                isPurchased: function()
+                {
+                    return this.feedback
+                        .sourceRelation
+                        .find(function(relation)
+                        {
+                            return relation.feedbackRelationType === 'orderItem';
+                        });
+                }
+            },
+
+            methods: {
+                createReply: function()
+                {
+                    if ( !this.replyMessage )
+                    {
+                        return;
+                    }
+                    var _self = this;
+                    $.ajax({
+                        type: 'POST',
+                        url: '/rest/feedbacks/feedback/create',
+                        data: {
+                            message: this.replyMessage,
+                            targetId: this.feedback.id,
+                            type: 'reply'
+                        },
+                        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                        dataType: 'json',
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        success: function(data)
+                        {
+                            if ( !_self.feedback.replies )
+                            {
+                                _self.feedback.replies = [];
+                            }
+                            _self.feedback.replies.unshift(data);
+                            _self.replyMessage = '';
+                            _self.replyFormVisible = false;
+                            _self.replyListVisible = true;
+
+                        }
+                    });
+                }
+            }
+        });
+    })(jQuery);
+</script>

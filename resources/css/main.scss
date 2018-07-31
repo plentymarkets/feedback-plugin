@@ -1,4 +1,4 @@
-#feedbacks {
+.feedback-container {
 
     margin-bottom:40px;
 
@@ -18,6 +18,12 @@
     /* form button didn't show the hand cursor when hovered */
     .btn {
         cursor: pointer;
+    }
+
+    .loading-hint {
+        text-align: center;
+        font-style: italic;
+        color: rgba(0,0,0,0.7);
     }
 
     /* form stars wrapper */
@@ -76,7 +82,7 @@
 
 
     /* Ratings bars */
-    #feedback-bars {
+    .feedback-bars {
         margin-bottom:40px;
 
         .feedback-bar-wrap {
@@ -123,6 +129,11 @@
             padding-bottom:15px;
             margin-bottom:15px;
             border-bottom:rgba(0,0,0,.1) dotted 1px;
+
+            &.loading {
+                pointer-events: none;
+                opacity: 0.5;
+            }
 
             .feedback-options {
                 float:right;
@@ -194,12 +205,10 @@
                 .feedback-replies {
                     margin-top:20px;
                     padding-left:30px;
-                    display:none;
                 }
                 .feedback-add-reply {
                     margin-top:20px;
                     padding-left:30px;
-                    display:none;
                 }
 
             }
@@ -213,7 +222,7 @@
 
     }
 
-    #feedback-loadmore {
+    .feedback-loadmore {
         width:50%;
         margin:20px auto;
     }

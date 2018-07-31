@@ -161,47 +161,58 @@ class FeedbacksController extends Controller
      * @param FeedbackRepositoryContract $feedbackRepository
      * @return mixed
      */
-    public function update(Request $request, FeedbackRepositoryContract $feedbackRepository, FeedbackCoreHelper $coreHelper)
+    public function update($feedbackId, Request $request, FeedbackRepositoryContract $feedbackRepository, FeedbackCoreHelper $coreHelper)
     {
         $data = $request->all();
-        $isVisibleAutomatically =  $coreHelper->configValue(FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY) == 'true' ? true : false;
+        $isVisibleAutomatically =  $coreHelper->configValue(FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY) == 'true';
         $data['isVisible'] = $isVisibleAutomatically;
 
-        return $feedbackRepository->updateFeedback($data, $request->input('id'));
+        return $feedbackRepository->updateFeedback($data, $feedbackId);
     }
 
 
     /**
      * @param $page
-     * @param Twig $twig
      * @param FeedbackService $feedbackService
      * @param AccountService $accountService
      * @param FeedbackRepositoryContract $feedbackRepository
-     * @return string
+     * @return mixed
      */
-    public function paginate($itemId, $page, Twig $twig, FeedbackService $feedbackService, FeedbackCoreHelper $coreHelper, AccountService $accountService, FeedbackRepositoryContract $feedbackRepository, SessionStorageService $sessionStorage)
+    public function paginate($itemId, $page, FeedbackService $feedbackService, FeedbackCoreHelper $coreHelper, AccountService $accountService, FeedbackRepositoryContract $feedbackRepository, SessionStorageService $sessionStorage)
     {
-        $systemLanguage = $sessionStorage->getLang();
-
-
-
+        $lang = $sessionStorage->getLang();
         $itemVariations = [];
-        $itemDatas = pluginApp(ItemRepositoryContract::class)->show($itemId,[],$systemLanguage,['variations']);
-        foreach($itemDatas['variations'] as $itemData){
+        $itemDataList = pluginApp(ItemRepositoryContract::class)->show(
+            $itemId,
+            [],
+            $lang,
+            ['variations']
+        );
+        foreach($itemDataList['variations'] as $itemData){
             $itemVariations[] = $itemData['id'];
         }
 
         $itemAttributes = [];
         foreach($itemVariations as $itemVariation){
-            $variationAttributes = pluginApp(VariationRepositoryContract::class)->show($itemVariation,['variationAttributeValues' => true],'*');
+            $variationAttributes = pluginApp(VariationRepositoryContract::class)->show(
+                $itemVariation,
+                ['variationAttributeValues' => true]
+                ,'*'
+            );
 
             $a[0] = $variationAttributes;
             $b[0] = $a;
             $actualVariationAttributes = $b[0][0]['variationAttributeValues'];
 
             foreach($actualVariationAttributes as $variationAttribute){
-                $attributeName = pluginApp(AttributeNameRepositoryContract::class)->findOne($variationAttribute->attribute_id, $systemLanguage);
-                $attributeValue = pluginApp(AttributeValueNameRepositoryContract::class)->findOne($variationAttribute->value_id, $systemLanguage);
+                $attributeName = pluginApp(AttributeNameRepositoryContract::class)->findOne(
+                    $variationAttribute->attribute_id,
+                    $lang
+                );
+                $attributeValue = pluginApp(AttributeValueNameRepositoryContract::class)->findOne(
+                    $variationAttribute->value_id,
+                    $lang
+                );
 
                 $itemAttributes[$itemVariation][$variationAttribute->attribute_id][$variationAttribute->value_id] = [
                     'attributeName' => $attributeName->name,
@@ -210,15 +221,7 @@ class FeedbacksController extends Controller
             }
         }
 
-
-
-        // Details about the user currently authenticated
-        $authenticatedContact = [
-            'id' => $accountService->getAccountContactId(),
-            'check' => $accountService->getIsAccountLoggedIn()
-        ];
-
-        $options['systemLanguage'] = $systemLanguage;
+        $options['systemLanguage'] = $lang;
         $options['itemAttributes'] = $itemAttributes;
 
         $options['timestampVisibility'] = $coreHelper->configValue(FeedbackCoreHelper::KEY_TIMESTAMP_VISIBILITY) == 'true' ? true : false;
@@ -231,35 +234,115 @@ class FeedbacksController extends Controller
             'itemId' => $itemId,
         ];
 
-        if($authenticatedContact['id'] > 0)
+
+        if($accountService->getAccountContactId() > 0)
         {
-            $filters['hideSourceId'] = $authenticatedContact['id'];
+            $filters['hideSourceId'] = $accountService->getAccountContactId();
 
         }
-        $feedbacks = $feedbackService->listFeedbacks($feedbackRepository, $page, $itemsPerPage, $with, $filters);
+
+        $feedbacks = $feedbackService->listFeedbacks(
+            $feedbackRepository,
+            $page,
+            $itemsPerPage,
+            $with,
+            $filters
+        );
         $feedbackResults = $feedbacks->getResult();
 
-        foreach($feedbackResults as &$feedback){
-            if($feedback->targetRelation->feedbackRelationType == 'variation'){
+        foreach($feedbackResults as &$feedback)
+        {
+            if($feedback->targetRelation->feedbackRelationType == 'variation')
+            {
                 $feedback->targetRelation->variationAttributes = json_decode($feedback->targetRelation->targetRelationName);
             }
         }
-
-        $pagination = [
-            'page' => $page,
-            'lastPage' => $feedbacks->getLastPage(),
-            'isLastPage' => $feedbacks->isLastPage()
-        ];
-
-        $data = [
-            'feedbacks' => $feedbackResults,
-            'authenticatedContact' => $authenticatedContact,
-            'options' => $options,
-            'pagination' => $pagination
+        return [
+            'feedbacks'             => $feedbackResults,
+            'options'               => $options,
+            'itemAttributes'        => $itemAttributes,
+            'pagination'            => [
+                'page' => $page,
+                'lastPage' => $feedbacks->getLastPage(),
+                'isLastPage' => $feedbacks->isLastPage()
+            ]
 
         ];
+    }
 
-        return $twig->render('Feedback::DataProvider.Feedbacks.FeedbacksList', $data);
+    public function getAuthenticatedUser(
+        int $itemId,
+        int $variationId,
+        Request $request,
+        FeedbackService $feedbackService,
+        FeedbackRepositoryContract $feedbackRepository,
+        AccountService $accountService,
+        FeedbackCoreHelper $coreHelper)
+    {
+        $contactId      = $accountService->getAccountContactId();
+        $isLoggedIn     = $accountService->getIsAccountLoggedIn();
+        $hasPurchased   = true;
+        $limitReached   = false;
+        $userFeedbacks  = [];
 
+        if ( $isLoggedIn )
+        {
+            $allowFeedbacksOnlyIfPurchased = $coreHelper->configValue(FeedbackCoreHelper::KEY_ALLOW_FEEDBACKS_ONLY_IF_PURCHASED) == 'true';
+
+            if ( $allowFeedbacksOnlyIfPurchased )
+            {
+
+                // get variations bought
+                $orders = pluginApp(OrderRepositoryContract::class)->allOrdersByContact($contactId);
+
+                $purchasedVariations = [];
+
+                foreach ($orders->getResult() as $order) {
+                    foreach ($order->orderItems as $orderItem) {
+                        $purchasedVariations[] = $orderItem->itemVariationId;
+                    }
+                }
+
+                $hasPurchased = in_array($variationId, $purchasedVariations);
+
+            }
+
+            // Pagination settings for currently authenticated user's feedbacks
+            $page = $request->get('page', 1);
+            $itemsPerPage = $request->get('itemsPerPage', 50);
+
+            $with = [];
+            $filters = [
+                'itemId' => $itemId,
+                'sourceId' => $contactId
+            ];
+
+            // List of currently authenticated user's feedbacks
+            $feedbacks = $feedbackService->listFeedbacks($feedbackRepository, $page, $itemsPerPage, $with, $filters);
+            $userFeedbacks = $feedbacks->getResult();
+            foreach($userFeedbacks as &$feedback)
+            {
+                if($feedback->targetRelation->feedbackRelationType == 'variation')
+                {
+                    $feedback->targetRelation->variationAttributes = json_decode($feedback->targetRelation->targetRelationName);
+                }
+            }
+
+            $limitFeedbacksPerUserPerItem = $coreHelper->configValue(FeedbackCoreHelper::KEY_MAXIMUM_NR_FEEDBACKS);
+            if( !is_null($limitFeedbacksPerUserPerItem) && $limitFeedbacksPerUserPerItem > 0 )
+            {
+                $limitReached = $limitFeedbacksPerUserPerItem <= $feedbacks->getTotalCount();
+            }
+
+
+        }
+
+        return [
+            'id'            => $contactId,
+            'isLoggedIn'    => $isLoggedIn,
+            'limitReached'  => $limitReached,
+            'hasPurchased'  => $hasPurchased,
+            'feedbacks'     => $userFeedbacks
+        ];
     }
 }

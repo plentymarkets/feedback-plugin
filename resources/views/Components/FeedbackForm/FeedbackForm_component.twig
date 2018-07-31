@@ -1,0 +1,75 @@
+<script type="text/javascript">
+    (function($) {
+        Vue.component('feedback-form', {
+
+            template: '#vue-feedback-form',
+            delimiters: ["${", "}"],
+            props: ['variationId', 'ratingRequired', 'authenticatedUser'],
+
+            data: function()
+            {
+                return {
+                    feedback: {
+                        ratingValue: 0,
+                        title: "",
+                        message: "",
+                        type: 'review',
+                        targetId: this.variationId
+                    },
+                    isLoading: false,
+                    titleMissing: false,
+                    ratingMissing: false
+                };
+            },
+
+            methods: {
+                createFeedback: function()
+                {
+                    if( this.isLoading )
+                    {
+                        return;
+                    }
+
+                    if ( this.ratingRequired && this.feedback.ratingValue <= 0 )
+                    {
+                        this.ratingMissing = true;
+                        return;
+                    }
+
+                    if ( !this.feedback.title )
+                    {
+                        this.titleMissing = true;
+                        return;
+                    }
+
+                    this.isLoading = true;
+
+                    var _self = this;
+                    $.ajax({
+                        type: 'POST',
+                        url: '/rest/feedbacks/feedback/create',
+                        data: this.feedback,
+                        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                        dataType: 'json',
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        success: function(data)
+                        {
+                            _self.$emit('feedback-added', data);
+                            _self.isLoading = false;
+                            _self.feedback['message'] = '';
+                            _self.feedback['title'] = '';
+                            _self.feedback['ratingValue'] = 0
+                        },
+                        error: function (jqXHR, textStatus, errorThrown)
+                        {
+                            console.error(errorThrown);
+                            _self.isLoading = false;
+                        }
+                    });
+                }
+            }
+        });
+    })(jQuery);
+</script>

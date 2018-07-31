@@ -1,0 +1,7 @@
+{% macro importTemplate(component) %}
+    {{ component("Feedback::Components." ~ component ~ "." ~ component ~ "_template" ) }}
+{% endmacro %}
+
+{% macro importComponent(component) %}
+    {% include "Feedback::Components." ~ component ~ "." ~ component ~ "_component"  %}
+{% endmacro %}
