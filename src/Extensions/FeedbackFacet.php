@@ -37,9 +37,12 @@ class FeedbackFacet implements FacetExtension
      */
     public function mergeIntoFacetsList($result): array
     {
-        if (array_key_exists('feedback', $result) && !empty($result['feedback'])) {
+        $feedback = [];
+        
+        if (count($result))
+        {
 
-            $this->getLogger('merge into facets')->debug('Feedback::Debug.filterResponse', $result['feedback']);
+            $this->getLogger('merge into facets')->debug('Feedback::Debug.filterResponse', $result);
 
             $facetName = '';
             
@@ -69,22 +72,20 @@ class FeedbackFacet implements FacetExtension
             ];
 
             for ($i = 1; $i <= 5; $i++) {
-                if (isset($result['feedback'][$i]) && (is_null($this->currentActiveRatingFilter) || $this->currentActiveRatingFilter == $i)) {
+                if (isset($result[$i]) && (is_null($this->currentActiveRatingFilter) || $this->currentActiveRatingFilter == $i)) {
                     $feedback['values'][] = [
                         'id' => 'feedback-' . $i,
                         'names' => [
                             ['lang' => 'de', 'name' => '']
                         ],
-                        'count' => $result['feedback'][$i],
-                        'total' => $result['feedback'][$i] //TODO: remove after release of Ceres with new facet logic
+                        'count' => $result[$i],
                     ];
                 }
             }
             $feedback['count'] = count($feedback['values']);
-            $result['facets'][] = $feedback;
         }
 
-        return $result;
+        return $feedback;
     }
 
     /**
