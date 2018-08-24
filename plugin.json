@@ -26,9 +26,6 @@
   "keywords": [
     "feedback", "customer feedback", "rating"
   ],
-  "require": {
-    "Ceres":"~2.0"
-  },
   "containers": [],
   "dataProviders": [
     { "key":"Feedback\\DataProviders\\Scripts", "name":"Feedback Javascript", "description": "Javascript code for feedbacks" },
