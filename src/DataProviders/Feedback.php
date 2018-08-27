@@ -90,7 +90,7 @@ class Feedback
         $options['allowFeedbacksOnlyIfPurchased'] = $allowFeedbacksOnlyIfPurchased;
 
 
-        $limitFeedbacksPerUserPerItem = $coreHelper->configValue(FeedbackCoreHelper::KEY_MAXIMUM_NR_FEEDBACKS);
+        $limitFeedbacksPerUserPerItem = (int)$coreHelper->configValue(FeedbackCoreHelper::KEY_MAXIMUM_NR_FEEDBACKS);
 
         $average = $feedbackAverageRepository->getFeedbackAverage($itemId);
 
@@ -169,7 +169,7 @@ class Feedback
                 }
             }
 
-            $authenticatedContact['limitReached'] = 1 <= $feedbacks->getTotalCount() ? true : false;
+            $authenticatedContact['limitReached'] = $limitFeedbacksPerUserPerItem <= $feedbacks->getTotalCount() ? true : false;
 
             $data['feedbacks'] = $feedbackResults;
 

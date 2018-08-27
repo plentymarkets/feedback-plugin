@@ -262,6 +262,18 @@ function scrollToFeedBacks(){
     return false;
 }
 
+function openLogin(event)
+{
+    event.stopPropagation();
+
+    if (window.matchMedia("(max-width: 991px)").matches)
+    {
+        document.getElementById('marketplace-navbar').classList.add("show");
+    }
+
+    document.getElementById('userDropdownMenu').click();
+}
+
 
 
 
