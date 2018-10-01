@@ -77,7 +77,7 @@ The template plugin **Ceres** allows you to display customer reviews in the sing
 
 ##### Displaying customer reviews in the online store:
 
-1. Go to **Plugins&nbsp;» Content**. 
+1. Go to **CMS » Container links**. 
 2. Go to the **Feedback Javascript** area. 
 3. Activate the container **Script loader: Register/load JS**. 
 4. Go to the **Feedback CSS (Ceres)** area. 

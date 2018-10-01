@@ -77,7 +77,7 @@ Das Template-Plugin **Ceres** bietet Ihnen in der Einzelansicht eines Artikels e
 
 ##### Kundenrezensionen im Webshop anzeigen:
 
-1. Öffnen Sie das Menü **Plugins » Content**.
+1. Öffnen Sie das Menü **CMS » Container-Verknüpfungen**.
 2. Wählen Sie den Bereich **Feedback Javascript**.
 3. Aktivieren Sie den Container **Script loader: Register/load JS**.
 4. Wählen Sie den Bereich **Feedback CSS (Ceres)**.
