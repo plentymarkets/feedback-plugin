@@ -1,5 +1,21 @@
 # Release Notes for Feedback
 
+## v1.3.1 (2018-10-01)
+
+### Fix
+
+- Due to an error, feedback facets were not displayed. This has been fixed.
+
+### CHANGE
+
+- Texts of the plugin can now be translated via the CMS » Multilingualism menu.
+
+## v1.3.0 (2018-07-31)
+
+### CHANGE
+
+- The plugin was modified to incorporate the Vue.js framework.
+
 ## v1.2.1 (2018-07-05)
 
 ### Fix

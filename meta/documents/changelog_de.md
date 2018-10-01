@@ -1,5 +1,21 @@
 # Release Notes für Feedback
 
+## v1.3.1 (2018-10-01)
+
+### Fix
+
+- Durch einen Fehler wurden Bewertungsfacetten nicht angezeigt. Dies wurde behoben.
+
+### CHANGE
+
+- Die Übersetzungstexte des Plugins können jetzt im Menü CMS » Mehrsprachigkeit bearbeitet werden.
+
+## v1.3.0 (2018-07-31)
+
+### CHANGE
+
+- Das Plugin wurde auf Vue.js umgebaut.
+
 ## v1.2.1 (2018-07-05)
 
 ### Fix
