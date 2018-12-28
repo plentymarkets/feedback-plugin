@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Constantin Purcaru
- * Date: 03/09/2017
- * Time: 14:13
- */
 
 namespace Feedback\DataProviders;
-
 
 use Feedback\Helpers\FeedbackCoreHelper;
 use Feedback\Services\FeedbackService;

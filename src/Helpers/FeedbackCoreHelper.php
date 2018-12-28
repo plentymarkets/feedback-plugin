@@ -21,6 +21,8 @@ class FeedbackCoreHelper
     const KEY_ALLOW_NO_RATING_FEEDBACK = "allowNoRatingFeedback";
     const KEY_ALLOW_FEEDBACKS_ONLY_IF_PURCHASED = "allowFeedbacksOnlyIfPurchased";
     const KEY_SHOW_EMPTY_RATINGS_IN_CATEGORY_VIEW = "showEmptyRatingsInCategoryView";
+    const KEY_SHOW_RATING_SORTING = "showRatingSorting";
+    const KEY_SHOW_RATING_FACET = "showRatingFacet";
 
 
 

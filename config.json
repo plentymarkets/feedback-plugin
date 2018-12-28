@@ -44,12 +44,54 @@
             "defaultValue": "false"
           }
         },
+        "showRatingFacet": {
+          "type": "checkBox",
+          "required": false,
+          "label": "Config.showRatingFacetLabel",
+          "options": {
+            "defaultValue": "true"
+          }
+        },
+        "showRatingSorting": {
+          "type": "checkBox",
+          "required": false,
+          "label": "Config.showRatingSortingLabel",
+          "options": {
+            "defaultValue": "true"
+          }
+        },
         "numberOfFeedbacks": {
           "type": "inputText",
           "required": false,
           "label": "Config.numberOfFeedbacksLabel",
           "options": {
             "defaultValue": ""
+          }
+        },
+        "showFeedbacks": {
+          "type": "selectBox",
+          "required": false,
+          "label": "Config.showFeedbacksLabel",
+          "options": {
+              "defaultValue": "all",
+              "selectBoxValues": [
+                  {
+                      "value": "all",
+                      "caption": "Config.showFeedbacksAll"
+                  },
+                  {
+                      "value": "Item",
+                      "caption": "Config.showFeedbacksItem"
+                  },
+                  {
+                      "value": "ItemCurrentVariation",
+                      "caption": "Config.showFeedbacksItemCurrentVariation"
+                  },
+                  {
+                      "value": "Variation",
+                      "caption": "Config.showFeedbacksVariation"
+                  }
+              ]
           }
         }
       }
