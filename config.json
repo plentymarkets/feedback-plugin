@@ -67,32 +67,6 @@
           "options": {
             "defaultValue": ""
           }
-        },
-        "showFeedbacks": {
-          "type": "selectBox",
-          "required": false,
-          "label": "Config.showFeedbacksLabel",
-          "options": {
-              "defaultValue": "all",
-              "selectBoxValues": [
-                  {
-                      "value": "all",
-                      "caption": "Config.showFeedbacksAll"
-                  },
-                  {
-                      "value": "Item",
-                      "caption": "Config.showFeedbacksItem"
-                  },
-                  {
-                      "value": "ItemCurrentVariation",
-                      "caption": "Config.showFeedbacksItemCurrentVariation"
-                  },
-                  {
-                      "value": "Variation",
-                      "caption": "Config.showFeedbacksVariation"
-                  }
-              ]
-          }
         }
       }
     }
