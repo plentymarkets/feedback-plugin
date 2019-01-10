@@ -4,7 +4,7 @@
 
 ### CHANGE
 
-- Filters and sorting opportunities can be deactived in the configuration.
+- Filters and sorting options can now be deactivated in the configuration.
 
 ## v1.3.1 (2018-10-01)
 

@@ -4,7 +4,7 @@
 
 ### FEATURE
 
-- Die Filter und Sortiermöglichkeiten können in der Konfiguration deaktiviert werden.
+- Die Filter- und Sortiermöglichkeiten können nun in der Konfiguration deaktiviert werden.
 
 ## v1.3.1 (2018-10-01)
 
