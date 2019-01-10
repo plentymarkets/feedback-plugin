@@ -4,7 +4,7 @@
     <div v-if="!isReply">
         <p class="feedback-comment-title">${ feedback.title }</p>
 
-        <div class="feedback-rating">
+        <div class="feedback-rating" v-if="feedback.feedbackRating.rating.ratingValue > 0">
             {% for i in 1..5 %}
                 <i class="fa fa-star" :class="{full: feedback.feedbackRating.rating.ratingValue >= {{ i }}, empty: feedback.feedbackRating.rating.ratingValue < {{ i }}}"></i>
             {% endfor %}

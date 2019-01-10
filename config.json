@@ -44,6 +44,22 @@
             "defaultValue": "false"
           }
         },
+        "showRatingFacet": {
+          "type": "checkBox",
+          "required": false,
+          "label": "Config.showRatingFacetLabel",
+          "options": {
+            "defaultValue": "true"
+          }
+        },
+        "showRatingSorting": {
+          "type": "checkBox",
+          "required": false,
+          "label": "Config.showRatingSortingLabel",
+          "options": {
+            "defaultValue": "true"
+          }
+        },
         "numberOfFeedbacks": {
           "type": "inputText",
           "required": false,

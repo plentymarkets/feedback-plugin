@@ -1,5 +1,11 @@
 # Release Notes für Feedback
 
+## v1.4.0 (2019-01-10)
+
+### FEATURE
+
+- Die Filter- und Sortiermöglichkeiten können nun in der Konfiguration deaktiviert werden.
+
 ## v1.3.1 (2018-10-01)
 
 ### Fix
