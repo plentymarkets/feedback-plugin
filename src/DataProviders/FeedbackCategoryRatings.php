@@ -28,11 +28,13 @@ class FeedbackCategoryRatings
     {
         $itemId = $itemData[0]['item']['id'];
 
-        $average = $feedbackAverageRepository->getFeedbackAverage($itemId);
+        if ((int)$itemId > 0) {
+            $average = $feedbackAverageRepository->getFeedbackAverage($itemId);
+        }
 
-        if(empty($average)){
+        if( empty($average)) {
             $counts['averageValue'] = 0;
-        }else{
+        } else {
             $counts['averageValue'] = $average->averageValue;
         }
 
@@ -42,6 +44,5 @@ class FeedbackCategoryRatings
         $data['options']['showEmptyRatingsInCategoryView'] = $showEmptyRatingsInCategoryView;
 
         return $twig->render('Feedback::DataProvider.CategoryRatings.CategoryAverageRating', $data);
-
     }
 }

@@ -184,7 +184,7 @@ class FeedbacksController extends Controller
         $itemVariations = [];
         $itemDataList = pluginApp(ItemRepositoryContract::class)->show(
             $itemId,
-            [],
+            ['id'],
             $lang,
             ['variations']
         );

@@ -1,5 +1,11 @@
 # Release Notes für Feedback
 
+## v1.4.1 (2019-01-30)
+
+### Fix
+
+- Durch Anpassungen im Kern wurden Kundenbewertungen nicht ausgegeben.
+
 ## v1.4.0 (2019-01-10)
 
 ### FEATURE
