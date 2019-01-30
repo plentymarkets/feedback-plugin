@@ -37,10 +37,8 @@ class Feedback
         $itemId = $item[0]['documents'][0]['data']['item']['id'];
         $systemLanguage = $sessionStorage->getLang();
 
-
-
         $itemVariations = [];
-        $itemDatas = pluginApp(ItemRepositoryContract::class)->show($itemId,['*'],$systemLanguage,['variations']);
+        $itemDatas = pluginApp(ItemRepositoryContract::class)->show($itemId,['id'],$systemLanguage,['variations']);
         foreach($itemDatas['variations'] as $itemData){
             $itemVariations[] = $itemData['id'];
         }
@@ -64,8 +62,6 @@ class Feedback
             }
         }
 
-
-
         // Details about the user currently authenticated
         $authenticatedContact = [
             'id' => $accountService->getAccountContactId(),
@@ -82,12 +78,9 @@ class Feedback
         $allowFeedbacksOnlyIfPurchased = $coreHelper->configValue(FeedbackCoreHelper::KEY_ALLOW_FEEDBACKS_ONLY_IF_PURCHASED) == 'true' ? true : false;
         $options['allowFeedbacksOnlyIfPurchased'] = $allowFeedbacksOnlyIfPurchased;
 
-
         $limitFeedbacksPerUserPerItem = $coreHelper->configValue(FeedbackCoreHelper::KEY_MAXIMUM_NR_FEEDBACKS);
 
         $average = $feedbackAverageRepository->getFeedbackAverage($itemId);
-
-
 
         if($allowFeedbacksOnlyIfPurchased && $accountService->getIsAccountLoggedIn()) {
 
@@ -103,9 +96,7 @@ class Feedback
             }
 
             $authenticatedContact['hasPurchased'] = in_array($variationId, $purchasedVariations) ? true : false;
-
         }
-
 
         if(empty($average)){
 

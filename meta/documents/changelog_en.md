@@ -1,5 +1,11 @@
 # Release Notes for Feedback
 
+## v1.4.1 (2019-01-30)
+
+### Fix
+
+- Due to changes to the plentymarkets core funcitonality, feedback ratings were not correctly displayed.
+
 ## v1.4.0 (2019-01-10)
 
 ### CHANGE
