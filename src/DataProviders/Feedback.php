@@ -47,7 +47,7 @@ class Feedback
 
 
         $itemVariations = [];
-        $itemDatas = pluginApp(ItemRepositoryContract::class)->show($itemId,[],$systemLanguage,['variations']);
+        $itemDatas = pluginApp(ItemRepositoryContract::class)->show($itemId,['*'],$systemLanguage,['variations']);
         foreach($itemDatas['variations'] as $itemData){
             $itemVariations[] = $itemData['id'];
         }
