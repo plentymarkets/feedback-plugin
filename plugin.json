@@ -4,13 +4,13 @@
   "marketplaceName" : {"de": "Kunden-Feedback","en": "Customer feedback"},
   "description": "This is the official feedback plugin developed by plentymarkets.",
   "namespace": "Feedback",
-  "author": "plentymarkets GmbH",
+  "author": "plentysystems AG",
   "type": "general",
   "isClosedSource": true,
   "serviceProvider": "Feedback\\Providers\\FeedbackServiceProvider",
   "runOnBuild": [
   ],
-  "license": "Copyright by plentymarkets",
+  "license": "Copyright by plentysystems AG",
   "price": 0.00,
   "shortDescription": {
     "de": "Das offizielle, von plentymarkets entwickelte Feedback-Plugin. Zeigen Sie Kundenrezensionen im Webshop an.",
