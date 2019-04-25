@@ -1,5 +1,11 @@
 # Release Notes for Feedback
 
+## v2.0.0 (2019-04-29)
+
+### FEATURE
+
+- Add support for IO 4.0.0.
+
 ## v1.4.1 (2019-01-30)
 
 ### Fix

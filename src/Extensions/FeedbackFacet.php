@@ -1,7 +1,7 @@
 <?php
 namespace Feedback\Extensions;
 
-use IO\Services\ItemLoader\Contracts\FacetExtension;
+use IO\Services\ItemSearch\Contracts\FacetExtension;
 use IO\Services\SessionStorageService;
 use Plenty\Modules\Cloud\ElasticSearch\Lib\Search\Aggregation\AggregationInterface;
 use Plenty\Modules\Item\Search\Aggregations\FeedbackAggregation;
