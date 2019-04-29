@@ -12,7 +12,7 @@ namespace Feedback\Providers;
 use Feedback\Extensions\FeedbackFacet;
 use Feedback\Helpers\FeedbackCoreHelper;
 use IO\Helper\ResourceContainer;
-use IO\Services\ItemLoader\Services\FacetExtensionContainer;
+use IO\Services\ItemSearch\Helper\FacetExtensionContainer;
 use IO\Services\ItemService;
 use Plenty\Plugin\ConfigRepository;
 use Plenty\Plugin\Events\Dispatcher;
