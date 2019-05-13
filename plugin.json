@@ -13,7 +13,7 @@
   "serviceProvider": "Feedback\\Providers\\FeedbackServiceProvider",
   "runOnBuild": [
   ],
-  "license": "Copyright by plentysystems",
+  "license": "AGPL-3.0",
   "price": 0.00,
   "shortDescription": {
     "de": "Das offizielle, von plentysystems entwickelte Feedback-Plugin. Zeigen Sie Kundenrezensionen im Webshop an.",
