@@ -7,7 +7,8 @@
   "author": "plentysystems AG",
   "type": "general",
   "require": {
-    "IO": ">=4.0.0"
+    "IO": ">=4.0.0",
+    "Ceres": ">=4.0.0"
   },
   "isClosedSource": true,
   "serviceProvider": "Feedback\\Providers\\FeedbackServiceProvider",
@@ -31,11 +32,28 @@
   ],
   "containers": [],
   "dataProviders": [
-    { "key":"Feedback\\DataProviders\\Scripts", "name":"Feedback Javascript", "description": "Javascript code for feedbacks" },
-    { "key":"Feedback\\DataProviders\\Styles", "name":"Feedback CSS (Ceres)", "description": "CSS extension for Ceres" },
-    { "key":"Feedback\\DataProviders\\Feedback", "name":"Feedback ratings", "description": "Feedback ratings" },
-    { "key":"Feedback\\DataProviders\\FeedbackCategoryRatings", "name":"Feedback category ratings", "description": "Feedback category ratings" }
+    {
+      "key":"Feedback\\DataProviders\\Scripts",
+      "name":"Feedback Javascript",
+      "description": "Javascript code for feedbacks",
+      "defaultLayoutContainer": "Ceres::Script.Loader"
+    },
+    {
+      "key":"Feedback\\DataProviders\\Styles",
+      "name":"Feedback CSS (Ceres)",
+      "description": "CSS extension for Ceres",
+      "defaultLayoutContainer": "Ceres::Template.Style"
+    },
+    {
+      "key":"Feedback\\DataProviders\\FeedbackCategoryRatings",
+      "name":"Feedback category ratings",
+      "description": "Feedback category ratings",
+      "defaultLayoutContainer": "Ceres::CategoryItem.BeforePrices"
+    }
   ],
   "dependencies":{},
   "javaScriptFiles": []
 }
+
+
+
