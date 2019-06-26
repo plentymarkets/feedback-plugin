@@ -1,0 +1,13 @@
+[
+  {
+    "identifier": "Feedback::FeedbackWidget",
+    "label": "Widget.feedbackLabel",
+    "previewImageURL": "images/feedback.svg",
+    "type": "default",
+    "position": 800,
+    "widgetClass": "Feedback\\Widgets\\FeedbackWidget",
+    "settings": {
+
+    }
+  }
+]
