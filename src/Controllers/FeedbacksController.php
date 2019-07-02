@@ -23,10 +23,11 @@ use Plenty\Modules\Order\Contracts\OrderRepositoryContract;
 use Plenty\Plugin\Controller;
 use Plenty\Plugin\Http\Request;
 use Plenty\Plugin\Templates\Twig;
+use Plenty\Plugin\Log\Loggable;
 
 class FeedbacksController extends Controller
 {
-
+    use Loggable;
     /**
      * @param Request $request
      * @param FeedbackRepositoryContract $feedbackRepository
@@ -279,6 +280,8 @@ class FeedbacksController extends Controller
         AccountService $accountService,
         FeedbackCoreHelper $coreHelper)
     {
+        $this->getLogger(__METHOD__)->error("FEEDBACKDEBUG_REST","YEET");
+
         $contactId      = $accountService->getAccountContactId();
         $isLoggedIn     = $accountService->getIsAccountLoggedIn();
         $hasPurchased   = true;

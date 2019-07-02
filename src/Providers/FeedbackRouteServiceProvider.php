@@ -20,7 +20,6 @@ class FeedbackRouteServiceProvider extends RouteServiceProvider
 {
     public function map(Router $router, ApiRouter $apiRouter)
     {
-
         $apiRouter->version(['v1'], ['namespace' => 'Feedback\Controllers'], function ($apiRouter)
         {
             $apiRouter->get('feedbacks/user/{itemId}/{variationId}', 'FeedbacksController@getAuthenticatedUser');
@@ -31,7 +30,5 @@ class FeedbackRouteServiceProvider extends RouteServiceProvider
             $apiRouter->get('feedbacks/feedback/helper/feedbacklist/{targetId}/{page}', 'FeedbacksController@paginate')->where('page', '\d+')->where('targetId', '\d+');
 
         });
-
-
     }
 }
