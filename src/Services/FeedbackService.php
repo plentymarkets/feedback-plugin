@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Cristian Benescu
- * Date: 06.09.17
- * Time: 13:00
- */
 
 namespace Feedback\Services;
-
 
 use Plenty\Plugin\Http\Request;
 use Feedback\Helpers\FeedbackCoreHelper;
@@ -37,7 +30,14 @@ class FeedbackService
     private $sessionStorage;
 
 
-    public function __construct(Request $request, FeedbackCoreHelper $coreHelper, FeedbackRepositoryContract $feedbackRepository, FeedbackAverageRepositoryContract $feedbackAverageRepository, AccountService $accountService, SessionStorageService $sessionStorage)
+    public function __construct(
+        Request $request,
+        FeedbackCoreHelper $coreHelper,
+        FeedbackRepositoryContract $feedbackRepository,
+        FeedbackAverageRepositoryContract $feedbackAverageRepository,
+        AccountService $accountService,
+        SessionStorageService $sessionStorage
+    )
     {
         $this->request = $request;
         $this->coreHelper = $coreHelper;
@@ -200,5 +200,271 @@ class FeedbackService
 
 
         return $data;
+    }
+
+    public function create()
+    {
+        $creatorContactId = $this->accountService->getAccountContactId();
+
+        // Set options
+        $options = [
+            'feedbackRelationTargetId' => $this->request->input('targetId'),
+            'feedbackRelationSources' => [
+                [
+                    'feedbackRelationSourceType' => 'contact',
+                    'feedbackRelationSourceId' => $creatorContactId
+                ]
+            ],
+            'commentRelationTargetType' => 'feedbackComment',
+            'ratingRelationTargetType' => 'feedbackRating'
+        ];
+
+        // Check the type and set the target accordingly
+        if($this->request->input('type') == 'review'){
+
+            $options['feedbackRelationTargetType'] = 'variation';
+
+            // Limit the feedbacks count of a user per item
+            $limitPerUserPerItem = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_MAXIMUM_NR_FEEDBACKS);
+
+            // Default visibility of the feedback
+            $options['isVisible'] = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY) == 'true' ? true : false;
+
+            // Allow feedbacks with no rating
+            $allowNoRatingFeedbacks = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_ALLOW_NO_RATING_FEEDBACK) == 'true' ? true : false;
+
+            if( !$allowNoRatingFeedbacks && empty($this->request->input('ratingValue')) ){
+                return 'Can\'t create review with no rating';
+            }
+
+            // Allow creation of feedbacks only if the item/variation was already bought
+            $allowFeedbacksOnlyIfPurchased = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_ALLOW_FEEDBACKS_ONLY_IF_PURCHASED) == 'true' ? true : false;
+
+            // get variations bought
+            $orders = pluginApp(OrderRepositoryContract::class)->allOrdersByContact($creatorContactId);
+
+            $purchasedVariations = [];
+
+            foreach($orders->getResult() as $order){
+                foreach($order->orderItems as $orderItem){
+                    $purchasedVariations[] = $orderItem->itemVariationId;
+                }
+            }
+
+            if(in_array($this->request->input('targetId'), $purchasedVariations)){
+
+                $creatorPurchasedThisVariation = true;
+                $options['feedbackRelationSources'][] =
+                    [
+                        "feedbackRelationSourceType" => 'orderItem',
+                        "feedbackRelationSourceId" => $options['feedbackRelationTargetId']
+                    ]
+                ;
+            }
+
+            if($allowFeedbacksOnlyIfPurchased && !$creatorPurchasedThisVariation){
+                return 'Not allowed to create review without purchasing the item first';
+            }
+
+            if(!empty($limitPerUserPerItem) && $limitPerUserPerItem != 0){
+
+                // Get the feedbacks that this user created on this item
+                $countFeedbacksOfUserPerItem = $this->feedbackRepository->listFeedbacks(1,50,[],[
+                    'sourceId' => $creatorContactId,
+                    'targetId' => $options['feedbackRelationTargetId']
+                ])->getTotalCount();
+
+                if($countFeedbacksOfUserPerItem >= $limitPerUserPerItem) {
+                    return 'Too many reviews';
+                }
+            }
+
+            return $this->feedbackRepository->createFeedback(array_merge($this->request->all(), $options));
+
+        } elseif($this->request->input('type') == 'reply'){
+
+            $options['feedbackRelationTargetType'] = 'feedback';
+            $options['isVisible'] = true;
+
+            return $this->feedbackRepository->createFeedback(array_merge($this->request->all(), $options));
+        }
+    }
+
+    public function delete($feedbackId)
+    {
+        $feedback = $this->feedbackRepository->getFeedback($feedbackId);
+
+        // Check if frontend user is the creator
+        if($this->accountService->getAccountContactId() == $feedback->sourceRelation[0]->feedbackRelationSourceId)
+        {
+            return $this->feedbackRepository->deleteFeedback($feedbackId);
+        }
+
+        return false;
+    }
+
+    public function update($feedbackId)
+    {
+        $data = $this->request->all();
+        $isVisibleAutomatically =  $this->coreHelper->configValue(FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY) == 'true';
+        $data['isVisible'] = $isVisibleAutomatically;
+
+        return $this->feedbackRepository->updateFeedback($data, $feedbackId);
+    }
+
+    public function paginate($itemId, $pGE)
+    {
+        $lang = $this->sessionStorage->getLang();
+        $itemVariations = [];
+        $itemDataList = pluginApp(ItemRepositoryContract::class)->show(
+            $itemId,
+            ['id'],
+            $lang,
+            ['variations']
+        );
+        foreach($itemDataList['variations'] as $itemData){
+            $itemVariations[] = $itemData['id'];
+        }
+
+        $itemAttributes = [];
+        foreach($itemVariations as $itemVariation){
+            $variationAttributes = pluginApp(VariationRepositoryContract::class)->show(
+                $itemVariation,
+                ['variationAttributeValues' => true]
+                ,'*'
+            );
+
+            $a[0] = $variationAttributes;
+            $b[0] = $a;
+            $actualVariationAttributes = $b[0][0]['variationAttributeValues'];
+
+            foreach($actualVariationAttributes as $variationAttribute){
+                $attributeName = pluginApp(AttributeNameRepositoryContract::class)->findOne(
+                    $variationAttribute->attribute_id,
+                    $lang
+                );
+                $attributeValue = pluginApp(AttributeValueNameRepositoryContract::class)->findOne(
+                    $variationAttribute->value_id,
+                    $lang
+                );
+
+                $itemAttributes[$itemVariation][$variationAttribute->attribute_id][$variationAttribute->value_id] = [
+                    'attributeName' => $attributeName->name,
+                    'attributeValue' => $attributeValue->name
+                ];
+            }
+        }
+
+        $options['systemLanguage'] = $lang;
+        $options['itemAttributes'] = $itemAttributes;
+        $options['timestampVisibility'] = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_TIMESTAMP_VISIBILITY) == 'true' ? true : false;
+
+        $page = isset($page) && $page != 0 ? $page : 1;
+        $itemsPerPage = 10;
+        $with = [];
+        $filters = [
+            'isVisible' => 1,
+            'itemId' => $itemId,
+        ];
+
+        if($this->accountService->getAccountContactId() > 0)
+        {
+            $filters['hideSourceId'] = $this->accountService->getAccountContactId();
+        }
+
+        $feedbacks = $this->listFeedbacks(
+            $this->feedbackRepository,
+            $page,
+            $itemsPerPage,
+            $with,
+            $filters
+        );
+        $feedbackResults = $feedbacks->getResult();
+
+        foreach($feedbackResults as &$feedback)
+        {
+            if($feedback->targetRelation->feedbackRelationType == 'variation')
+            {
+                $feedback->targetRelation->variationAttributes = json_decode($feedback->targetRelation->targetRelationName);
+            }
+        }
+
+        return [
+            'feedbacks'             => $feedbackResults,
+            'options'               => $options,
+            'itemAttributes'        => $itemAttributes,
+            'pagination'            => [
+                'page' => $page,
+                'lastPage' => $feedbacks->getLastPage(),
+                'isLastPage' => $feedbacks->isLastPage()
+            ]
+        ];
+    }
+
+    public function getAuthenticatedUser(int $itemId, int $variationId)
+    {
+        $contactId      = $this->accountService->getAccountContactId();
+        $isLoggedIn     = $this->accountService->getIsAccountLoggedIn();
+        $hasPurchased   = true;
+        $limitReached   = false;
+        $userFeedbacks  = [];
+
+        if ( $isLoggedIn )
+        {
+            $allowFeedbacksOnlyIfPurchased = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_ALLOW_FEEDBACKS_ONLY_IF_PURCHASED) == 'true';
+
+            if ( $allowFeedbacksOnlyIfPurchased )
+            {
+
+                // get variations bought
+                $orders = pluginApp(OrderRepositoryContract::class)->allOrdersByContact($contactId);
+
+                $purchasedVariations = [];
+
+                foreach ($orders->getResult() as $order) {
+                    foreach ($order->orderItems as $orderItem) {
+                        $purchasedVariations[] = $orderItem->itemVariationId;
+                    }
+                }
+
+                $hasPurchased = in_array($variationId, $purchasedVariations);
+
+            }
+
+            // Pagination settings for currently authenticated user's feedbacks
+            $page = $this->request->get('page', 1);
+            $itemsPerPage = $this->request->get('itemsPerPage', 50);
+
+            $with = [];
+            $filters = [
+                'itemId' => $itemId,
+                'sourceId' => $contactId
+            ];
+
+            // List of currently authenticated user's feedbacks
+            $feedbacks = $this->listFeedbacks($this->feedbackRepository, $page, $itemsPerPage, $with, $filters);
+            $userFeedbacks = $feedbacks->getResult();
+            foreach($userFeedbacks as &$feedback)
+            {
+                if($feedback->targetRelation->feedbackRelationType == 'variation')
+                {
+                    $feedback->targetRelation->variationAttributes = json_decode($feedback->targetRelation->targetRelationName);
+                }
+            }
+
+            $limitFeedbacksPerUserPerItem = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_MAXIMUM_NR_FEEDBACKS);
+            if( !is_null($limitFeedbacksPerUserPerItem) && $limitFeedbacksPerUserPerItem > 0 )
+            {
+                $limitReached = $limitFeedbacksPerUserPerItem <= $feedbacks->getTotalCount();
+            }
+        }
+
+        return [
+            'id'            => $contactId,
+            'isLoggedIn'    => $isLoggedIn,
+            'limitReached'  => $limitReached,
+            'hasPurchased'  => $hasPurchased,
+            'feedbacks'     => $userFeedbacks
+        ];
     }
 }

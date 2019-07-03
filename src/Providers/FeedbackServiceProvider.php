@@ -53,6 +53,7 @@ class FeedbackServiceProvider extends ServiceProvider
         });
     }
 
+
     public function register()
     {
         $this->getApplication()->register(FeedbackRouteServiceProvider::class);
