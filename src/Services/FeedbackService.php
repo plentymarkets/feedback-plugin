@@ -102,10 +102,10 @@ class FeedbackService
         $options['systemLanguage'] = $systemLanguage;
         $options['itemAttributes'] = $itemAttributes;
 
-        $options['timestampVisibility'] = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_TIMESTAMP_VISIBILITY) == 'true' ? true : false;
-        $options['allowNoRatingFeedback'] = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_ALLOW_NO_RATING_FEEDBACK) == 'true' ? true : false;
+        $options['timestampVisibility'] = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_TIMESTAMP_VISIBILITY);
+        $options['allowNoRatingFeedback'] = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_NO_RATING_FEEDBACK);
 
-        $allowFeedbacksOnlyIfPurchased = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_ALLOW_FEEDBACKS_ONLY_IF_PURCHASED) == 'true' ? true : false;
+        $allowFeedbacksOnlyIfPurchased = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_FEEDBACKS_ONLY_IF_PURCHASED);
         $options['allowFeedbacksOnlyIfPurchased'] = $allowFeedbacksOnlyIfPurchased;
 
         $limitFeedbacksPerUserPerItem = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_MAXIMUM_NR_FEEDBACKS);
@@ -228,17 +228,17 @@ class FeedbackService
             $limitPerUserPerItem = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_MAXIMUM_NR_FEEDBACKS);
 
             // Default visibility of the feedback
-            $options['isVisible'] = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY) == 'true' ? true : false;
+            $options['isVisible'] = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY);
 
             // Allow feedbacks with no rating
-            $allowNoRatingFeedbacks = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_ALLOW_NO_RATING_FEEDBACK) == 'true' ? true : false;
+            $allowNoRatingFeedbacks = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_NO_RATING_FEEDBACK);
 
             if( !$allowNoRatingFeedbacks && empty($this->request->input('ratingValue')) ){
                 return 'Can\'t create review with no rating';
             }
 
             // Allow creation of feedbacks only if the item/variation was already bought
-            $allowFeedbacksOnlyIfPurchased = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_ALLOW_FEEDBACKS_ONLY_IF_PURCHASED) == 'true' ? true : false;
+            $allowFeedbacksOnlyIfPurchased = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_FEEDBACKS_ONLY_IF_PURCHASED);
 
             // get variations bought
             $orders = pluginApp(OrderRepositoryContract::class)->allOrdersByContact($creatorContactId);
@@ -306,7 +306,7 @@ class FeedbackService
     public function update($feedbackId)
     {
         $data = $this->request->all();
-        $isVisibleAutomatically =  $this->coreHelper->configValue(FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY) == 'true';
+        $isVisibleAutomatically =  $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY);
         $data['isVisible'] = $isVisibleAutomatically;
 
         return $this->feedbackRepository->updateFeedback($data, $feedbackId);
@@ -357,7 +357,7 @@ class FeedbackService
 
         $options['systemLanguage'] = $lang;
         $options['itemAttributes'] = $itemAttributes;
-        $options['timestampVisibility'] = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_TIMESTAMP_VISIBILITY) == 'true' ? true : false;
+        $options['timestampVisibility'] = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_TIMESTAMP_VISIBILITY);
 
         $page = isset($page) && $page != 0 ? $page : 1;
         $itemsPerPage = 10;
@@ -411,7 +411,7 @@ class FeedbackService
 
         if ( $isLoggedIn )
         {
-            $allowFeedbacksOnlyIfPurchased = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_ALLOW_FEEDBACKS_ONLY_IF_PURCHASED) == 'true';
+            $allowFeedbacksOnlyIfPurchased = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_FEEDBACKS_ONLY_IF_PURCHASED);
 
             if ( $allowFeedbacksOnlyIfPurchased )
             {

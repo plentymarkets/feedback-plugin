@@ -30,9 +30,8 @@ class FeedbackServiceProvider extends ServiceProvider
     {
         $twig->addExtension(TwigServiceProvider::class);
 
-        $showRatingFacet = $coreHelper->configValue(FeedbackCoreHelper::KEY_SHOW_RATING_FACET) == 'true' ? true : false;
-        $showRatingSorting = $coreHelper->configValue(FeedbackCoreHelper::KEY_SHOW_RATING_SORTING) == 'true' ? true : false;
-
+        $showRatingFacet = $coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_SHOW_RATING_FACET);
+        $showRatingSorting = $coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_SHOW_RATING_SORTING);
 
         if ($showRatingFacet) {
              //add feedback facet extension

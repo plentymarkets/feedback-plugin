@@ -49,4 +49,15 @@ class FeedbackCoreHelper
     {
         return  $this->config->get(self::PLUGIN_NAME . '.' . $key);
     }
+
+    /**
+     * Helper function to reduce ternary statements in the code
+     * @param $configValue
+     * @return bool
+     */
+    public function configValueAsBool(string $key)
+    {
+        $configValue = $this->configValue($key);
+        return $configValue == 'true' ? true : false;
+    }
 }
