@@ -1,19 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Cristian Benescu
- * Date: 11.09.17
- * Time: 14:23
- */
 
 namespace Feedback\Helpers;
-
 
 use Plenty\Plugin\ConfigRepository;
 
 class FeedbackCoreHelper
 {
-
     const PLUGIN_NAME = 'Feedback';
     const KEY_RELEASE_FEEDBACKS_AUTOMATICALLY = "releaseFeedbacks";
     const KEY_MAXIMUM_NR_FEEDBACKS = "numberOfFeedbacks";
@@ -24,11 +16,8 @@ class FeedbackCoreHelper
     const KEY_SHOW_RATING_SORTING = "showRatingSorting";
     const KEY_SHOW_RATING_FACET = "showRatingFacet";
 
-
-
-
     /**
-     * @var $config
+     * @var ConfigRepository $config
      */
     private $config;
 

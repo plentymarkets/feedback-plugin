@@ -1,13 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Constantin Purcaru
- * Date: 01/09/2017
- * Time: 16:32
- */
-
 namespace Feedback\Twig;
-
 
 use Plenty\Plugin\Templates\Extensions\Twig_Extension;
 use Plenty\Plugin\Templates\Factories\TwigFactory;

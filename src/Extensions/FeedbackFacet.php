@@ -41,7 +41,6 @@ class FeedbackFacet implements FacetExtension
 
         if (count($result))
         {
-
             $this->getLogger('merge into facets')->debug('Feedback::Debug.filterResponse', $result);
 
             $facetName = '';
@@ -51,9 +50,7 @@ class FeedbackFacet implements FacetExtension
             if ( $lang === 'de' )
             {
                 $facetName = 'Artikelbewertung';
-            }
-            else
-            {
+            } else {
                 $facetName = 'Item rating';
             }
 

@@ -1,13 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Constantin Purcaru
- * Date: 01/09/2017
- * Time: 15:35
- */
-
 namespace Feedback\Providers;
-
 
 use Feedback\Extensions\FeedbackFacet;
 use Feedback\Extensions\TwigServiceProvider;

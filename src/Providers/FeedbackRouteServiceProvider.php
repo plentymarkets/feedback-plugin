@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Constantin Purcaru
- * Date: 01/09/2017
- * Time: 15:34
- */
-
 namespace Feedback\Providers;
 
 use Plenty\Plugin\RouteServiceProvider;

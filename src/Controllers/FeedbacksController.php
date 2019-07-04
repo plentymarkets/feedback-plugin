@@ -16,7 +16,6 @@ class FeedbacksController extends Controller
         return $feedbackService->create();
     }
 
-
     /**
      * @param $feedbackId
      * @param FeedbackService $feedbackService
@@ -27,7 +26,6 @@ class FeedbacksController extends Controller
         return $feedbackService->delete($feedbackId);
     }
 
-
     /**
      * @param $feedbackId
      * @param FeedbackService $feedbackService
@@ -37,7 +35,6 @@ class FeedbacksController extends Controller
     {
         return $feedbackService->update($feedbackId);
     }
-
 
     /**
      * @param $itemId

@@ -1,5 +1,4 @@
 <?php
-
 namespace Feedback\Services;
 
 use Plenty\Plugin\Http\Request;
@@ -29,7 +28,6 @@ class FeedbackService
     /** @var SessionStorageService $sessionStorage */
     private $sessionStorage;
 
-
     public function __construct(
         Request $request,
         FeedbackCoreHelper $coreHelper,
@@ -51,7 +49,7 @@ class FeedbackService
      * @param FeedbackRepositoryContract $feedbackRepository
      * @return \Plenty\Repositories\Models\PaginatedResult
      */
-    public function listFeedbacks(FeedbackRepositoryContract $feedbackRepository, int $page = 1, int $itemsPerPage = 50, array $with = [], array $filters = [])
+    private function listFeedbacks(FeedbackRepositoryContract $feedbackRepository, int $page = 1, int $itemsPerPage = 50, array $with = [], array $filters = [])
     {
         return $feedbackRepository->listFeedbacks(
             $page, // page
@@ -61,6 +59,11 @@ class FeedbackService
         );
     }
 
+    /**
+     * Delivers data for the feedback-container Vue components props
+     * @param $item
+     * @return mixed
+     */
     public function getFeedback($item)
     {
         $variationId = $item['documents'][0]['data']['variation']['id'];
@@ -202,6 +205,10 @@ class FeedbackService
         return $data;
     }
 
+    /**
+     * Create a feedback entry in the db
+     * @return string
+     */
     public function create()
     {
         $creatorContactId = $this->accountService->getAccountContactId();
@@ -220,20 +227,18 @@ class FeedbackService
         ];
 
         // Check the type and set the target accordingly
-        if($this->request->input('type') == 'review'){
+        if($this->request->input('type') == 'review') {
 
             $options['feedbackRelationTargetType'] = 'variation';
 
             // Limit the feedbacks count of a user per item
             $limitPerUserPerItem = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_MAXIMUM_NR_FEEDBACKS);
-
             // Default visibility of the feedback
             $options['isVisible'] = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY);
-
             // Allow feedbacks with no rating
             $allowNoRatingFeedbacks = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_NO_RATING_FEEDBACK);
 
-            if( !$allowNoRatingFeedbacks && empty($this->request->input('ratingValue')) ){
+            if(!$allowNoRatingFeedbacks && empty($this->request->input('ratingValue'))) {
                 return 'Can\'t create review with no rating';
             }
 
@@ -245,13 +250,13 @@ class FeedbackService
 
             $purchasedVariations = [];
 
-            foreach($orders->getResult() as $order){
-                foreach($order->orderItems as $orderItem){
+            foreach($orders->getResult() as $order) {
+                foreach($order->orderItems as $orderItem) {
                     $purchasedVariations[] = $orderItem->itemVariationId;
                 }
             }
 
-            if(in_array($this->request->input('targetId'), $purchasedVariations)){
+            if(in_array($this->request->input('targetId'), $purchasedVariations)) {
 
                 $creatorPurchasedThisVariation = true;
                 $options['feedbackRelationSources'][] =
@@ -262,14 +267,14 @@ class FeedbackService
                 ;
             }
 
-            if($allowFeedbacksOnlyIfPurchased && !$creatorPurchasedThisVariation){
+            if($allowFeedbacksOnlyIfPurchased && !$creatorPurchasedThisVariation) {
                 return 'Not allowed to create review without purchasing the item first';
             }
 
-            if(!empty($limitPerUserPerItem) && $limitPerUserPerItem != 0){
+            if(!empty($limitPerUserPerItem) && $limitPerUserPerItem != 0) {
 
                 // Get the feedbacks that this user created on this item
-                $countFeedbacksOfUserPerItem = $this->feedbackRepository->listFeedbacks(1,50,[],[
+                $countFeedbacksOfUserPerItem = $this->feedbackRepository->listFeedbacks(1,50, [], [
                     'sourceId' => $creatorContactId,
                     'targetId' => $options['feedbackRelationTargetId']
                 ])->getTotalCount();
@@ -281,8 +286,7 @@ class FeedbackService
 
             return $this->feedbackRepository->createFeedback(array_merge($this->request->all(), $options));
 
-        } elseif($this->request->input('type') == 'reply'){
-
+        } elseif($this->request->input('type') == 'reply') {
             $options['feedbackRelationTargetType'] = 'feedback';
             $options['isVisible'] = true;
 
@@ -290,6 +294,11 @@ class FeedbackService
         }
     }
 
+    /**
+     * Delete a feedback entry in the db
+     * @param $feedbackId
+     * @return bool
+     */
     public function delete($feedbackId)
     {
         $feedback = $this->feedbackRepository->getFeedback($feedbackId);
@@ -303,6 +312,11 @@ class FeedbackService
         return false;
     }
 
+    /**
+     * Update a feedback entry in the db
+     * @param $feedbackId
+     * @return mixed
+     */
     public function update($feedbackId)
     {
         $data = $this->request->all();
@@ -312,7 +326,12 @@ class FeedbackService
         return $this->feedbackRepository->updateFeedback($data, $feedbackId);
     }
 
-    public function paginate($itemId, $pGE)
+    /**
+     * @param $itemId
+     * @param $page
+     * @return array
+     */
+    public function paginate($itemId, $page)
     {
         $lang = $this->sessionStorage->getLang();
         $itemVariations = [];
@@ -415,10 +434,8 @@ class FeedbackService
 
             if ( $allowFeedbacksOnlyIfPurchased )
             {
-
                 // get variations bought
                 $orders = pluginApp(OrderRepositoryContract::class)->allOrdersByContact($contactId);
-
                 $purchasedVariations = [];
 
                 foreach ($orders->getResult() as $order) {
@@ -428,7 +445,6 @@ class FeedbackService
                 }
 
                 $hasPurchased = in_array($variationId, $purchasedVariations);
-
             }
 
             // Pagination settings for currently authenticated user's feedbacks
@@ -444,6 +460,7 @@ class FeedbackService
             // List of currently authenticated user's feedbacks
             $feedbacks = $this->listFeedbacks($this->feedbackRepository, $page, $itemsPerPage, $with, $filters);
             $userFeedbacks = $feedbacks->getResult();
+
             foreach($userFeedbacks as &$feedback)
             {
                 if($feedback->targetRelation->feedbackRelationType == 'variation')

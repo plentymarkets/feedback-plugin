@@ -25,6 +25,10 @@ class TwigServiceProvider extends Twig_Extension
         return [];
     }
 
+    /**
+     * Expose the TwigExtension
+     * @return array
+     */
     public function getGlobals():array
     {
         return [
