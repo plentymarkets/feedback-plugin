@@ -1,21 +1,28 @@
 {% import "Ceres::Widgets.Helper.TwigBuilder" as Twig %}
 {{ Twig.import("ComponentLoader", "Feedback::Macros.ComponentLoader") }}
 
-{{ Twig.set("feedbackItem", Twig.call("feedbackServices.feedback.getFeedback", [Twig.var("item")])) }}
-{{ Twig.set("item_id", "feedbackItem.item.documents[0].data.item.id") }}
-{{ Twig.set("variation_id", "feedbackItem.item.documents[0].data.variation.id") }}
-{{ Twig.set("counts", "feedbackItem.counts | json_encode") }}
-
 {{ Twig.print(Twig.call("ComponentLoader.importTemplate", ["FeedbackForm"])) }}
 {{ Twig.print(Twig.call("ComponentLoader.importTemplate", ["FeedbackList"])) }}
 {{ Twig.print(Twig.call("ComponentLoader.importTemplate", ["FeedbackListEntry"])) }}
 {{ Twig.print(Twig.call("ComponentLoader.importTemplate", ["FeedbackComment"])) }}
 {{ Twig.print(Twig.call("ComponentLoader.importTemplate", ["FeedbackContainer"])) }}
 
-<feedback-container
-        :item-id="{{ Twig.print("item_id") }}"
-        :variation-id="{{ Twig.print("variation_id") }}"
-        :counts="{{ Twig.print("counts") }}">
-</feedback-container>
+{% if not isPreview %}
+    {{ Twig.set("feedbackItem", Twig.call("feedbackServices.feedback.getFeedback", [Twig.var("item")])) }}
+    {{ Twig.set("item_id", "feedbackItem.item.documents[0].data.item.id") }}
+    {{ Twig.set("variation_id", "feedbackItem.item.documents[0].data.variation.id") }}
+    {{ Twig.set("counts", "feedbackItem.counts | json_encode") }}
 
+    <feedback-container
+            :item-id="{{ Twig.print("item_id") }}"
+            :variation-id="{{ Twig.print("variation_id") }}"
+            :counts="{{ Twig.print("counts") }}">
+    </feedback-container>
+{% else %}
+    <feedback-container
+            :item-id="0"
+            :variation-id="0"
+            :counts="{}">
+    </feedback-container>
+{% endif %}
 
