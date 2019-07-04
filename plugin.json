@@ -10,7 +10,7 @@
       "IO": ">=4.0.0",
       "Ceres": ">=4.0.0"
     },
-    "isClosedSource": true,
+    "isClosedSource": false,
     "serviceProvider": "Feedback\\Providers\\FeedbackServiceProvider",
     "runOnBuild": [
     ],
