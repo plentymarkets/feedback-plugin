@@ -104,10 +104,8 @@ class FeedbackService
 
         $options['systemLanguage'] = $systemLanguage;
         $options['itemAttributes'] = $itemAttributes;
-
         $options['timestampVisibility'] = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_TIMESTAMP_VISIBILITY);
         $options['allowNoRatingFeedback'] = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_NO_RATING_FEEDBACK);
-
         $allowFeedbacksOnlyIfPurchased = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_FEEDBACKS_ONLY_IF_PURCHASED);
         $options['allowFeedbacksOnlyIfPurchased'] = $allowFeedbacksOnlyIfPurchased;
 
@@ -131,7 +129,7 @@ class FeedbackService
             $authenticatedContact['hasPurchased'] = in_array($variationId, $purchasedVariations) ? true : false;
         }
 
-        if(empty($average)){
+        if(empty($average)) {
 
             // Default values if the average table doesn't have any entry for this item/variation
             $counts = [
@@ -145,7 +143,7 @@ class FeedbackService
                 'highestCount' => 0
             ];
 
-        }else{
+        } else {
 
             $counts = [
                 'ratingsCountOf1' => $average->ratingsCountOf1,
@@ -156,16 +154,13 @@ class FeedbackService
             ];
 
             $highestCount = max($counts);
-
             $counts['ratingsCountTotal'] = $average->ratingsCountTotal;
             $counts['averageValue'] = $average->averageValue;
             $counts['highestCount'] = $highestCount;
-
         }
 
 
-        if($authenticatedContact['check']){
-
+        if($authenticatedContact['check']) {
             // Pagination settings for currently authenticated user's feedbacks
             $page = $this->request->get('page', 1);
             $itemsPerPage = $this->request->get('itemsPerPage', 50);
@@ -180,27 +175,25 @@ class FeedbackService
             $feedbacks = $this->listFeedbacks($this->feedbackRepository, $page, $itemsPerPage, $with, $filters);
             $feedbackResults = $feedbacks->getResult();
 
-            foreach($feedbackResults as &$feedback){
-                if($feedback->targetRelation->feedbackRelationType == 'variation'){
+            foreach($feedbackResults as &$feedback) {
+                if($feedback->targetRelation->feedbackRelationType == 'variation') {
                     $feedback->targetRelation->variationAttributes = json_decode($feedback->targetRelation->targetRelationName);
                 }
             }
 
-            if(!is_null($limitFeedbacksPerUserPerItem) && $limitFeedbacksPerUserPerItem != 0){
+            if(!is_null($limitFeedbacksPerUserPerItem) && $limitFeedbacksPerUserPerItem != 0) {
                 $authenticatedContact['limitReached'] = $limitFeedbacksPerUserPerItem <= $feedbacks->getTotalCount() ? true : false;
-            }else{
+            } else {
                 $authenticatedContact['limitReached'] = false;
             }
 
             $data['feedbacks'] = $feedbackResults;
-
         }
 
         $data['options'] = $options;
         $data['counts'] = $counts;
         $data['authenticatedContact'] = $authenticatedContact;
         $data['item'] = $item;
-
 
         return $data;
     }
@@ -259,12 +252,10 @@ class FeedbackService
             if(in_array($this->request->input('targetId'), $purchasedVariations)) {
 
                 $creatorPurchasedThisVariation = true;
-                $options['feedbackRelationSources'][] =
-                    [
-                        "feedbackRelationSourceType" => 'orderItem',
-                        "feedbackRelationSourceId" => $options['feedbackRelationTargetId']
-                    ]
-                ;
+                $options['feedbackRelationSources'][] = [
+                    "feedbackRelationSourceType" => 'orderItem',
+                    "feedbackRelationSourceId" => $options['feedbackRelationTargetId']
+                ];
             }
 
             if($allowFeedbacksOnlyIfPurchased && !$creatorPurchasedThisVariation) {

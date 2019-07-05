@@ -1,13 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Constantin Purcaru
- * Date: 06/11/2017
- * Time: 15:23
- */
-
 namespace Feedback\DataProviders;
-
 
 use Plenty\Modules\Feedback\Contracts\FeedbackAverageRepositoryContract;
 use Feedback\Helpers\FeedbackCoreHelper;
