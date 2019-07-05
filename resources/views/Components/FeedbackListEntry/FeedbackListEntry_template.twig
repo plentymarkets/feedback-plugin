@@ -9,7 +9,7 @@
                 <i class="fa fa-eye-slash"></i>
             </span>
 
-            <span class="btn btn-sm btn-secondary"
+            <span class="btn btn-sm btn-danger"
                   ref="editButton"
                   data-toggle="tooltip"
                   data-placement="top"
@@ -18,14 +18,13 @@
                 <i class="fa fa-pencil"></i>
             </span>
 
-            <span class="btn btn-sm btn-secondary"
+            <span class="btn btn-sm btn-danger"
                   data-toggle="tooltip"
                   data-placement="top"
                   data-original-title="{{ isReply ? trans("Feedback::Feedback.deleteReply") : trans("Feedback::Feedback.deleteReview") }}"
                   @click="showDeleteConfirmation()">
                 <i class="fa fa-trash-o"></i>
             </span>
-
         </div>
 
         <feedback-comment
@@ -46,7 +45,7 @@
                           v-model="editableFeedback.message">
                 </textarea>
             </div>
-            <button class="btn btn-primary" @click="saveEditableFeedback()">{{ trans("Feedback::Feedback.editReply") }}</button>
+            <button class="btn btn-appearance" @click="saveEditableFeedback()">{{ trans("Feedback::Feedback.editReply") }}</button>
             <button class="btn btn-secondary feedback-edit-cancel" @click="editableFeedback = null">{{ trans("Feedback::Feedback.cancel") }}</button>
         </div>
 
@@ -79,7 +78,7 @@
                           v-model="editableFeedback.message"></textarea>
             </div>
 
-            <button class="btn btn-primary" @click="saveEditableFeedback()">{{ trans("Feedback::Feedback.editReview") }}</button>
+            <button class="btn btn-appearance" @click="saveEditableFeedback()">{{ trans("Feedback::Feedback.editReview") }}</button>
             <button class="btn btn-secondary feedback-edit-cancel" @click="editableFeedback = null">{{ trans("Feedback::Feedback.cancel") }}</button>
         </div>
     </div>

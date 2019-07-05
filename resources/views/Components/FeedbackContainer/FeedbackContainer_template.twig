@@ -1,11 +1,9 @@
 <script type="x/template" id="vue-feedback-container">
     <section class="feedback-container">
-
         <div class="title">
             {{ trans("Feedback::Feedback.customerReviews") }}
             <small class="feedback-average-count"> (${ counts.ratingsCountTotal })</small>
         </div>
-
         <div class="feedback-stars-average">
             <div class="feedback-stars-background clearfix">
                 {% for i in 1..5 %}
@@ -24,19 +22,14 @@
                 </div>
             </div>
         </div>
-
         <hr>
-
         <div class="row my-2">
-
             <div class="col-sm-6">
-
                 <div class="feedback-bars">
-
                     <div class="feedback-bar-wrap">
                         <p class="feedback-bar-text-before">5 <i class="fa fa-star"></i></p>
                         <div class="feedback-bar">
-                            <div class="feedback-bar-fill" :style="{ width: (counts.ratingsCountOf5 / counts.highestCount * 100) + '%' }"></div>
+                            <div class="feedback-bar-fill bg-appearance" :style="{ width: (counts.ratingsCountOf5 / counts.highestCount * 100) + '%' }"></div>
                         </div>
                         <p class="feedback-bar-text-after">${ counts.ratingsCountOf5 }</p>
                     </div>
@@ -44,7 +37,7 @@
                     <div class="feedback-bar-wrap">
                         <p class="feedback-bar-text-before">4 <i class="fa fa-star"></i></p>
                         <div class="feedback-bar">
-                            <div class="feedback-bar-fill" :style="{ width: (counts.ratingsCountOf4 / counts.highestCount * 100) + '%' }"></div>
+                            <div class="feedback-bar-fill bg-appearance" :style="{ width: (counts.ratingsCountOf4 / counts.highestCount * 100) + '%' }"></div>
                         </div>
                         <p class="feedback-bar-text-after">${ counts.ratingsCountOf4 }</p>
                     </div>
@@ -52,7 +45,7 @@
                     <div class="feedback-bar-wrap">
                         <p class="feedback-bar-text-before">3 <i class="fa fa-star"></i></p>
                         <div class="feedback-bar">
-                            <div class="feedback-bar-fill" :style="{ width: (counts.ratingsCountOf3 / counts.highestCount * 100) + '%' }"></div>
+                            <div class="feedback-bar-fill bg-appearance" :style="{ width: (counts.ratingsCountOf3 / counts.highestCount * 100) + '%' }"></div>
                         </div>
                         <p class="feedback-bar-text-after">${ counts.ratingsCountOf3 }</p>
                     </div>
@@ -60,7 +53,7 @@
                     <div class="feedback-bar-wrap">
                         <p class="feedback-bar-text-before">2 <i class="fa fa-star"></i></p>
                         <div class="feedback-bar">
-                            <div class="feedback-bar-fill" :style="{ width: (counts.ratingsCountOf2 / counts.highestCount * 100) + '%' }"></div>
+                            <div class="feedback-bar-fill bg-appearance" :style="{ width: (counts.ratingsCountOf2 / counts.highestCount * 100) + '%' }"></div>
                         </div>
                         <p class="feedback-bar-text-after">${ counts.ratingsCountOf2 }</p>
                     </div>
@@ -68,15 +61,12 @@
                     <div class="feedback-bar-wrap">
                         <p class="feedback-bar-text-before">1 <i class="fa fa-star"></i></p>
                         <div class="feedback-bar">
-                            <div class="feedback-bar-fill" :style="{ width: (counts.ratingsCountOf1 / counts.highestCount * 100) + '%' }"></div>
+                            <div class="feedback-bar-fill bg-appearance" :style="{ width: (counts.ratingsCountOf1 / counts.highestCount * 100) + '%' }"></div>
                         </div>
                         <p class="feedback-bar-text-after">${ counts.ratingsCountOf1 }</p>
                     </div>
-
                 </div>
-
             </div>
-
 
             <div class="col-sm-6">
                 <feedback-form
@@ -129,7 +119,6 @@
                         </button>
 
                         <h5 class="modal-title" id="feedbackConfirmDeleteLabel-{{ uid }}">{{ trans("Feedback::Feedback.deleteConfirm") }}</h5>
-
                     </div>
                     <div class="modal-body">
                         <p class="feedback-delete-confirmation" v-if="!!feedbackToDelete && feedbackToDelete.isReply">
@@ -141,7 +130,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ trans("Feedback::Feedback.cancel") }}</button>
-                        <button type="button" class="btn btn-primary" @click="deleteFeedback()">{{ trans("Feedback::Feedback.yesDeleteIt") }}</button>
+                        <button type="button" class="btn btn-appearance" @click="deleteFeedback()">{{ trans("Feedback::Feedback.yesDeleteIt") }}</button>
                     </div>
                 </div>
             </div>
