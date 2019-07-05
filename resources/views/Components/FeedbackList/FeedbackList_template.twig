@@ -7,7 +7,9 @@
             :authenticated-user="authenticatedUser"
             :item-attributes="itemAttributes"
             :is-reply="false" @delete="$emit('delete', $event)"
-            :show-controls="showControls">
+            :show-controls="showControls"
+            :padding-classes="paddingClasses"
+            :padding-inline-styles="paddingInlineStyles">
     </feedback-list-entry>
 
     <a class="btn btn-secondary btn-block feedback-loadmore" v-if="!isLastPage" @click="onLoadMoreClicked()">

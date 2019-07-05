@@ -34,7 +34,9 @@
                 :authenticated-user="authenticatedUser"
                 :is-reply="isReply"
                 :show-controls="showControls"
-                @delete="$emit('delete', $event)">
+                @delete="$emit('delete', $event)"
+                :padding-classes="paddingClasses"
+                :padding-inline-styles="paddingInlineStyles">
         </feedback-comment>
 
         <div v-if="!!editableFeedback && isReply">

@@ -1,6 +1,16 @@
 {% import "Ceres::Widgets.Helper.TwigBuilder" as Twig %}
-{{ Twig.import("ComponentLoader", "Feedback::Macros.ComponentLoader") }}
+{% import "Ceres::Widgets.Helper.WidgetHelper" as WidgetHelper %}
 
+{% set customClass = widget.settings.customClass.mobile %}
+{% set appearance = widget.settings.appearance.mobile %}
+
+{% set spacingSettings = widget.settings.spacing %}
+{% set inlinePadding   = WidgetHelper.getInlineSpacings(spacingSettings, spacingSettings.customPadding.mobile, "") %}
+{% set inlineMargin    = WidgetHelper.getInlineSpacings(spacingSettings, "", spacingSettings.customMargin.mobile) %}
+{% set spacingPadding  = WidgetHelper.getSpacingClasses(spacingSettings, spacingSettings.customPadding.mobile, "") %}
+{% set spacingMargin   = WidgetHelper.getSpacingClasses(spacingSettings, "",spacingSettings.customMargin.mobile) %}
+
+{{ Twig.import("ComponentLoader", "Feedback::Macros.ComponentLoader") }}
 {{ Twig.print(Twig.call("ComponentLoader.importTemplate", ["FeedbackForm"])) }}
 {{ Twig.print(Twig.call("ComponentLoader.importTemplate", ["FeedbackList"])) }}
 {{ Twig.print(Twig.call("ComponentLoader.importTemplate", ["FeedbackListEntry"])) }}
@@ -13,16 +23,28 @@
     {{ Twig.set("variation_id", "feedbackItem.item.documents[0].data.variation.id") }}
     {{ Twig.set("counts", "feedbackItem.counts | json_encode") }}
 
-    <feedback-container
-            :item-id="{{ Twig.print("item_id") }}"
-            :variation-id="{{ Twig.print("variation_id") }}"
-            :counts="{{ Twig.print("counts") }}">
-    </feedback-container>
+    <div class="widget widget-feedback widget-{{ appearance | default("primary") }} {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
+            {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
+        <feedback-container class="widget-inner"
+                :item-id="{{ Twig.print("item_id") }}"
+                :variation-id="{{ Twig.print("variation_id") }}"
+                :counts="{{ Twig.print("counts") }}"
+                padding-classes="{{ spacingPadding }}"
+                padding-inline-styles="{{ inlinePadding }}">
+        </feedback-container>
+    </div>
 {% else %}
-    <feedback-container
-            :item-id="0"
-            :variation-id="0"
-            :counts="{}">
-    </feedback-container>
+    <div class="widget widget-feedback widget-{{ appearance | default("primary") }} {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
+            {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
+        <feedback-container class="widget-inner"
+                :item-id="0"
+                :variation-id="0"
+                :counts="{}">
+        </feedback-container>
+    </div>
+
+    {#<div class="widget widget-feedback">
+        Hier könnte ihre Werbung stehen!
+    </div>#}
 {% endif %}
 

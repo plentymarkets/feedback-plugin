@@ -23,7 +23,7 @@
             </div>
         </div>
         <hr>
-        <div class="row my-2">
+        <div class="row my-2" :class="paddingClasses" :style="paddingInlineStyles">
             <div class="col-sm-6">
                 <div class="feedback-bars">
                     <div class="feedback-bar-wrap">
@@ -87,7 +87,9 @@
                 :authenticated-user="authenticatedUser"
                 :item-attributes="itemAttributes"
                 @delete="showDeleteConfirmation($event)"
-                :show-controls="true">
+                :show-controls="true"
+                :padding-classes="paddingClasses"
+                :padding-inline-styles="paddingInlineStyles">
         </feedback-list>
 
         <feedback-list
@@ -97,7 +99,9 @@
                 :item-attributes="itemAttributes"
                 @load-more="loadFeedbacks()"
                 @delete="showDeleteConfirmation($event)"
-                :show-controls="false">
+                :show-controls="false"
+                :padding-classes="paddingClasses"
+                :padding-inline-styles="paddingInlineStyles">
         </feedback-list>
 
         <p class="loading-hint" v-if="isLoading">{{ trans("Feedback::Feedback.loadingFeedbacks") }}</p>
