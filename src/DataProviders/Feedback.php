@@ -3,7 +3,6 @@
 namespace Feedback\DataProviders;
 
 use Plenty\Modules\Feedback\Contracts\FeedbackAverageRepositoryContract;
-use Plenty\Modules\Feedback\Controllers\FeedbackController;
 use Plenty\Plugin\Templates\Twig;
 
 class Feedback
@@ -16,7 +15,7 @@ class Feedback
      */
     public function call(Twig $twig, FeedbackAverageRepositoryContract $feedbackAverageRepository, $item)
     {
-        $itemId = $item['documents'][0]['data']['item']['id'];
+        $itemId = $item[0]['documents'][0]['data']['item']['id'];
         $average = $feedbackAverageRepository->getFeedbackAverage($itemId);
 
         if(empty($average)) {
