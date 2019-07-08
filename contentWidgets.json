@@ -92,8 +92,52 @@
                         }
                     }
                 }
+            },
+            "releaseFeedbacks": {
+                "type": "checkbox",
+                "required": false,
+                "defaultValue": "",
+                "options": {
+                    "name": "Widget.releaseFeedbacks",
+                    "tooltip": "Widget.releaseFeedbacksTooltip"
+                }
+            },
+            "timestampVisibility": {
+                "type": "checkbox",
+                "required": false,
+                "defaultValue": "",
+                "options": {
+                    "name": "Widget.timestampVisibility",
+                    "tooltip": "Widget.timestampVisibilityTooltip"
+                }
+            },
+            "allowNoRatingFeedback": {
+                "type": "checkbox",
+                "required": false,
+                "defaultValue": "",
+                "options": {
+                    "name": "Widget.allowNoRatingFeedback",
+                    "tooltip": "Widget.allowNoRatingFeedbackTooltip"
+                }
+            },
+            "allowFeedbacksOnlyIfPurchased": {
+                "type": "checkbox",
+                "required": false,
+                "defaultValue": "",
+                "options": {
+                    "name": "Widget.allowFeedbacksOnlyIfPurchased",
+                    "tooltip": "Widget.allowFeedbacksOnlyIfPurchasedTooltip"
+                }
+            },
+            "numberOfFeedbacks": {
+                "type": "inputText",
+                "required": false,
+                "defaultValue": "",
+                "options": {
+                    "name": "Widget.numberOfFeedbacks",
+                    "tooltip": "Widget.numberOfFeedbacksTooltip"
+                }
             }
-
         }
     }
 ]
