@@ -66,68 +66,8 @@ class FeedbackService
      */
     public function getFeedbackData($item)
     {
-        $variationId = $item['documents'][0]['data']['variation']['id'];
         $itemId = $item['documents'][0]['data']['item']['id'];
-        $systemLanguage = $this->sessionStorage->getLang();
-
-        $itemVariations = [];
-        $itemDatas = pluginApp(ItemRepositoryContract::class)->show($itemId, ['id'], $systemLanguage, ['variations']);
-        foreach($itemDatas['variations'] as $itemData){
-            $itemVariations[] = $itemData['id'];
-        }
-
-        $itemAttributes = [];
-        foreach($itemVariations as $itemVariation){
-            $variationAttributes = pluginApp(VariationRepositoryContract::class)->show($itemVariation,['variationAttributeValues' => true],'*');
-
-            $a[0] = $variationAttributes;
-            $b[0] = $a;
-            $actualVariationAttributes = $b[0][0]['variationAttributeValues'];
-
-            foreach($actualVariationAttributes as $variationAttribute){
-                $attributeName = pluginApp(AttributeNameRepositoryContract::class)->findOne($variationAttribute->attribute_id, $systemLanguage);
-                $attributeValue = pluginApp(AttributeValueNameRepositoryContract::class)->findOne($variationAttribute->value_id, $systemLanguage);
-
-                $itemAttributes[$itemVariation][$variationAttribute->attribute_id][$variationAttribute->value_id] = [
-                    'attributeName' => $attributeName->name,
-                    'attributeValue' => $attributeValue->name
-                ];
-            }
-        }
-
-        // Details about the user currently authenticated
-        $authenticatedContact = [
-            'id' => $this->accountService->getAccountContactId(),
-            'check' => $this->accountService->getIsAccountLoggedIn(),
-            'hasPurchased' => false
-        ];
-
-        $options['systemLanguage'] = $systemLanguage;
-        $options['itemAttributes'] = $itemAttributes;
-        $options['timestampVisibility'] = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_TIMESTAMP_VISIBILITY);
-        $options['allowNoRatingFeedback'] = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_NO_RATING_FEEDBACK);
-        $allowFeedbacksOnlyIfPurchased = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_FEEDBACKS_ONLY_IF_PURCHASED);
-        $options['allowFeedbacksOnlyIfPurchased'] = $allowFeedbacksOnlyIfPurchased;
-
-        $limitFeedbacksPerUserPerItem = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_MAXIMUM_NR_FEEDBACKS);
-
         $average = $this->feedbackAverageRepository->getFeedbackAverage($itemId);
-
-        if($allowFeedbacksOnlyIfPurchased && $this->accountService->getIsAccountLoggedIn()) {
-
-            // get variations bought
-            $orders = pluginApp(OrderRepositoryContract::class)->allOrdersByContact($this->accountService->getAccountContactId());
-
-            $purchasedVariations = [];
-
-            foreach ($orders->getResult() as $order) {
-                foreach ($order->orderItems as $orderItem) {
-                    $purchasedVariations[] = $orderItem->itemVariationId;
-                }
-            }
-
-            $authenticatedContact['hasPurchased'] = in_array($variationId, $purchasedVariations) ? true : false;
-        }
 
         if(empty($average)) {
 
@@ -159,40 +99,7 @@ class FeedbackService
             $counts['highestCount'] = $highestCount;
         }
 
-
-        if($authenticatedContact['check']) {
-            // Pagination settings for currently authenticated user's feedbacks
-            $page = $this->request->get('page', 1);
-            $itemsPerPage = $this->request->get('itemsPerPage', 50);
-
-            $with = [];
-            $filters = [
-                'itemId' => $itemId,
-                'sourceId' => $authenticatedContact['id']
-            ];
-
-            // List of currently authenticated user's feedbacks
-            $feedbacks = $this->listFeedbacks($this->feedbackRepository, $page, $itemsPerPage, $with, $filters);
-            $feedbackResults = $feedbacks->getResult();
-
-            foreach($feedbackResults as &$feedback) {
-                if($feedback->targetRelation->feedbackRelationType == 'variation') {
-                    $feedback->targetRelation->variationAttributes = json_decode($feedback->targetRelation->targetRelationName);
-                }
-            }
-
-            if(!is_null($limitFeedbacksPerUserPerItem) && $limitFeedbacksPerUserPerItem != 0) {
-                $authenticatedContact['limitReached'] = $limitFeedbacksPerUserPerItem <= $feedbacks->getTotalCount() ? true : false;
-            } else {
-                $authenticatedContact['limitReached'] = false;
-            }
-
-            $data['feedbacks'] = $feedbackResults;
-        }
-
-        $data['options'] = $options;
         $data['counts'] = $counts;
-        $data['authenticatedContact'] = $authenticatedContact;
         $data['item'] = $item;
 
         return $data;
