@@ -64,7 +64,7 @@ class FeedbackService
      * @param $item
      * @return mixed
      */
-    public function getFeedback($item)
+    public function getFeedbackData($item)
     {
         $variationId = $item['documents'][0]['data']['variation']['id'];
         $itemId = $item['documents'][0]['data']['item']['id'];

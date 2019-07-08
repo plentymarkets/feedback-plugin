@@ -18,7 +18,7 @@
 {{ Twig.print(Twig.call("ComponentLoader.importTemplate", ["FeedbackContainer"])) }}
 
 {% if not isPreview %}
-    {{ Twig.set("feedbackItem", Twig.call("feedbackServices.feedback.getFeedback", [Twig.var("item")])) }}
+    {{ Twig.set("feedbackItem", Twig.call("feedbackServices.feedback.getFeedbackData", [Twig.var("item")])) }}
     {{ Twig.set("item_id", "feedbackItem.item.documents[0].data.item.id") }}
     {{ Twig.set("variation_id", "feedbackItem.item.documents[0].data.variation.id") }}
     {{ Twig.set("counts", "feedbackItem.counts | json_encode") }}
