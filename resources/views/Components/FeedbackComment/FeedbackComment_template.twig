@@ -44,16 +44,15 @@
             </strong>
         </span>
 
-        {% if config('Feedback.timestampVisibility') == 'true' %}
-            <span class="feedback-info-segment">
-                <i class="fa fa-calendar text-muted"></i>
-                {% set dateFormat = trans("Ceres::Template.devDateFormatMoment") %}
-                {% if dateFormat is empty %}
-                    {% set dateFormat = "DD.MM.YYYY" %}
-                {% endif %}
-                ${ feedback.createdAt | moment("{{ dateFormat }}") }
-            </span>
-        {% endif %}
+        <span class="feedback-info-segment"
+            v-if="options.timestampVisibility.mobile">
+            <i class="fa fa-calendar text-muted"></i>
+            {% set dateFormat = trans("Ceres::Template.devDateFormatMoment") %}
+            {% if dateFormat is empty %}
+                {% set dateFormat = "DD.MM.YYYY" %}
+            {% endif %}
+            ${ feedback.createdAt | moment("{{ dateFormat }}") }
+        </span>
 
         <span class="feedback-info-segment btn btn-sm btn-default"
               @click="replyFormVisible = !replyFormVisible"
@@ -91,7 +90,8 @@
                 :show-controls="showControls"
                 @delete="$emit('delete', $event)"
                 :padding-classes="paddingClasses"
-                :padding-inline-styles="paddingInlineStyles">
+                :padding-inline-styles="paddingInlineStyles"
+                :options="options">
         </feedback-list-entry>
     </div>
 </div>

@@ -4,7 +4,7 @@
 
             template: '#vue-feedback-container',
             delimiters: ["${", "}"],
-            props: ['itemId', 'variationId', 'counts', 'paddingClasses', 'paddingInlineStyles'],
+            props: ['itemId', 'variationId', 'counts', 'options', 'paddingClasses', 'paddingInlineStyles'],
 
             data: function()
             {
@@ -44,6 +44,11 @@
                     return $.ajax({
                         type:           'GET',
                         url:            '/rest/feedbacks/user/' + _self.itemId + '/' + _self.variationId,
+                        data:
+                        {
+                            "allowFeedbacksOnlyIfPurchased": _self.options.allowFeedbacksOnlyIfPurchased.mobile,
+                            "numberOfFeedbacks": _self.options.numberOfFeedbacks.mobile
+                        },
                         success:        function(data)
                         {
                             _self.authenticatedUser = data;

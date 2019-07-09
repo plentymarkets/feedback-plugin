@@ -36,7 +36,8 @@
                 :show-controls="showControls"
                 @delete="$emit('delete', $event)"
                 :padding-classes="paddingClasses"
-                :padding-inline-styles="paddingInlineStyles">
+                :padding-inline-styles="paddingInlineStyles"
+                :options="options">
         </feedback-comment>
 
         <div v-if="!!editableFeedback && isReply">

@@ -74,6 +74,7 @@
                         :variation-id="variationId"
                         :rating-required="{% if config('Feedback.allowNoRatingFeedback') == 'true' %}false{% else %}true{% endif %}"
                         :authenticated-user="authenticatedUser"
+                        :options="options"
                         @feedback-added="onFeedbackAdded($event)">
                 </feedback-form>
             </div>
@@ -89,7 +90,8 @@
                 @delete="showDeleteConfirmation($event)"
                 :show-controls="true"
                 :padding-classes="paddingClasses"
-                :padding-inline-styles="paddingInlineStyles">
+                :padding-inline-styles="paddingInlineStyles"
+                :options="options">
         </feedback-list>
 
         <feedback-list
@@ -101,7 +103,8 @@
                 @delete="showDeleteConfirmation($event)"
                 :show-controls="false"
                 :padding-classes="paddingClasses"
-                :padding-inline-styles="paddingInlineStyles">
+                :padding-inline-styles="paddingInlineStyles"
+                :options="options">
         </feedback-list>
 
         <p class="loading-hint" v-if="isLoading">{{ trans("Feedback::Feedback.loadingFeedbacks") }}</p>
