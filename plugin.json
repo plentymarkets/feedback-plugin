@@ -53,11 +53,6 @@
             "defaultLayoutContainer": "Ceres::Template.Style"
         },
         {
-            "key": "Feedback\\DataProviders\\Feedback",
-            "name": "Feedback ratings",
-            "description": "Feedback ratings"
-        },
-        {
             "key": "Feedback\\DataProviders\\FeedbackCategoryRatings",
             "name": "Feedback category ratings",
             "description": "Feedback category ratings",
