@@ -65,6 +65,8 @@
                             requestBody.ratingValue = editableFeedback.ratingValue;
                         }
 
+                        requestBody.releaseFeedbacks = _self.options.releaseFeedbacks.mobile;
+
                         this.isLoading = true;
                         $.ajax({
                             type: "PUT",

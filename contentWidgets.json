@@ -130,7 +130,7 @@
                 }
             },
             "numberOfFeedbacks": {
-                "type": "inputText",
+                "type": "number",
                 "required": false,
                 "defaultValue": 1,
                 "options": {

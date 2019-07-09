@@ -115,18 +115,17 @@ class FeedbackService
             $options['feedbackRelationTargetType'] = 'variation';
 
             // Limit the feedbacks count of a user per item
-            $limitPerUserPerItem = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_MAXIMUM_NR_FEEDBACKS);
+            $numberOfFeedbacks = (int) $this->request->input("options.numberOfFeedbacks");
             // Default visibility of the feedback
-            $options['isVisible'] = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY);
+            $options['isVisible'] = $this->request->input("options.releaseFeedbacks") === 'true';
             // Allow feedbacks with no rating
-            $allowNoRatingFeedbacks = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_NO_RATING_FEEDBACK);
+            $allowNoRatingFeedbacks = $this->request->input("options.allowNoRatingFeedbacks") === 'true';
+            // Allow creation of feedbacks only if the item/variation was already bought
+            $allowFeedbacksOnlyIfPurchased = $this->request->input("options.allowFeedbacksOnlyIfPurchased") === 'true';
 
             if (!$allowNoRatingFeedbacks && empty($this->request->input('ratingValue'))) {
                 return 'Can\'t create review with no rating';
             }
-
-            // Allow creation of feedbacks only if the item/variation was already bought
-            $allowFeedbacksOnlyIfPurchased = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_FEEDBACKS_ONLY_IF_PURCHASED);
 
             // get variations bought
             $orders = pluginApp(OrderRepositoryContract::class)->allOrdersByContact($creatorContactId);
@@ -140,7 +139,6 @@ class FeedbackService
             }
 
             if (in_array($this->request->input('targetId'), $purchasedVariations)) {
-
                 $creatorPurchasedThisVariation = true;
                 $options['feedbackRelationSources'][] = [
                     "feedbackRelationSourceType" => 'orderItem',
@@ -152,7 +150,7 @@ class FeedbackService
                 return 'Not allowed to create review without purchasing the item first';
             }
 
-            if (!empty($limitPerUserPerItem) && $limitPerUserPerItem != 0) {
+            if (!empty($numberOfFeedbacks) && $numberOfFeedbacks != 0) {
 
                 // Get the feedbacks that this user created on this item
                 $countFeedbacksOfUserPerItem = $this->listFeedbacks(1, 50, [], [
@@ -160,7 +158,7 @@ class FeedbackService
                     'targetId' => $options['feedbackRelationTargetId']
                 ])->getTotalCount();
 
-                if ($countFeedbacksOfUserPerItem >= $limitPerUserPerItem) {
+                if ($countFeedbacksOfUserPerItem >= $numberOfFeedbacks) {
                     return 'Too many reviews';
                 }
             }
@@ -200,8 +198,7 @@ class FeedbackService
     public function update($feedbackId)
     {
         $data = $this->request->all();
-        $isVisibleAutomatically = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY);
-        $data['isVisible'] = $isVisibleAutomatically;
+        $data['isVisible'] = $data['releaseFeedbacks'] === "true";
 
         return $this->feedbackRepository->updateFeedback($data, $feedbackId);
     }

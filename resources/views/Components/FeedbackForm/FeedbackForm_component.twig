@@ -44,6 +44,14 @@
 
                     this.isLoading = true;
 
+                    let options = {};
+                    options.numberOfFeedbacks = this.options.numberOfFeedbacks.mobile;
+                    options.releaseFeedbacks = this.options.releaseFeedbacks.mobile;
+                    options.allowNoRatingFeedback = this.options.allowNoRatingFeedback.mobile;
+                    options.allowFeedbacksOnlyIfPurchased = this.options.allowFeedbacksOnlyIfPurchased.mobile;
+                    this.feedback.options = options;
+
+
                     var _self = this;
                     $.ajax({
                         type: 'POST',
