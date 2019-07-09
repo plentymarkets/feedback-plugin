@@ -2,11 +2,11 @@
 
 # Feedback Plugin
 
-This is the **Feedback Plugin** plugin for the Shop Builder developed by plentymarkets.
+This is the **Feedback** plugin for the Shop Builder developed by plentymarkets.
 
 ## Requirements
 
-This is a plugin for [plentymarkets 7](https://www.plentymarkets.com). The [IO](https://github.com/plentymarkets/plugin-io) plugin is required to run the plentymarkets **Google Maps Widget** plugin.
+This is a plugin for [plentymarkets 7](https://www.plentymarkets.com). The [IO](https://github.com/plentymarkets/plugin-io) plugin is required to run the plentymarkets **Feedback** plugin.
 
 ## Installing
 
