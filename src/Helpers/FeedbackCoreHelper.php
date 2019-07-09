@@ -36,7 +36,7 @@ class FeedbackCoreHelper
      */
     public function configValue(string $key)
     {
-        return  $this->config->get(self::PLUGIN_NAME . '.' . $key);
+        return $this->config->get(self::PLUGIN_NAME . '.' . $key);
     }
 
     /**

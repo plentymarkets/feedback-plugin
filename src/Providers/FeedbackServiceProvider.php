@@ -1,4 +1,5 @@
 <?php
+
 namespace Feedback\Providers;
 
 use Feedback\Extensions\FeedbackFacet;
@@ -26,21 +27,23 @@ class FeedbackServiceProvider extends ServiceProvider
         $showRatingSorting = $coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_SHOW_RATING_SORTING);
 
         if ($showRatingFacet) {
-             //add feedback facet extension
-             $dispatcher->listen('IO.initFacetExtensions', function (FacetExtensionContainer $facetExtensionContainer) {
+            //add feedback facet extension
+            $dispatcher->listen('IO.initFacetExtensions', function (FacetExtensionContainer $facetExtensionContainer) {
                 $facetExtensionContainer->addFacetExtension(pluginApp(FeedbackFacet::class));
             });
         }
 
-        if ($showRatingSorting) {
-             //add feedback sorting
+        if ($showRatingSorting) {   // Sorting on CategoryPage
+            //add feedback sorting
             $dispatcher->listen('IO.initAdditionalSorting', function (ItemService $itemService) {
-                $itemService->addAdditionalItemSorting('item.feedbackDecimal_desc', 'Feedback::Feedback.customerReviews');
+                $itemService->addAdditionalItemSorting('item.feedbackDecimal_desc',
+                    'Feedback::Feedback.customerReviews');
             });
         }
 
-        $dispatcher->listen('IO.Resources.Import', function(ResourceContainer $resourceContainer) { // TODO: Lazy load with the Vue Templates, needs JS refactoring: Remove jQuery
-            $resourceContainer->addScriptTemplate('Feedback::Components.Components' );
+        $dispatcher->listen('IO.Resources.Import', function (ResourceContainer $resourceContainer
+        ) { // TODO: Lazy load with the Vue Templates, needs JS refactoring: Remove jQuery
+            $resourceContainer->addScriptTemplate('Feedback::Components.Components');
         });
     }
 

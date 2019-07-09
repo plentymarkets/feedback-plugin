@@ -1,4 +1,5 @@
 <?php
+
 namespace Feedback\Widgets;
 
 use Ceres\Widgets\Helper\BaseWidget;

@@ -1,4 +1,5 @@
 <?php
+
 namespace Feedback\DataProviders;
 
 use Plenty\Plugin\Templates\Twig;

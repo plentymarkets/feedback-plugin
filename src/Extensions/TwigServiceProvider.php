@@ -10,17 +10,17 @@ class TwigServiceProvider extends Twig_Extension
     {
     }
 
-    public function getName():string
+    public function getName(): string
     {
         return "Feedback_Extension_TwigServiceProvider";
     }
 
-    public function getFilters():array
+    public function getFilters(): array
     {
         return [];
     }
 
-    public function getFunctions():array
+    public function getFunctions(): array
     {
         return [];
     }
@@ -29,10 +29,10 @@ class TwigServiceProvider extends Twig_Extension
      * Expose the TwigExtension
      * @return array
      */
-    public function getGlobals():array
+    public function getGlobals(): array
     {
         return [
-            "feedbackServices" => pluginApp( TwigFeedbackServiceContainer ::class )
+            "feedbackServices" => pluginApp(TwigFeedbackServiceContainer ::class)
         ];
     }
 }
