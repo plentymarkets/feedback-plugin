@@ -41,18 +41,6 @@
     "containers": [],
     "dataProviders": [
         {
-            "key": "Feedback\\DataProviders\\Scripts",
-            "name": "Feedback Javascript",
-            "description": "Javascript code for feedbacks",
-            "defaultLayoutContainer": "Ceres::Script.Loader"
-        },
-        {
-            "key": "Feedback\\DataProviders\\Styles",
-            "name": "Feedback CSS (Ceres)",
-            "description": "CSS extension for Ceres",
-            "defaultLayoutContainer": "Ceres::Template.Style"
-        },
-        {
             "key": "Feedback\\DataProviders\\FeedbackCategoryRatings",
             "name": "Feedback category ratings",
             "description": "Feedback category ratings",
