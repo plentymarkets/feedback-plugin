@@ -35,6 +35,6 @@ class FeedbackCategoryRatings
         $showEmptyRatingsInCategoryView = $coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_SHOW_EMPTY_RATINGS_IN_CATEGORY_VIEW);
         $data['options']['showEmptyRatingsInCategoryView'] = $showEmptyRatingsInCategoryView;
 
-        return $twig->render('Feedback::DataProvider.CategoryRatings.CategoryAverageRating', $data);
+        return $twig->render('Feedback::DataProvider.CategoryAverageRating', $data);
     }
 }

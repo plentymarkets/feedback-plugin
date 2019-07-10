@@ -10,11 +10,20 @@
 {% set spacingPadding  = WidgetHelper.getSpacingClasses(spacingSettings, spacingSettings.customPadding.mobile, "") %}
 {% set spacingMargin   = WidgetHelper.getSpacingClasses(spacingSettings, "",spacingSettings.customMargin.mobile) %}
 
-{{ Twig.if("services.template.isCurrentTemplate('tpl.category.item')") }}
-    {{ Twig.set("feedbackItem", Twig.call("feedbackServices.feedback.getFeedbackAverageDataSingleItem", [Twig.var("itemData")])) }}
-{{ Twig.elseif("services.template.isCurrentTemplate('tpl.item')") }}
-    {{ Twig.set("feedbackItem", Twig.call("feedbackServices.feedback.getFeedbackAverageDataSingleItem", [Twig.var("item")])) }}
-{{ Twig.endif() }}
+{% if not isPreview %}
+    {{ Twig.if("services.template.isCurrentTemplate('tpl.category.item')") }}
+        {{ Twig.set("feedbackItem", Twig.call("feedbackServices.feedback.getFeedbackAverageDataSingleItem", [Twig.var("itemData")])) }}
+    {{ Twig.elseif("services.template.isCurrentTemplate('tpl.item')") }}
+        {{ Twig.set("feedbackItem", Twig.call("feedbackServices.feedback.getFeedbackAverageDataSingleItem", [Twig.var("item")])) }}
+    {{ Twig.endif() }}
+{% else %}
+    {{ Twig.if("services.template.isCurrentTemplate('tpl.category.item')") }}
+        {{ Twig.set("feedbackItem", Twig.call("feedbackServices.feedback.getFeedbackAverageDataSingleItem", [Twig.var("itemData")])) }}
+    {{ Twig.elseif("services.template.isCurrentTemplate('tpl.item')") }}
+        {{ Twig.set("item", Twig.call("services.itemList.getItemList", ['random'])) }}
+        {{ Twig.set("feedbackItem", Twig.call("feedbackServices.feedback.getFeedbackAverageDataSingleItem", [Twig.var("item")])) }}
+    {{ Twig.endif() }}
+{% endif %}
 
 <div class="widget widget-feedback-average widget-{{ appearance | default("primary") }} {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
         {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
