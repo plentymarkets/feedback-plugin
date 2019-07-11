@@ -140,6 +140,15 @@
                     "name": "Widget.numberOfFeedbacks",
                     "tooltip": "Widget.numberOfFeedbacksTooltip"
                 }
+            },
+            "feedbacksPerPage": {
+                "type": "number",
+                "required": false,
+                "defaultValue": 10,
+                "options": {
+                    "name": "Widget.feedbacksPerPage",
+                    "tooltip": "Widget.feedbacksPerPageTooltip"
+                }
             }
         }
     },

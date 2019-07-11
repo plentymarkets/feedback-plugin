@@ -13,7 +13,7 @@
             :options="options">
     </feedback-list-entry>
 
-    <a class="btn btn-secondary btn-block feedback-loadmore" v-if="!isLastPage" @click="onLoadMoreClicked()">
+    <a class="btn btn-default btn-block feedback-loadmore" v-if="!isLastPage" @click="onLoadMoreClicked()">
         {{ trans("Feedback::Feedback.loadMore") }}
     </a>
 </div>

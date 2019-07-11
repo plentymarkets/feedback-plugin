@@ -276,7 +276,7 @@ class FeedbackService
         }
 
         $page = isset($page) && $page != 0 ? $page : 1;
-        $itemsPerPage = 10;
+        $itemsPerPage = (int) $this->request->input("feedbacksPerPage");
         $with = [];
         $filters = [
             'isVisible' => 1,

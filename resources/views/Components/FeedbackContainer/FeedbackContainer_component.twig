@@ -66,6 +66,9 @@
                     return $.ajax({
                         type:           'GET',
                         url:            '/rest/feedbacks/feedback/helper/feedbacklist/' + _self.itemId + '/' + page,
+                        data: {
+                            "feedbacksPerPage": _self.options.feedbacksPerPage.mobile
+                        },
                         success:        function(data)
                         {
                             _self.feedbacks = _self.feedbacks.concat( data.feedbacks );
