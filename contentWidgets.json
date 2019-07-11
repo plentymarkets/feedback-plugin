@@ -16,7 +16,7 @@
                 "defaultValue": "",
                 "options": {
                     "name": "Widget.customClass",
-                    "tooltip": "Widget.customClassTooltip"
+                    "tooltipText": "Widget.customClassTooltip"
                 }
             },
             "appearance": {
@@ -102,7 +102,7 @@
                 "defaultValue": false,
                 "options": {
                     "name": "Widget.releaseFeedbacks",
-                    "tooltip": "Widget.releaseFeedbacksTooltip"
+                    "tooltipText": "Widget.releaseFeedbacksTooltip"
                 }
             },
             "timestampVisibility": {
@@ -111,7 +111,7 @@
                 "defaultValue": false,
                 "options": {
                     "name": "Widget.timestampVisibility",
-                    "tooltip": "Widget.timestampVisibilityTooltip"
+                    "tooltipText": "Widget.timestampVisibilityTooltip"
                 }
             },
             "allowNoRatingFeedback": {
@@ -120,7 +120,7 @@
                 "defaultValue": false,
                 "options": {
                     "name": "Widget.allowNoRatingFeedback",
-                    "tooltip": "Widget.allowNoRatingFeedbackTooltip"
+                    "tooltipText": "Widget.allowNoRatingFeedbackTooltip"
                 }
             },
             "allowFeedbacksOnlyIfPurchased": {
@@ -129,7 +129,7 @@
                 "defaultValue": false,
                 "options": {
                     "name": "Widget.allowFeedbacksOnlyIfPurchased",
-                    "tooltip": "Widget.allowFeedbacksOnlyIfPurchasedTooltip"
+                    "tooltipText": "Widget.allowFeedbacksOnlyIfPurchasedTooltip"
                 }
             },
             "numberOfFeedbacks": {
@@ -138,7 +138,7 @@
                 "defaultValue": 1,
                 "options": {
                     "name": "Widget.numberOfFeedbacks",
-                    "tooltip": "Widget.numberOfFeedbacksTooltip"
+                    "tooltipText": "Widget.numberOfFeedbacksTooltip"
                 }
             },
             "feedbacksPerPage": {
@@ -147,7 +147,7 @@
                 "defaultValue": 10,
                 "options": {
                     "name": "Widget.feedbacksPerPage",
-                    "tooltip": "Widget.feedbacksPerPageTooltip"
+                    "tooltipText": "Widget.feedbacksPerPageTooltip"
                 }
             }
         }
@@ -169,7 +169,7 @@
                 "defaultValue": "",
                 "options": {
                     "name": "Widget.customClass",
-                    "tooltip": "Widget.customClassTooltip"
+                    "tooltipText": "Widget.customClassTooltip"
                 }
             },
             "appearance": {
