@@ -155,7 +155,7 @@
     {
         "identifier": "Feedback::FeedbackAverageWidget",
         "label": "Widget.feedbackAverageLabel",
-        "previewImageURL": "/images/feedback.svg",
+        "previewImageURL": "/images/feedback-average.svg",
         "type": "item",
         "categories": [
             "item"
