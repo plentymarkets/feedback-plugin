@@ -6,6 +6,7 @@
 {% set inlineMargin    = WidgetHelper.getInlineSpacings(spacingSettings, "", spacingSettings.customMargin.mobile) %}
 {% set spacingMargin   = WidgetHelper.getSpacingClasses(spacingSettings, "",spacingSettings.customMargin.mobile) %}
 {% set sizeOfStars = widget.settings.sizeOfStars.mobile %}
+{% set showEmptyRatings = widget.settings.showEmptyRatings.mobile %}
 
 {% if not isPreview %}
     {{ Twig.if("services.template.isCurrentTemplate('tpl.category.item')") }}
@@ -25,7 +26,7 @@
 <div class="widget widget-feedback-average {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
         {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
     <div class="feedback-stars-average {{ sizeOfStars }}" id="feedback-stars-average">
-        {{ Twig.if("feedbackItem.counts.averageValue > 0 or widget.settings.showEmptyRatings.mobile") }}
+        {{ Twig.if("feedbackItem.counts.averageValue > 0 or " ~ (showEmptyRatings ? 'true' : 'false')) }}
             <div class="feedback-stars-background clearfix">
                 {% for i in 1..5 %}
                     <div class="feedback-star">
