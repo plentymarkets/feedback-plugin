@@ -300,4 +300,25 @@
   font-size: 17px;
 }
 
+.widget-feedback-average .small-stars {
+  width: 85px;
+  margin-left: 0px;
+}
+.widget-feedback-average .small-stars .feedback-star {
+  height: 20px;
+  width: 17px;
+  line-height: 22px;
+  font-size: 17px;
+}
+.widget-feedback-average .big-stars {
+  width: 120px;
+  margin-left: 0px;
+}
+.widget-feedback-average .big-stars .feedback-star {
+  height: 30px;
+  width: 24px;
+  line-height: 32px;
+  font-size: 24px;
+}
+
 /*# sourceMappingURL=main.css.map */

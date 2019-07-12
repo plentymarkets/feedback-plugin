@@ -2,13 +2,10 @@
 {% import "Ceres::Widgets.Helper.WidgetHelper" as WidgetHelper %}
 
 {% set customClass = widget.settings.customClass.mobile %}
-{% set appearance = widget.settings.appearance.mobile %}
-
 {% set spacingSettings = widget.settings.spacing %}
-{% set inlinePadding   = WidgetHelper.getInlineSpacings(spacingSettings, spacingSettings.customPadding.mobile, "") %}
 {% set inlineMargin    = WidgetHelper.getInlineSpacings(spacingSettings, "", spacingSettings.customMargin.mobile) %}
-{% set spacingPadding  = WidgetHelper.getSpacingClasses(spacingSettings, spacingSettings.customPadding.mobile, "") %}
 {% set spacingMargin   = WidgetHelper.getSpacingClasses(spacingSettings, "",spacingSettings.customMargin.mobile) %}
+{% set sizeOfStars = widget.settings.sizeOfStars.mobile %}
 
 {% if not isPreview %}
     {{ Twig.if("services.template.isCurrentTemplate('tpl.category.item')") }}
@@ -25,19 +22,23 @@
     {{ Twig.endif() }}
 {% endif %}
 
-<div class="widget widget-feedback-average widget-{{ appearance | default("primary") }} {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
+<div class="widget widget-feedback-average {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
         {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
-    <div class="feedback-stars-average feedback-category-view" id="feedback-stars-average">
-        {{ Twig.if("feedbackItem.counts.averageValue > 0 or feedbackItem.options.showEmptyRatingsInCategoryView") }}
+    <div class="feedback-stars-average {{ sizeOfStars }}" id="feedback-stars-average">
+        {{ Twig.if("feedbackItem.counts.averageValue > 0 or widget.settings.showEmptyRatings.mobile") }}
             <div class="feedback-stars-background clearfix">
                 {% for i in 1..5 %}
-                    <div class="feedback-star"><i class="fa fa-star"></i></div>
+                    <div class="feedback-star">
+                        <i class="fa fa-star"></i>
+                    </div>
                 {% endfor %}
             </div>
             <div class="feedback-stars-overlay-wrap" style="width:{{ Twig.print("(feedbackItem.counts.averageValue * 100) / 5") }}%">
                 <div class="feedback-stars-overlay clearfix">
                     {% for i in 1..5 %}
-                        <div class="feedback-star"><i class="fa fa-star"></i></div>
+                        <div class="feedback-star">
+                            <i class="fa fa-star"></i>
+                        </div>
                     {% endfor %}
                 </div>
             </div>
