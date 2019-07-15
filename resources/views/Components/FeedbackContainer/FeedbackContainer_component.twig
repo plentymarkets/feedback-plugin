@@ -121,6 +121,30 @@
                                         return feedback;
                                     });
                                 }
+
+                                // If visible, adjust counts
+                                if(_self.feedbackToDelete.feedbackObject.isVisible && parentFeedbackId === null) {
+                                    let feedback = _self.feedbackToDelete.feedbackObject;
+                                    let ratingValue = parseInt(feedback.feedbackRating.rating.ratingValue);
+                                    if ( ratingValue > 0 && ratingValue <= 5 )
+                                    {
+                                        _self.counts['ratingsCountOf' + ratingValue]--;
+                                    }
+                                    _self.counts.ratingsCountTotal--;
+
+                                    // Calculate average anew
+                                    let average = 0;
+                                    average += _self.counts['ratingsCountOf5'] * 5;
+                                    average += _self.counts['ratingsCountOf4'] * 4;
+                                    average += _self.counts['ratingsCountOf3'] * 3;
+                                    average += _self.counts['ratingsCountOf2'] * 2;
+                                    average += _self.counts['ratingsCountOf1'] * 1;
+                                    average /= _self.counts.ratingsCountTotal;
+
+                                    _self.counts.averageValue = average;
+                                    _self.$root.$emit('averageRecalc');
+                                }
+
                                 if ( parentFeedbackId === null )
                                 {
                                     _self.feedbacks = filterFeedbackList(_self.feedbacks, feedbackId);
@@ -131,11 +155,12 @@
                                     _self.feedbacks = filterReplyList(_self.feedbacks, parentFeedbackId, feedbackId);
                                     _self.authenticatedUser.feedbacks = filterReplyList(_self.authenticatedUser.feedbacks, parentFeedbackId, feedbackId);
                                 }
+
+                                _self.feedbackToDelete = null;
                             }
                         });
                     }
                     $(this.$refs.confirmDeleteModal).modal('hide');
-                    this.feedbackToDelete = null;
 
                 },
                 onFeedbackAdded(feedback)

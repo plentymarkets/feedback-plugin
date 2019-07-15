@@ -25,7 +25,8 @@
                     this.$emit('delete', {
                         feedbackId: this.feedback.id,
                         isReply: this.isReply,
-                        parentFeedbackId: parentFeedbackId
+                        parentFeedbackId: parentFeedbackId,
+                        feedbackObject: this.feedback
                     });
                 },
 
