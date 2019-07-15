@@ -4,7 +4,7 @@
 
             template: '#vue-feedback-form',
             delimiters: ["${", "}"],
-            props: ['variationId', 'ratingRequired', 'authenticatedUser', 'options'],
+            props: ['variationId', 'authenticatedUser', 'options'],
 
             data: function()
             {
@@ -30,7 +30,7 @@
                         return;
                     }
 
-                    if ( this.ratingRequired && this.feedback.ratingValue <= 0 )
+                    if ( this.options.allowNoRatingFeedback.mobile && this.feedback.ratingValue <= 0 )
                     {
                         this.ratingMissing = true;
                         return;

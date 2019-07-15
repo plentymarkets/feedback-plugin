@@ -194,15 +194,6 @@
                     }
                 }
             },
-            "showEmptyRatings": {
-                "type": "checkbox",
-                "required": false,
-                "defaultValue": true,
-                "options": {
-                    "name": "Widget.showEmptyRatings",
-                    "tooltipText": "Widget.showEmptyRatingsTooltip"
-                }
-            },
             "sizeOfStars": {
                 "type": "select",
                 "required": false,
@@ -222,6 +213,15 @@
                             "position": 1
                         }
                     ]
+                }
+            },
+            "showEmptyRatings": {
+                "type": "checkbox",
+                "required": false,
+                "defaultValue": true,
+                "options": {
+                    "name": "Widget.showEmptyRatings",
+                    "tooltipText": "Widget.showEmptyRatingsTooltip"
                 }
             }
         }

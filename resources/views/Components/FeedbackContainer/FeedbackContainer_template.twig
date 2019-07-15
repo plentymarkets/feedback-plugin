@@ -72,7 +72,6 @@
                 <feedback-form
                         v-if="!isLoading"
                         :variation-id="variationId"
-                        :rating-required="{% if config('Feedback.allowNoRatingFeedback') == 'true' %}false{% else %}true{% endif %}"
                         :authenticated-user="authenticatedUser"
                         :options="options"
                         @feedback-added="onFeedbackAdded($event)">
