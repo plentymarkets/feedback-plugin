@@ -68,7 +68,9 @@
                             _self.isLoading = false;
                             _self.feedback['message'] = '';
                             _self.feedback['title'] = '';
-                            _self.feedback['ratingValue'] = 0
+                            _self.feedback['ratingValue'] = 0;
+                            _self.titleMissing = false;
+                            _self.ratingMissing = false;
                         },
                         error: function (jqXHR, textStatus, errorThrown)
                         {
