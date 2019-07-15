@@ -9,36 +9,20 @@
 {% set showEmptyRatings = widget.settings.showEmptyRatings.mobile %}
 
 {% if not isPreview %}
-    {{ Twig.if("services.template.isCurrentTemplate('tpl.category.item')") }}
-        {{ Twig.set("feedbackItem", Twig.call("feedbackServices.feedback.getFeedbackAverageDataSingleItem", [Twig.var("itemData")])) }}
-    {{ Twig.elseif("services.template.isCurrentTemplate('tpl.item')") }}
-        {{ Twig.set("feedbackItem", Twig.call("feedbackServices.feedback.getFeedbackAverageDataSingleItem", [Twig.var("item")])) }}
-    {{ Twig.endif() }}
+    {{ Twig.set("feedbackItem", Twig.call("feedbackServices.feedback.getFeedbackAverageDataSingleItem", [Twig.var("item")])) }}
 {% else %}
     {{ Twig.set("item", Twig.call("services.itemList.getItemList", ['random'])) }}
     {{ Twig.set("feedbackItem", Twig.call("feedbackServices.feedback.getFeedbackAverageDataSingleItem", [Twig.var("item")])) }}
 {% endif %}
 
+{{ Twig.set("item_id", "item.documents[0].data.item.id") }}
+
 <div class="widget widget-feedback-average {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
         {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
-    <div class="feedback-stars-average {{ sizeOfStars }}" id="feedback-stars-average">
-        {{ Twig.if("feedbackItem.counts.averageValue > 0 or " ~ (showEmptyRatings ? 'true' : 'false')) }}
-            <div class="feedback-stars-background clearfix">
-                {% for i in 1..5 %}
-                    <div class="feedback-star">
-                        <i class="fa fa-star"></i>
-                    </div>
-                {% endfor %}
-            </div>
-            <div class="feedback-stars-overlay-wrap" style="width:{{ Twig.print("(feedbackItem.counts.averageValue * 100) / 5") }}%">
-                <div class="feedback-stars-overlay clearfix">
-                    {% for i in 1..5 %}
-                        <div class="feedback-star">
-                            <i class="fa fa-star"></i>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-        {{ Twig.endif() }}
-    </div>
+    <feedback-average
+            class="feedback-stars-average {{ sizeOfStars }}"
+            id="feedback-stars-average"
+            :item-id="{{ Twig.print("item_id") }}"
+            :options="{{ widget.settings | json_encode}}">
+    </feedback-average>
 </div>

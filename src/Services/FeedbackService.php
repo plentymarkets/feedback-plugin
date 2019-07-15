@@ -372,6 +372,21 @@ class FeedbackService
         ];
     }
 
+    public function getAverage($itemId)
+    {
+        if ((int)$itemId > 0) {
+            $average = $this->feedbackAverageRepository->getFeedbackAverage($itemId);
+        }
+
+        if( empty($average)) {
+            $counts['averageValue'] = 0;
+        } else {
+            $counts['averageValue'] = $average->averageValue;
+        }
+
+        return $counts;
+    }
+
     /**
      * @return \Plenty\Repositories\Models\PaginatedResult
      */

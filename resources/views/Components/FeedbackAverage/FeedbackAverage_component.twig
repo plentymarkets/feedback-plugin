@@ -1,0 +1,49 @@
+<script type="text/javascript">
+    (function($) {
+        Vue.component('feedback-average', {
+            template: '#vue-feedback-average',
+            delimiters: ["${", "}"],
+            props: ['itemId', 'options'],
+
+            data: function() {
+                return {
+                    counts: {}
+                };
+            },
+
+            mounted: function() {
+                this.$root.$on('averageRecalc', () => {
+                    this.getAverage();
+                });
+
+                this.getAverage();
+            },
+
+            methods: {
+                getAverage: function() {
+                    let _self = this;
+                    return $.ajax({
+                        type:           'GET',
+                        url:            '/rest/feedbacks/feedback/helper/average/' + _self.itemId,
+                        success:        function(data)
+                        {
+                            _self.counts = data;
+                        },
+                        error:          function(jqXHR, textStatus, errorThrown)
+                        {
+                            console.error(errorThrown);
+                        }
+                    });
+                }
+            },
+
+            computed: {
+                fill: function() {
+                    let fillValue = (this.counts.averageValue * 100) / 5;
+                    fillValue += "%";
+                    return fillValue;
+                }
+            }
+        });
+    })(jQuery);
+</script>

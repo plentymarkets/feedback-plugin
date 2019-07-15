@@ -57,4 +57,14 @@ class FeedbacksController extends Controller
     {
         return $feedbackService->getAuthenticatedUser($itemId, $variationId);
     }
+
+    /**
+     * @param int $itemId
+     * @param FeedbackService $feedbackService
+     * @return object
+     */
+    public function getAverage(int $itemId, FeedbackService $feedbackService)
+    {
+        return $feedbackService->getAverage($itemId);
+    }
 }
