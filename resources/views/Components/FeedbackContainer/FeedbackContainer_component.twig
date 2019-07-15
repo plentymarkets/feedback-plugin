@@ -149,6 +149,17 @@
                             this.counts['ratingsCountOf' + ratingValue]++;
                         }
                         this.counts.ratingsCountTotal++;
+
+                        // Calculate average anew
+                        let average = 0;
+                        average += this.counts['ratingsCountOf5'] * 5;
+                        average += this.counts['ratingsCountOf4'] * 4;
+                        average += this.counts['ratingsCountOf3'] * 3;
+                        average += this.counts['ratingsCountOf2'] * 2;
+                        average += this.counts['ratingsCountOf1'] * 1;
+                        average /= this.counts.ratingsCountTotal;
+
+                        this.counts.averageValue = average;
                     }
                 }
             }
