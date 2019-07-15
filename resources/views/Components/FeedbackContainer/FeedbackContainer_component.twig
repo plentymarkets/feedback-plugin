@@ -160,6 +160,8 @@
                         average /= this.counts.ratingsCountTotal;
 
                         this.counts.averageValue = average;
+
+                        this.$root.$emit('averageRecalc');
                     }
                 }
             }
