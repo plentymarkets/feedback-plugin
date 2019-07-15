@@ -199,17 +199,17 @@
                 "required": false,
                 "defaultValue": "small",
                 "options": {
-                    "name": "Widget.feedbackAverageSizeOfStars",
-                    "tooltipText": "Widget.feedbackAverageSizeOfStarsTooltip",
+                    "name": "Widget.sizeOfStars",
+                    "tooltipText": "Widget.sizeOfStarsTooltip",
                     "listBoxValues": [
                         {
                             "value": "small-stars",
-                            "caption": "Widget.feedbackAverageSizeOfStarsSmall",
+                            "caption": "Widget.sizeOfStarsSmall",
                             "position": 0
                         },
                         {
                             "value": "big-stars",
-                            "caption": "Widget.feedbackAverageSizeOfStarsBig",
+                            "caption": "Widget.sizeOfStarsBig",
                             "position": 1
                         }
                     ]
