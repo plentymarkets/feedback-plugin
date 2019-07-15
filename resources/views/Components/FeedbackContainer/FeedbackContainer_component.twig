@@ -91,9 +91,9 @@
                 {
                     if ( this.feedbackToDelete !== null )
                     {
-                        var feedbackId = this.feedbackToDelete.feedbackId;
-                        var parentFeedbackId = this.feedbackToDelete.parentFeedbackId;
-                        var _self = this;
+                        let feedbackId = this.feedbackToDelete.feedbackId;
+                        let parentFeedbackId = this.feedbackToDelete.parentFeedbackId;
+                        let _self = this;
                         $.ajax({
                             type: "DELETE",
                             url: '/rest/feedbacks/feedback/delete/' + feedbackId,
@@ -143,12 +143,12 @@
                     this.authenticatedUser.feedbacks.unshift(feedback);
                     if ( feedback.isVisible )
                     {
-                        var ratingValue = parseInt(feedback.feedbackRating.rating.ratingValue);
+                        let ratingValue = parseInt(feedback.feedbackRating.rating.ratingValue);
                         if ( ratingValue > 0 && ratingValue <= 5 )
                         {
-                            counts['ratingsCountOf' + ratingValue]++;
+                            this.counts['ratingsCountOf' + ratingValue]++;
                         }
-                        counts.ratingsCountTotal++;
+                        this.counts.ratingsCountTotal++;
                     }
                 }
             }
