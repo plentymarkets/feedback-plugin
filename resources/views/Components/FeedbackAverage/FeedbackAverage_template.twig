@@ -1,5 +1,5 @@
 <script type="x/template" id="vue-feedback-average">
-    <div v-if="options.showEmptyRatings.mobile && counts.averageValue > 0">
+    <div v-if="options.showEmptyRatings.mobile || counts.averageValue > 0 || isPreview">
         <div class="feedback-stars-background clearfix">
             <div class="feedback-star" v-for="index in 5">
                 <i class="fa fa-star"></i>

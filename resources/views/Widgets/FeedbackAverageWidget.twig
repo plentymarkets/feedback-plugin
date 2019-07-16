@@ -23,6 +23,7 @@
             class="feedback-stars-average {{ sizeOfStars }}"
             id="feedback-stars-average"
             :item-id="{{ Twig.print("item_id") }}"
-            :options="{{ widget.settings | json_encode}}">
+            :options="{{ widget.settings | json_encode}}"
+            :is-preview="{{ isPreview }}">
     </feedback-average>
 </div>

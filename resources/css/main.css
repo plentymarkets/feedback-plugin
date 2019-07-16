@@ -162,6 +162,7 @@
 }
 .feedback-container .feedback-list .feedback .feedback-comment .feedback-comment-text {
   margin-bottom: 0px;
+  word-break: break-word;
 }
 .feedback-container .feedback-list .feedback .feedback-comment .feedback-replies {
   margin-top: 20px;
