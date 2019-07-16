@@ -19,15 +19,17 @@
                 </p>
             {% endif %}
 
-            <div class="form-group" :class="{'has-danger': titleMissing}">
+            <div class="form-group">
                 <input type="text"
                        v-model="feedback.title"
                        class="form-control"
+                       :class="{'is-invalid': titleMissing}"
                        id="title"
                        name="title"
                        placeholder="{{ trans("Feedback::Feedback.title") }}"
-                       required
                        :disabled="authenticatedUser.limitReached || !authenticatedUser.hasPurchased">
+
+                <div class="invalid-feedback">{{ trans("Feedback::Feedback.titleRequired") }}</div>
             </div>
 
             <div class="form-group">
