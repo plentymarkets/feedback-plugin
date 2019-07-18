@@ -1,5 +1,5 @@
 <script type="x/template" id="vue-feedback-comment">
-<div class="feedback-comment" :class="paddingClasses" :style="paddingInlineStyles">
+<div class="feedback-comment" :class="classes" :style="styles">
     <div v-if="!isReply">
         <p class="feedback-comment-title">${ feedback.title }</p>
 
@@ -89,8 +89,8 @@
                 :is-reply="true"
                 :show-controls="showControls"
                 @delete="$emit('delete', $event)"
-                :padding-classes="paddingClasses"
-                :padding-inline-styles="paddingInlineStyles"
+                :classes="classes"
+                :styles="styles"
                 :options="options">
         </feedback-list-entry>
     </div>

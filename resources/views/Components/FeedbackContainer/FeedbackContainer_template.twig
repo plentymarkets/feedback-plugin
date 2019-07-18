@@ -23,7 +23,7 @@
             </div>
         </div>
         <hr>
-        <div class="row my-2" :class="paddingClasses" :style="paddingInlineStyles">
+        <div class="row my-2" :class="classes" :style="styles">
             <div class="col-sm-6">
                 <div class="feedback-bars">
                     <div class="feedback-bar-wrap">
@@ -88,8 +88,8 @@
                 :item-attributes="itemAttributes"
                 @delete="showDeleteConfirmation($event)"
                 :show-controls="true"
-                :padding-classes="paddingClasses"
-                :padding-inline-styles="paddingInlineStyles"
+                :classes="classes"
+                :styles="styles"
                 :options="options">
         </feedback-list>
 
@@ -101,8 +101,8 @@
                 @load-more="loadFeedbacks()"
                 @delete="showDeleteConfirmation($event)"
                 :show-controls="false"
-                :padding-classes="paddingClasses"
-                :padding-inline-styles="paddingInlineStyles"
+                :classes="classes"
+                :styles="styles"
                 :options="options">
         </feedback-list>
 
