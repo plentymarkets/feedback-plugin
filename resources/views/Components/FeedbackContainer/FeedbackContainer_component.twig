@@ -22,7 +22,11 @@
                     isLastPage: true,
                     isLoading: true,
                     itemAttributes: [],
-                    feedbackToDelete: null
+                    feedbackToDelete: null,
+                    optionsList: {
+                        releaseFeedbacks: this.options.releaseFeedbacks,
+                        timestampVisibility: this.options.timestampVisibility
+                    }
                 };
             },
 
@@ -50,8 +54,8 @@
                         url:            '/rest/feedbacks/user/' + _self.itemId + '/' + _self.variationId,
                         data:
                         {
-                            "allowFeedbacksOnlyIfPurchased": _self.options.allowFeedbacksOnlyIfPurchased.mobile,
-                            "numberOfFeedbacks": _self.options.numberOfFeedbacks.mobile
+                            "allowFeedbacksOnlyIfPurchased": _self.options.allowFeedbacksOnlyIfPurchased,
+                            "numberOfFeedbacks": _self.options.numberOfFeedbacks
                         },
                         success:        function(data)
                         {
@@ -71,7 +75,7 @@
                         type:           'GET',
                         url:            '/rest/feedbacks/feedback/helper/feedbacklist/' + _self.itemId + '/' + page,
                         data: {
-                            "feedbacksPerPage": _self.options.feedbacksPerPage.mobile
+                            "feedbacksPerPage": _self.options.feedbacksPerPage
                         },
                         success:        function(data)
                         {

@@ -45,7 +45,7 @@
         </span>
 
         <span class="feedback-info-segment"
-            v-if="options.timestampVisibility.mobile">
+            v-if="options.timestampVisibility">
             <i class="fa fa-calendar text-muted"></i>
             {% set dateFormat = trans("Ceres::Template.devDateFormatMoment") %}
             {% if dateFormat is empty %}

@@ -27,7 +27,7 @@
             :item-id="{{ Twig.print("item_id") }}"
             :variation-id="{{ Twig.print("variation_id") }}"
             :counts="{{ Twig.print("counts | json_encode") }}"
-            :options="{{ widget.settings | json_encode}}"
+            :options="{{ options | json_encode}}"
             classes="{{ spacingPadding }}"
             styles="{{ inlinePadding }}">
     </feedback-container>

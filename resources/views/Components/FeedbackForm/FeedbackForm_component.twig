@@ -30,7 +30,7 @@
                         return;
                     }
 
-                    if ( this.options.allowNoRatingFeedback.mobile && this.feedback.ratingValue <= 0 )
+                    if ( this.options.allowNoRatingFeedback && this.feedback.ratingValue <= 0 )
                     {
                         this.ratingMissing = true;
                         return;
@@ -45,10 +45,10 @@
                     this.isLoading = true;
 
                     var options = {};
-                    options.numberOfFeedbacks = this.options.numberOfFeedbacks.mobile;
-                    options.releaseFeedbacks = this.options.releaseFeedbacks.mobile;
-                    options.allowNoRatingFeedback = this.options.allowNoRatingFeedback.mobile;
-                    options.allowFeedbacksOnlyIfPurchased = this.options.allowFeedbacksOnlyIfPurchased.mobile;
+                    options.numberOfFeedbacks = this.options.numberOfFeedbacks;
+                    options.releaseFeedbacks = this.options.releaseFeedbacks;
+                    options.allowNoRatingFeedback = this.options.allowNoRatingFeedback;
+                    options.allowFeedbacksOnlyIfPurchased = this.options.allowFeedbacksOnlyIfPurchased;
                     this.feedback.options = options;
 
 

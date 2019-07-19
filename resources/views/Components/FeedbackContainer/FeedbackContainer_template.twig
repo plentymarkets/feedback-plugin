@@ -90,7 +90,7 @@
                 :show-controls="true"
                 :classes="classes"
                 :styles="styles"
-                :options="options">
+                :options="optionsList">
         </feedback-list>
 
         <feedback-list
@@ -103,7 +103,7 @@
                 :show-controls="false"
                 :classes="classes"
                 :styles="styles"
-                :options="options">
+                :options="optionsList">
         </feedback-list>
 
         <p class="loading-hint" v-if="isLoading">{{ trans("Feedback::Feedback.loadingFeedbacks") }}</p>
