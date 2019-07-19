@@ -76,7 +76,7 @@
             </textarea>
         </div>
 
-        <button class="btn btn-appearance" @click="createReply()" :disabled="!replyMessage">{{ trans("Feedback::Feedback.submitComment") }}</button>
+        <button class="btn btn-primary btn-appearance" @click="createReply()" :disabled="!replyMessage">{{ trans("Feedback::Feedback.submitComment") }}</button>
     </div>
 
     <div class="feedback-replies" v-if="!!feedback.replies && feedback.replies.length > 0 && replyListVisible">

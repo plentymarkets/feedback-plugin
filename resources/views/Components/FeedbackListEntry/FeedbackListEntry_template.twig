@@ -48,7 +48,7 @@
                           v-model="editableFeedback.message">
                 </textarea>
             </div>
-            <button class="btn btn-appearance" @click="saveEditableFeedback()">{{ trans("Feedback::Feedback.editReply") }}</button>
+            <button class="btn btn-primary btn-appearance" @click="saveEditableFeedback()">{{ trans("Feedback::Feedback.editReply") }}</button>
             <button class="btn btn-secondary feedback-edit-cancel" @click="editableFeedback = null">{{ trans("Feedback::Feedback.cancel") }}</button>
         </div>
 
@@ -81,7 +81,7 @@
                           v-model="editableFeedback.message"></textarea>
             </div>
 
-            <button class="btn btn-appearance" @click="saveEditableFeedback()">{{ trans("Feedback::Feedback.editReview") }}</button>
+            <button class="btn btn-primary btn-appearance" @click="saveEditableFeedback()">{{ trans("Feedback::Feedback.editReview") }}</button>
             <button class="btn btn-secondary feedback-edit-cancel" @click="editableFeedback = null">{{ trans("Feedback::Feedback.cancel") }}</button>
         </div>
     </div>
