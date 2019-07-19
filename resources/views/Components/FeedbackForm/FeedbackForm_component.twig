@@ -30,7 +30,7 @@
                         return;
                     }
 
-                    if ( this.options.allowNoRatingFeedback && this.feedback.ratingValue <= 0 )
+                    if ( !this.options.allowNoRatingFeedback && this.feedback.ratingValue <= 0 )
                     {
                         this.ratingMissing = true;
                         return;
@@ -44,13 +44,7 @@
 
                     this.isLoading = true;
 
-                    var options = {};
-                    options.numberOfFeedbacks = this.options.numberOfFeedbacks;
-                    options.releaseFeedbacks = this.options.releaseFeedbacks;
-                    options.allowNoRatingFeedback = this.options.allowNoRatingFeedback;
-                    options.allowFeedbacksOnlyIfPurchased = this.options.allowFeedbacksOnlyIfPurchased;
-                    this.feedback.options = options;
-
+                    this.feedback.options = this.options;
 
                     var _self = this;
                     $.ajax({

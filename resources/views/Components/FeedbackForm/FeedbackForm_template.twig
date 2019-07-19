@@ -13,11 +13,9 @@
                 {% endfor %}
             </div>
 
-            {% if config('Feedback.allowNoRatingFeedback') == 'true' %}
-                <p v-if="ratingMissing" class="feedback-error alert alert-danger">
-                    {{ trans("Feedback::Feedback.ratingRequired") }}
-                </p>
-            {% endif %}
+            <p v-if="ratingMissing && !options.allowNoRatingFeedback" class="feedback-error alert alert-danger">
+                {{ trans("Feedback::Feedback.ratingRequired") }}
+            </p>
 
             <div class="form-group">
                 <input type="text"
