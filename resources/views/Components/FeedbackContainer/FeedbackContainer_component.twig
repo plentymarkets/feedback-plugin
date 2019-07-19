@@ -95,9 +95,9 @@
                 {
                     if ( this.feedbackToDelete !== null )
                     {
-                        let feedbackId = this.feedbackToDelete.feedbackId;
-                        let parentFeedbackId = this.feedbackToDelete.parentFeedbackId;
-                        let _self = this;
+                        var feedbackId = this.feedbackToDelete.feedbackId;
+                        var parentFeedbackId = this.feedbackToDelete.parentFeedbackId;
+                        var _self = this;
                         $.ajax({
                             type: "DELETE",
                             url: '/rest/feedbacks/feedback/delete/' + feedbackId,
@@ -128,8 +128,8 @@
 
                                 // If visible, adjust counts
                                 if(_self.feedbackToDelete.feedbackObject.isVisible && parentFeedbackId === null) {
-                                    let feedback = _self.feedbackToDelete.feedbackObject;
-                                    let ratingValue = parseInt(feedback.feedbackRating.rating.ratingValue);
+                                    var feedback = _self.feedbackToDelete.feedbackObject;
+                                    var ratingValue = parseInt(feedback.feedbackRating.rating.ratingValue);
                                     if ( ratingValue > 0 && ratingValue <= 5 )
                                     {
                                         _self.counts['ratingsCountOf' + ratingValue]--;
@@ -137,7 +137,7 @@
                                     _self.counts.ratingsCountTotal--;
 
                                     // Calculate average anew
-                                    let average = 0;
+                                    var average = 0;
                                     average += _self.counts['ratingsCountOf5'] * 5;
                                     average += _self.counts['ratingsCountOf4'] * 4;
                                     average += _self.counts['ratingsCountOf3'] * 3;
@@ -172,7 +172,7 @@
                     this.authenticatedUser.feedbacks.unshift(feedback);
                     if ( feedback.isVisible )
                     {
-                        let ratingValue = parseInt(feedback.feedbackRating.rating.ratingValue);
+                        var ratingValue = parseInt(feedback.feedbackRating.rating.ratingValue);
                         if ( ratingValue > 0 && ratingValue <= 5 )
                         {
                             this.counts['ratingsCountOf' + ratingValue]++;
@@ -180,7 +180,7 @@
                         this.counts.ratingsCountTotal++;
 
                         // Calculate average anew
-                        let average = 0;
+                        var average = 0;
                         average += this.counts['ratingsCountOf5'] * 5;
                         average += this.counts['ratingsCountOf4'] * 4;
                         average += this.counts['ratingsCountOf3'] * 3;
