@@ -12,7 +12,7 @@
             },
 
             mounted: function() {
-                this.$root.$on('averageRecalc', () => {
+                this.$root.$on('averageRecalc', function() {
                     this.getAverage();
                 });
 
