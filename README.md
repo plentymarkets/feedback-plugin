@@ -2,19 +2,19 @@
 
 # Feedback Plugin
 
-This is the **Feedback** plugin for the Shop Builder developed by plentymarkets.
+This is the **Feedback** plugin developed by plentymarkets. It provides the feedback widget for the ShopBuilder.
 
 ## Requirements
 
-This is a plugin for [plentymarkets 7](https://www.plentymarkets.com). The [IO](https://github.com/plentymarkets/plugin-io) plugin is required to run the plentymarkets **Feedback** plugin.
+This is a plugin for [plentymarkets 7](https://www.plentymarkets.com). The plugin [IO](https://github.com/plentymarkets/plugin-io) is required to run the **Feedback** plugin.
 
 ## Installing
 
-For detailed information about widget deployment refer to the [plentymarkets developers](https://developers.plentymarkets.com/dev-doc/basics) documentation.
+After purchasing the plugin, open the **Plugins » Plugin overview** menu and set the filter to **uninstalled**. Click **install** in the row of the feedback plugin. After the installation is complete, add the plugin to the plugin set you want to use. After **saving and deploying** the plugins, the feedback widget becomes available in the ShopBuilder editor.
 
 ## Documentation
 
-For a detailed documentation of ShopBuilder widgets, please refer to the [plentymarkets developers widget](https://developers.plentymarkets.com/tutorials/my-first-shop-builder-widget) documentation.
+For a detailed documentation of how to set up ShopBuilder widgets, please refer to the [plentymarkets manual](https://knowledge.plentymarkets.com/en/online-store/shop-builder) documentation.
 
 ## Join our community
 
