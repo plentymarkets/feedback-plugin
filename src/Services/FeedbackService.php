@@ -147,7 +147,7 @@ class FeedbackService
             // Allow creation of feedbacks only if the item/variation was already bought
             $allowFeedbacksOnlyIfPurchased = $this->request->input("options.allowFeedbacksOnlyIfPurchased") === 'true';
 
-            if (!$allowNoRatingFeedbacks && empty($this->request->input('ratingValue'))) {
+            if ($allowNoRatingFeedbacks && empty($this->request->input('ratingValue'))) {
                 return 'Can\'t create review with no rating';
             }
 
