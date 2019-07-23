@@ -1,5 +1,5 @@
 {
-  "version": "2.0.1",
+  "version": "bkm 2.0.1",
   "name": "Feedback",
   "marketplaceName" : {"de": "Kunden-Feedback","en": "Customer feedback"},
   "description": "This is the official feedback plugin developed by plentysystems.",
