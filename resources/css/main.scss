@@ -52,7 +52,7 @@
     /* stars are added from 5 to 1 and positioned right to left so that "~" works */
     input.star:checked ~ label.star:before {
         content: '\f005';
-        color: orange;
+        color: #ffdc0f;
     }
 
     /* if 5 stars is checked */
@@ -65,12 +65,12 @@
 
     /* hovered star ( full and colored ) */
     label.star:hover:before {
-        color:orange !important;
+        color:#ffdc0f !important;
     }
 
     /* stars of lower value on hover ( full and colored ) */
     label.star:hover ~ label.star:before {
-        color:orange;
+        color:#ffdc0f;
     }
 
     /* all visible stars ( full but colorless ) */
@@ -173,7 +173,7 @@
                     color:rgba(0,0,0,.1);
                     min-width: 70px;
                     display:inline-block;
-                    .full { color:orange; }
+                    .full { color:#ffdc0f; }
                 }
                 .feedback-attributes-list {
                     p {
@@ -350,7 +350,7 @@
         font-size:24px;
         float:left;
         text-align:center;
-        color: orange;
+        color: #ffdc0f;
     }
 
     /* each wrapper */
