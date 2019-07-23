@@ -167,7 +167,7 @@
                 .feedback-comment-title {
                     font-weight:bold;
                     margin-bottom:0px;
-                    display:inline-block;
+                    width: 100%;
                 }
                 .feedback-rating {
                     color:rgba(0,0,0,.1);
@@ -177,7 +177,7 @@
                 }
                 .feedback-attributes-list {
                     p {
-                        font-size:12px;
+                        font-size:14px;
                         margin:0px;
                         line-height:1;
                         span {
@@ -251,11 +251,12 @@
     }
 
     .feedback-info {
-        margin:5px 0 0;
+        margin:0;
 
         .feedback-info-segment {
             margin-right:10px;
             font-size:.875rem;
+            display: inline-block;
 
             .feedback-admin {
 

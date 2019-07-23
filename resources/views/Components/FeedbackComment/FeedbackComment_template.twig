@@ -8,6 +8,26 @@
             {% endfor %}
         </div>
 
+        <span class="feedback-info-segment">
+            <strong>
+                <span class="feedback-admin"
+                      data-toggle="tooltip"
+                      data-placement="top"
+                      data-original-title="{{ trans("Feedback::Feedback.shopManagerLabel") }}"
+                      v-if="feedback.sourceRelation[0].feedbackRelationType === 'user'">
+                        <i class="fa fa-check-square"></i>
+                        ${ feedback.sourceRelation[0].sourceRelationLabel }
+                </span>
+                <span v-else-if="feedback.sourceRelation[0].feedbackRelationSourceId === 0">
+                    {{ trans("Feedback::Feedback.guestName") }}
+                </span>
+                <span v-else>
+                    ${ displayName }
+                </span>
+            </strong>
+        </span>
+
+
         <p class="feedback-comment-title">${ feedback.title }</p>
 
         <div class="feedback-attributes-list">
@@ -28,24 +48,6 @@
 
     <p class="feedback-info">
 
-        <span class="feedback-info-segment">
-            <strong>
-                <span class="feedback-admin"
-                      data-toggle="tooltip"
-                      data-placement="top"
-                      data-original-title="{{ trans("Feedback::Feedback.shopManagerLabel") }}"
-                      v-if="feedback.sourceRelation[0].feedbackRelationType === 'user'">
-                        <i class="fa fa-check-square"></i>
-                        ${ feedback.sourceRelation[0].sourceRelationLabel }
-                </span>
-                <span v-else-if="feedback.sourceRelation[0].feedbackRelationSourceId === 0">
-                    {{ trans("Feedback::Feedback.guestName") }}
-                </span>
-                <span v-else>
-                    ${ displayName }
-                </span>
-            </strong>
-        </span>
 
         {% if config('Feedback.timestampVisibility') == 'true' %}
             <span class="feedback-info-segment">
