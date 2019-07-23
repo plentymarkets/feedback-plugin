@@ -58,13 +58,13 @@
             </span>
         {% endif %}
 
-        <span class="feedback-info-segment btn btn-sm btn-secondary"
+        <span class="feedback-info-segment btn btn-sm btn-bkm-inverted"
               @click="replyFormVisible = !replyFormVisible"
               v-if="!isReply && authenticatedUser.isLoggedIn">
             {{ trans("Feedback::Feedback.addComment") }}
         </span>
 
-        <span class="feedback-info-segment btn btn-sm btn-secondary"
+        <span class="feedback-info-segment btn btn-sm btn-bkm-inverted"
               @click="replyListVisible = !replyListVisible"
               v-if="!!feedback.replies && feedback.replies.length > 0">
             {{ trans("Feedback::Feedback.viewComments") }} (${ feedback.replies.length })

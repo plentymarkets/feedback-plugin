@@ -180,7 +180,7 @@
                         span {
                             display:inline-block;
                             border-right:rgba(0,0,0,.2) solid 1px;
-                            margin:10px 4px 10px 0;
+                            margin: 0;
                             padding-right:7px;
                             color: #bbb;
                             font-style: italic;
@@ -211,6 +211,13 @@
                 .feedback-replies {
                     margin-top:20px;
                     padding-left:30px;
+                    .feedback {
+                        .feedback-comment {
+                            p.feedback-comment-text{
+                              margin: 10px 0
+                            }
+                        }
+                    }
                 }
                 .feedback-add-reply {
                     margin-top:20px;
