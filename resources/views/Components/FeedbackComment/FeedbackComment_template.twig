@@ -48,7 +48,6 @@
 
     <p class="feedback-info">
 
-
         {% if config('Feedback.timestampVisibility') == 'true' %}
             <span class="feedback-info-segment">
                 <i class="fa fa-calendar text-muted"></i>
@@ -60,48 +59,8 @@
             </span>
         {% endif %}
 
-        <span class="feedback-info-segment btn btn-sm btn-bkm-inverted"
-              @click="replyFormVisible = !replyFormVisible"
-              v-if="!isReply && authenticatedUser.isLoggedIn">
-            {{ trans("Feedback::Feedback.addComment") }}
-        </span>
-
-        <span class="feedback-info-segment btn btn-sm btn-bkm-inverted"
-              @click="replyListVisible = !replyListVisible"
-              v-if="!!feedback.replies && feedback.replies.length > 0">
-            {{ trans("Feedback::Feedback.viewComments") }} (${ feedback.replies.length })
-        </span>
-
     </p>
 
-    <div class="feedback-add-reply" v-if="replyFormVisible && !isReply && authenticatedUser.isLoggedIn">
-
-        <div class="form-group">
-            <textarea class="form-control"
-                      name="message"
-                      rows="3"
-                      v-model="replyMessage"
-                      placeholder="{{ trans("Feedback::Feedback.commentMessage") }}">
-            </textarea>
-        </div>
-
-        <button class="btn btn-primary" @click="createReply()" :disabled="!replyMessage">{{ trans("Feedback::Feedback.submitComment") }}</button>
-
-    </div>
-
-
-    <div class="feedback-replies" v-if="!!feedback.replies && feedback.replies.length > 0 && replyListVisible">
-        <feedback-list-entry
-                v-for="reply in feedback.replies"
-                :key="reply.id"
-                :feedback="reply"
-                :item-attributes="itemAttributes"
-                :authenticated-user="authenticatedUser"
-                :is-reply="true"
-                :show-controls="showControls"
-                @delete="$emit('delete', $event)">
-        </feedback-list-entry>
-    </div>
 </div>
 
 </script>
