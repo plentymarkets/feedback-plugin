@@ -89,13 +89,14 @@
             margin-bottom:1px;
 
             .feedback-bar {
-                width:140px;
+                width: 50%;
                 height:17px;
                 display:inline-block;
                 vertical-align:middle;
                 background:rgba(0,0,0,.1);
                 overflow: hidden;
                 border-radius: 2px;
+                margin: 0 10px;
                 .feedback-bar-fill {
                     width:0%;
                     height:100%;
@@ -112,7 +113,8 @@
 
             }
             .feedback-bar-text-after {
-
+              color: #ddd;
+              font-style: italic;
             }
         }
 
