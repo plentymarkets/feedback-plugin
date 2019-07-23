@@ -20,6 +20,14 @@
             "defaultValue": ""
           }
         },
+        "allowReplies": {
+          "type": "checkBox",
+          "required": false,
+          "label": "Config.allowRepliesLabel",
+          "options": {
+            "defaultValue": ""
+          }
+        },
         "allowNoRatingFeedback": {
           "type": "checkBox",
           "required": false,
