@@ -128,7 +128,10 @@
         .feedback {
             padding-bottom:15px;
             margin-bottom:15px;
-            border-bottom:none
+            border-bottom:none;
+            background: #f5f5f5;
+            background: rgba(238,238,238,0.5);
+            padding: 1em 2em;
 
             &.loading {
                 pointer-events: none;
@@ -214,7 +217,7 @@
                     .feedback {
                         .feedback-comment {
                             p.feedback-comment-text{
-                              margin: 10px 0
+                              margin: 10px 0;
                             }
                         }
                     }
