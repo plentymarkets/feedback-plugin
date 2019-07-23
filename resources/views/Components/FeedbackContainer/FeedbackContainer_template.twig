@@ -6,32 +6,32 @@
             <small class="feedback-average-count"> (${ counts.ratingsCountTotal })</small>
         </div>
 
-        <div class="feedback-stars-average">
-            <div class="feedback-stars-background clearfix">
-                {% for i in 1..5 %}
-                    <div class="feedback-star">
-                        <i class="fa fa-star"></i>
-                    </div>
-                {% endfor %}
-            </div>
-            <div class="feedback-stars-overlay-wrap" :style="{ width: ((counts.averageValue * 100) / 5) + '%' }">
-                <div class="feedback-stars-overlay clearfix">
-                    {% for i in 1..5 %}
-                        <div class="feedback-star">
-                            <i class="fa fa-star"></i>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
 
-        <hr>
 
         <div class="row my-2">
 
-            <div class="col-sm-6">
+            <div class="col-sm-6 text-center">
 
-                <div class="feedback-bars">
+                <div class="feedback-stars-average">
+                    <div class="feedback-stars-background clearfix">
+                        {% for i in 1..5 %}
+                            <div class="feedback-star">
+                                <i class="fa fa-star"></i>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="feedback-stars-overlay-wrap" :style="{ width: ((counts.averageValue * 100) / 5) + '%' }">
+                        <div class="feedback-stars-overlay clearfix">
+                            {% for i in 1..5 %}
+                                <div class="feedback-star">
+                                    <i class="fa fa-star"></i>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feedback-bars mt-4">
 
                     <div class="feedback-bar-wrap">
                         <p class="feedback-bar-text-before">5 <i class="fa fa-star"></i></p>
@@ -89,7 +89,6 @@
             </div>
         </div>
 
-        <hr>
 
         <feedback-list
                 :feedbacks="authenticatedUser.feedbacks"
