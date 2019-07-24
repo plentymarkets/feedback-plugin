@@ -1,6 +1,5 @@
 <script type="x/template" id="vue-feedback-list">
 <div class="feedback-list">
-
     <feedback-list-entry
             v-for="feedback in feedbacks"
             :key="feedback.id"
@@ -8,10 +7,13 @@
             :authenticated-user="authenticatedUser"
             :item-attributes="itemAttributes"
             :is-reply="false" @delete="$emit('delete', $event)"
-            :show-controls="showControls">
+            :show-controls="showControls"
+            :classes="classes"
+            :styles="styles"
+            :options="options">
     </feedback-list-entry>
 
-    <a class="btn btn-secondary btn-block feedback-loadmore" v-if="!isLastPage" @click="onLoadMoreClicked()">
+    <a class="btn btn-default btn-block feedback-loadmore" v-if="!isLastPage" @click="onLoadMoreClicked()">
         {{ trans("Feedback::Feedback.loadMore") }}
     </a>
 </div>

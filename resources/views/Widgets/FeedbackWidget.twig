@@ -1,0 +1,47 @@
+{% import "Ceres::Widgets.Helper.TwigBuilder" as Twig %}
+{% import "Ceres::Widgets.Helper.WidgetHelper" as WidgetHelper %}
+
+{% set customClass = widget.settings.customClass.mobile %}
+{% set appearance = widget.settings.appearance.mobile %}
+
+{% set spacingSettings = widget.settings.spacing %}
+{% set inlinePadding   = WidgetHelper.getInlineSpacings(spacingSettings, spacingSettings.customPadding.mobile, "") %}
+{% set inlineMargin    = WidgetHelper.getInlineSpacings(spacingSettings, "", spacingSettings.customMargin.mobile) %}
+{% set spacingPadding  = WidgetHelper.getSpacingClasses(spacingSettings, spacingSettings.customPadding.mobile, "") %}
+{% set spacingMargin   = WidgetHelper.getSpacingClasses(spacingSettings, "",spacingSettings.customMargin.mobile) %}
+
+{% if not isPreview %}
+    {{ Twig.set("feedbackItem", Twig.call("feedbackServices.feedback.getFeedbackData", [Twig.var("item")])) }}
+{% else %}
+    {{ Twig.set("item", Twig.call("services.itemList.getItemList", ['random'])) }}
+    {{ Twig.set("feedbackItem", Twig.call("feedbackServices.feedback.getFeedbackData", [Twig.var("item")])) }}
+{% endif %}
+
+{{ Twig.set("item_id", "feedbackItem.item.documents[0].data.item.id") }}
+{{ Twig.set("variation_id", "feedbackItem.item.documents[0].data.variation.id") }}
+{{ Twig.set("counts", "feedbackItem.counts") }}
+
+<div class="widget widget-feedback widget-{{ appearance | default("primary") }} {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
+        {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
+    <feedback-container class="widget-inner"
+            :item-id="{{ Twig.print("item_id") }}"
+            :variation-id="{{ Twig.print("variation_id") }}"
+            :counts="{{ Twig.print("counts | json_encode") }}"
+            :options="{{ options | json_encode}}"
+            classes="{{ spacingPadding }}"
+            styles="{{ inlinePadding }}">
+    </feedback-container>
+
+    <script type="application/ld+json">
+        {
+            "@context"          :   "http://schema.org/",
+            "@type"             :   "Product",
+            "@id"               :   "{{ Twig.print("variation_id") }}",
+            "aggregateRating"   :   {
+                "@type"         :   "AggregateRating",
+                "ratingValue"   :   "{{ Twig.print("counts.averageValue") }}",
+                "reviewCount"   :   "{{ Twig.print("counts.ratingsCountTotal") }}"
+            }
+        }
+    </script>
+</div>

@@ -3,6 +3,7 @@
   [],
   "ignoredTranslationFiles":
   [
-    "Debug.properties"
+    "Debug.properties",
+    "Widget.properties"
   ]
 }

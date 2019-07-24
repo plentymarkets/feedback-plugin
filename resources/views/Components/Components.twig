@@ -1,7 +1,21 @@
-{% import "Feedback::Macros.ComponentLoader" as ComponentLoader %}
+{% macro importTemplate(component) %}
+    {% include "Feedback::Components." ~ component ~ "." ~ component ~ "_template" %}
+{% endmacro %}
 
-{{ ComponentLoader.importComponent("FeedbackComment") }}
-{{ ComponentLoader.importComponent("FeedbackForm") }}
-{{ ComponentLoader.importComponent("FeedbackList") }}
-{{ ComponentLoader.importComponent("FeedbackListEntry") }}
-{{ ComponentLoader.importComponent("FeedbackContainer") }}
+{% macro importComponent(component) %}
+    {% include "Feedback::Components." ~ component ~ "." ~ component ~ "_component"  %}
+{% endmacro %}
+
+{{ _self.importTemplate("FeedbackForm") }}
+{{ _self.importTemplate("FeedbackList") }}
+{{ _self.importTemplate("FeedbackListEntry") }}
+{{ _self.importTemplate("FeedbackComment") }}
+{{ _self.importTemplate("FeedbackContainer") }}
+{{ _self.importComponent("FeedbackComment") }}
+{{ _self.importComponent("FeedbackForm") }}
+{{ _self.importComponent("FeedbackList") }}
+{{ _self.importComponent("FeedbackListEntry") }}
+{{ _self.importComponent("FeedbackContainer") }}
+
+{{ _self.importTemplate("FeedbackAverage") }}
+{{ _self.importComponent("FeedbackAverage") }}

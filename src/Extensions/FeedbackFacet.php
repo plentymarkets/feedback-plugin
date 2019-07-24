@@ -1,4 +1,5 @@
 <?php
+
 namespace Feedback\Extensions;
 
 use IO\Services\ItemSearch\Contracts\FacetExtension;
@@ -39,21 +40,16 @@ class FeedbackFacet implements FacetExtension
     {
         $feedback = [];
 
-        if (count($result))
-        {
-
+        if (count($result)) {
             $this->getLogger('merge into facets')->debug('Feedback::Debug.filterResponse', $result);
 
             $facetName = '';
 
             // TODO: get facet name from property file
-            $lang = pluginApp( SessionStorageService::class )->getLang();
-            if ( $lang === 'de' )
-            {
+            $lang = pluginApp(SessionStorageService::class)->getLang();
+            if ($lang === 'de') {
                 $facetName = 'Artikelbewertung';
-            }
-            else
-            {
+            } else {
                 $facetName = 'Item rating';
             }
 

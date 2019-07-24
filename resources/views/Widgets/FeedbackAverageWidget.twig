@@ -1,0 +1,28 @@
+{% import "Ceres::Widgets.Helper.TwigBuilder" as Twig %}
+{% import "Ceres::Widgets.Helper.WidgetHelper" as WidgetHelper %}
+
+{% set customClass = widget.settings.customClass.mobile %}
+{% set spacingSettings = widget.settings.spacing %}
+{% set inlineMargin    = WidgetHelper.getInlineSpacings(spacingSettings, "", spacingSettings.customMargin.mobile) %}
+{% set spacingMargin   = WidgetHelper.getSpacingClasses(spacingSettings, "",spacingSettings.customMargin.mobile) %}
+{% set sizeOfStars = widget.settings.sizeOfStars.mobile %}
+{% set showEmptyRatings = widget.settings.showEmptyRatings.mobile %}
+
+{% if not isPreview %}
+    {{ Twig.set("feedbackItem", Twig.call("feedbackServices.feedback.getFeedbackAverageDataSingleItem", [Twig.var("item")])) }}
+{% else %}
+    {{ Twig.set("item", Twig.call("services.itemList.getItemList", ['random'])) }}
+    {{ Twig.set("feedbackItem", Twig.call("feedbackServices.feedback.getFeedbackAverageDataSingleItem", [Twig.var("item")])) }}
+{% endif %}
+
+{{ Twig.set("item_id", "item.documents[0].data.item.id") }}
+
+<div class="widget widget-feedback-average {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
+        {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
+    <feedback-average
+            class="feedback-stars-average {{ sizeOfStars }}"
+            id="feedback-stars-average"
+            :item-id="{{ Twig.print("item_id") }}"
+            :show-empty-ratings="{{ showEmptyRatings or isPreview | json_encode}}">
+    </feedback-average>
+</div>
