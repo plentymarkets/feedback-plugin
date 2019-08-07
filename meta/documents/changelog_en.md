@@ -1,5 +1,26 @@
 # Release Notes for Feedback
 
+## v3.0.0 (2019-08-12)
+
+### Added
+
+- The plugin is now compatible with the ShopBuilder.
+- The number of item reviews per page can now be specified via the widget settings.
+- The size of the rating stars can now be specified via the widget settings.
+- The field “aggregateRatings”, which contains the average rating of an item, has been added to the Schema.org markup.
+
+### Changed
+
+- The feedback plugin has been redesigned as 2 ShopBuilder widgets. The widget **Item review** makes it possible for customers to write reviews that are displayed in the online store. The widget **Star rating** provides the average rating of the reviews on the single item view.
+- The plugin settings have mostly been relocated to the 2 ShopBuilder widgets.
+- The feedback plugin is now open source.
+- The former container links have been removed, with the exception of “Feedback category ratings”.
+
+### Fixed
+
+- When submitting a review, the star rating was only displayed after reloading the page. This has been fixed.
+- Reviews without a star rating could not be submitted. This has been fixed.
+
 ## v2.0.0 (2019-04-29)
 
 ### FEATURE
@@ -48,7 +69,7 @@
 
 ### CHANGE
 
-- h1-Tag changed to div-tag 
+- h1-Tag changed to div-tag
 - The last name of the author is now shortened
 
 ### FEATURE
