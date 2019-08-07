@@ -7,7 +7,7 @@
 - Kompatibilität zum ShopBuilder wurde hergestellt.
 - Die Anzahl der Artikelbewertungen pro Seite kann nun über die Widget-Einstellungen festgelegt werden.
 - Die Größe der Bewertungssterne kann nun über die Widget-Einstellungen festgelegt werden.
-- Das Feld “aggregateRatings”, das die durchschnnittliche Bewertung eines Artikels enthält, wurde dem Schema.org Markup hinzugefügt.
+- Das Feld “aggregateRatings”, das die durchschnittliche Bewertung eines Artikels enthält, wurde dem Schema.org Markup hinzugefügt.
 
 ### Geändert
 
