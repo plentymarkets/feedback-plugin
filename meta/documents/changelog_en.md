@@ -1,6 +1,6 @@
 # Release Notes for Feedback
 
-## v3.0.0 (2019-08-12)
+## v3.0.0 (2019-08-08)
 
 ### Added
 
