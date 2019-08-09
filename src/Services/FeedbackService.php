@@ -223,7 +223,7 @@ class FeedbackService
     public function update($feedbackId)
     {
         $data = $this->request->all();
-        $data['isVisible'] = $data['releaseFeedbacks'] === "true";
+        $data['isVisible'] = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY);
 
         return $this->feedbackRepository->updateFeedback($data, $feedbackId);
     }

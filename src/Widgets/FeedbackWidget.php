@@ -17,7 +17,6 @@ class FeedbackWidget extends BaseWidget
                 "allowNoRatingFeedback" => $widgetSettings["allowNoRatingFeedback"]["mobile"],
                 "feedbacksPerPage" => $widgetSettings["feedbacksPerPage"]["mobile"],
                 "numberOfFeedbacks" => $widgetSettings["numberOfFeedbacks"]["mobile"],
-                "releaseFeedbacks" => $widgetSettings["releaseFeedbacks"]["mobile"],
                 "timestampVisibility" => $widgetSettings["timestampVisibility"]["mobile"]
             ]
         ];
