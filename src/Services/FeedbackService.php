@@ -141,7 +141,8 @@ class FeedbackService
             // Limit the feedbacks count of a user per item
             $numberOfFeedbacks = (int) $this->request->input("options.numberOfFeedbacks");
             // Default visibility of the feedback
-            $options['isVisible'] = $this->request->input("options.releaseFeedbacks") === 'true';
+            $showEmptyRatingsInCategoryView = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY);
+            $options['isVisible'] = $showEmptyRatingsInCategoryView;
             // Allow feedbacks with no rating
             $allowNoRatingFeedbacks = $this->request->input("options.allowNoRatingFeedbacks") === 'true';
             // Allow creation of feedbacks only if the item/variation was already bought
