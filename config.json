@@ -5,7 +5,7 @@
             "label": "Config.FeedbackSettingsTab",
             "formFields": {
                 "releaseFeedbacks": {
-                    "type": "checkbox",
+                    "type": "checkBox",
                     "required": false,
                     "label": "Config.releaseFeedbacks",
                     "options": {
