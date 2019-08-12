@@ -24,13 +24,11 @@
                     itemAttributes: [],
                     feedbackToDelete: null,
                     optionsList: {
-                        releaseFeedbacks: this.options.releaseFeedbacks,
                         timestampVisibility: this.options.timestampVisibility
                     },
                     optionsForm: {
                         allowFeedbacksOnlyIfPurchased: this.options.allowFeedbacksOnlyIfPurchased,
                         allowNoRatingFeedback: this.options.allowNoRatingFeedback,
-                        releaseFeedbacks: this.options.releaseFeedbacks,
                         numberOfFeedbacks: this.options.numberOfFeedbacks
                     }
                 };
@@ -157,7 +155,7 @@
                                         _self.counts.averageValue = average;
                                         _self.$root.$emit('averageRecalc');
                                     }
-                                    
+
                                 }
 
                                 if ( parentFeedbackId === null )

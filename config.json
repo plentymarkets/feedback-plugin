@@ -4,6 +4,14 @@
         "Config.FeedbackSettingsTab": {
             "label": "Config.FeedbackSettingsTab",
             "formFields": {
+                "releaseFeedbacks": {
+                    "type": "checkBox",
+                    "required": false,
+                    "label": "Config.releaseFeedbacks",
+                    "options": {
+                        "defaultValue": "false"
+                    }
+                },
                 "showEmptyRatingsInCategoryView": {
                     "type": "checkBox",
                     "required": false,

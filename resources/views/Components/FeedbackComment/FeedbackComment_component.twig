@@ -52,20 +52,22 @@
 
                 displayName: function()
                 {
-                    return this.feedback
-                        .sourceRelation[0]
-                        .sourceRelationLabel
-                        .split(" ")
-                        .map(function(namePart, index)
-                        {
-                            if ( index === 0 )
-                            {
-                                return namePart + " "
-                            }
-                            return namePart.substr(0, 1) + ".";
-                        })
-                        .join("");
+                    var rawName =  this.feedback.sourceRelation[0].sourceRelationLabel;
+
+                    if(rawName !== " ") {
+                        return rawName.split(" ")
+                            .map(function (namePart, index) {
+                                if (index === 0) {
+                                    return namePart + " "
+                                }
+                                return namePart.substr(0, 1) + ".";
+                            })
+                            .join("");
+                    } else {
+                        return "{{ trans('Feedback::Feedback.guestName') }}";
+                    }
                 },
+
                 message: function()
                 {
                     if ( !this.feedback.feedbackComment )

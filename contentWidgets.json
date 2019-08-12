@@ -96,15 +96,6 @@
                     }
                 }
             },
-            "releaseFeedbacks": {
-                "type": "checkbox",
-                "required": false,
-                "defaultValue": false,
-                "options": {
-                    "name": "Widget.releaseFeedbacks",
-                    "tooltipText": "Widget.releaseFeedbacksTooltip"
-                }
-            },
             "timestampVisibility": {
                 "type": "checkbox",
                 "required": false,
