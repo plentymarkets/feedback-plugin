@@ -35,7 +35,7 @@
                         <i class="fa fa-check-square"></i>
                         ${ feedback.sourceRelation[0].sourceRelationLabel }
                 </span>
-                <span v-else-if="feedback.sourceRelation[0].feedbackRelationSourceId === 0">
+                <span v-else-if="feedback.sourceRelation[0].feedbackRelationSourceId == 0">
                     {{ trans("Feedback::Feedback.guestName") }}
                 </span>
                 <span v-else>
