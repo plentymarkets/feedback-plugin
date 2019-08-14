@@ -12,6 +12,14 @@
                         "defaultValue": "false"
                     }
                 },
+                "allowGuestFeedbacks": {
+                    "type": "checkBox",
+                    "required": false,
+                    "label": "Config.allowGuestFeedbacks",
+                    "options": {
+                        "defaultValue": "false"
+                    }
+                },
                 "showEmptyRatingsInCategoryView": {
                     "type": "checkBox",
                     "required": false,
