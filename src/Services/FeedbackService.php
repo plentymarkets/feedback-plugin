@@ -221,7 +221,16 @@ class FeedbackService
             $options['feedbackRelationTargetType'] = 'feedback';
             $options['isVisible'] = true;
 
-            return $this->feedbackRepository->createFeedback(array_merge($this->request->all(), $options));
+            $feedbackRepository = $this->feedbackRepository;
+            $feedbackObject = array_merge($this->request->all(), $options);
+
+            $result = $authHelper->processUnguarded(
+                function() use ($feedbackRepository,$feedbackObject) {
+                    return $feedbackRepository->createFeedback($feedbackObject);
+                }
+            );
+
+            return $result;
         }
     }
 
