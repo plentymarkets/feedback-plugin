@@ -8,6 +8,7 @@ class FeedbackCoreHelper
 {
     const PLUGIN_NAME = 'Feedback';
     const KEY_RELEASE_FEEDBACKS_AUTOMATICALLY = "releaseFeedbacks";
+    const KEY_ALLOW_GUEST_FEEDBACKS = "allowGuestFeedbacks";
     const KEY_SHOW_EMPTY_RATINGS_IN_CATEGORY_VIEW = "showEmptyRatingsInCategoryView";
     const KEY_SHOW_RATING_SORTING = "showRatingSorting";
     const KEY_SHOW_RATING_FACET = "showRatingFacet";

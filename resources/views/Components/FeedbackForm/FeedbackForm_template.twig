@@ -1,6 +1,6 @@
 <script type="x/template" id="vue-feedback-form">
     <div>
-        <div class="createFeedback" v-if="authenticatedUser.isLoggedIn">
+        <div class="createFeedback" v-if="authenticatedUser.isLoggedIn || options.allowGuestFeedbacks ">
             <div class="stars">
                 {% for i in 5..1 %}
                     <input v-model="feedback.ratingValue"

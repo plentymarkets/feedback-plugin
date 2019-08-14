@@ -2,6 +2,7 @@
 
 namespace Feedback\Services;
 
+use Plenty\Modules\Authorization\Services\AuthHelper;
 use Plenty\Plugin\Http\Request;
 use Feedback\Helpers\FeedbackCoreHelper;
 use IO\Services\SessionStorageService;
@@ -114,11 +115,24 @@ class FeedbackService
 
     /**
      * Create a feedback entry in the db
-     * @return string
+     * @return mixed
      */
     public function create()
     {
-        $creatorContactId = $this->accountService->getAccountContactId();
+        // Find out if current user is a contact or a guest (0 is guest, anything else is contact)
+        $authHelper = pluginApp(AuthHelper::class);
+        $accountService = $this->accountService;
+        $creatorContactId = $authHelper->processUnguarded(
+            function() use ($accountService) {
+                return $accountService->getAccountContactId();
+            }
+        );
+
+        $allowGuestFeedbacks = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_GUEST_FEEDBACKS);
+
+        if(!$allowGuestFeedbacks && $creatorContactId == 0) {
+            return 'Guests are not allowed to write feedbacks';
+        }
 
         // Set options
         $options = [
@@ -134,8 +148,8 @@ class FeedbackService
         ];
 
         // Check the type and set the target accordingly
-        if ($this->request->input('type') == 'review') {
-
+        if ($this->request->input('type') == 'review')
+        {
             $options['feedbackRelationTargetType'] = 'variation';
 
             // Limit the feedbacks count of a user per item
@@ -152,43 +166,56 @@ class FeedbackService
                 return 'Can\'t create review with no rating';
             }
 
-            // get variations bought
-            $orders = pluginApp(OrderRepositoryContract::class)->allOrdersByContact($creatorContactId);
+            // The following checks cannot be applied to guests
+            if($creatorContactId != 0)
+            {
+                // get variations bought
+                $orders = pluginApp(OrderRepositoryContract::class)->allOrdersByContact($creatorContactId);
 
-            $purchasedVariations = [];
+                $purchasedVariations = [];
 
-            foreach ($orders->getResult() as $order) {
-                foreach ($order->orderItems as $orderItem) {
-                    $purchasedVariations[] = $orderItem->itemVariationId;
+                foreach ($orders->getResult() as $order) {
+                    foreach ($order->orderItems as $orderItem) {
+                        $purchasedVariations[] = $orderItem->itemVariationId;
+                    }
+                }
+
+                if (in_array($this->request->input('targetId'), $purchasedVariations)) {
+                    $creatorPurchasedThisVariation = true;
+                    $options['feedbackRelationSources'][] = [
+                        "feedbackRelationSourceType" => 'orderItem',
+                        "feedbackRelationSourceId" => $options['feedbackRelationTargetId']
+                    ];
+                }
+
+                if ($allowFeedbacksOnlyIfPurchased && !$creatorPurchasedThisVariation) {
+                    return 'Not allowed to create review without purchasing the item first';
+                }
+
+                if (!empty($numberOfFeedbacks) && $numberOfFeedbacks != 0) {
+
+                    // Get the feedbacks that this user created on this item
+                    $countFeedbacksOfUserPerItem = $this->listFeedbacks(1, 50, [], [
+                        'sourceId' => $creatorContactId,
+                        'targetId' => $options['feedbackRelationTargetId']
+                    ])->getTotalCount();
+
+                    if ($countFeedbacksOfUserPerItem >= $numberOfFeedbacks) {
+                        return 'Too many reviews';
+                    }
                 }
             }
 
-            if (in_array($this->request->input('targetId'), $purchasedVariations)) {
-                $creatorPurchasedThisVariation = true;
-                $options['feedbackRelationSources'][] = [
-                    "feedbackRelationSourceType" => 'orderItem',
-                    "feedbackRelationSourceId" => $options['feedbackRelationTargetId']
-                ];
-            }
+            $feedbackRepository = $this->feedbackRepository;
+            $feedbackObject = array_merge($this->request->all(), $options);
 
-            if ($allowFeedbacksOnlyIfPurchased && !$creatorPurchasedThisVariation) {
-                return 'Not allowed to create review without purchasing the item first';
-            }
-
-            if (!empty($numberOfFeedbacks) && $numberOfFeedbacks != 0) {
-
-                // Get the feedbacks that this user created on this item
-                $countFeedbacksOfUserPerItem = $this->listFeedbacks(1, 50, [], [
-                    'sourceId' => $creatorContactId,
-                    'targetId' => $options['feedbackRelationTargetId']
-                ])->getTotalCount();
-
-                if ($countFeedbacksOfUserPerItem >= $numberOfFeedbacks) {
-                    return 'Too many reviews';
+            $result = $authHelper->processUnguarded(
+                function() use ($feedbackRepository,$feedbackObject) {
+                    return $feedbackRepository->createFeedback($feedbackObject);
                 }
-            }
+            );
 
-            return $this->feedbackRepository->createFeedback(array_merge($this->request->all(), $options));
+            return $result;
 
         } elseif ($this->request->input('type') == 'reply') {
             $options['feedbackRelationTargetType'] = 'feedback';

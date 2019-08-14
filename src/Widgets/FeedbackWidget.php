@@ -3,6 +3,7 @@
 namespace Feedback\Widgets;
 
 use Ceres\Widgets\Helper\BaseWidget;
+use Feedback\Helpers\FeedbackCoreHelper;
 
 class FeedbackWidget extends BaseWidget
 {
@@ -10,6 +11,8 @@ class FeedbackWidget extends BaseWidget
 
     protected function getTemplateData($widgetSettings, $isPreview)
     {
+        $allowGuestFeedbacks = pluginApp(FeedbackCoreHelper::class)->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_GUEST_FEEDBACKS);
+
         // As only mobile is currently used, flatten breakpoints
         return [
             "options" => [
@@ -17,7 +20,8 @@ class FeedbackWidget extends BaseWidget
                 "allowNoRatingFeedback" => $widgetSettings["allowNoRatingFeedback"]["mobile"],
                 "feedbacksPerPage" => $widgetSettings["feedbacksPerPage"]["mobile"],
                 "numberOfFeedbacks" => $widgetSettings["numberOfFeedbacks"]["mobile"],
-                "timestampVisibility" => $widgetSettings["timestampVisibility"]["mobile"]
+                "timestampVisibility" => $widgetSettings["timestampVisibility"]["mobile"],
+                "allowGuestFeedbacks" => $allowGuestFeedbacks
             ]
         ];
     }
