@@ -155,8 +155,8 @@ class FeedbackService
             // Limit the feedbacks count of a user per item
             $numberOfFeedbacks = (int) $this->request->input("options.numberOfFeedbacks");
             // Default visibility of the feedback
-            $showEmptyRatingsInCategoryView = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY);
-            $options['isVisible'] = $showEmptyRatingsInCategoryView;
+            $autoreleaseFeedbacks = (int)$this->coreHelper->configValue(FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY);
+            $options['isVisible'] = $this->determineVisibility($autoreleaseFeedbacks, $creatorContactId);
             // Allow feedbacks with no rating
             $allowNoRatingFeedbacks = $this->request->input("options.allowNoRatingFeedbacks") === 'true';
             // Allow creation of feedbacks only if the item/variation was already bought
@@ -259,7 +259,8 @@ class FeedbackService
     public function update($feedbackId)
     {
         $data = $this->request->all();
-        $data['isVisible'] = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY);
+        $autorelease = (int)$this->coreHelper->configValue(FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY);
+        $data['isVisible'] = $this->determineVisibility($autorelease);
 
         return $this->feedbackRepository->updateFeedback($data, $feedbackId);
     }
@@ -447,5 +448,21 @@ class FeedbackService
             $with, // with relations
             $filters // filters
         );
+    }
+
+    /**
+     * Determine if a review is needed or not
+     * releaseLevel is a value between 0 and 2
+     * 0 = All feedbacks need a review
+     * 1 = Only guest feedbacks need a review
+     * 2 = No feedback needs a review
+     *
+     * @param int $releaseLevel
+     * @param int $creatorId
+     * @return bool
+     */
+    private function determineVisibility($releaseLevel, $creatorId = 1)
+    {
+        return ($releaseLevel === 1 && $creatorId !== 0) || $releaseLevel === 2;
     }
 }

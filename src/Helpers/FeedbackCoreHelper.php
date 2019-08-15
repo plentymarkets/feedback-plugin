@@ -8,7 +8,7 @@ use Plenty\Plugin\ConfigRepository;
 class FeedbackCoreHelper
 {
     const PLUGIN_NAME = 'Feedback';
-    const KEY_RELEASE_FEEDBACKS_AUTOMATICALLY = "releaseFeedbacks";
+    const KEY_RELEASE_FEEDBACKS_AUTOMATICALLY = "autoreleaseFeedbacks";
     const KEY_ALLOW_GUEST_FEEDBACKS = "allowGuestFeedbacks";
     const KEY_SHOW_EMPTY_RATINGS_IN_CATEGORY_VIEW = "showEmptyRatingsInCategoryView";
     const KEY_SHOW_RATING_SORTING = "showRatingSorting";
@@ -56,7 +56,7 @@ class FeedbackCoreHelper
      * @param string $key
      * @return mixed
      */
-    private function configValue(string $key)
+    public function configValue(string $key)
     {
         return $this->config->get(self::PLUGIN_NAME . '.' . $key);
     }
