@@ -11,6 +11,7 @@
                 return {
                     feedback: {
                         ratingValue: 0,
+                        authorName: "",
                         title: "",
                         message: "",
                         type: 'review',
@@ -60,6 +61,7 @@
                         {
                             _self.$emit('feedback-added', data);
                             _self.isLoading = false;
+                            _self.feedback['author'] = '';
                             _self.feedback['message'] = '';
                             _self.feedback['title'] = '';
                             _self.feedback['ratingValue'] = 0;
