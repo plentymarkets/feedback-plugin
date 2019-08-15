@@ -25,6 +25,13 @@
                        name="author"
                        placeholder="{{ trans("Feedback::Feedback.authorName") }}"
                        :disabled="authenticatedUser.limitReached || !authenticatedUser.hasPurchased">
+
+                <input type="text"
+                       v-model="feedback.honeypot"
+                       class="form-control"
+                       id="feedback-textfield"
+                       name="feedback-textfield">
+
             </div>
 
             <div class="form-group">

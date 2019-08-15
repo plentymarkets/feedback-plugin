@@ -17,6 +17,7 @@
   /* all visible stars ( full but colorless ) */
   /* Ratings bars */
   /* Comments */
+  /* Honeypot hiders */
 }
 .feedback-container .title {
   font-size: 2rem;
@@ -208,6 +209,12 @@
   display: none;
 }
 .feedback-container .feedback-hidden {
+  display: none;
+}
+.feedback-container #feedback-textfield {
+  display: none;
+}
+.feedback-container #comment-textfield {
   display: none;
 }
 

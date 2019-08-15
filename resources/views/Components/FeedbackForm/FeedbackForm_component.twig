@@ -15,7 +15,8 @@
                         title: "",
                         message: "",
                         type: 'review',
-                        targetId: this.variationId
+                        targetId: this.variationId,
+                        honeypot: ""
                     },
                     isLoading: false,
                     titleMissing: false,
@@ -27,6 +28,11 @@
                 createFeedback: function()
                 {
                     if( this.isLoading )
+                    {
+                        return;
+                    }
+
+                    if(this.feedback.honeypot.length > 0)
                     {
                         return;
                     }

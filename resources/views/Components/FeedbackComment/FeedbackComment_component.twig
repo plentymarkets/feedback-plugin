@@ -12,7 +12,8 @@
                     authorName: '',
                     replyMessage: '',
                     replyFormVisible: false,
-                    replyListVisible: false
+                    replyListVisible: false,
+                    honeypot: ''
                 };
             },
 
@@ -95,10 +96,11 @@
             methods: {
                 createReply: function()
                 {
-                    if ( !this.replyMessage )
+                    if ( !this.replyMessage || this.honeypot.length > 0)
                     {
                         return;
                     }
+
                     var _self = this;
                     $.ajax({
                         type: 'POST',
