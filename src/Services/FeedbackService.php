@@ -265,6 +265,7 @@ class FeedbackService
     }
 
     /**
+     * Get an array of feedbacks by pagination
      * @param $itemId
      * @param $page
      * @return array
@@ -349,6 +350,12 @@ class FeedbackService
         ];
     }
 
+    /**
+     * Get user data for the feedback plugin to work with
+     * @param int $itemId
+     * @param int $variationId
+     * @return array
+     */
     public function getAuthenticatedUser(int $itemId, int $variationId)
     {
         $allowFeedbacksOnlyIfPurchased = $this->request->input("allowFeedbacksOnlyIfPurchased") === 'true';
@@ -409,6 +416,11 @@ class FeedbackService
         ];
     }
 
+    /**
+     * Get the aggregateRating of all feedbacks for the given itemId
+     * @param $itemId
+     * @return mixed
+     */
     public function getAverage($itemId)
     {
         if ((int)$itemId > 0) {
