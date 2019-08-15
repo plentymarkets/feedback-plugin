@@ -19,7 +19,5 @@
     {{ _self.importComponent("FeedbackContainer") }}
 {% endif %}
 
-{% if services.template.getCurrentTemplate() == 'tpl.item' or services.template.getCurrentTemplate() == 'tpl.category.item' %}
-    {{ _self.importTemplate("FeedbackAverage") }}
-    {{ _self.importComponent("FeedbackAverage") }}
-{% endif %}
+{{ _self.importTemplate("FeedbackAverage") }}
+{{ _self.importComponent("FeedbackAverage") }}

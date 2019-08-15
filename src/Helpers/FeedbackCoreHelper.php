@@ -2,6 +2,7 @@
 
 namespace Feedback\Helpers;
 
+use IO\Services\TemplateService;
 use Plenty\Plugin\ConfigRepository;
 
 class FeedbackCoreHelper
@@ -25,6 +26,19 @@ class FeedbackCoreHelper
     public function __construct(ConfigRepository $config)
     {
         $this->config = $config;
+    }
+
+    public static function isValidTemplate(){
+       $templateService = pluginApp(TemplateService::class);
+       $currentTemplate = $templateService->getCurrentTemplate();
+       $allowedTemplates = [
+           'tpl.item',
+           'tpl.category.item',
+           'tpl.search',
+           'tpl.confirmation'
+       ];
+
+       return in_array($currentTemplate, $allowedTemplates);
     }
 
     /**
