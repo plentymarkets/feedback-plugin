@@ -62,10 +62,16 @@
               v-if="!isReply && (authenticatedUser.isLoggedIn || options.allowGuestFeedbacks)">
             {{ trans("Feedback::Feedback.addComment") }}
         </span>
+
         <span class="feedback-info-segment btn btn-sm btn-default"
               @click="replyListVisible = !replyListVisible"
-              v-if="!!feedback.replies && feedback.replies.length > 0">
+              v-if="(!!feedback.replies && feedback.replies.length > 0) && !replyListVisible">
             {{ trans("Feedback::Feedback.viewComments") }} (${ feedback.replies.length })
+        </span>
+        <span class="feedback-info-segment btn btn-sm btn-default"
+              @click="replyListVisible = !replyListVisible"
+              v-else-if="(!!feedback.replies && feedback.replies.length > 0) && replyListVisible">
+            {{ trans("Feedback::Feedback.hideComments") }}
         </span>
     </p>
 
