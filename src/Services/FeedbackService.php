@@ -30,6 +30,11 @@ class FeedbackService
     /** @var SessionStorageService $sessionStorage */
     private $sessionStorage;
 
+    const GUEST_ID = 0;
+    const RELEASE_LEVEL_NONE = 0;
+    const RELEASE_LEVEL_ONLY_AUTH = 1;
+    const RELEASE_LEVEL_ALL = 2;
+
     public function __construct(
         Request $request,
         FeedbackCoreHelper $coreHelper,
@@ -463,6 +468,7 @@ class FeedbackService
      */
     private function determineVisibility($releaseLevel, $creatorId = 1)
     {
-        return ($releaseLevel === 1 && $creatorId !== 0) || $releaseLevel === 2;
+        return ($releaseLevel === self::RELEASE_LEVEL_ONLY_AUTH && $creatorId !== self::GUEST_ID)
+            || $releaseLevel === self::RELEASE_LEVEL_ALL;
     }
 }
