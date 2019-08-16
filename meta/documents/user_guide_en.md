@@ -27,14 +27,6 @@ In order to display customer reviews in your online store, you have to carry out
 	<tbody>
         <tr>
 			<td>
-				<b>Automatically publish reviews</b>
-			</td>
-			<td>
-                Activate to publish customer reviews automatically in the online store. If this setting is deactivated, customer reviews must be manually published in the **CMS » Feedback ratings** menu. Only customer reviews created after activating this function will be published automatically.
-			</td>
-		</tr>
-        <tr>
-			<td>
 				<b>Show date of reviews</b>
 			</td>
 			<td>

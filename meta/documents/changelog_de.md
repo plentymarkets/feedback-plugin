@@ -1,5 +1,22 @@
 # Release Notes für Feedback
 
+## v3.1.0 (2019-08-16)
+
+### Hinzugefügt
+
+- Gastbewertungen sind nun möglich.
+- Gastkunden können nun einen Namen an der Rezension hinterlegen.
+- Es wurde ein Honeypot hinzugefügt, um Spam entgegenzuwirken.
+
+### Geändert
+
+- Die Einstellungen für die automatische Veröffentlichung von Rezensionen wurden erweitert.
+
+### Behoben
+
+- Es wurden einige Verbesserung bezüglich der Benutzeroberfläche vorgenommen.
+- Es wurden einige Verbesserungen bezüglich der Performance des Plugins vorgenommen.
+
 ## v3.0.0 (2019-08-12)
 
 ### Hinzugefügt

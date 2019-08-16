@@ -1,5 +1,22 @@
 # Release Notes for Feedback
 
+## v3.1.0 (2019-08-16)
+
+### Added
+
+- Guest reviews are now possible.
+- Guest customers can now save a nickname for each review.
+- We added a honeypot to prevent spam.
+
+### Changed
+
+- The settings for automatically releasing reviews have been expanded.
+
+### Fixed
+
+- The user interface has been improved.
+- The plugin's performance has been improved.
+
 ## v3.0.0 (2019-08-12)
 
 ### Added

@@ -27,14 +27,6 @@ Bevor Kundenrezensionen im Webshop angezeigt werden, musst du Einstellungen in d
 	<tbody>
         <tr>
 			<td>
-				<b>Bewertungen automatisch veröffentlichen</b>
-			</td>
-			<td>
-                Aktivieren, um Kundenrezensionen automatisch im Webshop freizuschalten. Wenn diese Einstellung deaktiviert ist, müssen Kundenrezensionen manuell im Menü **CMS » Feedback-Bewertungen** freigeschaltet werden. Nur Kundenrezensionen, die erstellt wurden, nachdem diese Funktion aktiviert wurde, werden automatisch freigeschaltet.
-			</td>
-		</tr>
-        <tr>
-			<td>
 				<b>Datum an der Bewertung anzeigen</b>
 			</td>
 			<td>
