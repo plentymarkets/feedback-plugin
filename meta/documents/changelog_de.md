@@ -2,6 +2,10 @@
 
 ## v3.1.0 (2019-08-19)
 
+### TODO
+
+- Nach dem Update auf 3.1.0 muss die Einstellung zur automatischen Veröffentlichung von Rezensionen im Menü **Plugin-Übersicht » Feedback » Einstellungen** erneut vorgenommen werden.
+
 ### Hinzugefügt
 
 - Gastbewertungen sind nun möglich.
