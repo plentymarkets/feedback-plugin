@@ -2,12 +2,14 @@
 
 namespace Feedback\Helpers;
 
+use IO\Services\TemplateService;
 use Plenty\Plugin\ConfigRepository;
 
 class FeedbackCoreHelper
 {
     const PLUGIN_NAME = 'Feedback';
-    const KEY_RELEASE_FEEDBACKS_AUTOMATICALLY = "releaseFeedbacks";
+    const KEY_RELEASE_FEEDBACKS_AUTOMATICALLY = "autoreleaseFeedbacks";
+    const KEY_ALLOW_GUEST_FEEDBACKS = "allowGuestFeedbacks";
     const KEY_SHOW_EMPTY_RATINGS_IN_CATEGORY_VIEW = "showEmptyRatingsInCategoryView";
     const KEY_SHOW_RATING_SORTING = "showRatingSorting";
     const KEY_SHOW_RATING_FACET = "showRatingFacet";
@@ -26,6 +28,19 @@ class FeedbackCoreHelper
         $this->config = $config;
     }
 
+    public static function isValidTemplate(){
+       $templateService = pluginApp(TemplateService::class);
+       $currentTemplate = $templateService->getCurrentTemplate();
+       $allowedTemplates = [
+           'tpl.item',
+           'tpl.category.item',
+           'tpl.search',
+           'tpl.confirmation'
+       ];
+
+       return in_array($currentTemplate, $allowedTemplates);
+    }
+
     /**
      * Helper function to reduce ternary statements in the code
      * @param $configValue
@@ -41,7 +56,7 @@ class FeedbackCoreHelper
      * @param string $key
      * @return mixed
      */
-    private function configValue(string $key)
+    public function configValue(string $key)
     {
         return $this->config->get(self::PLUGIN_NAME . '.' . $key);
     }

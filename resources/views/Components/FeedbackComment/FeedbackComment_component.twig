@@ -9,9 +9,11 @@
             data: function()
             {
                 return {
+                    authorName: '',
                     replyMessage: '',
                     replyFormVisible: false,
-                    replyListVisible: false
+                    replyListVisible: false,
+                    honeypot: ''
                 };
             },
 
@@ -64,7 +66,7 @@
                             })
                             .join("");
                     } else {
-                        return "{{ trans('Feedback::Feedback.guestName') }}";
+                        return "{{ trans("Feedback::Feedback.guestName") }}";
                     }
                 },
 
@@ -94,15 +96,17 @@
             methods: {
                 createReply: function()
                 {
-                    if ( !this.replyMessage )
+                    if ( !this.replyMessage || this.honeypot.length > 0)
                     {
                         return;
                     }
+
                     var _self = this;
                     $.ajax({
                         type: 'POST',
                         url: '/rest/feedbacks/feedback/create',
                         data: {
+                            authorName: this.authorName,
                             message: this.replyMessage,
                             targetId: this.feedback.id,
                             type: 'reply'

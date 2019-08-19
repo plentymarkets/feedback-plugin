@@ -276,6 +276,15 @@
     .feedback-hidden {
         display: none;
     }
+
+    /* Honeypot hiders */
+    #feedback-textfield {
+        display: none;
+    }
+
+    #comment-textfield {
+        display: none;
+    }
 }
 
 /* Facet extension */

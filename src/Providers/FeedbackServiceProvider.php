@@ -21,8 +21,6 @@ class FeedbackServiceProvider extends ServiceProvider
      */
     public function boot(Dispatcher $dispatcher, FeedbackCoreHelper $coreHelper, Twig $twig)
     {
-        $twig->addExtension(TwigServiceProvider::class);
-
         $showRatingFacet = $coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_SHOW_RATING_FACET);
         $showRatingSorting = $coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_SHOW_RATING_SORTING);
 
@@ -41,13 +39,16 @@ class FeedbackServiceProvider extends ServiceProvider
             });
         }
 
+        $twig->addExtension(TwigServiceProvider::class); // Enable use of FeedbackServiceProvider in twig code
+
         $dispatcher->listen('IO.Resources.Import', function (ResourceContainer $resourceContainer) {
-            $resourceContainer->addScriptTemplate('Feedback::Components.Components');
-            $resourceContainer->addScriptTemplate('Feedback::Content.Scripts');
-            $resourceContainer->addStyleTemplate('Feedback::Content.Styles');
+            if(FeedbackCoreHelper::isValidTemplate()) {
+                $resourceContainer->addScriptTemplate('Feedback::Components.Components');
+                $resourceContainer->addScriptTemplate('Feedback::Content.Scripts');
+                $resourceContainer->addStyleTemplate('Feedback::Content.Styles');
+            }
         });
     }
-
 
     public function register()
     {

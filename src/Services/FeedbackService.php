@@ -2,6 +2,7 @@
 
 namespace Feedback\Services;
 
+use Plenty\Modules\Authorization\Services\AuthHelper;
 use Plenty\Plugin\Http\Request;
 use Feedback\Helpers\FeedbackCoreHelper;
 use IO\Services\SessionStorageService;
@@ -28,6 +29,11 @@ class FeedbackService
     private $accountService;
     /** @var SessionStorageService $sessionStorage */
     private $sessionStorage;
+
+    const GUEST_ID = 0;
+    const RELEASE_LEVEL_NONE = 0;
+    const RELEASE_LEVEL_ONLY_AUTH = 1;
+    const RELEASE_LEVEL_ALL = 2;
 
     public function __construct(
         Request $request,
@@ -114,11 +120,24 @@ class FeedbackService
 
     /**
      * Create a feedback entry in the db
-     * @return string
+     * @return mixed
      */
     public function create()
     {
-        $creatorContactId = $this->accountService->getAccountContactId();
+        // Find out if current user is a contact or a guest (0 is guest, anything else is contact)
+        $authHelper = pluginApp(AuthHelper::class);
+        $accountService = $this->accountService;
+        $creatorContactId = $authHelper->processUnguarded(
+            function() use ($accountService) {
+                return $accountService->getAccountContactId();
+            }
+        );
+
+        $allowGuestFeedbacks = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_GUEST_FEEDBACKS);
+
+        if(!$allowGuestFeedbacks && $creatorContactId == 0) {
+            return 'Guests are not allowed to write feedbacks';
+        }
 
         // Set options
         $options = [
@@ -134,15 +153,15 @@ class FeedbackService
         ];
 
         // Check the type and set the target accordingly
-        if ($this->request->input('type') == 'review') {
-
+        if ($this->request->input('type') == 'review')
+        {
             $options['feedbackRelationTargetType'] = 'variation';
 
             // Limit the feedbacks count of a user per item
             $numberOfFeedbacks = (int) $this->request->input("options.numberOfFeedbacks");
             // Default visibility of the feedback
-            $showEmptyRatingsInCategoryView = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY);
-            $options['isVisible'] = $showEmptyRatingsInCategoryView;
+            $autoreleaseFeedbacks = (int)$this->coreHelper->configValue(FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY);
+            $options['isVisible'] = $this->determineVisibility($autoreleaseFeedbacks, $creatorContactId);
             // Allow feedbacks with no rating
             $allowNoRatingFeedbacks = $this->request->input("options.allowNoRatingFeedbacks") === 'true';
             // Allow creation of feedbacks only if the item/variation was already bought
@@ -152,49 +171,71 @@ class FeedbackService
                 return 'Can\'t create review with no rating';
             }
 
-            // get variations bought
-            $orders = pluginApp(OrderRepositoryContract::class)->allOrdersByContact($creatorContactId);
+            // The following checks cannot be applied to guests
+            if($creatorContactId != 0)
+            {
+                // get variations bought
+                $orders = pluginApp(OrderRepositoryContract::class)->allOrdersByContact($creatorContactId);
 
-            $purchasedVariations = [];
+                $purchasedVariations = [];
 
-            foreach ($orders->getResult() as $order) {
-                foreach ($order->orderItems as $orderItem) {
-                    $purchasedVariations[] = $orderItem->itemVariationId;
+                foreach ($orders->getResult() as $order) {
+                    foreach ($order->orderItems as $orderItem) {
+                        $purchasedVariations[] = $orderItem->itemVariationId;
+                    }
+                }
+
+                if (in_array($this->request->input('targetId'), $purchasedVariations)) {
+                    $creatorPurchasedThisVariation = true;
+                    $options['feedbackRelationSources'][] = [
+                        "feedbackRelationSourceType" => 'orderItem',
+                        "feedbackRelationSourceId" => $options['feedbackRelationTargetId']
+                    ];
+                }
+
+                if ($allowFeedbacksOnlyIfPurchased && !$creatorPurchasedThisVariation) {
+                    return 'Not allowed to create review without purchasing the item first';
+                }
+
+                if (!empty($numberOfFeedbacks) && $numberOfFeedbacks != 0) {
+
+                    // Get the feedbacks that this user created on this item
+                    $countFeedbacksOfUserPerItem = $this->listFeedbacks(1, 50, [], [
+                        'sourceId' => $creatorContactId,
+                        'targetId' => $options['feedbackRelationTargetId']
+                    ])->getTotalCount();
+
+                    if ($countFeedbacksOfUserPerItem >= $numberOfFeedbacks) {
+                        return 'Too many reviews';
+                    }
                 }
             }
 
-            if (in_array($this->request->input('targetId'), $purchasedVariations)) {
-                $creatorPurchasedThisVariation = true;
-                $options['feedbackRelationSources'][] = [
-                    "feedbackRelationSourceType" => 'orderItem',
-                    "feedbackRelationSourceId" => $options['feedbackRelationTargetId']
-                ];
-            }
+            $feedbackRepository = $this->feedbackRepository;
+            $feedbackObject = array_merge($this->request->all(), $options);
 
-            if ($allowFeedbacksOnlyIfPurchased && !$creatorPurchasedThisVariation) {
-                return 'Not allowed to create review without purchasing the item first';
-            }
-
-            if (!empty($numberOfFeedbacks) && $numberOfFeedbacks != 0) {
-
-                // Get the feedbacks that this user created on this item
-                $countFeedbacksOfUserPerItem = $this->listFeedbacks(1, 50, [], [
-                    'sourceId' => $creatorContactId,
-                    'targetId' => $options['feedbackRelationTargetId']
-                ])->getTotalCount();
-
-                if ($countFeedbacksOfUserPerItem >= $numberOfFeedbacks) {
-                    return 'Too many reviews';
+            $result = $authHelper->processUnguarded(
+                function() use ($feedbackRepository,$feedbackObject) {
+                    return $feedbackRepository->createFeedback($feedbackObject);
                 }
-            }
+            );
 
-            return $this->feedbackRepository->createFeedback(array_merge($this->request->all(), $options));
+            return $result;
 
         } elseif ($this->request->input('type') == 'reply') {
             $options['feedbackRelationTargetType'] = 'feedback';
             $options['isVisible'] = true;
 
-            return $this->feedbackRepository->createFeedback(array_merge($this->request->all(), $options));
+            $feedbackRepository = $this->feedbackRepository;
+            $feedbackObject = array_merge($this->request->all(), $options);
+
+            $result = $authHelper->processUnguarded(
+                function() use ($feedbackRepository,$feedbackObject) {
+                    return $feedbackRepository->createFeedback($feedbackObject);
+                }
+            );
+
+            return $result;
         }
     }
 
@@ -223,12 +264,14 @@ class FeedbackService
     public function update($feedbackId)
     {
         $data = $this->request->all();
-        $data['isVisible'] = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY);
+        $autorelease = (int)$this->coreHelper->configValue(FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY);
+        $data['isVisible'] = $this->determineVisibility($autorelease);
 
         return $this->feedbackRepository->updateFeedback($data, $feedbackId);
     }
 
     /**
+     * Get an array of feedbacks by pagination
      * @param $itemId
      * @param $page
      * @return array
@@ -313,6 +356,12 @@ class FeedbackService
         ];
     }
 
+    /**
+     * Get user data for the feedback plugin to work with
+     * @param int $itemId
+     * @param int $variationId
+     * @return array
+     */
     public function getAuthenticatedUser(int $itemId, int $variationId)
     {
         $allowFeedbacksOnlyIfPurchased = $this->request->input("allowFeedbacksOnlyIfPurchased") === 'true';
@@ -373,6 +422,11 @@ class FeedbackService
         ];
     }
 
+    /**
+     * Get the aggregateRating of all feedbacks for the given itemId
+     * @param $itemId
+     * @return mixed
+     */
     public function getAverage($itemId)
     {
         if ((int)$itemId > 0) {
@@ -399,5 +453,22 @@ class FeedbackService
             $with, // with relations
             $filters // filters
         );
+    }
+
+    /**
+     * Determine if a review is needed or not
+     * releaseLevel is a value between 0 and 2
+     * 0 = All feedbacks need a review
+     * 1 = Only guest feedbacks need a review
+     * 2 = No feedback needs a review
+     *
+     * @param int $releaseLevel
+     * @param int $creatorId
+     * @return bool
+     */
+    private function determineVisibility($releaseLevel, $creatorId = 1)
+    {
+        return ($releaseLevel === self::RELEASE_LEVEL_ONLY_AUTH && $creatorId !== self::GUEST_ID)
+            || $releaseLevel === self::RELEASE_LEVEL_ALL;
     }
 }

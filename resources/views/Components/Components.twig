@@ -6,16 +6,18 @@
     {% include "Feedback::Components." ~ component ~ "." ~ component ~ "_component"  %}
 {% endmacro %}
 
-{{ _self.importTemplate("FeedbackForm") }}
-{{ _self.importTemplate("FeedbackList") }}
-{{ _self.importTemplate("FeedbackListEntry") }}
-{{ _self.importTemplate("FeedbackComment") }}
-{{ _self.importTemplate("FeedbackContainer") }}
-{{ _self.importComponent("FeedbackComment") }}
-{{ _self.importComponent("FeedbackForm") }}
-{{ _self.importComponent("FeedbackList") }}
-{{ _self.importComponent("FeedbackListEntry") }}
-{{ _self.importComponent("FeedbackContainer") }}
+{% if services.template.getCurrentTemplate() == 'tpl.item' %}
+    {{ _self.importTemplate("FeedbackForm") }}
+    {{ _self.importTemplate("FeedbackList") }}
+    {{ _self.importTemplate("FeedbackListEntry") }}
+    {{ _self.importTemplate("FeedbackComment") }}
+    {{ _self.importTemplate("FeedbackContainer") }}
+    {{ _self.importComponent("FeedbackComment") }}
+    {{ _self.importComponent("FeedbackForm") }}
+    {{ _self.importComponent("FeedbackList") }}
+    {{ _self.importComponent("FeedbackListEntry") }}
+    {{ _self.importComponent("FeedbackContainer") }}
+{% endif %}
 
 {{ _self.importTemplate("FeedbackAverage") }}
 {{ _self.importComponent("FeedbackAverage") }}

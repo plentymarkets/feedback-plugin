@@ -1,5 +1,5 @@
 {
-    "version": "3.0.0",
+    "version": "3.1.0",
     "name": "Feedback",
     "marketplaceName": {
         "de": "Kunden-Feedback",
@@ -10,8 +10,8 @@
     "author": "plentysystems AG",
     "type": "general",
     "require": {
-        "IO": ">=4.1.0",
-        "Ceres": ">=4.1.0"
+        "IO": ">=4.2.0",
+        "Ceres": ">=4.2.0"
     },
     "isClosedSource": false,
     "serviceProvider": "Feedback\\Providers\\FeedbackServiceProvider",
