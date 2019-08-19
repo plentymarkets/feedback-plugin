@@ -66,6 +66,54 @@ Bevor Kundenrezensionen im Webshop angezeigt werden, musst du Einstellungen in d
 	</tbody>
 </table>
 
+Zusätzlich gibt es im Menü **Plugins » Plugin-Übersicht » Feedback » Einstellungen** weitere Einstellungen, die in der folgenden Tabelle aufgeführt sind:
+
+<table>
+<caption>Tab. 2: Einstellungen für Kundenrezensionen im Plugin</caption>
+	<thead>
+		<th>
+			Einstellung
+		</th>
+		<th>
+			Erläuterung
+		</th>
+	</thead>
+	<tbody>
+        <tr>
+			<td>
+				Bewertungen automatisch veröffentlichen
+			</td>
+			<td>
+				Wähle aus, ob du Bewertungen immer automatisch veröffentlichen willst, sie nicht automatisch veröffentlichen willst, oder nur für eingeloggte Benutzer veröffentlichen willst.
+			</td>
+		</tr>
+		<tr>
+	<td>
+		Bewertungssterne in der Kategorieansicht anzeigen, wenn noch keine Bewertung vorhanden ist
+	</td>
+	<td>
+		Aktivieren, um leere Bewertungssterne anzuzeigen, solange noch keine Bewertungen abgegeben wurden.
+	</td>
+	</tr>
+	<tr>
+	<td>
+		Filter für Artikelbewertung anzeigen
+	</td>
+	<td>
+		Aktivieren, um es Kunden zu ermöglichen, die Suchergbenisse von Kundenrezensionen durch Filtereinstellungen einzugrenzen.
+	</td>
+	</tr>
+	<tr>
+	<td>
+		Sortierung in Artikellisten anzeigen
+	</td>
+	<td>
+		Aktivieren, um es Kunden zu ermöglichen, die Artikellisten nach Bewertung zu sortieren.
+	</td>
+	</tr>
+</table>
+
+
 ## Kundenrezensionen in der Kategorieansicht anzeigen
 
 Solange die Kategorieansicht noch nicht über den ShopBuilder bearbeitet werden kann, kannst du Kundenrezensionen in der Kategorieansicht über Container-Verknüpfungen umsetzen. Gehe wie im Folgenden beschrieben vor, um Kundenrezensionen in der Kategorieansicht anzuzeigen.
