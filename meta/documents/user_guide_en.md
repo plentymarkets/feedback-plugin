@@ -27,14 +27,6 @@ In order to display customer reviews in your online store, you have to carry out
 	<tbody>
         <tr>
 			<td>
-				<b>Automatically publish reviews</b>
-			</td>
-			<td>
-                Activate to publish customer reviews automatically in the online store. If this setting is deactivated, customer reviews must be manually published in the **CMS » Feedback ratings** menu. Only customer reviews created after activating this function will be published automatically.
-			</td>
-		</tr>
-        <tr>
-			<td>
 				<b>Show date of reviews</b>
 			</td>
 			<td>
@@ -72,6 +64,53 @@ In order to display customer reviews in your online store, you have to carry out
 			</td>
 		</tr>
 	</tbody>
+</table>
+
+Additionally, you can carry out further settings in the **Plugins » Plugin overview » Feedback » Settings**, which are detailed in the following table:
+
+<table>
+<caption>Tab. 2: Settings for customer reviews in the plugin</caption>
+	<thead>
+		<th>
+			Setting
+		</th>
+		<th>
+			Description
+		</th>
+	</thead>
+	<tbody>
+        <tr>
+			<td>
+				Automatically publish reviews
+			</td>
+			<td>
+				Select whether reviews should be released automatically, or should only be released for customers who are logged in.
+			</td>
+		</tr>
+		<tr>
+	<td>
+		Show empty star ratings in the category view
+	</td>
+	<td>
+		Activate to display empty star ratings as long as no rating has been given for the item.
+	</td>
+	</tr>
+	<tr>
+	<td>
+		Show rating filter
+	</td>
+	<td>
+		Activate to enable customers to filter search results of customer reviews.
+	</td>
+	</tr>
+	<tr>
+	<td>
+		Show sorting option in item lists
+	</td>
+	<td>
+		Activate to enable customers to sort item lists by rating.
+	</td>
+	</tr>
 </table>
 
 ## Displaying customer reviews in the category view
