@@ -174,27 +174,17 @@ class FeedbackService
             // The following checks cannot be applied to guests
             if($creatorContactId != 0)
             {
-                // get variations bought
-                $orders = pluginApp(OrderRepositoryContract::class)->allOrdersByContact($creatorContactId);
+                $hasPurchased = $this->hasPurchasedVariation($creatorContactId, $this->request->input('targetId'));
 
-                $purchasedVariations = [];
-
-                foreach ($orders->getResult() as $order) {
-                    foreach ($order->orderItems as $orderItem) {
-                        $purchasedVariations[] = $orderItem->itemVariationId;
-                    }
+                if ($allowFeedbacksOnlyIfPurchased && !$hasPurchased) {
+                    return 'Not allowed to create review without purchasing the item first';
                 }
 
-                if (in_array($this->request->input('targetId'), $purchasedVariations)) {
-                    $creatorPurchasedThisVariation = true;
+                if($hasPurchased) {
                     $options['feedbackRelationSources'][] = [
                         "feedbackRelationSourceType" => 'orderItem',
                         "feedbackRelationSourceId" => $options['feedbackRelationTargetId']
                     ];
-                }
-
-                if ($allowFeedbacksOnlyIfPurchased && !$creatorPurchasedThisVariation) {
-                    return 'Not allowed to create review without purchasing the item first';
                 }
 
                 if (!empty($numberOfFeedbacks) && $numberOfFeedbacks != 0) {
@@ -362,30 +352,20 @@ class FeedbackService
      * @param int $variationId
      * @return array
      */
-    public function getAuthenticatedUser(int $itemId, int $variationId)
+    public function getAuthenticatedUserForVariation(int $itemId, int $variationId)
     {
         $allowFeedbacksOnlyIfPurchased = $this->request->input("allowFeedbacksOnlyIfPurchased") === 'true';
         $numberOfFeedbacks = (int) $this->request->input("numberOfFeedbacks");
 
         $contactId = $this->accountService->getAccountContactId();
-        $isLoggedIn = $this->accountService->getIsAccountLoggedIn();
+        $isLoggedIn = !!$contactId;
         $hasPurchased = true;
         $limitReached = false;
         $userFeedbacks = [];
 
         if ($isLoggedIn) {
             if ($allowFeedbacksOnlyIfPurchased) {
-                // get variations bought
-                $orders = pluginApp(OrderRepositoryContract::class)->allOrdersByContact($contactId);
-                $purchasedVariations = [];
-
-                foreach ($orders->getResult() as $order) {
-                    foreach ($order->orderItems as $orderItem) {
-                        $purchasedVariations[] = $orderItem->itemVariationId;
-                    }
-                }
-
-                $hasPurchased = in_array($variationId, $purchasedVariations);
+                $hasPurchased = $this->hasPurchasedVariation($contactId, $variationId);
             }
 
             // Pagination settings for currently authenticated user's feedbacks
@@ -419,6 +399,16 @@ class FeedbackService
             'limitReached' => $limitReached,
             'hasPurchased' => $hasPurchased,
             'feedbacks' => $userFeedbacks
+        ];
+    }
+
+    public function getAuthenticatedUser() {
+        $contactId = $this->accountService->getAccountContactId();
+        $isLoggedIn = !!$contactId;
+
+        return [
+            'id' => $contactId,
+            'isLoggedIn' => $isLoggedIn
         ];
     }
 
@@ -470,5 +460,20 @@ class FeedbackService
     {
         return ($releaseLevel === self::RELEASE_LEVEL_ONLY_AUTH && $creatorId !== self::GUEST_ID)
             || $releaseLevel === self::RELEASE_LEVEL_ALL;
+    }
+
+    private function hasPurchasedVariation($contactId, $variationId) {
+        $orders = pluginApp(OrderRepositoryContract::class)->allOrdersByContact($contactId);
+        $purchasedVariations = [];
+
+        foreach ($orders->getResult() as $order) {
+            foreach ($order->orderItems as $orderItem) {
+                $purchasedVariations[] = $orderItem->itemVariationId;
+            }
+        }
+
+        $hasPurchased = in_array($variationId, $purchasedVariations);
+
+        return $hasPurchased;
     }
 }
