@@ -287,6 +287,31 @@
     }
 }
 
+.feedback-orderitem-container {
+    .feedback-items {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 16px;
+
+        margin: 0 4em;
+
+        .feedback-item {
+            overflow: hidden;
+            text-align: center;
+
+            img {
+                width: auto;
+                height: 300px;
+            }
+
+            a {
+                display: block;
+                font-size: 1.3em;
+            }
+        }
+    }
+}
+
 /* Facet extension */
 .filter-wrapper #filterCollapse,
 .selected-filters {
