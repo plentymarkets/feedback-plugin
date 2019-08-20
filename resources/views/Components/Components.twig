@@ -11,12 +11,19 @@
     {{ _self.importTemplate("FeedbackList") }}
     {{ _self.importTemplate("FeedbackListEntry") }}
     {{ _self.importTemplate("FeedbackComment") }}
-    {{ _self.importTemplate("FeedbackContainer") }}
+    {{ _self.importTemplate("FeedbackSingleItemContainer") }}
     {{ _self.importComponent("FeedbackComment") }}
     {{ _self.importComponent("FeedbackForm") }}
     {{ _self.importComponent("FeedbackList") }}
     {{ _self.importComponent("FeedbackListEntry") }}
-    {{ _self.importComponent("FeedbackContainer") }}
+    {{ _self.importComponent("FeedbackSingleItemContainer") }}
+{% endif %}
+
+{% if services.template.getCurrentTemplate() == 'tpl.confirmation' %}
+    {{ _self.importTemplate("FeedbackOrderItemContainer") }}
+    {{ _self.importTemplate("FeedbackForm") }}
+    {{ _self.importComponent("FeedbackOrderItemContainer") }}
+    {{ _self.importComponent("FeedbackForm") }}
 {% endif %}
 
 {{ _self.importTemplate("FeedbackAverage") }}

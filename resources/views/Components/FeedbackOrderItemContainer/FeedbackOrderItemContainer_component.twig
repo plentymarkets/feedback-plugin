@@ -1,0 +1,63 @@
+<script type="text/javascript">
+    (function($) {
+        Vue.component('feedback-orderitem-container', {
+
+            template: '#vue-feedback-orderitem-container',
+            delimiters: ["${", "}"],
+            props: ['data', 'options', 'classes', 'styles'],
+
+            data: function()
+            {
+                return {
+                    authenticatedUser: {
+                        id: 0,
+                        isLoggedIn: false
+                    },
+                    orderItems: [],
+                    isLoading: true
+                };
+            },
+
+            mounted: function()
+            {
+                var _self = this;
+                $.when(
+                    this.getUser(),
+                    this.prepare()
+                ).done(function() {
+                    _self.isLoading = false;
+                    Vue.nextTick(function () {
+                        // DOM updated
+                        window.dispatchEvent(new Event('resize'));
+                    })
+                });
+            },
+
+            methods: {
+                getUser: function()
+                {
+                    var _self = this;
+                    return $.ajax({
+                        type:           'GET',  // No data means this bad boy might get cached, think about workarounds
+                        url:            '/rest/feedbacks/user',
+                        success:        function(data)
+                        {
+                            _self.authenticatedUser = data;
+                        },
+                        error:          function(jqXHR, textStatus, errorThrown)
+                        {
+                            console.error(errorThrown);
+                        }
+                    });
+                },
+                prepare: function()
+                {
+                },
+                onFeedbackAdded: function(event)
+                {
+                    // Event is expected to be the id, to which the feedback was added
+                }
+            }
+        });
+    })(jQuery);
+</script>

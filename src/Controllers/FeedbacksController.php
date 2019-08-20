@@ -53,9 +53,13 @@ class FeedbacksController extends Controller
      * @param FeedbackService $feedbackService
      * @return array
      */
-    public function getAuthenticatedUser(int $itemId, int $variationId, FeedbackService $feedbackService)
+    public function getAuthenticatedUserForVariation(int $itemId, int $variationId, FeedbackService $feedbackService)
     {
-        return $feedbackService->getAuthenticatedUser($itemId, $variationId);
+        return $feedbackService->getAuthenticatedUserForVariation($itemId, $variationId);
+    }
+
+    public function getAuthenticatedUser(FeedbackService $feedbackService) {
+        return $feedbackService->getAuthenticatedUser();
     }
 
     /**
