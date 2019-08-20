@@ -4,7 +4,7 @@
 
             template: '#vue-feedback-orderitem-container',
             delimiters: ["${", "}"],
-            props: ['data', 'options', 'classes', 'styles'],
+            props: ['items', 'itemImages', 'itemUrls', 'options', 'classes', 'styles'],
 
             data: function()
             {
@@ -13,9 +13,36 @@
                         id: 0,
                         isLoggedIn: false
                     },
-                    orderItems: [],
                     isLoading: true
                 };
+            },
+
+            computed: {
+                orderItems: function()
+                {
+                    // Filter out shipping costs (shipping costs is an order item)
+                    var filtered = this.items.filter(function(value) {
+                        if(value.itemVariationId > 0)
+                        {
+                            return value;
+                        }
+                    });
+
+                    var aggregate = [];
+                    for(var i = 0; i < filtered.length; i++) {
+                        var value = filtered[i];
+                        var image = this.itemImages[value.itemVariationId];
+                        var url = this.itemUrls[value.itemVariationId];
+
+                        aggregate.push({
+                            name: value.orderItemName,
+                            image: image,
+                            url: url
+                        });
+                    }
+
+                    return aggregate;
+                }
             },
 
             mounted: function()

@@ -3,16 +3,25 @@
 
 {% set customClass = widget.settings.customClass.mobile %}
 {% set appearance = widget.settings.appearance.mobile %}
-
 {% set spacingSettings = widget.settings.spacing %}
 {% set inlinePadding   = WidgetHelper.getInlineSpacings(spacingSettings, spacingSettings.customPadding.mobile, "") %}
 {% set inlineMargin    = WidgetHelper.getInlineSpacings(spacingSettings, "", spacingSettings.customMargin.mobile) %}
 {% set spacingPadding  = WidgetHelper.getSpacingClasses(spacingSettings, spacingSettings.customPadding.mobile, "") %}
 {% set spacingMargin   = WidgetHelper.getSpacingClasses(spacingSettings, "",spacingSettings.customMargin.mobile) %}
 
+{% if not isPreview %}
+    {{ Twig.set("feedbackData", "data.order") }}
+{% else %}
+    {{ Twig.set("feedbackData", "{}") }}
+{% endif %}
+
 <div class="widget widget-feedback-orderconfirmation widget-{{ appearance | default("primary") }} {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
         {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
 
-    <feedback-orderitem-container>
+    <feedback-orderitem-container
+        :items="{{ Twig.print("data.order.orderItems | json_encode") }}"
+        :item-images="{{ Twig.print("data.itemImages | json_encode") }}"
+        :item-urls="{{ Twig.print("data.itemURLs | json_encode") }}"
+    >
     </feedback-orderitem-container>
 </div>

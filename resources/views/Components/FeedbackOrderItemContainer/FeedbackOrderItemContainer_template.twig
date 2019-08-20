@@ -5,7 +5,10 @@
         </div>
         <hr>
         <div class="feedback-items">
-            Lorem ipsum dolor sit amet
+            <div v-for="order in orderItems" class="feedback-item">
+                <img :alt="order.name" :src="order.image">
+                <a :href="order.url">${ order.name }</a>
+            </div>
         </div>
     </section>
 </script>
