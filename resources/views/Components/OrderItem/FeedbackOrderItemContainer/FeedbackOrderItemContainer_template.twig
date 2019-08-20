@@ -1,0 +1,27 @@
+<script type="x/template" id="vue-feedback-orderitem-container">
+    <section class="feedback-container feedback-orderitem-container">
+        <div class="title">
+            {{- trans("Feedback::Feedback.orderItemTitle") -}}
+        </div>
+        <hr>
+        <div class="feedback-items">
+            <div v-for="order in orderItems" class="feedback-item">
+                <div class="stars">
+                    {% for i in 5..1 %}
+                        <input v-model="feedback.ratingValue"
+                               class="star star-{{ i }}"
+                               id="star-{{ i }}"
+                               type="radio"
+                               value="{{ i }}"
+                               name="ratingValue"/>
+                        <label class="star star-{{ i }}" for="star-{{ i }}"></label>
+                    {% endfor %}
+                </div>
+                <div>
+                    <img :alt="order.name" :src="order.image">
+                    <a :href="order.url">${ order.name }</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</script>

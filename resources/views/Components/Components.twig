@@ -6,25 +6,34 @@
     {% include "Feedback::Components." ~ component ~ "." ~ component ~ "_component"  %}
 {% endmacro %}
 
+{% macro importTemplateNamespaced(namespace, component) %}
+    {% include "Feedback::Components." ~ namespace ~ "." ~ component ~ "." ~ component ~ "_template" %}
+{% endmacro %}
+
+{% macro importComponentNamespaced(namespace, component) %}
+    {% include "Feedback::Components." ~ namespace ~ "." ~ component ~ "." ~ component ~ "_component" %}
+{% endmacro %}
+
+
 {% if services.template.getCurrentTemplate() == 'tpl.item' %}
-    {{ _self.importTemplate("FeedbackForm") }}
-    {{ _self.importTemplate("FeedbackList") }}
-    {{ _self.importTemplate("FeedbackListEntry") }}
-    {{ _self.importTemplate("FeedbackComment") }}
-    {{ _self.importTemplate("FeedbackSingleItemContainer") }}
-    {{ _self.importComponent("FeedbackComment") }}
-    {{ _self.importComponent("FeedbackForm") }}
-    {{ _self.importComponent("FeedbackList") }}
-    {{ _self.importComponent("FeedbackListEntry") }}
-    {{ _self.importComponent("FeedbackSingleItemContainer") }}
+    {{ _self.importTemplateNamespaced("Common", "FeedbackForm") }}
+    {{ _self.importTemplateNamespaced("SingleItem", "FeedbackList") }}
+    {{ _self.importTemplateNamespaced("SingleItem", "FeedbackListEntry") }}
+    {{ _self.importTemplateNamespaced("SingleItem", "FeedbackComment") }}
+    {{ _self.importTemplateNamespaced("SingleItem", "FeedbackSingleItemContainer") }}
+    {{ _self.importComponentNamespaced("SingleItem", "FeedbackComment") }}
+    {{ _self.importComponentNamespaced("Common", "FeedbackForm") }}
+    {{ _self.importComponentNamespaced("SingleItem", "FeedbackList") }}
+    {{ _self.importComponentNamespaced("SingleItem", "FeedbackListEntry") }}
+    {{ _self.importComponentNamespaced("SingleItem", "FeedbackSingleItemContainer") }}
 {% endif %}
 
 {% if services.template.getCurrentTemplate() == 'tpl.confirmation' %}
-    {{ _self.importTemplate("FeedbackOrderItemContainer") }}
-    {{ _self.importTemplate("FeedbackForm") }}
-    {{ _self.importComponent("FeedbackOrderItemContainer") }}
-    {{ _self.importComponent("FeedbackForm") }}
+    {{ _self.importTemplateNamespaced("OrderItem", "FeedbackOrderItemContainer") }}
+    {{ _self.importTemplateNamespaced("Common", "FeedbackForm") }}
+    {{ _self.importComponentNamespaced("OrderItem", "FeedbackOrderItemContainer") }}
+    {{ _self.importComponentNamespaced("Common", "FeedbackForm") }}
 {% endif %}
 
-{{ _self.importTemplate("FeedbackAverage") }}
-{{ _self.importComponent("FeedbackAverage") }}
+{{ _self.importTemplateNamespaced("Average", "FeedbackAverage") }}
+{{ _self.importComponentNamespaced("Average", "FeedbackAverage") }}
