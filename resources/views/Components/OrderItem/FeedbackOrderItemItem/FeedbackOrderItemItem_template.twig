@@ -8,7 +8,7 @@
                        type="radio"
                        :value="starId.value"
                        name="ratingValue"
-                       @click="handleRating()"/>
+                       @click="handleRating(starId.value)"/>
                 <label class="star" :for="starId.id"></label>
             </template>
         </div>

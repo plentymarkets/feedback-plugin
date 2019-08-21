@@ -23,6 +23,7 @@
             :items="{{ Twig.print("data.order.orderItems | json_encode") }}"
             :item-images="{{ Twig.print("data.itemImages | json_encode") }}"
             :item-urls="{{ Twig.print("data.itemURLs | json_encode") }}"
+            :options="{{ options | json_encode}}"
         >
         </feedback-orderitem-container>
     {% else %}

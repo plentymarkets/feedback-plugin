@@ -10,6 +10,9 @@
                     :item=order>
             </feedback-orderitem-item>
         </div>
-        <feedback-orderitem-form></feedback-orderitem-form>
+        <feedback-orderitem-form
+            :authenticated-user="authenticatedUser"
+            :options="options"
+        ></feedback-orderitem-form>
     </section>
 </script>

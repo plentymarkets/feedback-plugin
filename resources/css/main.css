@@ -230,9 +230,18 @@
 }
 .feedback-orderitem-container .feedback-items .feedback-item img {
   width: auto;
-  height: 300px;
+  height: 250px;
 }
 .feedback-orderitem-container .feedback-items .feedback-item a {
+  display: block;
+  font-size: 1.3em;
+}
+.feedback-orderitem-container .modal img {
+  display: block;
+  width: auto;
+  height: 200px;
+}
+.feedback-orderitem-container .modal a {
   display: block;
   font-size: 1.3em;
 }

@@ -31,11 +31,11 @@
             },
 
             methods: {
-                handleRating: function() {
+                handleRating: function(value) {
                     var _self = this;
                     vueEventHub.$emit('orderItemAddFeedback', {
                         item: _self.item,
-                        ratingValue: _self.ratingValue
+                        ratingValue: value
                     });
                 }
             }

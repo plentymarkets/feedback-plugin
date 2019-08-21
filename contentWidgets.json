@@ -322,6 +322,24 @@
                     "name": "Widget.allowNoRatingFeedback",
                     "tooltipText": "Widget.allowNoRatingFeedbackTooltip"
                 }
+            },
+            "itemsPerRow": {
+                "type": "number",
+                "required": false,
+                "defaultValue": 3,
+                "options": {
+                    "name": "Widget.itemsPerRow",
+                    "tooltipText": "Widget.itemsPerRowTooltip"
+                }
+            },
+            "rowsPerPage": {
+                "type": "number",
+                "required": false,
+                "defaultValue": 1,
+                "options": {
+                    "name": "Widget.rowsPerPage",
+                    "tooltipText": "Widget.rowsPerPageTooltip"
+                }
             }
         }
     }

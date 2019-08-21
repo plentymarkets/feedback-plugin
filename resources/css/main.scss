@@ -301,13 +301,26 @@
 
             img {
                 width: auto;
-                height: 300px;
+                height: 250px;
             }
 
             a {
                 display: block;
                 font-size: 1.3em;
             }
+        }
+    }
+
+    .modal {
+        img {
+            display: block;
+            width: auto;
+            height: 200px;
+        }
+
+        a {
+            display: block;
+            font-size: 1.3em;
         }
     }
 }
