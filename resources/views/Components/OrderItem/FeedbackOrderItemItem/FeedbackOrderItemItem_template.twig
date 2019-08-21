@@ -1,4 +1,4 @@
-ß<script type="x/template" id="vue-feedback-orderitem-item">
+<script type="x/template" id="vue-feedback-orderitem-item">
     <div class="feedback-item">
         <div class="stars">
             <template v-for="starId in starIds">
@@ -7,7 +7,8 @@
                        :id="starId.id"
                        type="radio"
                        :value="starId.value"
-                       name="ratingValue"/>
+                       name="ratingValue"
+                       @click="handleRating()"/>
                 <label class="star" :for="starId.id"></label>
             </template>
         </div>

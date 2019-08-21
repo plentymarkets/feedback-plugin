@@ -2,10 +2,10 @@
     <!-- Modal -->
     {% set uid = uid() %}
     <div class="modal fade"
-         ref="confirmDeleteModal"
+         ref="orderItemFeedbackModal"
          tabindex="-1"
          role="dialog"
-         aria-labelledby="feedbackConfirmDeleteLabel-{{ uid }}"
+         aria-labelledby="feedbackOrderItem-{{ uid }}"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -15,19 +15,15 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
 
-                    <h5 class="modal-title" id="feedbackConfirmDeleteLabel-{{ uid }}">{{ trans("Feedback::Feedback.deleteConfirm") }}</h5>
+                    <h3 class="modal-title" id="feedbackConfirmDeleteLabel-{{ uid }}">{{ trans("Feedback::Feedback.customerReviews") }}</h3>
                 </div>
                 <div class="modal-body">
-                    <p class="feedback-delete-confirmation" v-if="!!feedbackToDelete && feedbackToDelete.isReply">
-                        {{ trans("Feedback::Feedback.deleteReply") }}
-                    </p>
-                    <p class="feedback-delete-confirmation" v-else>
-                        {{ trans("Feedback::Feedback.deleteReview") }}
-                    </p>
+                    METTFALKEN SIND IN DIESEM SPACE
+                    FUCK FEEDBACK
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ trans("Feedback::Feedback.cancel") }}</button>
-                    <button type="button" class="btn btn-primary btn-appearance" @click="deleteFeedback()">{{ trans("Feedback::Feedback.yesDeleteIt") }}</button>
+                    <button type="button" class="btn btn-primary btn-appearance">{{ trans("Feedback::Feedback.submitReview") }}</button>
                 </div>
             </div>
         </div>

@@ -18,10 +18,14 @@
 <div class="widget widget-feedback-orderconfirmation widget-{{ appearance | default("primary") }} {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
         {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
 
-    <feedback-orderitem-container
-        :items="{{ Twig.print("data.order.orderItems | json_encode") }}"
-        :item-images="{{ Twig.print("data.itemImages | json_encode") }}"
-        :item-urls="{{ Twig.print("data.itemURLs | json_encode") }}"
-    >
-    </feedback-orderitem-container>
+    {% if not isPreview %}
+        <feedback-orderitem-container
+            :items="{{ Twig.print("data.order.orderItems | json_encode") }}"
+            :item-images="{{ Twig.print("data.itemImages | json_encode") }}"
+            :item-urls="{{ Twig.print("data.itemURLs | json_encode") }}"
+        >
+        </feedback-orderitem-container>
+    {% else %}
+        Hier könnte das Widget stehen.
+    {% endif %}
 </div>
