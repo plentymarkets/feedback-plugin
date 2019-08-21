@@ -1,0 +1,19 @@
+ß<script type="x/template" id="vue-feedback-orderitem-item">
+    <div class="feedback-item">
+        <div class="stars">
+            <template v-for="starId in starIds">
+                <input v-model="ratingValue"
+                       class="star"
+                       :id="starId.id"
+                       type="radio"
+                       :value="starId.value"
+                       name="ratingValue"/>
+                <label class="star" :for="starId.id"></label>
+            </template>
+        </div>
+        <div>
+            <img :alt="item.name" :src="item.image">
+            <a :href="item.url">${ item.name }</a>
+        </div>
+    </div>
+</script>

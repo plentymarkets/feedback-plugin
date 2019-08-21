@@ -21,8 +21,10 @@
 
 {% if services.template.getCurrentTemplate() == 'tpl.confirmation' %}
     {{ _self.importTemplate("OrderItem", "FeedbackOrderItemContainer") }}
+    {{ _self.importTemplate("OrderItem", "FeedbackOrderItemItem") }}
     {{ _self.importTemplate("Common", "FeedbackForm") }}
     {{ _self.importComponent("OrderItem", "FeedbackOrderItemContainer") }}
+    {{ _self.importComponent("OrderItem", "FeedbackOrderItemItem") }}
     {{ _self.importComponent("Common", "FeedbackForm") }}
 {% endif %}
 
