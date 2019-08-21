@@ -1,0 +1,35 @@
+<script type="x/template" id="vue-feedback-orderitem-form">
+    <!-- Modal -->
+    {% set uid = uid() %}
+    <div class="modal fade"
+         ref="confirmDeleteModal"
+         tabindex="-1"
+         role="dialog"
+         aria-labelledby="feedbackConfirmDeleteLabel-{{ uid }}"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                    <h5 class="modal-title" id="feedbackConfirmDeleteLabel-{{ uid }}">{{ trans("Feedback::Feedback.deleteConfirm") }}</h5>
+                </div>
+                <div class="modal-body">
+                    <p class="feedback-delete-confirmation" v-if="!!feedbackToDelete && feedbackToDelete.isReply">
+                        {{ trans("Feedback::Feedback.deleteReply") }}
+                    </p>
+                    <p class="feedback-delete-confirmation" v-else>
+                        {{ trans("Feedback::Feedback.deleteReview") }}
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ trans("Feedback::Feedback.cancel") }}</button>
+                    <button type="button" class="btn btn-primary btn-appearance" @click="deleteFeedback()">{{ trans("Feedback::Feedback.yesDeleteIt") }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>

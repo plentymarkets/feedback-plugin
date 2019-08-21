@@ -7,13 +7,13 @@
 {% endmacro %}
 
 {% if services.template.getCurrentTemplate() == 'tpl.item' %}
-    {{ _self.importTemplate("Common", "FeedbackForm") }}
+    {{ _self.importTemplate("SingleItem", "FeedbackForm") }}
     {{ _self.importTemplate("SingleItem", "FeedbackList") }}
     {{ _self.importTemplate("SingleItem", "FeedbackListEntry") }}
     {{ _self.importTemplate("SingleItem", "FeedbackComment") }}
     {{ _self.importTemplate("SingleItem", "FeedbackSingleItemContainer") }}
     {{ _self.importComponent("SingleItem", "FeedbackComment") }}
-    {{ _self.importComponent("Common", "FeedbackForm") }}
+    {{ _self.importComponent("SingleItem", "FeedbackForm") }}
     {{ _self.importComponent("SingleItem", "FeedbackList") }}
     {{ _self.importComponent("SingleItem", "FeedbackListEntry") }}
     {{ _self.importComponent("SingleItem", "FeedbackSingleItemContainer") }}
@@ -22,10 +22,10 @@
 {% if services.template.getCurrentTemplate() == 'tpl.confirmation' %}
     {{ _self.importTemplate("OrderItem", "FeedbackOrderItemContainer") }}
     {{ _self.importTemplate("OrderItem", "FeedbackOrderItemItem") }}
-    {{ _self.importTemplate("Common", "FeedbackForm") }}
+    {{ _self.importTemplate("OrderItem", "FeedbackOrderItemForm") }}
     {{ _self.importComponent("OrderItem", "FeedbackOrderItemContainer") }}
     {{ _self.importComponent("OrderItem", "FeedbackOrderItemItem") }}
-    {{ _self.importComponent("Common", "FeedbackForm") }}
+    {{ _self.importComponent("OrderItem", "FeedbackOrderItemForm") }}
 {% endif %}
 
 {{ _self.importTemplate("Average", "FeedbackAverage") }}
