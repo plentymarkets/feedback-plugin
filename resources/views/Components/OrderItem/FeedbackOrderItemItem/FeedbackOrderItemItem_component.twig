@@ -32,6 +32,8 @@
 
             methods: {
                 handleRating: function(value) {
+                    this.ratingValue = value;
+
                     var _self = this;
                     vueEventHub.$emit('orderItemAddFeedback', {
                         item: _self.item,

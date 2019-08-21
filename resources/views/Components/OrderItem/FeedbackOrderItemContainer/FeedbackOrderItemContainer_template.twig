@@ -4,7 +4,7 @@
             {{- trans("Feedback::Feedback.orderItemTitle") -}}
         </div>
         <hr>
-        <div class="feedback-items">
+        <div class="feedback-items" :style="itemsPerRow">
             <feedback-orderitem-item
                     v-for="order in orderItems"
                     :item=order>

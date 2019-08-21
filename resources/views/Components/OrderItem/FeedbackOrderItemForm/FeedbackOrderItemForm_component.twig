@@ -20,7 +20,6 @@
                     },
                     isLoading: false,
                     titleMissing: false,
-                    ratingMissing: false,
                     item: {
                         url: "",
                         image: "",
@@ -34,7 +33,6 @@
                 var _self = this;
                 vueEventHub.$on('orderItemAddFeedback', function(event) {
                     _self.prepare(event);
-                    _self.isLoading = true;
                 });
             },
 
@@ -73,13 +71,7 @@
                         return;
                     }
 
-                    if ( !this.options.allowNoRatingFeedback && this.feedback.ratingValue <= 0 )
-                    {
-                        this.ratingMissing = true;
-                        return;
-                    }
-
-                    if ( !this.feedback.title )
+                    if (!this.feedback.title )
                     {
                         this.titleMissing = true;
                         return;
@@ -109,6 +101,8 @@
                             _self.feedback['ratingValue'] = 0;
                             _self.titleMissing = false;
                             _self.ratingMissing = false;
+
+                            $(this.$refs.orderItemFeedbackModal).modal('hide');
                         },
                         error: function (jqXHR, textStatus, errorThrown)
                         {

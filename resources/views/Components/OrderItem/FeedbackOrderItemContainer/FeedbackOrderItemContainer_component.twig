@@ -13,10 +13,7 @@
                         id: 0,
                         isLoggedIn: false
                     },
-                    feedback: {
-                        ratingValue: 0
-                    },
-                    isLoading: true
+                    isLoading: false
                 };
             },
 
@@ -46,6 +43,10 @@
                     }
 
                     return aggregate;
+                },
+
+                itemsPerRow: function() {
+                    return "grid-template-columns: repeat(" + this.options.itemsPerRow + ", 1fr);"
                 }
             },
 

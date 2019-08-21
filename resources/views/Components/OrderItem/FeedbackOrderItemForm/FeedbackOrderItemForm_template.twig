@@ -69,13 +69,13 @@
                               v-model="feedback.message"
                               id="message"
                               name="message"
-                              rows="3"
+                              rows="6"
                               placeholder="{{ trans("Feedback::Feedback.reviewMessage") }}"></textarea>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary btn-appearance btn-block">{{ trans("Feedback::Feedback.submitReview") }}</button>
+                    <button type="button" class="btn btn-primary btn-appearance btn-block" @click="createFeedback()">{{ trans("Feedback::Feedback.submitReview") }}</button>
                 </div>
             </div>
         </div>
