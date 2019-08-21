@@ -6,7 +6,6 @@
     {% include "Feedback::Components." ~ namespace ~ "." ~ component ~ "." ~ component ~ "_component" %}
 {% endmacro %}
 
-
 {% if services.template.getCurrentTemplate() == 'tpl.item' %}
     {{ _self.importTemplate("Common", "FeedbackForm") }}
     {{ _self.importTemplate("SingleItem", "FeedbackList") }}
