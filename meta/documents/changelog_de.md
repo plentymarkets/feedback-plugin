@@ -1,5 +1,11 @@
 # Release Notes für Feedback
 
+## v3.1.1 (2019-08-22)
+
+### Behoben
+
+Durch einen Fehler wurden Styles auf bestimmten Templates nicht geladen. Dies wurde behoben. 
+
 ## v3.1.0 (2019-08-19)
 
 ### TODO
