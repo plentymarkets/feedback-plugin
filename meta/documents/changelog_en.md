@@ -1,5 +1,9 @@
 # Release Notes for Feedback
 
+## v3.1.1 (2019-08-22)
+
+Due to an error, styles could not be loaded on certain templates. This has been fixed.
+
 ## v3.1.0 (2019-08-19)
 
 ### TODO
