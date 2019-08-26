@@ -47,7 +47,11 @@
 
                 itemsPerRow: function() {
                     var realItemsPerRow = Math.min(this.orderItems.length, this.options.itemsPerRow);
-                    return "grid-template-columns: repeat(" + realItemsPerRow + ", minmax(200px, 1fr));"
+
+                    var all = "grid-template-columns: repeat(" + realItemsPerRow + ", minmax(200px, 1fr));";
+                    var fallback_ie = "-ms-grid-columns: (minmax(200px, 1fr))[" + realItemsPerRow + "];";
+
+                    return fallback_ie + " " + all;
                 }
             },
 

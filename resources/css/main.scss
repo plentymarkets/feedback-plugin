@@ -289,6 +289,7 @@
 
 .feedback-orderitem-container {
     .feedback-items {
+        display: -ms-grid;
         display: grid;
         grid-gap: 16px;
 
