@@ -15,7 +15,7 @@
                         title: "",
                         message: "",
                         type: 'review',
-                        targetId: this.variationId,
+                        targetId: 0,
                         honeypot: ""
                     },
                     isLoading: false,
@@ -80,6 +80,7 @@
                     this.isLoading = true;
 
                     this.feedback.options = this.options;
+                    this.feedback.targetId = this.item.variationId;
 
                     var _self = this;
                     $.ajax({
@@ -95,14 +96,14 @@
                         {
                             _self.$emit('feedback-added', data);
                             _self.isLoading = false;
-                            _self.feedback['author'] = '';
+                            _self.feedback['authorName'] = '';
                             _self.feedback['message'] = '';
                             _self.feedback['title'] = '';
                             _self.feedback['ratingValue'] = 0;
                             _self.titleMissing = false;
                             _self.ratingMissing = false;
 
-                            $(this.$refs.orderItemFeedbackModal).modal('hide');
+                            $(_self.$refs.orderItemFeedbackModal).modal('hide');
                         },
                         error: function (jqXHR, textStatus, errorThrown)
                         {
