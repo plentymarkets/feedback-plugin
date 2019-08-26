@@ -209,7 +209,9 @@ class FeedbackService
 
             return $result;
 
-        } elseif ($this->request->input('type') == 'reply') {
+        }
+        elseif ($this->request->input('type') == 'reply')
+        {
             $options['feedbackRelationTargetType'] = 'feedback';
             $options['isVisible'] = true;
 

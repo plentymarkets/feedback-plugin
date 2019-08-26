@@ -43,7 +43,7 @@
                         ids.push(
                             {
                                 value: i,
-                                id: "star-" + i + "-" + this.item.variationId
+                                id: "star-" + i + "-" + this.item.variationId + "-form"
                             }
                         );
                     }
@@ -55,9 +55,12 @@
             methods: {
                 prepare: function(event) {
                     this.item = event.item;
-                    this.feedback.ratingValue = event.ratingValue;
+                    var _self = this;
 
-                    $(this.$refs.orderItemFeedbackModal).modal('show');
+                    Vue.nextTick(function () {
+                        _self.feedback.ratingValue = event.ratingValue;
+                        $(_self.$refs.orderItemFeedbackModal).modal('show');
+                    });
                 },
                 createFeedback: function()
                 {
@@ -94,7 +97,11 @@
                         },
                         success: function(data)
                         {
-                            _self.$emit('feedback-added', data);
+                            vueEventHub.$emit('orderItemFeedbackAdded', {
+                                ratingValue: _self.feedback.ratingValue,
+                                variationId: _self.feedback.targetId
+                            });
+
                             _self.isLoading = false;
                             _self.feedback['authorName'] = '';
                             _self.feedback['message'] = '';
@@ -102,6 +109,7 @@
                             _self.feedback['ratingValue'] = 0;
                             _self.titleMissing = false;
                             _self.ratingMissing = false;
+
 
                             $(_self.$refs.orderItemFeedbackModal).modal('hide');
                         },

@@ -1,16 +1,19 @@
 <script type="x/template" id="vue-feedback-orderitem-item">
     <div class="feedback-item">
         <div class="stars">
-            <template v-for="starId in starIds">
-                <input v-model="ratingValue"
-                       class="star"
-                       :id="starId.id"
-                       type="radio"
-                       :value="starId.value"
-                       name="ratingValue"
-                       @click="handleRating(starId.value)"/>
-                <label class="star" :for="starId.id"></label>
-            </template>
+            <form>
+                <template v-for="starId in starIds">
+                    <input v-model="ratingValue"
+                           class="star"
+                           :id="starId.id"
+                           type="radio"
+                           :value="starId.value"
+                           name="ratingValue"
+                           @click="handleRating(starId.value)"
+                           :disabled="isRated"/>
+                    <label class="star" :for="starId.id"></label>
+                </template>
+            </form>
         </div>
         <div>
             <img :alt="item.name" :src="item.image">
