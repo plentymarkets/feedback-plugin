@@ -17,18 +17,24 @@
             mounted: function() {
                 var _self = this;
                 vueEventHub.$on('orderItemFeedbackAdded', function(event) {
-                    _self.isRated = event.variationId === item.variationId;
+                    if(event.variationId === _self.item.variationId) {
+                        _self.ratingValue = event.ratingValue;
+                        _self.isRated = true;
+                    }
                 });
             },
 
             computed: {
                 starIds: function() {
                     var ids = [];
+                    var starClass = this.isRated ? "star-rated" : "star";
+
                     for(var i = 5; i > 0; i--) {
                         ids.push(
                             {
                                 value: i,
-                                id: "star-" + i + "-" + this.item.variationId
+                                id: "star-" + i + "-" + this.item.variationId,
+                                class: starClass
                             }
                         );
                     }
