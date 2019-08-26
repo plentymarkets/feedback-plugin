@@ -12,7 +12,8 @@
         </div>
         <feedback-orderitem-form
             :authenticated-user="authenticatedUser"
-            :options="options"
+            :allow-guest-feedbacks="options.allowGuestFeedbacks"
+            :number-of-feedbacks="options.numberOfFeedbacks"
         ></feedback-orderitem-form>
     </section>
 </script>

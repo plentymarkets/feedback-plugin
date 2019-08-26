@@ -314,13 +314,13 @@
                     }
                 }
             },
-            "allowNoRatingFeedback": {
-                "type": "checkbox",
+            "numberOfFeedbacks": {
+                "type": "number",
                 "required": false,
-                "defaultValue": false,
+                "defaultValue": 1,
                 "options": {
-                    "name": "Widget.allowNoRatingFeedback",
-                    "tooltipText": "Widget.allowNoRatingFeedbackTooltip"
+                    "name": "Widget.numberOfFeedbacks",
+                    "tooltipText": "Widget.numberOfFeedbacksTooltip"
                 }
             },
             "itemsPerRow": {

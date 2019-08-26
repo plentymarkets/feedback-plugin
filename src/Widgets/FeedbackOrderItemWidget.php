@@ -16,7 +16,7 @@ class FeedbackOrderItemWidget extends BaseWidget
         // As only mobile is currently used, flatten breakpoints
         return [
             "options" => [
-                "allowNoRatingFeedback" => $widgetSettings["allowNoRatingFeedback"]["mobile"],
+                "numberOfFeedbacks" => $widgetSettings["numberOfFeedbacks"]["mobile"],
                 "allowGuestFeedbacks" => $allowGuestFeedbacks,
                 "itemsPerRow" => $widgetSettings["itemsPerRow"]["mobile"],
                 "rowsPerPage" => $widgetSettings["rowsPerPage"]["mobile"]
