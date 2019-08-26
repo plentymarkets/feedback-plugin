@@ -49,6 +49,11 @@
                     }
 
                     return ids;
+                },
+
+                rows: function() {
+                    // Dynamically set rows to offset the optional authorName input
+                    return this.authenticatedUser.id > 0 ? 8 : 6;
                 }
             },
 

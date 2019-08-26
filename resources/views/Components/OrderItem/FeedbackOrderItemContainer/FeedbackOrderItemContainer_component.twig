@@ -46,7 +46,8 @@
                 },
 
                 itemsPerRow: function() {
-                    return "grid-template-columns: repeat(" + this.options.itemsPerRow + ", minmax(auto, 1fr));"
+                    var realItemsPerRow = Math.min(this.orderItems.length, this.options.itemsPerRow);
+                    return "grid-template-columns: repeat(" + realItemsPerRow + ", minmax(200px, 1fr));"
                 }
             },
 
