@@ -1,13 +1,14 @@
 <?php
 namespace Feedback\Extensions;
 
-use IO\Services\ItemLoader\Contracts\FacetExtension;
 use IO\Services\SessionStorageService;
-use Plenty\Modules\Cloud\ElasticSearch\Lib\Search\Aggregation\AggregationInterface;
+use IO\Services\ItemSearch\Contracts\FacetExtension;
+
+use Plenty\Plugin\Log\Loggable;
+use Plenty\Modules\Item\Search\Filter\FeedbackRangeFilter;
 use Plenty\Modules\Item\Search\Aggregations\FeedbackAggregation;
 use Plenty\Modules\Item\Search\Aggregations\FeedbackAggregationProcessor;
-use Plenty\Modules\Item\Search\Filter\FeedbackRangeFilter;
-use Plenty\Plugin\Log\Loggable;
+use Plenty\Modules\Cloud\ElasticSearch\Lib\Search\Aggregation\AggregationInterface;
 
 /**
  * Class FeedbackFacet
@@ -42,7 +43,7 @@ class FeedbackFacet implements FacetExtension
             $this->getLogger('merge into facets')->debug('Feedback::Debug.filterResponse', $result['feedback']);
 
             $facetName = '';
-            
+
             // TODO: get facet name from property file
             $lang = pluginApp( SessionStorageService::class )->getLang();
             if ( $lang === 'de' )
@@ -53,7 +54,7 @@ class FeedbackFacet implements FacetExtension
             {
                 $facetName = 'Item rating';
             }
-            
+
             $feedback = [
                 'id' => 'feedback',
                 'name' => $facetName,
