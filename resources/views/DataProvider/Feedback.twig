@@ -231,6 +231,11 @@
         </div>
     </div>
 
+    <script>
+        var itemVariationId = '{{ item[0].documents[0].data.item.id }}';
+    </script>
+
+
     <p class="feedback-hidden" v-if="$store.state.item.variation.documents" id="feedback-variation-id">${ $store.state.item.variation.documents[0].data.variation.id }</p>
 </section>
 
