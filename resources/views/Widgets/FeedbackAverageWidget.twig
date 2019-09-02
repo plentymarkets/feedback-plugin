@@ -6,6 +6,7 @@
 {% set inlineMargin    = WidgetHelper.getInlineSpacings(spacingSettings, "", spacingSettings.customMargin.mobile) %}
 {% set spacingMargin   = WidgetHelper.getSpacingClasses(spacingSettings, "",spacingSettings.customMargin.mobile) %}
 {% set sizeOfStars = widget.settings.sizeOfStars.mobile %}
+
 {% set showEmptyRatings = widget.settings.showEmptyRatings.mobile %}
 
 {% if not isPreview %}
@@ -13,6 +14,8 @@
 {% else %}
     {{ Twig.set("item", Twig.call("services.itemList.getItemList", ['random'])) }}
     {{ Twig.set("feedbackItem", Twig.call("feedbackServices.feedback.getFeedbackAverageDataSingleItem", [Twig.var("item")])) }}
+
+    {% set showEmptyRatings = isPreview %}
 {% endif %}
 
 {{ Twig.set("item_id", "item.documents[0].data.item.id") }}
@@ -23,6 +26,6 @@
             class="feedback-stars-average {{ sizeOfStars }}"
             id="feedback-stars-average"
             :item-id="{{ Twig.print("item_id") }}"
-            :show-empty-ratings="{{ showEmptyRatings or isPreview | json_encode}}">
+            :show-empty-ratings="{{ showEmptyRatings | json_encode }}">
     </feedback-average>
 </div>
