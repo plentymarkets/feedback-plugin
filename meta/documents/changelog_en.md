@@ -1,5 +1,12 @@
 # Release Notes for Feedback
 
+## v.3.1.2 (2019-09-02)
+
+### Fixed 
+
+- Due to an error, structured data was invalid if no star rating had been given for an item. This has been fixed.
+- Due to an error, the setting "Show empty star rating" was not working as intended. This has been fixed. 
+
 ## v3.1.1 (2019-08-22)
 
 Due to an error, styles could not be loaded on certain templates. This has been fixed.
