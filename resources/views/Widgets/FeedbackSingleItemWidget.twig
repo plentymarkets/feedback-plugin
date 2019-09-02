@@ -32,16 +32,18 @@
             styles="{{ inlinePadding }}">
     </feedback-singleitem-container>
 
-    <script type="application/ld+json">
-        {
-            "@context"          :   "http://schema.org/",
-            "@type"             :   "Product",
-            "@id"               :   "{{ Twig.print("variation_id") }}",
-            "aggregateRating"   :   {
-                "@type"         :   "AggregateRating",
-                "ratingValue"   :   "{{ Twig.print("counts.averageValue") }}",
-                "reviewCount"   :   "{{ Twig.print("counts.ratingsCountTotal") }}"
+    {{- Twig.if("counts.ratingsCountTotal > 0") -}}
+        <script type="application/ld+json">
+            {
+                "@context"          :   "http://schema.org/",
+                "@type"             :   "Product",
+                "@id"               :   "{{ Twig.print("variation_id") }}",
+                "aggregateRating"   :   {
+                    "@type"         :   "AggregateRating",
+                    "ratingValue"   :   "{{ Twig.print("counts.averageValue") }}",
+                    "reviewCount"   :   "{{ Twig.print("counts.ratingsCountTotal") }}"
+                }
             }
-        }
-    </script>
+        </script>
+    {{- Twig.endif() -}}
 </div>
