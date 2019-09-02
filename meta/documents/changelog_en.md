@@ -9,6 +9,8 @@
 
 ## v3.1.1 (2019-08-22)
 
+### Fixed
+
 Due to an error, styles could not be loaded on certain templates. This has been fixed.
 
 ## v3.1.0 (2019-08-19)
