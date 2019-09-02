@@ -4,8 +4,8 @@
 
 ### Fixed 
 
-Due to an error, structured data was invalid if no star rating had been given for an item. This has been fixed.
-
+- Due to an error, structured data was invalid if no star rating had been given for an item. This has been fixed.
+- Due to an error, the setting "Show empty star rating" was not working as intended. This has been fixed. 
 
 ## v3.1.1 (2019-08-22)
 

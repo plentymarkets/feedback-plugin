@@ -4,7 +4,8 @@
 
 ### Behoben
 
-Durch einen Fehler waren die strukturierten Daten invalide, wenn für einen Artikel noch keine Sternebewertung vergeben wurde. Dies wurde behoben. 
+- Durch einen Fehler waren die strukturierten Daten invalide, wenn für einen Artikel noch keine Sternebewertung vergeben wurde. Dies wurde behoben. 
+- Durch einen Fehler funktionierte die Einstellung "Bewertungssterne anzeigen, wenn keine Bewertungen vorhanden sind" nicht wie gewollt. Dies wurde behoben.
 
 ## v3.1.1 (2019-08-22)
 
