@@ -19,6 +19,7 @@
                         honeypot: ""
                     },
                     isLoading: false,
+                    isRated : false,
                     titleMissing: false,
                     item: {
                         url: "",
@@ -31,7 +32,7 @@
 
             mounted: function() {
                 var _self = this;
-                vueEventHub.$on('orderItemAddFeedback', function(event) {
+                vueEventHub.$on('orderItemFeedback_showform', function(event) {
                     _self.prepare(event);
                 });
             },
@@ -60,6 +61,7 @@
             methods: {
                 prepare: function(event) {
                     this.item = event.item;
+                    this.isRated = event.isRated;
                     var _self = this;
 
                     Vue.nextTick(function () {
@@ -102,9 +104,8 @@
                         },
                         success: function(data)
                         {
-                            vueEventHub.$emit('orderItemFeedbackAdded', {
-                                ratingValue: _self.feedback.ratingValue,
-                                variationId: _self.feedback.targetId
+                            vueEventHub.$emit('orderItemFeedback_created', {
+                                feedback: _self.feedback
                             });
 
                             _self.isLoading = false;

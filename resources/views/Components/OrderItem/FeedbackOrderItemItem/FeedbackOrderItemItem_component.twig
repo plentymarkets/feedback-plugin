@@ -10,15 +10,23 @@
             {
                 return {
                     isRated: false,
-                    ratingValue: 0
+                    feedback: {
+                        ratingValue: 0,
+                        authorName: "",
+                        title: "",
+                        message: "",
+                        type: 'review',
+                        targetId: 0,
+                        honeypot: ""
+                    }
                 };
             },
 
             mounted: function() {
                 var _self = this;
-                vueEventHub.$on('orderItemFeedbackAdded', function(event) {
-                    if(event.variationId === _self.item.variationId) {
-                        _self.ratingValue = event.ratingValue;
+                vueEventHub.$on('orderItemFeedback_created', function(event) {
+                    if(event.feedback.targetId === _self.item.variationId) {
+                        _self.feedback = Object.freeze(event.feedback);
                         _self.isRated = true;
                     }
                 });
@@ -45,12 +53,15 @@
 
             methods: {
                 handleRating: function(value) {
-                    this.ratingValue = value;
+                    if(!this.isRated) {
+                        this.feedback.ratingValue = value;
+                    }
 
                     var _self = this;
-                    vueEventHub.$emit('orderItemAddFeedback', {
+                    vueEventHub.$emit('orderItemFeedback_showform', {
                         item: _self.item,
-                        ratingValue: value
+                        ratingValue: _self.feedback.ratingValue,
+                        isRated: _self.isRated
                     });
                 }
             }

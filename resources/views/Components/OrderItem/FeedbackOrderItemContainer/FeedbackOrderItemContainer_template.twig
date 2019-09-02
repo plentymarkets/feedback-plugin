@@ -6,10 +6,14 @@
         <hr>
         <div class="feedback-items" :style="itemsPerRow">
             <feedback-orderitem-item
-                    v-for="order in orderItems"
+                    v-for="order in pagination"
+                    :key="order.variationId"
                     :item=order>
             </feedback-orderitem-item>
         </div>
+        <button class="btn btn-default btn-block feedback-loadmore"
+        @click="nextPage()"
+        v-if="page < this.orderItems.length">Weitere Artikel anzeigen</button>
         <feedback-orderitem-form
             :authenticated-user="authenticatedUser"
             :allow-guest-feedbacks="options.allowGuestFeedbacks"

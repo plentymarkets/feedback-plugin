@@ -13,7 +13,8 @@
                         id: 0,
                         isLoggedIn: false
                     },
-                    isLoading: false
+                    isLoading: false,
+                    page: 1
                 };
             },
 
@@ -31,18 +32,23 @@
                     var aggregate = [];
                     for(var i = 0; i < filtered.length; i++) {
                         var value = filtered[i];
-                        var image = this.itemImages[value.itemVariationId];
-                        var url = this.itemUrls[value.itemVariationId];
 
                         aggregate.push({
                             name: value.orderItemName,
-                            image: image,
-                            url: url,
+                            image: this.itemImages[value.itemVariationId],
+                            url: this.itemUrls[value.itemVariationId],
                             variationId: value.itemVariationId
                         });
                     }
 
+                    aggregate = aggregate.slice(0, );
+
                     return aggregate;
+                },
+
+                pagination: function() {
+                    var amount = this.page * this.options.itemsPerRow * this.options.rowsPerPage;
+                    return this.orderItems.slice(0, amount);
                 },
 
                 itemsPerRow: function() {
@@ -59,8 +65,7 @@
             {
                 var _self = this;
                 $.when(
-                    this.getUser(),
-                    this.prepare()
+                    this.getUser()
                 ).done(function() {
                     _self.isLoading = false;
                     Vue.nextTick(function () {
@@ -87,8 +92,14 @@
                         }
                     });
                 },
-                prepare: function()
+
+                nextPage: function()
                 {
+                    var amount = this.page * this.options.itemsPerRow * this.options.rowsPerPage;
+
+                    if(amount < this.orderItems.length) {
+                        this.page += 1;
+                    }
                 }
             }
         });

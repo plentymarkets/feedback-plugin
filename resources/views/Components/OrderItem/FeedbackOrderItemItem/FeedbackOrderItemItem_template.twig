@@ -3,7 +3,7 @@
         <div class="stars">
             <form>
                 <template v-for="starId in starIds">
-                    <input v-model="ratingValue"
+                    <input v-model="feedback.ratingValue"
                            :class="starId.class"
                            :id="starId.id"
                            type="radio"

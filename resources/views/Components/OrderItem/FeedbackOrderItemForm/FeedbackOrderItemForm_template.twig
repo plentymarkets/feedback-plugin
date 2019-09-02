@@ -27,6 +27,7 @@
                                        :id="starId.id"
                                        type="radio"
                                        :value="starId.value"
+                                       :disabled="isRated"
                                        name="ratingValue"/>
                                 <label class="star" :for="starId.id"></label>
                             </template>
@@ -41,12 +42,14 @@
                                    class="form-control"
                                    id="author"
                                    name="author"
+                                   :disabled="isRated"
                                    placeholder="{{ trans("Feedback::Feedback.authorName") }}">
 
                             <input type="text"
                                    v-model="feedback.honeypot"
                                    class="form-control"
                                    id="feedback-textfield"
+                                   :disabled="isRated"
                                    name="feedback-textfield">
 
                         </div>
@@ -58,6 +61,7 @@
                                    :class="{'is-invalid': titleMissing}"
                                    id="title"
                                    name="title"
+                                   :disabled="isRated"
                                    placeholder="{{ trans("Feedback::Feedback.title") }}">
 
                             <div class="invalid-feedback">{{ trans("Feedback::Feedback.titleRequired") }}</div>
@@ -69,12 +73,13 @@
                               id="message"
                               name="message"
                               :rows="rows"
+                              :disabled="isRated"
                               placeholder="{{ trans("Feedback::Feedback.reviewMessage") }}"></textarea>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary btn-appearance btn-block" @click="createFeedback()">{{ trans("Feedback::Feedback.submitReview") }}</button>
+                    <button type="button" class="btn btn-primary btn-appearance btn-block" :disabled="isRated" @click="createFeedback()">{{ trans("Feedback::Feedback.submitReview") }}</button>
                 </div>
             </div>
         </div>
