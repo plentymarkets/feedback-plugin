@@ -13,7 +13,7 @@
         </div>
         <button class="btn btn-default btn-block feedback-loadmore"
         @click="nextPage()"
-        v-if="page < this.orderItems.length">Weitere Artikel anzeigen</button>
+        v-if="this.page * this.options.itemsPerRow * this.options.rowsPerPage < this.orderItems.length">Weitere Artikel anzeigen</button>
         <feedback-orderitem-form
             :authenticated-user="authenticatedUser"
             :allow-guest-feedbacks="options.allowGuestFeedbacks"
