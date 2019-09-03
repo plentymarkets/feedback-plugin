@@ -1,6 +1,6 @@
 <script type="x/template" id="vue-feedback-orderitem-item">
     <div class="feedback-item">
-        <div class="stars">
+        <div class="stars" @click="handleRating(0)">
             <form>
                 <template v-for="starId in starIds">
                     <input v-model="feedback.ratingValue"

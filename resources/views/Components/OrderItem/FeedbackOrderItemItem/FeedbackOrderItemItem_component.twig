@@ -53,14 +53,14 @@
 
             methods: {
                 handleRating: function(value) {
-                    if(!this.isRated) {
+                    if(!this.isRated && value > 0) {
                         this.feedback.ratingValue = value;
                     }
 
                     var _self = this;
                     vueEventHub.$emit('orderItemFeedback_showform', {
                         item: _self.item,
-                        ratingValue: _self.feedback.ratingValue,
+                        feedback: _self.feedback,
                         isRated: _self.isRated
                     });
                 }

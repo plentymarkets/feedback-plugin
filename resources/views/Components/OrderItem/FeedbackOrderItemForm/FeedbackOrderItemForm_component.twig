@@ -65,7 +65,7 @@
                     var _self = this;
 
                     Vue.nextTick(function () {
-                        _self.feedback.ratingValue = event.ratingValue;
+                        _self.feedback = event.feedback;
                         $(_self.$refs.orderItemFeedbackModal).modal('show');
                     });
                 },
@@ -105,7 +105,7 @@
                         success: function(data)
                         {
                             vueEventHub.$emit('orderItemFeedback_created', {
-                                feedback: _self.feedback
+                                feedback: JSON.parse(JSON.stringify(_self.feedback))
                             });
 
                             _self.isLoading = false;
