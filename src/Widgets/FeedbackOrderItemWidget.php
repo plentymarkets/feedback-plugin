@@ -3,9 +3,10 @@
 namespace Feedback\Widgets;
 
 use Ceres\Widgets\Helper\BaseWidget;
+use Ceres\Widgets\OrderConfirmation\OrderConfirmationBaseWidget;
 use Feedback\Helpers\FeedbackCoreHelper;
 
-class FeedbackOrderItemWidget extends BaseWidget
+class FeedbackOrderItemWidget extends OrderConfirmationBaseWidget
 {
     protected $template = "Feedback::Widgets.FeedbackOrderItemWidget";
 
