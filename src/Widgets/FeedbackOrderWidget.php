@@ -6,9 +6,9 @@ use Ceres\Widgets\Helper\BaseWidget;
 use Ceres\Widgets\OrderConfirmation\OrderConfirmationBaseWidget;
 use Feedback\Helpers\FeedbackCoreHelper;
 
-class FeedbackOrderItemWidget extends OrderConfirmationBaseWidget
+class FeedbackOrderWidget extends OrderConfirmationBaseWidget
 {
-    protected $template = "Feedback::Widgets.FeedbackOrderItemWidget";
+    protected $template = "Feedback::Widgets.FeedbackOrderWidget";
 
     protected function getTemplateData($widgetSettings, $isPreview)
     {

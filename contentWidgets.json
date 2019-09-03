@@ -8,7 +8,7 @@
             "item"
         ],
         "position": 800,
-        "widgetClass": "Feedback\\Widgets\\FeedbackSingleItemWidget",
+        "widgetClass": "Feedback\\Widgets\\FeedbackWidget",
         "settings": {
             "customClass": {
                 "type": "text",
@@ -226,7 +226,7 @@
             "orderconfirmation"
         ],
         "position": 800,
-        "widgetClass": "Feedback\\Widgets\\FeedbackOrderItemWidget",
+        "widgetClass": "Feedback\\Widgets\\FeedbackOrderWidget",
         "settings": {
             "customClass": {
                 "type": "text",

@@ -11,10 +11,10 @@
 
 <div class="widget widget-feedback-orderconfirmation widget-{{ appearance | default("primary") }} {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
         {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
-        <feedback-orderitem-container
+        <feedback-order-container
             :items="{{ Twig.print("data.order.orderItems | json_encode") }}"
             :item-images="{{ Twig.print("data.itemImages | json_encode") }}"
             :item-urls="{{ Twig.print("data.itemURLs | json_encode") }}"
             :options="{{ options | json_encode}}">
-        </feedback-orderitem-container>
+        </feedback-order-container>
 </div>

@@ -5,9 +5,9 @@ namespace Feedback\Widgets;
 use Ceres\Widgets\Helper\BaseWidget;
 use Feedback\Helpers\FeedbackCoreHelper;
 
-class FeedbackSingleItemWidget extends BaseWidget
+class FeedbackWidget extends BaseWidget
 {
-    protected $template = "Feedback::Widgets.FeedbackSingleItemWidget";
+    protected $template = "Feedback::Widgets.FeedbackWidget";
 
     protected function getTemplateData($widgetSettings, $isPreview)
     {

@@ -1,32 +1,40 @@
-{% macro importTemplate(namespace, component) %}
+{% macro importTemplate(component) %}
+    {% include "Feedback::Components." ~ component ~ "." ~ component ~ "_template" %}
+{% endmacro %}
+
+{% macro importComponent(component) %}
+    {% include "Feedback::Components." ~ component ~ "." ~ component ~ "_component" %}
+{% endmacro %}
+
+{% macro importTemplate_namespaced(namespace, component) %}
     {% include "Feedback::Components." ~ namespace ~ "." ~ component ~ "." ~ component ~ "_template" %}
 {% endmacro %}
 
-{% macro importComponent(namespace, component) %}
+{% macro importComponent_namespaced(namespace, component) %}
     {% include "Feedback::Components." ~ namespace ~ "." ~ component ~ "." ~ component ~ "_component" %}
 {% endmacro %}
 
 {% if services.template.getCurrentTemplate() == 'tpl.item' %}
-    {{ _self.importTemplate("SingleItem", "FeedbackForm") }}
-    {{ _self.importTemplate("SingleItem", "FeedbackList") }}
-    {{ _self.importTemplate("SingleItem", "FeedbackListEntry") }}
-    {{ _self.importTemplate("SingleItem", "FeedbackComment") }}
-    {{ _self.importTemplate("SingleItem", "FeedbackSingleItemContainer") }}
-    {{ _self.importComponent("SingleItem", "FeedbackComment") }}
-    {{ _self.importComponent("SingleItem", "FeedbackForm") }}
-    {{ _self.importComponent("SingleItem", "FeedbackList") }}
-    {{ _self.importComponent("SingleItem", "FeedbackListEntry") }}
-    {{ _self.importComponent("SingleItem", "FeedbackSingleItemContainer") }}
+    {{ _self.importTemplate("FeedbackForm") }}
+    {{ _self.importTemplate("FeedbackList") }}
+    {{ _self.importTemplate("FeedbackListEntry") }}
+    {{ _self.importTemplate("FeedbackComment") }}
+    {{ _self.importTemplate("FeedbackContainer") }}
+    {{ _self.importComponent("FeedbackComment") }}
+    {{ _self.importComponent("FeedbackForm") }}
+    {{ _self.importComponent("FeedbackList") }}
+    {{ _self.importComponent("FeedbackListEntry") }}
+    {{ _self.importComponent("FeedbackContainer") }}
 {% endif %}
 
 {% if services.template.getCurrentTemplate() == 'tpl.confirmation' %}
-    {{ _self.importTemplate("OrderItem", "FeedbackOrderItemContainer") }}
-    {{ _self.importTemplate("OrderItem", "FeedbackOrderItemItem") }}
-    {{ _self.importTemplate("OrderItem", "FeedbackOrderItemForm") }}
-    {{ _self.importComponent("OrderItem", "FeedbackOrderItemContainer") }}
-    {{ _self.importComponent("OrderItem", "FeedbackOrderItemItem") }}
-    {{ _self.importComponent("OrderItem", "FeedbackOrderItemForm") }}
+    {{ _self.importTemplate_namespaced("Order", "FeedbackOrderContainer") }}
+    {{ _self.importTemplate_namespaced("Order", "FeedbackOrderItem") }}
+    {{ _self.importTemplate_namespaced("Order", "FeedbackOrderForm") }}
+    {{ _self.importComponent_namespaced("Order", "FeedbackOrderContainer") }}
+    {{ _self.importComponent_namespaced("Order", "FeedbackOrderItem") }}
+    {{ _self.importComponent_namespaced("Order", "FeedbackOrderForm") }}
 {% endif %}
 
-{{ _self.importTemplate("Average", "FeedbackAverage") }}
-{{ _self.importComponent("Average", "FeedbackAverage") }}
+{{ _self.importTemplate("FeedbackAverage") }}
+{{ _self.importComponent("FeedbackAverage") }}

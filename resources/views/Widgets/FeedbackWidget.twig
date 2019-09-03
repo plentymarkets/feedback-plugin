@@ -23,14 +23,14 @@
 
 <div class="widget widget-feedback widget-{{ appearance | default("primary") }} {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
         {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
-    <feedback-singleitem-container class="widget-inner"
+    <feedback-container class="widget-inner"
             :item-id="{{ Twig.print("item_id") }}"
             :variation-id="{{ Twig.print("variation_id") }}"
             :counts="{{ Twig.print("counts | json_encode") }}"
             :options="{{ options | json_encode}}"
             classes="{{ spacingPadding }}"
             styles="{{ inlinePadding }}">
-    </feedback-singleitem-container>
+    </feedback-container>
 
     {{- Twig.if("counts.ratingsCountTotal > 0") -}}
         <script type="application/ld+json">
