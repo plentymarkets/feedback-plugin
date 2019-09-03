@@ -40,11 +40,14 @@
             computed: {
                 starIds: function() {
                     var ids = [];
+                    var starClass = this.isRated ? "star-rated" : "star";
+
                     for(var i = 5; i > 0; i--) {
                         ids.push(
                             {
                                 value: i,
-                                id: "star-" + i + "-" + this.item.variationId + "-form"
+                                id: "star-" + i + "-" + this.item.variationId + "-form",
+                                class: starClass
                             }
                         );
                     }

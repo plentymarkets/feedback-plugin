@@ -23,13 +23,13 @@
                         <div>
                             <template v-for="starId in starIds">
                                 <input v-model="feedback.ratingValue"
-                                       class="star"
+                                       :class="starId.class"
                                        :id="starId.id"
                                        type="radio"
                                        :value="starId.value"
                                        :disabled="isRated"
                                        name="ratingValue"/>
-                                <label class="star" :for="starId.id"></label>
+                                <label :class="starId.class" :for="starId.id"></label>
                             </template>
                         </div>
                     </div>
