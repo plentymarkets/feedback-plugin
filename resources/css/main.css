@@ -40,10 +40,10 @@
   width: 165px;
   display: inline-block;
 }
-.feedback-container input.star {
+.feedback-container input.star, .feedback-container input.star-rated {
   display: none;
 }
-.feedback-container label.star {
+.feedback-container label.star, .feedback-container label.star-rated {
   float: right;
   height: 40px;
   width: 33px;
@@ -54,7 +54,7 @@
   color: rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
-.feedback-container input.star:checked ~ label.star:before {
+.feedback-container input.star:checked ~ label.star:before, .feedback-container input.star-rated:checked ~ label.star-rated:before {
   content: "";
   color: orange;
 }
@@ -67,7 +67,7 @@
 .feedback-container label.star:hover ~ label.star:before {
   color: orange;
 }
-.feedback-container label.star:before {
+.feedback-container label.star:before, .feedback-container label.star-rated:before {
   content: "";
   font-family: FontAwesome;
 }
@@ -216,6 +216,45 @@
 }
 .feedback-container #comment-textfield {
   display: none;
+}
+
+.feedback-orderitem-container .feedback-items {
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 16px;
+  margin: 0 4em;
+}
+.feedback-orderitem-container .feedback-items .feedback-item {
+  overflow: hidden;
+  text-align: center;
+}
+.feedback-orderitem-container .feedback-items .feedback-item img {
+  width: auto;
+  height: 250px;
+}
+.feedback-orderitem-container .feedback-items .feedback-item a {
+  display: block;
+  font-size: 1.3em;
+}
+@media (max-width: 767.98px) {
+  .feedback-orderitem-container .feedback-items {
+    grid-template-columns: repeat(2, minmax(200px, 1fr)) !important;
+  }
+}
+@media (max-width: 575.98px) {
+  .feedback-orderitem-container .feedback-items {
+    grid-template-columns: repeat(1, minmax(200px, 1fr)) !important;
+  }
+}
+.feedback-orderitem-container .modal img {
+  display: block;
+  width: auto;
+  height: 200px;
+  margin: 0 auto;
+}
+.feedback-orderitem-container .modal a {
+  display: block;
+  font-size: 1.3em;
 }
 
 /* Facet extension */

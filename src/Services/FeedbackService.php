@@ -159,12 +159,9 @@ class FeedbackService
 
             // Limit the feedbacks count of a user per item
             $numberOfFeedbacks = (int) $this->request->input("options.numberOfFeedbacks");
-            // Default visibility of the feedback
             $autoreleaseFeedbacks = (int)$this->coreHelper->configValue(FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY);
             $options['isVisible'] = $this->determineVisibility($autoreleaseFeedbacks, $creatorContactId);
-            // Allow feedbacks with no rating
             $allowNoRatingFeedbacks = $this->request->input("options.allowNoRatingFeedbacks") === 'true';
-            // Allow creation of feedbacks only if the item/variation was already bought
             $allowFeedbacksOnlyIfPurchased = $this->request->input("options.allowFeedbacksOnlyIfPurchased") === 'true';
 
             if ($allowNoRatingFeedbacks && empty($this->request->input('ratingValue'))) {
@@ -174,27 +171,17 @@ class FeedbackService
             // The following checks cannot be applied to guests
             if($creatorContactId != 0)
             {
-                // get variations bought
-                $orders = pluginApp(OrderRepositoryContract::class)->allOrdersByContact($creatorContactId);
+                $hasPurchased = $this->hasPurchasedVariation($creatorContactId, $this->request->input('targetId'));
 
-                $purchasedVariations = [];
-
-                foreach ($orders->getResult() as $order) {
-                    foreach ($order->orderItems as $orderItem) {
-                        $purchasedVariations[] = $orderItem->itemVariationId;
-                    }
+                if ($allowFeedbacksOnlyIfPurchased && !$hasPurchased) {
+                    return 'Not allowed to create review without purchasing the item first';
                 }
 
-                if (in_array($this->request->input('targetId'), $purchasedVariations)) {
-                    $creatorPurchasedThisVariation = true;
+                if($hasPurchased) {
                     $options['feedbackRelationSources'][] = [
                         "feedbackRelationSourceType" => 'orderItem',
                         "feedbackRelationSourceId" => $options['feedbackRelationTargetId']
                     ];
-                }
-
-                if ($allowFeedbacksOnlyIfPurchased && !$creatorPurchasedThisVariation) {
-                    return 'Not allowed to create review without purchasing the item first';
                 }
 
                 if (!empty($numberOfFeedbacks) && $numberOfFeedbacks != 0) {
@@ -222,7 +209,9 @@ class FeedbackService
 
             return $result;
 
-        } elseif ($this->request->input('type') == 'reply') {
+        }
+        elseif ($this->request->input('type') == 'reply')
+        {
             $options['feedbackRelationTargetType'] = 'feedback';
             $options['isVisible'] = true;
 
@@ -362,30 +351,20 @@ class FeedbackService
      * @param int $variationId
      * @return array
      */
-    public function getAuthenticatedUser(int $itemId, int $variationId)
+    public function getAuthenticatedUserForVariation(int $itemId, int $variationId)
     {
         $allowFeedbacksOnlyIfPurchased = $this->request->input("allowFeedbacksOnlyIfPurchased") === 'true';
         $numberOfFeedbacks = (int) $this->request->input("numberOfFeedbacks");
 
         $contactId = $this->accountService->getAccountContactId();
-        $isLoggedIn = $this->accountService->getIsAccountLoggedIn();
+        $isLoggedIn = !!$contactId;
         $hasPurchased = true;
         $limitReached = false;
         $userFeedbacks = [];
 
         if ($isLoggedIn) {
             if ($allowFeedbacksOnlyIfPurchased) {
-                // get variations bought
-                $orders = pluginApp(OrderRepositoryContract::class)->allOrdersByContact($contactId);
-                $purchasedVariations = [];
-
-                foreach ($orders->getResult() as $order) {
-                    foreach ($order->orderItems as $orderItem) {
-                        $purchasedVariations[] = $orderItem->itemVariationId;
-                    }
-                }
-
-                $hasPurchased = in_array($variationId, $purchasedVariations);
+                $hasPurchased = $this->hasPurchasedVariation($contactId, $variationId);
             }
 
             // Pagination settings for currently authenticated user's feedbacks
@@ -419,6 +398,16 @@ class FeedbackService
             'limitReached' => $limitReached,
             'hasPurchased' => $hasPurchased,
             'feedbacks' => $userFeedbacks
+        ];
+    }
+
+    public function getAuthenticatedUser() {
+        $contactId = $this->accountService->getAccountContactId();
+        $isLoggedIn = !!$contactId;
+
+        return [
+            'id' => $contactId,
+            'isLoggedIn' => $isLoggedIn
         ];
     }
 
@@ -470,5 +459,21 @@ class FeedbackService
     {
         return ($releaseLevel === self::RELEASE_LEVEL_ONLY_AUTH && $creatorId !== self::GUEST_ID)
             || $releaseLevel === self::RELEASE_LEVEL_ALL;
+    }
+
+    private function hasPurchasedVariation($contactId, $variationId) {
+        $orderRepository = pluginApp(OrderRepositoryContract::class);
+        $orders = $orderRepository->allOrdersByContact($contactId);
+        $purchasedVariations = [];
+
+        foreach ($orders->getResult() as $order) {
+            foreach ($order->orderItems as $orderItem) {
+                $purchasedVariations[] = $orderItem->itemVariationId;
+            }
+        }
+
+        $hasPurchased = in_array($variationId, $purchasedVariations);
+
+        return $hasPurchased;
     }
 }

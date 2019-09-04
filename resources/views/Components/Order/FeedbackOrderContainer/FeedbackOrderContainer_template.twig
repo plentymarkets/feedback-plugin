@@ -1,0 +1,23 @@
+<script type="x/template" id="vue-feedback-order-container">
+    <section class="feedback-container feedback-orderitem-container">
+        <div class="title">
+            {{- trans("Feedback::Feedback.orderItemTitle") -}}
+        </div>
+        <hr>
+        <div class="feedback-items" :style="itemsPerRow">
+            <feedback-order-item
+                    v-for="order in pagination"
+                    :key="order.variationId"
+                    :item=order>
+            </feedback-order-item>
+        </div>
+        <button class="btn btn-default btn-block feedback-loadmore"
+        @click="nextPage()"
+        v-if="this.page * this.options.itemsPerRow * this.options.rowsPerPage < this.orderItems.length">Weitere Artikel anzeigen</button>
+        <feedback-order-form
+            :authenticated-user="authenticatedUser"
+            :allow-guest-feedbacks="options.allowGuestFeedbacks"
+            :number-of-feedbacks="options.numberOfFeedbacks"
+        ></feedback-order-form>
+    </section>
+</script>

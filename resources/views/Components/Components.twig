@@ -3,7 +3,15 @@
 {% endmacro %}
 
 {% macro importComponent(component) %}
-    {% include "Feedback::Components." ~ component ~ "." ~ component ~ "_component"  %}
+    {% include "Feedback::Components." ~ component ~ "." ~ component ~ "_component" %}
+{% endmacro %}
+
+{% macro importTemplate_namespaced(namespace, component) %}
+    {% include "Feedback::Components." ~ namespace ~ "." ~ component ~ "." ~ component ~ "_template" %}
+{% endmacro %}
+
+{% macro importComponent_namespaced(namespace, component) %}
+    {% include "Feedback::Components." ~ namespace ~ "." ~ component ~ "." ~ component ~ "_component" %}
 {% endmacro %}
 
 {% if services.template.getCurrentTemplate() == 'tpl.item' %}
@@ -17,6 +25,15 @@
     {{ _self.importComponent("FeedbackList") }}
     {{ _self.importComponent("FeedbackListEntry") }}
     {{ _self.importComponent("FeedbackContainer") }}
+{% endif %}
+
+{% if services.template.getCurrentTemplate() == 'tpl.confirmation' %}
+    {{ _self.importTemplate_namespaced("Order", "FeedbackOrderContainer") }}
+    {{ _self.importTemplate_namespaced("Order", "FeedbackOrderItem") }}
+    {{ _self.importTemplate_namespaced("Order", "FeedbackOrderForm") }}
+    {{ _self.importComponent_namespaced("Order", "FeedbackOrderContainer") }}
+    {{ _self.importComponent_namespaced("Order", "FeedbackOrderItem") }}
+    {{ _self.importComponent_namespaced("Order", "FeedbackOrderForm") }}
 {% endif %}
 
 {{ _self.importTemplate("FeedbackAverage") }}

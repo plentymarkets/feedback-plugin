@@ -24,7 +24,8 @@ class  FeedbackRouteServiceProvider extends RouteServiceProvider
     public function map(Router $router, ApiRouter $apiRouter)
     {
         $apiRouter->version(['v1'], ['namespace' => 'Feedback\Controllers'], function ($apiRouter) {
-            $apiRouter->get('feedbacks/user/{itemId}/{variationId}', 'FeedbacksController@getAuthenticatedUser');
+            $apiRouter->get('feedbacks/user/{itemId}/{variationId}', 'FeedbacksController@getAuthenticatedUserForVariation');
+            $apiRouter->get('feedbacks/user', 'FeedbacksController@getAuthenticatedUser');
             $apiRouter->post('feedbacks/feedback/create', 'FeedbacksController@create');
             $apiRouter->put('feedbacks/feedback/update/{feedbackId}', 'FeedbacksController@update')->where('feedbackId',
                 '\d+');

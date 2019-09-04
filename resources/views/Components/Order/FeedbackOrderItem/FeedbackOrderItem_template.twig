@@ -1,0 +1,23 @@
+<script type="x/template" id="vue-feedback-order-item">
+    <div class="feedback-item">
+        <div class="stars" @click="handleRating(0)">
+            <form>
+                <template v-for="starId in starIds">
+                    <input v-model="feedback.ratingValue"
+                           :class="starId.class"
+                           :id="starId.id"
+                           type="radio"
+                           :value="starId.value"
+                           name="ratingValue"
+                           @click="handleRating(starId.value)"
+                           :disabled="isRated"/>
+                    <label :class="starId.class" :for="starId.id"></label>
+                </template>
+            </form>
+        </div>
+        <div>
+            <img :alt="item.name" :src="item.image">
+            <a :href="item.url">${ item.name }</a>
+        </div>
+    </div>
+</script>

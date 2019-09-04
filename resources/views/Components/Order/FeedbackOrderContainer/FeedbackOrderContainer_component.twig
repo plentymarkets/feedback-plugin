@@ -1,0 +1,107 @@
+<script type="text/javascript">
+    (function($) {
+        Vue.component('feedback-order-container', {
+
+            template: '#vue-feedback-order-container',
+            delimiters: ["${", "}"],
+            props: ['items', 'itemImages', 'itemUrls', 'options', 'classes', 'styles'],
+
+            data: function()
+            {
+                return {
+                    authenticatedUser: {
+                        id: 0,
+                        isLoggedIn: false
+                    },
+                    isLoading: false,
+                    page: 1
+                };
+            },
+
+            computed: {
+                orderItems: function()
+                {
+                    // Filter out shipping costs (shipping costs is an order item)
+                    var filtered = this.items.filter(function(value) {
+                        if(value.itemVariationId > 0)
+                        {
+                            return value;
+                        }
+                    });
+
+                    var aggregate = [];
+                    for(var i = 0; i < filtered.length; i++) {
+                        var value = filtered[i];
+
+                        aggregate.push({
+                            name: value.orderItemName,
+                            image: this.itemImages[value.itemVariationId],
+                            url: this.itemUrls[value.itemVariationId],
+                            variationId: value.itemVariationId
+                        });
+                    }
+
+                    aggregate = aggregate.slice(0, );
+
+                    return aggregate;
+                },
+
+                pagination: function() {
+                    var amount = this.page * this.options.itemsPerRow * this.options.rowsPerPage;
+                    return this.orderItems.slice(0, amount);
+                },
+
+                itemsPerRow: function() {
+                    var realItemsPerRow = Math.min(this.orderItems.length, this.options.itemsPerRow);
+
+                    var all = "grid-template-columns: repeat(" + realItemsPerRow + ", minmax(200px, 1fr));";
+                    var fallback_ie = "-ms-grid-columns: (minmax(200px, 1fr))[" + realItemsPerRow + "];";
+
+                    return fallback_ie + " " + all;
+                }
+            },
+
+            mounted: function()
+            {
+                var _self = this;
+                $.when(
+                    this.getUser()
+                ).done(function() {
+                    _self.isLoading = false;
+                    Vue.nextTick(function () {
+                        // DOM updated
+                        window.dispatchEvent(new Event('resize'));
+                    })
+                });
+            },
+
+            methods: {
+                getUser: function()
+                {
+                    var _self = this;
+                    return $.ajax({
+                        type:           'GET',  // No data means this bad boy might get cached, think about workarounds
+                        url:            '/rest/feedbacks/user',
+                        success:        function(data)
+                        {
+                            _self.authenticatedUser = data;
+                        },
+                        error:          function(jqXHR, textStatus, errorThrown)
+                        {
+                            console.error(errorThrown);
+                        }
+                    });
+                },
+
+                nextPage: function()
+                {
+                    var amount = this.page * this.options.itemsPerRow * this.options.rowsPerPage;
+
+                    if(amount < this.orderItems.length) {
+                        this.page += 1;
+                    }
+                }
+            }
+        });
+    })(jQuery);
+</script>

@@ -1,0 +1,87 @@
+<script type="x/template" id="vue-feedback-order-form">
+    <!-- Modal -->
+    {% set uid = uid() %}
+    <div class="modal fade feedback-orderitem-modal"
+         ref="orderItemFeedbackModal"
+         tabindex="-1"
+         role="dialog"
+         aria-labelledby="feedbackOrderItem-{{ uid }}"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                    <h3 class="modal-title" id="feedbackConfirmDeleteLabel-{{ uid }}">{{ trans("Feedback::Feedback.customerReviews") }}</h3>
+                </div>
+                <div class="modal-body row">
+                    <div class="col-4">
+                        <img :alt="item.name" :src="item.image">
+                        <div>
+                            <template v-for="starId in starIds">
+                                <input v-model="feedback.ratingValue"
+                                       :class="starId.class"
+                                       :id="starId.id"
+                                       type="radio"
+                                       :value="starId.value"
+                                       :disabled="isRated"
+                                       name="ratingValue"/>
+                                <label :class="starId.class" :for="starId.id"></label>
+                            </template>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <a :href="item.url">${item.name}</a>
+
+                        <div class="form-group" v-if="!authenticatedUser.isLoggedIn && allowGuestFeedbacks">
+                            <input type="text"
+                                   v-model="feedback.authorName"
+                                   class="form-control"
+                                   id="author"
+                                   name="author"
+                                   :disabled="isRated"
+                                   placeholder="{{ trans("Feedback::Feedback.authorName") }}">
+
+                            <input type="text"
+                                   v-model="feedback.honeypot"
+                                   class="form-control"
+                                   id="feedback-textfield"
+                                   :disabled="isRated"
+                                   name="feedback-textfield">
+
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text"
+                                   v-model="feedback.title"
+                                   class="form-control"
+                                   :class="{'is-invalid': titleMissing}"
+                                   id="title"
+                                   name="title"
+                                   :disabled="isRated"
+                                   placeholder="{{ trans("Feedback::Feedback.title") }}">
+
+                            <div class="invalid-feedback">{{ trans("Feedback::Feedback.titleRequired") }}</div>
+                        </div>
+
+                        <div class="form-group">
+                            <textarea class="form-control"
+                              v-model="feedback.message"
+                              id="message"
+                              name="message"
+                              :rows="rows"
+                              :disabled="isRated"
+                              placeholder="{{ trans("Feedback::Feedback.reviewMessage") }}"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-appearance btn-block" :disabled="isRated" @click="createFeedback()">{{ trans("Feedback::Feedback.submitReview") }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
