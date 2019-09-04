@@ -311,6 +311,18 @@
         }
     }
 
+    @media (max-width: 767.98px) {
+        .feedback-items {
+            grid-template-columns: repeat(2, minmax(200px, 1fr)) !important;
+        }
+    }
+
+    @media (max-width: 575.98px) {
+        .feedback-items {
+            grid-template-columns: repeat(1, minmax(200px, 1fr)) !important;
+        }
+    }
+
     .modal {
         img {
             display: block;
