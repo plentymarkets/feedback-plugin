@@ -462,7 +462,8 @@ class FeedbackService
     }
 
     private function hasPurchasedVariation($contactId, $variationId) {
-        $orders = pluginApp(OrderRepositoryContract::class)->allOrdersByContact($contactId);
+        $orderRepository = pluginApp(OrderRepositoryContract::class);
+        $orders = $orderRepository->allOrdersByContact($contactId);
         $purchasedVariations = [];
 
         foreach ($orders->getResult() as $order) {

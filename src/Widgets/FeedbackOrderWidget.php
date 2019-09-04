@@ -12,7 +12,8 @@ class FeedbackOrderWidget extends OrderConfirmationBaseWidget
 
     protected function getTemplateData($widgetSettings, $isPreview)
     {
-        $allowGuestFeedbacks = pluginApp(FeedbackCoreHelper::class)->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_GUEST_FEEDBACKS);
+        $coreHelper = pluginApp(FeedbackCoreHelper::class);
+        $allowGuestFeedbacks = $coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_GUEST_FEEDBACKS);
 
         // As only mobile is currently used, flatten breakpoints
         return [
