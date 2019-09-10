@@ -256,10 +256,6 @@
   display: block;
   font-size: 1.3em;
 }
-.feedback-orderitem-container .modal .feedback-thanks {
-  text-align: center;
-  width: 100%;
-}
 
 /* Facet extension */
 .filter-wrapper #filterCollapse [for=option-feedback-5]::after,
