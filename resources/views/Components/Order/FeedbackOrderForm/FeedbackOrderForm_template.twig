@@ -78,8 +78,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary btn-appearance btn-block" :disabled="isRated" @click="createFeedback()">{{ trans("Feedback::Feedback.submitReview") }}</button>
+                <div  class="modal-footer">
+                    <button v-if="!isRated" type="button" class="btn btn-primary btn-appearance btn-block" :disabled="isRated" @click="createFeedback()">{{ trans("Feedback::Feedback.submitReview") }}</button>
+                    <div v-else class="w-100 text-center">
+                        {{-  trans("Feedback::Feedback.thankYou") -}}
+                    </div>
                 </div>
             </div>
         </div>
