@@ -221,7 +221,7 @@
         "identifier": "Feedback::FeedbackOrderItemWidget",
         "label": "Widget.feedbackLabel",
         "previewImageURL": "/images/order-item-feedback.svg",
-        "type": "orderconfirmation",
+        "type": "default",
         "categories": [
             "orderconfirmation"
         ],
