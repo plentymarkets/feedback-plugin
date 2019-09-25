@@ -1,5 +1,15 @@
 # Release Notes für Feedback
 
+## v3.2.0 (2019-09-23)
+
+### TODO
+
+- Nach dem Update auf v3.2.0 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden. 
+
+### Hinzugefügt
+
+- Das Feedback-Widget kann jetzt auf der Bestellbestätigungsseite verwendet werden.
+
 ## v3.1.2 (2019-09-02)
 
 ### Behoben
@@ -11,7 +21,7 @@
 
 ### Behoben
 
-Durch einen Fehler wurden Styles auf bestimmten Templates nicht geladen. Dies wurde behoben. 
+- Durch einen Fehler wurden Styles auf bestimmten Templates nicht geladen. Dies wurde behoben. 
 
 ## v3.1.0 (2019-08-19)
 
