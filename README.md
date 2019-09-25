@@ -6,7 +6,7 @@ This is the **Feedback** plugin developed by plentymarkets. It provides the feed
 
 ## Requirements
 
-This is a plugin for [plentymarkets 7](https://www.plentymarkets.com). The plugin [IO](https://github.com/plentymarkets/plugin-io) is required to run the **Feedback** plugin.
+This is a plugin for [plentymarkets 7](https://www.plentymarkets.com). The plugin [IO](https://github.com/plentymarkets/plugin-io) is required to run the **Feedback** plugin. The **Ceres** ShopBuilder is required to integrate the feedback functionality. 
 
 ## Installing
 
