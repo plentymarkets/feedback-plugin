@@ -1,5 +1,15 @@
 # Release Notes for Feedback
 
+## v3.2.0 (2019-09-23)
+
+### TODO
+
+- After updating to v3.2.0, you need to refresh the widgets by clicking **Regenerate contents** in the **CMS » ShopBuilder** menu.
+
+### Added
+
+- The feedback plugin can now be used on the order confirmation page.
+
 ## v.3.1.2 (2019-09-02)
 
 ### Fixed 
@@ -11,7 +21,7 @@
 
 ### Fixed
 
-Due to an error, styles could not be loaded on certain templates. This has been fixed.
+- Due to an error, styles could not be loaded on certain templates. This has been fixed.
 
 ## v3.1.0 (2019-08-19)
 
