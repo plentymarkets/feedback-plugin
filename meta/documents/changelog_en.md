@@ -8,7 +8,7 @@
 
 ### Added
 
-- The feedback plugin can now be used on the order confirmation page.
+- The feedback widget can now be used on the order confirmation page.
 
 ## v.3.1.2 (2019-09-02)
 
