@@ -83,8 +83,10 @@
                         variationIds.push(orderItem.variationId);
                     }
                     var data = {
-                      itemIds: itemIds,
-                      variationIds: variationIds
+                      "itemIds": itemIds,
+                      "variationIds": variationIds,
+                      "allowFeedbacksOnlyIfPurchased": false,
+                      "numberOfFeedbacks": this.options.numberOfFeedbacks
                     };
 
                     var _self = this;

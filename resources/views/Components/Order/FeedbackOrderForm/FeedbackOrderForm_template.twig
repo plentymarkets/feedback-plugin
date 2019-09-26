@@ -42,14 +42,14 @@
                                    class="form-control"
                                    id="author"
                                    name="author"
-                                   :disabled="isRated"
+                                   :disabled="isRated || limitReached"
                                    placeholder="{{ trans("Feedback::Feedback.authorName") }}">
 
                             <input type="text"
                                    v-model="feedback.honeypot"
                                    class="form-control"
                                    id="feedback-textfield"
-                                   :disabled="isRated"
+                                   :disabled="isRated || limitReached"
                                    name="feedback-textfield">
 
                         </div>
@@ -61,7 +61,7 @@
                                    :class="{'is-invalid': titleMissing}"
                                    id="title"
                                    name="title"
-                                   :disabled="isRated"
+                                   :disabled="isRated || limitReached"
                                    placeholder="{{ trans("Feedback::Feedback.title") }}">
 
                             <div class="invalid-feedback">{{ trans("Feedback::Feedback.titleRequired") }}</div>
@@ -73,16 +73,20 @@
                               id="message"
                               name="message"
                               :rows="rows"
-                              :disabled="isRated"
+                              :disabled="isRated || limitReached"
                               placeholder="{{ trans("Feedback::Feedback.reviewMessage") }}"></textarea>
                         </div>
                     </div>
                 </div>
                 <div  class="modal-footer">
-                    <button v-if="!isRated" type="button" class="btn btn-primary btn-appearance btn-block" :disabled="isRated" @click="createFeedback()">{{ trans("Feedback::Feedback.submitReview") }}</button>
+                    <button v-if="!isRated && !limitReached" type="button" class="btn btn-primary btn-appearance btn-block" :disabled="isRated" @click="createFeedback()">{{ trans("Feedback::Feedback.submitReview") }}</button>
+                    <div v-else-if="limitReached" class="w-100 text-center">
+                        {{- trans("Feedback::Feedback.maximumNumberOfFeedbacksReached") -}}
+                    </div>
                     <div v-else class="w-100 text-center">
                         {{-  trans("Feedback::Feedback.thankYou") -}}
                     </div>
+
                 </div>
             </div>
         </div>

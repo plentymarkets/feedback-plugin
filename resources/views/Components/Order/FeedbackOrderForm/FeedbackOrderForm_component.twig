@@ -25,7 +25,8 @@
                         url: "",
                         image: "",
                         variationId: 0,
-                        name: ""
+                        name: "",
+                        itemId: 0
                     }
                 };
             },
@@ -58,6 +59,12 @@
                 rows: function() {
                     // Dynamically set rows to offset the optional authorName input
                     return this.authenticatedUser.id > 0 ? 8 : 6;
+                },
+
+                limitReached: function()
+                {
+                    var key = this.item.itemId;
+                    return this.authenticatedUser.limitReached[key];
                 }
             },
 
@@ -74,12 +81,7 @@
                 },
                 createFeedback: function()
                 {
-                    if( this.isLoading )
-                    {
-                        return;
-                    }
-
-                    if(this.feedback.honeypot.length > 0)
+                    if( this.isLoading || this.feedback.honeypot.length > 0)
                     {
                         return;
                     }
@@ -87,6 +89,11 @@
                     if (!this.feedback.title )
                     {
                         this.titleMissing = true;
+                        return;
+                    }
+
+                    if(this.limitReached)
+                    {
                         return;
                     }
 
