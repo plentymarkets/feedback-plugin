@@ -393,7 +393,7 @@ class FeedbackService
             {
                 foreach ( $itemIds as $itemId )
                 {
-                    $limitReached[$itemId] = $this->getFeedbackLimit($itemId, $contactId, $numberOfFeedbacks);
+                    $limitReached[$itemId] = $this->isFeedbackLimitReached($itemId, $contactId, $numberOfFeedbacks);
                 }
             }
             else
@@ -449,13 +449,13 @@ class FeedbackService
     }
 
     /**
-     * Calcuate if the user has reached the maximum amount of feedbacks for the given itemId
+     * Calculate if the user has reached the maximum amount of feedbacks for the given itemId
      * @param $itemId
      * @param $contactId
      * @param $numberOfFeedbacks
      * @return bool
      */
-    private function getFeedbackLimit($itemId, $contactId, $numberOfFeedbacks)
+    private function isFeedbackLimitReached($itemId, $contactId, $numberOfFeedbacks)
     {
         $filters = [
             'itemId' => $itemId,

@@ -16,6 +16,7 @@
                 :variations="{{ Twig.print("data.variations | json_encode") }}"
                 :items="{{ Twig.print("data.order.orderItems | json_encode") }}"
                 :item-urls="{{ Twig.print("data.itemURLs | json_encode") }}"
+                :item-images="{{ Twig.print("data.itemImages | json_encode") }}"
                 :options="{{ options | json_encode}}">
             </feedback-order-container>
     </div>

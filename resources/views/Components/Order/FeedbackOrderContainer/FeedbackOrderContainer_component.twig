@@ -4,7 +4,7 @@
 
             template: '#vue-feedback-order-container',
             delimiters: ["${", "}"],
-            props: ['variations', 'items', 'itemUrls', 'options'],
+            props: ['variations', 'items', 'itemUrls', 'itemImages', 'options'],
 
             data: function()
             {
@@ -23,14 +23,14 @@
                 {
                     var aggregate = [];
 
-                    // Start with the second element, as the first is shipping costs
+                    // skip first element: shipping costs
                     for(var i = 1; i < this.items.length; i++)
                     {
                         var key = this.items[i].itemVariationId;
 
                         aggregate.push({
                             name: this.variations[key].texts.name1,
-                            image: this.variations[key].images.all[0].urlMiddle,
+                            image: this.itemImages[key],
                             url: this.itemUrls[key],
                             variationId: key,
                             itemId: this.variations[key].item.id
