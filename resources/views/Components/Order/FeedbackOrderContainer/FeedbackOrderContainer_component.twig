@@ -4,7 +4,7 @@
 
             template: '#vue-feedback-order-container',
             delimiters: ["${", "}"],
-            props: ['items', 'itemImages', 'itemUrls', 'options', 'classes', 'styles'],
+            props: ['variations', 'items', 'itemUrls', 'options'],
 
             data: function()
             {
@@ -21,27 +21,21 @@
             computed: {
                 orderItems: function()
                 {
-                    // Filter out shipping costs (shipping costs is an order item)
-                    var filtered = this.items.filter(function(value) {
-                        if(value.itemVariationId > 0)
-                        {
-                            return value;
-                        }
-                    });
-
                     var aggregate = [];
-                    for(var i = 0; i < filtered.length; i++) {
-                        var value = filtered[i];
+
+                    // Start with the second element, as the first is shipping costs
+                    for(var i = 1; i < this.items.length; i++)
+                    {
+                        var key = this.items[i].itemVariationId;
 
                         aggregate.push({
-                            name: value.orderItemName,
-                            image: this.itemImages[value.itemVariationId],
-                            url: this.itemUrls[value.itemVariationId],
-                            variationId: value.itemVariationId
+                            name: this.variations[key].texts.name1,
+                            image: this.variations[key].images.all[0].urlMiddle,
+                            url: this.itemUrls[key],
+                            variationId: key,
+                            itemId: this.variations[key].item.id
                         });
                     }
-
-                    aggregate = aggregate.slice(0, );
 
                     return aggregate;
                 },
@@ -80,7 +74,7 @@
                 {
                     var _self = this;
                     return $.ajax({
-                        type:           'GET',  // No data means this bad boy might get cached, think about workarounds
+                        type:           'GET',
                         url:            '/rest/feedbacks/user',
                         success:        function(data)
                         {
