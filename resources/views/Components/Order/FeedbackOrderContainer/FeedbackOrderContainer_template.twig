@@ -4,7 +4,7 @@
             {{- trans("Feedback::Feedback.orderItemTitle") -}}
         </div>
         <hr>
-        <div class="feedback-items" :style="itemsPerRow">
+        <div v-if="!isLoading" class="feedback-items" :style="itemsPerRow">
             <feedback-order-item
                     v-for="order in pagination"
                     :key="order.variationId"
@@ -13,7 +13,7 @@
         </div>
         <button class="btn btn-default btn-block feedback-loadmore"
         @click="nextPage()"
-        v-if="this.page * this.options.itemsPerRow * this.options.rowsPerPage < this.orderItems.length">Weitere Artikel anzeigen</button>
+        v-if="!isLoading && (this.page * this.options.itemsPerRow * this.options.rowsPerPage < this.orderItems.length)">Weitere Artikel anzeigen</button>
         <feedback-order-form
             :authenticated-user="authenticatedUser"
             :allow-guest-feedbacks="options.allowGuestFeedbacks"

@@ -13,7 +13,7 @@
                         id: 0,
                         isLoggedIn: false
                     },
-                    isLoading: false,
+                    isLoading: true,
                     page: 1
                 };
             },
@@ -72,10 +72,28 @@
             methods: {
                 getUser: function()
                 {
+                    // Get array of item and variationIds
+                    var itemIds = [];
+                    var variationIds = [];
+
+                    for (var i = 0; i < this.orderItems.length; i++)
+                    {
+                        var orderItem = this.orderItems[i];
+                        itemIds.push(orderItem.itemId);
+                        variationIds.push(orderItem.variationId);
+                    }
+                    var data = {
+                      "itemIds": itemIds,
+                      "variationIds": variationIds,
+                      "allowFeedbacksOnlyIfPurchased": false,
+                      "numberOfFeedbacks": this.options.numberOfFeedbacks
+                    };
+
                     var _self = this;
                     return $.ajax({
                         type:           'GET',
                         url:            '/rest/feedbacks/user',
+                        data:           data,
                         success:        function(data)
                         {
                             _self.authenticatedUser = data;
