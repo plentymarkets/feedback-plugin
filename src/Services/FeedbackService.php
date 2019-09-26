@@ -52,7 +52,7 @@ class FeedbackService
     }
 
     /**
-     * Delivers data for the feedback-container Vue components props
+     * Get data for the feedback-container Vue component
      * @param $item
      * @return array
      */
@@ -95,6 +95,7 @@ class FeedbackService
     }
 
     /**
+     * Get data for the feedback-average Vue component
      * @return array
      */
     public function getFeedbackAverageDataSingleItem($item) {
@@ -347,48 +348,77 @@ class FeedbackService
 
     /**
      * Get user data for the feedback plugin to work with
-     * @param int $itemId
-     * @param int $variationId
+     * @param array $itemIds
+     * @param array $variationIds
      * @return array
      */
-    public function getAuthenticatedUserForVariation(int $itemId, int $variationId)
+    public function getAuthenticatedUserMulti($itemIds = [], $variationIds = [])
     {
+        if( (!count($itemIds) || !count($variationIds)) )
+        {
+            $itemIds = $this->request->get('itemIds', []);
+            $variationIds = $this->request->get('variationIds', []);
+        }
+
         $allowFeedbacksOnlyIfPurchased = $this->request->input("allowFeedbacksOnlyIfPurchased") === 'true';
         $numberOfFeedbacks = (int) $this->request->input("numberOfFeedbacks");
 
         $contactId = $this->accountService->getAccountContactId();
         $isLoggedIn = !!$contactId;
-        $hasPurchased = true;
-        $limitReached = false;
+        $hasPurchased = [];
+        $limitReached = [];
         $userFeedbacks = [];
 
-        if ($isLoggedIn) {
-            if ($allowFeedbacksOnlyIfPurchased) {
-                $hasPurchased = $this->hasPurchasedVariation($contactId, $variationId);
+        if ( count($variationIds) ) {
+            if( $isLoggedIn && $allowFeedbacksOnlyIfPurchased )
+            {
+                foreach ( $variationIds as $variationId )
+                {
+                    $hasPurchased[$variationId] = $this->hasPurchasedVariation($contactId, $variationId);
+                }
             }
+            else
+            {
+                foreach ( $variationIds as $variationId )
+                {
+                    // Not being logged in automatically counts as purchased for logic reasons
+                    $hasPurchased[$variationId] = true;
+                }
+            }
+        }
 
-            // Pagination settings for currently authenticated user's feedbacks
-            $page = $this->request->get('page', 1);
-            $itemsPerPage = $this->request->get('itemsPerPage', 50);
+        if ( count($itemIds) )
+        {
+            if( $isLoggedIn && $numberOfFeedbacks > 0 )
+            {
+                foreach ( $itemIds as $itemId )
+                {
+                    $limitReached[$itemId] = $this->isFeedbackLimitReached($itemId, $contactId, $numberOfFeedbacks);
+                }
+            }
+            else
+            {
+                foreach ( $itemIds as $itemId )
+                {
+                    $limitReached[$itemId] = false;
+                }
+            }
+        }
 
-            $with = [];
+        if( $isLoggedIn && count($itemIds) === 1 && count($variationIds) === 1)
+        {
             $filters = [
                 'itemId' => $itemId,
                 'sourceId' => $contactId
             ];
 
-            // List of currently authenticated user's feedbacks
-            $feedbacks = $this->listFeedbacks($page, $itemsPerPage, $with, $filters);
+            $feedbacks = $this->listFeedbacks(1, $numberOfFeedbacks, [], $filters);
             $userFeedbacks = $feedbacks->getResult();
 
             foreach ($userFeedbacks as &$feedback) {
                 if ($feedback->targetRelation->feedbackRelationType == 'variation') {
                     $feedback->targetRelation->variationAttributes = json_decode($feedback->targetRelation->targetRelationName);
                 }
-            }
-
-            if (!is_null($numberOfFeedbacks) && $numberOfFeedbacks > 0) {
-                $limitReached = $numberOfFeedbacks <= $feedbacks->getTotalCount();
             }
         }
 
@@ -401,14 +431,76 @@ class FeedbackService
         ];
     }
 
-    public function getAuthenticatedUser() {
-        $contactId = $this->accountService->getAccountContactId();
-        $isLoggedIn = !!$contactId;
+    /**
+     * Function supports the legacy route to get data
+     * @param $itemId
+     * @param $variationId
+     * @return array
+     */
+    public function getAuthenticatedUser($itemId, $variationId)
+    {
+        $result = $this->getAuthenticatedUserMulti([$itemId], [$variationId]);
 
-        return [
-            'id' => $contactId,
-            'isLoggedIn' => $isLoggedIn
+        // Flatten arrays
+        $result['limitReached'] = array_shift(array_values($result['limitReached']));
+        $result['hasPurchased'] = array_shift(array_values($result['hasPurchased']));
+
+        return $result;
+    }
+
+    /**
+     * Calculate if the user has reached the maximum amount of feedbacks for the given itemId
+     * @param $itemId
+     * @param $contactId
+     * @param $numberOfFeedbacks
+     * @return bool
+     */
+    private function isFeedbackLimitReached($itemId, $contactId, $numberOfFeedbacks)
+    {
+        $filters = [
+            'itemId' => $itemId,
+            'sourceId' => $contactId
         ];
+
+        $feedbacks = $this->listFeedbacks(1, $numberOfFeedbacks, [], $filters);
+        $userFeedbacks = $feedbacks->getResult();
+
+        foreach ($userFeedbacks as &$feedback) {
+            if ($feedback->targetRelation->feedbackRelationType == 'variation') {
+                $feedback->targetRelation->variationAttributes = json_decode($feedback->targetRelation->targetRelationName);
+            }
+        }
+
+        $limitReached = $numberOfFeedbacks <= $feedbacks->getTotalCount();
+        return $limitReached;
+    }
+
+    /**
+     * Calculate if the user has purchased this variation
+     * @param $contactId
+     * @param $variationId
+     * @return bool
+     */
+    private function hasPurchasedVariation($contactId, $variationId) {
+        $allowFeedbacksOnlyIfPurchased = $this->request->input("allowFeedbacksOnlyIfPurchased") === 'true';
+        $hasPurchased = true;
+
+        if($allowFeedbacksOnlyIfPurchased)
+        {
+            $orderRepository = pluginApp(OrderRepositoryContract::class);
+            $orders = $orderRepository->allOrdersByContact($contactId);
+            $purchasedVariations = [];
+
+            foreach ($orders->getResult() as $order) {
+                foreach ($order->orderItems as $orderItem) {
+                    $purchasedVariations[] = $orderItem->itemVariationId;
+                }
+            }
+
+            $hasPurchased = in_array($variationId, $purchasedVariations);
+        }
+
+        return $hasPurchased;
     }
 
     /**
@@ -432,6 +524,7 @@ class FeedbackService
     }
 
     /**
+     * Get raw feedbacks from the database
      * @return \Plenty\Repositories\Models\PaginatedResult
      */
     private function listFeedbacks(int $page = 1, int $itemsPerPage = 50, array $with = [], array $filters = [])
@@ -459,21 +552,5 @@ class FeedbackService
     {
         return ($releaseLevel === self::RELEASE_LEVEL_ONLY_AUTH && $creatorId !== self::GUEST_ID)
             || $releaseLevel === self::RELEASE_LEVEL_ALL;
-    }
-
-    private function hasPurchasedVariation($contactId, $variationId) {
-        $orderRepository = pluginApp(OrderRepositoryContract::class);
-        $orders = $orderRepository->allOrdersByContact($contactId);
-        $purchasedVariations = [];
-
-        foreach ($orders->getResult() as $order) {
-            foreach ($order->orderItems as $orderItem) {
-                $purchasedVariations[] = $orderItem->itemVariationId;
-            }
-        }
-
-        $hasPurchased = in_array($variationId, $purchasedVariations);
-
-        return $hasPurchased;
     }
 }

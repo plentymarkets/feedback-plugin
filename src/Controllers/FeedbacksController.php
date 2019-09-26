@@ -3,6 +3,7 @@
 namespace Feedback\Controllers;
 
 use Feedback\Services\FeedbackService;
+use Plenty\Http\Requests\Request;
 use Plenty\Plugin\Controller;
 
 class FeedbacksController extends Controller
@@ -53,13 +54,18 @@ class FeedbacksController extends Controller
      * @param FeedbackService $feedbackService
      * @return array
      */
-    public function getAuthenticatedUserForVariation(int $itemId, int $variationId, FeedbackService $feedbackService)
+    public function getAuthenticatedUser(int $itemId, int $variationId, FeedbackService $feedbackService)
     {
-        return $feedbackService->getAuthenticatedUserForVariation($itemId, $variationId);
+        return $feedbackService->getAuthenticatedUser($itemId, $variationId);
     }
 
-    public function getAuthenticatedUser(FeedbackService $feedbackService) {
-        return $feedbackService->getAuthenticatedUser();
+    /**
+     * @param FeedbackService $feedbackService
+     * @return array
+     */
+    public function getAuthenticatedUserMulti(FeedbackService $feedbackService)
+    {
+        return $feedbackService->getAuthenticatedUserMulti();
     }
 
     /**
