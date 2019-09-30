@@ -412,7 +412,7 @@ class FeedbackService
                 'sourceId' => $contactId
             ];
 
-            $feedbacks = $this->listFeedbacks(1, $numberOfFeedbacks, [], $filters);
+            $feedbacks = $this->listFeedbacks(1, 50, [], $filters);
             $userFeedbacks = $feedbacks->getResult();
 
             foreach ($userFeedbacks as &$feedback) {

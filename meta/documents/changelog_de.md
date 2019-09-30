@@ -1,6 +1,6 @@
 # Release Notes für Feedback
 
-## v3.2.0 (2019-09-23)
+## v3.2.0 (2019-09-30)
 
 ### TODO
 
