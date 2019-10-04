@@ -287,7 +287,7 @@ class FeedbackService
         }
         catch(\Exception $e)
         {
-            $this->getLogger(__METHOD__)->error("Feedback::FeedbackService_itemDoesNotExistError", [
+            $this->getLogger(__METHOD__)->error("Feedback::Debug.FeedbackService_itemDoesNotExistError", [
                 'code' => $e->getCode(),
                 'message' => $e->getMessage(),
                 'itemId' => $itemId
