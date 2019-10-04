@@ -2,6 +2,7 @@
 
 namespace Feedback\Services;
 
+use Aws\CloudFront\Exception\Exception;
 use Plenty\Modules\Authorization\Services\AuthHelper;
 use Plenty\Plugin\Http\Request;
 use Feedback\Helpers\FeedbackCoreHelper;
@@ -14,9 +15,13 @@ use Plenty\Modules\Item\Attribute\Contracts\AttributeNameRepositoryContract;
 use Plenty\Modules\Item\Attribute\Contracts\AttributeValueNameRepositoryContract;
 use Plenty\Modules\Item\Item\Contracts\ItemRepositoryContract;
 use Plenty\Modules\Item\Variation\Contracts\VariationRepositoryContract;
+use Plenty\Plugin\Log\Loggable;
+
 
 class FeedbackService
 {
+    use Loggable;
+
     /** @var Request $request */
     private $request;
     /** @var FeedbackCoreHelper $coreHelper */
@@ -270,12 +275,22 @@ class FeedbackService
     {
         $lang = $this->sessionStorage->getLang();
         $itemVariations = [];
-        $itemDataList = pluginApp(ItemRepositoryContract::class)->show(
-            $itemId,
-            ['id'],
-            $lang,
-            ['variations']
-        );
+        $itemDataList = [];
+
+        try
+        {
+            $itemDataList = pluginApp(ItemRepositoryContract::class)->show(
+                $itemId,
+                ['id'],
+                $lang,
+                ['variations']
+            );
+        }
+        catch(\Exception $e)
+        {
+            $this->getLogger( __METHOD__)
+                ->logException($e);
+        }
         foreach ($itemDataList['variations'] as $itemData) {
             $itemVariations[] = $itemData['id'];
         }
