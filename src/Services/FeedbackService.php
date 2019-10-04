@@ -287,8 +287,11 @@ class FeedbackService
         }
         catch(\Exception $e)
         {
-            $this->getLogger( __METHOD__)
-                ->logException($e);
+            $this->getLogger(__METHOD__)->error("Feedback::FeedbackService_itemDoesNotExistError", [
+                'code' => $e->getCode(),
+                'message' => $e->getMessage(),
+                'itemId' => $itemId
+            ]);
         }
 
         foreach ($itemDataList['variations'] as $itemData) {
