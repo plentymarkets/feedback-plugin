@@ -14,9 +14,13 @@ use Plenty\Modules\Item\Attribute\Contracts\AttributeNameRepositoryContract;
 use Plenty\Modules\Item\Attribute\Contracts\AttributeValueNameRepositoryContract;
 use Plenty\Modules\Item\Item\Contracts\ItemRepositoryContract;
 use Plenty\Modules\Item\Variation\Contracts\VariationRepositoryContract;
+use Plenty\Plugin\Log\Loggable;
+
 
 class FeedbackService
 {
+    use Loggable;
+
     /** @var Request $request */
     private $request;
     /** @var FeedbackCoreHelper $coreHelper */
@@ -270,12 +274,26 @@ class FeedbackService
     {
         $lang = $this->sessionStorage->getLang();
         $itemVariations = [];
-        $itemDataList = pluginApp(ItemRepositoryContract::class)->show(
-            $itemId,
-            ['id'],
-            $lang,
-            ['variations']
-        );
+        $itemDataList = [];
+
+        try
+        {
+            $itemDataList = pluginApp(ItemRepositoryContract::class)->show(
+                $itemId,
+                ['id'],
+                $lang,
+                ['variations']
+            );
+        }
+        catch(\Exception $e)
+        {
+            $this->getLogger(__METHOD__)->error("Feedback::Debug.FeedbackService_itemDoesNotExistError", [
+                'code' => $e->getCode(),
+                'message' => $e->getMessage(),
+                'itemId' => $itemId
+            ]);
+        }
+
         foreach ($itemDataList['variations'] as $itemData) {
             $itemVariations[] = $itemData['id'];
         }
@@ -481,7 +499,8 @@ class FeedbackService
      * @param $variationId
      * @return bool
      */
-    private function hasPurchasedVariation($contactId, $variationId) {
+    private function hasPurchasedVariation($contactId, $variationId)
+    {
         $allowFeedbacksOnlyIfPurchased = $this->request->input("allowFeedbacksOnlyIfPurchased") === 'true';
         $hasPurchased = true;
 
