@@ -2,7 +2,6 @@
 
 namespace Feedback\Services;
 
-use Aws\CloudFront\Exception\Exception;
 use Plenty\Modules\Authorization\Services\AuthHelper;
 use Plenty\Plugin\Http\Request;
 use Feedback\Helpers\FeedbackCoreHelper;
@@ -291,6 +290,7 @@ class FeedbackService
             $this->getLogger( __METHOD__)
                 ->logException($e);
         }
+
         foreach ($itemDataList['variations'] as $itemData) {
             $itemVariations[] = $itemData['id'];
         }
@@ -496,7 +496,8 @@ class FeedbackService
      * @param $variationId
      * @return bool
      */
-    private function hasPurchasedVariation($contactId, $variationId) {
+    private function hasPurchasedVariation($contactId, $variationId)
+    {
         $allowFeedbacksOnlyIfPurchased = $this->request->input("allowFeedbacksOnlyIfPurchased") === 'true';
         $hasPurchased = true;
 
