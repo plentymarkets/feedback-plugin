@@ -11,6 +11,9 @@
                     :item=order>
             </feedback-order-item>
         </div>
+        <div v-else class="w-100 text-center">
+            <p>{{- trans("Feedback::Feedback.loadingItems") -}}</p>
+        </div>
         <button class="btn btn-default btn-block feedback-loadmore"
         @click="nextPage()"
         v-if="!isLoading && (this.page * this.options.itemsPerRow * this.options.rowsPerPage < this.orderItems.length)">Weitere Artikel anzeigen</button>
