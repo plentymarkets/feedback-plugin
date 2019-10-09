@@ -2,6 +2,10 @@
 
 ## v3.2.1 (2019-10-09)
 
+### Hinzugefügt
+
+- Auf der Bestellbestätigungsseite wurde ein Hinweis ergänzt, der darauf hinweist, dass das Widget geladen wird. 
+
 ### Behoben
 
 - Durch einen Fehler wurden auf der Bestellbestätigungsseite keine Daten für das Feedback-Widget geladen. Dies wurde behoben.
