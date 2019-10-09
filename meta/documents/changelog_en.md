@@ -2,6 +2,10 @@
 
 ## v3.2.1 (2019-10-09)
 
+### Added
+
+- A note was added on the order confirmation page informing the user that the widget is loading.
+
 ### Fixed
 
 - Due to an error, no data for the feedback widget was loaded on the order confirmation page. This has been fixed.
