@@ -25,18 +25,21 @@
                 {
                     var aggregate = [];
 
-                    // skip first element: shipping costs
-                    for(var i = 1; i < this.items.length; i++)
+                    for(var i = 0; i < this.items.length; i++)
                     {
-                        var key = this.items[i].itemVariationId;
+                        // Safer check for shipping costs
+                        if(this.items[i].itemVariationId > 0)
+                        {
+                            var key = this.items[i].itemVariationId;
 
-                        aggregate.push({
-                            name: this.variations[key].texts.name1,
-                            image: this.itemImages[key],
-                            url: this.itemUrls[key],
-                            variationId: key,
-                            itemId: this.variations[key].item.id
-                        });
+                            aggregate.push({
+                                name: this.variations[key].texts.name1,
+                                image: this.itemImages[key],
+                                url: this.itemUrls[key],
+                                variationId: key,
+                                itemId: this.variations[key].item.id
+                            });
+                        }
                     }
 
                     return aggregate;
