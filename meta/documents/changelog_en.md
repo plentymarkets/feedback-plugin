@@ -1,5 +1,12 @@
 # Release Notes for Feedback
 
+## v3.2.1 (2019-10-09)
+
+### Fixed
+
+- Due to an error, no data for the feedback widget was loaded on the order confirmation page. This has been fixed.
+- Code changes in the `FeedbackService` resulted in an improved stability of the plugin.
+
 ## v3.2.0 (2019-09-30)
 
 ### TODO

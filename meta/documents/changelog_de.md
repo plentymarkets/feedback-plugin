@@ -1,5 +1,12 @@
 # Release Notes für Feedback
 
+## v3.2.1 (2019-10-09)
+
+### Behoben
+
+- Durch einen Fehler wurden auf der Bestellbestätigungsseite keine Daten für das Feedback-Widget geladen. Dies wurde behoben.
+- Durch Code-Änderungen im `FeedbackService` wurde eine verbesserte Stabilität des Plugins erreicht.
+
 ## v3.2.0 (2019-09-30)
 
 ### TODO
