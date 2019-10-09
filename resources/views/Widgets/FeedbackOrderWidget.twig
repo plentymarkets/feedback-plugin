@@ -20,4 +20,14 @@
                 :options="{{ options | json_encode}}">
             </feedback-order-container>
     </div>
+
+{{ Twig.elseif("#{ isPreview | json_encode }") }}
+
+<div class="widget-placeholder">
+    <div>
+        <p class="title">{{ Twig.trans("Feedback::Widget.feedbackLabel") }}</p>
+        <p class="description">{{ Twig.trans("Feedback::Widget.feedbackOrderitemPlaceholderDescription") }}</p>
+    </div>
+</div>
+
 {{ Twig.endif() }}
