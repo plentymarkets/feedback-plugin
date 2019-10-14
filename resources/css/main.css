@@ -58,14 +58,23 @@
   content: "";
   color: orange;
 }
+.feedback-container input.star:checked ~ svg.star, .feedback-container input.star-rated:checked ~ svg.star-rated {
+  fill: orange;
+}
 .feedback-container div.stars:hover label.star:before {
   color: rgba(0, 0, 0, 0.1);
 }
 .feedback-container label.star:hover:before {
   color: orange !important;
 }
+.feedback-container svg.star:hover {
+  fill: orange !important;
+}
 .feedback-container label.star:hover ~ label.star:before {
   color: orange;
+}
+.feedback-container svg.star:hover ~ svg.star {
+  fill: orange;
 }
 .feedback-container label.star:before, .feedback-container label.star-rated:before {
   content: "";
@@ -218,38 +227,47 @@
   display: none;
 }
 
+.feedback-orderitem-container {
+  /* form stars wrapper */
+}
+.feedback-orderitem-container svg.star, .feedback-orderitem-container svg.star-rated {
+  width: 20%;
+  height: auto;
+  float: right;
+  cursor: pointer;
+  fill: rgba(0, 0, 0, 0.1);
+}
+.feedback-orderitem-container div.stars {
+  display: block;
+  margin: 0 auto;
+}
 .feedback-orderitem-container .feedback-items {
-  display: -ms-grid;
-  display: grid;
-  grid-gap: 16px;
-  margin: 0 4em;
+  display: flex;
 }
 .feedback-orderitem-container .feedback-items .feedback-item {
   overflow: hidden;
   text-align: center;
+  display: flex;
+  flex-wrap: wrap;
 }
-.feedback-orderitem-container .feedback-items .feedback-item img {
-  width: auto;
-  height: 250px;
+.feedback-orderitem-container .feedback-items .feedback-item > img {
+  max-width: 100%;
+  max-height: 200px;
+  margin: 0 auto;
+  object-fit: contain;
 }
-.feedback-orderitem-container .feedback-items .feedback-item a {
+.feedback-orderitem-container .feedback-items .feedback-item .feedback-item-link {
+  align-self: flex-end;
+}
+.feedback-orderitem-container .feedback-items .feedback-item .feedback-item-link a {
   display: block;
   font-size: 1.3em;
 }
-@media (max-width: 767.98px) {
-  .feedback-orderitem-container .feedback-items {
-    grid-template-columns: repeat(2, minmax(200px, 1fr)) !important;
-  }
-}
-@media (max-width: 575.98px) {
-  .feedback-orderitem-container .feedback-items {
-    grid-template-columns: repeat(1, minmax(200px, 1fr)) !important;
-  }
-}
 .feedback-orderitem-container .modal img {
   display: block;
-  width: auto;
-  height: 200px;
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
   margin: 0 auto;
 }
 .feedback-orderitem-container .modal a {

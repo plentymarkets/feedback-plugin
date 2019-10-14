@@ -4,11 +4,12 @@
             {{- trans("Feedback::Feedback.orderItemTitle") -}}
         </div>
         <hr>
-        <div v-if="!isLoading" class="feedback-items" :style="itemsPerRow">
+        <div v-if="!isLoading" class="feedback-items row">
             <feedback-order-item
                     v-for="order in pagination"
                     :key="order.variationId"
-                    :item=order>
+                    :item=order
+                    :numberOfColumns="options.itemsPerRow">
             </feedback-order-item>
         </div>
         <div v-else class="w-100 text-center">
