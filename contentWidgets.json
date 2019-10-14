@@ -227,6 +227,7 @@
         ],
         "position": 800,
         "widgetClass": "Feedback\\Widgets\\FeedbackOrderWidget",
+        "maxPerPage": 1,
         "settings": {
             "customClass": {
                 "type": "text",

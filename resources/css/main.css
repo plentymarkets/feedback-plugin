@@ -249,15 +249,18 @@
   text-align: center;
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
 }
 .feedback-orderitem-container .feedback-items .feedback-item > img {
   max-width: 100%;
   max-height: 200px;
-  margin: 0 auto;
+  margin: auto;
   object-fit: contain;
 }
 .feedback-orderitem-container .feedback-items .feedback-item .feedback-item-link {
   align-self: flex-end;
+  width: 100%;
+  margin-top: auto;
 }
 .feedback-orderitem-container .feedback-items .feedback-item .feedback-item-link a {
   display: block;
