@@ -40,6 +40,9 @@
   width: 165px;
   display: inline-block;
 }
+.feedback-container label.new_star {
+  display: block;
+}
 .feedback-container input.star, .feedback-container input.star-rated {
   display: none;
 }
