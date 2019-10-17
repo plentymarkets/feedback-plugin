@@ -48,6 +48,10 @@
                 pagination: function() {
                     var amount = this.page * this.options.itemsPerRow * this.options.rowsPerPage;
                     return this.orderItems.slice(0, amount);
+                },
+
+                trueItemsPerRow: function() {
+                    return Math.min(this.orderItems.length, this.options.itemsPerRow);
                 }
             },
 

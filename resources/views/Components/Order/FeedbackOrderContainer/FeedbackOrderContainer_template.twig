@@ -9,7 +9,7 @@
                     v-for="order in pagination"
                     :key="order.variationId"
                     :item=order
-                    :numberOfColumns="options.itemsPerRow">
+                    :numberOfColumns="trueItemsPerRow">
             </feedback-order-item>
         </div>
         <div v-else class="w-100 text-center">
