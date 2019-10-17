@@ -318,7 +318,7 @@
             fill: orange !important;
         }
     }
-    input.star:checked ~ label.new_star, input.star-rated:checked ~ label.new-star {
+    input.star:checked ~ label.new_star, input.star-rated:checked ~ label.new_star {
         svg {
             fill: orange;
         }
