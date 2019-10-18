@@ -30,6 +30,10 @@
         display: inline-block;
     }
 
+    label.new_star {
+        display: block;
+    }
+
     /* hide the radio inputs */
     input.star, input.star-rated {
         display: none;
@@ -54,6 +58,9 @@
         content: '\f005';
         color: orange;
     }
+    input.star:checked ~ svg.star, input.star-rated:checked ~ svg.star-rated {
+        fill: orange;
+    }
 
     /* if 5 stars is checked */
     /* input.star-5:checked ~ label.star:before {*/
@@ -71,6 +78,9 @@
     /* stars of lower value on hover ( full and colored ) */
     label.star:hover ~ label.star:before {
         color: orange;
+    }
+    svg.star:hover ~ svg.star {
+        fill: orange;
     }
 
     /* all visible stars ( full but colorless ) */
@@ -107,14 +117,6 @@
                 vertical-align: middle;
                 line-height: 17px;
                 margin-bottom: 0px;
-            }
-
-            .feedback-bar-text-before {
-
-            }
-
-            .feedback-bar-text-after {
-
             }
         }
     }
@@ -201,10 +203,6 @@
                             font-size: 75%;
                             vertical-align: bottom;
                         }
-
-                        span.feedback-attributes {
-
-                        }
                     }
                 }
 
@@ -288,46 +286,86 @@
 }
 
 .feedback-orderitem-container {
-    .feedback-items {
-        display: -ms-grid;
-        display: grid;
-        grid-gap: 16px;
 
-        margin: 0 4em;
+    /* form stars wrapper */
+    div.stars {
+        display: block;
+        margin: 0 auto;
+        width: auto;
+        max-width: 170px;
+
+        form {
+            display: flex;
+            flex-direction: row-reverse;
+        }
+    }
+
+    div.stars:hover {
+        svg {
+            fill: rgba(0, 0, 0, 0.1) !important;
+        }
+    }
+
+    svg.star, svg.star-rated {
+        float: right;
+        cursor: pointer;
+        fill: rgba(0, 0, 0, 0.1);
+    }
+
+    label.new_star:hover ~ label.new_star,
+    label.new_star:hover {
+        svg {
+            fill: orange !important;
+        }
+    }
+    input.star:checked ~ label.new_star, input.star-rated:checked ~ label.new_star {
+        svg {
+            fill: orange;
+        }
+    }
+
+    .feedback-items {
+        display: flex;
 
         .feedback-item {
             overflow: hidden;
             text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
 
-            img {
-                width: auto;
-                height: 250px;
+            > img {
+                max-width: 100%;
+                max-height: 200px;
+                margin: auto;
+                object-fit: contain;
             }
 
-            a {
-                display: block;
-                font-size: 1.3em;
+            .feedback-item-link {
+                align-self: flex-end;
+                width: 100%;
+                margin-top: auto;
+
+                a {
+                    display: block;
+                    font-size: 1.3em;
+                }
             }
         }
     }
 
-    @media (max-width: 767.98px) {
-        .feedback-items {
-            grid-template-columns: repeat(2, minmax(200px, 1fr)) !important;
-        }
-    }
-
-    @media (max-width: 575.98px) {
-        .feedback-items {
-            grid-template-columns: repeat(1, minmax(200px, 1fr)) !important;
-        }
-    }
-
+    // Modal in OrderConfirmation
     .modal {
+        .stars {
+            svg {
+                width: 20%;
+            }
+        }
         img {
             display: block;
-            width: auto;
-            height: 200px;
+            max-width: 100%;
+            max-height: 100%;
+            height: auto;
             margin: 0 auto;
         }
 

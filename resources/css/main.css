@@ -40,6 +40,9 @@
   width: 165px;
   display: inline-block;
 }
+.feedback-container label.new_star {
+  display: block;
+}
 .feedback-container input.star, .feedback-container input.star-rated {
   display: none;
 }
@@ -58,6 +61,9 @@
   content: "";
   color: orange;
 }
+.feedback-container input.star:checked ~ svg.star, .feedback-container input.star-rated:checked ~ svg.star-rated {
+  fill: orange;
+}
 .feedback-container div.stars:hover label.star:before {
   color: rgba(0, 0, 0, 0.1);
 }
@@ -66,6 +72,9 @@
 }
 .feedback-container label.star:hover ~ label.star:before {
   color: orange;
+}
+.feedback-container svg.star:hover ~ svg.star {
+  fill: orange;
 }
 .feedback-container label.star:before, .feedback-container label.star-rated:before {
   content: "";
@@ -218,38 +227,67 @@
   display: none;
 }
 
+.feedback-orderitem-container {
+  /* form stars wrapper */
+}
+.feedback-orderitem-container div.stars {
+  display: block;
+  margin: 0 auto;
+  width: auto;
+  max-width: 170px;
+}
+.feedback-orderitem-container div.stars form {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.feedback-orderitem-container div.stars:hover svg {
+  fill: rgba(0, 0, 0, 0.1) !important;
+}
+.feedback-orderitem-container svg.star, .feedback-orderitem-container svg.star-rated {
+  float: right;
+  cursor: pointer;
+  fill: rgba(0, 0, 0, 0.1);
+}
+.feedback-orderitem-container label.new_star:hover ~ label.new_star svg,
+.feedback-orderitem-container label.new_star:hover svg {
+  fill: orange !important;
+}
+.feedback-orderitem-container input.star:checked ~ label.new_star svg, .feedback-orderitem-container input.star-rated:checked ~ label.new_star svg {
+  fill: orange;
+}
 .feedback-orderitem-container .feedback-items {
-  display: -ms-grid;
-  display: grid;
-  grid-gap: 16px;
-  margin: 0 4em;
+  display: flex;
 }
 .feedback-orderitem-container .feedback-items .feedback-item {
   overflow: hidden;
   text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
 }
-.feedback-orderitem-container .feedback-items .feedback-item img {
-  width: auto;
-  height: 250px;
+.feedback-orderitem-container .feedback-items .feedback-item > img {
+  max-width: 100%;
+  max-height: 200px;
+  margin: auto;
+  object-fit: contain;
 }
-.feedback-orderitem-container .feedback-items .feedback-item a {
+.feedback-orderitem-container .feedback-items .feedback-item .feedback-item-link {
+  align-self: flex-end;
+  width: 100%;
+  margin-top: auto;
+}
+.feedback-orderitem-container .feedback-items .feedback-item .feedback-item-link a {
   display: block;
   font-size: 1.3em;
 }
-@media (max-width: 767.98px) {
-  .feedback-orderitem-container .feedback-items {
-    grid-template-columns: repeat(2, minmax(200px, 1fr)) !important;
-  }
-}
-@media (max-width: 575.98px) {
-  .feedback-orderitem-container .feedback-items {
-    grid-template-columns: repeat(1, minmax(200px, 1fr)) !important;
-  }
+.feedback-orderitem-container .modal .stars svg {
+  width: 20%;
 }
 .feedback-orderitem-container .modal img {
   display: block;
-  width: auto;
-  height: 200px;
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
   margin: 0 auto;
 }
 .feedback-orderitem-container .modal a {
