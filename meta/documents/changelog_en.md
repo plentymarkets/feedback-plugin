@@ -1,5 +1,20 @@
 # Release Notes for Feedback
 
+## v3.2.2 (2019-10-22)
+
+### TODO
+
+- After updating to v3.2.2, you need to refresh the widgets by clicking **Regenerate contents** in the **CMS » ShopBuilder** menu.
+
+### Changed
+
+- The feedback widget for the order confirmation page has been converted from a grid layout to a column layout in order to improve compatibility with older browsers.
+
+### Fixed 
+
+- In the feedback widget for the order confirmation page, certain images were not displayed correctly. This has been fixed.
+- The item's name is now displayed instead of the variation name.
+
 ## v3.2.1 (2019-10-09)
 
 ### Added

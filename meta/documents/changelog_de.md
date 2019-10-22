@@ -1,5 +1,20 @@
 # Release Notes für Feedback
 
+## v3.2.2 (2019-10-22)
+
+### TODO
+
+- Nach dem Update auf v3.2.2 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden. 
+
+### Geändert
+
+- Das Feedback-Widget für die Bestellbestätigung wurde intern von Grid-Layout auf Spalten umgebaut, um die Kompatibilität mit älteren Browsern zu verbessern.
+
+### Behoben 
+
+- Im Feedback-Widget für die Bestellbestätigung wurden manche Bilder nicht korrekt angezeigt. Dies wurde behoben.
+- Es wird nun der Artikelname des Artikels anstatt des Variantennamens ausgegeben.
+
 ## v3.2.1 (2019-10-09)
 
 ### Hinzugefügt
