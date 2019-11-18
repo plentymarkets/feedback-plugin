@@ -377,7 +377,8 @@
 }
 
 /* Facet extension */
-.filter-wrapper .filter-collapse,
+.filter-collapse,
+.widget-filter-base,
 .selected-filters {
     [for="option-feedback-5"]::after,
     .filter-feedback-5::before {
