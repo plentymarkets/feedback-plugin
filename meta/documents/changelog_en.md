@@ -1,5 +1,11 @@
 # Release Notes for Feedback
 
+## v3.3.0 (2019-MM-DD)
+
+### Added
+
+- There is now a Shopbuilder Widget for the category view for the ratings.
+
 ## v3.2.2 (2019-10-22)
 
 ### TODO
