@@ -296,40 +296,40 @@
 }
 
 /* Facet extension */
-.filter-wrapper #filterCollapse [for=option-feedback-5]::after,
-.filter-wrapper #filterCollapse .filter-feedback-5::before,
+.filter-wrapper .filter-collapse [for=option-feedback-5]::after,
+.filter-wrapper .filter-collapse .filter-feedback-5::before,
 .selected-filters [for=option-feedback-5]::after,
 .selected-filters .filter-feedback-5::before {
   content: "" !important;
   font-family: FontAwesome;
   letter-spacing: 3px;
 }
-.filter-wrapper #filterCollapse [for=option-feedback-4]::after,
-.filter-wrapper #filterCollapse .filter-feedback-4::before,
+.filter-wrapper .filter-collapse [for=option-feedback-4]::after,
+.filter-wrapper .filter-collapse .filter-feedback-4::before,
 .selected-filters [for=option-feedback-4]::after,
 .selected-filters .filter-feedback-4::before {
   content: " " !important;
   font-family: FontAwesome;
   letter-spacing: 3px;
 }
-.filter-wrapper #filterCollapse [for=option-feedback-3]::after,
-.filter-wrapper #filterCollapse .filter-feedback-3::before,
+.filter-wrapper .filter-collapse [for=option-feedback-3]::after,
+.filter-wrapper .filter-collapse .filter-feedback-3::before,
 .selected-filters [for=option-feedback-3]::after,
 .selected-filters .filter-feedback-3::before {
   content: " " !important;
   font-family: FontAwesome;
   letter-spacing: 3px;
 }
-.filter-wrapper #filterCollapse [for=option-feedback-2]::after,
-.filter-wrapper #filterCollapse .filter-feedback-2::before,
+.filter-wrapper .filter-collapse [for=option-feedback-2]::after,
+.filter-wrapper .filter-collapse .filter-feedback-2::before,
 .selected-filters [for=option-feedback-2]::after,
 .selected-filters .filter-feedback-2::before {
   content: " " !important;
   font-family: FontAwesome;
   letter-spacing: 3px;
 }
-.filter-wrapper #filterCollapse [for=option-feedback-1]::after,
-.filter-wrapper #filterCollapse .filter-feedback-1::before,
+.filter-wrapper .filter-collapse [for=option-feedback-1]::after,
+.filter-wrapper .filter-collapse .filter-feedback-1::before,
 .selected-filters [for=option-feedback-1]::after,
 .selected-filters .filter-feedback-1::before {
   content: " " !important;
