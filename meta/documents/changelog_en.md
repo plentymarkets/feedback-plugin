@@ -4,7 +4,7 @@
 
 ### Added
 
-- There is now a Shopbuilder Widget for the category view for the ratings.
+- We added a Shopbuilder widget for filtering items on the category page by rating.
 
 ## v3.2.2 (2019-10-22)
 
