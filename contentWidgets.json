@@ -355,7 +355,7 @@
     {
         "identifier": "Feedback::RatingFilterWidget",
         "label": "Widget.ratingFilterLabel",
-        "previewImageURL": "/images/widgets/rating-filter.svg",
+        "previewImageURL": "/images/rating-filter.svg",
         "type": "categoryitem",
         "categories": ["categoryitem"],
         "position": 99999,
