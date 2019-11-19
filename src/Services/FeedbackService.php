@@ -60,12 +60,14 @@ class FeedbackService
      * @param $item
      * @return array
      */
-    public function getFeedbackData($item)
+    public function getFeedbackData($item = [])
     {
-        $itemId = $item['documents'][0]['data']['item']['id'];
-        $average = $this->feedbackAverageRepository->getFeedbackAverage($itemId);
+        // Coalesce to default value in case of missing itemId
+        $itemId = $item['documents'][0]['data']['item']['id'] ?? -1;
+        $average =  $itemId > 0 ? $this->feedbackAverageRepository->getFeedbackAverage($itemId) : [];
 
-        if (empty($average)) {
+        if (empty($average))
+        {
             // Default values if the average table doesn't have any entry for this item/variation
             $counts = [
                 'ratingsCountOf1' => 0,
@@ -77,7 +79,9 @@ class FeedbackService
                 'averageValue' => 0,
                 'highestCount' => 0
             ];
-        } else {
+        }
+        else
+        {
             $counts = [
                 'ratingsCountOf1' => $average->ratingsCountOf1,
                 'ratingsCountOf2' => $average->ratingsCountOf2,
@@ -100,6 +104,7 @@ class FeedbackService
 
     /**
      * Get data for the feedback-average Vue component
+     * @param $item
      * @return array
      */
     public function getFeedbackAverageDataSingleItem($item) {
