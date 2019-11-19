@@ -64,7 +64,7 @@ class FeedbackService
     {
         // Coalesce to default value in case of missing itemId
         $itemId = $item['documents'][0]['data']['item']['id'] ?? -1;
-        $average =  $itemId > 0 ? $this->feedbackAverageRepository->getFeedbackAverage($itemId) : [];
+        $average =  (int)$itemId > 0 ? $this->feedbackAverageRepository->getFeedbackAverage($itemId) : [];
 
         if (empty($average))
         {
@@ -107,19 +107,12 @@ class FeedbackService
      * @param $item
      * @return array
      */
-    public function getFeedbackAverageDataSingleItem($item) {
-        $itemId = $item['documents'][0]['data']['item']['id'];
+    public function getFeedbackAverageDataSingleItem($item = [])
+    {
+        $itemId = $item['documents'][0]['data']['item']['id'] ?? -1;
+        $average =  (int)$itemId > 0 ? $this->feedbackAverageRepository->getFeedbackAverage($itemId) : [];
 
-        if ((int)$itemId > 0) {
-            $average = $this->feedbackAverageRepository->getFeedbackAverage($itemId);
-        }
-
-        if( empty($average)) {
-            $counts['averageValue'] = 0;
-        } else {
-            $counts['averageValue'] = $average->averageValue;
-        }
-
+        $counts['averageValue'] = empty($average) ? 0 : $average->averageValue;
         $data['counts'] = $counts;
 
         $showEmptyRatingsInCategoryView = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_SHOW_EMPTY_RATINGS_IN_CATEGORY_VIEW);
