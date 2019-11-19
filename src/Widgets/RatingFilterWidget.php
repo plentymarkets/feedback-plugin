@@ -14,16 +14,18 @@ class RatingFilterWidget extends FilterBaseWidget
 
     protected function getPreviewData($widgetSettings)
     {
+        $valuesCount = 5;
+
         $feedback = [
             "id" => "feedback",
             "name" => $this->trans("Feedback::Widget.feedbackLabel"),
             "position" => 0,
             "values" => [],
             "minHitCount" => 1,
-            "maxResultCount" => 5
+            "maxResultCount" => $valuesCount
         ];
 
-        for ($i = 1; $i <= 5; $i++)
+        for ($i = 1; $i <= $valuesCount; $i++)
         {
             $feedback["values"][] =
             [
@@ -35,7 +37,7 @@ class RatingFilterWidget extends FilterBaseWidget
                 "count" => $this->number(3, 20),
             ];
         }
-        $feedback["count"] = 5;
+        $feedback["count"] = $valuesCount;
 
         return [ "facets" => [ $feedback ] ];
     }
