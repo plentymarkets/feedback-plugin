@@ -1,5 +1,11 @@
 # Release Notes für Feedback
 
+## v3.3.0 (2019-MM-DD)
+
+### Hinzugefügt
+
+- Es wurde ein Shopbuilder-Widget hinzugefügt, um Artikel auf der Kategorieseite nach Bewertungen filtern zu können.
+
 ## v3.2.2 (2019-10-22)
 
 ### TODO

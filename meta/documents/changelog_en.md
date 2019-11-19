@@ -1,5 +1,11 @@
 # Release Notes for Feedback
 
+## v3.3.0 (2019-MM-DD)
+
+### Added
+
+- We added a Shopbuilder widget for filtering items on the category page by rating.
+
 ## v3.2.2 (2019-10-22)
 
 ### TODO
