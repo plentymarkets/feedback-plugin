@@ -11,6 +11,7 @@ class RatingFilterWidget extends FilterBaseWidget
     use FakeNumber, FakeString;
 
     protected $allowedFacetTypes = ["feedback"];
+    protected $className = "rating";
 
     protected function getPreviewData($widgetSettings)
     {
