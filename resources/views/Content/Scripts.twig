@@ -1,7 +1,7 @@
 <script type="text/javascript">
-    window.onload = function(){
+    window.addEventListener("load", function(){
         var script = document.createElement('script');
         script.setAttribute('src', '{{ plugin_path('Feedback') }}/js/main.js');
         document.body.appendChild(script);
-    };
+    });
 </script>
