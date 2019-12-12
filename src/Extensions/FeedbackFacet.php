@@ -64,11 +64,14 @@ class FeedbackFacet implements FacetExtension
                 ],
                 'values' => [],
                 'minHitCount' => 1,
-                'maxResultCount' => 5
+                'maxResultCount' => 5,
+                'type' => 'feedback'
             ];
 
             for ($i = 1; $i <= 5; $i++) {
-                if (isset($result[$i]) && (is_null($this->currentActiveRatingFilter) || $this->currentActiveRatingFilter == $i)) {
+                if (isset($result[$i]) && (is_null(
+                            $this->currentActiveRatingFilter
+                        ) || $this->currentActiveRatingFilter == $i)) {
                     $feedback['values'][] = [
                         'id' => 'feedback-' . $i,
                         'names' => [
@@ -92,7 +95,6 @@ class FeedbackFacet implements FacetExtension
     {
         foreach ($filtersList as $filter) {
             if (strpos($filter, 'feedback-') === 0) {
-
                 $this->currentActiveRatingFilter = (INT)substr($filter, 9);
 
                 /** @var FeedbackRangeFilter $rangeFilter */
