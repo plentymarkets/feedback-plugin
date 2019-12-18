@@ -9,12 +9,8 @@
 
 {% set showEmptyRatings = widget.settings.showEmptyRatings.mobile %}
 
-{% if not isPreview %}
-    {{ Twig.set("feedbackItem", Twig.call("feedbackServices.feedback.getFeedbackAverageDataSingleItem", [Twig.var("item")])) }}
-{% else %}
-    {{ Twig.set("item", Twig.call("services.itemList.getItemList", ['random'])) }}
-    {{ Twig.set("feedbackItem", Twig.call("feedbackServices.feedback.getFeedbackAverageDataSingleItem", [Twig.var("item")])) }}
-
+{% if isPreview %}
+    {{ Twig.set("item", Twig.call("services.itemList.getItemList", ['random', null, null, 1])) }}
     {% set showEmptyRatings = isPreview %}
 {% endif %}
 
