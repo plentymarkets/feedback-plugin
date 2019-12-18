@@ -13,7 +13,7 @@
 {% if not isPreview %}
     {{ Twig.set("feedbackItem", Twig.call("feedbackServices.feedback.getFeedbackData", [Twig.var("item")])) }}
 {% else %}
-    {{ Twig.set("item", Twig.call("services.itemList.getItemList", ['random'])) }}
+    {{ Twig.set("item", Twig.call("services.itemList.getItemList", ['random', null, null, 1])) }}
     {{ Twig.set("feedbackItem", Twig.call("feedbackServices.feedback.getFeedbackData", [Twig.var("item")])) }}
 {% endif %}
 
