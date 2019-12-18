@@ -5,9 +5,11 @@ namespace Feedback\Providers;
 use Feedback\Extensions\FeedbackFacet;
 use Feedback\Extensions\TwigServiceProvider;
 use Feedback\Helpers\FeedbackCoreHelper;
+use Feedback\Widgets\RatingFilterWidget;
 use IO\Helper\ResourceContainer;
 use IO\Services\ItemSearch\Helper\FacetExtensionContainer;
 use IO\Services\ItemService;
+use Plenty\Modules\ShopBuilder\Contracts\ContentWidgetRepositoryContract;
 use Plenty\Plugin\Events\Dispatcher;
 use Plenty\Plugin\ServiceProvider;
 use Plenty\Plugin\Templates\Twig;
@@ -46,6 +48,11 @@ class FeedbackServiceProvider extends ServiceProvider
             $resourceContainer->addScriptTemplate('Feedback::Content.Scripts');
             $resourceContainer->addStyleTemplate('Feedback::Content.Styles');
         });
+
+        // register shop builder widgets
+        /** @var ContentWidgetRepositoryContract $widgetRepository */
+        $widgetRepository = pluginApp(ContentWidgetRepositoryContract::class);
+        $widgetRepository->registerWidget(RatingFilterWidget::class);
     }
 
     public function register()
