@@ -7,7 +7,9 @@
 {% set inlineMargin    = WidgetHelper.getInlineSpacings(spacingSettings, "", spacingSettings.customMargin.mobile) %}
 {% set spacingMargin   = WidgetHelper.getSpacingClasses(spacingSettings, "",spacingSettings.customMargin.mobile) %}
 
-{{ Twig.if("data.order is defined and data.order is not null") }}
+{{ Twig.set("enabledRoutes", Twig.call("config", ["IO.routing.enabled_routes"]) ~ " | split(\", \")") }}
+
+{{ Twig.if("('confirmation' in enabledRoutes or 'all' in enabledRoutes) and (data.order is defined and data.order is not null)") }}
     <div class="widget widget-feedback-orderconfirmation widget-{{ appearance | default("primary") }} {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
             {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
             <feedback-order-container
