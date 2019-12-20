@@ -27,13 +27,15 @@
 
                     for(var i = 0; i < this.items.length; i++)
                     {
-                        // Safer check for shipping costs
-                        if(this.items[i].itemVariationId > 0)
+                        if(this.items[i].itemVariationId > 0 && this.items[i].orderItemName.indexOf("[-]") === -1)
                         {
                             var key = this.items[i].itemVariationId;
 
+                            var bundleType = this.variations[key].variation.bundleType;
+                            var itemName = this.items[i].orderItemName;
+
                             aggregate.push({
-                                name: this.items[i].orderItemName,
+                                name: this.filterItemName(itemName, bundleType),
                                 image: this.itemImages[key],
                                 url: this.itemUrls[key],
                                 variationId: key,
@@ -112,6 +114,21 @@
                     if(amount < this.orderItems.length) {
                         this.page += 1;
                     }
+                },
+
+                filterItemName: function(itemName, bundleType)
+                {
+                    if(bundleType === "bundle")
+                    {
+                        return itemName.replace("[BUNDLE]", "");
+                    }
+
+                    if(bundleType === "bundle_item")
+                    {
+                        return itemName.replace("[-]", "");
+                    }
+
+                    return itemName;
                 }
             }
         });
