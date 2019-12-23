@@ -42,7 +42,7 @@
                                 itemId: this.variations[key].item.id
                             });
 
-                            if(bundleType === "bundle" && this.splitItemBundles !== 1) // Check itemBundleSplit
+                            if(bundleType === "bundle" && this.splitItemBundles < 1) // Check itemBundleSplit
                             {
                                 for(var j = 0; j < this.items[i].bundleComponents.length; j++)
                                 {
