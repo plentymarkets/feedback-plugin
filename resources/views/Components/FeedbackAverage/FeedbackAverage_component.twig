@@ -3,11 +3,14 @@
         Vue.component('feedback-average', {
             template: '#vue-feedback-average',
             delimiters: ["${", "}"],
-            props: ['itemId', 'showEmptyRatings'],
+            props: ['itemId', 'showEmptyRatings', 'initialData'],
 
             data: function() {
                 return {
-                    counts: {}
+                    counts: {
+                        'averageValue': 0,
+                        'ratingsCountsTotal': 0
+                    }
                 };
             },
 
@@ -17,7 +20,8 @@
                     _self.getAverage();
                 });
 
-                this.getAverage();
+                //this.getAverage();
+                this.counts = this.initialData;
             },
 
             methods: {

@@ -15,6 +15,7 @@
 {% endif %}
 
 {{ Twig.set("item_id", "item.documents[0].data.item.id") }}
+{{ Twig.set("initialData", Twig.call("feedbackServices.feedback.getAverage", [Twig.var("item_id")])) }}
 
 <div class="widget widget-feedback-average {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
         {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
@@ -22,6 +23,7 @@
             class="feedback-stars-average {{ sizeOfStars }}"
             id="feedback-stars-average"
             :item-id="{{ Twig.print("item_id") }}"
-            :show-empty-ratings="{{ showEmptyRatings | json_encode }}">
+            :show-empty-ratings="{{ showEmptyRatings | json_encode }}"
+            :initial-data="{{ Twig.print("initialData | json_encode") }}">
     </feedback-average>
 </div>
