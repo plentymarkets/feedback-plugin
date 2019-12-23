@@ -214,6 +214,15 @@
                     "name": "Widget.showEmptyRatings",
                     "tooltipText": "Widget.showEmptyRatingsTooltip"
                 }
+            },
+            "showNumberOfRatings": {
+                "type": "checkbox",
+                "required": false,
+                "defaultValue": false,
+                "options": {
+                    "name": "Widget.showNumberOfRatings",
+                    "tooltipText": "Widget.showNumberOfRatingsTooltip"
+                }
             }
         }
     },
