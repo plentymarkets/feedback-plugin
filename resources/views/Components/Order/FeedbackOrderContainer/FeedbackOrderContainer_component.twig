@@ -4,7 +4,7 @@
 
             template: '#vue-feedback-order-container',
             delimiters: ["${", "}"],
-            props: ['variations', 'items', 'itemUrls', 'itemImages', 'options'],
+            props: ['variations', 'items', 'itemUrls', 'itemImages', 'options', 'splitItemBundles'],
 
             data: function()
             {
@@ -41,6 +41,22 @@
                                 variationId: key,
                                 itemId: this.variations[key].item.id
                             });
+
+                            if(bundleType === "bundle" && this.splitItemBundles !== 1) // Check itemBundleSplit
+                            {
+                                for(var j = 0; j < this.items[i].bundleComponents.length; j++)
+                                {
+                                    var variationId = this.items[i].bundleComponents[j].data.variation.id;
+
+                                    aggregate.push({
+                                        name: this.$options.filters.itemName(this.items[i].bundleComponents[j].data),
+                                        image: this.itemImages[variationId],
+                                        url: this.itemUrls[variationId],
+                                        variationId: variationId,
+                                        itemId: this.items[i].bundleComponents[j].data.itemId
+                                    });
+                                }
+                            }
                         }
                     }
 
