@@ -20,10 +20,9 @@
 <div class="widget widget-feedback-average {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
         {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
     <feedback-average
-            class="feedback-stars-average {{ sizeOfStars }}"
-            id="feedback-stars-average"
             :item-id="{{ Twig.print("item_id") }}"
             :show-empty-ratings="{{ showEmptyRatings | json_encode }}"
-            :initial-data="{{ Twig.print("initialData | json_encode") }}">
+            :initial-data="{{ Twig.print("initialData | json_encode") }}"
+            size-of-stars="{{ sizeOfStars }}">
     </feedback-average>
 </div>
