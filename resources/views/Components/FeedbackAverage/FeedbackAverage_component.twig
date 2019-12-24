@@ -20,7 +20,6 @@
                     _self.getAverage();
                 });
 
-                //this.getAverage();
                 this.counts = this.initialData;
             },
 
@@ -39,6 +38,16 @@
                             console.error(errorThrown);
                         }
                     });
+                },
+
+                scrollTo: function() {
+                    var elementTop = document.getElementById("feedback").offsetTop;
+                    window.scrollTo(
+                         {
+                             top: elementTop,
+                             behavior: "smooth"
+                         }
+                     );
                 }
             },
 

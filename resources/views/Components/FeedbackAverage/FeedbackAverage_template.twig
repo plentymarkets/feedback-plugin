@@ -14,6 +14,6 @@
                 </div>
             </div>
         </div>
-        <span v-if="showRatingsAmount" :class="sizeOfStars"><a href="#feedback">(${ counts.ratingsCountTotal })</a></span>
+        <span v-if="showRatingsAmount" :class="sizeOfStars"><a v-on:click.prevent="scrollTo" href="#">(${ counts.ratingsCountTotal })</a></span>
     </div>
 </script>
