@@ -188,7 +188,7 @@
             "sizeOfStars": {
                 "type": "select",
                 "required": false,
-                "defaultValue": "small",
+                "defaultValue": "small-stars",
                 "options": {
                     "name": "Widget.sizeOfStars",
                     "tooltipText": "Widget.sizeOfStarsTooltip",
