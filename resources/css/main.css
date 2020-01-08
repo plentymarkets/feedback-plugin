@@ -406,8 +406,9 @@
   font-size: 17px;
 }
 .widget-feedback-average span.small-stars {
-  line-height: 22px;
   font-size: 1em;
+  display: inline-block;
+  height: 30px;
 }
 .widget-feedback-average .big-stars {
   width: 120px;

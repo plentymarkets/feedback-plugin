@@ -484,8 +484,10 @@
     }
 
     span.small-stars {
-        line-height: 22px;
+        //line-height: 22px;
         font-size: 1em;
+        display: inline-block;
+        height: 30px;
     }
 
     .big-stars {
