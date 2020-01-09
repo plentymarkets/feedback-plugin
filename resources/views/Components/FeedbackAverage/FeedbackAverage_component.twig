@@ -41,7 +41,7 @@
                 },
 
                 scrollTo: function() {
-                    var elementTop = document.getElementById("feedback").offsetTop;
+                    var elementTop = document.querySelector("[data-feedback]").offsetTop;
                     window.scrollTo(
                          {
                              top: elementTop,

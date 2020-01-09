@@ -399,6 +399,9 @@
   width: 85px;
   margin-left: 0px;
 }
+.widget-feedback-average .small-stars .feedback-stars-background {
+  width: 85px;
+}
 .widget-feedback-average .small-stars .feedback-star {
   height: 20px;
   width: 17px;

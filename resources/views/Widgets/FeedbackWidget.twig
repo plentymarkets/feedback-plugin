@@ -21,7 +21,7 @@
 {{ Twig.set("variation_id", "feedbackItem.item.documents[0].data.variation.id") }}
 {{ Twig.set("counts", "feedbackItem.counts") }}
 
-<div id="feedback" class="widget widget-feedback widget-{{ appearance | default("primary") }} {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
+<div data-feedback class="widget widget-feedback widget-{{ appearance | default("primary") }} {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
         {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
     <feedback-container class="widget-inner"
             :item-id="{{ Twig.print("item_id") }}"

@@ -1,6 +1,6 @@
 <script type="x/template" id="vue-feedback-average">
     <div>
-        <div v-if="showEmptyRatings || counts.averageValue > 0" class="feedback-stars-average" :class="sizeOfStars" id="feedback-stars-average">
+        <div v-if="showEmptyRatings || counts.averageValue > 0" class="feedback-stars-average" :class="sizeOfStars">
             <div class="feedback-stars-background clearfix">
                 <div class="feedback-star" v-for="index in 5">
                     <i class="fa fa-star"></i>
