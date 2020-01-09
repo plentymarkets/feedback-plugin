@@ -27,7 +27,7 @@
     {{ _self.importComponent("FeedbackContainer") }}
 {% endif %}
 
-{% if services.template.getCurrentTemplate() == 'tpl.confirmation' %}
+{% if services.template.getCurrentTemplate() == 'tpl.confirmation' or isShopBuilder %}
     {{ _self.importTemplate_namespaced("Order", "FeedbackOrderContainer") }}
     {{ _self.importTemplate_namespaced("Order", "FeedbackOrderItem") }}
     {{ _self.importTemplate_namespaced("Order", "FeedbackOrderForm") }}
