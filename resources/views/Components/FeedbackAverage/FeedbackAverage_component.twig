@@ -41,13 +41,18 @@
                 },
 
                 scrollTo: function() {
-                    var elementTop = document.querySelector("[data-feedback]").offsetTop;
-                    window.scrollTo(
-                         {
-                             top: elementTop,
-                             behavior: "smooth"
-                         }
-                     );
+                    var feedbackWidget = document.querySelector("[data-feedback]");
+
+                    if(feedbackWidget !== null)
+                    {
+                        var elementTop = feedbackWidget.offsetTop;
+                        window.scrollTo(
+                            {
+                                top: elementTop,
+                                behavior: "smooth"
+                            }
+                        );
+                    }
                 }
             },
 
@@ -56,6 +61,10 @@
                     var fillValue = (this.counts.averageValue * 100) / 5;
                     fillValue += "%";
                     return fillValue;
+                },
+
+                size: function() {
+                    return this.sizeOfStars.indexOf("-stars") !== -1 ? this.sizeOfStars : this.sizeOfStars + "-stars";
                 }
             }
         });

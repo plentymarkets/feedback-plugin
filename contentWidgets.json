@@ -188,18 +188,18 @@
             "sizeOfStars": {
                 "type": "select",
                 "required": false,
-                "defaultValue": "small-stars",
+                "defaultValue": "small",
                 "options": {
                     "name": "Widget.sizeOfStars",
                     "tooltipText": "Widget.sizeOfStarsTooltip",
                     "listBoxValues": [
                         {
-                            "value": "small-stars",
+                            "value": "small",
                             "caption": "Widget.sizeOfStarsSmall",
                             "position": 0
                         },
                         {
-                            "value": "big-stars",
+                            "value": "big",
                             "caption": "Widget.sizeOfStarsBig",
                             "position": 1
                         }
