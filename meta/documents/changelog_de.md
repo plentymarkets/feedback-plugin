@@ -8,18 +8,17 @@
 
 ### Hinzugefügt
 
-- Das Bewertungssterne-Widget kann nun die Anzahl der abgegebenen Bewertungen anzeigen.
-Bei Klick auf diese Zahl wird man automatisch zum Artikelbewertungs-Widget gescrolled, wenn auf dem Content vorhanden.
+- Das Bewertungssterne-Widget kann nun die Anzahl der abgegebenen Bewertungen anzeigen. Durch Klick auf diese Zahl neben den Bewertungssternen wird der Nutzer automatisch zum Artikelbewertungs-Widget geleitet, sofern dieses auf dem gleichen ShopBuilder-Inhalt vorhanden ist.
 
 ### Geändert
 
-- Das Bewertungssterne-Widget bekommt jetzt initial schon Daten. Dies erhöht die Performance leicht.
+- Das Bewertungssterne-Widget lädt nun bereits initial die notwendigen Daten. Dadurch wird eine leichte Verbesserung der Performance erzielt.
 
 ### Behoben
 
-- Die Darstellung von Artikel-Paketen war in dem Artikelbewertungs-Widget für die Bestellbestätigung inkorrekt. Dies wurde behoben.
-- Unter bestimmten Umständen wurden in Ceres fehlerhafte Tooltips angezeigt. Dies wurde behoben.
-- Im ShopBuilder kam das Artikelbewertungs-Widget für die Bestellbestätigung auf Contents, die nicht die Bestellbestätigung sind, nicht raus. Dies wurde behoben.
+- Artikelpakete wurden im Artikelbewertungs-Widget für die Bestellbestätigungsseite inkorrekt dargestellt. Dies wurde behoben.
+- Unter bestimmten Umständen wurden fehlerhafte Tooltips in Ceres angezeigt. Dies wurde behoben.
+- Im ShopBuilder wurde das Artikelbewertungs-Widget für die Bestellbestätigungsseite nicht auf Inhalten angezeigt, die keine Bestellbestätigung waren. Dies wurde behoben.
 
 ## v3.3.0 (2019-12-18)
 
