@@ -2,6 +2,7 @@
     <div class="feedback clearfix" :class="{'loading':isLoading}">
         <div class="feedback-options" v-if="!editableFeedback && showControls">
             <span class="btn btn-sm btn-danger"
+                  v-tooltip
                   data-toggle="tooltip"
                   data-placement="top"
                   data-original-title="{{ trans("Feedback::Feedback.moderationMessage") }}"
@@ -11,6 +12,7 @@
 
             <span class="btn btn-sm btn-danger"
                   ref="editButton"
+                  v-tooltip
                   data-toggle="tooltip"
                   data-placement="top"
                   data-original-title="{{ isReply ? trans("Feedback::Feedback.editReply") : trans("Feedback::Feedback.editReview") }}"
@@ -19,6 +21,7 @@
             </span>
 
             <span class="btn btn-sm btn-danger"
+                  v-tooltip
                   data-toggle="tooltip"
                   data-placement="top"
                   data-original-title="{{ isReply ? trans("Feedback::Feedback.deleteReply") : trans("Feedback::Feedback.deleteReview") }}"

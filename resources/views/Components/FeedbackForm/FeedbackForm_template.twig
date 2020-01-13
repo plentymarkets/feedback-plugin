@@ -59,6 +59,7 @@
 
             <div class="feedback-tooltip-wrapper"
                  v-if="authenticatedUser.limitReached"
+                 v-tooltip
                  data-toggle="tooltip"
                  data-placement="top"
                  data-original-title="{{ trans("Feedback::Feedback.maximumNumberOfFeedbacksReached") }}" >
@@ -67,6 +68,7 @@
 
             <div class="feedback-tooltip-wrapper"
                  v-else-if="!authenticatedUser.hasPurchased"
+                 v-tooltip
                  data-toggle="tooltip"
                  data-placement="top"
                  data-original-title="{{ trans("Feedback::Feedback.errorDoesntOwnProduct") }}" >
