@@ -1,5 +1,11 @@
 # Release Notes for Feedback
 
+## v3.3.1 (2020-mm-dd)
+
+## Fixed
+
+- In Ceres wurden in einigen Fällen fehlerhafte Tooltips produziert. Dies wurde behoben.
+
 ## v3.3.0 (2019-12-18)
 
 ### Added
