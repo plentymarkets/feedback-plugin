@@ -4,7 +4,7 @@
 
 ## Fixed
 
-- In Ceres wurden in einigen Fällen fehlerhafte Tooltips produziert. Dies wurde behoben.
+- Under certain circumstances, faulty tooltips were displayed in Ceres. This has been fixed.
 
 ## v3.3.0 (2019-12-18)
 
