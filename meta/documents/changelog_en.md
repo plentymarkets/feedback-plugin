@@ -4,22 +4,21 @@
 
 ### TODO
 
-- Nach dem Update auf v3.4.0 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden. 
+- After updating the plugin to v3.4.0, you need to refresh ShopBuilder contents by clicking the button **Regenerate contents** in the **CMS » ShopBuilder** menu.
 
-### Hinzugefügt
+### Added
 
-- Das Bewertungssterne-Widget kann nun die Anzahl der abgegebenen Bewertungen anzeigen.
-Bei Klick auf diese Zahl wird man automatisch zum Artikelbewertungs-Widget gescrolled, wenn auf dem Content vorhanden.
+- The star rating widget is now able to display the number of submitted ratings. Clicking the number next to the star ratings redirects the user to the item review widget if this widget is also placed in the same content.
 
-### Geändert
+### Changed
 
-- Das Bewertungssterne-Widget bekommt jetzt initial schon Daten. Dies erhöht die Performance leicht.
+- The star rating widget now initially loads necessary data. This improves the performance slightly.  
 
 ### Fixed
 
-- Die Darstellung von Artikel-Paketen war in dem Artikelbewertungs-Widget für die Bestellbestätigung inkorrekt. Dies wurde behoben.
+- Item bundles were displayed incorrectly in the item review widget for the order confirmation page. This has been fixed.
 - Under certain circumstances, faulty tooltips were displayed in Ceres. This has been fixed.
-- Im ShopBuilder kam das Artikelbewertungs-Widget für die Bestellbestätigung auf Contents, die nicht die Bestellbestätigung sind, nicht raus. Dies wurde behoben.
+- The item review widget for the order confirmation page was not displayed in ShopBuilder contents that were anything but an order confirmation page. This has been fixed.
 
 ## v3.3.0 (2019-12-18)
 
