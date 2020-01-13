@@ -1,10 +1,25 @@
 # Release Notes für Feedback
 
-## v3.3.1 (2020-mm-dd)
+## v3.4.0 (2020-mm-dd)
 
-## Behoben
+### TODO
 
+- Nach dem Update auf v3.4.0 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden. 
+
+### Hinzugefügt
+
+- Das Bewertungssterne-Widget kann nun die Anzahl der abgegebenen Bewertungen anzeigen.
+Bei Klick auf diese Zahl wird man automatisch zum Artikelbewertungs-Widget gescrolled, wenn auf dem Content vorhanden.
+
+### Geändert
+
+- Das Bewertungssterne-Widget bekommt jetzt initial schon Daten. Dies erhöht die Performance leicht.
+
+### Behoben
+
+- Die Darstellung von Artikel-Paketen war in dem Artikelbewertungs-Widget für die Bestellbestätigung inkorrekt. Dies wurde behoben.
 - Unter bestimmten Umständen wurden in Ceres fehlerhafte Tooltips angezeigt. Dies wurde behoben.
+- Im ShopBuilder kam das Artikelbewertungs-Widget für die Bestellbestätigung auf Contents, die nicht die Bestellbestätigung sind, nicht raus. Dies wurde behoben.
 
 ## v3.3.0 (2019-12-18)
 
