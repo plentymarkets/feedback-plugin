@@ -1,5 +1,25 @@
 # Release Notes for Feedback
 
+## v3.4.0 (2020-mm-dd)
+
+### TODO
+
+- After updating the plugin to v3.4.0, you need to refresh ShopBuilder contents by clicking the button **Regenerate contents** in the **CMS » ShopBuilder** menu.
+
+### Added
+
+- The star rating widget is now able to display the number of submitted ratings. Clicking the number next to the star ratings redirects the user to the item review widget if this widget is also placed in the same content.
+
+### Changed
+
+- The star rating widget now initially loads necessary data. This improves the performance slightly.  
+
+### Fixed
+
+- Item bundles were displayed incorrectly in the item review widget for the order confirmation page. This has been fixed.
+- Under certain circumstances, faulty tooltips were displayed in Ceres. This has been fixed.
+- The item review widget for the order confirmation page was not displayed in ShopBuilder contents that were anything but an order confirmation page. This has been fixed.
+
 ## v3.3.0 (2019-12-18)
 
 ### Added
