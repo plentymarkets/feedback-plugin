@@ -194,12 +194,12 @@
                     "tooltipText": "Widget.sizeOfStarsTooltip",
                     "listBoxValues": [
                         {
-                            "value": "small-stars",
+                            "value": "small",
                             "caption": "Widget.sizeOfStarsSmall",
                             "position": 0
                         },
                         {
-                            "value": "big-stars",
+                            "value": "big",
                             "caption": "Widget.sizeOfStarsBig",
                             "position": 1
                         }
@@ -213,6 +213,15 @@
                 "options": {
                     "name": "Widget.showEmptyRatings",
                     "tooltipText": "Widget.showEmptyRatingsTooltip"
+                }
+            },
+            "showNumberOfRatings": {
+                "type": "checkbox",
+                "required": false,
+                "defaultValue": false,
+                "options": {
+                    "name": "Widget.showNumberOfRatings",
+                    "tooltipText": "Widget.showNumberOfRatingsTooltip"
                 }
             }
         }

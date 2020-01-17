@@ -3,11 +3,14 @@
         Vue.component('feedback-average', {
             template: '#vue-feedback-average',
             delimiters: ["${", "}"],
-            props: ['itemId', 'showEmptyRatings'],
+            props: ['itemId', 'showEmptyRatings', 'initialData', 'sizeOfStars', 'showRatingsAmount'],
 
             data: function() {
                 return {
-                    counts: {}
+                    counts: {
+                        'averageValue': 0,
+                        'ratingsCountTotal': 0
+                    }
                 };
             },
 
@@ -17,7 +20,7 @@
                     _self.getAverage();
                 });
 
-                this.getAverage();
+                this.counts = this.initialData;
             },
 
             methods: {
@@ -35,6 +38,21 @@
                             console.error(errorThrown);
                         }
                     });
+                },
+
+                scrollTo: function() {
+                    var feedbackWidget = document.querySelector("[data-feedback]");
+
+                    if(feedbackWidget !== null)
+                    {
+                        var elementTop = feedbackWidget.offsetTop;
+                        window.scrollTo(
+                            {
+                                top: elementTop,
+                                behavior: "smooth"
+                            }
+                        );
+                    }
                 }
             },
 
@@ -43,6 +61,10 @@
                     var fillValue = (this.counts.averageValue * 100) / 5;
                     fillValue += "%";
                     return fillValue;
+                },
+
+                size: function() {
+                    return this.sizeOfStars.indexOf("-stars") !== -1 ? this.sizeOfStars : this.sizeOfStars + "-stars";
                 }
             }
         });

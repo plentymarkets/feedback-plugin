@@ -475,12 +475,22 @@
         width: 85px;
         margin-left: 0px;
 
+        .feedback-stars-background {
+            width: 85px;
+        }
         .feedback-star {
             height: 20px;
             width: 17px;
             line-height: 22px;
             font-size: 17px;
         }
+    }
+
+    span.small-stars {
+        //line-height: 22px;
+        font-size: 1em;
+        display: inline-block;
+        height: 30px;
     }
 
     .big-stars {
@@ -493,5 +503,10 @@
             line-height: 32px;
             font-size: 24px;
         }
+    }
+
+    span.big-stars {
+        line-height: 30px;
+        font-size: 1.25em;
     }
 }

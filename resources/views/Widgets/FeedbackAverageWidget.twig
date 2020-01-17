@@ -6,7 +6,7 @@
 {% set inlineMargin    = WidgetHelper.getInlineSpacings(spacingSettings, "", spacingSettings.customMargin.mobile) %}
 {% set spacingMargin   = WidgetHelper.getSpacingClasses(spacingSettings, "",spacingSettings.customMargin.mobile) %}
 {% set sizeOfStars = widget.settings.sizeOfStars.mobile %}
-
+{% set showNumberOfRatings = widget.settings.showNumberOfRatings.mobile | default(false) %}
 {% set showEmptyRatings = widget.settings.showEmptyRatings.mobile %}
 
 {% if isPreview %}
@@ -15,13 +15,15 @@
 {% endif %}
 
 {{ Twig.set("item_id", "item.documents[0].data.item.id") }}
+{{ Twig.set("initialData", Twig.call("feedbackServices.feedback.getAverage", [Twig.var("item_id")])) }}
 
 <div class="widget widget-feedback-average {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
         {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
     <feedback-average
-            class="feedback-stars-average {{ sizeOfStars }}"
-            id="feedback-stars-average"
             :item-id="{{ Twig.print("item_id") }}"
-            :show-empty-ratings="{{ showEmptyRatings | json_encode }}">
+            :show-empty-ratings="{{ showEmptyRatings | json_encode }}"
+            :initial-data="{{ Twig.print("initialData | json_encode") }}"
+            size-of-stars="{{ sizeOfStars }}"
+            :show-ratings-amount="{{ showNumberOfRatings | json_encode }}">
     </feedback-average>
 </div>

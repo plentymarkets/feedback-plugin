@@ -105,6 +105,7 @@ class FeedbackService
     /**
      * Get data for the feedback-average Vue component
      * @param $item
+     * @deprecated To be removed in the next major release
      * @return array
      */
     public function getFeedbackAverageDataSingleItem($item = [])
@@ -533,8 +534,10 @@ class FeedbackService
 
         if( empty($average)) {
             $counts['averageValue'] = 0;
+            $counts['ratingsCountTotal'] = 0;
         } else {
             $counts['averageValue'] = $average->averageValue;
+            $counts['ratingsCountTotal'] = $average->ratingsCountTotal;
         }
 
         return $counts;

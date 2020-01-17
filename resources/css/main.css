@@ -1,25 +1,23 @@
+@charset "UTF-8";
 .feedback-container {
   margin-bottom: 40px;
- /* Section title */
- /* form button didn't show the hand cursor when hovered */
- /* form stars wrapper */
- /* hide the radio inputs */
- /* each label ( star in :before ) */
- /* color lower value stars when the radio is checked */
- /* stars are added from 5 to 1 and positioned right to left so that "~" works */
- /* if 5 stars is checked */
- /* input.star-5:checked ~ label.star:before {
-   */
-   /* 
- }
-  */
- /* when hovering the wrapper that holds the stars make them all empty and colorless */
- /* hovered star ( full and colored ) */
- /* stars of lower value on hover ( full and colored ) */
- /* all visible stars ( full but colorless ) */
- /* Ratings bars */
- /* Comments */
- /* Honeypot hiders */
+  /* Section title */
+  /* form button didn't show the hand cursor when hovered */
+  /* form stars wrapper */
+  /* hide the radio inputs */
+  /* each label ( star in :before ) */
+  /* color lower value stars when the radio is checked */
+  /* stars are added from 5 to 1 and positioned right to left so that "~" works */
+  /* if 5 stars is checked */
+  /* input.star-5:checked ~ label.star:before {*/
+  /* } */
+  /* when hovering the wrapper that holds the stars make them all empty and colorless */
+  /* hovered star ( full and colored ) */
+  /* stars of lower value on hover ( full and colored ) */
+  /* all visible stars ( full but colorless ) */
+  /* Ratings bars */
+  /* Comments */
+  /* Honeypot hiders */
 }
 .feedback-container .title {
   font-size: 2rem;
@@ -56,18 +54,18 @@
   font-size: 30px;
   line-height: 40px;
   margin-bottom: 0px;
-  color: rgba(0, 0, 0, .1);
+  color: rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
 .feedback-container input.star:checked ~ label.star:before, .feedback-container input.star-rated:checked ~ label.star-rated:before {
-  content: '\f005';
+  content: "";
   color: orange;
 }
 .feedback-container input.star:checked ~ svg.star, .feedback-container input.star-rated:checked ~ svg.star-rated {
   fill: orange;
 }
 .feedback-container div.stars:hover label.star:before {
-  color: rgba(0, 0, 0, .1);
+  color: rgba(0, 0, 0, 0.1);
 }
 .feedback-container label.star:hover:before {
   color: orange !important;
@@ -79,7 +77,7 @@
   fill: orange;
 }
 .feedback-container label.star:before, .feedback-container label.star-rated:before {
-  content: '\f005';
+  content: "";
   font-family: FontAwesome;
 }
 .feedback-container .feedback-bars {
@@ -93,7 +91,7 @@
   height: 17px;
   display: inline-block;
   vertical-align: middle;
-  background: rgba(0, 0, 0, .1);
+  background: rgba(0, 0, 0, 0.1);
   overflow: hidden;
   border-radius: 2px;
 }
@@ -110,7 +108,7 @@
 .feedback-container .feedback-list .feedback {
   padding-bottom: 15px;
   margin-bottom: 15px;
-  border-bottom: rgba(0, 0, 0, .1) dotted 1px;
+  border-bottom: rgba(0, 0, 0, 0.1) dotted 1px;
 }
 .feedback-container .feedback-list .feedback.loading {
   pointer-events: none;
@@ -127,7 +125,7 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, .1);
+  background: rgba(0, 0, 0, 0.1);
   line-height: 50px;
   text-align: center;
 }
@@ -143,7 +141,7 @@
   margin-bottom: 10px;
 }
 .feedback-container .feedback-list .feedback .feedback-comment .feedback-rating {
-  color: rgba(0, 0, 0, .1);
+  color: rgba(0, 0, 0, 0.1);
 }
 .feedback-container .feedback-list .feedback .feedback-comment .feedback-rating .full {
   color: orange;
@@ -154,7 +152,7 @@
 }
 .feedback-container .feedback-list .feedback .feedback-comment .feedback-attributes-list p span {
   display: inline-block;
-  border-right: rgba(0, 0, 0, .2) solid 1px;
+  border-right: rgba(0, 0, 0, 0.2) solid 1px;
   margin: 10px 4px 10px 0;
   padding-right: 7px;
 }
@@ -228,8 +226,9 @@
 .feedback-container #comment-textfield {
   display: none;
 }
+
 .feedback-orderitem-container {
- /* form stars wrapper */
+  /* form stars wrapper */
 }
 .feedback-orderitem-container div.stars {
   display: block;
@@ -249,7 +248,8 @@
   cursor: pointer;
   fill: rgba(0, 0, 0, 0.1);
 }
-.feedback-orderitem-container label.new_star:hover ~ label.new_star svg, .feedback-orderitem-container label.new_star:hover svg {
+.feedback-orderitem-container label.new_star:hover ~ label.new_star svg,
+.feedback-orderitem-container label.new_star:hover svg {
   fill: orange !important;
 }
 .feedback-orderitem-container input.star:checked ~ label.new_star svg, .feedback-orderitem-container input.star-rated:checked ~ label.new_star svg {
@@ -294,32 +294,59 @@
   display: block;
   font-size: 1.3em;
 }
+
 /* Facet extension */
-.filter-collapse [for="option-feedback-5"]::after, .widget-filter-base [for="option-feedback-5"]::after, .selected-filters [for="option-feedback-5"]::after, .filter-collapse .filter-feedback-5::before, .widget-filter-base .filter-feedback-5::before, .selected-filters .filter-feedback-5::before {
-  content: "\f005 \f005 \f005 \f005 \f005" !important;
+.filter-collapse [for=option-feedback-5]::after,
+.filter-collapse .filter-feedback-5::before,
+.widget-filter-base [for=option-feedback-5]::after,
+.widget-filter-base .filter-feedback-5::before,
+.selected-filters [for=option-feedback-5]::after,
+.selected-filters .filter-feedback-5::before {
+  content: "" !important;
   font-family: FontAwesome;
   letter-spacing: 3px;
 }
-.filter-collapse [for="option-feedback-4"]::after, .widget-filter-base [for="option-feedback-4"]::after, .selected-filters [for="option-feedback-4"]::after, .filter-collapse .filter-feedback-4::before, .widget-filter-base .filter-feedback-4::before, .selected-filters .filter-feedback-4::before {
-  content: "\f005 \f005 \f005 \f005 \f062" !important;
+.filter-collapse [for=option-feedback-4]::after,
+.filter-collapse .filter-feedback-4::before,
+.widget-filter-base [for=option-feedback-4]::after,
+.widget-filter-base .filter-feedback-4::before,
+.selected-filters [for=option-feedback-4]::after,
+.selected-filters .filter-feedback-4::before {
+  content: " " !important;
   font-family: FontAwesome;
   letter-spacing: 3px;
 }
-.filter-collapse [for="option-feedback-3"]::after, .widget-filter-base [for="option-feedback-3"]::after, .selected-filters [for="option-feedback-3"]::after, .filter-collapse .filter-feedback-3::before, .widget-filter-base .filter-feedback-3::before, .selected-filters .filter-feedback-3::before {
-  content: "\f005 \f005 \f005 \f062" !important;
+.filter-collapse [for=option-feedback-3]::after,
+.filter-collapse .filter-feedback-3::before,
+.widget-filter-base [for=option-feedback-3]::after,
+.widget-filter-base .filter-feedback-3::before,
+.selected-filters [for=option-feedback-3]::after,
+.selected-filters .filter-feedback-3::before {
+  content: " " !important;
   font-family: FontAwesome;
   letter-spacing: 3px;
 }
-.filter-collapse [for="option-feedback-2"]::after, .widget-filter-base [for="option-feedback-2"]::after, .selected-filters [for="option-feedback-2"]::after, .filter-collapse .filter-feedback-2::before, .widget-filter-base .filter-feedback-2::before, .selected-filters .filter-feedback-2::before {
-  content: "\f005 \f005 \f062" !important;
+.filter-collapse [for=option-feedback-2]::after,
+.filter-collapse .filter-feedback-2::before,
+.widget-filter-base [for=option-feedback-2]::after,
+.widget-filter-base .filter-feedback-2::before,
+.selected-filters [for=option-feedback-2]::after,
+.selected-filters .filter-feedback-2::before {
+  content: " " !important;
   font-family: FontAwesome;
   letter-spacing: 3px;
 }
-.filter-collapse [for="option-feedback-1"]::after, .widget-filter-base [for="option-feedback-1"]::after, .selected-filters [for="option-feedback-1"]::after, .filter-collapse .filter-feedback-1::before, .widget-filter-base .filter-feedback-1::before, .selected-filters .filter-feedback-1::before {
-  content: "\f005 \f062" !important;
+.filter-collapse [for=option-feedback-1]::after,
+.filter-collapse .filter-feedback-1::before,
+.widget-filter-base [for=option-feedback-1]::after,
+.widget-filter-base .filter-feedback-1::before,
+.selected-filters [for=option-feedback-1]::after,
+.selected-filters .filter-feedback-1::before {
+  content: " " !important;
   font-family: FontAwesome;
   letter-spacing: 3px;
 }
+
 /* Feedback average stars */
 .feedback-stars-average {
   width: 120px;
@@ -328,10 +355,10 @@
   position: relative;
   display: inline-block;
   vertical-align: bottom;
- /* each individual star */
- /* each wrapper */
- /* background individual stars */
- /* overlay wrapper that colors the stars */
+  /* each individual star */
+  /* each wrapper */
+  /* background individual stars */
+  /* overlay wrapper that colors the stars */
 }
 .feedback-stars-average .feedback-star {
   height: 30px;
@@ -351,11 +378,12 @@
   overflow: hidden;
 }
 .feedback-stars-average .feedback-stars-background .feedback-star {
-  color: rgba(0, 0, 0, .1);
+  color: rgba(0, 0, 0, 0.1);
 }
 .feedback-stars-average .feedback-stars-overlay-wrap {
   width: 0%;
 }
+
 .feedback-stars-average.feedback-category-view {
   margin-left: 0px;
   width: 85px;
@@ -366,15 +394,24 @@
   line-height: 22px;
   font-size: 17px;
 }
+
 .widget-feedback-average .small-stars {
   width: 85px;
   margin-left: 0px;
+}
+.widget-feedback-average .small-stars .feedback-stars-background {
+  width: 85px;
 }
 .widget-feedback-average .small-stars .feedback-star {
   height: 20px;
   width: 17px;
   line-height: 22px;
   font-size: 17px;
+}
+.widget-feedback-average span.small-stars {
+  font-size: 1em;
+  display: inline-block;
+  height: 30px;
 }
 .widget-feedback-average .big-stars {
   width: 120px;
@@ -386,3 +423,9 @@
   line-height: 32px;
   font-size: 24px;
 }
+.widget-feedback-average span.big-stars {
+  line-height: 30px;
+  font-size: 1.25em;
+}
+
+/*# sourceMappingURL=main.css.map */
