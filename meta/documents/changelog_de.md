@@ -1,6 +1,6 @@
 # Release Notes für Feedback
 
-## v3.4.0 (2020-mm-dd)
+## v3.4.0 (2020-01-20)
 
 ### TODO
 
