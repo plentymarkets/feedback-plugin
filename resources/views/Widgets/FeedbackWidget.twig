@@ -33,7 +33,7 @@
     </feedback-container>
 
     {{- Twig.if("counts.ratingsCountTotal > 0") -}}
-        <script type="application/ld+json">
+        <script2 type="application/ld+json">
             {
                 "@context"          :   "http://schema.org/",
                 "@type"             :   "Product",
@@ -44,6 +44,6 @@
                     "reviewCount"   :   "{{ Twig.print("counts.ratingsCountTotal") }}"
                 }
             }
-        </script>
+        </script2>
     {{- Twig.endif() -}}
 </div>
