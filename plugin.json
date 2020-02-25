@@ -10,7 +10,7 @@
     "author": "plentysystems AG",
     "type": "general",
     "require": {
-        "IO": ">=4.5.0",
+        "IO": ">=4.6.0",
         "Ceres": ">=4.6.0"
     },
     "isClosedSource": false,
