@@ -45,7 +45,7 @@
 
                     if(feedbackWidget !== null)
                     {
-                        var elementTop = feedbackWidget.offsetTop;
+                        var elementTop = feedbackWidget.getBoundingClientRect().top + window.scrollY;
                         window.scrollTo(
                             {
                                 top: elementTop,
