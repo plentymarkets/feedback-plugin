@@ -7,9 +7,9 @@ use Feedback\Extensions\TwigServiceProvider;
 use Feedback\Helpers\FeedbackCoreHelper;
 use Feedback\Widgets\RatingFilterWidget;
 use IO\Helper\ResourceContainer;
-use IO\Services\ItemSearch\Helper\FacetExtensionContainer;
 use IO\Services\ItemService;
 use Plenty\Modules\ShopBuilder\Contracts\ContentWidgetRepositoryContract;
+use Plenty\Modules\Webshop\ItemSearch\Helpers\FacetExtensionContainer;
 use Plenty\Plugin\Events\Dispatcher;
 use Plenty\Plugin\ServiceProvider;
 use Plenty\Plugin\Templates\Twig;
@@ -28,9 +28,9 @@ class FeedbackServiceProvider extends ServiceProvider
 
         if ($showRatingFacet) {
             //add feedback facet extension
-            $dispatcher->listen('IO.initFacetExtensions', function (FacetExtensionContainer $facetExtensionContainer) {
-                $facetExtensionContainer->addFacetExtension(pluginApp(FeedbackFacet::class));
-            });
+            /** @var FacetExtensionContainer $facetExtensionContainer */
+            $facetExtensionContainer = pluginApp(FacetExtensionContainer::class);
+            $facetExtensionContainer->addFacetExtension(pluginApp(FeedbackFacet::class));
         }
 
         if ($showRatingSorting) {   // Sorting on CategoryPage
