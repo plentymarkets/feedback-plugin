@@ -1,5 +1,19 @@
 # Release Notes for Feedback
 
+## v3.4.1 (2020-03-04)
+
+### TODO
+
+- This version of the feedback plugin is only compatible with Ceres version 4.6 or higher.
+
+### Changed
+
+- The structured data is now output via '<script2' tags.
+
+### Fixed
+
+- Due to an error, the page did not scroll to the feedback plugin after the user clicked on the number of submitted ratings. This has been fixed.
+
 ## v3.4.0 (2020-01-20)
 
 ### TODO
