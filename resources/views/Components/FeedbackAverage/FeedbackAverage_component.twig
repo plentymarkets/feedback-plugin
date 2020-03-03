@@ -42,10 +42,12 @@
 
                 scrollTo: function() {
                     var feedbackWidget = document.querySelector("[data-feedback]");
+                    var headerMargin = document.querySelector("#vue-app").offsetTop;
 
                     if(feedbackWidget !== null)
                     {
-                        var elementTop = feedbackWidget.offsetTop;
+                        var elementTop = feedbackWidget.getBoundingClientRect().top + window.scrollY - headerMargin;
+
                         window.scrollTo(
                             {
                                 top: elementTop,
