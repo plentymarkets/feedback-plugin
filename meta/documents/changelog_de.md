@@ -6,9 +6,12 @@
 
 - Zur Nutzung des Feedback-Plugins muss Ceres in Version 4.6 oder höher installiert sein.
 
-### Behoben
+### Geändert
 
 - Die strukturierten Daten werden nun über '<script2>'-Tags ausgegeben.
+
+### Behoben
+
 - Durch einen Fehler scrollte die Seite nach Klick auf die Anzahl der Bewertungen nicht automatisch zum Feedback-Plugin. Dies wurde behoben. 
 
 ## v3.4.0 (2020-01-20)
