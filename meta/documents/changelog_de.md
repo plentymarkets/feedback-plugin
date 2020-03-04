@@ -1,5 +1,19 @@
 # Release Notes für Feedback
 
+## v3.4.1 (2020-03-04)
+
+### TODO
+
+- Zur Nutzung des Feedback-Plugins muss Ceres in Version 4.6 oder höher installiert sein.
+
+### Geändert
+
+- Die strukturierten Daten werden nun über '<script2>'-Tags ausgegeben.
+
+### Behoben
+
+- Durch einen Fehler scrollte die Seite nach Klick auf die Anzahl der Bewertungen nicht automatisch zum Feedback-Plugin. Dies wurde behoben. 
+
 ## v3.4.0 (2020-01-20)
 
 ### TODO
