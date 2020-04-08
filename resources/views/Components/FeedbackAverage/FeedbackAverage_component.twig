@@ -2,8 +2,16 @@
     (function($) {
         Vue.component('feedback-average', {
             template: '#vue-feedback-average',
+
             delimiters: ["${", "}"],
-            props: ['itemId', 'showEmptyRatings', 'initialData', 'sizeOfStars', 'showRatingsAmount'],
+
+            props: ['showEmptyRatings', 'sizeOfStars', 'showRatingsAmount'],
+
+            inject: {
+                itemId: {
+                    default: null
+                }
+            },
 
             data: function() {
                 return {
@@ -14,13 +22,13 @@
                 };
             },
 
-            mounted: function() {
+            created: function() {
                 var _self = this;
                 this.$root.$on('averageRecalc', function() {
                     _self.getAverage();
                 });
 
-                this.counts = this.initialData;
+                this.getAverage();
             },
 
             methods: {
