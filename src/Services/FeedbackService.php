@@ -3,9 +3,9 @@
 namespace Feedback\Services;
 
 use Plenty\Modules\Authorization\Services\AuthHelper;
+use Plenty\Modules\Webshop\Contracts\LocalizationRepositoryContract;
 use Plenty\Plugin\Http\Request;
 use Feedback\Helpers\FeedbackCoreHelper;
-use IO\Services\SessionStorageService;
 use Plenty\Modules\Feedback\Contracts\FeedbackAverageRepositoryContract;
 use Plenty\Modules\Feedback\Contracts\FeedbackRepositoryContract;
 use Plenty\Modules\Order\Contracts\OrderRepositoryContract;
@@ -31,8 +31,8 @@ class FeedbackService
     private $feedbackAverageRepository;
     /** @var AccountService $accountService */
     private $accountService;
-    /** @var SessionStorageService $sessionStorage */
-    private $sessionStorage;
+    /** @var LocalizationRepositoryContract $localizationRepository */
+    private $localizationRepository;
 
     const GUEST_ID = 0;
     const RELEASE_LEVEL_NONE = 0;
@@ -45,14 +45,14 @@ class FeedbackService
         FeedbackRepositoryContract $feedbackRepository,
         FeedbackAverageRepositoryContract $feedbackAverageRepository,
         AccountService $accountService,
-        SessionStorageService $sessionStorage
+        LocalizationRepositoryContract $localizationRepository
     ) {
         $this->request = $request;
         $this->coreHelper = $coreHelper;
         $this->feedbackRepository = $feedbackRepository;
         $this->feedbackAverageRepository = $feedbackAverageRepository;
         $this->accountService = $accountService;
-        $this->sessionStorage = $sessionStorage;
+        $this->localizationRepository = $localizationRepository;
     }
 
     /**
@@ -64,10 +64,9 @@ class FeedbackService
     {
         // Coalesce to default value in case of missing itemId
         $itemId = $item['documents'][0]['data']['item']['id'] ?? -1;
-        $average =  (int)$itemId > 0 ? $this->feedbackAverageRepository->getFeedbackAverage($itemId) : [];
+        $average = (int)$itemId > 0 ? $this->feedbackAverageRepository->getFeedbackAverage($itemId) : [];
 
-        if (empty($average))
-        {
+        if (empty($average)) {
             // Default values if the average table doesn't have any entry for this item/variation
             $counts = [
                 'ratingsCountOf1' => 0,
@@ -79,9 +78,7 @@ class FeedbackService
                 'averageValue' => 0,
                 'highestCount' => 0
             ];
-        }
-        else
-        {
+        } else {
             $counts = [
                 'ratingsCountOf1' => $average->ratingsCountOf1,
                 'ratingsCountOf2' => $average->ratingsCountOf2,
@@ -105,18 +102,20 @@ class FeedbackService
     /**
      * Get data for the feedback-average Vue component
      * @param $item
-     * @deprecated To be removed in the next major release
      * @return array
+     * @deprecated To be removed in the next major release
      */
     public function getFeedbackAverageDataSingleItem($item = [])
     {
         $itemId = $item['documents'][0]['data']['item']['id'] ?? -1;
-        $average =  (int)$itemId > 0 ? $this->feedbackAverageRepository->getFeedbackAverage($itemId) : [];
+        $average = (int)$itemId > 0 ? $this->feedbackAverageRepository->getFeedbackAverage($itemId) : [];
 
         $counts['averageValue'] = empty($average) ? 0 : $average->averageValue;
         $data['counts'] = $counts;
 
-        $showEmptyRatingsInCategoryView = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_SHOW_EMPTY_RATINGS_IN_CATEGORY_VIEW);
+        $showEmptyRatingsInCategoryView = $this->coreHelper->configValueAsBool(
+            FeedbackCoreHelper::KEY_SHOW_EMPTY_RATINGS_IN_CATEGORY_VIEW
+        );
         $data['options']['showEmptyRatingsInCategoryView'] = $showEmptyRatingsInCategoryView;
 
         return $data;
@@ -132,14 +131,14 @@ class FeedbackService
         $authHelper = pluginApp(AuthHelper::class);
         $accountService = $this->accountService;
         $creatorContactId = $authHelper->processUnguarded(
-            function() use ($accountService) {
+            function () use ($accountService) {
                 return $accountService->getAccountContactId();
             }
         );
 
         $allowGuestFeedbacks = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_GUEST_FEEDBACKS);
 
-        if(!$allowGuestFeedbacks && $creatorContactId == 0) {
+        if (!$allowGuestFeedbacks && $creatorContactId == 0) {
             return 'Guests are not allowed to write feedbacks';
         }
 
@@ -157,44 +156,48 @@ class FeedbackService
         ];
 
         // Check the type and set the target accordingly
-        if ($this->request->input('type') == 'review')
-        {
+        if ($this->request->input('type') === 'review') {
             $options['feedbackRelationTargetType'] = 'variation';
 
             // Limit the feedbacks count of a user per item
-            $numberOfFeedbacks = (int) $this->request->input("options.numberOfFeedbacks");
-            $autoreleaseFeedbacks = (int)$this->coreHelper->configValue(FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY);
+            $numberOfFeedbacks = (int)$this->request->input('options.numberOfFeedbacks');
+            $autoreleaseFeedbacks = (int)$this->coreHelper->configValue(
+                FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY
+            );
             $options['isVisible'] = $this->determineVisibility($autoreleaseFeedbacks, $creatorContactId);
-            $allowNoRatingFeedbacks = $this->request->input("options.allowNoRatingFeedbacks") === 'true';
-            $allowFeedbacksOnlyIfPurchased = $this->request->input("options.allowFeedbacksOnlyIfPurchased") === 'true';
+            $allowNoRatingFeedbacks = $this->request->input('options.allowNoRatingFeedbacks') === 'true';
+            $allowFeedbacksOnlyIfPurchased = $this->request->input('options.allowFeedbacksOnlyIfPurchased') === 'true';
 
             if ($allowNoRatingFeedbacks && empty($this->request->input('ratingValue'))) {
                 return 'Can\'t create review with no rating';
             }
 
             // The following checks cannot be applied to guests
-            if($creatorContactId != 0)
-            {
+            if ($creatorContactId != 0) {
                 $hasPurchased = $this->hasPurchasedVariation($creatorContactId, $this->request->input('targetId'));
 
                 if ($allowFeedbacksOnlyIfPurchased && !$hasPurchased) {
                     return 'Not allowed to create review without purchasing the item first';
                 }
 
-                if($hasPurchased) {
+                if ($hasPurchased) {
                     $options['feedbackRelationSources'][] = [
-                        "feedbackRelationSourceType" => 'orderItem',
-                        "feedbackRelationSourceId" => $options['feedbackRelationTargetId']
+                        'feedbackRelationSourceType' => 'orderItem',
+                        'feedbackRelationSourceId' => $options['feedbackRelationTargetId']
                     ];
                 }
 
                 if (!empty($numberOfFeedbacks) && $numberOfFeedbacks != 0) {
-
                     // Get the feedbacks that this user created on this item
-                    $countFeedbacksOfUserPerItem = $this->listFeedbacks(1, 50, [], [
-                        'sourceId' => $creatorContactId,
-                        'targetId' => $options['feedbackRelationTargetId']
-                    ])->getTotalCount();
+                    $countFeedbacksOfUserPerItem = $this->listFeedbacks(
+                        1,
+                        50,
+                        [],
+                        [
+                            'sourceId' => $creatorContactId,
+                            'targetId' => $options['feedbackRelationTargetId']
+                        ]
+                    )->getTotalCount();
 
                     if ($countFeedbacksOfUserPerItem >= $numberOfFeedbacks) {
                         return 'Too many reviews';
@@ -206,16 +209,13 @@ class FeedbackService
             $feedbackObject = array_merge($this->request->all(), $options);
 
             $result = $authHelper->processUnguarded(
-                function() use ($feedbackRepository,$feedbackObject) {
+                function () use ($feedbackRepository, $feedbackObject) {
                     return $feedbackRepository->createFeedback($feedbackObject);
                 }
             );
 
             return $result;
-
-        }
-        elseif ($this->request->input('type') == 'reply')
-        {
+        } elseif ($this->request->input('type') === 'reply') {
             $options['feedbackRelationTargetType'] = 'feedback';
             $options['isVisible'] = true;
 
@@ -223,7 +223,7 @@ class FeedbackService
             $feedbackObject = array_merge($this->request->all(), $options);
 
             $result = $authHelper->processUnguarded(
-                function() use ($feedbackRepository,$feedbackObject) {
+                function () use ($feedbackRepository, $feedbackObject) {
                     return $feedbackRepository->createFeedback($feedbackObject);
                 }
             );
@@ -271,26 +271,26 @@ class FeedbackService
      */
     public function paginate($itemId, $page)
     {
-        $lang = $this->sessionStorage->getLang();
+        $lang = $this->localizationRepository->getLanguage();
         $itemVariations = [];
         $itemDataList = [];
 
-        try
-        {
+        try {
             $itemDataList = pluginApp(ItemRepositoryContract::class)->show(
                 $itemId,
                 ['id'],
                 $lang,
                 ['variations']
             );
-        }
-        catch(\Exception $e)
-        {
-            $this->getLogger(__METHOD__)->error("Feedback::Debug.FeedbackService_itemDoesNotExistError", [
-                'code' => $e->getCode(),
-                'message' => $e->getMessage(),
-                'itemId' => $itemId
-            ]);
+        } catch (\Exception $e) {
+            $this->getLogger(__METHOD__)->error(
+                'Feedback::Debug.FeedbackService_itemDoesNotExistError',
+                [
+                    'code' => $e->getCode(),
+                    'message' => $e->getMessage(),
+                    'itemId' => $itemId
+                ]
+            );
         }
 
         foreach ($itemDataList['variations'] as $itemData) {
@@ -302,7 +302,8 @@ class FeedbackService
             $variationAttributes = pluginApp(VariationRepositoryContract::class)->show(
                 $itemVariation,
                 ['variationAttributeValues' => true]
-                , '*'
+                ,
+                '*'
             );
 
             $a[0] = $variationAttributes;
@@ -327,7 +328,7 @@ class FeedbackService
         }
 
         $page = isset($page) && $page != 0 ? $page : 1;
-        $itemsPerPage = (int) $this->request->input("feedbacksPerPage");
+        $itemsPerPage = (int)$this->request->input('feedbacksPerPage');
         $with = [];
         $filters = [
             'isVisible' => 1,
@@ -347,8 +348,10 @@ class FeedbackService
         $feedbackResults = $feedbacks->getResult();
 
         foreach ($feedbackResults as &$feedback) {
-            if ($feedback->targetRelation->feedbackRelationType == 'variation') {
-                $feedback->targetRelation->variationAttributes = json_decode($feedback->targetRelation->targetRelationName);
+            if ($feedback->targetRelation->feedbackRelationType === 'variation') {
+                $feedback->targetRelation->variationAttributes = json_decode(
+                    $feedback->targetRelation->targetRelationName
+                );
             }
         }
 
@@ -371,14 +374,13 @@ class FeedbackService
      */
     public function getAuthenticatedUserMulti($itemIds = [], $variationIds = [])
     {
-        if( (!count($itemIds) || !count($variationIds)) )
-        {
+        if ((!count($itemIds) || !count($variationIds))) {
             $itemIds = $this->request->get('itemIds', []);
             $variationIds = $this->request->get('variationIds', []);
         }
 
-        $allowFeedbacksOnlyIfPurchased = $this->request->input("allowFeedbacksOnlyIfPurchased") === 'true';
-        $numberOfFeedbacks = (int) $this->request->input("numberOfFeedbacks");
+        $allowFeedbacksOnlyIfPurchased = $this->request->input('allowFeedbacksOnlyIfPurchased') === 'true';
+        $numberOfFeedbacks = (int)$this->request->input('numberOfFeedbacks');
 
         $contactId = $this->accountService->getAccountContactId();
         $isLoggedIn = !!$contactId;
@@ -386,44 +388,32 @@ class FeedbackService
         $limitReached = [];
         $userFeedbacks = [];
 
-        if ( count($variationIds) ) {
-            if( $isLoggedIn && $allowFeedbacksOnlyIfPurchased )
-            {
-                foreach ( $variationIds as $variationId )
-                {
+        if (count($variationIds)) {
+            if ($isLoggedIn && $allowFeedbacksOnlyIfPurchased) {
+                foreach ($variationIds as $variationId) {
                     $hasPurchased[$variationId] = $this->hasPurchasedVariation($contactId, $variationId);
                 }
-            }
-            else
-            {
-                foreach ( $variationIds as $variationId )
-                {
+            } else {
+                foreach ($variationIds as $variationId) {
                     // Not being logged in automatically counts as purchased for logic reasons
                     $hasPurchased[$variationId] = true;
                 }
             }
         }
 
-        if ( count($itemIds) )
-        {
-            if( $isLoggedIn && $numberOfFeedbacks > 0 )
-            {
-                foreach ( $itemIds as $itemId )
-                {
+        if (count($itemIds)) {
+            if ($isLoggedIn && $numberOfFeedbacks > 0) {
+                foreach ($itemIds as $itemId) {
                     $limitReached[$itemId] = $this->isFeedbackLimitReached($itemId, $contactId, $numberOfFeedbacks);
                 }
-            }
-            else
-            {
-                foreach ( $itemIds as $itemId )
-                {
+            } else {
+                foreach ($itemIds as $itemId) {
                     $limitReached[$itemId] = false;
                 }
             }
         }
 
-        if( $isLoggedIn && count($itemIds) === 1 && count($variationIds) === 1)
-        {
+        if ($isLoggedIn && count($itemIds) === 1 && count($variationIds) === 1) {
             $filters = [
                 'itemId' => $itemId,
                 'sourceId' => $contactId
@@ -433,8 +423,10 @@ class FeedbackService
             $userFeedbacks = $feedbacks->getResult();
 
             foreach ($userFeedbacks as &$feedback) {
-                if ($feedback->targetRelation->feedbackRelationType == 'variation') {
-                    $feedback->targetRelation->variationAttributes = json_decode($feedback->targetRelation->targetRelationName);
+                if ($feedback->targetRelation->feedbackRelationType === 'variation') {
+                    $feedback->targetRelation->variationAttributes = json_decode(
+                        $feedback->targetRelation->targetRelationName
+                    );
                 }
             }
         }
@@ -483,8 +475,10 @@ class FeedbackService
         $userFeedbacks = $feedbacks->getResult();
 
         foreach ($userFeedbacks as &$feedback) {
-            if ($feedback->targetRelation->feedbackRelationType == 'variation') {
-                $feedback->targetRelation->variationAttributes = json_decode($feedback->targetRelation->targetRelationName);
+            if ($feedback->targetRelation->feedbackRelationType === 'variation') {
+                $feedback->targetRelation->variationAttributes = json_decode(
+                    $feedback->targetRelation->targetRelationName
+                );
             }
         }
 
@@ -500,11 +494,10 @@ class FeedbackService
      */
     private function hasPurchasedVariation($contactId, $variationId)
     {
-        $allowFeedbacksOnlyIfPurchased = $this->request->input("allowFeedbacksOnlyIfPurchased") === 'true';
+        $allowFeedbacksOnlyIfPurchased = $this->request->input('allowFeedbacksOnlyIfPurchased') === 'true';
         $hasPurchased = true;
 
-        if($allowFeedbacksOnlyIfPurchased)
-        {
+        if ($allowFeedbacksOnlyIfPurchased) {
             $orderRepository = pluginApp(OrderRepositoryContract::class);
             $orders = $orderRepository->allOrdersByContact($contactId);
             $purchasedVariations = [];
@@ -532,7 +525,7 @@ class FeedbackService
             $average = $this->feedbackAverageRepository->getFeedbackAverage($itemId);
         }
 
-        if( empty($average)) {
+        if (empty($average)) {
             $counts['averageValue'] = 0;
             $counts['ratingsCountTotal'] = 0;
         } else {

@@ -2,12 +2,12 @@
 
 namespace Feedback\Extensions;
 
-use IO\Services\ItemSearch\Contracts\FacetExtension;
-use IO\Services\SessionStorageService;
 use Plenty\Modules\Cloud\ElasticSearch\Lib\Search\Aggregation\AggregationInterface;
 use Plenty\Modules\Item\Search\Aggregations\FeedbackAggregation;
 use Plenty\Modules\Item\Search\Aggregations\FeedbackAggregationProcessor;
 use Plenty\Modules\Item\Search\Filter\FeedbackRangeFilter;
+use Plenty\Modules\Webshop\Contracts\LocalizationRepositoryContract;
+use Plenty\Modules\Webshop\ItemSearch\Contracts\FacetExtension;
 use Plenty\Plugin\Log\Loggable;
 
 /**
@@ -46,7 +46,7 @@ class FeedbackFacet implements FacetExtension
             $facetName = '';
 
             // TODO: get facet name from property file
-            $lang = pluginApp(SessionStorageService::class)->getLang();
+            $lang = pluginApp(LocalizationRepositoryContract::class)->getLanguage();
             if ($lang === 'de') {
                 $facetName = 'Artikelbewertung';
             } else {
