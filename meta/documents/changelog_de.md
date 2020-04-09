@@ -14,7 +14,7 @@
 ### Geändert
 
 - Das Feedback-Plugin ist nun kompatibel mit Ceres 5.0.
-- Das Feedback-Plugin kann nun für Artikelsets verwendet werden.
+- Das Feedback-Plugin kann nun für Artikelset-Inhalte verwendet werden.
 
 ## v3.4.1 (2020-03-04)
 
