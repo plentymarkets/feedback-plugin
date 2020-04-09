@@ -4,17 +4,17 @@
 
 ### TODO
 
-- Zur Nutzung des Feedback-Plugins muss Ceres in Version 5.0 oder höher installiert sein.
-- Nach dem Update auf v3.5.0 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden. 
+- This version of the feedback plugin is only compatible with Ceres version 5.0 or higher.
+- After updating the feedback plugin to version 3.5.0, it is necessary to re-generate the ShopBuilder contents via the **Regenerate contents** button in the **CMS » ShopBuilder** menu.
 
 ### Added
 
-- Neue REST-Route, um initiale Daten für das Feedback-Widget nachzuladen
+- A new REST route has been added in order to load the required data for the feedback widget as needed.
 
 ### Changed
 
-- Kompatibilität mit Set-Inhalten wurde hergestellt.
-- Nutzung von veralteten Code ausgebaut.
+- The feedback plugin is now compatible with Ceres version 5.0.
+- The feedback plugin can now be used for item set contents.
 
 ## v3.4.1 (2020-03-04)
 
