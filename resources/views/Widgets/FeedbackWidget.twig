@@ -10,19 +10,9 @@
 {% set spacingPadding  = WidgetHelper.getSpacingClasses(spacingSettings, spacingSettings.customPadding.mobile, "") %}
 {% set spacingMargin   = WidgetHelper.getSpacingClasses(spacingSettings, "",spacingSettings.customMargin.mobile) %}
 
-{% if not isPreview %}
-    {{ Twig.set("feedbackItem", Twig.call("feedbackServices.feedback.getFeedbackData", [Twig.var("item")])) }}
-{% else %}
-    {{ Twig.set("item", Twig.call("services.itemList.getItemList", ['random', null, null, 1])) }}
-    {{ Twig.set("feedbackItem", Twig.call("feedbackServices.feedback.getFeedbackData", [Twig.var("item")])) }}
-{% endif %}
-
-{{ Twig.set("counts", "feedbackItem.counts") }}
-
 <div data-feedback class="widget widget-feedback widget-{{ appearance | default("primary") }} {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
         {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
     <feedback-container class="widget-inner"
-            :counts="{{ Twig.print("counts | json_encode") }}"
             :options="{{ options | json_encode}}"
             classes="{{ spacingPadding }}"
             styles="{{ inlinePadding }}">
