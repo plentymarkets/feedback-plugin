@@ -14,6 +14,7 @@
 ### Changed
 
 - Kompatibilität mit Set-Inhalten wurde hergestellt.
+- Nutzung von veralteten Code ausgebaut.
 
 ## v3.4.1 (2020-03-04)
 
