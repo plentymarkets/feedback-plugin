@@ -141,5 +141,17 @@
                 </div>
             </div>
         </div>
+        <script2 v-if="counts.ratingsCountTotal > 0" type="application/ld+json">
+            {
+                "@context": "http://schema.org/",
+                "@type": "Product",
+                "@id": "${variationId}",
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "${counts.averageValue}",
+                    "reviewCount": "${counts.ratingsCountTotal}"
+                }
+            }
+        </script2>
     </section>
 </script>

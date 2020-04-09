@@ -17,33 +17,14 @@
     {{ Twig.set("feedbackItem", Twig.call("feedbackServices.feedback.getFeedbackData", [Twig.var("item")])) }}
 {% endif %}
 
-{{ Twig.set("item_id", "feedbackItem.item.documents[0].data.item.id") }}
-{{ Twig.set("variation_id", "feedbackItem.item.documents[0].data.variation.id") }}
 {{ Twig.set("counts", "feedbackItem.counts") }}
 
 <div data-feedback class="widget widget-feedback widget-{{ appearance | default("primary") }} {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
         {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
     <feedback-container class="widget-inner"
-            :item-id="{{ Twig.print("item_id") }}"
-            :variation-id="{{ Twig.print("variation_id") }}"
             :counts="{{ Twig.print("counts | json_encode") }}"
             :options="{{ options | json_encode}}"
             classes="{{ spacingPadding }}"
             styles="{{ inlinePadding }}">
     </feedback-container>
-
-    {{- Twig.if("counts.ratingsCountTotal > 0") -}}
-        <script2 type="application/ld+json">
-            {
-                "@context"          :   "http://schema.org/",
-                "@type"             :   "Product",
-                "@id"               :   "{{ Twig.print("variation_id") }}",
-                "aggregateRating"   :   {
-                    "@type"         :   "AggregateRating",
-                    "ratingValue"   :   "{{ Twig.print("counts.averageValue") }}",
-                    "reviewCount"   :   "{{ Twig.print("counts.ratingsCountTotal") }}"
-                }
-            }
-        </script2>
-    {{- Twig.endif() -}}
 </div>

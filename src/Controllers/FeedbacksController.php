@@ -3,7 +3,6 @@
 namespace Feedback\Controllers;
 
 use Feedback\Services\FeedbackService;
-use Plenty\Http\Requests\Request;
 use Plenty\Plugin\Controller;
 
 class FeedbacksController extends Controller
@@ -76,5 +75,15 @@ class FeedbacksController extends Controller
     public function getAverage(int $itemId, FeedbackService $feedbackService)
     {
         return $feedbackService->getAverage($itemId);
+    }
+
+    /**
+     * @param int $itemId
+     * @param FeedbackService $feedbackService
+     * @return array
+     */
+    public function getCounts(int $itemId, FeedbackService $feedbackService)
+    {
+        return $feedbackService->getCounts($itemId);
     }
 }
