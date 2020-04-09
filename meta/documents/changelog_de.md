@@ -9,12 +9,12 @@
 
 ### Hinzugefügt
 
-- Neue REST-Route, um initiale Daten für das Feedback-Widget nachzuladen
+- Es wurde eine neue REST-Route hinzugefügt, um benötigte Daten für das Feedback-Widget nachzuladen.
 
 ### Geändert
 
-- Kompatibilität mit Set-Inhalten wurde hergestellt.
-- Nutzung von veralteten Code ausgebaut.
+- Das Feedback-Plugin ist nun kompatibel mit Ceres 5.0.
+- Das Feedback-Plugin kann nun für Artikelsets verwendet werden.
 
 ## v3.4.1 (2020-03-04)
 
