@@ -28,7 +28,10 @@
                     _self.getAverage();
                 });
 
-                this.getAverage();
+                if(!App.isShopBuilder)
+                {
+                    this.getAverage();
+                }
             },
 
             methods: {

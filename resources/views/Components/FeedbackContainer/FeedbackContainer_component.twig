@@ -46,18 +46,23 @@
 
             mounted: function()
             {
-                var _self = this;
-                $.when(
-                    this.getUser(),
-                    this.getCounts(),
-                    this.loadFeedbacks()
-                ).done(function() {
-                    _self.isLoading = false;
-                    Vue.nextTick(function () {
-                        // DOM updated
-                        window.dispatchEvent(new Event('resize'));
-                    })
-                });
+                if(!App.isShopBuilder)
+                {
+                    var _self = this;
+                    $.when(
+                        this.getUser(),
+                        this.getCounts(),
+                        this.loadFeedbacks()
+                    ).done(function() {
+                        _self.isLoading = false;
+                        Vue.nextTick(function () {
+                            // DOM updated
+                            window.dispatchEvent(new Event('resize'));
+                        })
+                    });
+                } else {
+                    this.isLoading = false;
+                }
             },
 
             computed:
