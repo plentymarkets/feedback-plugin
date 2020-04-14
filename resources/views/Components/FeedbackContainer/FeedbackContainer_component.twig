@@ -65,7 +65,7 @@
             computed:
             {
                 currentVariation: function() {
-                    return this.$store.getters[`${this.itemId}/currentItemVariation`];
+                    return this.$store.getters[this.itemId + "/currentItemVariation"];
                 },
 
                 variationId: function()
