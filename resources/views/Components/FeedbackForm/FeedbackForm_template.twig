@@ -85,7 +85,7 @@
                 {{ trans("Feedback::Feedback.logInCustomerReviews") }}
             </div>
 
-            <a class="btn btn-primary btn-appearance" data-toggle="modal" href="#login">
+            <a class="btn btn-primary btn-appearance" data-toggle="modal" href="#login" @click="createLoginModal()">
                 <i class="fa fa-user" aria-hidden="true"></i>
                 <span>{{ trans("Feedback::Feedback.login") }}</span>
             </a>
