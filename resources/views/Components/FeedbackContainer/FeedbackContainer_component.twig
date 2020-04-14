@@ -1,10 +1,17 @@
 <script type="text/javascript">
     (function($) {
         Vue.component('feedback-container', {
-
             template: '#vue-feedback-container',
+
             delimiters: ["${", "}"],
-            props: ['itemId', 'variationId', 'counts', 'options', 'classes', 'styles'],
+
+            props: ['options', 'classes', 'styles'],
+
+            inject: {
+                itemId: {
+                    default: null
+                }
+            },
 
             data: function()
             {
@@ -16,6 +23,7 @@
                         limitReached: false,
                         feedbacks: []
                     },
+                    counts: {},
                     feedbacks: [],
                     currentPage: 1,
                     lastPage: 0,
@@ -38,20 +46,39 @@
 
             mounted: function()
             {
-                var _self = this;
-                $.when(
-                    this.getUser(),
-                    this.loadFeedbacks()
-                ).done(function() {
-                    _self.isLoading = false;
-                    Vue.nextTick(function () {
-                        // DOM updated
-                        window.dispatchEvent(new Event('resize'));
-                    })
-                });
+                if(!App.isShopBuilder)
+                {
+                    var _self = this;
+                    $.when(
+                        this.getUser(),
+                        this.getCounts(),
+                        this.loadFeedbacks()
+                    ).done(function() {
+                        _self.isLoading = false;
+                        Vue.nextTick(function () {
+                            // DOM updated
+                            window.dispatchEvent(new Event('resize'));
+                        })
+                    });
+                } else {
+                    this.isLoading = false;
+                }
             },
 
-            methods: {
+            computed:
+            {
+                currentVariation: function() {
+                    return this.$store.getters[this.itemId + "/currentItemVariation"];
+                },
+
+                variationId: function()
+                {
+                    return this.currentVariation && this.currentVariation.variation.id;
+                }
+            },
+
+            methods:
+            {
                 getUser: function()
                 {
                     var _self = this;
@@ -66,6 +93,22 @@
                         success:        function(data)
                         {
                             _self.authenticatedUser = data;
+                        },
+                        error:          function(jqXHR, textStatus, errorThrown)
+                        {
+                            console.error(errorThrown);
+                        }
+                    });
+                },
+                getCounts: function()
+                {
+                    var _self = this;
+                    return $.ajax({
+                        type:           'GET',
+                        url:            '/rest/feedbacks/feedback/helper/counts/' + _self.itemId,
+                        success:        function(data)
+                        {
+                            _self.counts = data.counts;
                         },
                         error:          function(jqXHR, textStatus, errorThrown)
                         {

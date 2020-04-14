@@ -5,11 +5,11 @@
                 {% for i in 5..1 %}
                     <input v-model="feedback.ratingValue"
                            class="star star-{{ i }}"
-                           id="star-{{ i }}"
+                           :id="'star-{{ i }}' + _uid"
                            type="radio"
                            value="{{ i }}"
-                           name="ratingValue"/>
-                    <label class="star star-{{ i }}" for="star-{{ i }}"></label>
+                           :name="'ratingValue' + _uid"/>
+                    <label class="star star-{{ i }}" :for="'star-{{ i }}' + _uid"></label>
                 {% endfor %}
             </div>
 
@@ -85,9 +85,9 @@
                 {{ trans("Feedback::Feedback.logInCustomerReviews") }}
             </div>
 
-            <a class="btn btn-primary btn-appearance" data-toggle="modal" href="#login">
-                <i class="fa fa-user" aria-hidden="true"></i>
+            <a class="btn btn-primary btn-appearance" data-toggle="modal" href="#login" @click="createLoginModal()">
                 <span>{{ trans("Feedback::Feedback.login") }}</span>
+                <i class="fa fa-user" aria-hidden="true"></i>
             </a>
         </div>
     </div>

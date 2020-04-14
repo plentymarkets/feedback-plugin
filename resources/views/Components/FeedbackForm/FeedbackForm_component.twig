@@ -80,6 +80,11 @@
                             _self.isLoading = false;
                         }
                     });
+                },
+
+                createLoginModal: function()
+                {
+                    this.$store.dispatch("loadComponent", "login-modal");
                 }
             }
         });

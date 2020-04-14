@@ -1,5 +1,21 @@
 # Release Notes for Feedback
 
+## v3.5.0 (2020-04-14)
+
+### TODO
+
+- This version of the feedback plugin is only compatible with Ceres version 5.0 or higher.
+- After updating the feedback plugin to version 3.5.0, it is necessary to re-generate the ShopBuilder contents via the **Regenerate contents** button in the **CMS » ShopBuilder** menu.
+
+### Added
+
+- A new REST route has been added in order to load the required data for the feedback widget as needed.
+
+### Changed
+
+- The feedback plugin is now compatible with Ceres version 5.0.
+- The feedback plugin can now be used for item set contents.
+
 ## v3.4.1 (2020-03-04)
 
 ### TODO

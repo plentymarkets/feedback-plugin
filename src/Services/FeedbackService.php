@@ -57,13 +57,12 @@ class FeedbackService
 
     /**
      * Get data for the feedback-container Vue component
-     * @param $item
+     * @param int $itemId
      * @return array
      */
-    public function getFeedbackData($item = [])
+    public function getCounts($itemId = -1)
     {
         // Coalesce to default value in case of missing itemId
-        $itemId = $item['documents'][0]['data']['item']['id'] ?? -1;
         $average = (int)$itemId > 0 ? $this->feedbackAverageRepository->getFeedbackAverage($itemId) : [];
 
         if (empty($average)) {
@@ -94,7 +93,6 @@ class FeedbackService
         }
 
         $data['counts'] = $counts;
-        $data['item'] = $item;
 
         return $data;
     }
