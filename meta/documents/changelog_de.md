@@ -1,5 +1,11 @@
 # Release Notes für Feedback
 
+## v3.?.? (2020-MM-DD)
+
+### Geändert
+
+- Bei Klick auf die Zahl neben den Bewertungssternen wird nun zum nächsten sichtbaren, übergeordneten Element gescrollt.
+
 ## v3.5.0 (2020-04-14)
 
 ### TODO
