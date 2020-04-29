@@ -52,19 +52,28 @@
                 },
 
                 scrollTo: function() {
-                    var feedbackWidget = document.querySelector("[data-feedback]");
+                    var targetElement = document.querySelector("[data-feedback]");
                     var headerMargin = document.querySelector("#vue-app").offsetTop;
+                    var tries = 0;
 
-                    if(feedbackWidget !== null)
+                    if (targetElement)
                     {
-                        var elementTop = feedbackWidget.getBoundingClientRect().top + window.scrollY - headerMargin;
+                        while (!(targetElement.clientHeight && targetElement.classList.contains("widget")) && !!targetElement.parentElement)
+                        {
+                            targetElement = targetElement.parentElement;
+                        }
 
-                        window.scrollTo(
-                            {
-                                top: elementTop,
-                                behavior: "smooth"
-                            }
-                        );
+                        if (targetElement)
+                        {
+                            var elementTop = targetElement.getBoundingClientRect().top + window.scrollY - headerMargin;
+
+                            window.scrollTo(
+                                {
+                                    top: elementTop,
+                                    behavior: "smooth"
+                                }
+                            );
+                        }
                     }
                 }
             },
