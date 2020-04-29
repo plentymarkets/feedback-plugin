@@ -58,16 +58,9 @@
 
                     if (targetElement)
                     {
-                        while (targetElement.offsetParent === null)
+                        while (!(targetElement.clientHeight && targetElement.classList.contains("widget")) && !!targetElement.parentElement)
                         {
                             targetElement = targetElement.parentElement;
-
-                            // prevent endless loop
-                            if (++tries >= 100)
-                            {
-                                targetElement = null;
-                                break;
-                            }
                         }
 
                         if (targetElement !== null)
