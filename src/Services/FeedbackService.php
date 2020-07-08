@@ -134,6 +134,29 @@ class FeedbackService
             }
         );
 
+        // Check if accessKey for order is available
+        if ($creatorContactId <= 0)
+        {
+            $orderId = $this->request->input('orderId');
+            $accessKey = $this->request->input('accessKey');
+
+            if(strlen($orderId) && strlen($accessKey))
+            {
+                /** @var OrderRepositoryContract $orderRepository */
+                $orderRepository = pluginApp(OrderRepositoryContract::class);
+                $order = $orderRepository->findOrderByAccessKey($orderId, $accessKey);
+
+                if(!is_null($order))
+                {
+                    foreach ($order->relations as $relation) {
+                        if ($relation['referenceType'] == 'contact' && (int)$relation['referenceId'] > 0) {
+                            $creatorContactId = $relation['referenceId'];
+                        }
+                    }
+                }
+            }
+        }
+
         $allowGuestFeedbacks = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_GUEST_FEEDBACKS);
 
         if (!$allowGuestFeedbacks && $creatorContactId == 0) {
