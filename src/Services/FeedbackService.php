@@ -142,18 +142,7 @@ class FeedbackService
 
             if(strlen($orderId) && strlen($accessKey))
             {
-                /** @var OrderRepositoryContract $orderRepository */
-                $orderRepository = pluginApp(OrderRepositoryContract::class);
-                $order = $orderRepository->findOrderByAccessKey($orderId, $accessKey);
-
-                if(!is_null($order))
-                {
-                    foreach ($order->relations as $relation) {
-                        if ($relation['referenceType'] == 'contact' && (int)$relation['referenceId'] > 0) {
-                            $creatorContactId = $relation['referenceId'];
-                        }
-                    }
-                }
+                $creatorContactId = $this->getUserIdFromOrder($orderId, $accessKey);
             }
         }
 
@@ -404,6 +393,19 @@ class FeedbackService
         $numberOfFeedbacks = (int)$this->request->input('numberOfFeedbacks');
 
         $contactId = $this->accountService->getAccountContactId();
+
+        if(!$contactId)
+        {
+            // Check for accessKey
+            $accessKey = $this->request->input("accessKey");
+            $orderId = $this->request->input("orderId");
+
+            if(strlen($orderId) && strlen($accessKey))
+            {
+                $contactId = $this->getUserIdFromOrder($orderId, $accessKey);
+            }
+        }
+
         $isLoggedIn = !!$contactId;
         $hasPurchased = [];
         $limitReached = [];
@@ -586,5 +588,23 @@ class FeedbackService
     {
         return ($releaseLevel === self::RELEASE_LEVEL_ONLY_AUTH && $creatorId !== self::GUEST_ID)
             || $releaseLevel === self::RELEASE_LEVEL_ALL;
+    }
+
+    private function getUserIdFromOrder($orderId, $accessKey)
+    {
+        /** @var OrderRepositoryContract $orderRepository */
+        $orderRepository = pluginApp(OrderRepositoryContract::class);
+        $order = $orderRepository->findOrderByAccessKey($orderId, $accessKey);
+
+        if($order !== null)
+        {
+            foreach ($order->relations as $relation) {
+                if ($relation['referenceType'] === 'contact' && (int)$relation['referenceId'] > 0) {
+                    return $relation['referenceId'];
+                }
+            }
+        }
+
+        return 0;
     }
 }
