@@ -596,7 +596,7 @@ class FeedbackService
         $orderRepository = pluginApp(OrderRepositoryContract::class);
         $order = $orderRepository->findOrderByAccessKey($orderId, $accessKey);
 
-        if($order !== null)
+        if ($order !== null)
         {
             foreach ($order->relations as $relation) {
                 if ($relation['referenceType'] === 'contact' && (int)$relation['referenceId'] > 0) {
