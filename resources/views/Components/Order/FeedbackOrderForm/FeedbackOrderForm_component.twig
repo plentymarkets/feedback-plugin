@@ -4,7 +4,7 @@
 
             template: '#vue-feedback-order-form',
             delimiters: ["${", "}"],
-            props: ['authenticatedUser', 'allowGuestFeedbacks', 'numberOfFeedbacks'],
+            props: ['authenticatedUser', 'allowGuestFeedbacks', 'numberOfFeedbacks', 'accessKey', 'orderId'],
 
             data: function()
             {
@@ -101,6 +101,9 @@
 
                     this.feedback.options = this.options;
                     this.feedback.targetId = this.item.variationId;
+
+                    this.feedback.accessKey = this.accessKey;
+                    this.feedback.orderId = this.orderId;
 
                     var _self = this;
                     $.ajax({

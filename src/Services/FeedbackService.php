@@ -134,6 +134,18 @@ class FeedbackService
             }
         );
 
+        // Check if accessKey for order is available
+        if ($creatorContactId <= 0)
+        {
+            $orderId = $this->request->input('orderId');
+            $accessKey = $this->request->input('accessKey');
+
+            if(strlen($orderId) && strlen($accessKey))
+            {
+                $creatorContactId = $this->getUserIdFromOrder($orderId, $accessKey);
+            }
+        }
+
         $allowGuestFeedbacks = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_GUEST_FEEDBACKS);
 
         if (!$allowGuestFeedbacks && $creatorContactId == 0) {
@@ -381,6 +393,19 @@ class FeedbackService
         $numberOfFeedbacks = (int)$this->request->input('numberOfFeedbacks');
 
         $contactId = $this->accountService->getAccountContactId();
+
+        if(!$contactId)
+        {
+            // Check for accessKey
+            $accessKey = $this->request->input("accessKey");
+            $orderId = $this->request->input("orderId");
+
+            if(strlen($orderId) && strlen($accessKey))
+            {
+                $contactId = $this->getUserIdFromOrder($orderId, $accessKey);
+            }
+        }
+
         $isLoggedIn = !!$contactId;
         $hasPurchased = [];
         $limitReached = [];
@@ -563,5 +588,23 @@ class FeedbackService
     {
         return ($releaseLevel === self::RELEASE_LEVEL_ONLY_AUTH && $creatorId !== self::GUEST_ID)
             || $releaseLevel === self::RELEASE_LEVEL_ALL;
+    }
+
+    private function getUserIdFromOrder($orderId, $accessKey)
+    {
+        /** @var OrderRepositoryContract $orderRepository */
+        $orderRepository = pluginApp(OrderRepositoryContract::class);
+        $order = $orderRepository->findOrderByAccessKey($orderId, $accessKey);
+
+        if ($order !== null)
+        {
+            foreach ($order->relations as $relation) {
+                if ($relation['referenceType'] === 'contact' && (int)$relation['referenceId'] > 0) {
+                    return $relation['referenceId'];
+                }
+            }
+        }
+
+        return 0;
     }
 }

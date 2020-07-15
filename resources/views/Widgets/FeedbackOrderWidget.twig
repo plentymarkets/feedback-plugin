@@ -16,7 +16,9 @@
                 :item-urls="{{ Twig.print("data.itemURLs | json_encode") }}"
                 :item-images="{{ Twig.print("data.itemImages | json_encode") }}"
                 :options="{{ options | json_encode }}"
-                :split-item-bundles="{{ Twig.print("splitItemBundle | json_encode") }}">
+                :split-item-bundles="{{ Twig.print("splitItemBundle | json_encode") }}"
+                access-key="{{ request.get("accessKey") }}"
+                order-id="{{ request.get("orderId") }}">
             </feedback-order-container>
     </div>
 
