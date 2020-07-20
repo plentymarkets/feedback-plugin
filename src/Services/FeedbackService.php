@@ -518,7 +518,7 @@ class FeedbackService
     private function hasPurchasedVariation($contactId, $variationId)
     {
         $allowFeedbacksOnlyIfPurchased = $this->request->input('allowFeedbacksOnlyIfPurchased') === 'true';
-        $hasPurchased = true;
+        $hasPurchased = false;
 
         if ($allowFeedbacksOnlyIfPurchased) {
             $orderRepository = pluginApp(OrderRepositoryContract::class);
