@@ -380,35 +380,35 @@
 .filter-collapse,
 .widget-filter-base,
 .selected-filters {
-    [for="option-feedback-5"]::after,
+    .option-feedback-5 span::after,
     .filter-feedback-5::before {
         content: "\f005 \f005 \f005 \f005 \f005" !important;
         font-family: FontAwesome;
         letter-spacing: 3px;
     }
 
-    [for="option-feedback-4"]::after,
+    .option-feedback-4 span::after,
     .filter-feedback-4::before {
         content: "\f005 \f005 \f005 \f005  \f062" !important;
         font-family: FontAwesome;
         letter-spacing: 3px;
     }
 
-    [for="option-feedback-3"]::after,
+    .option-feedback-3 span::after,
     .filter-feedback-3::before {
         content: "\f005 \f005 \f005  \f062" !important;
         font-family: FontAwesome;
         letter-spacing: 3px;
     }
 
-    [for="option-feedback-2"]::after,
+    .option-feedback-2 span::after,
     .filter-feedback-2::before {
         content: "\f005 \f005  \f062" !important;
         font-family: FontAwesome;
         letter-spacing: 3px;
     }
 
-    [for="option-feedback-1"]::after,
+    .option-feedback-1 span::after,
     .filter-feedback-1::before {
         content: "\f005  \f062" !important;
         font-family: FontAwesome;

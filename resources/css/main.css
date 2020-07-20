@@ -296,51 +296,51 @@
 }
 
 /* Facet extension */
-.filter-collapse [for=option-feedback-5]::after,
+.filter-collapse .option-feedback-5 span::after,
 .filter-collapse .filter-feedback-5::before,
-.widget-filter-base [for=option-feedback-5]::after,
+.widget-filter-base .option-feedback-5 span::after,
 .widget-filter-base .filter-feedback-5::before,
-.selected-filters [for=option-feedback-5]::after,
+.selected-filters .option-feedback-5 span::after,
 .selected-filters .filter-feedback-5::before {
   content: "" !important;
   font-family: FontAwesome;
   letter-spacing: 3px;
 }
-.filter-collapse [for=option-feedback-4]::after,
+.filter-collapse .option-feedback-4 span::after,
 .filter-collapse .filter-feedback-4::before,
-.widget-filter-base [for=option-feedback-4]::after,
+.widget-filter-base .option-feedback-4 span::after,
 .widget-filter-base .filter-feedback-4::before,
-.selected-filters [for=option-feedback-4]::after,
+.selected-filters .option-feedback-4 span::after,
 .selected-filters .filter-feedback-4::before {
   content: " " !important;
   font-family: FontAwesome;
   letter-spacing: 3px;
 }
-.filter-collapse [for=option-feedback-3]::after,
+.filter-collapse .option-feedback-3 span::after,
 .filter-collapse .filter-feedback-3::before,
-.widget-filter-base [for=option-feedback-3]::after,
+.widget-filter-base .option-feedback-3 span::after,
 .widget-filter-base .filter-feedback-3::before,
-.selected-filters [for=option-feedback-3]::after,
+.selected-filters .option-feedback-3 span::after,
 .selected-filters .filter-feedback-3::before {
   content: " " !important;
   font-family: FontAwesome;
   letter-spacing: 3px;
 }
-.filter-collapse [for=option-feedback-2]::after,
+.filter-collapse .option-feedback-2 span::after,
 .filter-collapse .filter-feedback-2::before,
-.widget-filter-base [for=option-feedback-2]::after,
+.widget-filter-base .option-feedback-2 span::after,
 .widget-filter-base .filter-feedback-2::before,
-.selected-filters [for=option-feedback-2]::after,
+.selected-filters .option-feedback-2 span::after,
 .selected-filters .filter-feedback-2::before {
   content: " " !important;
   font-family: FontAwesome;
   letter-spacing: 3px;
 }
-.filter-collapse [for=option-feedback-1]::after,
+.filter-collapse .option-feedback-1 span::after,
 .filter-collapse .filter-feedback-1::before,
-.widget-filter-base [for=option-feedback-1]::after,
+.widget-filter-base .option-feedback-1 span::after,
 .widget-filter-base .filter-feedback-1::before,
-.selected-filters [for=option-feedback-1]::after,
+.selected-filters .option-feedback-1 span::after,
 .selected-filters .filter-feedback-1::before {
   content: " " !important;
   font-family: FontAwesome;
