@@ -1,10 +1,20 @@
 # Release Notes for Feedback
 
-## v3.?.? (2020-MM-DD)
+## v3.5.1 (2020-08-19)
+
+### TODO
+
+- This version of the feedback plugin is only compatible with Ceres version 5.0 or higher.
+- After updating the feedback plugin to version 3.5.1, it is necessary to re-generate the ShopBuilder contents via the **Regenerate contents** button in the **CMS » ShopBuilder** menu.
 
 ### Changed
 
 - Bei Klick auf die Zahl neben den Bewertungssternen wird nun zum nächsten sichtbaren, übergeordneten Element gescrollt.
+
+### Fixed
+- In gewissen Randfällen konnten Kunden auf der Bestellbestätigung keine Bewertungen abgeben.
+- Durch einen Fehler wurden die Facettenfilter für Bewertung nicht mehr gerendert.
+- Mit einer gewissen Konstellation an Einstellungen wurde fälschlicherweise ein "Verifizierter Kauf" erkannt.
 
 ## v3.5.0 (2020-04-14)
 
