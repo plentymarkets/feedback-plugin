@@ -4,17 +4,18 @@
 
 ### TODO
 
-- This version of the feedback plugin is only compatible with Ceres version 5.0 or higher.
-- After updating the feedback plugin to version 3.5.1, it is necessary to re-generate the ShopBuilder contents via the **Regenerate contents** button in the **CMS » ShopBuilder** menu.
+- This version of the feedback plugin is only compatible with Ceres v5.0 or higher.
+- After updating the feedback plugin to v3.5.1, it is necessary to re-generate ShopBuilder widgets via the **Regenerate contents** button in the **CMS » ShopBuilder** menu.
 
 ### Changed
 
-- Bei Klick auf die Zahl neben den Bewertungssternen wird nun zum nächsten sichtbaren, übergeordneten Element gescrollt.
+- When a user clicks the number next to the star rating, the page now scrolls to the next superordinate element that is visible. 
 
 ### Fixed
-- In gewissen Randfällen konnten Kunden auf der Bestellbestätigung keine Bewertungen abgeben.
-- Durch einen Fehler wurden die Facettenfilter für Bewertung nicht mehr gerendert.
-- Mit einer gewissen Konstellation an Einstellungen wurde fälschlicherweise ein "Verifizierter Kauf" erkannt.
+
+- Under certain circumstances, customers were unable to submit a rating on the order confirmation page.
+- Due to an error, facet filters for ratings were no longer rendered. 
+- Certain combinations of settings could lead to an erroneous display of the "Verified purchase" badge.
 
 ## v3.5.0 (2020-04-14)
 
