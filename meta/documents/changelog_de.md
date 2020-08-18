@@ -12,7 +12,7 @@
 - Bei Klick auf die Zahl neben den Bewertungssternen wird nun zum nächsten sichtbaren, übergeordneten Element gescrollt.
 
 ### Behoben
-- Unter bestimmten Umständen konnten Kunden auf der Bestellbestätigung keine Bewertungen abgeben. Dies wurde behoben.
+- Unter bestimmten Umständen konnten Kunden auf der Bestellbestätigungsseite keine Bewertungen abgeben. Dies wurde behoben.
 - Durch einen Fehler wurden die Facettenfilter für Bewertungen nicht mehr gerendert.
 - Bestimmte Kombinationen von Einstellungen konnten dazu führen, dass fälschlicherweise ein "Verifizierter Kauf" erkannt wurde.
 
