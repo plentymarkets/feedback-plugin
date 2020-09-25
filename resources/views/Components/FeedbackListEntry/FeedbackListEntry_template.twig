@@ -11,6 +11,7 @@
             </span>
 
             <span class="btn btn-sm btn-danger"
+                  v-if="authenticatedUser.isLoggedIn"
                   ref="editButton"
                   v-tooltip
                   data-toggle="tooltip"
@@ -21,6 +22,7 @@
             </span>
 
             <span class="btn btn-sm btn-danger"
+                  v-if="authenticatedUser.isLoggedIn"
                   v-tooltip
                   data-toggle="tooltip"
                   data-placement="top"
