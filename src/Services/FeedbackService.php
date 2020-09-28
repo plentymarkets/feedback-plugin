@@ -184,7 +184,7 @@ class FeedbackService
 
             // The following checks cannot be applied to guests
             if ($creatorContactId != 0) {
-                $hasPurchased = $this->hasPurchasedVariation($creatorContactId, $this->request->input('targetId'));
+                $hasPurchased = $this->hasPurchasedVariation($creatorContactId, $this->request->input('targetId'), $allowFeedbacksOnlyIfPurchased);
 
                 if ($allowFeedbacksOnlyIfPurchased && !$hasPurchased) {
                     return 'Not allowed to create review without purchasing the item first';
@@ -414,7 +414,7 @@ class FeedbackService
         if (count($variationIds)) {
             if ($isLoggedIn && $allowFeedbacksOnlyIfPurchased) {
                 foreach ($variationIds as $variationId) {
-                    $hasPurchased[$variationId] = $this->hasPurchasedVariation($contactId, $variationId);
+                    $hasPurchased[$variationId] = $this->hasPurchasedVariation($contactId, $variationId, $allowFeedbacksOnlyIfPurchased);
                 }
             } else {
                 foreach ($variationIds as $variationId) {
@@ -474,8 +474,10 @@ class FeedbackService
         $result = $this->getAuthenticatedUserMulti([$itemId], [$variationId]);
 
         // Flatten arrays
-        $result['limitReached'] = array_shift(array_values($result['limitReached']));
-        $result['hasPurchased'] = array_shift(array_values($result['hasPurchased']));
+        $limitReachedValues = array_values($result['limitReached']);
+        $result['limitReached'] = array_shift($limitReachedValues);
+        $hasPurchasedValues = array_values($result['hasPurchased']);
+        $result['hasPurchased'] = array_shift($hasPurchasedValues);
 
         return $result;
     }
@@ -513,14 +515,14 @@ class FeedbackService
      * Calculate if the user has purchased this variation
      * @param $contactId
      * @param $variationId
+     * @param $mandatoryPurchase
      * @return bool
      */
-    private function hasPurchasedVariation($contactId, $variationId)
+    private function hasPurchasedVariation($contactId, $variationId, $mandatoryPurchase)
     {
-        $allowFeedbacksOnlyIfPurchased = $this->request->input('allowFeedbacksOnlyIfPurchased') === 'true';
         $hasPurchased = false;
 
-        if ($allowFeedbacksOnlyIfPurchased) {
+        if ($mandatoryPurchase) {
             $orderRepository = pluginApp(OrderRepositoryContract::class);
             $orders = $orderRepository->allOrdersByContact($contactId);
             $purchasedVariations = [];
