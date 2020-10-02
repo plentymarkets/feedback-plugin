@@ -35,18 +35,30 @@ class FeedbackServiceProvider extends ServiceProvider
 
         if ($showRatingSorting) {   // Sorting on CategoryPage
             //add feedback sorting
-            $dispatcher->listen('IO.initAdditionalSorting', function (ItemService $itemService) {
-                $itemService->addAdditionalItemSorting('item.feedbackDecimal_desc',
-                    'Feedback::Feedback.customerReviews');
-            });
+            $dispatcher->listen(
+                'IO.initAdditionalSorting',
+                function (ItemService $itemService) {
+                    $itemService->addAdditionalItemSorting(
+                        'item.feedbackDecimal_asc',
+                        'Feedback::Feedback.customerReviewsAsc'
+                    );
+                    $itemService->addAdditionalItemSorting(
+                        'item.feedbackDecimal_desc',
+                        'Feedback::Feedback.customerReviewsDesc'
+                    );
+                }
+            );
         }
 
         $twig->addExtension(TwigServiceProvider::class); // Enable use of FeedbackServiceProvider in twig code
 
-        $dispatcher->listen('IO.Resources.Import', function (ResourceContainer $resourceContainer) {
-            $resourceContainer->addScriptTemplate('Feedback::Components.Components');
-            $resourceContainer->addStyleTemplate('Feedback::Content.Styles');
-        });
+        $dispatcher->listen(
+            'IO.Resources.Import',
+            function (ResourceContainer $resourceContainer) {
+                $resourceContainer->addScriptTemplate('Feedback::Components.Components');
+                $resourceContainer->addStyleTemplate('Feedback::Content.Styles');
+            }
+        );
 
         // register shop builder widgets
         /** @var ContentWidgetRepositoryContract $widgetRepository */
