@@ -1,7 +1,7 @@
 <script type="x/template" id="vue-feedback-list-entry">
     <div class="feedback clearfix" :class="{'loading':isLoading}">
         <div class="feedback-options" v-if="!editableFeedback && showControls">
-            <span class="btn btn-sm btn-danger"
+            <span class="btn-sm btn-danger"
                   v-tooltip
                   data-toggle="tooltip"
                   data-placement="top"
@@ -11,6 +11,7 @@
             </span>
 
             <span class="btn btn-sm btn-danger"
+                  v-if="authenticatedUser.isLoggedIn"
                   ref="editButton"
                   v-tooltip
                   data-toggle="tooltip"
@@ -21,6 +22,7 @@
             </span>
 
             <span class="btn btn-sm btn-danger"
+                  v-if="authenticatedUser.isLoggedIn"
                   v-tooltip
                   data-toggle="tooltip"
                   data-placement="top"
