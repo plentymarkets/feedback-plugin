@@ -4,18 +4,17 @@
 
 ### TODO
 
-- Zur Nutzung des Feedback-Plugins muss Ceres v5.0 oder höher installiert sein.
-- Nach dem Update auf v3.5.2 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden. 
+- This version of the feedback plugin is only compatible with Ceres v5.0 or higher.
+- After updating the feedback plugin to v3.5.2, it is necessary to re-generate ShopBuilder widgets via the **Regenerate contents** button in the **CMS » ShopBuilder** menu.
 
 ### Changed
 
-- Die Buttons für das Editieren und Löschen von Kundenbewertungen für Gäste am Feedback-Widget wurden entfernt.
+- The buttons for editing and deleting customer ratings from guests have been removed from the feedback widget.
 
 ### Fixed
 
-- Bestimmte Kombinationen von Einstellungen führten dazu, dass gekaufte Artikel nicht erkannt wurden.
-- Das fehlerhafte Sortieren von Artikeln nach Kundenbewertungen auf der Artikelkategorie wurde behoben.
-
+- Certain combinations of settings could lead to verified purchases of items not being registered.
+- Sorting items on category pages according to customer rating now works as intended.
 
 ## v3.5.1 (2020-08-19)
 
