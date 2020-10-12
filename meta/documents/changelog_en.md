@@ -1,5 +1,22 @@
 # Release Notes for Feedback
 
+## v3.5.2 (2020-10-13)
+
+### TODO
+
+- Zur Nutzung des Feedback-Plugins muss Ceres v5.0 oder höher installiert sein.
+- Nach dem Update auf v3.5.2 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden. 
+
+### Changed
+
+- Die Buttons für das Editieren und Löschen von Kundenbewertungen für Gäste am Feedback-Widget wurden entfernt.
+
+### Fixed
+
+- Bestimmte Kombinationen von Einstellungen führten dazu, dass gekaufte Artikel nicht erkannt wurden.
+- Das fehlerhafte Sortieren von Artikeln nach Kundenbewertungen auf der Artikelkategorie wurde behoben.
+
+
 ## v3.5.1 (2020-08-19)
 
 ### TODO
