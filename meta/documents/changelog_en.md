@@ -9,11 +9,11 @@
 
 ### Changed
 
-- The buttons for editing and deleting customer ratings from guests have been removed from the feedback widget.
+- The buttons for editing and deleting customer ratings submitted by guest accounts have been removed from the feedback widget.
 
 ### Fixed
 
-- Certain combinations of settings could lead to verified purchases of items not being registered.
+- Certain combinations of settings could lead to verified purchases of items not being registered. This has been fixed.
 - Sorting items on category pages according to customer rating now works as intended.
 
 ## v3.5.1 (2020-08-19)
