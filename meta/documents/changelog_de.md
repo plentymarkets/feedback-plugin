@@ -1,5 +1,21 @@
 # Release Notes für Feedback
 
+## v3.5.2 (2020-10-13)
+
+### TODO
+
+- Zur Nutzung des Feedback-Plugins muss Ceres in Version 5.0 oder höher installiert sein.
+- Nach dem Update auf Version 3.5.2 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden. 
+
+### Geändert
+
+- Die Schaltflächen für das Editieren und Löschen von Kundenbewertungen von Gästen wurden aus dem Feedback-Widget entfernt.
+
+### Behoben
+
+- Bestimmte Kombinationen von Einstellungen führten dazu, dass verifizierte Käufe von Artikeln nicht erkannt wurden.
+- Die Sortierung von Artikeln nach Kundenbewertungen auf Artikelkategorieseiten funktioniert nun wieder korrekt.
+
 ## v3.5.1 (2020-08-19)
 
 ### TODO
@@ -12,6 +28,7 @@
 - Bei Klick auf die Zahl neben den Bewertungssternen wird nun zum nächsten sichtbaren, übergeordneten Element gescrollt.
 
 ### Behoben
+
 - Unter bestimmten Umständen konnten Kunden auf der Bestellbestätigungsseite keine Bewertungen abgeben. Dies wurde behoben.
 - Durch einen Fehler wurden die Facettenfilter für Bewertungen nicht mehr gerendert.
 - Bestimmte Kombinationen von Einstellungen konnten dazu führen, dass fälschlicherweise ein "Verifizierter Kauf" erkannt wurde.
