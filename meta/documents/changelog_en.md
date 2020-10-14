@@ -1,5 +1,17 @@
 # Release Notes for Feedback
 
+## v3.5.3 (2020-10-14)
+
+### TODO
+
+- This version of the feedback plugin is only compatible with Ceres v5.0 or higher.
+- After updating the feedback plugin to v3.5.2, it is necessary to re-generate ShopBuilder widgets via the **Regenerate contents** button in the **CMS » ShopBuilder** menu.
+
+### Fixed
+
+- The translation key "customerReviews" was mistakenly removed. This has been fixed.
+
+
 ## v3.5.2 (2020-10-13)
 
 ### TODO
