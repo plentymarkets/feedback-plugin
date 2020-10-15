@@ -1,4 +1,5 @@
 const path = require("path");
+const ESLintPlugin = require('eslint-webpack-plugin');
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const WebpackRequireFrom = require("webpack-require-from");
 
@@ -22,16 +23,16 @@ module.exports = env =>
         devtool: "source-map",
         module: {
             rules: [
-                {
+                /*{
                     enforce: "pre",
-                    test: /\.js$/,
+                    test: /\.(js)$/,
                     exclude: /node_modules/,
                     loader: "eslint-loader",
                     options: {
                         cache: true,
                         fix: env.prod
                     }
-                },
+                },*/
                 {
                     test: /\.vue$/,
                     loader: "vue-loader"
@@ -48,6 +49,10 @@ module.exports = env =>
         plugins: [
             new VueLoaderPlugin({
                 exposeFilename: true
+            }),
+            new ESLintPlugin({
+                extensions: ['js'],
+                context: path.resolve(__dirname, "..", "..", "resources/js/src/")
             }),
             new WebpackRequireFrom({
                 replaceSrcMethodName: "__loadPluginChunk"

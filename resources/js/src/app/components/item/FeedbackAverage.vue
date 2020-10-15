@@ -14,7 +14,7 @@
                 </div>
             </div>
         </div>
-        <span v-if="showRatingsAmount" :class="size"><a v-on:click.prevent="scrollTo" href="#">(${ counts.ratingsCountTotal })</a></span>
+        <span v-if="showRatingsAmount" :class="size"><a v-on:click.prevent="scrollTo" href="#">({{ counts.ratingsCountTotal }})</a></span>
     </div>
 </template>
 
@@ -38,7 +38,7 @@ export default {
     },
 
     created() {
-        var _self = this;
+        const _self = this;
         this.$root.$on('averageRecalc', function() {
             _self.getAverage();
         });
@@ -51,25 +51,24 @@ export default {
 
     methods: {
         getAverage() {
-            var _self = this;
+            const _self = this;
             return $.ajax({
-            type:           'GET',
-            url:            '/rest/feedbacks/feedback/helper/average/' + _self.itemId,
-            success:        function(data)
-            {
-            _self.counts = data;
-            },
-            error:          function(jqXHR, textStatus, errorThrown)
-            {
-            console.error(errorThrown);
-            }
+                type: 'GET',
+                url: '/rest/feedbacks/feedback/helper/average/' + _self.itemId,
+                success: function(data)
+                {
+                    _self.counts = data;
+                },
+                error: function(jqXHR, textStatus, errorThrown)
+                {
+                    console.error(errorThrown);
+                }
             });
         },
 
         scrollTo() {
-            var targetElement = document.querySelector("[data-feedback]");
-            var headerMargin = document.querySelector("#vue-app").offsetTop;
-            var tries = 0;
+            let targetElement = document.querySelector("[data-feedback]");
+            const headerMargin = document.querySelector("#vue-app").offsetTop;
 
             if (targetElement)
             {
@@ -80,7 +79,7 @@ export default {
 
                 if (targetElement)
                 {
-                    var elementTop = targetElement.getBoundingClientRect().top + window.scrollY - headerMargin;
+                    const elementTop = targetElement.getBoundingClientRect().top + window.scrollY - headerMargin;
 
                     window.scrollTo(
                         {
@@ -95,7 +94,7 @@ export default {
 
     computed: {
         fill() {
-            var fillValue = (this.counts.averageValue * 100) / 5;
+            let fillValue = (this.counts.averageValue * 100) / 5;
             fillValue += "%";
             return fillValue;
         },
