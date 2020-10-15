@@ -8,11 +8,11 @@ module.exports = env =>
     env = env || {};
     return {
         name: "scripts",
-        mode: env.prod ? "production" : "development",
+        mode: env.production ? "production" : "development",
         entry: "./resources/js/src/base.js",
         output: {
             filename: "feedback" + (env.prod ? ".min" : "") + ".js",
-            chunkFilename: "chunks/feedback-[name]"+ (env.prod ? ".min" : "") + ".js",
+            chunkFilename: "chunks/feedback-[name]"+ (env.production ? ".min" : "") + ".js",
             path: path.resolve(__dirname, "..", "..", "resources/js/dist/")
         },
         resolve: {
