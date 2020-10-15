@@ -7,7 +7,7 @@ module.exports = env =>
 {
     env = env || {};
     return {
-        name: "scripts",
+        name: "styles",
         mode: env.production ? "production" : "development",
         entry: "./resources/js/src/base.js",
         output: {

@@ -9,8 +9,8 @@
     "scripts": {
         "start": "webpack --watch --progress",
         "build": "npm run build:prod && npm run build:dev",
-        "build:dev": "webpack --progress",
-        "build:prod": "webpack --env.production --progress",
+        "build:dev": "webpack --config-name scripts --progress",
+        "build:prod": "webpack --config-name scripts --env.production --progress",
         "lint": "npm run lint:js && npm run lint:sass",
         "lint:js": "eslint resources/js/src",
         "lint:sass": "stylelint \"resources/scss/**/*.scss\"",
