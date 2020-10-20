@@ -30,7 +30,8 @@ __webpack_require__.r(__webpack_exports__);
 
 const Vue = window.Vue;
 Vue.component("feedback-average", () => __webpack_require__.e(/*! import() */ "resources_js_src_app_components_item_FeedbackAverage_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./app/components/item/FeedbackAverage.vue */ "./resources/js/src/app/components/item/FeedbackAverage.vue")));
-Vue.component("feedback-container", () => __webpack_require__.e(/*! import() */ "resources_js_src_app_components_item_singleitemFeedback_FeedbackContainer_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./app/components/item/singleitemFeedback/FeedbackContainer.vue */ "./resources/js/src/app/components/item/singleitemFeedback/FeedbackContainer.vue")));
+Vue.component("feedback-container", () => __webpack_require__.e(/*! import() */ "resources_js_src_app_components_item_singleitem_FeedbackContainer_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./app/components/item/singleitem/FeedbackContainer.vue */ "./resources/js/src/app/components/item/singleitem/FeedbackContainer.vue")));
+Vue.component("feedback-order-container", () => __webpack_require__.e(/*! import() */ "resources_js_src_app_components_order_FeedbackOrder_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./app/components/order/FeedbackOrder.vue */ "./resources/js/src/app/components/order/FeedbackOrder.vue")));
 
 /***/ })
 

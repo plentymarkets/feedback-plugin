@@ -55,7 +55,7 @@ class FeedbackServiceProvider extends ServiceProvider
         $dispatcher->listen(
             'IO.Resources.Import',
             function (ResourceContainer $resourceContainer) {
-                $resourceContainer->addScriptTemplate('Feedback::Components.Components');
+                $resourceContainer->addScriptTemplate('Feedback::Content.Scripts');
                 $resourceContainer->addStyleTemplate('Feedback::Content.Styles');
             }
         );
