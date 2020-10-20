@@ -1,11 +1,3 @@
-{% macro importTemplate(component) %}
-    {% include "Feedback::Components." ~ component ~ "." ~ component ~ "_template" %}
-{% endmacro %}
-
-{% macro importComponent(component) %}
-    {% include "Feedback::Components." ~ component ~ "." ~ component ~ "_component" %}
-{% endmacro %}
-
 {% macro importTemplate_namespaced(namespace, component) %}
     {% include "Feedback::Components." ~ namespace ~ "." ~ component ~ "." ~ component ~ "_template" %}
 {% endmacro %}
@@ -13,19 +5,6 @@
 {% macro importComponent_namespaced(namespace, component) %}
     {% include "Feedback::Components." ~ namespace ~ "." ~ component ~ "." ~ component ~ "_component" %}
 {% endmacro %}
-
-{% if services.template.getCurrentTemplate() == 'tpl.item' %}
-    {{ _self.importTemplate("FeedbackForm") }}
-    {{ _self.importTemplate("FeedbackList") }}
-    {{ _self.importTemplate("FeedbackListEntry") }}
-    {{ _self.importTemplate("FeedbackComment") }}
-    {{ _self.importTemplate("FeedbackContainer") }}
-    {{ _self.importComponent("FeedbackComment") }}
-    {{ _self.importComponent("FeedbackForm") }}
-    {{ _self.importComponent("FeedbackList") }}
-    {{ _self.importComponent("FeedbackListEntry") }}
-    {{ _self.importComponent("FeedbackContainer") }}
-{% endif %}
 
 {% if services.template.getCurrentTemplate() == 'tpl.confirmation' or isShopBuilder %}
     {{ _self.importTemplate_namespaced("Order", "FeedbackOrderContainer") }}
