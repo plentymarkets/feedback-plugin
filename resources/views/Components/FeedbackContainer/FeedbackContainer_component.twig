@@ -266,7 +266,8 @@
                         this.feedbacks.forEach(function(feedback) {
                             var author;
 
-                            if(feedback.sourceRelation[0].feedbackRelationType === 'user' || feedback.sourceRelation[0].feedbackRelationType === 'contact')
+                            if((feedback.sourceRelation[0].feedbackRelationType === 'user'
+                                || feedback.sourceRelation[0].feedbackRelationType === 'contact') && feedback.sourceRelation[0].feedbackRelationSourceId > 0)
                             {
                                 author = feedback.sourceRelation[0].sourceRelationLabel;
                             }
