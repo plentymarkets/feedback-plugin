@@ -40,7 +40,8 @@
                         allowNoRatingFeedback: this.options.allowNoRatingFeedback,
                         numberOfFeedbacks: this.options.numberOfFeedbacks,
                         allowGuestFeedbacks: this.options.allowGuestFeedbacks
-                    }
+                    },
+                    jsonld: {}
                 };
             },
 
@@ -55,6 +56,7 @@
                         this.loadFeedbacks()
                     ).done(function() {
                         _self.isLoading = false;
+                        _self.generateJsonLD();
                         Vue.nextTick(function () {
                             // DOM updated
                             window.dispatchEvent(new Event('resize'));
@@ -66,187 +68,234 @@
             },
 
             computed:
-            {
-                currentVariation: function() {
-                    return this.$store.getters[this.itemId + "/currentItemVariation"];
-                },
-
-                variationId: function()
                 {
-                    return this.currentVariation && this.currentVariation.variation.id;
-                }
-            },
+                    currentVariation: function() {
+                        return this.$store.getters[this.itemId + "/currentItemVariation"];
+                    },
+
+                    variationId: function()
+                    {
+                        return this.currentVariation && this.currentVariation.variation.id;
+                    }
+                },
 
             methods:
-            {
-                getUser: function()
                 {
-                    var _self = this;
-                    return $.ajax({
-                        type:           'GET',
-                        url:            '/rest/feedbacks/user/' + _self.itemId + '/' + _self.variationId,
-                        data:
-                        {
-                            "allowFeedbacksOnlyIfPurchased": _self.options.allowFeedbacksOnlyIfPurchased,
-                            "numberOfFeedbacks": _self.options.numberOfFeedbacks
-                        },
-                        success:        function(data)
-                        {
-                            _self.authenticatedUser = data;
-                        },
-                        error:          function(jqXHR, textStatus, errorThrown)
-                        {
-                            console.error(errorThrown);
-                        }
-                    });
-                },
-                getCounts: function()
-                {
-                    var _self = this;
-                    return $.ajax({
-                        type:           'GET',
-                        url:            '/rest/feedbacks/feedback/helper/counts/' + _self.itemId,
-                        success:        function(data)
-                        {
-                            _self.counts = data.counts;
-                        },
-                        error:          function(jqXHR, textStatus, errorThrown)
-                        {
-                            console.error(errorThrown);
-                        }
-                    });
-                },
-                loadFeedbacks: function()
-                {
-                    var _self = this;
-                    var page = this.currentPage++;
-                    return $.ajax({
-                        type:           'GET',
-                        url:            '/rest/feedbacks/feedback/helper/feedbacklist/' + _self.itemId + '/' + page,
-                        data: {
-                            "feedbacksPerPage": _self.options.feedbacksPerPage
-                        },
-                        success:        function(data)
-                        {
-                            _self.feedbacks = _self.feedbacks.concat( data.feedbacks );
-                            _self.itemAttributes = data.itemAttributes;
-                            _self.lastPage = data.pagination.lastPage;
-                            _self.isLastPage = data.pagination.isLastPage;
-                        },
-                        error:          function(jqXHR, textStatus, errorThrown)
-                        {
-                            console.error(errorThrown);
-                        }
-                    });
-                },
-                showDeleteConfirmation: function(feedbackToDelete)
-                {
-                    this.feedbackToDelete = feedbackToDelete;
-                    $(this.$refs.confirmDeleteModal).modal('show');
-                },
-                deleteFeedback: function()
-                {
-                    if ( this.feedbackToDelete !== null )
+                    getUser: function()
                     {
-                        var feedbackId = this.feedbackToDelete.feedbackId;
-                        var parentFeedbackId = this.feedbackToDelete.parentFeedbackId;
                         var _self = this;
-                        $.ajax({
-                            type: "DELETE",
-                            url: '/rest/feedbacks/feedback/delete/' + feedbackId,
-                            success: function(data)
+                        return $.ajax({
+                            type:           'GET',
+                            url:            '/rest/feedbacks/user/' + _self.itemId + '/' + _self.variationId,
+                            data:
+                                {
+                                    "allowFeedbacksOnlyIfPurchased": _self.options.allowFeedbacksOnlyIfPurchased,
+                                    "numberOfFeedbacks": _self.options.numberOfFeedbacks
+                                },
+                            success:        function(data)
                             {
-                                function filterFeedbackList(feedbackList, feedbackId)
-                                {
-                                    return feedbackList.filter(function(feedback)
-                                    {
-                                        return feedback.id !== feedbackId;
-                                    });
-                                }
-
-                                function filterReplyList(feedbackList, feedbackId, replyId)
-                                {
-                                    return feedbackList.map(function(feedback)
-                                    {
-                                        if (feedbackId === feedback.id)
-                                        {
-                                            feedback.replies = feedback.replies.filter(function(reply)
-                                            {
-                                                return reply.id !== replyId;
-                                            });
-                                        }
-                                        return feedback;
-                                    });
-                                }
-
-                                // If visible, adjust counts
-                                if(_self.feedbackToDelete.feedbackObject.isVisible && parentFeedbackId === null) {
-                                    var feedback = _self.feedbackToDelete.feedbackObject;
-                                    var ratingValue = parseInt(feedback.feedbackRating.rating.ratingValue);
-                                    if ( ratingValue > 0 && ratingValue <= 5 )
-                                    {
-                                        _self.counts['ratingsCountOf' + ratingValue]--;
-                                        _self.counts.ratingsCountTotal--;
-
-                                        // Calculate average anew
-                                        var average = 0;
-                                        average += _self.counts['ratingsCountOf5'] * 5;
-                                        average += _self.counts['ratingsCountOf4'] * 4;
-                                        average += _self.counts['ratingsCountOf3'] * 3;
-                                        average += _self.counts['ratingsCountOf2'] * 2;
-                                        average += _self.counts['ratingsCountOf1'] * 1;
-                                        average /= _self.counts.ratingsCountTotal;
-
-                                        _self.counts.averageValue = average;
-                                        _self.$root.$emit('averageRecalc');
-                                    }
-
-                                }
-
-                                if ( parentFeedbackId === null )
-                                {
-                                    _self.feedbacks = filterFeedbackList(_self.feedbacks, feedbackId);
-                                    _self.authenticatedUser.feedbacks = filterFeedbackList(_self.authenticatedUser.feedbacks, feedbackId);
-                                }
-                                else
-                                {
-                                    _self.feedbacks = filterReplyList(_self.feedbacks, parentFeedbackId, feedbackId);
-                                    _self.authenticatedUser.feedbacks = filterReplyList(_self.authenticatedUser.feedbacks, parentFeedbackId, feedbackId);
-                                }
-
-                                _self.feedbackToDelete = null;
+                                _self.authenticatedUser = data;
+                            },
+                            error:          function(jqXHR, textStatus, errorThrown)
+                            {
+                                console.error(errorThrown);
                             }
                         });
-                    }
-                    $(this.$refs.confirmDeleteModal).modal('hide');
-
-                },
-                onFeedbackAdded: function(feedback)
-                {
-                    this.authenticatedUser.feedbacks.unshift(feedback);
-                    if ( feedback.isVisible )
+                    },
+                    getCounts: function()
                     {
-                        var ratingValue = parseInt(feedback.feedbackRating.rating.ratingValue);
-                        if ( ratingValue > 0 && ratingValue <= 5 )
+                        var _self = this;
+                        return $.ajax({
+                            type:           'GET',
+                            url:            '/rest/feedbacks/feedback/helper/counts/' + _self.itemId,
+                            success:        function(data)
+                            {
+                                _self.counts = data.counts;
+                            },
+                            error:          function(jqXHR, textStatus, errorThrown)
+                            {
+                                console.error(errorThrown);
+                            }
+                        });
+                    },
+                    loadFeedbacks: function()
+                    {
+                        var _self = this;
+                        var page = this.currentPage++;
+                        return $.ajax({
+                            type:           'GET',
+                            url:            '/rest/feedbacks/feedback/helper/feedbacklist/' + _self.itemId + '/' + page,
+                            data: {
+                                "feedbacksPerPage": _self.options.feedbacksPerPage
+                            },
+                            success:        function(data)
+                            {
+                                _self.feedbacks = _self.feedbacks.concat( data.feedbacks );
+                                _self.itemAttributes = data.itemAttributes;
+                                _self.lastPage = data.pagination.lastPage;
+                                _self.isLastPage = data.pagination.isLastPage;
+                            },
+                            error:          function(jqXHR, textStatus, errorThrown)
+                            {
+                                console.error(errorThrown);
+                            }
+                        });
+                    },
+                    showDeleteConfirmation: function(feedbackToDelete)
+                    {
+                        this.feedbackToDelete = feedbackToDelete;
+                        $(this.$refs.confirmDeleteModal).modal('show');
+                    },
+                    deleteFeedback: function()
+                    {
+                        if ( this.feedbackToDelete !== null )
                         {
-                            this.counts['ratingsCountOf' + ratingValue]++;
-                            this.counts.ratingsCountTotal++;
-                            // Calculate average anew
-                            var average = 0;
-                            average += this.counts['ratingsCountOf5'] * 5;
-                            average += this.counts['ratingsCountOf4'] * 4;
-                            average += this.counts['ratingsCountOf3'] * 3;
-                            average += this.counts['ratingsCountOf2'] * 2;
-                            average += this.counts['ratingsCountOf1'] * 1;
-                            average /= this.counts.ratingsCountTotal;
+                            var feedbackId = this.feedbackToDelete.feedbackId;
+                            var parentFeedbackId = this.feedbackToDelete.parentFeedbackId;
+                            var _self = this;
+                            $.ajax({
+                                type: "DELETE",
+                                url: '/rest/feedbacks/feedback/delete/' + feedbackId,
+                                success: function(data)
+                                {
+                                    function filterFeedbackList(feedbackList, feedbackId)
+                                    {
+                                        return feedbackList.filter(function(feedback)
+                                        {
+                                            return feedback.id !== feedbackId;
+                                        });
+                                    }
 
-                            this.counts.averageValue = average;
+                                    function filterReplyList(feedbackList, feedbackId, replyId)
+                                    {
+                                        return feedbackList.map(function(feedback)
+                                        {
+                                            if (feedbackId === feedback.id)
+                                            {
+                                                feedback.replies = feedback.replies.filter(function(reply)
+                                                {
+                                                    return reply.id !== replyId;
+                                                });
+                                            }
+                                            return feedback;
+                                        });
+                                    }
 
-                            this.$root.$emit('averageRecalc');
+                                    // If visible, adjust counts
+                                    if(_self.feedbackToDelete.feedbackObject.isVisible && parentFeedbackId === null) {
+                                        var feedback = _self.feedbackToDelete.feedbackObject;
+                                        var ratingValue = parseInt(feedback.feedbackRating.rating.ratingValue);
+                                        if ( ratingValue > 0 && ratingValue <= 5 )
+                                        {
+                                            _self.counts['ratingsCountOf' + ratingValue]--;
+                                            _self.counts.ratingsCountTotal--;
+
+                                            // Calculate average anew
+                                            var average = 0;
+                                            average += _self.counts['ratingsCountOf5'] * 5;
+                                            average += _self.counts['ratingsCountOf4'] * 4;
+                                            average += _self.counts['ratingsCountOf3'] * 3;
+                                            average += _self.counts['ratingsCountOf2'] * 2;
+                                            average += _self.counts['ratingsCountOf1'] * 1;
+                                            average /= _self.counts.ratingsCountTotal;
+
+                                            _self.counts.averageValue = average;
+                                            _self.$root.$emit('averageRecalc');
+                                        }
+
+                                    }
+
+                                    if ( parentFeedbackId === null )
+                                    {
+                                        _self.feedbacks = filterFeedbackList(_self.feedbacks, feedbackId);
+                                        _self.authenticatedUser.feedbacks = filterFeedbackList(_self.authenticatedUser.feedbacks, feedbackId);
+                                    }
+                                    else
+                                    {
+                                        _self.feedbacks = filterReplyList(_self.feedbacks, parentFeedbackId, feedbackId);
+                                        _self.authenticatedUser.feedbacks = filterReplyList(_self.authenticatedUser.feedbacks, parentFeedbackId, feedbackId);
+                                    }
+
+                                    _self.feedbackToDelete = null;
+                                }
+                            });
                         }
+                        $(this.$refs.confirmDeleteModal).modal('hide');
+
+                    },
+                    onFeedbackAdded: function(feedback)
+                    {
+                        this.authenticatedUser.feedbacks.unshift(feedback);
+                        if ( feedback.isVisible )
+                        {
+                            var ratingValue = parseInt(feedback.feedbackRating.rating.ratingValue);
+                            if ( ratingValue > 0 && ratingValue <= 5 )
+                            {
+                                this.counts['ratingsCountOf' + ratingValue]++;
+                                this.counts.ratingsCountTotal++;
+                                // Calculate average anew
+                                var average = 0;
+                                average += this.counts['ratingsCountOf5'] * 5;
+                                average += this.counts['ratingsCountOf4'] * 4;
+                                average += this.counts['ratingsCountOf3'] * 3;
+                                average += this.counts['ratingsCountOf2'] * 2;
+                                average += this.counts['ratingsCountOf1'] * 1;
+                                average /= this.counts.ratingsCountTotal;
+
+                                this.counts.averageValue = average;
+
+                                this.$root.$emit('averageRecalc');
+                            }
+                        }
+                    },
+                    generateJsonLD: function()
+                    {
+                        this.jsonld = {
+                            "@context": "http://schema.org/",
+                            "@type": "Product",
+                            "@id": this.variationId.toString(),
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": this.counts.averageValue,
+                                "reviewCount": this.counts.ratingsCountTotal
+                            },
+                            "review": []
+                        };
+
+                        var _self = this;
+                        this.feedbacks.forEach(function(feedback) {
+                            var author;
+
+                            if((feedback.sourceRelation[0].feedbackRelationType === 'user'
+                                || feedback.sourceRelation[0].feedbackRelationType === 'contact') && feedback.sourceRelation[0].feedbackRelationSourceId > 0)
+                            {
+                                author = feedback.sourceRelation[0].sourceRelationLabel;
+                            }
+                            else if(feedback.sourceRelation[0].feedbackRelationSourceId == 0 && feedback.authorName.length > 0)
+                            {
+                                author = feedback.authorName;
+                            }
+                            else
+                            {
+                                author = "Anonymous";
+                            }
+
+                            var review = {
+                                "@type": "Review",
+                                "author": author,
+                                "datePublished": feedback.createdAt,
+                                "reviewBody": feedback.feedbackComment.comment.message,
+                                "name": feedback.title,
+                                "reviewRating": {
+                                    "@type": "Rating",
+                                    "ratingValue": feedback.feedbackRating.rating.ratingValue
+                                }
+                            }
+
+                            _self.jsonld["review"].push(review);
+                        });
                     }
                 }
-            }
         });
     })(jQuery);
 </script>
