@@ -40,12 +40,11 @@
                         allowNoRatingFeedback: this.options.allowNoRatingFeedback,
                         numberOfFeedbacks: this.options.numberOfFeedbacks,
                         allowGuestFeedbacks: this.options.allowGuestFeedbacks
-                    },
-                    jsonld: {}
+                    }
                 };
             },
 
-            mounted: function()
+            created: function()
             {
                 if(!App.isShopBuilder)
                 {
@@ -57,13 +56,16 @@
                     ).done(function() {
                         _self.isLoading = false;
                         _self.generateJsonLD();
-                        Vue.nextTick(function () {
-                            // DOM updated
-                            window.dispatchEvent(new Event('resize'));
-                        })
                     });
-                } else {
-                    this.isLoading = false;
+                }
+            },
+
+            mounted: function()
+            {
+                if(!App.isShopBuilder) {
+                    Vue.nextTick(function () {
+                        window.dispatchEvent(new Event('resize'));
+                    })
                 }
             },
 
@@ -250,7 +252,7 @@
                     },
                     generateJsonLD: function()
                     {
-                        this.jsonld = {
+                        var jsonld = {
                             "@context": "http://schema.org/",
                             "@type": "Product",
                             "@id": this.variationId.toString(),
@@ -262,7 +264,6 @@
                             "review": []
                         };
 
-                        var _self = this;
                         this.feedbacks.forEach(function(feedback) {
                             var author;
 
@@ -292,8 +293,13 @@
                                 }
                             }
 
-                            _self.jsonld["review"].push(review);
+                            jsonld["review"].push(review);
                         });
+
+                        var script = document.createElement('script');
+                        script.setAttribute('type', 'application/ld+json');
+                        script.textContent = JSON.stringify(jsonld);
+                        document.head.appendChild(script);
                     }
                 }
         });
