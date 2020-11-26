@@ -1,11 +1,26 @@
 # Release Notes for Feedback
 
+## v3.6.0 (2020-11-27)
+
+### TODO
+
+- This version of the feedback plugin is only compatible with Ceres v5.0 or higher.
+- After updating the feedback plugin to v3.6.0, it is necessary to re-generate ShopBuilder widgets via the **Regenerate contents** button in the **CMS » ShopBuilder** menu.
+
+### Added
+
+- Das Feld "reviews" wurde den strukturierten Daten hinzugefügt.
+
+### Changed
+
+- Die strukturierten Daten werden nun direkt in den Head des HTML-Dokuments generiert.
+
 ## v3.5.3 (2020-10-14)
 
 ### TODO
 
 - This version of the feedback plugin is only compatible with Ceres v5.0 or higher.
-- After updating the feedback plugin to v3.5.2, it is necessary to re-generate ShopBuilder widgets via the **Regenerate contents** button in the **CMS » ShopBuilder** menu.
+- After updating the feedback plugin to v3.5.3, it is necessary to re-generate ShopBuilder widgets via the **Regenerate contents** button in the **CMS » ShopBuilder** menu.
 
 ### Fixed
 
