@@ -6,11 +6,11 @@ This is the **Feedback** plugin developed by plentymarkets. It provides the feed
 
 ## Requirements
 
-This is a plugin for [plentymarkets 7](https://www.plentymarkets.com). The plugin [IO](https://github.com/plentymarkets/plugin-io) is required to run the **Feedback** plugin. The **Ceres** ShopBuilder is required to integrate the feedback functionality. 
+This is a plugin for [plentymarkets](https://www.plentymarkets.com). The plugin [IO](https://github.com/plentymarkets/plugin-io) is required to run the **Feedback** plugin. The **Ceres** ShopBuilder is required to integrate the feedback functionality. 
 
 ## Installing
 
-After purchasing the plugin, open the **Plugins » Plugin overview** menu and set the filter to **uninstalled**. Click **install** in the row of the feedback plugin. After the installation is complete, add the plugin to the plugin set you want to use. After **saving and deploying** the plugins, the feedback widget becomes available in the ShopBuilder editor.
+After purchasing the plugin, open the **Plugins » Plugin overview** menu and enter "Feedback" into the plugin search. Click on the feedback plugin and click **install** in the top left corner. After the installation is complete, add the plugin to the plugin set you want to use. After **deploying** the plugin set, the feedback widget becomes available in the ShopBuilder editor under item widgets.
 
 ## Documentation
 

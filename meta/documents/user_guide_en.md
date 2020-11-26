@@ -4,15 +4,18 @@ Display customer reviews in the online store and reply to feedbacks. The feedbac
 
 ## Setting up customer reviews
 
-In order to display customer reviews in your online store, you have to carry out a few settings in the plentymarkets back end.
+In order to display customer reviews in your online store, you have to carry out a few settings in the plentymarkets backend.
 
 ##### Setting up customer reviews:
 
-1. Go to **Start » Plugins**.<br /> → The plugin overview will open.
-2. Filter the plugins by **Not installed**. Then, install the feedback plugin.
-3. **Save and publish** the plugin set after the installation has completed.
-4. Open the ShopBuilder by clicking on **CMS » ShopBuilder**. The feedback widgets are now available in the widget category **item**.
-5. Open an item page, add the feedback widgets to your page and carry out the widget settings according to table 1.
+1. Go to **Plugins » Plugin set overview**.<br /> → The plugin set overview will open.
+2. Open your plugin set.
+3. Enter "feedback" into the plugin search.
+4. Click on the feedback plugin.
+5. Click the **Install** button in the feedback plugin.
+6. **Publish** the plugin set after the installation has completed.
+7. Open the ShopBuilder by clicking on **CMS » ShopBuilder**. The feedback widgets are now available in the widget category **item**.
+8. Open an item page, add the feedback widgets to your page and carry out the widget settings according to table 1.
 
 <table>
 <caption>Table 1: Carrying out settings for customer reviews</caption>
@@ -115,14 +118,17 @@ Additionally, you can carry out further settings in the **Plugins » Plugin over
 
 ## Displaying customer reviews in the category view
 
-As long as the category view is not ShopBuilder-compatible, the feedback plugin makes it possible to display customer reviews in the category view by using template containers. To display customer reviews in the category view, proceed as follows.
+The feedback plugin makes it possible to display customer reviews in the category view by using template containers. To display customer reviews in the category view, proceed as follows.
 
 ##### Displaying customer reviews in the category view:
 
-1. Go to **CMS » Container links**.
-2. Go to the **Feedback category ratings** area.
-3. Activate the container **Category item list: Before prices container**.
-4. **Save** the settings.<br />→ Customer reviews will be displayed in category view before item prices.
+1. Go to **Plugins » Plugin set overview**.
+2. Open your plugin set.
+3. Click the feedback plugin to open the plugin settings.
+4. Click the tab **Container links** in the navigation tree on the left side.
+5. Click the **Default container links** area to expand it.
+6. Activate the checkbox for the container **Ceres::CategoryItem.BeforePrices**.
+7. **Save** the settings.<br />→ Customer reviews will be displayed in category view before item prices.
 
 ## Managing customer reviews
 

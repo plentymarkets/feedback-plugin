@@ -8,11 +8,13 @@ Bevor Kundenrezensionen im Webshop angezeigt werden, musst du Einstellungen in d
 
 ##### Kundenrezensionen einrichten:
 
-1. Öffne das Menü **Start » Plugins**.<br /> → Die Plugin-Übersicht wird geöffnet.
-2. Filtere die Plugins nach **Nicht installiert** und klicke in der Zeile des Feedback-Plugins auf **Installieren**.
-3. Wenn das Plugin installiert wurde, klicke auf **Plugin-Set speichern & bereitstellen**.
-4. Nach dem Bereitstellen sind die Feedback-Widgets im ShopBuilder in der Kategorie **Artikel** verfügbar.
-5. Füge die Widgets deiner Artikelseite hinzu und öffne die Widget-EInstellungen. Beachte dazu die Erläuterungen in Tabelle 1.
+1. Öffne das Menü **Plugins » Plugin-Set-Übersicht**.<br /> → Die Plugin-Set-Übersicht wird geöffnet.
+2. Klicke auf dein Plugin-Set.
+3. Gib "Kunden-Feedback" in die **Suche** ein.
+4. Klicke auf **Installieren**.
+5. Nachdem das Plugin installiert wurde, klicke in der Plugin-Set-Übersicht auf **Plugin-Set bereitstellen**.
+6. Nach dem Bereitstellen sind die Feedback-Widgets im ShopBuilder in der Kategorie **Artikel** verfügbar.
+7. Füge die Widgets deiner Artikelseite hinzu und öffne die Widget-EInstellungen. Beachte dazu die Erläuterungen in Tabelle 1.
 
 <table>
 <caption>Tab. 1: Einstellungen für Kundenrezensionen vornehmen</caption>
@@ -120,10 +122,13 @@ Solange die Kategorieansicht noch nicht über den ShopBuilder bearbeitet werden 
 
 ##### Kundenrezensionen in der Kategorieansicht anzeigen:
 
-1. Öffne das Menü **CMS » Container-Verknüpfungen**.
-2. Wähle den Bereich **Feedback category ratings**.
-3. Aktiviere den Container **Category item list: Before prices container**.
-4. **Speichere** die Einstellungen.<br />→ Kundenrezensionen werden in der Kategorieansicht vor Artikelpreisen angezeigt.
+1. Öffne das Menü **Plugins » Plugin-Set-Übersicht**.
+2. Öffne dein Plugin-Set.
+3. Klicke auf das Feedback-Plugin, um die Plugin-Einstellungen zu öffnen.
+4. Klicke im Navigationsbaum links auf den untersten Reiter **Container-Verknüpfungen**.
+5. Klicke auf den Bereich **Standard-Container-Links**.
+6. Aktiviere die Checkbox für den Container **Ceres::CategoryItem.BeforePrices**.
+7. **Speichere** die Einstellungen.<br />→ Kundenrezensionen werden in der Kategorieansicht vor Artikelpreisen angezeigt.
 
 ## Kundenrezensionen verwalten
 
