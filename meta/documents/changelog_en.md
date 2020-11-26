@@ -9,11 +9,11 @@
 
 ### Added
 
-- Das Feld "reviews" wurde den strukturierten Daten hinzugefügt.
+- The field "reviews" has been added to the structured data.
 
 ### Changed
 
-- Die strukturierten Daten werden nun direkt in den Head des HTML-Dokuments generiert.
+- The structured data is now directly generated into the head of the HTML document.
 
 ## v3.5.3 (2020-10-14)
 
