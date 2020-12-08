@@ -1,6 +1,6 @@
 # Release Notes for Feedback
 
-## v3.6.0 (2020-11-27)
+## v3.6.0 (2020-12-08)
 
 ### TODO
 
