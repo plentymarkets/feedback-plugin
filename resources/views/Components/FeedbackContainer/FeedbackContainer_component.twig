@@ -252,54 +252,57 @@
                     },
                     generateJsonLD: function()
                     {
-                        var jsonld = {
-                            "@context": "http://schema.org/",
-                            "@type": "Product",
-                            "@id": this.variationId.toString(),
-                            "aggregateRating": {
-                                "@type": "AggregateRating",
-                                "ratingValue": this.counts.averageValue,
-                                "reviewCount": this.counts.ratingsCountTotal
-                            },
-                            "review": []
-                        };
+                        if(this.counts.ratingsCountTotal > 0)
+                        {
+                            var jsonld = {
+                                "@context": "http://schema.org/",
+                                "@type": "Product",
+                                "@id": this.variationId.toString(),
+                                "aggregateRating": {
+                                    "@type": "AggregateRating",
+                                    "ratingValue": this.counts.averageValue,
+                                    "reviewCount": this.counts.ratingsCountTotal
+                                },
+                                "review": []
+                            };
 
-                        this.feedbacks.forEach(function(feedback) {
-                            var author;
+                            this.feedbacks.forEach(function(feedback) {
+                                var author;
 
-                            if((feedback.sourceRelation[0].feedbackRelationType === 'user'
-                                || feedback.sourceRelation[0].feedbackRelationType === 'contact') && feedback.sourceRelation[0].feedbackRelationSourceId > 0)
-                            {
-                                author = feedback.sourceRelation[0].sourceRelationLabel;
-                            }
-                            else if(feedback.sourceRelation[0].feedbackRelationSourceId == 0 && feedback.authorName.length > 0)
-                            {
-                                author = feedback.authorName;
-                            }
-                            else
-                            {
-                                author = "Anonymous";
-                            }
-
-                            var review = {
-                                "@type": "Review",
-                                "author": author,
-                                "datePublished": feedback.createdAt,
-                                "reviewBody": feedback.feedbackComment.comment.message,
-                                "name": feedback.title,
-                                "reviewRating": {
-                                    "@type": "Rating",
-                                    "ratingValue": feedback.feedbackRating.rating.ratingValue
+                                if((feedback.sourceRelation[0].feedbackRelationType === 'user'
+                                    || feedback.sourceRelation[0].feedbackRelationType === 'contact') && feedback.sourceRelation[0].feedbackRelationSourceId > 0)
+                                {
+                                    author = feedback.sourceRelation[0].sourceRelationLabel;
                                 }
-                            }
+                                else if(feedback.sourceRelation[0].feedbackRelationSourceId == 0 && feedback.authorName.length > 0)
+                                {
+                                    author = feedback.authorName;
+                                }
+                                else
+                                {
+                                    author = "Anonymous";
+                                }
 
-                            jsonld["review"].push(review);
-                        });
+                                var review = {
+                                    "@type": "Review",
+                                    "author": author,
+                                    "datePublished": feedback.createdAt,
+                                    "reviewBody": feedback.feedbackComment.comment.message,
+                                    "name": feedback.title,
+                                    "reviewRating": {
+                                        "@type": "Rating",
+                                        "ratingValue": feedback.feedbackRating.rating.ratingValue
+                                    }
+                                }
 
-                        var script = document.createElement('script');
-                        script.setAttribute('type', 'application/ld+json');
-                        script.textContent = JSON.stringify(jsonld);
-                        document.head.appendChild(script);
+                                jsonld["review"].push(review);
+                            });
+
+                            var script = document.createElement('script');
+                            script.setAttribute('type', 'application/ld+json');
+                            script.textContent = JSON.stringify(jsonld);
+                            document.head.appendChild(script);
+                        }
                     }
                 }
         });
