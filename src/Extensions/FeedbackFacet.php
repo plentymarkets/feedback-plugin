@@ -2,6 +2,7 @@
 
 namespace Feedback\Extensions;
 
+use IO\Helper\Utils;
 use Plenty\Modules\Cloud\ElasticSearch\Lib\Search\Aggregation\AggregationInterface;
 use Plenty\Modules\Pim\SearchService\Aggregations\Feedback\FeedbackRangeAggregation;
 use Plenty\Modules\Pim\SearchService\Aggregations\Processors\FeedbackRangeAggregationProcessor;
@@ -43,16 +44,7 @@ class FeedbackFacet implements FacetExtension
         if (count($result)) {
             $this->getLogger('merge into facets')->debug('Feedback::Debug.filterResponse', $result);
 
-            $facetName = '';
-
-            // TODO: get facet name from property file
-            $lang = pluginApp(LocalizationRepositoryContract::class)->getLanguage();
-            if ($lang === 'de') {
-                $facetName = 'Artikelbewertung';
-            } else {
-                $facetName = 'Item rating';
-            }
-
+            $facetName = Utils::translate('Feedback::Feedback.facetName');
             $feedback = [
                 'id' => 'feedback',
                 'name' => $facetName,
