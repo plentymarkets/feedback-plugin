@@ -1,5 +1,20 @@
 # Release Notes for Feedback
 
+## v3.6.2 (2021-02-23)
+
+### TODO
+
+- This version of the feedback plugin is only compatible with Ceres v5.0 or higher.
+- After updating the feedback plugin to v3.6.2, it is necessary to re-generate ShopBuilder widgets via the **Regenerate contents** button in the **CMS » ShopBuilder** menu.
+
+### Changed
+
+- The feedback widget for the order confirmation now displays a notification on contents in the ShopBuilder on which it cannot be used.
+
+### Fixed
+
+- Under certain circumstances, the author's name could be left empty in customer reviews. This has been fixed. 
+
 ## v3.6.1 (2020-12-15)
 
 ### TODO
