@@ -274,7 +274,7 @@
                                 {
                                     author = feedback.sourceRelation[0].sourceRelationLabel;
                                 }
-                                else if(feedback.sourceRelation[0].feedbackRelationSourceId == 0 && feedback.authorName.length > 0)
+                                else if(feedback.sourceRelation[0].feedbackRelationSourceId == 0 && feedback.authorName.trim().length > 0)
                                 {
                                     author = feedback.authorName;
                                 }
