@@ -46,7 +46,8 @@ class FeedbackService
         FeedbackAverageRepositoryContract $feedbackAverageRepository,
         AccountService $accountService,
         LocalizationRepositoryContract $localizationRepository
-    ) {
+    )
+    {
         $this->request = $request;
         $this->coreHelper = $coreHelper;
         $this->feedbackRepository = $feedbackRepository;
@@ -133,16 +134,16 @@ class FeedbackService
                 return $accountService->getAccountContactId();
             }
         );
+        $order = null;
 
         // Check if accessKey for order is available
-        if ($creatorContactId <= 0)
-        {
+        if ($creatorContactId <= 0) {
             $orderId = $this->request->input('orderId');
             $accessKey = $this->request->input('accessKey');
 
-            if(strlen($orderId) && strlen($accessKey))
-            {
-                $creatorContactId = $this->getUserIdFromOrder($orderId, $accessKey);
+            if ($orderId != '' && $accessKey != '') {
+                $order = $this->getOrder($orderId, $accessKey);
+                $creatorContactId = $this->getUserIdFromOrder($order);
             }
         }
 
@@ -183,8 +184,8 @@ class FeedbackService
             }
 
             // The following checks cannot be applied to guests
-            if ($creatorContactId != 0) {
-                $hasPurchased = $this->hasPurchasedVariation($creatorContactId, $this->request->input('targetId'), $allowFeedbacksOnlyIfPurchased);
+            if ($creatorContactId != 0 || !is_null($order)) {
+                $hasPurchased = !is_null($order) || $this->hasPurchasedVariation($creatorContactId, $this->request->input('targetId'));
 
                 if ($allowFeedbacksOnlyIfPurchased && !$hasPurchased) {
                     return 'Not allowed to create review without purchasing the item first';
@@ -196,22 +197,22 @@ class FeedbackService
                         'feedbackRelationSourceId' => $options['feedbackRelationTargetId']
                     ];
                 }
+            }
 
-                if (!empty($numberOfFeedbacks) && $numberOfFeedbacks != 0) {
-                    // Get the feedbacks that this user created on this item
-                    $countFeedbacksOfUserPerItem = $this->listFeedbacks(
-                        1,
-                        50,
-                        [],
-                        [
-                            'sourceId' => $creatorContactId,
-                            'targetId' => $options['feedbackRelationTargetId']
-                        ]
-                    )->getTotalCount();
+            if (!empty($numberOfFeedbacks) && $numberOfFeedbacks != 0 && $creatorContactId != 0) {
+                // Get the feedbacks that this user created on this item
+                $countFeedbacksOfUserPerItem = $this->listFeedbacks(
+                    1,
+                    50,
+                    [],
+                    [
+                        'sourceId' => $creatorContactId,
+                        'targetId' => $options['feedbackRelationTargetId']
+                    ]
+                )->getTotalCount();
 
-                    if ($countFeedbacksOfUserPerItem >= $numberOfFeedbacks) {
-                        return 'Too many reviews';
-                    }
+                if ($countFeedbacksOfUserPerItem >= $numberOfFeedbacks) {
+                    return 'Too many reviews';
                 }
             }
 
@@ -394,14 +395,12 @@ class FeedbackService
 
         $contactId = $this->accountService->getAccountContactId();
 
-        if(!$contactId)
-        {
+        if (!$contactId) {
             // Check for accessKey
             $accessKey = $this->request->input("accessKey");
             $orderId = $this->request->input("orderId");
 
-            if(strlen($orderId) && strlen($accessKey))
-            {
+            if (strlen($orderId) && strlen($accessKey)) {
                 $contactId = $this->getUserIdFromOrder($orderId, $accessKey);
             }
         }
@@ -414,7 +413,7 @@ class FeedbackService
         if (count($variationIds)) {
             if ($isLoggedIn && $allowFeedbacksOnlyIfPurchased) {
                 foreach ($variationIds as $variationId) {
-                    $hasPurchased[$variationId] = $this->hasPurchasedVariation($contactId, $variationId, $allowFeedbacksOnlyIfPurchased);
+                    $hasPurchased[$variationId] = $this->hasPurchasedVariation($contactId, $variationId);
                 }
             } else {
                 foreach ($variationIds as $variationId) {
@@ -482,6 +481,12 @@ class FeedbackService
         return $result;
     }
 
+    public function getOrderAccessKey($orderId)
+    {
+        $orderRepository = pluginApp(OrderRepositoryContract::class);
+        return $orderRepository->generateAccessKey($orderId);
+    }
+
     /**
      * Calculate if the user has reached the maximum amount of feedbacks for the given itemId
      * @param $itemId
@@ -518,23 +523,21 @@ class FeedbackService
      * @param $mandatoryPurchase
      * @return bool
      */
-    private function hasPurchasedVariation($contactId, $variationId, $mandatoryPurchase)
+    private function hasPurchasedVariation($contactId, $variationId)
     {
         $hasPurchased = false;
 
-        if ($mandatoryPurchase) {
-            $orderRepository = pluginApp(OrderRepositoryContract::class);
-            $orders = $orderRepository->allOrdersByContact($contactId);
-            $purchasedVariations = [];
+        $orderRepository = pluginApp(OrderRepositoryContract::class);
+        $orders = $orderRepository->allOrdersByContact($contactId);
+        $purchasedVariations = [];
 
-            foreach ($orders->getResult() as $order) {
-                foreach ($order->orderItems as $orderItem) {
-                    $purchasedVariations[] = $orderItem->itemVariationId;
-                }
+        foreach ($orders->getResult() as $order) {
+            foreach ($order->orderItems as $orderItem) {
+                $purchasedVariations[] = $orderItem->itemVariationId;
             }
-
-            $hasPurchased = in_array($variationId, $purchasedVariations);
         }
+
+        $hasPurchased = in_array($variationId, $purchasedVariations);
 
         return $hasPurchased;
     }
@@ -592,14 +595,23 @@ class FeedbackService
             || $releaseLevel === self::RELEASE_LEVEL_ALL;
     }
 
-    private function getUserIdFromOrder($orderId, $accessKey)
+    /**
+     * @param $orderId
+     * @param $accessKey
+     * @return \Order|null
+     */
+    private function getOrder($orderId, $accessKey)
     {
         /** @var OrderRepositoryContract $orderRepository */
         $orderRepository = pluginApp(OrderRepositoryContract::class);
         $order = $orderRepository->findOrderByAccessKey($orderId, $accessKey);
 
-        if ($order !== null)
-        {
+        return $order;
+    }
+
+    private function getUserIdFromOrder($order)
+    {
+        if ($order !== null) {
             foreach ($order->relations as $relation) {
                 if ($relation['referenceType'] === 'contact' && (int)$relation['referenceId'] > 0) {
                     return $relation['referenceId'];

@@ -17,8 +17,8 @@
             :item-images="{{ Twig.print("data.itemImages | json_encode") }}"
             :options="{{ options | json_encode }}"
             :split-item-bundles="{{ Twig.print("splitItemBundle | json_encode") }}"
-            access-key="{{ request.get("accessKey") }}"
-            order-id="{{ request.get("orderId") }}">
+            access-key="{{ Twig.print("feedbackServices.feedback.getOrderAccessKey(data.order.id)") }}"
+            order-id="{{ Twig.print("data.order.id | json_encode") }}">
     </feedback-order-container>
 </div>
 {{ Twig.elseif("#{ isPreview | json_encode } and not urls.is('confirmation')") }}
