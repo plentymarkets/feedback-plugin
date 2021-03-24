@@ -401,7 +401,8 @@ class FeedbackService
             $orderId = $this->request->input("orderId");
 
             if (strlen($orderId) && strlen($accessKey)) {
-                $contactId = $this->getUserIdFromOrder($orderId, $accessKey);
+                $order = $this->getOrder($orderId, $accessKey);
+                $contactId = $this->getUserIdFromOrder($order);
             }
         }
 
