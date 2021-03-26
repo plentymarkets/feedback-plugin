@@ -1,6 +1,6 @@
 # Release Notes for Feedback
 
-## v3.6.3 (2021-X-X)
+## v3.6.3 (2021-03-26)
 
 ### TODO
 
@@ -10,6 +10,8 @@
 ### Fixed
 
 - Feedbacks could not be verified, when written from a guests order confirmation. This has been fixed.
+- Incorrectly cached data lead to wrongly linked feedbacks on the order confirmation.
+
 
 
 ## v3.6.2 (2021-03-03)

@@ -1,6 +1,6 @@
 # Release Notes für Feedback
 
-## v3.6.3 (2021-X-X)
+## v3.6.3 (2021-03-26)
 
 ### TODO
 
@@ -10,6 +10,7 @@
 ### Behoben
 
 - Bewertungen von Gastbestellungen konnten nicht verifiziert werden. Dies wurde behoben.
+- Durch fehlerhaft gecachte Daten wurden Kundenbewertungen auf der Bestellbestätigung teilweise falsch zugeordnet.
 
 ## v3.6.2 (2021-03-03)
 
