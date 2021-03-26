@@ -203,7 +203,7 @@ class FeedbackService
                 // Get the feedbacks that this user created on this item
                 $countFeedbacksOfUserPerItem = $this->listFeedbacks(
                     1,
-                    50,
+                    1,
                     [],
                     [
                         'sourceId' => $creatorContactId,
