@@ -17,7 +17,7 @@
             :item-images="{{ Twig.print("data.itemImages | json_encode") }}"
             :options="{{ options | json_encode }}"
             :split-item-bundles="{{ Twig.print("splitItemBundle | json_encode") }}"
-            access-key="{{ Twig.print("feedbackServices.feedback.getOrderAccessKey(data.order.id)") }}"
+            access-key="{{ Twig.print(Twig.call("feedbackServices.feedback.getOrderAccessKey", [Twig.var("data.order.id")])) }}"
             order-id="{{ Twig.print("data.order.id | json_encode") }}">
     </feedback-order-container>
 </div>

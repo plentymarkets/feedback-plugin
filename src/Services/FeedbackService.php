@@ -149,7 +149,7 @@ class FeedbackService
 
         $allowGuestFeedbacks = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_GUEST_FEEDBACKS);
 
-        if (!$allowGuestFeedbacks && $creatorContactId == 0) {
+        if (!$allowGuestFeedbacks && $creatorContactId == 0 && $order == null) {
             return 'Guests are not allowed to write feedbacks';
         }
 
@@ -485,7 +485,15 @@ class FeedbackService
     public function getOrderAccessKey($orderId)
     {
         $orderRepository = pluginApp(OrderRepositoryContract::class);
-        return $orderRepository->generateAccessKey($orderId);
+        $authHelper = pluginApp(AuthHelper::class);
+
+        $accessKey = $authHelper->processUnguarded(
+            function () use ($orderRepository, $orderId) {
+                return $orderRepository->generateAccessKey($orderId);
+            }
+        );
+
+        return $accessKey;
     }
 
     /**
