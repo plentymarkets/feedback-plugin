@@ -1,5 +1,17 @@
 # Release Notes für Feedback
 
+## v3.6.3 (2021-03-26)
+
+### TODO
+
+- Zur Nutzung des Feedback-Plugins muss Ceres in Version 5.0 oder höher installiert sein.
+- Nach dem Update auf Version 3.6.3 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden.
+
+### Behoben
+
+- Bewertungen von Gastbestellungen konnten nicht verifiziert werden. Dies wurde behoben.
+- Durch fehlerhaft gecachte Daten wurden Kundenbewertungen auf der Bestellbestätigung teilweise falsch zugeordnet.
+
 ## v3.6.2 (2021-03-03)
 
 ### TODO
