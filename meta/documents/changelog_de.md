@@ -1,5 +1,60 @@
 # Release Notes für Feedback
 
+## v3.6.3 (2021-03-26)
+
+### TODO
+
+- Zur Nutzung des Feedback-Plugins muss Ceres in Version 5.0 oder höher installiert sein.
+- Nach dem Update auf Version 3.6.3 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden.
+
+### Behoben
+
+- Bewertungen von Gastbestellungen konnten nicht verifiziert werden. Dies wurde behoben.
+- Durch fehlerhaft gecachte Daten wurden Kundenbewertungen auf der Bestellbestätigung teilweise falsch zugeordnet.
+
+## v3.6.2 (2021-03-03)
+
+### TODO
+
+- Zur Nutzung des Feedback-Plugins muss Ceres in Version 5.0 oder höher installiert sein.
+- Nach dem Update auf Version 3.6.2 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden.
+
+### Geändert
+
+- Das Feedback-Widget für die Bestellbestätigung gibt nun im ShopBuilder auf Seiten, auf denen es nicht genutzt werden kann, einen Warnhinweis aus.
+
+### Behoben
+
+- Unter bestimmten Umständen konnte bei Kundenrezensionen der Name des Autors leer sein. Dies wurde behoben.
+
+## v3.6.1 (2020-12-15)
+
+### TODO
+
+- Zur Nutzung des Feedback-Plugins muss Ceres in Version 5.0 oder höher installiert sein.
+- Nach dem Update auf Version 3.6.1 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden. 
+
+### Behoben
+
+- Eine fehlende Kondition zur Ausgabe der strukturierten Daten hat bei unbewerteten Artikeln zu Fehlern geführt. 
+- Der Titel der Feedback-Facette war nicht in der Mehrsprachigkeit vorhanden.
+
+## v3.6.0 (2020-12-08)
+
+### TODO
+
+- Zur Nutzung des Feedback-Plugins muss Ceres in Version 5.0 oder höher installiert sein.
+- Nach dem Update auf Version 3.6.0 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden. 
+
+### Hinzugefügt
+
+- Das Feld "reviews" wurde den strukturierten Daten hinzugefügt.
+
+### Geändert
+
+- Die strukturierten Daten werden nun direkt in den Head des HTML-Dokuments generiert.
+
+
 ## v3.5.3 (2020-10-14)
 
 ### TODO

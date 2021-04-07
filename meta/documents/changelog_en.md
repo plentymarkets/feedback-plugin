@@ -1,11 +1,68 @@
 # Release Notes for Feedback
 
+## v3.6.3 (2021-03-26)
+
+### TODO
+
+- This version of the feedback plugin is only compatible with Ceres v5.0 or higher.
+- After updating the feedback plugin to v3.6.3, it is necessary to re-generate ShopBuilder widgets via the **Regenerate contents** button in the **CMS » ShopBuilder** menu.
+
+### Fixed
+
+- Feedbacks could not be verified, when written from a guests order confirmation. This has been fixed.
+- Incorrectly cached data lead to wrongly linked feedbacks on the order confirmation.
+
+
+
+## v3.6.2 (2021-03-03)
+
+### TODO
+
+- This version of the feedback plugin is only compatible with Ceres v5.0 or higher.
+- After updating the feedback plugin to v3.6.2, it is necessary to re-generate ShopBuilder widgets via the **Regenerate contents** button in the **CMS » ShopBuilder** menu.
+
+### Changed
+
+- The feedback widget for the order confirmation now displays a notification on contents in the ShopBuilder on which it cannot be used.
+
+### Fixed
+
+- Under certain circumstances, the author's name could be left empty in customer reviews. This has been fixed. 
+
+## v3.6.1 (2020-12-15)
+
+### TODO
+
+- This version of the feedback plugin is only compatible with Ceres v5.0 or higher.
+- After updating the feedback plugin to v3.6.1, it is necessary to re-generate ShopBuilder widgets via the **Regenerate contents** button in the **CMS » ShopBuilder** menu.
+
+### Fixed
+
+- A missing condition for the output of the structured data led to errors for unrated articles. 
+- The title of the feedback facet was not available in the CMS » Multilingualism menu.
+
+
+## v3.6.0 (2020-12-08)
+
+### TODO
+
+- This version of the feedback plugin is only compatible with Ceres v5.0 or higher.
+- After updating the feedback plugin to v3.6.0, it is necessary to re-generate ShopBuilder widgets via the **Regenerate contents** button in the **CMS » ShopBuilder** menu.
+
+### Added
+
+- The field "reviews" has been added to the structured data.
+
+### Changed
+
+- The structured data is now directly generated into the head of the HTML document.
+
 ## v3.5.3 (2020-10-14)
 
 ### TODO
 
 - This version of the feedback plugin is only compatible with Ceres v5.0 or higher.
-- After updating the feedback plugin to v3.5.2, it is necessary to re-generate ShopBuilder widgets via the **Regenerate contents** button in the **CMS » ShopBuilder** menu.
+- After updating the feedback plugin to v3.5.3, it is necessary to re-generate ShopBuilder widgets via the **Regenerate contents** button in the **CMS » ShopBuilder** menu.
 
 ### Fixed
 

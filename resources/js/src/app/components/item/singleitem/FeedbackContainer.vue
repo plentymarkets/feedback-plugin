@@ -136,18 +136,7 @@
                 </div>
             </div>
         </div>
-        <script2 v-if="counts.ratingsCountTotal > 0" type="application/ld+json">
-            {
-                "@context": "http://schema.org/",
-                "@type": "Product",
-                "@id": "{{ variationId }}",
-                "aggregateRating": {
-                    "@type": "AggregateRating",
-                    "ratingValue": "{{ counts.averageValue }}",
-                    "reviewCount": "{{ counts.ratingsCountTotal }}"
-                }
-            }
-        </script2>
+        <script v-if="counts.ratingsCountTotal > 0" type="application/ld+json" v-html="jsonld"></script>
     </section>
 </template>
 
@@ -195,7 +184,8 @@ export default {
                 allowNoRatingFeedback: this.options.allowNoRatingFeedback,
                 numberOfFeedbacks: this.options.numberOfFeedbacks,
                 allowGuestFeedbacks: this.options.allowGuestFeedbacks
-            }
+            },
+            jsonld: {}
         };
     },
 
@@ -208,6 +198,7 @@ export default {
                 this.loadFeedbacks()
             ).done(function () {
                 _self.isLoading = false;
+                _self.generateJsonLD();
                 Vue.nextTick(function () {
                     // DOM updated
                     window.dispatchEvent(new Event('resize'));
@@ -370,6 +361,60 @@ export default {
 
                     this.$root.$emit('averageRecalc');
                 }
+            }
+        },
+        generateJsonLD()
+        {
+            if(this.counts.ratingsCountTotal > 0)
+            {
+                var jsonld = {
+                    "@context": "http://schema.org/",
+                    "@type": "Product",
+                    "@id": this.variationId.toString(),
+                    "aggregateRating": {
+                        "@type": "AggregateRating",
+                        "ratingValue": this.counts.averageValue,
+                        "reviewCount": this.counts.ratingsCountTotal
+                    },
+                    "review": []
+                };
+
+                this.feedbacks.forEach(function(feedback) {
+                    var author;
+
+                    if((feedback.sourceRelation[0].feedbackRelationType === 'user'
+                        || feedback.sourceRelation[0].feedbackRelationType === 'contact') && feedback.sourceRelation[0].feedbackRelationSourceId > 0)
+                    {
+                        author = feedback.sourceRelation[0].sourceRelationLabel;
+                    }
+                    else if(feedback.sourceRelation[0].feedbackRelationSourceId == 0 && feedback.authorName.trim().length > 0)
+                    {
+                        author = feedback.authorName;
+                    }
+                    else
+                    {
+                        author = "Anonymous";
+                    }
+
+                    var review = {
+                        "@type": "Review",
+                        "author": author,
+                        "datePublished": feedback.createdAt,
+                        "reviewBody": feedback.feedbackComment.comment.message,
+                        "name": feedback.title,
+                        "reviewRating": {
+                            "@type": "Rating",
+                            "ratingValue": feedback.feedbackRating.rating.ratingValue
+                        }
+                    }
+
+                    jsonld["review"].push(review);
+                });
+
+                var script = document.createElement('script');
+                script.setAttribute('type', 'application/ld+json');
+                script.textContent = JSON.stringify(jsonld);
+                document.head.appendChild(script);
             }
         }
     }
