@@ -11,10 +11,14 @@
     "extends": [
         "eslint:recommended",
         "plugin:vue/base",
-        "plugin:vue/strongly-recommended"
+        "plugin:vue/recommended"
     ],
     "globals": {
         "jQuery": false,
-        "$"     : true
+        "$": true,
+        "App": false,
+        "Vue": false,
+        "vueEventHub": false,
+        "$translate": false
     }
 }

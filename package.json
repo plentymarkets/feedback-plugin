@@ -15,7 +15,7 @@
         "build:sass:dev": "webpack --config tools/webpack/styles.config.js --progress",
         "build:sass:prod": "webpack --config tools/webpack/styles.config.js --env production --progress",
         "lint": "npm run lint:js && npm run lint:sass",
-        "lint:js": "eslint --ext .js,.vue resources/js/src",
+        "lint:js": "eslint --ext .js,.vue resources/js/src --fix",
         "lint:sass": "stylelint \"resources/css/**/*.scss\"",
         "prebuild": "rm -rf resources/js/dist/chunks"
     },

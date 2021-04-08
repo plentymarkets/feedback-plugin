@@ -1,31 +1,41 @@
 <template>
-    <section class="feedback-container feedback-orderitem-container">
-        <div class="title">
-            {{ $translate("Feedback::Feedback.orderItemTitle") }}
-        </div>
-        <hr>
-        <div v-if="!isLoading" class="feedback-items row">
-            <feedback-order-item
-                v-for="order in pagination"
-                :key="order.variationId"
-                :item=order
-                :numberOfColumns="trueItemsPerRow">
-            </feedback-order-item>
-        </div>
-        <div v-else class="w-100 text-center">
-            <p>{{ $translate("Feedback::Feedback.loadingItems") }}</p>
-        </div>
-        <button class="btn btn-default btn-block feedback-loadmore"
-                @click="nextPage()"
-                v-if="!isLoading && (this.page * this.options.itemsPerRow * this.options.rowsPerPage < this.orderItems.length)">Weitere Artikel anzeigen</button>
-        <feedback-order-form
-            :authenticated-user="authenticatedUser"
-            :allow-guest-feedbacks="options.allowGuestFeedbacks"
-            :number-of-feedbacks="options.numberOfFeedbacks"
-            :access-key="accessKey"
-            :order-id="orderId"
-        ></feedback-order-form>
-    </section>
+  <section class="feedback-container feedback-orderitem-container">
+    <div class="title">
+      {{ $translate("Feedback::Feedback.orderItemTitle") }}
+    </div>
+    <hr>
+    <div
+      v-if="!isLoading"
+      class="feedback-items row"
+    >
+      <feedback-order-item
+        v-for="order in pagination"
+        :key="order.variationId"
+        :item="order"
+        :number-of-columns="trueItemsPerRow"
+      />
+    </div>
+    <div
+      v-else
+      class="w-100 text-center"
+    >
+      <p>{{ $translate("Feedback::Feedback.loadingItems") }}</p>
+    </div>
+    <button
+      v-if="!isLoading && (this.page * this.options.itemsPerRow * this.options.rowsPerPage < this.orderItems.length)"
+      class="btn btn-default btn-block feedback-loadmore"
+      @click="nextPage()"
+    >
+      Weitere Artikel anzeigen
+    </button>
+    <feedback-order-form
+      :authenticated-user="authenticatedUser"
+      :allow-guest-feedbacks="options.allowGuestFeedbacks"
+      :number-of-feedbacks="options.numberOfFeedbacks"
+      :access-key="accessKey"
+      :order-id="orderId"
+    />
+  </section>
 </template>
 
 <script>
@@ -33,12 +43,12 @@ import FeedbackOrderForm from "./FeedbackOrderForm.vue";
 import FeedbackOrderItem from "./FeedbackOrderItem.vue";
 
 export default {
-    props: ['variations', 'items', 'itemUrls', 'itemImages', 'options', 'splitItemBundles', 'accessKey', 'orderId'],
 
     components: {
         'feedback-order-form': FeedbackOrderForm,
         'feedback-order-item': FeedbackOrderItem
     },
+    props: ['variations', 'items', 'itemUrls', 'itemImages', 'options', 'splitItemBundles', 'accessKey', 'orderId'],
 
     data()
     {

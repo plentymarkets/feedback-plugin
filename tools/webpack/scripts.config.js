@@ -42,7 +42,8 @@ module.exports = env =>
             }),
             new ESLintPlugin({
                 extensions: ['js', 'vue'],
-                context: path.resolve(__dirname, "..", "..", "resources/js/src/")
+                context: path.resolve(__dirname, "..", "..", "resources/js/src/"),
+                fix: true
             }),
             new WebpackRequireFrom({
                 replaceSrcMethodName: "__loadPluginChunk"

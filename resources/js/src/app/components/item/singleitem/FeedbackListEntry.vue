@@ -1,98 +1,146 @@
 <template>
-    <div class="feedback clearfix" :class="{'loading':isLoading}">
-        <div class="feedback-options" v-if="!editableFeedback && showControls">
-            <span class="btn-sm btn-danger"
-                  v-tooltip
-                  data-toggle="tooltip"
-                  data-placement="top"
-                  :data-original-title="$translate('Feedback::Feedback.moderationMessage')"
-            v-if="!feedback.isVisible">
-            <i class="fa fa-eye-slash"></i>
-            </span>
+  <div
+    class="feedback clearfix"
+    :class="{'loading':isLoading}"
+  >
+    <div
+      v-if="!editableFeedback && showControls"
+      class="feedback-options"
+    >
+      <span
+        v-if="!feedback.isVisible"
+        v-tooltip
+        class="btn-sm btn-danger"
+        data-toggle="tooltip"
+        data-placement="top"
+        :data-original-title="$translate('Feedback::Feedback.moderationMessage')"
+      >
+        <i class="fa fa-eye-slash" />
+      </span>
 
-            <span class="btn btn-sm btn-danger"
-                  v-if="authenticatedUser.isLoggedIn"
-                  ref="editButton"
-                  v-tooltip
-                  data-toggle="tooltip"
-                  data-placement="top"
-                  :data-original-title="isReply ? $translate('Feedback::Feedback.editReply') : $translate('Feedback::Feedback.editReview')"
-            @click="editFeedback()">
-            <i class="fa fa-pencil"></i>
-            </span>
+      <span
+        v-if="authenticatedUser.isLoggedIn"
+        ref="editButton"
+        v-tooltip
+        class="btn btn-sm btn-danger"
+        data-toggle="tooltip"
+        data-placement="top"
+        :data-original-title="isReply ? $translate('Feedback::Feedback.editReply') : $translate('Feedback::Feedback.editReview')"
+        @click="editFeedback()"
+      >
+        <i class="fa fa-pencil" />
+      </span>
 
-            <span class="btn btn-sm btn-danger"
-                  v-if="authenticatedUser.isLoggedIn"
-                  v-tooltip
-                  data-toggle="tooltip"
-                  data-placement="top"
-                  :data-original-title="isReply ? $translate('Feedback::Feedback.deleteReply') : $translate('Feedback::Feedback.deleteReview')"
-            @click="showDeleteConfirmation()">
-            <i class="fa fa-trash-o"></i>
-            </span>
-        </div>
-
-        <feedback-comment
-            v-if="!editableFeedback"
-            :feedback="feedback"
-            :item-attributes="itemAttributes"
-            :authenticated-user="authenticatedUser"
-            :is-reply="isReply"
-            :show-controls="showControls"
-            @delete="$emit('delete', $event)"
-            :classes="classes"
-            :styles="styles"
-            :options="options">
-        </feedback-comment>
-
-        <div v-if="!!editableFeedback && isReply">
-            <div class="form-group">
-                <textarea class="form-control"
-                          rows="3"
-                          :placeholder="$translate('Feedback::Feedback.replyMessage')"
-                v-model="editableFeedback.message">
-                </textarea>
-            </div>
-            <button class="btn btn-primary btn-appearance" @click="saveEditableFeedback()">{{ $translate("Feedback::Feedback.editReply") }}</button>
-            <button class="btn btn-secondary feedback-edit-cancel" @click="editableFeedback = null">{{ $translate("Feedback::Feedback.cancel") }}</button>
-        </div>
-
-        <div v-if="!!editableFeedback && !isReply">
-            {% set uid = uid() %}
-            <div class="stars">
-                <template v-for="i in 5">
-                    <input :class="'star star-' + i" :id="'star-' + _uid  + '-' + i" type="radio" :value="i" name="ratingValue" v-model="editableFeedback.ratingValue">
-                    <label :class="'star star-' + i" :for="'star-' + _uid + '-' + i"></label>
-                </template>
-            </div>
-            <div class="form-group">
-                <input type="text"
-                       class="form-control"
-                       name="title"
-                       v-model="editableFeedback.title"
-                       :placeholder="$translate('Feedback::Feedback.title')"
-                required>
-            </div>
-            <div class="form-group">
-                <textarea class="form-control"
-                          name="message" rows="3"
-                          :placeholder="$translate('Feedback::Feedback.title')"
-                v-model="editableFeedback.message"></textarea>
-            </div>
-
-            <button class="btn btn-primary btn-appearance" @click="saveEditableFeedback()">{{ $translate("Feedback::Feedback.editReview") }}</button>
-            <button class="btn btn-secondary feedback-edit-cancel" @click="editableFeedback = null">{{ $translate("Feedback::Feedback.cancel") }}</button>
-        </div>
+      <span
+        v-if="authenticatedUser.isLoggedIn"
+        v-tooltip
+        class="btn btn-sm btn-danger"
+        data-toggle="tooltip"
+        data-placement="top"
+        :data-original-title="isReply ? $translate('Feedback::Feedback.deleteReply') : $translate('Feedback::Feedback.deleteReview')"
+        @click="showDeleteConfirmation()"
+      >
+        <i class="fa fa-trash-o" />
+      </span>
     </div>
+
+    <feedback-comment
+      v-if="!editableFeedback"
+      :feedback="feedback"
+      :item-attributes="itemAttributes"
+      :authenticated-user="authenticatedUser"
+      :is-reply="isReply"
+      :show-controls="showControls"
+      :classes="classes"
+      :styles="styles"
+      :options="options"
+      @delete="$emit('delete', $event)"
+    />
+
+    <div v-if="!!editableFeedback && isReply">
+      <div class="form-group">
+        <textarea
+          v-model="editableFeedback.message"
+          class="form-control"
+          rows="3"
+          :placeholder="$translate('Feedback::Feedback.replyMessage')"
+        />
+      </div>
+      <button
+        class="btn btn-primary btn-appearance"
+        @click="saveEditableFeedback()"
+      >
+        {{ $translate("Feedback::Feedback.editReply") }}
+      </button>
+      <button
+        class="btn btn-secondary feedback-edit-cancel"
+        @click="editableFeedback = null"
+      >
+        {{ $translate("Feedback::Feedback.cancel") }}
+      </button>
+    </div>
+
+    <div v-if="!!editableFeedback && !isReply">
+      {% set uid = uid() %}
+      <div class="stars">
+        <template v-for="i in 5">
+          <input
+            :id="'star-' + _uid + '-' + i"
+            v-model="editableFeedback.ratingValue"
+            :class="'star star-' + i"
+            type="radio"
+            :value="i"
+            name="ratingValue"
+          >
+          <label
+            :class="'star star-' + i"
+            :for="'star-' + _uid + '-' + i"
+          />
+        </template>
+      </div>
+      <div class="form-group">
+        <input
+          v-model="editableFeedback.title"
+          type="text"
+          class="form-control"
+          name="title"
+          :placeholder="$translate('Feedback::Feedback.title')"
+          required
+        >
+      </div>
+      <div class="form-group">
+        <textarea
+          v-model="editableFeedback.message"
+          class="form-control"
+          name="message"
+          rows="3"
+          :placeholder="$translate('Feedback::Feedback.title')"
+        />
+      </div>
+
+      <button
+        class="btn btn-primary btn-appearance"
+        @click="saveEditableFeedback()"
+      >
+        {{ $translate("Feedback::Feedback.editReview") }}
+      </button>
+      <button
+        class="btn btn-secondary feedback-edit-cancel"
+        @click="editableFeedback = null"
+      >
+        {{ $translate("Feedback::Feedback.cancel") }}
+      </button>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-    props: ['feedback', 'authenticatedUser', 'itemAttributes', 'isReply', 'showControls', 'classes', 'styles', 'options'],
-    name: 'feedback-list-entry',
+    name: 'FeedbackListEntry',
     components: {
         'feedback-comment': () => import("./FeedbackComment.vue")
     },
+    props: ['feedback', 'authenticatedUser', 'itemAttributes', 'isReply', 'showControls', 'classes', 'styles', 'options'],
 
     data()
     {

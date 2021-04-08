@@ -1,32 +1,50 @@
 <template>
-    <div v-if="showEmptyRatings || counts.averageValue > 0">
-        <div class="feedback-stars-average" v-bind:class="size">
-            <div class="feedback-stars-background clearfix">
-                <div class="feedback-star" v-for="index in 5">
-                    <i class="fa fa-star"></i>
-                </div>
-            </div>
-            <div class="feedback-stars-overlay-wrap" :style="{width:fill}">
-                <div class="feedback-stars-overlay clearfix">
-                    <div class="feedback-star" v-for="index in 5">
-                        <i class="fa fa-star"></i>
-                    </div>
-                </div
-            </div>
+  <div v-if="showEmptyRatings || counts.averageValue > 0">
+    <div
+      class="feedback-stars-average"
+      :class="size"
+    >
+      <div class="feedback-stars-background clearfix">
+        <div
+          v-for="index in 5"
+          class="feedback-star"
+        >
+          <i class="fa fa-star" />
         </div>
-        <span v-if="showRatingsAmount" :class="size"><a v-on:click.prevent="scrollTo" href="#">({{ counts.ratingsCountTotal }})</a></span>
+      </div>
+      <div
+        class="feedback-stars-overlay-wrap"
+        :style="{width:fill}"
+      >
+        <div class="feedback-stars-overlay clearfix">
+          <div
+            v-for="index in 5"
+            class="feedback-star"
+          >
+            <i class="fa fa-star" />
+          </div>
+        </div>
+      </div>
+      <span
+        v-if="showRatingsAmount"
+        :class="size"
+      ><a
+        href="#"
+        @click.prevent="scrollTo"
+      >({{ counts.ratingsCountTotal }})</a></span>
     </div>
+  </div>
 </template>
 
 <script>
 export default {
-    props: ['showEmptyRatings', 'sizeOfStars', 'showRatingsAmount'],
 
     inject: {
         itemId: {
           default: null
         }
     },
+    props: ['showEmptyRatings', 'sizeOfStars', 'showRatingsAmount'],
 
     data() {
         return {
@@ -34,6 +52,18 @@ export default {
               'averageValue': 0,
               'ratingsCountTotal': 0
             }
+        }
+    },
+
+    computed: {
+        fill() {
+            let fillValue = (this.counts.averageValue * 100) / 5;
+            fillValue += "%";
+            return fillValue;
+        },
+
+        size() {
+            return this.sizeOfStars.indexOf("-stars") !== -1 ? this.sizeOfStars : this.sizeOfStars + "-stars";
         }
     },
 
@@ -71,6 +101,7 @@ export default {
             const headerMargin = document.querySelector("#vue-app").offsetTop;
 
             if (targetElement)
+
             {
                 while (!(targetElement.clientHeight && targetElement.classList.contains("widget")) && !!targetElement.parentElement)
                 {
@@ -89,18 +120,6 @@ export default {
                     );
                 }
             }
-        }
-    },
-
-    computed: {
-        fill() {
-            let fillValue = (this.counts.averageValue * 100) / 5;
-            fillValue += "%";
-            return fillValue;
-        },
-
-        size() {
-            return this.sizeOfStars.indexOf("-stars") !== -1 ? this.sizeOfStars : this.sizeOfStars + "-stars";
         }
     }
 }

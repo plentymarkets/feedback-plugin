@@ -1,92 +1,144 @@
 <template>
-    <div>
-        <div class="createFeedback" v-if="authenticatedUser.isLoggedIn || options.allowGuestFeedbacks">
-            <div class="stars">
-                <input v-model="feedback.ratingValue"
-                       v-for="i in 5"
-                       :class="'star star-' + i"
-                       :id="'star-' + i + _uid"
-                       type="radio"
-                       :value="i "
-                       :name="'ratingValue' + _uid"/>
-                <label v-for="i in 5" :class="'star star-' + i" :for="'star-' + i + _uid"></label>
-            </div>
+  <div>
+    <div
+      v-if="authenticatedUser.isLoggedIn || options.allowGuestFeedbacks"
+      class="createFeedback"
+    >
+      <div class="stars">
+        <input
+          v-for="i in 5"
+          :id="'star-' + i + _uid"
+          v-model="feedback.ratingValue"
+          :class="'star star-' + i"
+          type="radio"
+          :value="i "
+          :name="'ratingValue' + _uid"
+        >
+        <label
+          v-for="i in 5"
+          :class="'star star-' + i"
+          :for="'star-' + i + _uid"
+        />
+      </div>
 
-            <p v-if="ratingMissing && !options.allowNoRatingFeedback" class="feedback-error alert alert-danger">
-                {{ $translate("Feedback::Feedback.ratingRequired") }}
-            </p>
+      <p
+        v-if="ratingMissing && !options.allowNoRatingFeedback"
+        class="feedback-error alert alert-danger"
+      >
+        {{ $translate("Feedback::Feedback.ratingRequired") }}
+      </p>
 
-            <div class="form-group" v-if="!authenticatedUser.isLoggedIn && options.allowGuestFeedbacks">
-                <input type="text"
-                       v-model="feedback.authorName"
-                       class="form-control"
-                       id="author"
-                       name="author"
-                       :placeholder="$translate('Feedback::Feedback.authorName')"
-                :disabled="authenticatedUser.limitReached || !authenticatedUser.hasPurchased">
+      <div
+        v-if="!authenticatedUser.isLoggedIn && options.allowGuestFeedbacks"
+        class="form-group"
+      >
+        <input
+          id="author"
+          v-model="feedback.authorName"
+          type="text"
+          class="form-control"
+          name="author"
+          :placeholder="$translate('Feedback::Feedback.authorName')"
+          :disabled="authenticatedUser.limitReached || !authenticatedUser.hasPurchased"
+        >
 
-                <input type="text"
-                       v-model="feedback.honeypot"
-                       class="form-control"
-                       id="feedback-textfield"
-                       name="feedback-textfield">
-            </div>
+        <input
+          id="feedback-textfield"
+          v-model="feedback.honeypot"
+          type="text"
+          class="form-control"
+          name="feedback-textfield"
+        >
+      </div>
 
-            <div class="form-group">
-                <input type="text"
-                       v-model="feedback.title"
-                       class="form-control"
-                       :class="{'is-invalid': titleMissing}"
-                       id="title"
-                       name="title"
-                       :placeholder="$translate('Feedback::Feedback.title')"
-                :disabled="authenticatedUser.limitReached || !authenticatedUser.hasPurchased">
+      <div class="form-group">
+        <input
+          id="title"
+          v-model="feedback.title"
+          type="text"
+          class="form-control"
+          :class="{'is-invalid': titleMissing}"
+          name="title"
+          :placeholder="$translate('Feedback::Feedback.title')"
+          :disabled="authenticatedUser.limitReached || !authenticatedUser.hasPurchased"
+        >
 
-                <div class="invalid-feedback">{{ $translate("Feedback::Feedback.titleRequired") }}</div>
-            </div>
-
-            <div class="form-group">
-                <textarea class="form-control"
-                          v-model="feedback.message"
-                          id="message"
-                          name="message"
-                          rows="3"
-                          :placeholder="$translate('Feedback::Feedback.reviewMessage')"
-                :disabled="authenticatedUser.limitReached || !authenticatedUser.hasPurchased"></textarea>
-            </div>
-
-            <div class="feedback-tooltip-wrapper"
-                 v-if="authenticatedUser.limitReached"
-                 v-tooltip
-                 data-toggle="tooltip"
-                 data-placement="top"
-                 :data-original-title="$translate('Feedback::Feedback.maximumNumberOfFeedbacksReached')" >
-            <button class="btn btn-primary btn-appearance" disabled>{{ $translate("Feedback::Feedback.submitReview") }}</button>
-            </div>
-
-            <div class="feedback-tooltip-wrapper"
-                 v-else-if="!authenticatedUser.hasPurchased"
-                 v-tooltip
-                 data-toggle="tooltip"
-                 data-placement="top"
-                 :data-original-title="$translate('Feedback::Feedback.errorDoesntOwnProduct')" >
-                <button class="btn btn-primary btn-appearance" disabled>{{ $translate("Feedback::Feedback.submitReview") }}</button>
-            </div>
-            <button v-else class="btn btn-primary btn-appearance" @click="createFeedback()" :disabled="isLoading">
-                {{ $translate("Feedback::Feedback.submitReview") }}
-            </button>
+        <div class="invalid-feedback">
+          {{ $translate("Feedback::Feedback.titleRequired") }}
         </div>
-        <div v-else>
-            <div class="alert alert-info">
-                {{ $translate("Feedback::Feedback.logInCustomerReviews") }}
-            </div>
+      </div>
 
-            <a class="btn btn-primary btn-appearance" data-toggle="modal" href="#login" @click="createLoginModal()">
-                <span>{{ $translate("Feedback::Feedback.login") }}</span>
-                <i class="fa fa-user" aria-hidden="true"></i>
-            </a>
-        </div>
+      <div class="form-group">
+        <textarea
+          id="message"
+          v-model="feedback.message"
+          class="form-control"
+          name="message"
+          rows="3"
+          :placeholder="$translate('Feedback::Feedback.reviewMessage')"
+          :disabled="authenticatedUser.limitReached || !authenticatedUser.hasPurchased"
+        />
+      </div>
+
+      <div
+        v-if="authenticatedUser.limitReached"
+        v-tooltip
+        class="feedback-tooltip-wrapper"
+        data-toggle="tooltip"
+        data-placement="top"
+        :data-original-title="$translate('Feedback::Feedback.maximumNumberOfFeedbacksReached')"
+      >
+        <button
+          class="btn btn-primary btn-appearance"
+          disabled
+        >
+          {{ $translate("Feedback::Feedback.submitReview") }}
+        </button>
+      </div>
+
+      <div
+        v-else-if="!authenticatedUser.hasPurchased"
+        v-tooltip
+        class="feedback-tooltip-wrapper"
+        data-toggle="tooltip"
+        data-placement="top"
+        :data-original-title="$translate('Feedback::Feedback.errorDoesntOwnProduct')"
+      >
+        <button
+          class="btn btn-primary btn-appearance"
+          disabled
+        >
+          {{ $translate("Feedback::Feedback.submitReview") }}
+        </button>
+      </div>
+      <button
+        v-else
+        class="btn btn-primary btn-appearance"
+        :disabled="isLoading"
+        @click="createFeedback()"
+      >
+        {{ $translate("Feedback::Feedback.submitReview") }}
+      </button>
     </div>
+    <div v-else>
+      <div class="alert alert-info">
+        {{ $translate("Feedback::Feedback.logInCustomerReviews") }}
+      </div>
+
+      <a
+        class="btn btn-primary btn-appearance"
+        data-toggle="modal"
+        href="#login"
+        @click="createLoginModal()"
+      >
+        <span>{{ $translate("Feedback::Feedback.login") }}</span>
+        <i
+          class="fa fa-user"
+          aria-hidden="true"
+        />
+      </a>
+    </div>
+  </div>
 </template>
 
 <script>

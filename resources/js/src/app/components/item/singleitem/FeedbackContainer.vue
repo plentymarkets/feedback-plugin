@@ -1,143 +1,230 @@
 <template>
-    <section class="feedback-container">
-        <div class="title">
-            {{ $translate("Feedback::Feedback.customerReviews") }}
-            <small class="feedback-average-count"> ({{ counts.ratingsCountTotal }})</small>
+  <section class="feedback-container">
+    <div class="title">
+      {{ $translate("Feedback::Feedback.customerReviews") }}
+      <small class="feedback-average-count"> ({{ counts.ratingsCountTotal }})</small>
+    </div>
+    <div class="feedback-stars-average">
+      <div class="feedback-stars-background clearfix">
+        <div
+          v-for="index in 5"
+          class="feedback-star"
+        >
+          <i class="fa fa-star" />
         </div>
-        <div class="feedback-stars-average">
-            <div class="feedback-stars-background clearfix">
-                <div v-for="index in 5" class="feedback-star">
-                    <i class="fa fa-star"></i>
-                </div>
-            </div>
-            <div class="feedback-stars-overlay-wrap" :style="{ width: ((counts.averageValue * 100) / 5) + '%' }">
-                <div class="feedback-stars-overlay clearfix">
-                    <div v-for="index in 5" class="feedback-star">
-                        <i class="fa fa-star"></i>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <div
+        class="feedback-stars-overlay-wrap"
+        :style="{ width: ((counts.averageValue * 100) / 5) + '%' }"
+      >
+        <div class="feedback-stars-overlay clearfix">
+          <div
+            v-for="index in 5"
+            class="feedback-star"
+          >
+            <i class="fa fa-star" />
+          </div>
         </div>
-        <hr>
-        <div class="row my-2" :class="classes" :style="styles">
-            <div class="col-sm-6">
-                <div class="feedback-bars">
-                    <div class="feedback-bar-wrap">
-                        <p class="feedback-bar-text-before">5 <i class="fa fa-star"></i></p>
-                        <div class="feedback-bar">
-                            <div class="feedback-bar-fill bg-primary bg-appearance" :style="{ width: (counts.ratingsCountOf5 / counts.highestCount * 100) + '%' }"></div>
-                        </div>
-                        <p class="feedback-bar-text-after">{{ counts.ratingsCountOf5 }}</p>
-                    </div>
-
-                    <div class="feedback-bar-wrap">
-                        <p class="feedback-bar-text-before">4 <i class="fa fa-star"></i></p>
-                        <div class="feedback-bar">
-                            <div class="feedback-bar-fill bg-primary bg-appearance" :style="{ width: (counts.ratingsCountOf4 / counts.highestCount * 100) + '%' }"></div>
-                        </div>
-                        <p class="feedback-bar-text-after">{{ counts.ratingsCountOf4 }}</p>
-                    </div>
-
-                    <div class="feedback-bar-wrap">
-                        <p class="feedback-bar-text-before">3 <i class="fa fa-star"></i></p>
-                        <div class="feedback-bar">
-                            <div class="feedback-bar-fill bg-primary bg-appearance" :style="{ width: (counts.ratingsCountOf3 / counts.highestCount * 100) + '%' }"></div>
-                        </div>
-                        <p class="feedback-bar-text-after">{{ counts.ratingsCountOf3 }}</p>
-                    </div>
-
-                    <div class="feedback-bar-wrap">
-                        <p class="feedback-bar-text-before">2 <i class="fa fa-star"></i></p>
-                        <div class="feedback-bar">
-                            <div class="feedback-bar-fill bg-primary bg-appearance" :style="{ width: (counts.ratingsCountOf2 / counts.highestCount * 100) + '%' }"></div>
-                        </div>
-                        <p class="feedback-bar-text-after">{{ counts.ratingsCountOf2 }}</p>
-                    </div>
-
-                    <div class="feedback-bar-wrap">
-                        <p class="feedback-bar-text-before">1 <i class="fa fa-star"></i></p>
-                        <div class="feedback-bar">
-                            <div class="feedback-bar-fill bg-primary bg-appearance" :style="{ width: (counts.ratingsCountOf1 / counts.highestCount * 100) + '%' }"></div>
-                        </div>
-                        <p class="feedback-bar-text-after">{{ counts.ratingsCountOf1 }}</p>
-                    </div>
-                </div>
+      </div>
+    </div>
+    <hr>
+    <div
+      class="row my-2"
+      :class="classes"
+      :style="styles"
+    >
+      <div class="col-sm-6">
+        <div class="feedback-bars">
+          <div class="feedback-bar-wrap">
+            <p class="feedback-bar-text-before">
+              5 <i class="fa fa-star" />
+            </p>
+            <div class="feedback-bar">
+              <div
+                class="feedback-bar-fill bg-primary bg-appearance"
+                :style="{ width: (counts.ratingsCountOf5 / counts.highestCount * 100) + '%' }"
+              />
             </div>
+            <p class="feedback-bar-text-after">
+              {{ counts.ratingsCountOf5 }}
+            </p>
+          </div>
 
-            <div class="col-sm-6">
-                <feedback-form
-                    v-if="!isLoading"
-                    :variation-id="variationId"
-                    :authenticated-user="authenticatedUser"
-                    :options="optionsForm"
-                    @feedback-added="onFeedbackAdded($event)">
-                </feedback-form>
+          <div class="feedback-bar-wrap">
+            <p class="feedback-bar-text-before">
+              4 <i class="fa fa-star" />
+            </p>
+            <div class="feedback-bar">
+              <div
+                class="feedback-bar-fill bg-primary bg-appearance"
+                :style="{ width: (counts.ratingsCountOf4 / counts.highestCount * 100) + '%' }"
+              />
             </div>
+            <p class="feedback-bar-text-after">
+              {{ counts.ratingsCountOf4 }}
+            </p>
+          </div>
+
+          <div class="feedback-bar-wrap">
+            <p class="feedback-bar-text-before">
+              3 <i class="fa fa-star" />
+            </p>
+            <div class="feedback-bar">
+              <div
+                class="feedback-bar-fill bg-primary bg-appearance"
+                :style="{ width: (counts.ratingsCountOf3 / counts.highestCount * 100) + '%' }"
+              />
+            </div>
+            <p class="feedback-bar-text-after">
+              {{ counts.ratingsCountOf3 }}
+            </p>
+          </div>
+
+          <div class="feedback-bar-wrap">
+            <p class="feedback-bar-text-before">
+              2 <i class="fa fa-star" />
+            </p>
+            <div class="feedback-bar">
+              <div
+                class="feedback-bar-fill bg-primary bg-appearance"
+                :style="{ width: (counts.ratingsCountOf2 / counts.highestCount * 100) + '%' }"
+              />
+            </div>
+            <p class="feedback-bar-text-after">
+              {{ counts.ratingsCountOf2 }}
+            </p>
+          </div>
+
+          <div class="feedback-bar-wrap">
+            <p class="feedback-bar-text-before">
+              1 <i class="fa fa-star" />
+            </p>
+            <div class="feedback-bar">
+              <div
+                class="feedback-bar-fill bg-primary bg-appearance"
+                :style="{ width: (counts.ratingsCountOf1 / counts.highestCount * 100) + '%' }"
+              />
+            </div>
+            <p class="feedback-bar-text-after">
+              {{ counts.ratingsCountOf1 }}
+            </p>
+          </div>
         </div>
+      </div>
 
-        <hr>
+      <div class="col-sm-6">
+        <feedback-form
+          v-if="!isLoading"
+          :variation-id="variationId"
+          :authenticated-user="authenticatedUser"
+          :options="optionsForm"
+          @feedback-added="onFeedbackAdded($event)"
+        />
+      </div>
+    </div>
 
-        <feedback-list
-            :feedbacks="authenticatedUser.feedbacks"
-            :is-last-page="true"
-            :authenticated-user="authenticatedUser"
-            :item-attributes="itemAttributes"
-            @delete="showDeleteConfirmation($event)"
-            :show-controls="true"
-            :classes="classes"
-            :styles="styles"
-            :options="optionsList">
-        </feedback-list>
+    <hr>
 
-        <feedback-list
-            :feedbacks="feedbacks"
-            :is-last-page="isLastPage"
-            :authenticated-user="authenticatedUser"
-            :item-attributes="itemAttributes"
-            @load-more="loadFeedbacks()"
-            @delete="showDeleteConfirmation($event)"
-            :show-controls="false"
-            :classes="classes"
-            :styles="styles"
-            :options="optionsList">
-        </feedback-list>
+    <feedback-list
+      :feedbacks="authenticatedUser.feedbacks"
+      :is-last-page="true"
+      :authenticated-user="authenticatedUser"
+      :item-attributes="itemAttributes"
+      :show-controls="true"
+      :classes="classes"
+      :styles="styles"
+      :options="optionsList"
+      @delete="showDeleteConfirmation($event)"
+    />
 
-        <p class="loading-hint" v-if="isLoading">{{ $translate("Feedback::Feedback.loadingFeedbacks") }}</p>
+    <feedback-list
+      :feedbacks="feedbacks"
+      :is-last-page="isLastPage"
+      :authenticated-user="authenticatedUser"
+      :item-attributes="itemAttributes"
+      :show-controls="false"
+      :classes="classes"
+      :styles="styles"
+      :options="optionsList"
+      @load-more="loadFeedbacks()"
+      @delete="showDeleteConfirmation($event)"
+    />
 
-        <!-- Modal -->
-        <div class="modal fade"
-             ref="confirmDeleteModal"
-             tabindex="-1"
-             role="dialog"
-             :aria-labelledby="'feedbackConfirmDeleteLabel-' + _uid"
-             aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
+    <p
+      v-if="isLoading"
+      class="loading-hint"
+    >
+      {{ $translate("Feedback::Feedback.loadingFeedbacks") }}
+    </p>
 
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+    <!-- Modal -->
+    <div
+      ref="confirmDeleteModal"
+      class="modal fade"
+      tabindex="-1"
+      role="dialog"
+      :aria-labelledby="'feedbackConfirmDeleteLabel-' + _uid"
+      aria-hidden="true"
+    >
+      <div
+        class="modal-dialog"
+        role="document"
+      >
+        <div class="modal-content">
+          <div class="modal-header">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
 
-                        <span class="modal-title h5" :id="'feedbackConfirmDeleteLabel-' + _uid">{{ $translate("Feedback::Feedback.deleteConfirm") }}</span>
-                    </div>
-                    <div class="modal-body">
-                        <p class="feedback-delete-confirmation" v-if="!!feedbackToDelete && feedbackToDelete.isReply">
-                            {{ $translate("Feedback::Feedback.deleteReply") }}
-                        </p>
-                        <p class="feedback-delete-confirmation" v-else>
-                            {{ $translate("Feedback::Feedback.deleteReview") }}
-                        </p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ $translate("Feedback::Feedback.cancel") }}</button>
-                        <button type="button" class="btn btn-primary btn-appearance" @click="deleteFeedback()">{{ $translate("Feedback::Feedback.yesDeleteIt") }}</button>
-                    </div>
-                </div>
-            </div>
+            <span
+              :id="'feedbackConfirmDeleteLabel-' + _uid"
+              class="modal-title h5"
+            >{{ $translate("Feedback::Feedback.deleteConfirm") }}</span>
+          </div>
+          <div class="modal-body">
+            <p
+              v-if="!!feedbackToDelete && feedbackToDelete.isReply"
+              class="feedback-delete-confirmation"
+            >
+              {{ $translate("Feedback::Feedback.deleteReply") }}
+            </p>
+            <p
+              v-else
+              class="feedback-delete-confirmation"
+            >
+              {{ $translate("Feedback::Feedback.deleteReview") }}
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              {{ $translate("Feedback::Feedback.cancel") }}
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary btn-appearance"
+              @click="deleteFeedback()"
+            >
+              {{ $translate("Feedback::Feedback.yesDeleteIt") }}
+            </button>
+          </div>
         </div>
-        <script v-if="counts.ratingsCountTotal > 0" type="application/ld+json" v-html="jsonld"></script>
-    </section>
+      </div>
+    </div>
+    <script
+      v-if="counts.ratingsCountTotal > 0"
+      type="application/ld+json"
+      v-html="jsonld"
+    />
+  </section>
 </template>
 
 <script>
@@ -145,7 +232,6 @@ import FeedbackForm from "./FeedbackForm.vue";
 import FeedbackList from "./FeedbackList.vue";
 
 export default {
-    props: ['options', 'classes', 'styles'],
 
     components: {
         'feedback-form': FeedbackForm,
@@ -157,6 +243,7 @@ export default {
             default: null
         }
     },
+    props: ['options', 'classes', 'styles'],
 
     data() {
         return {
@@ -189,6 +276,17 @@ export default {
         };
     },
 
+    computed:
+    {
+        currentVariation: function () {
+            return this.$store.getters[this.itemId + "/currentItemVariation"];
+        },
+
+        variationId: function () {
+            return this.currentVariation && this.currentVariation.variation.id;
+        }
+    },
+
     mounted() {
         if (!App.isShopBuilder) {
             var _self = this;
@@ -206,17 +304,6 @@ export default {
             });
         } else {
             this.isLoading = false;
-        }
-    },
-
-    computed:
-    {
-        currentVariation: function () {
-            return this.$store.getters[this.itemId + "/currentItemVariation"];
-        },
-
-        variationId: function () {
-            return this.currentVariation && this.currentVariation.variation.id;
         }
     },
 
