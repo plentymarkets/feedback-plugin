@@ -16,7 +16,8 @@
         "build:sass:prod": "webpack --config tools/webpack/styles.config.js --env production --progress",
         "lint": "npm run lint:js && npm run lint:sass",
         "lint:js": "eslint --ext .js,.vue resources/js/src",
-        "lint:sass": "stylelint \"resources/css/**/*.scss\""
+        "lint:sass": "stylelint \"resources/css/**/*.scss\"",
+        "prebuild": "rm -rf resources/js/dist/chunks"
     },
     "browserslist": [
         "> .25%"
@@ -56,5 +57,7 @@
         "webpack-fix-style-only-entries": "^0.6.0",
         "webpack-require-from": "^1.8.2"
     },
-    "dependencies": {}
+    "dependencies": {
+        "core-js": "^3.10.1"
+    }
 }

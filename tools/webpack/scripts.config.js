@@ -12,7 +12,7 @@ module.exports = env =>
         entry: "./resources/js/src/base.js",
         output: {
             filename: "feedback" + (env.production ? ".min" : "") + ".js",
-            chunkFilename: "chunks/feedback-[name]"+ (env.production ? ".min" : "") + ".js",
+            chunkFilename: "chunks/feedback-[contenthash]"+ (env.production ? ".min" : "") + ".js",
             path: path.resolve(__dirname, "..", "..", "resources/js/dist/")
         },
         resolve: {
