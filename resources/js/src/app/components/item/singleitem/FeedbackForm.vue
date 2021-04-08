@@ -8,6 +8,7 @@
         <input
           v-for="i in 5"
           :id="'star-' + i + _uid"
+          :key="'star_input_' + i"
           v-model="feedback.ratingValue"
           :class="'star star-' + i"
           type="radio"
@@ -16,6 +17,7 @@
         >
         <label
           v-for="i in 5"
+          :key="'star_label_' + i"
           :class="'star star-' + i"
           :for="'star-' + i + _uid"
         />

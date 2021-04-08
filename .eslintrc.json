@@ -19,6 +19,7 @@
         "App": false,
         "Vue": false,
         "vueEventHub": false,
-        "$translate": false
+        "$translate": false,
+        "__webpack_public_path__": true
     }
 }

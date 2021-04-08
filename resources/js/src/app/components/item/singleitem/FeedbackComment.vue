@@ -205,9 +205,9 @@ export default {
         .variationAttributes
         .map(function (attributeIds) {
           const targetId = _self.feedback.targetRelation.feedbackRelationTargetId
-          if (!_self.itemAttributes.hasOwnProperty(targetId) ||
-                        !_self.itemAttributes[targetId].hasOwnProperty(attributeIds.attributeId) ||
-                        !_self.itemAttributes[targetId][attributeIds.attributeId].hasOwnProperty(attributeIds.valueId)) {
+          if (!Object.prototype.hasOwnProperty.call(_self.itemAttributes, targetId) ||
+                        !Object.prototype.hasOwnProperty.call(_self.itemAttributes[targetId], attributeIds.attributeId) ||
+                        !Object.prototype.hasOwnProperty.call(_self.itemAttributes[targetId][attributeIds.attributeId], attributeIds.valueId)) {
             return null
           }
           const attribute = _self.itemAttributes[targetId][attributeIds.attributeId][attributeIds.valueId]

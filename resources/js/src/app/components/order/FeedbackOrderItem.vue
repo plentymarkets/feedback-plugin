@@ -11,6 +11,7 @@
         <template v-for="starId in starIds">
           <input
             :id="starId.id"
+            :key="'stars_input_' + starId"
             v-model="feedback.ratingValue"
             :class="starId.class"
             type="radio"
@@ -20,6 +21,7 @@
             @click="handleRating(starId.value)"
           >
           <label
+            :key="'stars_label_' + starId"
             :for="starId.id"
             class="new_star"
           >

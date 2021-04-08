@@ -8,6 +8,7 @@
       <div class="feedback-stars-background clearfix">
         <div
           v-for="index in 5"
+          :key="'feedback_stars_background' + index"
           class="feedback-star"
         >
           <i class="fa fa-star" />
@@ -20,6 +21,7 @@
         <div class="feedback-stars-overlay clearfix">
           <div
             v-for="index in 5"
+            :key="'feedback_stars_overlay_' + index"
             class="feedback-star"
           >
             <i class="fa fa-star" />
@@ -468,7 +470,7 @@ export default {
             if ((feedback.sourceRelation[0].feedbackRelationType === 'user' ||
                         feedback.sourceRelation[0].feedbackRelationType === 'contact') && feedback.sourceRelation[0].feedbackRelationSourceId > 0) {
               author = feedback.sourceRelation[0].sourceRelationLabel
-            } else if (feedback.sourceRelation[0].feedbackRelationSourceId == 0 && feedback.authorName.trim().length > 0) {
+            } else if (feedback.sourceRelation[0].feedbackRelationSourceId === '0' && feedback.authorName.trim().length > 0) {
               author = feedback.authorName
             } else {
               author = 'Anonymous'

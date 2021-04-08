@@ -86,6 +86,7 @@
         <template v-for="i in 5">
           <input
             :id="'star-' + _uid + '-' + i"
+            :key="'stars_input_' + i"
             v-model="editableFeedback.ratingValue"
             :class="'star star-' + i"
             type="radio"
@@ -93,6 +94,7 @@
             name="ratingValue"
           >
           <label
+            :key="'stars_label_' + i"
             :class="'star star-' + i"
             :for="'star-' + _uid + '-' + i"
           />

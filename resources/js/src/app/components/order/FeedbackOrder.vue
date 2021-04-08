@@ -82,8 +82,8 @@ export default {
             itemId: this.variations[key].item.id
           })
 
-          if (bundleType === 'bundle' && this.splitItemBundles < 1) // Check itemBundleSplit
-          {
+          // Check itemBundleSplit
+          if (bundleType === 'bundle' && this.splitItemBundles < 1) {
             for (let j = 0; j < this.items[i].bundleComponents.length; j++) {
               const variationId = this.items[i].bundleComponents[j].data.variation.id
 
