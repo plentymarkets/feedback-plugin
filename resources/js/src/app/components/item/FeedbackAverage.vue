@@ -1,6 +1,6 @@
 <template>
     <div v-if="showEmptyRatings || counts.averageValue > 0">
-        <div class="feedback-stars-average" :class="size">
+        <div class="feedback-stars-average" v-bind:class="size">
             <div class="feedback-stars-background clearfix">
                 <div class="feedback-star" v-for="index in 5">
                     <i class="fa fa-star"></i>
@@ -11,7 +11,7 @@
                     <div class="feedback-star" v-for="index in 5">
                         <i class="fa fa-star"></i>
                     </div>
-                </div>
+                </div
             </div>
         </div>
         <span v-if="showRatingsAmount" :class="size"><a v-on:click.prevent="scrollTo" href="#">({{ counts.ratingsCountTotal }})</a></span>

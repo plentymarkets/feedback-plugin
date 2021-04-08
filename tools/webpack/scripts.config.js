@@ -23,16 +23,6 @@ module.exports = env =>
         devtool: "source-map",
         module: {
             rules: [
-                /*{
-                    enforce: "pre",
-                    test: /\.(js)$/,
-                    exclude: /node_modules/,
-                    loader: "eslint-loader",
-                    options: {
-                        cache: true,
-                        fix: env.prod
-                    }
-                },*/
                 {
                     test: /\.vue$/,
                     loader: "vue-loader"
@@ -51,7 +41,7 @@ module.exports = env =>
                 exposeFilename: true
             }),
             new ESLintPlugin({
-                extensions: ['js'],
+                extensions: ['js', 'vue'],
                 context: path.resolve(__dirname, "..", "..", "resources/js/src/")
             }),
             new WebpackRequireFrom({

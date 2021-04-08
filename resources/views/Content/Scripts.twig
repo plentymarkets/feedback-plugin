@@ -1,4 +1,9 @@
+{% import "Ceres::PageDesign.Macros.Translations" as Translations %}
+
 <script type="text/javascript">
     window.feedbackPublicPath = "{{ plugin_path('Feedback') ~ '/js/dist/' }}"
 </script>
+
+{{ Translations.add("Feedback", "Feedback") }}
+
 <script src="{{ plugin_path('Feedback') }}/js/dist/feedback.js"></script>

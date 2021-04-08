@@ -156,17 +156,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -207,7 +196,8 @@ __webpack_require__.r(__webpack_exports__);
         allowNoRatingFeedback: this.options.allowNoRatingFeedback,
         numberOfFeedbacks: this.options.numberOfFeedbacks,
         allowGuestFeedbacks: this.options.allowGuestFeedbacks
-      }
+      },
+      jsonld: {}
     };
   },
 
@@ -217,6 +207,9 @@ __webpack_require__.r(__webpack_exports__);
 
       $.when(this.getUser(), this.getCounts(), this.loadFeedbacks()).done(function () {
         _self.isLoading = false;
+
+        _self.generateJsonLD();
+
         Vue.nextTick(function () {
           // DOM updated
           window.dispatchEvent(new Event('resize'));
@@ -384,6 +377,50 @@ __webpack_require__.r(__webpack_exports__);
           this.counts.averageValue = average;
           this.$root.$emit('averageRecalc');
         }
+      }
+    },
+
+    generateJsonLD() {
+      if (this.counts.ratingsCountTotal > 0) {
+        var jsonld = {
+          "@context": "http://schema.org/",
+          "@type": "Product",
+          "@id": this.variationId.toString(),
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": this.counts.averageValue,
+            "reviewCount": this.counts.ratingsCountTotal
+          },
+          "review": []
+        };
+        this.feedbacks.forEach(function (feedback) {
+          var author;
+
+          if ((feedback.sourceRelation[0].feedbackRelationType === 'user' || feedback.sourceRelation[0].feedbackRelationType === 'contact') && feedback.sourceRelation[0].feedbackRelationSourceId > 0) {
+            author = feedback.sourceRelation[0].sourceRelationLabel;
+          } else if (feedback.sourceRelation[0].feedbackRelationSourceId == 0 && feedback.authorName.trim().length > 0) {
+            author = feedback.authorName;
+          } else {
+            author = "Anonymous";
+          }
+
+          var review = {
+            "@type": "Review",
+            "author": author,
+            "datePublished": feedback.createdAt,
+            "reviewBody": feedback.feedbackComment.comment.message,
+            "name": feedback.title,
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": feedback.feedbackRating.rating.ratingValue
+            }
+          };
+          jsonld["review"].push(review);
+        });
+        var script = document.createElement('script');
+        script.setAttribute('type', 'application/ld+json');
+        script.textContent = JSON.stringify(jsonld);
+        document.head.appendChild(script);
       }
     }
 
@@ -1484,17 +1521,10 @@ var render = function() {
       ),
       _vm._v(" "),
       _vm.counts.ratingsCountTotal > 0
-        ? _c("script2", { attrs: { type: "application/ld+json" } }, [
-            _vm._v(
-              '\n        {\n            "@context": "http://schema.org/",\n            "@type": "Product",\n            "@id": "' +
-                _vm._s(_vm.variationId) +
-                '",\n            "aggregateRating": {\n                "@type": "AggregateRating",\n                "ratingValue": "' +
-                _vm._s(_vm.counts.averageValue) +
-                '",\n                "reviewCount": "' +
-                _vm._s(_vm.counts.ratingsCountTotal) +
-                '"\n            }\n        }\n    '
-            )
-          ])
+        ? _c("script", {
+            attrs: { type: "application/ld+json" },
+            domProps: { innerHTML: _vm._s(_vm.jsonld) }
+          })
         : _vm._e()
     ],
     1
