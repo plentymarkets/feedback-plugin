@@ -25,20 +25,19 @@
 </template>
 
 <script>
-import FeedbackListEntry from "./FeedbackListEntry.vue";
+import FeedbackListEntry from './FeedbackListEntry.vue'
 
 export default {
 
-    components: {
-        'feedback-list-entry': FeedbackListEntry
-    },
-    props: ['feedbacks', 'isLastPage', 'authenticatedUser', 'itemAttributes', 'showControls', 'classes', 'styles', 'options'],
+  components: {
+    'feedback-list-entry': FeedbackListEntry
+  },
+  props: ['feedbacks', 'isLastPage', 'authenticatedUser', 'itemAttributes', 'showControls', 'classes', 'styles', 'options'],
 
-    methods: {
-        onLoadMoreClicked()
-        {
-            this.$emit('load-more');
-        }
+  methods: {
+    onLoadMoreClicked () {
+      this.$emit('load-more')
     }
+  }
 }
 </script>

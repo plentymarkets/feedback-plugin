@@ -143,89 +143,80 @@
 
 <script>
 export default {
-    props: ['variationId', 'authenticatedUser', 'options'],
+  props: ['variationId', 'authenticatedUser', 'options'],
 
-    data()
-    {
-        return {
-            feedback: {
-                ratingValue: 0,
-                authorName: "",
-                title: "",
-                message: "",
-                type: 'review',
-                targetId: this.variationId,
-                honeypot: ""
-            },
-            isLoading: false,
-            titleMissing: false,
-            ratingMissing: false
-        };
+  data () {
+    return {
+      feedback: {
+        ratingValue: 0,
+        authorName: '',
+        title: '',
+        message: '',
+        type: 'review',
+        targetId: this.variationId,
+        honeypot: ''
+      },
+      isLoading: false,
+      titleMissing: false,
+      ratingMissing: false
+    }
+  },
+
+  methods: {
+    createFeedback () {
+      if (this.isLoading) {
+        return
+      }
+
+      if (this.feedback.honeypot.length > 0) {
+        return
+      }
+
+      if (!this.options.allowNoRatingFeedback && this.feedback.ratingValue <= 0) {
+        this.ratingMissing = true
+        return
+      }
+
+      if (!this.feedback.title) {
+        this.titleMissing = true
+        return
+      }
+
+      this.isLoading = true
+
+      this.feedback.options = this.options
+
+      const _self = this
+      $.ajax({
+        type: 'POST',
+        url: '/rest/feedbacks/feedback/create',
+        data: this.feedback,
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+        dataType: 'json',
+        xhrFields: {
+          withCredentials: true
+        },
+        success: function (data) {
+          _self.$emit('feedback-added', data)
+          _self.isLoading = false
+          _self.feedback.authorName = ''
+          _self.feedback.message = ''
+          _self.feedback.title = ''
+          _self.feedback.ratingValue = 0
+          _self.titleMissing = false
+          _self.ratingMissing = false
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          console.error(errorThrown)
+          _self.isLoading = false
+        }
+      })
     },
 
-    methods: {
-        createFeedback()
-        {
-            if( this.isLoading )
-            {
-                return;
-            }
-
-            if(this.feedback.honeypot.length > 0)
-            {
-                return;
-            }
-
-            if ( !this.options.allowNoRatingFeedback && this.feedback.ratingValue <= 0 )
-            {
-                this.ratingMissing = true;
-                return;
-            }
-
-            if ( !this.feedback.title )
-            {
-                this.titleMissing = true;
-                return;
-            }
-
-            this.isLoading = true;
-
-            this.feedback.options = this.options;
-
-            var _self = this;
-            $.ajax({
-                type: 'POST',
-                url: '/rest/feedbacks/feedback/create',
-                data: this.feedback,
-                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                dataType: 'json',
-                xhrFields: {
-                    withCredentials: true
-                },
-                success: function(data)
-                {
-                    _self.$emit('feedback-added', data);
-                    _self.isLoading = false;
-                    _self.feedback['authorName'] = '';
-                    _self.feedback['message'] = '';
-                    _self.feedback['title'] = '';
-                    _self.feedback['ratingValue'] = 0;
-                    _self.titleMissing = false;
-                    _self.ratingMissing = false;
-                },
-                error: function (jqXHR, textStatus, errorThrown)
-                {
-                    console.error(errorThrown);
-                    _self.isLoading = false;
-                }
-            });
-        },
-
-        createLoginModal()
-        {
-            this.$store.dispatch("loadComponent", "login-modal");
-        }
+    createLoginModal () {
+      this.$store.dispatch('loadComponent', 'login-modal')
     }
+  }
 }
 
 </script>

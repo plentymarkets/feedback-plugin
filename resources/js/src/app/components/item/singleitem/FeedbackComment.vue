@@ -15,6 +15,7 @@
       >
         <i
           v-for="i in 5"
+          :key="'feedback_rating_' + i"
           class="fa fa-star"
           :class="{full: feedback.feedbackRating.rating.ratingValue >= i, empty: feedback.feedbackRating.rating.ratingValue < i }"
         />
@@ -30,7 +31,8 @@
           </span>
 
           <span
-            v-for="variationAttribute in variationAttributes"
+            v-for="(variationAttribute, index) in variationAttributes"
+            :key="'feedback_attributes_' + index"
             class="feedback-attributes"
           >
             {{ variationAttribute.name }}: {{ variationAttribute.value }}
@@ -169,140 +171,125 @@
 </template>
 
 <script>
-import FeedbackListEntry from "./FeedbackListEntry.vue";
+import FeedbackListEntry from './FeedbackListEntry.vue'
 
 export default {
-    name: 'FeedbackComment',
-    components: {
-        'feedback-list-entry': FeedbackListEntry
-    },
-    props: ['feedback', 'itemAttributes', 'authenticatedUser', 'isReply', 'showControls', 'classes', 'styles', 'options'],
+  name: 'FeedbackComment',
+  components: {
+    'feedback-list-entry': FeedbackListEntry
+  },
+  props: ['feedback', 'itemAttributes', 'authenticatedUser', 'isReply', 'showControls', 'classes', 'styles', 'options'],
 
-    data()
-    {
-        return {
-            authorName: '',
-            replyMessage: '',
-            replyFormVisible: false,
-            replyListVisible: false,
-            honeypot: ''
-        };
-    },
-
-    computed: {
-        variationAttributes()
-        {
-            if ( this.feedback.targetRelation.feedbackRelationType !== 'variation'
-                || this.feedback.targetRelation.targetRelationName.length <= 0
-                || !this.feedback.targetRelation.variationAttributes
-                || !this.itemAttributes )
-            {
-                return [];
-            }
-
-            var _self = this;
-            return this.feedback
-                .targetRelation
-                .variationAttributes
-                .map(function(attributeIds) {
-                    var targetId = _self.feedback.targetRelation.feedbackRelationTargetId;
-                    if ( !_self.itemAttributes.hasOwnProperty(targetId)
-                        || !_self.itemAttributes[targetId].hasOwnProperty(attributeIds.attributeId)
-                        || !_self.itemAttributes[targetId][attributeIds.attributeId].hasOwnProperty(attributeIds.valueId) )
-                    {
-                        return null;
-                    }
-                    var attribute = _self.itemAttributes[targetId][attributeIds.attributeId][attributeIds.valueId];
-                    return {
-                        name: attribute.attributeName,
-                        value: attribute.attributeValue
-                    };
-                })
-                .filter(function(entry)
-                {
-                    return entry !== null;
-                })
-        },
-
-        displayName()
-        {
-            var rawName =  this.feedback.sourceRelation[0].sourceRelationLabel;
-
-            if(rawName !== " ") {
-                return rawName.split(" ")
-                    .map(function (namePart, index) {
-                        if (index === 0) {
-                            return namePart + " "
-                        }
-                        return namePart.substr(0, 1) + ".";
-                    })
-                    .join("");
-            } else {
-                return $translate('Feedback::Feedback.guestName');
-            }
-        },
-
-        message()
-        {
-            if ( !this.feedback.feedbackComment )
-            {
-                return "";
-            }
-            return this.feedback
-                .feedbackComment
-                .comment
-                .message.split('\n')
-                .join('<br />');
-        },
-
-        isPurchased()
-        {
-            return this.feedback
-                .sourceRelation
-                .find(function(relation)
-                {
-                    return relation.feedbackRelationType === 'orderItem';
-                });
-        }
-    },
-
-    methods: {
-        createReply()
-        {
-            if ( !this.replyMessage || this.honeypot.length > 0)
-            {
-                return;
-            }
-
-            var _self = this;
-            $.ajax({
-                type: 'POST',
-                url: '/rest/feedbacks/feedback/create',
-                data: {
-                    authorName: this.authorName,
-                    message: this.replyMessage,
-                    targetId: this.feedback.id,
-                    type: 'reply'
-                },
-                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                dataType: 'json',
-                xhrFields: {
-                    withCredentials: true
-                },
-                success: function(data)
-                {
-                    if ( !_self.feedback.replies )
-                    {
-                        _self.feedback.replies = [];
-                    }
-                    _self.feedback.replies.unshift(data);
-                    _self.replyMessage = '';
-                    _self.replyFormVisible = false;
-                    _self.replyListVisible = true;
-
-                }
-            });
-        }
+  data () {
+    return {
+      authorName: '',
+      replyMessage: '',
+      replyFormVisible: false,
+      replyListVisible: false,
+      honeypot: ''
     }
+  },
+
+  computed: {
+    variationAttributes () {
+      if (this.feedback.targetRelation.feedbackRelationType !== 'variation' ||
+                this.feedback.targetRelation.targetRelationName.length <= 0 ||
+                !this.feedback.targetRelation.variationAttributes ||
+                !this.itemAttributes) {
+        return []
+      }
+
+      const _self = this
+      return this.feedback
+        .targetRelation
+        .variationAttributes
+        .map(function (attributeIds) {
+          const targetId = _self.feedback.targetRelation.feedbackRelationTargetId
+          if (!_self.itemAttributes.hasOwnProperty(targetId) ||
+                        !_self.itemAttributes[targetId].hasOwnProperty(attributeIds.attributeId) ||
+                        !_self.itemAttributes[targetId][attributeIds.attributeId].hasOwnProperty(attributeIds.valueId)) {
+            return null
+          }
+          const attribute = _self.itemAttributes[targetId][attributeIds.attributeId][attributeIds.valueId]
+          return {
+            name: attribute.attributeName,
+            value: attribute.attributeValue
+          }
+        })
+        .filter(function (entry) {
+          return entry !== null
+        })
+    },
+
+    displayName () {
+      const rawName = this.feedback.sourceRelation[0].sourceRelationLabel
+
+      if (rawName !== ' ') {
+        return rawName.split(' ')
+          .map(function (namePart, index) {
+            if (index === 0) {
+              return namePart + ' '
+            }
+            return namePart.substr(0, 1) + '.'
+          })
+          .join('')
+      } else {
+        return $translate('Feedback::Feedback.guestName')
+      }
+    },
+
+    message () {
+      if (!this.feedback.feedbackComment) {
+        return ''
+      }
+      return this.feedback
+        .feedbackComment
+        .comment
+        .message.split('\n')
+        .join('<br />')
+    },
+
+    isPurchased () {
+      return this.feedback
+        .sourceRelation
+        .find(function (relation) {
+          return relation.feedbackRelationType === 'orderItem'
+        })
+    }
+  },
+
+  methods: {
+    createReply () {
+      if (!this.replyMessage || this.honeypot.length > 0) {
+        return
+      }
+
+      const _self = this
+      $.ajax({
+        type: 'POST',
+        url: '/rest/feedbacks/feedback/create',
+        data: {
+          authorName: this.authorName,
+          message: this.replyMessage,
+          targetId: this.feedback.id,
+          type: 'reply'
+        },
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+        dataType: 'json',
+        xhrFields: {
+          withCredentials: true
+        },
+        success: function (data) {
+          if (!_self.feedback.replies) {
+            _self.feedback.replies = []
+          }
+          _self.feedback.replies.unshift(data)
+          _self.replyMessage = ''
+          _self.replyFormVisible = false
+          _self.replyListVisible = true
+        }
+      })
+    }
+  }
 }
 </script>

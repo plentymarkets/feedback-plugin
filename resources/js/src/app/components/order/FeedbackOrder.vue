@@ -39,163 +39,148 @@
 </template>
 
 <script>
-import FeedbackOrderForm from "./FeedbackOrderForm.vue";
-import FeedbackOrderItem from "./FeedbackOrderItem.vue";
+import FeedbackOrderForm from './FeedbackOrderForm.vue'
+import FeedbackOrderItem from './FeedbackOrderItem.vue'
 
 export default {
 
-    components: {
-        'feedback-order-form': FeedbackOrderForm,
-        'feedback-order-item': FeedbackOrderItem
-    },
-    props: ['variations', 'items', 'itemUrls', 'itemImages', 'options', 'splitItemBundles', 'accessKey', 'orderId'],
+  components: {
+    'feedback-order-form': FeedbackOrderForm,
+    'feedback-order-item': FeedbackOrderItem
+  },
+  props: ['variations', 'items', 'itemUrls', 'itemImages', 'options', 'splitItemBundles', 'accessKey', 'orderId'],
 
-    data()
-    {
-        return {
-            authenticatedUser: {
-                id: 0,
-                isLoggedIn: false,
-                limitReached: {},
-                hasPurchased: {}
-            },
-            isLoading: true,
-            page: 1
-        };
-    },
-
-    computed: {
-        orderItems()
-        {
-            var aggregate = [];
-
-            for(var i = 0; i < this.items.length; i++)
-            {
-                if(this.items[i].itemVariationId > 0 && this.items[i].orderItemName.indexOf("[-]") === -1)
-                {
-                    var key = this.items[i].itemVariationId;
-
-                    var bundleType = this.variations[key].variation.bundleType;
-                    var itemName = this.items[i].orderItemName;
-
-                    aggregate.push({
-                        name: this.filterItemName(itemName, bundleType),
-                        image: this.itemImages[key],
-                        url: this.itemUrls[key],
-                        variationId: key,
-                        itemId: this.variations[key].item.id
-                    });
-
-                    if(bundleType === "bundle" && this.splitItemBundles < 1) // Check itemBundleSplit
-                    {
-                        for(var j = 0; j < this.items[i].bundleComponents.length; j++)
-                        {
-                            var variationId = this.items[i].bundleComponents[j].data.variation.id;
-
-                            aggregate.push({
-                                name: this.$options.filters.itemName(this.items[i].bundleComponents[j].data),
-                                image: this.itemImages[variationId],
-                                url: this.itemUrls[variationId],
-                                variationId: variationId,
-                                itemId: this.items[i].bundleComponents[j].data.itemId
-                            });
-                        }
-                    }
-                }
-            }
-
-            return aggregate;
-        },
-
-        pagination() {
-            var amount = this.page * this.options.itemsPerRow * this.options.rowsPerPage;
-            return this.orderItems.slice(0, amount);
-        },
-
-        trueItemsPerRow() {
-            return Math.min(this.orderItems.length, this.options.itemsPerRow);
-        }
-    },
-
-    mounted()
-    {
-        var _self = this;
-        $.when(
-            this.getUser()
-        ).done(function() {
-            _self.isLoading = false;
-            Vue.nextTick(function () {
-                // DOM updated
-                window.dispatchEvent(new Event('resize'));
-            })
-        });
-    },
-
-    methods: {
-        getUser()
-        {
-            // Get array of item and variationIds
-            var itemIds = [];
-            var variationIds = [];
-
-            for (var i = 0; i < this.orderItems.length; i++)
-            {
-                var orderItem = this.orderItems[i];
-                itemIds.push(orderItem.itemId);
-                variationIds.push(orderItem.variationId);
-            }
-            var data = {
-                "itemIds": itemIds,
-                "variationIds": variationIds,
-                "allowFeedbacksOnlyIfPurchased": false,
-                "numberOfFeedbacks": this.options.numberOfFeedbacks
-            };
-
-            if (this.orderId && this.accessKey)
-            {
-                data.orderId = this.orderId;
-                data.accessKey = this.accessKey;
-            }
-
-            var _self = this;
-            return $.ajax({
-                type:           'GET',
-                url:            '/rest/feedbacks/user',
-                data:           data,
-                success:        function(data)
-                {
-                    _self.authenticatedUser = data;
-                },
-                error:          function(jqXHR, textStatus, errorThrown)
-                {
-                    console.error(errorThrown);
-                }
-            });
-        },
-
-        nextPage()
-        {
-            var amount = this.page * this.options.itemsPerRow * this.options.rowsPerPage;
-
-            if(amount < this.orderItems.length) {
-                this.page += 1;
-            }
-        },
-
-        filterItemName(itemName, bundleType)
-        {
-            if(bundleType === "bundle")
-            {
-                return itemName.replace("[BUNDLE]", "");
-            }
-
-            if(bundleType === "bundle_item")
-            {
-                return itemName.replace("[-]", "");
-            }
-
-            return itemName;
-        }
+  data () {
+    return {
+      authenticatedUser: {
+        id: 0,
+        isLoggedIn: false,
+        limitReached: {},
+        hasPurchased: {}
+      },
+      isLoading: true,
+      page: 1
     }
+  },
+
+  computed: {
+    orderItems () {
+      const aggregate = []
+
+      for (let i = 0; i < this.items.length; i++) {
+        if (this.items[i].itemVariationId > 0 && this.items[i].orderItemName.indexOf('[-]') === -1) {
+          const key = this.items[i].itemVariationId
+
+          const bundleType = this.variations[key].variation.bundleType
+          const itemName = this.items[i].orderItemName
+
+          aggregate.push({
+            name: this.filterItemName(itemName, bundleType),
+            image: this.itemImages[key],
+            url: this.itemUrls[key],
+            variationId: key,
+            itemId: this.variations[key].item.id
+          })
+
+          if (bundleType === 'bundle' && this.splitItemBundles < 1) // Check itemBundleSplit
+          {
+            for (let j = 0; j < this.items[i].bundleComponents.length; j++) {
+              const variationId = this.items[i].bundleComponents[j].data.variation.id
+
+              aggregate.push({
+                name: this.$options.filters.itemName(this.items[i].bundleComponents[j].data),
+                image: this.itemImages[variationId],
+                url: this.itemUrls[variationId],
+                variationId: variationId,
+                itemId: this.items[i].bundleComponents[j].data.itemId
+              })
+            }
+          }
+        }
+      }
+
+      return aggregate
+    },
+
+    pagination () {
+      const amount = this.page * this.options.itemsPerRow * this.options.rowsPerPage
+      return this.orderItems.slice(0, amount)
+    },
+
+    trueItemsPerRow () {
+      return Math.min(this.orderItems.length, this.options.itemsPerRow)
+    }
+  },
+
+  mounted () {
+    const _self = this
+    $.when(
+      this.getUser()
+    ).done(function () {
+      _self.isLoading = false
+      Vue.nextTick(function () {
+        // DOM updated
+        window.dispatchEvent(new Event('resize'))
+      })
+    })
+  },
+
+  methods: {
+    getUser () {
+      // Get array of item and variationIds
+      const itemIds = []
+      const variationIds = []
+
+      for (let i = 0; i < this.orderItems.length; i++) {
+        const orderItem = this.orderItems[i]
+        itemIds.push(orderItem.itemId)
+        variationIds.push(orderItem.variationId)
+      }
+      const data = {
+        itemIds: itemIds,
+        variationIds: variationIds,
+        allowFeedbacksOnlyIfPurchased: false,
+        numberOfFeedbacks: this.options.numberOfFeedbacks
+      }
+
+      if (this.orderId && this.accessKey) {
+        data.orderId = this.orderId
+        data.accessKey = this.accessKey
+      }
+
+      const _self = this
+      return $.ajax({
+        type: 'GET',
+        url: '/rest/feedbacks/user',
+        data: data,
+        success: function (data) {
+          _self.authenticatedUser = data
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          console.error(errorThrown)
+        }
+      })
+    },
+
+    nextPage () {
+      const amount = this.page * this.options.itemsPerRow * this.options.rowsPerPage
+
+      if (amount < this.orderItems.length) {
+        this.page += 1
+      }
+    },
+
+    filterItemName (itemName, bundleType) {
+      if (bundleType === 'bundle') {
+        return itemName.replace('[BUNDLE]', '')
+      }
+
+      if (bundleType === 'bundle_item') {
+        return itemName.replace('[-]', '')
+      }
+
+      return itemName
+    }
+  }
 }
 </script>

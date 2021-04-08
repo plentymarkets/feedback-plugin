@@ -136,98 +136,86 @@
 
 <script>
 export default {
-    name: 'FeedbackListEntry',
-    components: {
-        'feedback-comment': () => import("./FeedbackComment.vue")
-    },
-    props: ['feedback', 'authenticatedUser', 'itemAttributes', 'isReply', 'showControls', 'classes', 'styles', 'options'],
+  name: 'FeedbackListEntry',
+  components: {
+    'feedback-comment': () => import('./FeedbackComment.vue')
+  },
+  props: ['feedback', 'authenticatedUser', 'itemAttributes', 'isReply', 'showControls', 'classes', 'styles', 'options'],
 
-    data()
-    {
-        return {
-            editableFeedback: null,
-            isLoading: false
-        };
-    },
-
-    methods: {
-        showDeleteConfirmation()
-        {
-            let parentFeedbackId = null;
-            if ( this.isReply )
-            {
-                parentFeedbackId = parseInt(this.feedback.targetRelation.feedbackRelationTargetId);
-            }
-            this.$emit('delete', {
-                feedbackId: this.feedback.id,
-                isReply: this.isReply,
-                parentFeedbackId: parentFeedbackId,
-                feedbackObject: this.feedback
-            });
-        },
-
-        editFeedback()
-        {
-            if ( this.editableFeedback === null )
-            {
-                $(this.$refs.editButton).tooltip('dispose');
-                this.editableFeedback = {
-                    title: "",
-                    message: this.feedback.feedbackComment.comment.message,
-                    ratingValue: -1,
-                    isReply: this.isReply
-                };
-
-                if ( !this.isReply )
-                {
-                    this.editableFeedback.title = this.feedback.title;
-                    this.editableFeedback.ratingValue = this.feedback.feedbackRating.rating.ratingValue;
-                }
-            }
-        },
-
-        saveEditableFeedback()
-        {
-            const _self = this;
-            if ( this.editableFeedback !== null )
-            {
-                const editableFeedback = this.editableFeedback;
-                const requestBody = {
-                    message: editableFeedback.message
-                };
-
-                if ( !editableFeedback.isReply )
-                {
-                    requestBody.title = editableFeedback.title;
-                    requestBody.ratingValue = editableFeedback.ratingValue;
-                }
-
-                this.isLoading = true;
-                $.ajax({
-                    type: "PUT",
-                    url: '/rest/feedbacks/feedback/update/' + this.feedback.id,
-                    data: requestBody,
-                    success: function(data)
-                    {
-                        _self.feedback.feedbackComment.comment.message = editableFeedback.message;
-                        _self.feedback.isVisible = data.isVisible;
-
-                        if ( !editableFeedback.isReply )
-                        {
-                            _self.feedback.title = editableFeedback.title;
-                            _self.feedback.feedbackRating.rating.ratingValue = editableFeedback.ratingValue;
-                        }
-                        _self.isLoading = false;
-                    },
-                    error: function(jqXHR, textStatus, errorThrown)
-                    {
-                        console.error(errorThrown);
-                        _self.isLoading = false;
-                    }
-                });
-            }
-            this.editableFeedback = null;
-        }
+  data () {
+    return {
+      editableFeedback: null,
+      isLoading: false
     }
+  },
+
+  methods: {
+    showDeleteConfirmation () {
+      let parentFeedbackId = null
+      if (this.isReply) {
+        parentFeedbackId = parseInt(this.feedback.targetRelation.feedbackRelationTargetId)
+      }
+      this.$emit('delete', {
+        feedbackId: this.feedback.id,
+        isReply: this.isReply,
+        parentFeedbackId: parentFeedbackId,
+        feedbackObject: this.feedback
+      })
+    },
+
+    editFeedback () {
+      if (this.editableFeedback === null) {
+        $(this.$refs.editButton).tooltip('dispose')
+        this.editableFeedback = {
+          title: '',
+          message: this.feedback.feedbackComment.comment.message,
+          ratingValue: -1,
+          isReply: this.isReply
+        }
+
+        if (!this.isReply) {
+          this.editableFeedback.title = this.feedback.title
+          this.editableFeedback.ratingValue = this.feedback.feedbackRating.rating.ratingValue
+        }
+      }
+    },
+
+    saveEditableFeedback () {
+      const _self = this
+      if (this.editableFeedback !== null) {
+        const editableFeedback = this.editableFeedback
+        const requestBody = {
+          message: editableFeedback.message
+        }
+
+        if (!editableFeedback.isReply) {
+          requestBody.title = editableFeedback.title
+          requestBody.ratingValue = editableFeedback.ratingValue
+        }
+
+        this.isLoading = true
+        $.ajax({
+          type: 'PUT',
+          url: '/rest/feedbacks/feedback/update/' + this.feedback.id,
+          data: requestBody,
+          success: function (data) {
+            _self.feedback.feedbackComment.comment.message = editableFeedback.message
+            _self.feedback.isVisible = data.isVisible
+
+            if (!editableFeedback.isReply) {
+              _self.feedback.title = editableFeedback.title
+              _self.feedback.feedbackRating.rating.ratingValue = editableFeedback.ratingValue
+            }
+            _self.isLoading = false
+          },
+          error: function (jqXHR, textStatus, errorThrown) {
+            console.error(errorThrown)
+            _self.isLoading = false
+          }
+        })
+      }
+      this.editableFeedback = null
+    }
+  }
 }
 </script>

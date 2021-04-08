@@ -56,66 +56,65 @@
 
 <script>
 export default {
-    props: ['item','numberOfColumns'],
+  props: ['item', 'numberOfColumns'],
 
-    data()
-    {
-        return {
-            isRated: false,
-            feedback: {
-                ratingValue: 0,
-                authorName: "",
-                title: "",
-                message: "",
-                type: 'review',
-                targetId: 0,
-                honeypot: ""
-            }
-        };
-    },
-
-    computed: {
-        starIds() {
-            var ids = [];
-            var starClass = this.isRated ? "star-rated" : "star";
-
-            for(var i = 5; i > 0; i--) {
-                ids.push(
-                    {
-                        value: i,
-                        id: "star-" + i + "-" + this.item.variationId,
-                        class: starClass
-                    }
-                );
-            }
-
-            return ids;
-        }
-    },
-
-    mounted() {
-        var _self = this;
-        vueEventHub.$on('orderItemFeedback_created', function(event) {
-            if(event.feedback.targetId === _self.item.variationId) {
-                _self.feedback = event.feedback;
-                _self.isRated = true;
-            }
-        });
-    },
-
-    methods: {
-        handleRating(value) {
-            if(!this.isRated && value > 0) {
-                this.feedback.ratingValue = value;
-            }
-
-            var _self = this;
-            vueEventHub.$emit('orderItemFeedback_showform', {
-                item: _self.item,
-                feedback: _self.feedback,
-                isRated: _self.isRated
-            });
-        }
+  data () {
+    return {
+      isRated: false,
+      feedback: {
+        ratingValue: 0,
+        authorName: '',
+        title: '',
+        message: '',
+        type: 'review',
+        targetId: 0,
+        honeypot: ''
+      }
     }
+  },
+
+  computed: {
+    starIds () {
+      const ids = []
+      const starClass = this.isRated ? 'star-rated' : 'star'
+
+      for (let i = 5; i > 0; i--) {
+        ids.push(
+          {
+            value: i,
+            id: 'star-' + i + '-' + this.item.variationId,
+            class: starClass
+          }
+        )
+      }
+
+      return ids
+    }
+  },
+
+  mounted () {
+    const _self = this
+    vueEventHub.$on('orderItemFeedback_created', function (event) {
+      if (event.feedback.targetId === _self.item.variationId) {
+        _self.feedback = event.feedback
+        _self.isRated = true
+      }
+    })
+  },
+
+  methods: {
+    handleRating (value) {
+      if (!this.isRated && value > 0) {
+        this.feedback.ratingValue = value
+      }
+
+      const _self = this
+      vueEventHub.$emit('orderItemFeedback_showform', {
+        item: _self.item,
+        feedback: _self.feedback,
+        isRated: _self.isRated
+      })
+    }
+  }
 }
 </script>
