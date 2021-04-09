@@ -12,7 +12,7 @@ module.exports = env =>
         entry: "./resources/js/src/base.js",
         output: {
             filename: "feedback" + (env.production ? ".min" : "") + ".js",
-            chunkFilename: "chunks/feedback-[contenthash]"+ (env.production ? ".min" : "") + ".js",
+            chunkFilename: "chunks/feedback-[id]"+ (env.production ? ".min" : "") + ".js",
             path: path.resolve(__dirname, "..", "..", "resources/js/dist/")
         },
         resolve: {
@@ -48,6 +48,9 @@ module.exports = env =>
             new WebpackRequireFrom({
                 replaceSrcMethodName: "__loadPluginChunk"
             })
-        ]
+        ],
+        optimization: {
+            chunkIds: "natural"
+        }
     };
 };

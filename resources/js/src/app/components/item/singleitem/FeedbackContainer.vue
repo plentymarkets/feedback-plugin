@@ -245,7 +245,12 @@ export default {
       default: null
     }
   },
-  props: ['options', 'classes', 'styles'],
+
+  props: {
+    options: Object,
+    classes: String,
+    styles: String
+  },
 
   data () {
     return {

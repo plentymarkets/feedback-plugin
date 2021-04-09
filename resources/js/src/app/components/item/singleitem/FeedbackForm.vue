@@ -145,7 +145,11 @@
 
 <script>
 export default {
-  props: ['variationId', 'authenticatedUser', 'options'],
+  props: {
+    variationId: String,
+    authenticatedUser: Object,
+    options: Object
+  },
 
   data () {
     return {

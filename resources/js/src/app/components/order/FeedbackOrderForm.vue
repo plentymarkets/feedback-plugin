@@ -157,7 +157,13 @@
 
 <script>
 export default {
-  props: ['authenticatedUser', 'allowGuestFeedbacks', 'numberOfFeedbacks', 'accessKey', 'orderId'],
+  props: {
+    authenticatedUser: Object,
+    allowGuestFeedbacks: Boolean,
+    numberOfFeedbacks: String,
+    accessKey: String,
+    orderId: String
+  },
 
   data: function () {
     return {

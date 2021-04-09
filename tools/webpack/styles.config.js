@@ -1,7 +1,6 @@
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
 const path = require("path");
-const ESLintPlugin = require('eslint-webpack-plugin');
-const VueLoaderPlugin = require("vue-loader/lib/plugin");
-const WebpackRequireFrom = require("webpack-require-from");
 
 module.exports = env =>
 {
@@ -9,54 +8,54 @@ module.exports = env =>
     return {
         name: "styles",
         mode: env.production ? "production" : "development",
-        entry: "./resources/js/src/base.js",
-        output: {
-            filename: "feedback" + (env.production ? ".min" : "") + ".js",
-            chunkFilename: "chunks/feedback-[name]"+ (env.production ? ".min" : "") + ".js",
-            path: path.resolve(__dirname, "..", "..", "resources/js/dist/")
+        entry: {
+            main: "./resources/css/main.scss",
         },
-        resolve: {
-            alias: {
-                vue: "vue/dist/vue" + (env.prod ? ".min" : "") + ".js"
-            }
-        },
-        devtool: "source-map",
         module: {
             rules: [
-                /*{
-                    enforce: "pre",
-                    test: /\.(js)$/,
-                    exclude: /node_modules/,
-                    loader: "eslint-loader",
-                    options: {
-                        cache: true,
-                        fix: env.prod
-                    }
-                },*/
                 {
-                    test: /\.vue$/,
-                    loader: "vue-loader"
-                },
-                {
-                    test: /\.m?js$/,
-                    exclude: /node_modules/,
-                    use: {
-                        loader: "babel-loader"
-                    }
+                    test: /.\.scss$/,
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        {
+                            loader: "css-loader",
+                            options: {
+                                url: false,
+                                sourceMap: !env.production
+                            }
+                        },
+                        {
+                            loader: "postcss-loader",
+                            options: {
+                                sourceMap: !env.production,
+                                postcssOptions: {
+                                    plugins: [
+                                        require("autoprefixer")()
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            loader: "sass-loader",
+                            options: {
+                                sourceMap: !env.production,
+                                sassOptions:{
+                                    outputStyle: env.production ? "compressed" : "nested"
+                                }
+                            }
+                        }
+                    ]
                 }
             ]
         },
         plugins: [
-            new VueLoaderPlugin({
-                exposeFilename: true
-            }),
-            new ESLintPlugin({
-                extensions: ['js'],
-                context: path.resolve(__dirname, "..", "..", "resources/js/src/")
-            }),
-            new WebpackRequireFrom({
-                replaceSrcMethodName: "__loadPluginChunk"
+            new FixStyleOnlyEntriesPlugin(),
+            new MiniCssExtractPlugin({
+                filename: "../../css/[name]" + (env.production ? ".min" : "") + ".css",
             })
-        ]
+        ],
+        output: {
+            path: path.resolve(__dirname, "../../resources/js/dist")
+        }
     };
 };

@@ -6,18 +6,18 @@
   >
     <div v-if="!isReply">
       <p class="feedback-comment-title">
-        {{ feedback.title }}
+        {{ feedbackData.title }}
       </p>
 
       <div
-        v-if="feedback.feedbackRating.rating.ratingValue > 0"
+        v-if="feedbackData.feedbackRating.rating.ratingValue > 0"
         class="feedback-rating"
       >
         <i
           v-for="i in 5"
           :key="'feedback_rating_' + i"
           class="fa fa-star"
-          :class="{full: feedback.feedbackRating.rating.ratingValue >= i, empty: feedback.feedbackRating.rating.ratingValue < i }"
+          :class="{full: feedbackData.feedbackRating.rating.ratingValue >= i, empty: feedbackData.feedbackRating.rating.ratingValue < i }"
         />
       </div>
 
@@ -49,7 +49,7 @@
       <span class="feedback-info-segment">
         <strong>
           <span
-            v-if="feedback.sourceRelation[0].feedbackRelationType === 'user'"
+            v-if="feedbackData.sourceRelation[0].feedbackRelationType === 'user'"
             v-tooltip
             class="feedback-admin"
             data-toggle="tooltip"
@@ -57,12 +57,12 @@
             :data-original-title="$translate('Feedback::Feedback.shopManagerLabel')"
           >
             <i class="fa fa-check-square" />
-            {{ feedback.sourceRelation[0].sourceRelationLabel }}
+            {{ feedbackData.sourceRelation[0].sourceRelationLabel }}
           </span>
-          <span v-else-if="feedback.sourceRelation[0].feedbackRelationSourceId == 0 && feedback.authorName.length > 0">
-            {{ feedback.authorName }}
+          <span v-else-if="feedbackData.sourceRelation[0].feedbackRelationSourceId == 0 && feedback.authorName.length > 0">
+            {{ feedbackData.authorName }}
           </span>
-          <span v-else-if="feedback.sourceRelation[0].feedbackRelationSourceId == 0">
+          <span v-else-if="feedbackData.sourceRelation[0].feedbackRelationSourceId == 0">
             {{ $translate("Feedback::Feedback.guestName") }}
           </span>
           <span v-else>
@@ -76,7 +76,7 @@
         class="feedback-info-segment"
       >
         <i class="fa fa-calendar text-muted" />
-        {{ feedback.createdAt | date($translate("Ceres::Template.devDateFormatMoment") || "DD.MM.YYYY") }}
+        {{ feedbackData.createdAt | date($translate("Ceres::Template.devDateFormatMoment") || "DD.MM.YYYY") }}
       </span>
 
       <span
@@ -88,14 +88,14 @@
       </span>
 
       <span
-        v-if="(!!feedback.replies && feedback.replies.length > 0) && !replyListVisible"
+        v-if="(!!feedbackData.replies && feedbackData.replies.length > 0) && !replyListVisible"
         class="feedback-info-segment btn btn-sm btn-default"
         @click="replyListVisible = !replyListVisible"
       >
-        {{ $translate("Feedback::Feedback.viewComments") }} ({{ feedback.replies.length }})
+        {{ $translate("Feedback::Feedback.viewComments") }} ({{ feedbackData.replies.length }})
       </span>
       <span
-        v-else-if="(!!feedback.replies && feedback.replies.length > 0) && replyListVisible"
+        v-else-if="(!!feedbackData.replies && feedbackData.replies.length > 0) && replyListVisible"
         class="feedback-info-segment btn btn-sm btn-default"
         @click="replyListVisible = !replyListVisible"
       >
@@ -150,11 +150,11 @@
     </div>
 
     <div
-      v-if="!!feedback.replies && feedback.replies.length > 0 && replyListVisible"
+      v-if="!!feedbackData.replies && feedbackData.replies.length > 0 && replyListVisible"
       class="feedback-replies"
     >
       <feedback-list-entry
-        v-for="reply in feedback.replies"
+        v-for="reply in feedbackData.replies"
         :key="reply.id"
         :feedback="reply"
         :item-attributes="itemAttributes"
@@ -178,7 +178,16 @@ export default {
   components: {
     'feedback-list-entry': FeedbackListEntry
   },
-  props: ['feedback', 'itemAttributes', 'authenticatedUser', 'isReply', 'showControls', 'classes', 'styles', 'options'],
+  props: {
+    feedback: Object,
+    itemAttributes: Array,
+    authenticatedUser: Object,
+    isReply: Boolean,
+    showControls: Boolean,
+    classes: String,
+    styles: String,
+    options: Object
+  },
 
   data () {
     return {
@@ -186,25 +195,26 @@ export default {
       replyMessage: '',
       replyFormVisible: false,
       replyListVisible: false,
-      honeypot: ''
+      honeypot: '',
+      feedbackData: {}
     }
   },
 
   computed: {
     variationAttributes () {
-      if (this.feedback.targetRelation.feedbackRelationType !== 'variation' ||
-                this.feedback.targetRelation.targetRelationName.length <= 0 ||
-                !this.feedback.targetRelation.variationAttributes ||
+      if (this.feedbackData.targetRelation.feedbackRelationType !== 'variation' ||
+                this.feedbackData.targetRelation.targetRelationName.length <= 0 ||
+                !this.feedbackData.targetRelation.variationAttributes ||
                 !this.itemAttributes) {
         return []
       }
 
       const _self = this
-      return this.feedback
+      return this.feedbackData
         .targetRelation
         .variationAttributes
         .map(function (attributeIds) {
-          const targetId = _self.feedback.targetRelation.feedbackRelationTargetId
+          const targetId = _self.feedbackData.targetRelation.feedbackRelationTargetId
           if (!Object.prototype.hasOwnProperty.call(_self.itemAttributes, targetId) ||
                         !Object.prototype.hasOwnProperty.call(_self.itemAttributes[targetId], attributeIds.attributeId) ||
                         !Object.prototype.hasOwnProperty.call(_self.itemAttributes[targetId][attributeIds.attributeId], attributeIds.valueId)) {
@@ -222,7 +232,7 @@ export default {
     },
 
     displayName () {
-      const rawName = this.feedback.sourceRelation[0].sourceRelationLabel
+      const rawName = this.feedbackData.sourceRelation[0].sourceRelationLabel
 
       if (rawName !== ' ') {
         return rawName.split(' ')
@@ -239,10 +249,10 @@ export default {
     },
 
     message () {
-      if (!this.feedback.feedbackComment) {
+      if (!this.feedbackData.feedbackComment) {
         return ''
       }
-      return this.feedback
+      return this.feedbackData
         .feedbackComment
         .comment
         .message.split('\n')
@@ -250,12 +260,16 @@ export default {
     },
 
     isPurchased () {
-      return this.feedback
+      return this.feedbackData
         .sourceRelation
         .find(function (relation) {
           return relation.feedbackRelationType === 'orderItem'
         })
     }
+  },
+
+  created () {
+    this.feedbackData = this.feedback
   },
 
   methods: {
@@ -271,7 +285,7 @@ export default {
         data: {
           authorName: this.authorName,
           message: this.replyMessage,
-          targetId: this.feedback.id,
+          targetId: this.feedbackData.id,
           type: 'reply'
         },
         contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -280,10 +294,10 @@ export default {
           withCredentials: true
         },
         success: function (data) {
-          if (!_self.feedback.replies) {
-            _self.feedback.replies = []
+          if (!_self.feedbackData.replies) {
+            _self.feedbackData.replies = []
           }
-          _self.feedback.replies.unshift(data)
+          _self.feedbackData.replies.unshift(data)
           _self.replyMessage = ''
           _self.replyFormVisible = false
           _self.replyListVisible = true

@@ -58,7 +58,10 @@
 
 <script>
 export default {
-  props: ['item', 'numberOfColumns'],
+  props: {
+    item: Object,
+    numberOfColumns: Number
+  },
 
   data () {
     return {

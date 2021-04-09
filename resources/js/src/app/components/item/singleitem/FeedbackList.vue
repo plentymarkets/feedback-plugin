@@ -32,7 +32,16 @@ export default {
   components: {
     'feedback-list-entry': FeedbackListEntry
   },
-  props: ['feedbacks', 'isLastPage', 'authenticatedUser', 'itemAttributes', 'showControls', 'classes', 'styles', 'options'],
+  props: {
+    feedbacks: Object,
+    isLastPage: Boolean,
+    authenticatedUser: Object,
+    itemAttributes: Array,
+    showControls: Boolean,
+    classes: String,
+    styles: String,
+    options: Object
+  },
 
   methods: {
     onLoadMoreClicked () {

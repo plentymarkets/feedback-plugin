@@ -8,7 +8,7 @@
       class="feedback-options"
     >
       <span
-        v-if="!feedback.isVisible"
+        v-if="!feedbackData.isVisible"
         v-tooltip
         class="btn-sm btn-danger"
         data-toggle="tooltip"
@@ -46,7 +46,7 @@
 
     <feedback-comment
       v-if="!editableFeedback"
-      :feedback="feedback"
+      :feedback="feedbackData"
       :item-attributes="itemAttributes"
       :authenticated-user="authenticatedUser"
       :is-reply="isReply"
@@ -142,26 +142,41 @@ export default {
   components: {
     'feedback-comment': () => import('./FeedbackComment.vue')
   },
-  props: ['feedback', 'authenticatedUser', 'itemAttributes', 'isReply', 'showControls', 'classes', 'styles', 'options'],
+  // props: ['feedback', 'authenticatedUser', 'itemAttributes', 'isReply', 'showControls', 'classes', 'styles', 'options'],
+  props: {
+    feedback: Object,
+    authenticatedUser: Object,
+    itemAttributes: Array,
+    isReply: Boolean,
+    showControls: Boolean,
+    classes: String,
+    styles: String,
+    options: Object
+  },
 
   data () {
     return {
       editableFeedback: null,
-      isLoading: false
+      isLoading: false,
+      feedbackData: {}
     }
+  },
+
+  created () {
+    this.feedbackData = this.feedback
   },
 
   methods: {
     showDeleteConfirmation () {
       let parentFeedbackId = null
       if (this.isReply) {
-        parentFeedbackId = parseInt(this.feedback.targetRelation.feedbackRelationTargetId)
+        parentFeedbackId = parseInt(this.feedbackData.targetRelation.feedbackRelationTargetId)
       }
       this.$emit('delete', {
-        feedbackId: this.feedback.id,
+        feedbackId: this.feedbackData.id,
         isReply: this.isReply,
         parentFeedbackId: parentFeedbackId,
-        feedbackObject: this.feedback
+        feedbackObject: this.feedbackData
       })
     },
 
@@ -170,14 +185,14 @@ export default {
         $(this.$refs.editButton).tooltip('dispose')
         this.editableFeedback = {
           title: '',
-          message: this.feedback.feedbackComment.comment.message,
+          message: this.feedbackData.feedbackComment.comment.message,
           ratingValue: -1,
           isReply: this.isReply
         }
 
         if (!this.isReply) {
-          this.editableFeedback.title = this.feedback.title
-          this.editableFeedback.ratingValue = this.feedback.feedbackRating.rating.ratingValue
+          this.editableFeedback.title = this.feedbackData.title
+          this.editableFeedback.ratingValue = this.feedbackData.feedbackRating.rating.ratingValue
         }
       }
     },
@@ -201,12 +216,12 @@ export default {
           url: '/rest/feedbacks/feedback/update/' + this.feedback.id,
           data: requestBody,
           success: function (data) {
-            _self.feedback.feedbackComment.comment.message = editableFeedback.message
-            _self.feedback.isVisible = data.isVisible
+            _self.feedbackData.feedbackComment.comment.message = editableFeedback.message
+            _self.feedbackData.isVisible = data.isVisible
 
             if (!editableFeedback.isReply) {
-              _self.feedback.title = editableFeedback.title
-              _self.feedback.feedbackRating.rating.ratingValue = editableFeedback.ratingValue
+              _self.feedbackData.title = editableFeedback.title
+              _self.feedbackData.feedbackRating.rating.ratingValue = editableFeedback.ratingValue
             }
             _self.isLoading = false
           },

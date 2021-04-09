@@ -40,13 +40,20 @@
 
 <script>
 export default {
-
   inject: {
     itemId: {
       default: null
     }
   },
-  props: ['showEmptyRatings', 'sizeOfStars', 'showRatingsAmount'],
+
+  props: {
+    showEmptyRatings: Boolean,
+    sizeOfStars: {
+      type: String,
+      default: 'small'
+    },
+    showRatingsAmount: Boolean
+  },
 
   data () {
     return {

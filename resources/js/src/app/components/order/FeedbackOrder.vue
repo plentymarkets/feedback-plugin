@@ -22,7 +22,7 @@
       <p>{{ $translate("Feedback::Feedback.loadingItems") }}</p>
     </div>
     <button
-      v-if="!isLoading && (this.page * this.options.itemsPerRow * this.options.rowsPerPage < this.orderItems.length)"
+      v-if="!isLoading && (page * options.itemsPerRow * options.rowsPerPage < orderItems.length)"
       class="btn btn-default btn-block feedback-loadmore"
       @click="nextPage()"
     >
@@ -48,7 +48,17 @@ export default {
     'feedback-order-form': FeedbackOrderForm,
     'feedback-order-item': FeedbackOrderItem
   },
-  props: ['variations', 'items', 'itemUrls', 'itemImages', 'options', 'splitItemBundles', 'accessKey', 'orderId'],
+
+  props: {
+    variations: Object,
+    items: Object,
+    itemUrls: Object,
+    itemImages: Object,
+    options: Object,
+    splitItemBundles: Boolean,
+    accessKey: String,
+    orderId: String
+  },
 
   data () {
     return {
