@@ -146,7 +146,7 @@
 <script>
 export default {
   props: {
-    variationId: String,
+    variationId: Number,
     authenticatedUser: Object,
     options: Object
   },

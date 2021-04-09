@@ -33,7 +33,7 @@ export default {
     'feedback-list-entry': FeedbackListEntry
   },
   props: {
-    feedbacks: Object,
+    feedbacks: Array,
     isLastPage: Boolean,
     authenticatedUser: Object,
     itemAttributes: Array,
