@@ -1,7 +1,9 @@
 const path = require("path");
 const ESLintPlugin = require('eslint-webpack-plugin');
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
+const TerserPlugin = require('terser-webpack-plugin');
 const WebpackRequireFrom = require("webpack-require-from");
+const webpack = require("webpack");
 
 module.exports = env =>
 {
@@ -9,11 +11,12 @@ module.exports = env =>
     return {
         name: "scripts",
         mode: env.production ? "production" : "development",
-        entry: "./resources/js/src/entry-client.js",
+        entry: "./resources/js/src/entry-server.js",
+        target: "node",
         output: {
-            filename: "feedback" + (env.production ? ".min" : "") + ".js",
-            chunkFilename: "chunks/feedback-[id]"+ (env.production ? ".min" : "") + ".js",
-            path: path.resolve(__dirname, "..", "..", "resources/js/dist/")
+            filename: "feedback-server" + (env.production ? ".min" : "") + ".js",
+            path: path.resolve(__dirname, "..", "..", "resources/js/dist/"),
+            libraryTarget: "commonjs2"
         },
         resolve: {
             alias: {
@@ -47,10 +50,18 @@ module.exports = env =>
             }),
             new WebpackRequireFrom({
                 replaceSrcMethodName: "__loadPluginChunk"
+            }),
+            new webpack.optimize.LimitChunkCountPlugin({
+                maxChunks: 1
             })
         ],
         optimization: {
-            chunkIds: "natural"
+            chunkIds: "natural",
+            minimizer: [
+                new TerserPlugin({
+                    extractComments: false,
+                }),
+            ],
         }
     };
 };

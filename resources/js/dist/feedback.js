@@ -14,10 +14,10 @@ __webpack_require__.p = window.feedbackPublicPath;
 
 /***/ }),
 
-/***/ "./resources/js/src/base.js":
-/*!**********************************!*\
-  !*** ./resources/js/src/base.js ***!
-  \**********************************/
+/***/ "./resources/js/src/entry-client.js":
+/*!******************************************!*\
+  !*** ./resources/js/src/entry-client.js ***!
+  \******************************************/
 /*! namespace exports */
 /*! exports [not provided] [no usage info] */
 /*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_require__.r, __webpack_exports__, __webpack_require__.e, __webpack_require__.* */
@@ -2862,7 +2862,7 @@ $({ target: PROMISE, stat: true, forced: INCORRECT_ITERATION }, {
 /************************************************************************/
 /******/ 	// startup
 /******/ 	// Load entry module
-/******/ 	__webpack_require__("./resources/js/src/base.js");
+/******/ 	__webpack_require__("./resources/js/src/entry-client.js");
 /******/ 	// This entry module used 'exports' so it can't be inlined
 /******/ })()
 ;

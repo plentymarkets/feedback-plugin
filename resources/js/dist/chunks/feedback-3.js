@@ -324,24 +324,7 @@ __webpack_require__.r(__webpack_exports__);
       return this.currentVariation && this.currentVariation.variation.id;
     }
   },
-  mounted: function mounted() {
-    if (!App.isShopBuilder) {
-      var _self = this;
-
-      $.when(this.getUser(), this.getCounts(), this.loadFeedbacks()).done(function () {
-        _self.isLoading = false;
-
-        _self.generateJsonLD();
-
-        Vue.nextTick(function () {
-          // DOM updated
-          window.dispatchEvent(new Event('resize'));
-        });
-      });
-    } else {
-      this.isLoading = false;
-    }
-  },
+  mounted: function mounted() {},
   methods: {
     getUser: function getUser() {
       var _self = this;

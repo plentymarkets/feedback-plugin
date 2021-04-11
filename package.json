@@ -10,8 +10,8 @@
         "build": "npm run build:prod && npm run build:dev",
         "build:dev": "npm run build:js:dev && npm run build:sass:dev",
         "build:prod": "npm run build:js:prod && npm run build:sass:prod",
-        "build:js:dev": "webpack --config tools/webpack/scripts.config.js --progress",
-        "build:js:prod": "webpack --config tools/webpack/scripts.config.js --env production --progress",
+        "build:js:dev": "webpack --config tools/webpack/scripts.config.js --progress && webpack --config tools/webpack/scripts-server.config.js --progress",
+        "build:js:prod": "webpack --config tools/webpack/scripts.config.js --env production --progress && webpack --config tools/webpack/scripts-server.config.js --env production --progress",
         "build:sass:dev": "webpack --config tools/webpack/styles.config.js --progress",
         "build:sass:prod": "webpack --config tools/webpack/styles.config.js --env production --progress",
         "lint": "npm run lint:js && npm run lint:sass",
@@ -61,6 +61,7 @@
         "webpack-require-from": "^1.8.2"
     },
     "dependencies": {
-        "core-js": "^3.10.1"
+        "core-js": "^3.10.1",
+        "vue": "^2.6.12"
     }
 }
