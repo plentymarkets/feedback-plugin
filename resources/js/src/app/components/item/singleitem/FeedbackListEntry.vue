@@ -47,8 +47,6 @@
     <feedback-comment
       v-if="!editableFeedback"
       :feedback="feedbackData"
-      :item-attributes="itemAttributes"
-      :authenticated-user="authenticatedUser"
       :is-reply="isReply"
       :show-controls="showControls"
       :classes="classes"
@@ -137,16 +135,17 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'FeedbackListEntry',
+
   components: {
     'feedback-comment': () => import('./FeedbackComment.vue')
   },
-  // props: ['feedback', 'authenticatedUser', 'itemAttributes', 'isReply', 'showControls', 'classes', 'styles', 'options'],
+
   props: {
     feedback: Object,
-    authenticatedUser: Object,
-    itemAttributes: Array,
     isReply: Boolean,
     showControls: Boolean,
     classes: String,
@@ -164,6 +163,12 @@ export default {
 
   created () {
     this.feedbackData = this.feedback
+  },
+
+  computed: {
+    ...mapState({
+      authenticatedUser: state => state.feedback.authenticatedUser
+    })
   },
 
   methods: {

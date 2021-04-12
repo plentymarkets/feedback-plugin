@@ -1,6 +1,7 @@
 const path = require("path");
 const ESLintPlugin = require('eslint-webpack-plugin');
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
+const TerserPlugin = require('terser-webpack-plugin');
 const WebpackRequireFrom = require("webpack-require-from");
 
 module.exports = env =>
@@ -50,7 +51,12 @@ module.exports = env =>
             })
         ],
         optimization: {
-            chunkIds: "natural"
+            chunkIds: "natural",
+            minimizer: [
+                new TerserPlugin({
+                    extractComments: false,
+                }),
+            ],
         }
     };
 };

@@ -157,8 +157,6 @@
         v-for="reply in feedbackData.replies"
         :key="reply.id"
         :feedback="reply"
-        :item-attributes="itemAttributes"
-        :authenticated-user="authenticatedUser"
         :is-reply="true"
         :show-controls="showControls"
         :classes="classes"
@@ -172,6 +170,7 @@
 
 <script>
 import FeedbackListEntry from './FeedbackListEntry.vue'
+import { mapState } from 'vuex'
 
 export default {
   name: 'FeedbackComment',
@@ -180,8 +179,6 @@ export default {
   },
   props: {
     feedback: Object,
-    itemAttributes: Array,
-    authenticatedUser: Object,
     isReply: Boolean,
     showControls: Boolean,
     classes: String,
@@ -265,7 +262,12 @@ export default {
         .find(function (relation) {
           return relation.feedbackRelationType === 'orderItem'
         })
-    }
+    },
+
+    ...mapState({
+      authenticatedUser: state => state.feedback.authenticatedUser,
+      itemAttributes: state => state.feedback.itemAttributes
+    })
   },
 
   created () {

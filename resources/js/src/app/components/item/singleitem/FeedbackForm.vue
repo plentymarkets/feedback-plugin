@@ -5,22 +5,22 @@
       class="createFeedback"
     >
       <div class="stars">
-        <input
-          v-for="i in 5"
-          :id="'star-' + i + _uid"
-          :key="'star_input_' + i"
-          v-model="feedback.ratingValue"
-          :class="'star star-' + i"
-          type="radio"
-          :value="i "
-          :name="'ratingValue' + _uid"
-        >
-        <label
-          v-for="i in 5"
-          :key="'star_label_' + i"
-          :class="'star star-' + i"
-          :for="'star-' + i + _uid"
-        />
+        <template v-for="i in [5,4,3,2,1]">
+          <input
+            :id="'star-' + i + _uid"
+            :key="'star_input_' + i"
+            v-model="feedback.ratingValue"
+            :class="'star star-' + i"
+            type="radio"
+            :value="i "
+            :name="'ratingValue' + _uid"
+          >
+          <label
+            :key="'star_label_' + i"
+            :class="'star star-' + i"
+            :for="'star-' + i + _uid"
+          />
+        </template>
       </div>
 
       <p
@@ -144,10 +144,11 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   props: {
     variationId: Number,
-    authenticatedUser: Object,
     options: Object
   },
 
@@ -166,6 +167,12 @@ export default {
       titleMissing: false,
       ratingMissing: false
     }
+  },
+
+  computed: {
+    ...mapState({
+      authenticatedUser: state => state.feedback.authenticatedUser
+    })
   },
 
   methods: {
@@ -192,7 +199,6 @@ export default {
 
       this.feedback.options = this.options
 
-      const _self = this
       $.ajax({
         type: 'POST',
         url: '/rest/feedbacks/feedback/create',
@@ -202,19 +208,19 @@ export default {
         xhrFields: {
           withCredentials: true
         },
-        success: function (data) {
-          _self.$emit('feedback-added', data)
-          _self.isLoading = false
-          _self.feedback.authorName = ''
-          _self.feedback.message = ''
-          _self.feedback.title = ''
-          _self.feedback.ratingValue = 0
-          _self.titleMissing = false
-          _self.ratingMissing = false
+        success: (data) => {
+          this.$store.commit('addFeedback', data)
+          this.isLoading = false
+          this.feedback.authorName = ''
+          this.feedback.message = ''
+          this.feedback.title = ''
+          this.feedback.ratingValue = 0
+          this.titleMissing = false
+          this.ratingMissing = false
         },
-        error: function (jqXHR, textStatus, errorThrown) {
+        error: (jqXHR, textStatus, errorThrown) => {
           console.error(errorThrown)
-          _self.isLoading = false
+          this.isLoading = false
         }
       })
     },

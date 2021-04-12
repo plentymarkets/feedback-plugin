@@ -4,8 +4,6 @@
       v-for="feedback in feedbacks"
       :key="feedback.id"
       :feedback="feedback"
-      :authenticated-user="authenticatedUser"
-      :item-attributes="itemAttributes"
       :is-reply="false"
       :show-controls="showControls"
       :classes="classes"
@@ -35,8 +33,6 @@ export default {
   props: {
     feedbacks: Array,
     isLastPage: Boolean,
-    authenticatedUser: Object,
-    itemAttributes: Array,
     showControls: Boolean,
     classes: String,
     styles: String,

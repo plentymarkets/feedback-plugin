@@ -118,9 +118,7 @@
         <feedback-form
           v-if="!isLoading"
           :variation-id="variationId"
-          :authenticated-user="authenticatedUser"
           :options="optionsForm"
-          @feedback-added="onFeedbackAdded($event)"
         />
       </div>
     </div>
@@ -130,8 +128,6 @@
     <feedback-list
       :feedbacks="authenticatedUser.feedbacks"
       :is-last-page="true"
-      :authenticated-user="authenticatedUser"
-      :item-attributes="itemAttributes"
       :show-controls="true"
       :classes="classes"
       :styles="styles"
@@ -141,9 +137,7 @@
 
     <feedback-list
       :feedbacks="feedbacks"
-      :is-last-page="isLastPage"
-      :authenticated-user="authenticatedUser"
-      :item-attributes="itemAttributes"
+      :is-last-page="pagination.isLastPage"
       :show-controls="false"
       :classes="classes"
       :styles="styles"
@@ -221,17 +215,13 @@
         </div>
       </div>
     </div>
-    <script
-      v-if="counts.ratingsCountTotal > 0"
-      type="application/ld+json"
-      v-html="jsonld"
-    />
   </section>
 </template>
 
 <script>
 import FeedbackForm from './FeedbackForm.vue'
 import FeedbackList from './FeedbackList.vue'
+import { mapState } from 'vuex'
 
 export default {
 
@@ -254,20 +244,7 @@ export default {
 
   data () {
     return {
-      authenticatedUser: {
-        id: 0,
-        isLoggedIn: false,
-        hasPurchased: false,
-        limitReached: false,
-        feedbacks: []
-      },
-      counts: {},
-      feedbacks: [],
-      currentPage: 1,
-      lastPage: 0,
-      isLastPage: true,
       isLoading: true,
-      itemAttributes: [],
       feedbackToDelete: null,
       optionsList: {
         timestampVisibility: this.options.timestampVisibility,
@@ -278,8 +255,7 @@ export default {
         allowNoRatingFeedback: this.options.allowNoRatingFeedback,
         numberOfFeedbacks: this.options.numberOfFeedbacks,
         allowGuestFeedbacks: this.options.allowGuestFeedbacks
-      },
-      jsonld: {}
+      }
     }
   },
 
@@ -291,7 +267,14 @@ export default {
 
       variationId: function () {
         return this.currentVariation && this.currentVariation.variation.id
-      }
+      },
+
+      ...mapState({
+        authenticatedUser: state => state.feedback.authenticatedUser,
+        counts: state => state.feedback.counts,
+        feedbacks: state => state.feedback.feedbacks,
+        pagination: state => state.feedback.pagination
+      })
     },
 
   mounted () {
@@ -317,144 +300,47 @@ export default {
   methods:
     {
       getUser () {
-        const _self = this
-        return $.ajax({
-          type: 'GET',
-          url: '/rest/feedbacks/user/' + _self.itemId + '/' + _self.variationId,
-          data:
-                    {
-                      allowFeedbacksOnlyIfPurchased: _self.options.allowFeedbacksOnlyIfPurchased,
-                      numberOfFeedbacks: _self.options.numberOfFeedbacks
-                    },
-          success: function (data) {
-            _self.authenticatedUser = data
-          },
-          error: function (jqXHR, textStatus, errorThrown) {
-            console.error(errorThrown)
-          }
-        })
-      },
-      getCounts () {
-        const _self = this
-        return $.ajax({
-          type: 'GET',
-          url: '/rest/feedbacks/feedback/helper/counts/' + _self.itemId,
-          success: function (data) {
-            _self.counts = data.counts
-          },
-          error: function (jqXHR, textStatus, errorThrown) {
-            console.error(errorThrown)
-          }
-        })
-      },
-      loadFeedbacks () {
-        const _self = this
-        const page = this.currentPage++
-        return $.ajax({
-          type: 'GET',
-          url: '/rest/feedbacks/feedback/helper/feedbacklist/' + _self.itemId + '/' + page,
+        return this.$store.dispatch('loadFeedbackUser', {
           data: {
-            feedbacksPerPage: _self.options.feedbacksPerPage
+            allowFeedbacksOnlyIfPurchased: this.options.allowFeedbacksOnlyIfPurchased,
+            numberOfFeedbacks: this.options.numberOfFeedbacks
           },
-          success: function (data) {
-            _self.feedbacks = _self.feedbacks.concat(data.feedbacks)
-            _self.itemAttributes = data.itemAttributes
-            _self.lastPage = data.pagination.lastPage
-            _self.isLastPage = data.pagination.isLastPage
-          },
-          error: function (jqXHR, textStatus, errorThrown) {
-            console.error(errorThrown)
-          }
+          itemId: this.itemId,
+          variationId: this.variationId
         })
       },
+
+      getCounts () {
+        return this.$store.dispatch('loadFeedbackCounts', this.itemId)
+      },
+
+      loadFeedbacks () {
+        return this.$store.dispatch('loadPaginatedFeedbacks', {
+          itemId: this.itemId,
+          feedbacksPerPage: this.options.feedbacksPerPage
+        })
+      },
+
       showDeleteConfirmation (feedbackToDelete) {
         this.feedbackToDelete = feedbackToDelete
         $(this.$refs.confirmDeleteModal).modal('show')
       },
+
       deleteFeedback () {
         if (this.feedbackToDelete !== null) {
           const feedbackId = this.feedbackToDelete.feedbackId
           const parentFeedbackId = this.feedbackToDelete.parentFeedbackId
-          const _self = this
-          $.ajax({
-            type: 'DELETE',
-            url: '/rest/feedbacks/feedback/delete/' + feedbackId,
-            success: function (data) {
-              function filterFeedbackList (feedbackList, feedbackId) {
-                return feedbackList.filter(function (feedback) {
-                  return feedback.id !== feedbackId
-                })
-              }
 
-              function filterReplyList (feedbackList, feedbackId, replyId) {
-                return feedbackList.map(function (feedback) {
-                  if (feedbackId === feedback.id) {
-                    feedback.replies = feedback.replies.filter(function (reply) {
-                      return reply.id !== replyId
-                    })
-                  }
-                  return feedback
-                })
-              }
-
-              // If visible, adjust counts
-              if (_self.feedbackToDelete.feedbackObject.isVisible && parentFeedbackId === null) {
-                const feedback = _self.feedbackToDelete.feedbackObject
-                const ratingValue = parseInt(feedback.feedbackRating.rating.ratingValue)
-                if (ratingValue > 0 && ratingValue <= 5) {
-                  _self.counts['ratingsCountOf' + ratingValue]--
-                  _self.counts.ratingsCountTotal--
-
-                  // Calculate average anew
-                  let average = 0
-                  average += _self.counts.ratingsCountOf5 * 5
-                  average += _self.counts.ratingsCountOf4 * 4
-                  average += _self.counts.ratingsCountOf3 * 3
-                  average += _self.counts.ratingsCountOf2 * 2
-                  average += _self.counts.ratingsCountOf1 * 1
-                  average /= _self.counts.ratingsCountTotal
-
-                  _self.counts.averageValue = average
-                  _self.$root.$emit('averageRecalc')
-                }
-              }
-
-              if (parentFeedbackId === null) {
-                _self.feedbacks = filterFeedbackList(_self.feedbacks, feedbackId)
-                _self.authenticatedUser.feedbacks = filterFeedbackList(_self.authenticatedUser.feedbacks, feedbackId)
-              } else {
-                _self.feedbacks = filterReplyList(_self.feedbacks, parentFeedbackId, feedbackId)
-                _self.authenticatedUser.feedbacks = filterReplyList(_self.authenticatedUser.feedbacks, parentFeedbackId, feedbackId)
-              }
-
-              _self.feedbackToDelete = null
-            }
+          this.$store.dispatch('deleteFeedback', {
+            feedbackId: feedbackId,
+            parentFeedbackId: parentFeedbackId,
+            feedback: this.feedbackToDelete.feedbackObject
           })
         }
+
         $(this.$refs.confirmDeleteModal).modal('hide')
       },
-      onFeedbackAdded (feedback) {
-        this.authenticatedUser.feedbacks.unshift(feedback)
-        if (feedback.isVisible) {
-          const ratingValue = parseInt(feedback.feedbackRating.rating.ratingValue)
-          if (ratingValue > 0 && ratingValue <= 5) {
-            this.counts['ratingsCountOf' + ratingValue]++
-            this.counts.ratingsCountTotal++
-            // Calculate average anew
-            let average = 0
-            average += this.counts.ratingsCountOf5 * 5
-            average += this.counts.ratingsCountOf4 * 4
-            average += this.counts.ratingsCountOf3 * 3
-            average += this.counts.ratingsCountOf2 * 2
-            average += this.counts.ratingsCountOf1 * 1
-            average /= this.counts.ratingsCountTotal
 
-            this.counts.averageValue = average
-
-            this.$root.$emit('averageRecalc')
-          }
-        }
-      },
       generateJsonLD () {
         if (this.counts.ratingsCountTotal > 0) {
           const jsonld = {

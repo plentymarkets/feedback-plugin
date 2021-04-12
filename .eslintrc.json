@@ -20,6 +20,7 @@
         "Vue": false,
         "vueEventHub": false,
         "$translate": false,
-        "__webpack_public_path__": true
+        "__webpack_public_path__": true,
+        "vueApp": false
     }
 }

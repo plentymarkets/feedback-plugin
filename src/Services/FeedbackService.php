@@ -99,28 +99,6 @@ class FeedbackService
     }
 
     /**
-     * Get data for the feedback-average Vue component
-     * @param $item
-     * @return array
-     * @deprecated To be removed in the next major release
-     */
-    public function getFeedbackAverageDataSingleItem($item = [])
-    {
-        $itemId = $item['documents'][0]['data']['item']['id'] ?? -1;
-        $average = (int)$itemId > 0 ? $this->feedbackAverageRepository->getFeedbackAverage($itemId) : [];
-
-        $counts['averageValue'] = empty($average) ? 0 : $average->averageValue;
-        $data['counts'] = $counts;
-
-        $showEmptyRatingsInCategoryView = $this->coreHelper->configValueAsBool(
-            FeedbackCoreHelper::KEY_SHOW_EMPTY_RATINGS_IN_CATEGORY_VIEW
-        );
-        $data['options']['showEmptyRatingsInCategoryView'] = $showEmptyRatingsInCategoryView;
-
-        return $data;
-    }
-
-    /**
      * Create a feedback entry in the db
      * @return mixed
      */
