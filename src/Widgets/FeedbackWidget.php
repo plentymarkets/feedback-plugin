@@ -67,6 +67,8 @@ class FeedbackWidget extends BaseWidget
             ->withDefaultValue(10)
             ->withName('Widget.feedbacksPerPage')
             ->withTooltip('Widget.feedbacksPerPageTooltip');
+
+        return $settings->toArray();
     }
 
     protected function getTemplateData($widgetSettings, $isPreview)

@@ -5,6 +5,9 @@ namespace Feedback\Providers;
 use Feedback\Extensions\FeedbackFacet;
 use Feedback\Extensions\TwigServiceProvider;
 use Feedback\Helpers\FeedbackCoreHelper;
+use Feedback\Widgets\FeedbackAverageWidget;
+use Feedback\Widgets\FeedbackOrderWidget;
+use Feedback\Widgets\FeedbackWidget;
 use Feedback\Widgets\RatingFilterWidget;
 use IO\Helper\ResourceContainer;
 use IO\Services\ItemService;
@@ -63,6 +66,9 @@ class FeedbackServiceProvider extends ServiceProvider
         // register shop builder widgets
         /** @var ContentWidgetRepositoryContract $widgetRepository */
         $widgetRepository = pluginApp(ContentWidgetRepositoryContract::class);
+        $widgetRepository->registerWidget(FeedbackWidget::class);
+        $widgetRepository->registerWidget(FeedbackAverageWidget::class);
+        $widgetRepository->registerWidget(FeedbackOrderWidget::class);
         $widgetRepository->registerWidget(RatingFilterWidget::class);
     }
 
