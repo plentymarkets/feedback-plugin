@@ -98,11 +98,10 @@ export default {
   },
 
   mounted () {
-    const _self = this
-    vueEventHub.$on('orderItemFeedback_created', function (event) {
-      if (event.feedback.targetId === _self.item.variationId) {
-        _self.feedback = event.feedback
-        _self.isRated = true
+    vueEventHub.$on('orderItemFeedback_created', (event) => {
+      if (event.feedback.targetId === this.item.variationId) {
+        this.feedback = event.feedback
+        this.isRated = true
       }
     })
   },
@@ -113,11 +112,10 @@ export default {
         this.feedback.ratingValue = value
       }
 
-      const _self = this
       vueEventHub.$emit('orderItemFeedback_showform', {
-        item: _self.item,
-        feedback: _self.feedback,
-        isRated: _self.isRated
+        item: this.item,
+        feedback: this.feedback,
+        isRated: this.isRated
       })
     }
   }

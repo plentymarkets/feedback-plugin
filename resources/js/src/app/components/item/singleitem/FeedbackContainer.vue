@@ -222,6 +222,7 @@
 import FeedbackForm from './FeedbackForm.vue'
 import FeedbackList from './FeedbackList.vue'
 import { mapState } from 'vuex'
+import loadFeedbackModule from '../../../mixins/loadFeedbackModule'
 
 export default {
 
@@ -229,6 +230,8 @@ export default {
     'feedback-form': FeedbackForm,
     'feedback-list': FeedbackList
   },
+
+  mixins: [loadFeedbackModule],
 
   inject: {
     itemId: {

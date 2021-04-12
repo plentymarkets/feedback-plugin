@@ -40,8 +40,11 @@
 
 <script>
 import { mapState } from 'vuex'
+import loadFeedbackModule from '../../mixins/loadFeedbackModule'
 
 export default {
+
+  mixins: [loadFeedbackModule],
   inject: {
     itemId: {
       default: null

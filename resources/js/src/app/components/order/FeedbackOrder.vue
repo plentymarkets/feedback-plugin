@@ -29,7 +29,6 @@
       Weitere Artikel anzeigen
     </button>
     <feedback-order-form
-      :authenticated-user="authenticatedUser"
       :allow-guest-feedbacks="options.allowGuestFeedbacks"
       :number-of-feedbacks="options.numberOfFeedbacks"
       :access-key="accessKey"
@@ -41,6 +40,7 @@
 <script>
 import FeedbackOrderForm from './FeedbackOrderForm.vue'
 import FeedbackOrderItem from './FeedbackOrderItem.vue'
+import loadFeedbackModule from '../../mixins/loadFeedbackModule'
 
 export default {
 
@@ -48,6 +48,8 @@ export default {
     'feedback-order-form': FeedbackOrderForm,
     'feedback-order-item': FeedbackOrderItem
   },
+
+  mixins: [loadFeedbackModule],
 
   props: {
     variations: Object,
@@ -158,17 +160,10 @@ export default {
         data.accessKey = this.accessKey
       }
 
-      const _self = this
-      return $.ajax({
-        type: 'GET',
-        url: '/rest/feedbacks/user',
+      return this.$store.dispatch('loadFeedbackUser', {
         data: data,
-        success: function (data) {
-          _self.authenticatedUser = data
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-          console.error(errorThrown)
-        }
+        itemId: this.itemId,
+        variationId: this.variationId
       })
     },
 

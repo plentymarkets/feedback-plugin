@@ -22,6 +22,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_string_replace__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_replace__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _FeedbackOrderForm_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./FeedbackOrderForm.vue */ "./resources/js/src/app/components/order/FeedbackOrderForm.vue");
 /* harmony import */ var _FeedbackOrderItem_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./FeedbackOrderItem.vue */ "./resources/js/src/app/components/order/FeedbackOrderItem.vue");
+/* harmony import */ var _mixins_loadFeedbackModule__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../mixins/loadFeedbackModule */ "./resources/js/src/app/mixins/loadFeedbackModule.js");
 
 
 
@@ -65,7 +66,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -73,6 +74,7 @@ __webpack_require__.r(__webpack_exports__);
     'feedback-order-form': _FeedbackOrderForm_vue__WEBPACK_IMPORTED_MODULE_4__.default,
     'feedback-order-item': _FeedbackOrderItem_vue__WEBPACK_IMPORTED_MODULE_5__.default
   },
+  mixins: [_mixins_loadFeedbackModule__WEBPACK_IMPORTED_MODULE_6__.default],
   props: {
     variations: Object,
     items: Object,
@@ -172,18 +174,10 @@ __webpack_require__.r(__webpack_exports__);
         data.accessKey = this.accessKey;
       }
 
-      var _self = this;
-
-      return $.ajax({
-        type: 'GET',
-        url: '/rest/feedbacks/user',
+      return this.$store.dispatch('loadFeedbackUser', {
         data: data,
-        success: function success(data) {
-          _self.authenticatedUser = data;
-        },
-        error: function error(jqXHR, textStatus, errorThrown) {
-          console.error(errorThrown);
-        }
+        itemId: this.itemId,
+        variationId: this.variationId
       });
     },
     nextPage: function nextPage() {
@@ -216,11 +210,40 @@ __webpack_require__.r(__webpack_exports__);
 /*! namespace exports */
 /*! export default [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
+/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es_symbol__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.symbol */ "./node_modules/core-js/modules/es.symbol.js");
+/* harmony import */ var core_js_modules_es_symbol__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_array_filter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.array.filter */ "./node_modules/core-js/modules/es.array.filter.js");
+/* harmony import */ var core_js_modules_es_array_filter__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_filter__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es_array_for_each__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.array.for-each */ "./node_modules/core-js/modules/es.array.for-each.js");
+/* harmony import */ var core_js_modules_es_array_for_each__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_for_each__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.object.get-own-property-descriptor */ "./node_modules/core-js/modules/es.object.get-own-property-descriptor.js");
+/* harmony import */ var core_js_modules_es_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_es_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es.object.get-own-property-descriptors */ "./node_modules/core-js/modules/es.object.get-own-property-descriptors.js");
+/* harmony import */ var core_js_modules_es_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var core_js_modules_es_object_keys__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/es.object.keys */ "./node_modules/core-js/modules/es.object.keys.js");
+/* harmony import */ var core_js_modules_es_object_keys__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_keys__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
+
+
+
+
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -378,9 +401,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    authenticatedUser: Object,
     allowGuestFeedbacks: Boolean,
     numberOfFeedbacks: String,
     accessKey: String,
@@ -409,7 +432,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
-  computed: {
+  computed: _objectSpread({
     starIds: function starIds() {
       var ids = [];
       var starClass = this.isRated ? 'star-rated' : 'star';
@@ -432,7 +455,11 @@ __webpack_require__.r(__webpack_exports__);
       var key = this.item.itemId;
       return this.authenticatedUser.limitReached[key];
     }
-  },
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_7__.mapState)({
+    authenticatedUser: function authenticatedUser(state) {
+      return state.feedback.authenticatedUser;
+    }
+  })),
   mounted: function mounted() {
     var _self = this;
 
@@ -616,12 +643,12 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    var _self = this;
+    var _this = this;
 
     vueEventHub.$on('orderItemFeedback_created', function (event) {
-      if (event.feedback.targetId === _self.item.variationId) {
-        _self.feedback = event.feedback;
-        _self.isRated = true;
+      if (event.feedback.targetId === _this.item.variationId) {
+        _this.feedback = event.feedback;
+        _this.isRated = true;
       }
     });
   },
@@ -631,13 +658,40 @@ __webpack_require__.r(__webpack_exports__);
         this.feedback.ratingValue = value;
       }
 
-      var _self = this;
-
       vueEventHub.$emit('orderItemFeedback_showform', {
-        item: _self.item,
-        feedback: _self.feedback,
-        isRated: _self.isRated
+        item: this.item,
+        feedback: this.feedback,
+        isRated: this.isRated
       });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/src/app/mixins/loadFeedbackModule.js":
+/*!***********************************************************!*\
+  !*** ./resources/js/src/app/mixins/loadFeedbackModule.js ***!
+  \***********************************************************/
+/*! namespace exports */
+/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _store_FeedbackModule__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../store/FeedbackModule */ "./resources/js/src/app/store/FeedbackModule.js");
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    if (!this.$store.hasModule('feedback') && !App.isSSR) {
+      console.log('MODULE CREATED');
+      this.$store.registerModule('feedback', _store_FeedbackModule__WEBPACK_IMPORTED_MODULE_0__.default, {
+        preserveState: !!this.$store.state.feedback
+      });
+    } else {
+      console.log('MODULE ALREADY EXISTS');
     }
   }
 });
@@ -953,7 +1007,6 @@ var render = function() {
       _vm._v(" "),
       _c("feedback-order-form", {
         attrs: {
-          "authenticated-user": _vm.authenticatedUser,
           "allow-guest-feedbacks": _vm.options.allowGuestFeedbacks,
           "number-of-feedbacks": _vm.options.numberOfFeedbacks,
           "access-key": _vm.accessKey,
