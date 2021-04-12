@@ -7,36 +7,54 @@ const state =
 
 const mutations =
     {
+        setAuthenticatedUser(state, authenticatedUser)
+        {
+            state.authenticatedUser = authenticatedUser;
+        },
 
+        setCounts(state, counts)
+        {
+            state.counts = counts;
+        }
     };
 
 const actions =
     {
-        getUser({ commit }, { id, wishListItem, index })
+        getUser({ commit }, { data, itemId, variationId })
         {
-            return new Promise((resolve, reject) =>
-            {
-                if (wishListItem)
-                {
-                    commit("removeWishListItem", wishListItem);
-                }
+            let itemString = ""
 
-                ApiService.del("/rest/io/itemWishList/" + id)
-                    .done(data =>
-                    {
-                        commit("removeWishListId", id);
-                        resolve(data);
-                    })
-                    .fail(error =>
-                    {
-                        if (index)
-                        {
-                            commit("addWishListItemToIndex", wishListItem, index);
-                        }
-                        reject(error);
-                    });
-            });
+            if(itemId !== undefined && variationId !== undefined)
+            {
+                itemString = `/${itemId}/${variationId}`;
+            }
+
+            return $.ajax({
+                type: 'GET',
+                url: '/rest/feedbacks/user/' + itemString,
+                data: data,
+                success: function (data) {
+                    commit("setAuthenticatedUser", data)
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error(errorThrown)
+                }
+            })
         },
+
+        getCounts({ commit }, itemId)
+        {
+            return $.ajax({
+                type: 'GET',
+                url: '/rest/feedbacks/feedback/helper/counts/' + itemId,
+                success: function (data) {
+                    commit("setCounts", data.counts)
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error(errorThrown)
+                }
+            })
+        }
     };
 
 const getters =
