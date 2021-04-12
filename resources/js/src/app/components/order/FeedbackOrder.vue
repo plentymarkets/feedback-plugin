@@ -29,6 +29,7 @@
       Weitere Artikel anzeigen
     </button>
     <feedback-order-form
+      v-if="!isLoading"
       :allow-guest-feedbacks="options.allowGuestFeedbacks"
       :number-of-feedbacks="options.numberOfFeedbacks"
       :access-key="accessKey"
@@ -53,23 +54,17 @@ export default {
 
   props: {
     variations: Object,
-    items: Object,
+    items: Array,
     itemUrls: Object,
     itemImages: Object,
     options: Object,
-    splitItemBundles: Boolean,
+    splitItemBundles: Number,
     accessKey: String,
     orderId: String
   },
 
   data () {
     return {
-      authenticatedUser: {
-        id: 0,
-        isLoggedIn: false,
-        limitReached: {},
-        hasPurchased: {}
-      },
       isLoading: true,
       page: 1
     }
@@ -125,12 +120,11 @@ export default {
   },
 
   mounted () {
-    const _self = this
     $.when(
       this.getUser()
-    ).done(function () {
-      _self.isLoading = false
-      Vue.nextTick(function () {
+    ).done(() => {
+      this.isLoading = false
+      Vue.nextTick(() => {
         // DOM updated
         window.dispatchEvent(new Event('resize'))
       })

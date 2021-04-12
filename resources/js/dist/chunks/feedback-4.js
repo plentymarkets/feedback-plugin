@@ -16,17 +16,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_array_index_of__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_index_of__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_es_array_slice__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.array.slice */ "./node_modules/core-js/modules/es.array.slice.js");
 /* harmony import */ var core_js_modules_es_array_slice__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_slice__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es_regexp_exec__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.regexp.exec */ "./node_modules/core-js/modules/es.regexp.exec.js");
-/* harmony import */ var core_js_modules_es_regexp_exec__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var core_js_modules_es_string_replace__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.string.replace */ "./node_modules/core-js/modules/es.string.replace.js");
-/* harmony import */ var core_js_modules_es_string_replace__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_replace__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _FeedbackOrderForm_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./FeedbackOrderForm.vue */ "./resources/js/src/app/components/order/FeedbackOrderForm.vue");
-/* harmony import */ var _FeedbackOrderItem_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./FeedbackOrderItem.vue */ "./resources/js/src/app/components/order/FeedbackOrderItem.vue");
-/* harmony import */ var _mixins_loadFeedbackModule__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../mixins/loadFeedbackModule */ "./resources/js/src/app/mixins/loadFeedbackModule.js");
+/* harmony import */ var core_js_modules_es_number_constructor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.number.constructor */ "./node_modules/core-js/modules/es.number.constructor.js");
+/* harmony import */ var core_js_modules_es_number_constructor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_number_constructor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es_regexp_exec__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.regexp.exec */ "./node_modules/core-js/modules/es.regexp.exec.js");
+/* harmony import */ var core_js_modules_es_regexp_exec__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_es_string_replace__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es.string.replace */ "./node_modules/core-js/modules/es.string.replace.js");
+/* harmony import */ var core_js_modules_es_string_replace__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_replace__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _FeedbackOrderForm_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./FeedbackOrderForm.vue */ "./resources/js/src/app/components/order/FeedbackOrderForm.vue");
+/* harmony import */ var _FeedbackOrderItem_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./FeedbackOrderItem.vue */ "./resources/js/src/app/components/order/FeedbackOrderItem.vue");
+/* harmony import */ var _mixins_loadFeedbackModule__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../mixins/loadFeedbackModule */ "./resources/js/src/app/mixins/loadFeedbackModule.js");
 
 
 
 
+
+//
 //
 //
 //
@@ -71,28 +75,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    'feedback-order-form': _FeedbackOrderForm_vue__WEBPACK_IMPORTED_MODULE_4__.default,
-    'feedback-order-item': _FeedbackOrderItem_vue__WEBPACK_IMPORTED_MODULE_5__.default
+    'feedback-order-form': _FeedbackOrderForm_vue__WEBPACK_IMPORTED_MODULE_5__.default,
+    'feedback-order-item': _FeedbackOrderItem_vue__WEBPACK_IMPORTED_MODULE_6__.default
   },
-  mixins: [_mixins_loadFeedbackModule__WEBPACK_IMPORTED_MODULE_6__.default],
+  mixins: [_mixins_loadFeedbackModule__WEBPACK_IMPORTED_MODULE_7__.default],
   props: {
     variations: Object,
-    items: Object,
+    items: Array,
     itemUrls: Object,
     itemImages: Object,
     options: Object,
-    splitItemBundles: Boolean,
+    splitItemBundles: Number,
     accessKey: String,
     orderId: String
   },
   data: function data() {
     return {
-      authenticatedUser: {
-        id: 0,
-        isLoggedIn: false,
-        limitReached: {},
-        hasPurchased: {}
-      },
       isLoading: true,
       page: 1
     };
@@ -140,10 +138,10 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    var _self = this;
+    var _this = this;
 
     $.when(this.getUser()).done(function () {
-      _self.isLoading = false;
+      _this.isLoading = false;
       Vue.nextTick(function () {
         // DOM updated
         window.dispatchEvent(new Event('resize'));
@@ -221,15 +219,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_array_filter__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_filter__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var core_js_modules_es_array_for_each__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.array.for-each */ "./node_modules/core-js/modules/es.array.for-each.js");
 /* harmony import */ var core_js_modules_es_array_for_each__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_for_each__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var core_js_modules_es_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.object.get-own-property-descriptor */ "./node_modules/core-js/modules/es.object.get-own-property-descriptor.js");
-/* harmony import */ var core_js_modules_es_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var core_js_modules_es_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es.object.get-own-property-descriptors */ "./node_modules/core-js/modules/es.object.get-own-property-descriptors.js");
-/* harmony import */ var core_js_modules_es_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var core_js_modules_es_object_keys__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/es.object.keys */ "./node_modules/core-js/modules/es.object.keys.js");
-/* harmony import */ var core_js_modules_es_object_keys__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_keys__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
-/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var core_js_modules_es_number_constructor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.number.constructor */ "./node_modules/core-js/modules/es.number.constructor.js");
+/* harmony import */ var core_js_modules_es_number_constructor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_number_constructor__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_es_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es.object.get-own-property-descriptor */ "./node_modules/core-js/modules/es.object.get-own-property-descriptor.js");
+/* harmony import */ var core_js_modules_es_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var core_js_modules_es_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/es.object.get-own-property-descriptors */ "./node_modules/core-js/modules/es.object.get-own-property-descriptors.js");
+/* harmony import */ var core_js_modules_es_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var core_js_modules_es_object_keys__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! core-js/modules/es.object.keys */ "./node_modules/core-js/modules/es.object.keys.js");
+/* harmony import */ var core_js_modules_es_object_keys__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_keys__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
 
 
 
@@ -405,7 +406,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     allowGuestFeedbacks: Boolean,
-    numberOfFeedbacks: String,
+    numberOfFeedbacks: Number,
     accessKey: String,
     orderId: String
   },
@@ -455,7 +456,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var key = this.item.itemId;
       return this.authenticatedUser.limitReached[key];
     }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_7__.mapState)({
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_8__.mapState)({
     authenticatedUser: function authenticatedUser(state) {
       return state.feedback.authenticatedUser;
     }
@@ -684,17 +685,234 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_FeedbackModule__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../store/FeedbackModule */ "./resources/js/src/app/store/FeedbackModule.js");
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
+  created: function created() {
     if (!this.$store.hasModule('feedback') && !App.isSSR) {
-      console.log('MODULE CREATED');
       this.$store.registerModule('feedback', _store_FeedbackModule__WEBPACK_IMPORTED_MODULE_0__.default, {
         preserveState: !!this.$store.state.feedback
       });
-    } else {
-      console.log('MODULE ALREADY EXISTS');
     }
   }
 });
+
+/***/ }),
+
+/***/ "./resources/js/src/app/store/FeedbackModule.js":
+/*!******************************************************!*\
+  !*** ./resources/js/src/app/store/FeedbackModule.js ***!
+  \******************************************************/
+/*! namespace exports */
+/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es_array_concat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.concat */ "./node_modules/core-js/modules/es.array.concat.js");
+/* harmony import */ var core_js_modules_es_array_concat__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_concat__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_array_filter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.array.filter */ "./node_modules/core-js/modules/es.array.filter.js");
+/* harmony import */ var core_js_modules_es_array_filter__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_filter__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es_array_map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.array.map */ "./node_modules/core-js/modules/es.array.map.js");
+/* harmony import */ var core_js_modules_es_array_map__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_map__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+
+var state = function state() {
+  return {
+    authenticatedUser: {},
+    counts: {},
+    feedbacks: [],
+    itemAttributes: [],
+    pagination: {
+      isLastPage: true,
+      lastPage: 1,
+      currentPage: 1
+    }
+  };
+};
+
+var mutations = {
+  setFeedbackAuthenticatedUser: function setFeedbackAuthenticatedUser(state, authenticatedUser) {
+    state.authenticatedUser = authenticatedUser;
+  },
+  setFeedbackCounts: function setFeedbackCounts(state, counts) {
+    state.counts = counts;
+  },
+  setFeedbacks: function setFeedbacks(state, feedbacks) {
+    state.feedbacks = state.feedbacks.concat(feedbacks);
+  },
+  setFeedbackItemAttributes: function setFeedbackItemAttributes(state, attributes) {
+    state.itemAttributes = attributes;
+  },
+  setFeedbackPagination: function setFeedbackPagination(state, pagination) {
+    state.pagination.lastPage = pagination.lastPage;
+    state.pagination.isLastPage = pagination.isLastPage;
+  },
+  incrementCurrentFeedbackPage: function incrementCurrentFeedbackPage(state) {
+    state.pagination.currentPage++;
+  },
+  addFeedback: function addFeedback(state, feedback) {
+    // Add the feedback to the current users feedback list
+    state.authenticatedUser.feedbacks.unshift(feedback);
+
+    if (feedback.isVisible) {
+      var ratingValue = parseInt(feedback.feedbackRating.rating.ratingValue);
+
+      if (ratingValue > 0 && ratingValue <= 5) {
+        state.counts['ratingsCountOf' + ratingValue]++;
+        state.counts.ratingsCountTotal++;
+        recalculateAverage(state);
+      }
+    }
+  },
+  deleteFeedback: function deleteFeedback(state, _ref) {
+    var feedbackId = _ref.feedbackId,
+        parentFeedbackId = _ref.parentFeedbackId,
+        feedback = _ref.feedback;
+
+    // If visible, adjust counts
+    if (feedback.isVisible && parentFeedbackId === null) {
+      var ratingValue = parseInt(feedback.feedbackRating.rating.ratingValue);
+
+      if (ratingValue > 0 && ratingValue <= 5) {
+        state.counts['ratingsCountOf' + ratingValue]--;
+        state.counts.ratingsCountTotal--;
+        recalculateAverage(state);
+      }
+    }
+
+    if (parentFeedbackId === null) {
+      state.feedbacks = filterFeedbackList(state.feedbacks, feedbackId);
+      state.authenticatedUser.feedbacks = filterFeedbackList(state.authenticatedUser.feedbacks, feedbackId);
+    } else {
+      state.feedbacks = filterReplyList(state.feedbacks, parentFeedbackId, feedbackId);
+      state.authenticatedUser.feedbacks = filterReplyList(state.authenticatedUser.feedbacks, parentFeedbackId, feedbackId);
+    }
+  }
+};
+var actions = {
+  loadFeedbackUser: function loadFeedbackUser(_ref2, _ref3) {
+    var commit = _ref2.commit;
+    var data = _ref3.data,
+        itemId = _ref3.itemId,
+        variationId = _ref3.variationId;
+    var itemString = '';
+
+    if (itemId !== undefined && variationId !== undefined) {
+      itemString = "/".concat(itemId, "/").concat(variationId);
+    }
+
+    return $.ajax({
+      type: 'GET',
+      url: '/rest/feedbacks/user' + itemString,
+      data: data,
+      success: function success(data) {
+        commit('setFeedbackAuthenticatedUser', data);
+      },
+      error: function error(jqXHR, textStatus, errorThrown) {
+        console.error(errorThrown);
+      }
+    });
+  },
+  loadFeedbackCounts: function loadFeedbackCounts(_ref4, itemId) {
+    var commit = _ref4.commit,
+        state = _ref4.state;
+
+    if (!countsLoaded) {
+      countsLoaded = true;
+      return $.ajax({
+        type: 'GET',
+        url: '/rest/feedbacks/feedback/helper/counts/' + itemId,
+        success: function success(data) {
+          commit('setFeedbackCounts', data.counts);
+        },
+        error: function error(jqXHR, textStatus, errorThrown) {
+          console.error(errorThrown);
+        }
+      });
+    }
+  },
+  loadPaginatedFeedbacks: function loadPaginatedFeedbacks(_ref5, _ref6) {
+    var commit = _ref5.commit,
+        state = _ref5.state;
+    var itemId = _ref6.itemId,
+        feedbacksPerPage = _ref6.feedbacksPerPage;
+    var request = $.ajax({
+      type: 'GET',
+      url: '/rest/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
+      data: {
+        feedbacksPerPage: feedbacksPerPage
+      },
+      success: function success(data) {
+        commit('setFeedbacks', data.feedbacks);
+        commit('setFeedbackItemAttributes', data.itemAttributes);
+        commit('setFeedbackPagination', data.pagination);
+      },
+      error: function error(jqXHR, textStatus, errorThrown) {
+        console.error(errorThrown);
+      }
+    });
+    commit('incrementCurrentFeedbackPage');
+    return request;
+  },
+  deleteFeedback: function deleteFeedback(_ref7, _ref8) {
+    var commit = _ref7.commit,
+        state = _ref7.state;
+    var feedbackId = _ref8.feedbackId,
+        parentFeedbackId = _ref8.parentFeedbackId,
+        feedback = _ref8.feedback;
+    return $.ajax({
+      type: 'DELETE',
+      url: '/rest/feedbacks/feedback/delete/' + feedbackId,
+      success: function success(data) {
+        commit('deleteFeedback', {
+          feedbackId: feedbackId,
+          parentFeedbackId: parentFeedbackId,
+          feedback: feedback
+        });
+      }
+    });
+  }
+};
+var getters = {};
+var countsLoaded = false;
+/* harmony default export */ __webpack_exports__["default"] = ({
+  state: state,
+  mutations: mutations,
+  actions: actions,
+  getters: getters
+}); // Utility functions
+
+function filterFeedbackList(feedbackList, feedbackId) {
+  return feedbackList.filter(function (feedback) {
+    return feedback.id !== feedbackId;
+  });
+}
+
+function filterReplyList(feedbackList, feedbackId, replyId) {
+  return feedbackList.map(function (feedback) {
+    if (feedbackId === feedback.id) {
+      feedback.replies = feedback.replies.filter(function (reply) {
+        return reply.id !== replyId;
+      });
+    }
+
+    return feedback;
+  });
+}
+
+function recalculateAverage(state) {
+  // Calculate average anew
+  var average = 0;
+  average += state.counts.ratingsCountOf5 * 5;
+  average += state.counts.ratingsCountOf4 * 4;
+  average += state.counts.ratingsCountOf3 * 3;
+  average += state.counts.ratingsCountOf2 * 2;
+  average += state.counts.ratingsCountOf1 * 1;
+  average /= state.counts.ratingsCountTotal;
+  state.counts.averageValue = average;
+}
 
 /***/ }),
 
@@ -1005,14 +1223,16 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      _c("feedback-order-form", {
-        attrs: {
-          "allow-guest-feedbacks": _vm.options.allowGuestFeedbacks,
-          "number-of-feedbacks": _vm.options.numberOfFeedbacks,
-          "access-key": _vm.accessKey,
-          "order-id": _vm.orderId
-        }
-      })
+      !_vm.isLoading
+        ? _c("feedback-order-form", {
+            attrs: {
+              "allow-guest-feedbacks": _vm.options.allowGuestFeedbacks,
+              "number-of-feedbacks": _vm.options.numberOfFeedbacks,
+              "access-key": _vm.accessKey,
+              "order-id": _vm.orderId
+            }
+          })
+        : _vm._e()
     ],
     1
   )
@@ -1096,7 +1316,7 @@ var render = function() {
                             expression: "feedback.ratingValue"
                           }
                         ],
-                        key: "stars_input_" + starId,
+                        key: "stars_input_" + starId.id,
                         class: starId.class,
                         attrs: {
                           id: starId.id,
@@ -1125,7 +1345,7 @@ var render = function() {
                       _c(
                         "label",
                         {
-                          key: "stars_label_" + starId,
+                          key: "stars_label_" + starId.id,
                           staticClass: "new_star",
                           attrs: { for: starId.id }
                         },
@@ -1446,7 +1666,7 @@ var render = function() {
                         expression: "feedback.ratingValue"
                       }
                     ],
-                    key: "stars_input_" + starId,
+                    key: "stars_input_" + starId.id,
                     class: starId.class,
                     attrs: {
                       id: starId.id,
@@ -1475,7 +1695,7 @@ var render = function() {
                   _c(
                     "label",
                     {
-                      key: "stars_label_" + starId,
+                      key: "stars_label_" + starId.id,
                       staticClass: "new_star",
                       attrs: { for: starId.id }
                     },

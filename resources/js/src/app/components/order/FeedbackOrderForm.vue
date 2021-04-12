@@ -37,7 +37,7 @@
               <template v-for="starId in starIds">
                 <input
                   :id="starId.id"
-                  :key="'stars_input_' + starId"
+                  :key="'stars_input_' + starId.id"
                   v-model="feedback.ratingValue"
                   :class="starId.class"
                   type="radio"
@@ -46,7 +46,7 @@
                   name="ratingValue"
                 >
                 <label
-                  :key="'stars_label_' + starId"
+                  :key="'stars_label_' + starId.id"
                   :for="starId.id"
                   class="new_star"
                 >
@@ -161,7 +161,7 @@ import { mapState } from 'vuex'
 export default {
   props: {
     allowGuestFeedbacks: Boolean,
-    numberOfFeedbacks: String,
+    numberOfFeedbacks: Number,
     accessKey: String,
     orderId: String
   },
