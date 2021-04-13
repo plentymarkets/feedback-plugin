@@ -11,7 +11,7 @@
     "type": "general",
     "require": {
         "IO": ">=5.0.20",
-        "Ceres": ">=5.0.20"
+        "Ceres": ">=5.0.27"
     },
     "isClosedSource": false,
     "serviceProvider": "Feedback\\Providers\\FeedbackServiceProvider",
