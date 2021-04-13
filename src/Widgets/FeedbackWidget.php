@@ -62,7 +62,7 @@ class FeedbackWidget extends BaseWidget
             ->withName('Widget.numberOfFeedbacks')
             ->withTooltip('Widget.numberOfFeedbacksTooltip');
 
-        $settings->createSetting('numberOfFeedbacks')
+        $settings->createSetting('feedbacksPerPage')
             ->withType('number')
             ->withDefaultValue(10)
             ->withName('Widget.feedbacksPerPage')
