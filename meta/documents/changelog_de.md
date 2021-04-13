@@ -9,14 +9,14 @@
 
 ### Hinzugefügt
 
-- Das Kundenfeedback-Plugin ist nun SSR-fähig.
-- Es wurde ein Webpack5 Build Prozess aufgebaut.
+- Das Kundenfeedback-Plugin ist nun kompatibel mit Vue Server-Side Rendering.
+- Es wurde ein Webpack 5 Build-Prozess aufgebaut.
 - Die Logik und Daten der Vue-Komponenten wurde in einen eigenen VueX Store ausgelagert.
 
 ### Geändert
 
-- Widgets werden nun nicht mehr über die veraltete contentwidgets.json, sondern über PHP Klassen definiert und registriert.
-- Alle Vue-Komponenten liegen nun als vorkompilierte SFC-Dateien vor, die asynchron nachgeladen werden.
+- Widgets werden nun nicht mehr über die veraltete `contentwidgets.json`, sondern über PHP-Klassen definiert und registriert.
+- Alle Vue-Komponenten liegen nun als vorkompilierte Single File Component-Dateien vor, die asynchron nachgeladen werden.
 
 
 ## v3.6.4 (2021-04-13)
