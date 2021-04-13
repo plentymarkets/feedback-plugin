@@ -7,17 +7,16 @@
 - This version of the feedback plugin is only compatible with Ceres v5.0.27 or higher.
 - After updating the feedback plugin to v4.0.0, it is necessary to re-generate ShopBuilder widgets via the **Regenerate contents** button in the **CMS » ShopBuilder** menu.
 
-### Hinzugefügt
+### Added
 
-- Das Kundenfeedback-Plugin ist nun SSR-fähig.
-- Es wurde ein Webpack5 Build Prozess aufgebaut.
-- Die Logik und Daten der Vue-Komponenten wurde in einen eigenen VueX Store ausgelagert.
+- The feedback plugin is now compatible with Vue Server-Side Rendering.
+- We added a Webpack 5 build process.
+- The logic and data auf the Vue components have been moved to a separate VueX store.
 
-### Geändert
+### Changed
 
-- Widgets werden nun nicht mehr über die veraltete contentwidgets.json, sondern über PHP Klassen definiert und registriert.
-- Alle Vue-Komponenten liegen nun als vorkompilierte SFC-Dateien vor, die asynchron nachgeladen werden.
-
+- Widgets are no longer defined and registered via the obsolete `contentwidgets.json` file but via PHP classes.
+- All Vue components have been realised as precombiled Single File Component files that are loaded asynchronously. 
 
 ## v3.6.4 (2021-04-13)
 
