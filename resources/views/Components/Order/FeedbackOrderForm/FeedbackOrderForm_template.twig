@@ -36,7 +36,7 @@
                     <div class="col-8">
                         <a :href="item.url">${item.name}</a>
 
-                        <div class="form-group" v-if="!authenticatedUser.isLoggedIn && allowGuestFeedbacks">
+                        <div class="form-group" v-if="!authenticatedUser.isLoggedIn">
                             <input type="text"
                                    v-model="feedback.authorName"
                                    class="form-control"

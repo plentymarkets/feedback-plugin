@@ -1,5 +1,17 @@
 # Release Notes for Feedback
 
+## v3.6.4 (2021-04-13)
+
+### TODO
+
+- This version of the feedback plugin is only compatible with Ceres v5.0 or higher.
+- After updating the feedback plugin to v3.6.4, it is necessary to re-generate ShopBuilder widgets via the **Regenerate contents** button in the **CMS » ShopBuilder** menu.
+
+### Behoben
+
+- We fixed a security issue through which cross-site scripting was made possible.
+- Under certain circumstanes, the field for the author's name was not displayed on the order confirmation of guest orders. This has been fixed.
+
 ## v3.6.3 (2021-03-26)
 
 ### TODO
@@ -11,8 +23,6 @@
 
 - Feedbacks could not be verified, when written from a guests order confirmation. This has been fixed.
 - Incorrectly cached data lead to wrongly linked feedbacks on the order confirmation.
-
-
 
 ## v3.6.2 (2021-03-03)
 
