@@ -74,7 +74,7 @@
             <a :href="item.url">{{ item.name }}</a>
 
             <div
-              v-if="!authenticatedUser.isLoggedIn && allowGuestFeedbacks"
+              v-if="!authenticatedUser.isLoggedIn"
               class="form-group"
             >
               <input
