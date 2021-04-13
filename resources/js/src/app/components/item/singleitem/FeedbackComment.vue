@@ -43,7 +43,7 @@
 
     <p
       class="feedback-comment-text"
-      v-html="message"
+      v-text="message"
     />
     <p class="feedback-info">
       <span class="feedback-info-segment">

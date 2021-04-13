@@ -803,7 +803,7 @@ var render = function() {
       _vm._v(" "),
       _c("p", {
         staticClass: "feedback-comment-text",
-        domProps: { innerHTML: _vm._s(_vm.message) }
+        domProps: { textContent: _vm._s(_vm.message) }
       }),
       _vm._v(" "),
       _c("p", { staticClass: "feedback-info" }, [

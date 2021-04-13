@@ -8374,7 +8374,7 @@ var render = function() {
             "</p></div></div>"
           : "<!---->") +
           ' <p class="feedback-comment-text">' +
-          _vm._s(_vm.message) +
+          _vm._ssrEscape(_vm._s(_vm.message)) +
           "</p> "
       ),
       _vm._ssrNode(
