@@ -9,8 +9,8 @@
 
 ### Behoben
 
-- TODO
-- Das Feld für Autorname wurde bei Gastbestellungen auf der Bestellbestätigung nicht immer angezeigt. 
+- Es wurde eine Sicherheitslücke geschlossen, durch die Cross-Site-Scripting möglich war.
+- Unter bestimmten Umständen wurde das Feld für Autorname bei Gastbestellungen auf der Bestellbestätigung nicht angezeigt. Dies wurde behoben.
 
 ## v3.6.3 (2021-03-26)
 
