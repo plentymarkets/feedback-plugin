@@ -1,5 +1,23 @@
 # Release Notes for Feedback
 
+## v4.0.0 (2021-04-14)
+
+### TODO
+
+- This version of the feedback plugin is only compatible with Ceres v5.0.27 or higher.
+- After updating the feedback plugin to v4.0.0, it is necessary to re-generate ShopBuilder widgets via the **Regenerate contents** button in the **CMS » ShopBuilder** menu.
+
+### Added
+
+- The feedback plugin is now compatible with Vue Server-Side Rendering.
+- We added a Webpack 5 build process.
+- The logic and data auf the Vue components have been moved to a separate VueX store.
+
+### Changed
+
+- Widgets are no longer defined and registered via the obsolete `contentwidgets.json` file but via PHP classes.
+- All Vue components have been realised as precombiled Single File Component files that are loaded asynchronously. 
+
 ## v3.6.4 (2021-04-13)
 
 ### TODO

@@ -1,0 +1,26 @@
+{
+    "parser": "vue-eslint-parser",
+    "parserOptions": {
+        "parser": "@babel/eslint-parser",
+        "ecmaVersion": 2018,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "extends": [
+        "standard",
+        "plugin:vue/base",
+        "plugin:vue/recommended"
+    ],
+    "globals": {
+        "jQuery": false,
+        "$": true,
+        "App": false,
+        "Vue": false,
+        "vueEventHub": false,
+        "$translate": false,
+        "__webpack_public_path__": true,
+        "vueApp": false
+    }
+}
