@@ -85,6 +85,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -528,9 +529,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.showEmptyRatings || _vm.counts.averageValue > 0
-    ? _c("div", [
-        _c("div", { staticClass: "feedback-stars-average", class: _vm.size }, [
+  return _c("div", [
+    _vm.showEmptyRatings || _vm.counts.averageValue > 0
+      ? _c("div", { staticClass: "feedback-stars-average", class: _vm.size }, [
           _c(
             "div",
             { staticClass: "feedback-stars-background clearfix" },
@@ -570,28 +571,29 @@ var render = function() {
                 0
               )
             ]
-          ),
-          _vm._v(" "),
-          _vm.showRatingsAmount
-            ? _c("span", { class: _vm.size }, [
-                _c(
-                  "a",
-                  {
-                    attrs: { href: "#" },
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        return _vm.scrollTo($event)
-                      }
-                    }
-                  },
-                  [_vm._v("(" + _vm._s(_vm.counts.ratingsCountTotal) + ")")]
-                )
-              ])
-            : _vm._e()
+          )
         ])
-      ])
-    : _vm._e()
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.showRatingsAmount &&
+    (_vm.showEmptyRatings || _vm.counts.averageValue > 0)
+      ? _c("span", { class: _vm.size }, [
+          _c(
+            "a",
+            {
+              attrs: { href: "#" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.scrollTo($event)
+                }
+              }
+            },
+            [_vm._v("(" + _vm._s(_vm.counts.ratingsCountTotal) + ")")]
+          )
+        ])
+      : _vm._e()
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

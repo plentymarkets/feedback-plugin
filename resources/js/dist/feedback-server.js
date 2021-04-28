@@ -90,6 +90,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -8257,35 +8258,34 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.showEmptyRatings || _vm.counts.averageValue > 0
-    ? _c("div", [
-        _vm._ssrNode(
-          "<div" +
-            _vm._ssrClass("feedback-stars-average", _vm.size) +
-            '><div class="feedback-stars-background clearfix">' +
-            _vm._ssrList(5, function(index) {
-              return '<div class="feedback-star"><i class="fa fa-star"></i></div>'
-            }) +
-            '</div> <div class="feedback-stars-overlay-wrap"' +
-            _vm._ssrStyle(null, { width: _vm.fill }, null) +
-            '><div class="feedback-stars-overlay clearfix">' +
-            _vm._ssrList(5, function(index) {
-              return '<div class="feedback-star"><i class="fa fa-star"></i></div>'
-            }) +
-            "</div></div> " +
-            (_vm.showRatingsAmount
-              ? "<span" +
-                _vm._ssrClass(null, _vm.size) +
-                '><a href="#">' +
-                _vm._ssrEscape(
-                  "(" + _vm._s(_vm.counts.ratingsCountTotal) + ")"
-                ) +
-                "</a></span>"
-              : "<!---->") +
-            "</div>"
-        )
-      ])
-    : _vm._e()
+  return _c("div", [
+    _vm._ssrNode(
+      (_vm.showEmptyRatings || _vm.counts.averageValue > 0
+        ? "<div" +
+          _vm._ssrClass("feedback-stars-average", _vm.size) +
+          '><div class="feedback-stars-background clearfix">' +
+          _vm._ssrList(5, function(index) {
+            return '<div class="feedback-star"><i class="fa fa-star"></i></div>'
+          }) +
+          '</div> <div class="feedback-stars-overlay-wrap"' +
+          _vm._ssrStyle(null, { width: _vm.fill }, null) +
+          '><div class="feedback-stars-overlay clearfix">' +
+          _vm._ssrList(5, function(index) {
+            return '<div class="feedback-star"><i class="fa fa-star"></i></div>'
+          }) +
+          "</div></div></div>"
+        : "<!---->") +
+        " " +
+        (_vm.showRatingsAmount &&
+        (_vm.showEmptyRatings || _vm.counts.averageValue > 0)
+          ? "<span" +
+            _vm._ssrClass(null, _vm.size) +
+            '><a href="#">' +
+            _vm._ssrEscape("(" + _vm._s(_vm.counts.ratingsCountTotal) + ")") +
+            "</a></span>"
+          : "<!---->")
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -9476,7 +9476,7 @@ var render = function() {
           ">" +
           _vm._ssrEscape(_vm._s(_vm.item.name)) +
           "</a> " +
-          (!_vm.authenticatedUser.isLoggedIn && _vm.allowGuestFeedbacks
+          (!_vm.authenticatedUser.isLoggedIn
             ? '<div class="form-group"><input id="author" type="text" name="author"' +
               _vm._ssrAttr("disabled", _vm.isRated || _vm.limitReached) +
               _vm._ssrAttr(
