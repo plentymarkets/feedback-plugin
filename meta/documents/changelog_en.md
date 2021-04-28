@@ -9,7 +9,7 @@
 
 ### Behoben
 
-- The count of feedbacks for the Star rating widget was incorrectly positioned.
+- The number of feedbacks in the star rating widget was incorrectly positioned. As a result, the rating stars concealed the feedback count. This has been fixed.
 
 ## v4.0.0 (2021-04-14)
 
