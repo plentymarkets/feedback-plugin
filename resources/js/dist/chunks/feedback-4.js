@@ -1396,7 +1396,7 @@ var render = function() {
                 _vm._v(_vm._s(_vm.item.name))
               ]),
               _vm._v(" "),
-              !_vm.authenticatedUser.isLoggedIn && _vm.allowGuestFeedbacks
+              !_vm.authenticatedUser.isLoggedIn
                 ? _c("div", { staticClass: "form-group" }, [
                     _c("input", {
                       directives: [

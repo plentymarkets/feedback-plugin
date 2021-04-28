@@ -1,5 +1,16 @@
 # Release Notes for Feedback
 
+## v4.0.1 (2021-04-28)
+
+### TODO
+
+- This version of the feedback plugin is only compatible with Ceres v5.0.27 or higher.
+- After updating the feedback plugin to v4.0.1, it is necessary to re-generate ShopBuilder widgets via the **Regenerate contents** button in the **CMS » ShopBuilder** menu.
+
+### Behoben
+
+- The number of feedbacks in the star rating widget was incorrectly positioned. As a result, the rating stars concealed the feedback count. This has been fixed.
+
 ## v4.0.0 (2021-04-14)
 
 ### TODO
