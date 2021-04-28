@@ -9,7 +9,7 @@
 
 ### Behoben
 
-- Die Anzahl der Feedbacks bei dem Bewertungssterne-Widget war falsch positioniert.
+- Die Anzahl der Feedbacks im Bewertungssterne-Widget war so positioniert, sodass sie von den Bewertungssterne überdeckt wurde. Dies wurde behoben.
 
 ## v4.0.0 (2021-04-14)
 
