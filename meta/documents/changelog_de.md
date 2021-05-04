@@ -1,5 +1,15 @@
 # Release Notes für Feedback
 
+## v4.0.2 (2021-05-05)
+
+### TODO
+
+- Nach dem Update auf Version 4.0.2 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden.
+
+### Behoben
+
+- Zeilenumbrüche in Kommentaren zu Kundenrezensionen wurden als `<br>`-Tag gerendert. Dies wurde behoben.
+
 ## v4.0.1 (2021-04-28)
 
 ### TODO
