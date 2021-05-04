@@ -4,7 +4,6 @@
 
 ### TODO
 
-- This version of the feedback plugin is only compatible with Ceres v5.0.27 or higher.
 - After updating the feedback plugin to v4.0.2, it is necessary to re-generate ShopBuilder widgets via the **Regenerate contents** button in the **CMS » ShopBuilder** menu.
 
 ### Fixed
