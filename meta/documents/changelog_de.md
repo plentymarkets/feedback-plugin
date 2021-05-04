@@ -8,7 +8,7 @@
 
 ### Behoben
 
-- Zeilenumbrüche in Kommentare zu einem Kunden-Feedback wurden als BR HTML Tag gerendert.
+- Zeilenumbrüche in Kommentaren zu eine Kundenrezension wurden als `<br>`-Tag gerendert. Dies wurde behoben.
 
 ## v4.0.1 (2021-04-28)
 
