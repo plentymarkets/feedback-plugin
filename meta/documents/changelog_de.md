@@ -1,5 +1,16 @@
 # Release Notes für Feedback
 
+## v4.0.2 (2021-05-05)
+
+### TODO
+
+- Zur Nutzung des Feedback-Plugins muss Ceres in Version 5.0.27 oder höher installiert sein.
+- Nach dem Update auf Version 4.0.2 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden.
+
+### Behoben
+
+- Zeilenumbrüche in Kommentare zu einem Kunden-Feedback wurden als BR HTML Tag gerendert.
+
 ## v4.0.1 (2021-04-28)
 
 ### TODO
