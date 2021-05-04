@@ -8,7 +8,7 @@
 
 ### Fixed
 
-- Linebreaks were rendered as BR HTML tags for feedback comments.
+- Line breaks in comments for customer reviews were rendered as `<br>` tags. This has been fixed.
 
 ## v4.0.1 (2021-04-28)
 
