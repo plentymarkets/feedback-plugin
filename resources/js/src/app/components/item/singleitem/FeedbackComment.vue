@@ -252,8 +252,7 @@ export default {
       return this.feedbackData
         .feedbackComment
         .comment
-        .message.split('\n')
-        .join('<br />')
+        .message
     },
 
     isPurchased () {

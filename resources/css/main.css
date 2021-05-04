@@ -136,7 +136,8 @@
         vertical-align: bottom; }
     .feedback-container .feedback-list .feedback .feedback-comment .feedback-comment-text {
       margin-bottom: 0px;
-      word-break: break-word; }
+      word-break: break-word;
+      white-space: pre-line; }
     .feedback-container .feedback-list .feedback .feedback-comment .feedback-replies {
       margin-top: 20px;
       padding-left: 30px; }

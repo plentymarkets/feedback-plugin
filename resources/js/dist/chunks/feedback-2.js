@@ -296,7 +296,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return '';
       }
 
-      return this.feedbackData.feedbackComment.comment.message.split('\n').join('<br />');
+      return this.feedbackData.feedbackComment.comment.message;
     },
     isPurchased: function isPurchased() {
       return this.feedbackData.sourceRelation.find(function (relation) {
