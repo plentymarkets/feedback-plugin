@@ -8,7 +8,7 @@
 
 ### Behoben
 
-- Feedbacks without an authorname have led to an error. This has been fixed.
+- Feedbacks submitted without an author's name led to an error. This has been fixed.
 
 ## v4.0.2 (2021-05-05)
 
