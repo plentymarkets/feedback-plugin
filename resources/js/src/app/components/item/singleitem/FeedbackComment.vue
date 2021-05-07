@@ -241,7 +241,7 @@ export default {
           })
           .join('')
       } else {
-        return $translate('Feedback::Feedback.guestName')
+        return this.$translate('Feedback::Feedback.guestName')
       }
     },
 

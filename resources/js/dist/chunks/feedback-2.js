@@ -288,7 +288,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           return namePart.substr(0, 1) + '.';
         }).join('');
       } else {
-        return $translate('Feedback::Feedback.guestName');
+        return this.$translate('Feedback::Feedback.guestName');
       }
     },
     message: function message() {
