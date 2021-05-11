@@ -1,5 +1,15 @@
 # Release Notes for Feedback
 
+## v4.0.3 (2021-05-10)
+
+### TODO
+
+- After updating the feedback plugin to v4.0.3, it is necessary to re-generate ShopBuilder widgets via the **Regenerate contents** button in the **CMS » ShopBuilder** menu.
+
+### Behoben
+
+- Feedbacks submitted without an author's name led to an error. This has been fixed.
+
 ## v4.0.2 (2021-05-05)
 
 ### TODO

@@ -1,5 +1,15 @@
 # Release Notes für Feedback
 
+## v4.0.3 (2021-05-10)
+
+### TODO
+
+- Nach dem Update auf Version 4.0.3 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden.
+
+### Behoben
+
+- Feedbacks ohne Autorennamen haben zu einem Fehler geführt. Dies wurde behoben.
+
 ## v4.0.2 (2021-05-05)
 
 ### TODO
