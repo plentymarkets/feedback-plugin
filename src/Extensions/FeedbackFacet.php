@@ -1,12 +1,14 @@
 <?php
+
 namespace Feedback\Extensions;
 
-use IO\Services\ItemSearch\Contracts\FacetExtension;
-use IO\Services\SessionStorageService;
+use IO\Helper\Utils;
 use Plenty\Modules\Cloud\ElasticSearch\Lib\Search\Aggregation\AggregationInterface;
-use Plenty\Modules\Item\Search\Aggregations\FeedbackAggregation;
-use Plenty\Modules\Item\Search\Aggregations\FeedbackAggregationProcessor;
-use Plenty\Modules\Item\Search\Filter\FeedbackRangeFilter;
+use Plenty\Modules\Pim\SearchService\Aggregations\Feedback\FeedbackRangeAggregation;
+use Plenty\Modules\Pim\SearchService\Aggregations\Processors\FeedbackRangeAggregationProcessor;
+use Plenty\Modules\Pim\SearchService\Filter\FeedbackRangeFilter;
+use Plenty\Modules\Webshop\Contracts\LocalizationRepositoryContract;
+use Plenty\Modules\Webshop\ItemSearch\Contracts\FacetExtension;
 use Plenty\Plugin\Log\Loggable;
 
 /**
@@ -27,8 +29,8 @@ class FeedbackFacet implements FacetExtension
      */
     public function getAggregation(): AggregationInterface
     {
-        $feedbackProcessor = pluginApp(FeedbackAggregationProcessor::class);
-        return pluginApp(FeedbackAggregation::class, [$feedbackProcessor]);
+        $feedbackProcessor = pluginApp(FeedbackRangeAggregationProcessor::class);
+        return pluginApp(FeedbackRangeAggregation::class, [$feedbackProcessor]);
     }
 
     /**
@@ -39,24 +41,10 @@ class FeedbackFacet implements FacetExtension
     {
         $feedback = [];
 
-        if (count($result))
-        {
-
+        if (count($result)) {
             $this->getLogger('merge into facets')->debug('Feedback::Debug.filterResponse', $result);
 
-            $facetName = '';
-
-            // TODO: get facet name from property file
-            $lang = pluginApp( SessionStorageService::class )->getLang();
-            if ( $lang === 'de' )
-            {
-                $facetName = 'Artikelbewertung';
-            }
-            else
-            {
-                $facetName = 'Item rating';
-            }
-
+            $facetName = Utils::translate('Feedback::Feedback.facetName');
             $feedback = [
                 'id' => 'feedback',
                 'name' => $facetName,
@@ -68,11 +56,14 @@ class FeedbackFacet implements FacetExtension
                 ],
                 'values' => [],
                 'minHitCount' => 1,
-                'maxResultCount' => 5
+                'maxResultCount' => 5,
+                'type' => 'feedback'
             ];
 
             for ($i = 1; $i <= 5; $i++) {
-                if (isset($result[$i]) && (is_null($this->currentActiveRatingFilter) || $this->currentActiveRatingFilter == $i)) {
+                if (isset($result[$i]) && (is_null(
+                            $this->currentActiveRatingFilter
+                        ) || $this->currentActiveRatingFilter == $i)) {
                     $feedback['values'][] = [
                         'id' => 'feedback-' . $i,
                         'names' => [
@@ -96,7 +87,6 @@ class FeedbackFacet implements FacetExtension
     {
         foreach ($filtersList as $filter) {
             if (strpos($filter, 'feedback-') === 0) {
-
                 $this->currentActiveRatingFilter = (INT)substr($filter, 9);
 
                 /** @var FeedbackRangeFilter $rangeFilter */

@@ -1,0 +1,23 @@
+{% import "Ceres::Widgets.Helper.TwigBuilder" as Twig %}
+{% import "Ceres::Widgets.Helper.WidgetHelper" as WidgetHelper %}
+
+{% set customClass = widget.settings.customClass.mobile %}
+{% set spacingSettings = widget.settings.spacing %}
+{% set inlineMargin    = WidgetHelper.getInlineSpacings(spacingSettings, "", spacingSettings.customMargin.mobile) %}
+{% set spacingMargin   = WidgetHelper.getSpacingClasses(spacingSettings, "",spacingSettings.customMargin.mobile) %}
+{% set sizeOfStars = widget.settings.sizeOfStars.mobile %}
+{% set showNumberOfRatings = widget.settings.showNumberOfRatings.mobile | default(false) %}
+{% set showEmptyRatings = widget.settings.showEmptyRatings.mobile %}
+
+{% if isPreview %}
+    {% set showEmptyRatings = isPreview %}
+{% endif %}
+
+<div class="widget widget-feedback-average {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
+        {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
+    <feedback-average
+            :show-empty-ratings="{{ showEmptyRatings | json_encode }}"
+            size-of-stars="{{ sizeOfStars }}"
+            :show-ratings-amount="{{ showNumberOfRatings | json_encode }}">
+    </feedback-average>
+</div>

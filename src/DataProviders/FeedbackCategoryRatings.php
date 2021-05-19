@@ -1,13 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Constantin Purcaru
- * Date: 06/11/2017
- * Time: 15:23
- */
-
 namespace Feedback\DataProviders;
-
 
 use Plenty\Modules\Feedback\Contracts\FeedbackAverageRepositoryContract;
 use Feedback\Helpers\FeedbackCoreHelper;
@@ -40,9 +32,9 @@ class FeedbackCategoryRatings
 
         $data['counts'] = $counts;
 
-        $showEmptyRatingsInCategoryView = $coreHelper->configValue(FeedbackCoreHelper::KEY_SHOW_EMPTY_RATINGS_IN_CATEGORY_VIEW) == 'true' ? true : false;
+        $showEmptyRatingsInCategoryView = $coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_SHOW_EMPTY_RATINGS_IN_CATEGORY_VIEW);
         $data['options']['showEmptyRatingsInCategoryView'] = $showEmptyRatingsInCategoryView;
 
-        return $twig->render('Feedback::DataProvider.CategoryRatings.CategoryAverageRating', $data);
+        return $twig->render('Feedback::DataProvider.CategoryAverageRating', $data);
     }
 }

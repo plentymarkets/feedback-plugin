@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "formatVersion": 1,
   "menu": {
     "Config.FeedbackSettingsTab": {
@@ -75,8 +76,83 @@
           "options": {
             "defaultValue": ""
           }
+=======
+    "formatVersion": 1,
+    "menu": {
+        "Config.FeedbackSettingsTab": {
+            "label": "Config.FeedbackSettingsTab",
+            "formFields": {
+                "autoreleaseFeedbacks": {
+                    "type": "selectBox",
+                    "required": false,
+                    "label": "Config.releaseFeedbacks",
+                    "options": {
+                        "defaultValue": 0,
+                        "selectBoxValues":[
+                            {
+                                "value": 0,
+                                "caption": "Config.doNotRelease"
+                            },
+                            {
+                                "value": 1,
+                                "caption": "Config.releaseAuthenticated"
+                            },
+                            {
+                                "value": 2,
+                                "caption": "Config.releaseAll"
+                            }
+                        ]
+                    }
+                },
+                "releaseFeedbacks": {
+                    "type": "checkBox",
+                    "required": false,
+                    "deprecated": true,
+                    "label": "Config.releaseFeedbacks",
+                    "options": {
+                        "defaultValue": "false"
+                    }
+                },
+                "allowGuestFeedbacks": {
+                    "type": "checkBox",
+                    "required": false,
+                    "label": "Config.allowGuestFeedbacks",
+                    "options": {
+                        "defaultValue": "false"
+                    }
+                },
+                "showEmptyRatingsInCategoryView": {
+                    "type": "checkBox",
+                    "required": false,
+                    "label": "Config.showEmptyRatingsInCategoryViewLabel",
+                    "options": {
+                        "defaultValue": "false"
+                    }
+                },
+                "showRatingFacet": {
+                    "type": "checkBox",
+                    "required": false,
+                    "label": "Config.showRatingFacetLabel",
+                    "options": {
+                        "defaultValue": "true"
+                    }
+                },
+                "showRatingSorting": {
+                    "type": "checkBox",
+                    "required": false,
+                    "label": "Config.showRatingSortingLabel",
+                    "options": {
+                        "defaultValue": "true"
+                    }
+                }
+            }
+>>>>>>> 7e65766aa144437b9231b006403439804704db49
         }
-      }
     }
+<<<<<<< HEAD
   }
 }
+=======
+}
+
+>>>>>>> 7e65766aa144437b9231b006403439804704db49
