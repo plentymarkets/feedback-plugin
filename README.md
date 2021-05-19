@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-# elternerfahrungen
-*fork of `plentymarkets/feedback-plugin`*
-
-Elternerfahrungen Plugin für bio-kinder.de
-=======
 ![plentymarkets Logo](http://www.plentymarkets.eu/layout/pm/images/logo/plentymarkets-logo.jpg)
 
 # Feedback Plugin
@@ -33,4 +27,3 @@ Find information about the latest updates in our [Changelog](/meta/documents/cha
 ## License
 
 This project is licensed under the GNU AFFERO GENERAL PUBLIC LICENSE - see the [LICENSE](/LICENSE) file for details.
->>>>>>> 7e65766aa144437b9231b006403439804704db49

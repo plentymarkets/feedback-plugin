@@ -56,7 +56,7 @@
     /* stars are added from 5 to 1 and positioned right to left so that "~" works */
     input.star:checked ~ label.star:before, input.star-rated:checked ~ label.star-rated:before {
         content: '\f005';
-        color: #ffdc0f;
+        color: orange;
     }
     input.star:checked ~ svg.star, input.star-rated:checked ~ svg.star-rated {
         fill: orange;
@@ -72,23 +72,15 @@
 
     /* hovered star ( full and colored ) */
     label.star:hover:before {
-<<<<<<< HEAD
-        color:#ffdc0f !important;
-=======
         color: orange !important;
->>>>>>> 7e65766aa144437b9231b006403439804704db49
     }
 
     /* stars of lower value on hover ( full and colored ) */
     label.star:hover ~ label.star:before {
-<<<<<<< HEAD
-        color:#ffdc0f;
-=======
         color: orange;
     }
     svg.star:hover ~ svg.star {
         fill: orange;
->>>>>>> 7e65766aa144437b9231b006403439804704db49
     }
 
     /* all visible stars ( full but colorless ) */
@@ -105,16 +97,6 @@
             margin-bottom: 1px;
 
             .feedback-bar {
-<<<<<<< HEAD
-                width: 50%;
-                height:17px;
-                display:inline-block;
-                vertical-align:middle;
-                background:rgba(0,0,0,.1);
-                overflow: hidden;
-                border-radius: 2px;
-                margin: 0 10px;
-=======
                 width: 140px;
                 height: 17px;
                 display: inline-block;
@@ -123,7 +105,6 @@
                 overflow: hidden;
                 border-radius: 2px;
 
->>>>>>> 7e65766aa144437b9231b006403439804704db49
                 .feedback-bar-fill {
                     width: 0%;
                     height: 100%;
@@ -134,20 +115,8 @@
             p {
                 display: inline-block;
                 vertical-align: middle;
-<<<<<<< HEAD
-                line-height:17px;
-                margin-bottom:0px;
-            }
-            .feedback-bar-text-before {
-
-            }
-            .feedback-bar-text-after {
-              color: #ddd;
-              font-style: italic;
-=======
                 line-height: 17px;
                 margin-bottom: 0px;
->>>>>>> 7e65766aa144437b9231b006403439804704db49
             }
         }
     }
@@ -156,18 +125,9 @@
 
     .feedback-list {
         .feedback {
-<<<<<<< HEAD
-            padding-bottom:15px;
-            margin-bottom:15px;
-            border-bottom:none;
-            background: #f5f5f5;
-            background: rgba(238,238,238,0.5);
-            padding: 1em 2em;
-=======
             padding-bottom: 15px;
             margin-bottom: 15px;
             border-bottom: rgba(0, 0, 0, .1) dotted 1px;
->>>>>>> 7e65766aa144437b9231b006403439804704db49
 
             &.loading {
                 pointer-events: none;
@@ -203,45 +163,20 @@
             .feedback-comment {
 
                 .feedback-comment-title {
-<<<<<<< HEAD
-                    font-weight:bold;
-                    margin-bottom:0px;
-                    width: 100%;
-=======
                     font-weight: bold;
                     margin-bottom: 10px;
->>>>>>> 7e65766aa144437b9231b006403439804704db49
                 }
 
                 .feedback-rating {
-<<<<<<< HEAD
-                    color:rgba(0,0,0,.1);
-                    min-width: 70px;
-                    display:inline-block;
-                    .full { color:#ffdc0f; }
-=======
                     color: rgba(0, 0, 0, .1);
 
                     .full {
                         color: orange;
                     }
->>>>>>> 7e65766aa144437b9231b006403439804704db49
                 }
 
                 .feedback-attributes-list {
                     p {
-<<<<<<< HEAD
-                        font-size:14px;
-                        margin:0px;
-                        line-height:1;
-                        span {
-                            display:inline-block;
-                            border-right:rgba(0,0,0,.2) solid 1px;
-                            margin: 0;
-                            padding-right:7px;
-                            color: #bbb;
-                            font-style: italic;
-=======
                         font-size: 12px;
                         margin: 0px;
 
@@ -250,7 +185,6 @@
                             border-right: rgba(0, 0, 0, .2) solid 1px;
                             margin: 10px 4px 10px 0;
                             padding-right: 7px;
->>>>>>> 7e65766aa144437b9231b006403439804704db49
                         }
 
                         span:last-of-type {
@@ -273,30 +207,14 @@
                 }
 
                 .feedback-comment-text {
-<<<<<<< HEAD
-                    margin: 10px;
-=======
                     margin-bottom: 0px;
                     word-break: break-word;
                     white-space: pre-line;
->>>>>>> 7e65766aa144437b9231b006403439804704db49
                 }
 
                 .feedback-replies {
-<<<<<<< HEAD
-                    margin-top:20px;
-                    padding-left:30px;
-                    .feedback {
-                        .feedback-comment {
-                            p.feedback-comment-text{
-                              margin: 10px 0;
-                            }
-                        }
-                    }
-=======
                     margin-top: 20px;
                     padding-left: 30px;
->>>>>>> 7e65766aa144437b9231b006403439804704db49
                 }
 
                 .feedback-add-reply {
@@ -325,20 +243,11 @@
     }
 
     .feedback-info {
-<<<<<<< HEAD
-        margin:0;
-
-        .feedback-info-segment {
-            margin-right:10px;
-            font-size:.875rem;
-            display: inline-block;
-=======
         margin: 5px 0 0;
 
         .feedback-info-segment {
             margin-right: 10px;
             font-size: .875rem;
->>>>>>> 7e65766aa144437b9231b006403439804704db49
 
             .feedback-admin {
                 i.fa {
@@ -520,15 +429,6 @@
 
     /* each individual star */
     .feedback-star {
-<<<<<<< HEAD
-        height:30px;
-        width:24px;
-        line-height:32px;
-        font-size:24px;
-        float:left;
-        text-align:center;
-        color: #ffdc0f;
-=======
         height: 30px;
         width: 24px;
         line-height: 32px;
@@ -536,7 +436,6 @@
         float: left;
         text-align: center;
         color: orange;
->>>>>>> 7e65766aa144437b9231b006403439804704db49
     }
 
     /* each wrapper */
@@ -571,8 +470,6 @@
         font-size: 17px;
     }
 }
-<<<<<<< HEAD
-=======
 
 .widget-feedback-average {
     .small-stars {
@@ -614,4 +511,3 @@
         font-size: 1.25em;
     }
 }
->>>>>>> 7e65766aa144437b9231b006403439804704db49
