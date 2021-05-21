@@ -1,8 +1,7 @@
 <template>
   <section class="feedback-container">
-    <div class="title">
+    <div class="title text-center">
       {{ $translate("Feedback::Feedback.customerReviews") }}
-      <small class="feedback-average-count"> ({{ counts.ratingsCountTotal }})</small>
     </div>
     <div class="feedback-stars-average">
       <div class="feedback-stars-background clearfix">
@@ -35,7 +34,11 @@
       :class="classes"
       :style="styles"
     >
-      <div class="col-sm-6">
+
+
+
+      <div class="col-sm-4">
+
         <div class="feedback-bars">
           <div class="feedback-bar-wrap">
             <p class="feedback-bar-text-before">
@@ -111,46 +114,50 @@
               {{ counts.ratingsCountOf1 }}
             </p>
           </div>
-        </div>
-      </div>
+          </div>
 
-      <div class="col-sm-6">
-        <feedback-form
-          v-if="!isLoading"
-          :variation-id="variationId"
-          :options="optionsForm"
-        />
-      </div>
+          <feedback-form
+            v-if="!isLoading"
+            :variation-id="variationId"
+            :options="optionsForm"
+          />
+
+        </div>
+        <div class="col-sm-8">
+
+          <feedback-list
+            :feedbacks="authenticatedUser.feedbacks"
+            :is-last-page="true"
+            :show-controls="true"
+            :classes="classes"
+            :styles="styles"
+            :options="optionsList"
+            @delete="showDeleteConfirmation($event)"
+          />
+
+          <feedback-list
+            :feedbacks="feedbacks"
+            :is-last-page="pagination.isLastPage"
+            :show-controls="false"
+            :classes="classes"
+            :styles="styles"
+            :options="optionsList"
+            @load-more="loadFeedbacks()"
+            @delete="showDeleteConfirmation($event)"
+          />
+
+          <p
+            v-if="isLoading"
+            class="loading-hint"
+          >
+            {{ $translate("Feedback::Feedback.loadingFeedbacks") }}
+          </p>
+
+        </div>
     </div>
 
 
-    <feedback-list
-      :feedbacks="authenticatedUser.feedbacks"
-      :is-last-page="true"
-      :show-controls="true"
-      :classes="classes"
-      :styles="styles"
-      :options="optionsList"
-      @delete="showDeleteConfirmation($event)"
-    />
 
-    <feedback-list
-      :feedbacks="feedbacks"
-      :is-last-page="pagination.isLastPage"
-      :show-controls="false"
-      :classes="classes"
-      :styles="styles"
-      :options="optionsList"
-      @load-more="loadFeedbacks()"
-      @delete="showDeleteConfirmation($event)"
-    />
-
-    <p
-      v-if="isLoading"
-      class="loading-hint"
-    >
-      {{ $translate("Feedback::Feedback.loadingFeedbacks") }}
-    </p>
 
     <!-- Modal -->
     <div
