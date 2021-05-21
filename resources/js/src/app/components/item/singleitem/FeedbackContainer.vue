@@ -29,7 +29,7 @@
         </div>
       </div>
     </div>
-    <hr>
+
     <div
       class="row my-2"
       :class="classes"
@@ -123,7 +123,6 @@
       </div>
     </div>
 
-    <hr>
 
     <feedback-list
       :feedbacks="authenticatedUser.feedbacks"

@@ -162,9 +162,15 @@
 
             .feedback-comment {
 
+                background: #fff;
+                padding: 1.5em;
+                border-radius: 1em;
+                box-shadow: 0 0 5px #f1f1f1;
+
                 .feedback-comment-title {
                     font-weight: bold;
                     margin-bottom: 10px;
+                    line-height: 100%;
                 }
 
                 .feedback-rating {
