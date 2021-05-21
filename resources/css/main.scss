@@ -422,20 +422,19 @@
 .feedback-stars-average {
     width: 120px;
     height: 30px;
-    margin-left: 10px;
     position: relative;
     display: inline-block;
     vertical-align: bottom;
 
     /* each individual star */
     .feedback-star {
-        height: 30px;
-        width: 24px;
-        line-height: 32px;
-        font-size: 24px;
-        float: left;
-        text-align: center;
-        color: orange;
+      height: 14px;
+      width: 14px;
+      line-height: 14px;
+      font-size: 14px;
+      float: left;
+      text-align: center;
+      color: orange;
     }
 
     /* each wrapper */
