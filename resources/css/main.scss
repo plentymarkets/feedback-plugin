@@ -162,15 +162,9 @@
 
             .feedback-comment {
 
-                background: #fff;
-                padding: 1.5em;
-                border-radius: 1em;
-                box-shadow: 0 0 5px #f1f1f1;
-
                 .feedback-comment-title {
                     font-weight: bold;
                     margin-bottom: 10px;
-                    line-height: 100%;
                 }
 
                 .feedback-rating {
@@ -426,21 +420,22 @@
 
 /* Feedback average stars */
 .feedback-stars-average {
-    width: 120px;
-    height: 18px
+    width: 80px;
+    height: 21px;
+    margin-left: 0;
     position: relative;
     display: inline-block;
     vertical-align: bottom;
 
     /* each individual star */
     .feedback-star {
-      height: 14px;
-      width: 14px;
-      line-height: 14px;
-      font-size: 14px;
-      float: left;
-      text-align: center;
-      color: orange;
+        height: 21px;
+        width: 16px;
+        line-height: 100%;
+        font-size: 16px;
+        float: left;
+        text-align: center;
+        color: orange;
     }
 
     /* each wrapper */
@@ -448,8 +443,8 @@
         position: absolute;
         top: 0px;
         left: 0px;
-        width: 120px;
-        height: 18px;
+        width: 80px;
+        height: 21px;
         overflow: hidden;
     }
 
@@ -496,7 +491,7 @@
         //line-height: 22px;
         font-size: 1em;
         display: inline-block;
-        height: 18px;
+        height: 30px;
     }
 
     .big-stars {
