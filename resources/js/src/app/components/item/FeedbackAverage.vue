@@ -14,10 +14,8 @@
           <i class="fa fa-star" />
         </div>
       </div>
-      <div
-        class="feedback-stars-overlay-wrap"
-        :style="{width:fill}"
-      >
+      <div class="feedback-stars-overlay-wrap"
+        :style="{width:fill}">
         <div class="feedback-stars-overlay">
           <div
             v-for="index in 5"
