@@ -285,7 +285,6 @@
 .feedback-stars-average {
   width: 120px;
   height: 30px;
-  margin-left: 10px;
   position: relative;
   display: inline-block;
   vertical-align: bottom;
@@ -294,13 +293,14 @@
   /* background individual stars */
   /* overlay wrapper that colors the stars */ }
   .feedback-stars-average .feedback-star {
-    height: 30px;
-    width: 24px;
-    line-height: 32px;
-    font-size: 24px;
+    height: 14px;
+    width: 14px;
+    line-height: 14px;
+    font-size: 14px;
     float: left;
     text-align: center;
-    color: orange; }
+    color: orange;
+    }
   .feedback-stars-average .feedback-stars-background, .feedback-stars-average .feedback-stars-overlay, .feedback-stars-average .feedback-stars-overlay-wrap {
     position: absolute;
     top: 0px;
@@ -350,4 +350,3 @@
 .widget-feedback-average span.big-stars {
   line-height: 30px;
   font-size: 1.25em; }
-

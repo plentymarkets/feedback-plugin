@@ -5,7 +5,7 @@
       class="feedback-stars-average"
       :class="size"
     >
-      <div class="feedback-stars-background clearfix">
+      <div class="feedback-stars-background">
         <div
           v-for="index in 5"
           :key="'star_background_' + index"
@@ -18,7 +18,7 @@
         class="feedback-stars-overlay-wrap"
         :style="{width:fill}"
       >
-        <div class="feedback-stars-overlay clearfix">
+        <div class="feedback-stars-overlay">
           <div
             v-for="index in 5"
             :key="'star_overlay_' + index"
