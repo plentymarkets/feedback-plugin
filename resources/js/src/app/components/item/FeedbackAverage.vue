@@ -1,11 +1,10 @@
 <template>
-  <div>
+  <div class="fb-avg-1">
     <div
       v-if="showEmptyRatings || counts.averageValue > 0"
       class="feedback-stars-average"
       :class="size"
-    >
-      <div class="feedback-stars-background">
+    ><div class="feedback-stars-background">
         <div
           v-for="index in 5"
           :key="'star_background_' + index"
