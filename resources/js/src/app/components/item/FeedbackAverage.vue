@@ -1,5 +1,7 @@
 <template>
-  <div class="container-feedback-averages" v-if="showEmptyRatings || counts.averageValue > 0">
+  <div
+    class="container-feedback-averages"
+    v-if="showEmptyRatings || counts.averageValue > 0">
     <div
       class="feedback-stars-average"
       :class="size"
