@@ -23,6 +23,7 @@
 
       <div class="feedback-attributes-list">
         <p>
+
           <span
             v-for="(variationAttribute, index) in variationAttributes"
             :key="'feedback_attributes_' + index"

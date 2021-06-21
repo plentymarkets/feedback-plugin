@@ -1,7 +1,6 @@
 <template>
-  <div class="fb-avg-1">
+  <div v-if="showEmptyRatings || counts.averageValue > 0">
     <div
-      v-if="showEmptyRatings || counts.averageValue > 0"
       class="feedback-stars-average"
       :class="size"
     ><div class="feedback-stars-background">
