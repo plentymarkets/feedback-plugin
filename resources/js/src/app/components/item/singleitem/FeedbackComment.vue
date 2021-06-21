@@ -24,13 +24,6 @@
       <div class="feedback-attributes-list">
         <p>
           <span
-            v-if="isPurchased"
-            class="feedback-verified-tag"
-          >
-            {{ $translate("Feedback::Feedback.verifiedPurchase") }}
-          </span>
-
-          <span
             v-for="(variationAttribute, index) in variationAttributes"
             :key="'feedback_attributes_' + index"
             class="feedback-attributes"
