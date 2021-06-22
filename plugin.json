@@ -1,41 +1,52 @@
 {
-  "version": "bkm 2.0.1",
-  "name": "Feedback",
-  "marketplaceName" : {"de": "Kunden-Feedback","en": "Customer feedback"},
-  "description": "This is the official feedback plugin developed by plentysystems.",
-  "namespace": "Feedback",
-  "author": "plentysystems AG",
-  "type": "general",
-  "require": {
-    "IO": ">=4.0.0"
-  },
-  "isClosedSource": true,
-  "serviceProvider": "Feedback\\Providers\\FeedbackServiceProvider",
-  "runOnBuild": [
-  ],
-  "license": "AGPL-3.0",
-  "price": 0.00,
-  "shortDescription": {
-    "de": "Das offizielle, von plentysystems entwickelte Feedback-Plugin. Zeigen Sie Kundenrezensionen im Webshop an.",
-    "en": "The official feedback plugin developed by plentysystems. Display customer reviews in your online store."
-  },
-  "authorIcon": "icon_author_xs.png",
-  "pluginIcon": "icon_plugin_xs.png",
-  "email": "sales@plentymarkets.com",
-  "phone": "+49 561 98 681 100",
-  "categories": [
-    "3527"
-  ],
-  "keywords": [
-    "feedback", "customer feedback", "rating"
-  ],
-  "containers": [],
-  "dataProviders": [
-    { "key":"Feedback\\DataProviders\\Scripts", "name":"Feedback Javascript", "description": "Javascript code for feedbacks" },
-    { "key":"Feedback\\DataProviders\\Styles", "name":"Feedback CSS (Ceres)", "description": "CSS extension for Ceres" },
-    { "key":"Feedback\\DataProviders\\Feedback", "name":"Feedback ratings", "description": "Feedback ratings" },
-    { "key":"Feedback\\DataProviders\\FeedbackCategoryRatings", "name":"Feedback category ratings", "description": "Feedback category ratings" }
-  ],
-  "dependencies":{},
-  "javaScriptFiles": []
+    "version": "4.0.5",
+    "name": "Feedback",
+    "marketplaceName": {
+        "de": "Kunden-Feedback",
+        "en": "Customer feedback"
+    },
+    "description": "This is the official feedback plugin developed by plentysystems.",
+    "namespace": "Feedback",
+    "author": "plentysystems AG",
+    "type": "general",
+    "require": {
+        "IO": ">=5.0.26",
+        "Ceres": ">=5.0.27"
+    },
+    "isClosedSource": false,
+    "serviceProvider": "Feedback\\Providers\\FeedbackServiceProvider",
+    "runOnBuild": [
+    ],
+    "license": "AGPL-3.0",
+    "price": 0.00,
+    "shortDescription": {
+        "de": "Das offizielle, von plentysystems entwickelte Feedback-Plugin. Zeigen Sie Kundenrezensionen im Webshop an.",
+        "en": "The official feedback plugin developed by plentysystems. Display customer reviews in your online store."
+    },
+    "authorIcon": "icon_author_xs.png",
+    "pluginIcon": "icon_plugin_xs.png",
+    "email": "sales@plentymarkets.com",
+    "phone": "+49 561 98 681 100",
+    "categories": [
+        "3527"
+    ],
+    "keywords": [
+        "feedback",
+        "customer feedback",
+        "rating",
+        "widget",
+        "shopbuilder",
+        "shop builder"
+    ],
+    "containers": [],
+    "dataProviders": [
+        {
+            "key": "Feedback\\DataProviders\\FeedbackCategoryRatings",
+            "name": "Feedback category ratings",
+            "description": "Feedback category ratings",
+            "defaultLayoutContainer": "Ceres::CategoryItem.BeforePrices"
+        }
+    ],
+    "dependencies": {},
+    "javaScriptFiles": []
 }

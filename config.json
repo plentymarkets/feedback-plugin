@@ -1,82 +1,74 @@
 {
-  "formatVersion": 1,
-  "menu": {
-    "Config.FeedbackSettingsTab": {
-      "label": "Config.FeedbackSettingsTab",
-      "formFields": {
-        "releaseFeedbacks": {
-          "type": "checkBox",
-          "required": false,
-          "label": "Config.releaseFeedbacksLabel",
-          "options": {
-            "defaultValue": ""
-          }
-        },
-        "timestampVisibility": {
-          "type": "checkBox",
-          "required": false,
-          "label": "Config.timestampVisibilityLabel",
-          "options": {
-            "defaultValue": ""
-          }
-        },
-        "allowReplies": {
-          "type": "checkBox",
-          "required": false,
-          "label": "Config.allowRepliesLabel",
-          "options": {
-            "defaultValue": ""
-          }
-        },
-        "allowNoRatingFeedback": {
-          "type": "checkBox",
-          "required": false,
-          "label": "Config.allowNoRatingFeedbackLabel",
-          "options": {
-            "defaultValue": ""
-          }
-        },
-        "allowFeedbacksOnlyIfPurchased": {
-          "type": "checkBox",
-          "required": false,
-          "label": "Config.allowFeedbacksOnlyIfPurchasedLabel",
-          "options": {
-            "defaultValue": ""
-          }
-        },
-        "showEmptyRatingsInCategoryView": {
-          "type": "checkBox",
-          "required": false,
-          "label": "Config.showEmptyRatingsInCategoryViewLabel",
-          "options": {
-            "defaultValue": "false"
-          }
-        },
-        "showRatingFacet": {
-          "type": "checkBox",
-          "required": false,
-          "label": "Config.showRatingFacetLabel",
-          "options": {
-            "defaultValue": "true"
-          }
-        },
-        "showRatingSorting": {
-          "type": "checkBox",
-          "required": false,
-          "label": "Config.showRatingSortingLabel",
-          "options": {
-            "defaultValue": "true"
-          }
-        },
-        "numberOfFeedbacks": {
-          "type": "inputText",
-          "required": false,
-          "label": "Config.numberOfFeedbacksLabel",
-          "options": {
-            "defaultValue": ""
-          }
+    "formatVersion": 1,
+    "menu": {
+        "Config.FeedbackSettingsTab": {
+            "label": "Config.FeedbackSettingsTab",
+            "formFields": {
+                "autoreleaseFeedbacks": {
+                    "type": "selectBox",
+                    "required": false,
+                    "label": "Config.releaseFeedbacks",
+                    "options": {
+                        "defaultValue": 0,
+                        "selectBoxValues":[
+                            {
+                                "value": 0,
+                                "caption": "Config.doNotRelease"
+                            },
+                            {
+                                "value": 1,
+                                "caption": "Config.releaseAuthenticated"
+                            },
+                            {
+                                "value": 2,
+                                "caption": "Config.releaseAll"
+                            }
+                        ]
+                    }
+                },
+                "releaseFeedbacks": {
+                    "type": "checkBox",
+                    "required": false,
+                    "deprecated": true,
+                    "label": "Config.releaseFeedbacks",
+                    "options": {
+                        "defaultValue": "false"
+                    }
+                },
+                "allowGuestFeedbacks": {
+                    "type": "checkBox",
+                    "required": false,
+                    "label": "Config.allowGuestFeedbacks",
+                    "options": {
+                        "defaultValue": "false"
+                    }
+                },
+                "showEmptyRatingsInCategoryView": {
+                    "type": "checkBox",
+                    "required": false,
+                    "label": "Config.showEmptyRatingsInCategoryViewLabel",
+                    "options": {
+                        "defaultValue": "false"
+                    }
+                },
+                "showRatingFacet": {
+                    "type": "checkBox",
+                    "required": false,
+                    "label": "Config.showRatingFacetLabel",
+                    "options": {
+                        "defaultValue": "true"
+                    }
+                },
+                "showRatingSorting": {
+                    "type": "checkBox",
+                    "required": false,
+                    "label": "Config.showRatingSortingLabel",
+                    "options": {
+                        "defaultValue": "true"
+                    }
+                }
+            }
         }
-      }
     }
-  }
 }
+

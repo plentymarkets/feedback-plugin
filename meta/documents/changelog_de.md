@@ -1,5 +1,315 @@
 # Release Notes für Feedback
 
+## v4.0.3 (2021-05-10)
+
+### TODO
+
+- Nach dem Update auf Version 4.0.3 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden.
+
+### Behoben
+
+- Feedbacks ohne Autorennamen haben zu einem Fehler geführt. Dies wurde behoben.
+
+## v4.0.2 (2021-05-05)
+
+### TODO
+
+- Nach dem Update auf Version 4.0.2 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden.
+
+### Behoben
+
+- Zeilenumbrüche in Kommentaren zu Kundenrezensionen wurden als `<br>`-Tag gerendert. Dies wurde behoben.
+
+## v4.0.1 (2021-04-28)
+
+### TODO
+
+- Zur Nutzung des Feedback-Plugins muss Ceres in Version 5.0.27 oder höher installiert sein.
+- Nach dem Update auf Version 4.0.1 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden.
+
+### Behoben
+
+- Die Anzahl der Feedbacks im Bewertungssterne-Widget war so positioniert, sodass sie von den Bewertungssterne überdeckt wurde. Dies wurde behoben.
+
+## v4.0.0 (2021-04-14)
+
+### TODO
+
+- Zur Nutzung des Feedback-Plugins muss Ceres in Version 5.0.27 oder höher installiert sein.
+- Nach dem Update auf Version 4.0.0 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden.
+
+### Hinzugefügt
+
+- Das Kundenfeedback-Plugin ist nun kompatibel mit Vue Server-Side Rendering.
+- Es wurde ein Webpack 5 Build-Prozess aufgebaut.
+- Die Logik und Daten der Vue-Komponenten wurde in einen eigenen VueX Store ausgelagert.
+
+### Geändert
+
+- Widgets werden nun nicht mehr über die veraltete `contentwidgets.json`, sondern über PHP-Klassen definiert und registriert.
+- Alle Vue-Komponenten liegen nun als vorkompilierte Single File Component-Dateien vor, die asynchron nachgeladen werden.
+
+
+## v3.6.4 (2021-04-13)
+
+### TODO
+
+- Zur Nutzung des Feedback-Plugins muss Ceres in Version 5.0 oder höher installiert sein.
+- Nach dem Update auf Version 3.6.4 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden.
+
+### Behoben
+
+- Es wurde eine Sicherheitslücke geschlossen, durch die Cross-Site-Scripting möglich war.
+- Unter bestimmten Umständen wurde das Feld für Autorname bei Gastbestellungen auf der Bestellbestätigung nicht angezeigt. Dies wurde behoben.
+
+## v3.6.3 (2021-03-26)
+
+### TODO
+
+- Zur Nutzung des Feedback-Plugins muss Ceres in Version 5.0 oder höher installiert sein.
+- Nach dem Update auf Version 3.6.3 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden.
+
+### Behoben
+
+- Bewertungen von Gastbestellungen konnten nicht verifiziert werden. Dies wurde behoben.
+- Durch fehlerhaft gecachte Daten wurden Kundenbewertungen auf der Bestellbestätigung teilweise falsch zugeordnet.
+
+## v3.6.2 (2021-03-03)
+
+### TODO
+
+- Zur Nutzung des Feedback-Plugins muss Ceres in Version 5.0 oder höher installiert sein.
+- Nach dem Update auf Version 3.6.2 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden.
+
+### Geändert
+
+- Das Feedback-Widget für die Bestellbestätigung gibt nun im ShopBuilder auf Seiten, auf denen es nicht genutzt werden kann, einen Warnhinweis aus.
+
+### Behoben
+
+- Unter bestimmten Umständen konnte bei Kundenrezensionen der Name des Autors leer sein. Dies wurde behoben.
+
+## v3.6.1 (2020-12-15)
+
+### TODO
+
+- Zur Nutzung des Feedback-Plugins muss Ceres in Version 5.0 oder höher installiert sein.
+- Nach dem Update auf Version 3.6.1 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden. 
+
+### Behoben
+
+- Eine fehlende Kondition zur Ausgabe der strukturierten Daten hat bei unbewerteten Artikeln zu Fehlern geführt. 
+- Der Titel der Feedback-Facette war nicht in der Mehrsprachigkeit vorhanden.
+
+## v3.6.0 (2020-12-08)
+
+### TODO
+
+- Zur Nutzung des Feedback-Plugins muss Ceres in Version 5.0 oder höher installiert sein.
+- Nach dem Update auf Version 3.6.0 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden. 
+
+### Hinzugefügt
+
+- Das Feld "reviews" wurde den strukturierten Daten hinzugefügt.
+
+### Geändert
+
+- Die strukturierten Daten werden nun direkt in den Head des HTML-Dokuments generiert.
+
+
+## v3.5.3 (2020-10-14)
+
+### TODO
+
+- Zur Nutzung des Feedback-Plugins muss Ceres in Version 5.0 oder höher installiert sein.
+- Nach dem Update auf Version 3.5.3 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden. 
+
+### Behoben
+
+- Der Übersetzungsschlüssel "customerReviews" wurde fälschlicherweise entfernt. Dies wurde behoben.
+
+
+## v3.5.2 (2020-10-13)
+
+### TODO
+
+- Zur Nutzung des Feedback-Plugins muss Ceres in Version 5.0 oder höher installiert sein.
+- Nach dem Update auf Version 3.5.2 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden. 
+
+### Geändert
+
+- Die Schaltflächen für das Editieren und Löschen von Kundenbewertungen von Gästen wurden aus dem Feedback-Widget entfernt.
+
+### Behoben
+
+- Bestimmte Kombinationen von Einstellungen führten dazu, dass verifizierte Käufe von Artikeln nicht erkannt wurden.
+- Die Sortierung von Artikeln nach Kundenbewertungen auf Artikelkategorieseiten funktioniert nun wieder korrekt.
+
+## v3.5.1 (2020-08-19)
+
+### TODO
+
+- Zur Nutzung des Feedback-Plugins muss Ceres v5.0 oder höher installiert sein.
+- Nach dem Update auf v3.5.1 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden. 
+
+### Geändert
+
+- Bei Klick auf die Zahl neben den Bewertungssternen wird nun zum nächsten sichtbaren, übergeordneten Element gescrollt.
+
+### Behoben
+
+- Unter bestimmten Umständen konnten Kunden auf der Bestellbestätigungsseite keine Bewertungen abgeben. Dies wurde behoben.
+- Durch einen Fehler wurden die Facettenfilter für Bewertungen nicht mehr gerendert.
+- Bestimmte Kombinationen von Einstellungen konnten dazu führen, dass fälschlicherweise ein "Verifizierter Kauf" erkannt wurde.
+
+## v3.5.0 (2020-04-14)
+
+### TODO
+
+- Zur Nutzung des Feedback-Plugins muss Ceres in Version 5.0 oder höher installiert sein.
+- Nach dem Update auf v3.5.0 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden. 
+
+### Hinzugefügt
+
+- Es wurde eine neue REST-Route hinzugefügt, um benötigte Daten für das Feedback-Widget nachzuladen.
+
+### Geändert
+
+- Das Feedback-Plugin ist nun kompatibel mit Ceres 5.0.
+- Das Feedback-Plugin kann nun für Artikelset-Inhalte verwendet werden.
+
+## v3.4.1 (2020-03-04)
+
+### TODO
+
+- Zur Nutzung des Feedback-Plugins muss Ceres in Version 4.6 oder höher installiert sein.
+
+### Geändert
+
+- Die strukturierten Daten werden nun über '<script2>'-Tags ausgegeben.
+
+### Behoben
+
+- Durch einen Fehler scrollte die Seite nach Klick auf die Anzahl der Bewertungen nicht automatisch zum Feedback-Plugin. Dies wurde behoben. 
+
+## v3.4.0 (2020-01-20)
+
+### TODO
+
+- Nach dem Update auf v3.4.0 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden. 
+
+### Hinzugefügt
+
+- Das Bewertungssterne-Widget kann nun die Anzahl der abgegebenen Bewertungen anzeigen. Durch Klick auf diese Zahl neben den Bewertungssternen wird der Nutzer automatisch zum Artikelbewertungs-Widget geleitet, sofern dieses auf dem gleichen ShopBuilder-Inhalt vorhanden ist.
+
+### Geändert
+
+- Das Bewertungssterne-Widget lädt nun bereits initial die notwendigen Daten. Dadurch wird eine leichte Verbesserung der Performance erzielt.
+
+### Behoben
+
+- Artikelpakete wurden im Artikelbewertungs-Widget für die Bestellbestätigungsseite inkorrekt dargestellt. Dies wurde behoben.
+- Unter bestimmten Umständen wurden fehlerhafte Tooltips in Ceres angezeigt. Dies wurde behoben.
+- Im ShopBuilder wurde das Artikelbewertungs-Widget für die Bestellbestätigungsseite nicht auf Inhalten angezeigt, die keine Bestellbestätigung waren. Dies wurde behoben.
+
+## v3.3.0 (2019-12-18)
+
+### Hinzugefügt
+
+- Es wurde ein Shopbuilder-Widget hinzugefügt, um Artikel auf der Kategorieseite nach Bewertungen filtern zu können.
+
+## v3.2.2 (2019-10-22)
+
+### TODO
+
+- Nach dem Update auf v3.2.2 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden. 
+
+### Geändert
+
+- Das Feedback-Widget für die Bestellbestätigung wurde intern von Grid-Layout auf Spalten umgebaut, um die Kompatibilität mit älteren Browsern zu verbessern.
+
+### Behoben 
+
+- Im Feedback-Widget für die Bestellbestätigung wurden manche Bilder nicht korrekt angezeigt. Dies wurde behoben.
+- Es wird nun der Artikelname des Artikels anstatt des Variantennamens ausgegeben.
+
+## v3.2.1 (2019-10-09)
+
+### Hinzugefügt
+
+- Auf der Bestellbestätigungsseite wurde ein Hinweis ergänzt, der darauf hinweist, dass das Widget geladen wird. 
+
+### Behoben
+
+- Durch einen Fehler wurden auf der Bestellbestätigungsseite keine Daten für das Feedback-Widget geladen. Dies wurde behoben.
+- Durch Code-Änderungen im `FeedbackService` wurde eine verbesserte Stabilität des Plugins erreicht.
+
+## v3.2.0 (2019-09-30)
+
+### TODO
+
+- Nach dem Update auf v3.2.0 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden. 
+
+### Hinzugefügt
+
+- Das Feedback-Widget kann jetzt auf der Bestellbestätigungsseite verwendet werden.
+
+## v3.1.2 (2019-09-02)
+
+### Behoben
+
+- Durch einen Fehler waren die strukturierten Daten invalide, wenn für einen Artikel noch keine Sternebewertung vergeben wurde. Dies wurde behoben. 
+- Durch einen Fehler funktionierte die Einstellung "Bewertungssterne anzeigen, wenn keine Bewertungen vorhanden sind" nicht wie gewollt. Dies wurde behoben.
+
+## v3.1.1 (2019-08-22)
+
+### Behoben
+
+- Durch einen Fehler wurden Styles auf bestimmten Templates nicht geladen. Dies wurde behoben. 
+
+## v3.1.0 (2019-08-19)
+
+### TODO
+
+- Nach dem Update auf 3.1.0 muss die Einstellung zur automatischen Veröffentlichung von Rezensionen im Menü **Plugin-Übersicht » Feedback » Einstellungen** erneut vorgenommen werden.
+
+### Hinzugefügt
+
+- Gastbewertungen sind nun möglich.
+- Gastkunden können nun einen Namen an der Rezension hinterlegen.
+- Es wurde ein Honeypot hinzugefügt, um Spam entgegenzuwirken.
+
+### Geändert
+
+- Die Einstellungen für die automatische Veröffentlichung von Rezensionen wurden erweitert.
+
+### Behoben
+
+- Es wurden einige Verbesserung bezüglich der Benutzeroberfläche vorgenommen.
+- Es wurden einige Verbesserungen bezüglich der Performance des Plugins vorgenommen.
+
+## v3.0.0 (2019-08-12)
+
+### Hinzugefügt
+
+- Kompatibilität zum ShopBuilder wurde hergestellt.
+- Die Anzahl der Artikelbewertungen pro Seite kann nun über die Widget-Einstellungen festgelegt werden.
+- Die Größe der Bewertungssterne kann nun über die Widget-Einstellungen festgelegt werden.
+- Das Feld “aggregateRatings”, das die durchschnittliche Bewertung eines Artikels enthält, wurde dem Schema.org Markup hinzugefügt.
+
+### Geändert
+
+- Das Feedback-Plugin wurde in 2 ShopBuilder-Widgets umgebaut. Über das Widget **Artikelbewertung** können Kunden Artikelrezensionen schreiben, die im Webshop angezeigt werden. Das Widget **Bewertungssterne** zeigt den Durchschnittswert der Bewertungen in der Artikelansicht.
+- Die Einstellungen des Plugins wurden größtenteils in die beiden Widgets überführt.
+- Das Feedback-Plugin ist jetzt Open Source.
+- Die bisherigen Container-Verknüpfungen wurden bis auf “Feedback category ratings” entfernt.
+
+### Behoben
+
+- Beim Hinzufügen einer Rezension wurden die Bewertungssterne erst nach erneutem Laden der Seite angezeigt. Dies wurde behoben.
+- Es konnte keine Rezension für Artikel eingereicht werden, wenn nicht auch eine Sternebewertung abgegeben wurde. Dies wurde behoben.
+
+
 ## v2.0.0 (2019-04-29)
 
 ### FEATURE
@@ -84,7 +394,7 @@
 
 - Feedbacks aus dem alten CMS können nun migriert werden.
 - Neue Option: Hinzufügen von Feedbacks ohne Bewertungen ermöglichen.
-- Neue Option: Hinzufügen von Feedbacks nur für gekaufte Artikel. 
+- Neue Option: Hinzufügen von Feedbacks nur für gekaufte Artikel.
 
 ## v1.0.1 (2017-10-11)
 

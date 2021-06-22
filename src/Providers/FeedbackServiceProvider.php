@@ -1,52 +1,75 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Constantin Purcaru
- * Date: 01/09/2017
- * Time: 15:35
- */
 
 namespace Feedback\Providers;
 
-
 use Feedback\Extensions\FeedbackFacet;
+use Feedback\Extensions\TwigServiceProvider;
 use Feedback\Helpers\FeedbackCoreHelper;
+use Feedback\Widgets\FeedbackAverageWidget;
+use Feedback\Widgets\FeedbackOrderWidget;
+use Feedback\Widgets\FeedbackWidget;
+use Feedback\Widgets\RatingFilterWidget;
 use IO\Helper\ResourceContainer;
-use IO\Services\ItemSearch\Helper\FacetExtensionContainer;
 use IO\Services\ItemService;
-use Plenty\Plugin\ConfigRepository;
+use Plenty\Modules\ShopBuilder\Contracts\ContentWidgetRepositoryContract;
+use Plenty\Modules\Webshop\ItemSearch\Helpers\FacetExtensionContainer;
 use Plenty\Plugin\Events\Dispatcher;
 use Plenty\Plugin\ServiceProvider;
+use Plenty\Plugin\Templates\Twig;
 
 class FeedbackServiceProvider extends ServiceProvider
 {
     /**
      * @param Dispatcher $dispatcher
+     * @param FeedbackCoreHelper $coreHelper
+     * @param Twig $twig
      */
-    public function boot(Dispatcher $dispatcher, FeedbackCoreHelper $coreHelper)
+    public function boot(Dispatcher $dispatcher, FeedbackCoreHelper $coreHelper, Twig $twig)
     {
-
-        $showRatingFacet = $coreHelper->configValue(FeedbackCoreHelper::KEY_SHOW_RATING_FACET) == 'true' ? true : false;
-        $showRatingSorting = $coreHelper->configValue(FeedbackCoreHelper::KEY_SHOW_RATING_SORTING) == 'true' ? true : false;
-
+        $showRatingFacet = $coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_SHOW_RATING_FACET);
+        $showRatingSorting = $coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_SHOW_RATING_SORTING);
 
         if ($showRatingFacet) {
-             //add feedback facet extension
-             $dispatcher->listen('IO.initFacetExtensions', function (FacetExtensionContainer $facetExtensionContainer) {
-                $facetExtensionContainer->addFacetExtension(pluginApp(FeedbackFacet::class));
-            });
+            //add feedback facet extension
+            /** @var FacetExtensionContainer $facetExtensionContainer */
+            $facetExtensionContainer = pluginApp(FacetExtensionContainer::class);
+            $facetExtensionContainer->addFacetExtension(pluginApp(FeedbackFacet::class));
         }
 
-        if ($showRatingSorting) {
-             //add feedback sorting
-            $dispatcher->listen('IO.initAdditionalSorting', function (ItemService $itemService) {
-                $itemService->addAdditionalItemSorting('item.feedbackDecimal_desc', 'Feedback::Feedback.customerReviews');
-            });
+        if ($showRatingSorting) {   // Sorting on CategoryPage
+            //add feedback sorting
+            $dispatcher->listen(
+                'IO.initAdditionalSorting',
+                function (ItemService $itemService) {
+                    $itemService->addAdditionalItemSorting(
+                        'item.feedbackDecimal_asc',
+                        'Feedback::Feedback.customerReviewsAsc'
+                    );
+                    $itemService->addAdditionalItemSorting(
+                        'item.feedbackDecimal_desc',
+                        'Feedback::Feedback.customerReviewsDesc'
+                    );
+                }
+            );
         }
 
-        $dispatcher->listen('IO.Resources.Import', function(ResourceContainer $resourceContainer) {
-            $resourceContainer->addScriptTemplate('Feedback::Components.Components' );
-        });
+        $twig->addExtension(TwigServiceProvider::class); // Enable use of FeedbackServiceProvider in twig code
+
+        $dispatcher->listen(
+            'IO.Resources.Import',
+            function (ResourceContainer $resourceContainer) {
+                $resourceContainer->addScriptTemplate('Feedback::Content.Scripts');
+                $resourceContainer->addStyleTemplate('Feedback::Content.Styles');
+            }
+        );
+
+        // register shop builder widgets
+        /** @var ContentWidgetRepositoryContract $widgetRepository */
+        $widgetRepository = pluginApp(ContentWidgetRepositoryContract::class);
+        $widgetRepository->registerWidget(FeedbackWidget::class);
+        $widgetRepository->registerWidget(FeedbackAverageWidget::class);
+        $widgetRepository->registerWidget(FeedbackOrderWidget::class);
+        $widgetRepository->registerWidget(RatingFilterWidget::class);
     }
 
     public function register()

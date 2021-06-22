@@ -1,19 +1,17 @@
 .feedback-container {
-
-    margin-bottom:40px;
+    margin-bottom: 40px;
 
     /* Section title */
     .title {
         font-size: 2rem;
-        margin:20px 0 0 0;
-        display:inline-block;
+        margin: 20px 0 0 0;
+        display: inline-block;
         vertical-align: bottom;
     }
 
     .minititle {
-        margin-top:40px;
+        margin-top: 40px;
     }
-
 
     /* form button didn't show the hand cursor when hovered */
     .btn {
@@ -23,7 +21,7 @@
     .loading-hint {
         text-align: center;
         font-style: italic;
-        color: rgba(0,0,0,0.7);
+        color: rgba(0, 0, 0, 0.7);
     }
 
     /* form stars wrapper */
@@ -32,11 +30,17 @@
         display: inline-block;
     }
 
+    label.new_star {
+        display: block;
+    }
+
     /* hide the radio inputs */
-    input.star { display: none; }
+    input.star, input.star-rated {
+        display: none;
+    }
 
     /* each label ( star in :before ) */
-    label.star {
+    label.star, label.star-rated {
         float: right;
         height: 40px;
         width: 33px;
@@ -44,96 +48,86 @@
         font-size: 30px;
         line-height: 40px;
         margin-bottom: 0px;
-        color: rgba(0,0,0,.1);
+        color: rgba(0, 0, 0, .1);
         cursor: pointer;
     }
 
     /* color lower value stars when the radio is checked */
     /* stars are added from 5 to 1 and positioned right to left so that "~" works */
-    input.star:checked ~ label.star:before {
+    input.star:checked ~ label.star:before, input.star-rated:checked ~ label.star-rated:before {
         content: '\f005';
-        color: #ffdc0f;
+        color: orange;
+    }
+    input.star:checked ~ svg.star, input.star-rated:checked ~ svg.star-rated {
+        fill: orange;
     }
 
     /* if 5 stars is checked */
     /* input.star-5:checked ~ label.star:before {*/
     /* } */
-
     /* when hovering the wrapper that holds the stars make them all empty and colorless */
-    div.stars:hover label.star:before { color:rgba(0,0,0,.1); }
-
+    div.stars:hover label.star:before {
+        color: rgba(0, 0, 0, .1);
+    }
 
     /* hovered star ( full and colored ) */
     label.star:hover:before {
-        color:#ffdc0f !important;
+        color: orange !important;
     }
 
     /* stars of lower value on hover ( full and colored ) */
     label.star:hover ~ label.star:before {
-        color:#ffdc0f;
+        color: orange;
+    }
+    svg.star:hover ~ svg.star {
+        fill: orange;
     }
 
     /* all visible stars ( full but colorless ) */
-    label.star:before {
+    label.star:before, label.star-rated:before {
         content: '\f005';
         font-family: FontAwesome;
     }
 
-
-
     /* Ratings bars */
     .feedback-bars {
-        margin-bottom:40px;
+        margin-bottom: 40px;
 
         .feedback-bar-wrap {
-            margin-bottom:1px;
+            margin-bottom: 1px;
 
             .feedback-bar {
-                width: 50%;
-                height:17px;
-                display:inline-block;
-                vertical-align:middle;
-                background:rgba(0,0,0,.1);
+                width: 140px;
+                height: 17px;
+                display: inline-block;
+                vertical-align: middle;
+                background: rgba(0, 0, 0, .1);
                 overflow: hidden;
                 border-radius: 2px;
-                margin: 0 10px;
+
                 .feedback-bar-fill {
-                    width:0%;
-                    height:100%;
-                    background:#008ebd;
+                    width: 0%;
+                    height: 100%;
+                    //background: #008ebd;
                 }
             }
-            p {
-                display:inline-block;
-                vertical-align: middle;
-                line-height:17px;
-                margin-bottom:0px;
-            }
-            .feedback-bar-text-before {
 
-            }
-            .feedback-bar-text-after {
-              color: #ddd;
-              font-style: italic;
+            p {
+                display: inline-block;
+                vertical-align: middle;
+                line-height: 17px;
+                margin-bottom: 0px;
             }
         }
-
     }
-
-
-
 
     /* Comments */
 
     .feedback-list {
-
         .feedback {
-            padding-bottom:15px;
-            margin-bottom:15px;
-            border-bottom:none;
-            background: #f5f5f5;
-            background: rgba(238,238,238,0.5);
-            padding: 1em 2em;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+            border-bottom: rgba(0, 0, 0, .1) dotted 1px;
 
             &.loading {
                 pointer-events: none;
@@ -141,146 +135,129 @@
             }
 
             .feedback-options {
-                float:right;
+                float: right;
             }
 
             .feedback-creator {
-                width:50px;
-                float:left;
+                width: 50px;
+                float: left;
+
                 .feedback-user-icon {
-                    width:50px;
-                    height:50px;
-                    border-radius:50%;
-                    background:rgba(0,0,0,.1);
-                    line-height:50px;
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    background: rgba(0, 0, 0, .1);
+                    line-height: 50px;
                     text-align: center;
                 }
+
                 .feedback-user-name {
                     font-size: 12px;
                     text-align: center;
                     line-height: 1.2em;
                     margin-top: 6px;
-                    margin-bottom:0px;
+                    margin-bottom: 0px;
                 }
             }
 
             .feedback-comment {
 
                 .feedback-comment-title {
-                    font-weight:bold;
-                    margin-bottom:0px;
-                    width: 100%;
+                    font-weight: bold;
+                    margin-bottom: 10px;
                 }
+
                 .feedback-rating {
-                    color:rgba(0,0,0,.1);
-                    min-width: 70px;
-                    display:inline-block;
-                    .full { color:#ffdc0f; }
+                    color: rgba(0, 0, 0, .1);
+
+                    .full {
+                        color: orange;
+                    }
                 }
+
                 .feedback-attributes-list {
                     p {
-                        font-size:14px;
-                        margin:0px;
-                        line-height:1;
+                        font-size: 12px;
+                        margin: 0px;
+
                         span {
-                            display:inline-block;
-                            border-right:rgba(0,0,0,.2) solid 1px;
-                            margin: 0;
-                            padding-right:7px;
-                            color: #bbb;
-                            font-style: italic;
+                            display: inline-block;
+                            border-right: rgba(0, 0, 0, .2) solid 1px;
+                            margin: 10px 4px 10px 0;
+                            padding-right: 7px;
                         }
+
                         span:last-of-type {
-                            border-right:none;
-                            margin-right:0;
-                            padding-right:0;
+                            border-right: none;
+                            margin-right: 0;
+                            padding-right: 0;
                         }
+
                         span.feedback-verified-tag {
-                            color:#090;
-                            font-weight:bold;
+                            color: #090;
+                            font-weight: bold;
                         }
+
                         span.fa-stack {
-                            color:#090;
-                            font-size:75%;
+                            color: #090;
+                            font-size: 75%;
                             vertical-align: bottom;
                         }
-                        span.feedback-attributes {
-
-                        }
-
                     }
                 }
+
                 .feedback-comment-text {
-                    margin: 10px;
-                }
-                .feedback-replies {
-                    margin-top:20px;
-                    padding-left:30px;
-                    .feedback {
-                        .feedback-comment {
-                            p.feedback-comment-text{
-                              margin: 10px 0;
-                            }
-                        }
-                    }
-                }
-                .feedback-add-reply {
-                    margin-top:20px;
-                    padding-left:30px;
+                    margin-bottom: 0px;
+                    word-break: break-word;
+                    white-space: pre-line;
                 }
 
+                .feedback-replies {
+                    margin-top: 20px;
+                    padding-left: 30px;
+                }
+
+                .feedback-add-reply {
+                    margin-top: 20px;
+                    padding-left: 30px;
+                }
             }
 
             form.feedback-edit {
-                padding-left:20px;
+                padding-left: 20px;
             }
         }
-
-
-
     }
 
     .feedback-loadmore {
-        width:50%;
-        margin:20px auto;
+        width: 50%;
+        margin: 20px auto;
     }
 
     .feedback-tooltip-wrapper {
-        display:inline-block;
+        display: inline-block;
+
         button {
             pointer-events: none;
         }
     }
 
     .feedback-info {
-        margin:0;
+        margin: 5px 0 0;
 
         .feedback-info-segment {
-            margin-right:10px;
-            font-size:.875rem;
-            display: inline-block;
+            margin-right: 10px;
+            font-size: .875rem;
 
             .feedback-admin {
-
                 i.fa {
                     color: #008ebd;
                 }
             }
         }
 
-
-
-        .btn-secondary {
-            border:none;
-            background:rgba(0,0,0,.05);
-
-            &:hover {
-                background:rgba(0,0,0,.1);
-            }
-        }
-
         i.fa {
-            margin-right:3px;
+            margin-right: 3px;
         }
     }
 
@@ -290,45 +267,150 @@
         padding: 1px 10px;
         margin-left: 10px;
     }
+
     #feedback-error-no-rating.feedback-error-hidden {
-        display:none;
-    }
-    .feedback-hidden {
-        display:none;
+        display: none;
     }
 
+    .feedback-hidden {
+        display: none;
+    }
+
+    /* Honeypot hiders */
+    #feedback-textfield {
+        display: none;
+    }
+
+    #comment-textfield {
+        display: none;
+    }
+}
+
+.feedback-orderitem-container {
+
+    /* form stars wrapper */
+    div.stars {
+        display: block;
+        margin: 0 auto;
+        width: auto;
+        max-width: 170px;
+
+        form {
+            display: flex;
+            flex-direction: row-reverse;
+        }
+    }
+
+    div.stars:hover {
+        svg {
+            fill: rgba(0, 0, 0, 0.1) !important;
+        }
+    }
+
+    svg.star, svg.star-rated {
+        float: right;
+        cursor: pointer;
+        fill: rgba(0, 0, 0, 0.1);
+    }
+
+    label.new_star:hover ~ label.new_star,
+    label.new_star:hover {
+        svg {
+            fill: orange !important;
+        }
+    }
+    input.star:checked ~ label.new_star, input.star-rated:checked ~ label.new_star {
+        svg {
+            fill: orange;
+        }
+    }
+
+    .feedback-items {
+        display: flex;
+
+        .feedback-item {
+            overflow: hidden;
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+
+            > img {
+                max-width: 100%;
+                max-height: 200px;
+                margin: auto;
+                object-fit: contain;
+            }
+
+            .feedback-item-link {
+                align-self: flex-end;
+                width: 100%;
+                margin-top: auto;
+
+                a {
+                    display: block;
+                    font-size: 1.3em;
+                }
+            }
+        }
+    }
+
+    // Modal in OrderConfirmation
+    .modal {
+        .stars {
+            svg {
+                width: 20%;
+            }
+        }
+        img {
+            display: block;
+            max-width: 100%;
+            max-height: 100%;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        a {
+            display: block;
+            font-size: 1.3em;
+        }
+    }
 }
 
 /* Facet extension */
-.filter-wrapper #filterCollapse,
-.selected-filters
-{
-    [for="option-feedback-5"]::after,
+.filter-collapse,
+.widget-filter-base,
+.selected-filters {
+    .option-feedback-5 span::after,
     .filter-feedback-5::before {
         content: "\f005 \f005 \f005 \f005 \f005" !important;
         font-family: FontAwesome;
         letter-spacing: 3px;
     }
-    [for="option-feedback-4"]::after,
-    .filter-feedback-4::before{
+
+    .option-feedback-4 span::after,
+    .filter-feedback-4::before {
         content: "\f005 \f005 \f005 \f005  \f062" !important;
         font-family: FontAwesome;
         letter-spacing: 3px;
     }
-    [for="option-feedback-3"]::after,
-    .filter-feedback-3::before{
+
+    .option-feedback-3 span::after,
+    .filter-feedback-3::before {
         content: "\f005 \f005 \f005  \f062" !important;
         font-family: FontAwesome;
         letter-spacing: 3px;
     }
-    [for="option-feedback-2"]::after,
-    .filter-feedback-2::before{
+
+    .option-feedback-2 span::after,
+    .filter-feedback-2::before {
         content: "\f005 \f005  \f062" !important;
         font-family: FontAwesome;
         letter-spacing: 3px;
     }
-    [for="option-feedback-1"]::after,
-    .filter-feedback-1::before{
+
+    .option-feedback-1 span::after,
+    .filter-feedback-1::before {
         content: "\f005  \f062" !important;
         font-family: FontAwesome;
         letter-spacing: 3px;
@@ -338,52 +420,94 @@
 
 /* Feedback average stars */
 .feedback-stars-average {
-    width:120px;
-    height:30px;
-    margin-left:10px;
-    position:relative;
-    display:inline-block;
+    width: 80px;
+    height: 21px;
+    margin-left: 0;
+    position: relative;
+    display: inline-block;
     vertical-align: bottom;
 
     /* each individual star */
     .feedback-star {
-        height:30px;
-        width:24px;
-        line-height:32px;
-        font-size:24px;
-        float:left;
-        text-align:center;
-        color: #ffdc0f;
+        height: 21px;
+        width: 16px;
+        line-height: 100%;
+        font-size: 16px;
+        float: left;
+        text-align: center;
+        color: orange;
     }
 
     /* each wrapper */
     .feedback-stars-background, .feedback-stars-overlay, .feedback-stars-overlay-wrap {
-        position:absolute;
-        top:0px; left:0px;
-        width:120px;
-        height:30px;
-        overflow:hidden;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 80px;
+        height: 21px;
+        overflow: hidden;
     }
 
     /* background individual stars */
     .feedback-stars-background .feedback-star {
-        color: rgba(0,0,0,.1);
+        color: rgba(0, 0, 0, .1);
     }
 
     /* overlay wrapper that colors the stars */
     .feedback-stars-overlay-wrap {
-        width:0%;
+        width: 0%;
     }
-
 }
 
 .feedback-stars-average.feedback-category-view {
-    margin-left:0px;
-    width:85px;
+    margin-left: 0px;
+    width: 85px;
+
     .feedback-star {
-        height:20px;
-        width:17px;
-        line-height:22px;
-        font-size:17px;
+        height: 20px;
+        width: 17px;
+        line-height: 22px;
+        font-size: 17px;
+    }
+}
+
+.widget-feedback-average {
+    .small-stars {
+        width: 85px;
+        margin-left: 0px;
+
+        .feedback-stars-background {
+            width: 85px;
+        }
+        .feedback-star {
+            height: 20px;
+            width: 17px;
+            line-height: 22px;
+            font-size: 17px;
+        }
+    }
+
+    span.small-stars {
+        //line-height: 22px;
+        font-size: 1em;
+        display: inline-block;
+        height: 30px;
+    }
+
+    .big-stars {
+        width: 120px;
+        margin-left: 0px;
+
+        .feedback-star {
+            height: 30px;
+            width: 24px;
+            line-height: 32px;
+            font-size: 24px;
+        }
+    }
+
+    span.big-stars {
+        line-height: 30px;
+        font-size: 1.25em;
     }
 }

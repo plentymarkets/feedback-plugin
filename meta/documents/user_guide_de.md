@@ -1,22 +1,20 @@
 # Feedback
 
-Zeigen Sie Kundenrezensionen im Webshop an und antworten Sie auf Feedbacks.
-
-<div class="alert alert-warning" role="alert">
-    Beachten Sie, dass das Menü <b>CMS » Feedback-Bewertungen</b> nur über den zentralen Login erreicht werden kann.
-</div>
+Zeige Kundenrezensionen im Webshop an und antworte auf Feedback. Das Feedback-Plugin erfordert den Ceres ShopBuilder.
 
 ## Kundenrezensionen einrichten
 
-Bevor Kundenrezensionen im Webshop angezeigt werden, müssen Sie Einstellungen in Ihrem plentymarkets Backend vornehmen.
+Bevor Kundenrezensionen im Webshop angezeigt werden, musst du Einstellungen in deinem Backend und im ShopBuilder vornehmen.
 
 ##### Kundenrezensionen einrichten:
 
-1. Öffnen Sie das Menü **Start » Plugins**.<br /> → Die Plugin-Übersicht wird geöffnet.
-2. Klicken Sie auf **Feedback**.<br /> → Das Plugin wird in einem neuen Tab geöffnet.
-3. Klicken Sie im Verzeichnisbaum auf **Konfiguration**.<br /> → Das Tab **Feedback settings** ist bereits vorausgewählt.
-4. Nehmen Sie die Einstellungen vor. Beachten Sie dazu die Erläuterungen in Tabelle 1.
-5. **Speichern** Sie die Einstellungen.
+1. Öffne das Menü **Plugins » Plugin-Set-Übersicht**.<br /> → Die Plugin-Set-Übersicht wird geöffnet.
+2. Klicke auf dein Plugin-Set.
+3. Gib "Kunden-Feedback" in die **Suche** ein.
+4. Klicke auf **Installieren**.
+5. Nachdem das Plugin installiert wurde, klicke in der Plugin-Set-Übersicht auf **Plugin-Set bereitstellen**.
+6. Nach dem Bereitstellen sind die Feedback-Widgets im ShopBuilder in der Kategorie **Artikel** verfügbar.
+7. Füge die Widgets deiner Artikelseite hinzu und öffne die Widget-EInstellungen. Beachte dazu die Erläuterungen in Tabelle 1.
 
 <table>
 <caption>Tab. 1: Einstellungen für Kundenrezensionen vornehmen</caption>
@@ -31,15 +29,7 @@ Bevor Kundenrezensionen im Webshop angezeigt werden, müssen Sie Einstellungen i
 	<tbody>
         <tr>
 			<td>
-				<b>Release feedbacks automatically</b>
-			</td>
-			<td>
-                Aktivieren, um Kundenrezensionen automatisch im Webshop freizuschalten. Wenn diese Einstellung deaktiviert ist, müssen Kundenrezensionen manuell im Menü **CMS » Feedback-Bewertungen** freigeschaltet werden. Nur Kundenrezensionen, die erstellt wurden, nachdem diese Funktion aktiviert wurde, werden automatisch freigeschaltet.
-			</td>
-		</tr>
-        <tr>
-			<td>
-				<b>Show date for the feedback</b>
+				<b>Datum an der Bewertung anzeigen</b>
 			</td>
 			<td>
 				Aktivieren, um das Erstellungsdatum der Kundenrezension im Webshop anzuzeigen.
@@ -47,7 +37,7 @@ Bevor Kundenrezensionen im Webshop angezeigt werden, müssen Sie Einstellungen i
 		</tr>
 		<tr>
 			<td>
-				<b>Allow feedbacks with no rating</b>
+				<b>Bewertungen ohne Punktevergabe erlauben</b>
 			</td>
 			<td>
 				Aktivieren, um Feedbacks ohne Bewertung zu erlauben.
@@ -55,7 +45,7 @@ Bevor Kundenrezensionen im Webshop angezeigt werden, müssen Sie Einstellungen i
 		</tr>
 		<tr>
 			<td>
-				<b>Allow adding feedbacks only if the item was purchased</b>
+				<b>Bewertungen nur erlauben, wenn der Artikel gekauft wurde</b>
 			</td>
 			<td>
 				Aktivieren, um Feedbacks nur bei gekauften Artikeln zu erlauben.
@@ -63,31 +53,83 @@ Bevor Kundenrezensionen im Webshop angezeigt werden, müssen Sie Einstellungen i
 		</tr>
 		<tr>
 			<td>
-				<b>Maximum number of feedbacks per author and item</b>
+				<b>Maximale Anzahl an Bewertungen pro Autor und Artikel</b>
 			</td>
 			<td>Wert eingeben, um Kundenrezensionen eines Autors zu einem Artikel zu beschränken. Wenn kein Wert eingeben wird, kann ein eingeloggter Webshop-Besucher beliebig viele Rezensionen für einen Artikel erstellen.
+			</td>
+		</tr>
+    <tr>
+			<td>
+				<b>Maximale Anzahl an Bewertungen pro Seite</b>
+			</td>
+			<td>Wert eingeben, um Kundenrezensionen pro Seite zu beschränken. Weitere Rezensionen werden nach Klick auf **mehr** nachgeladen.
 			</td>
 		</tr>
 	</tbody>
 </table>
 
-## Kundenrezensionen im Webshop anzeigen
+Zusätzlich gibt es im Menü **Plugins » Plugin-Übersicht » Feedback » Einstellungen** weitere Einstellungen, die in der folgenden Tabelle aufgeführt sind:
 
-Das Template-Plugin **Ceres** bietet Ihnen in der Einzelansicht eines Artikels einen Template-Container, in dem Sie Rezensionen ihrer Kunden anzeigen können. Gehen Sie wie im Folgenden beschrieben vor, um Kundenrezensionen im Webshop anzuzeigen.
+<table>
+<caption>Tab. 2: Einstellungen für Kundenrezensionen im Plugin</caption>
+	<thead>
+		<th>
+			Einstellung
+		</th>
+		<th>
+			Erläuterung
+		</th>
+	</thead>
+	<tbody>
+        <tr>
+			<td>
+				Bewertungen automatisch veröffentlichen
+			</td>
+			<td>
+				Wähle aus, ob du Bewertungen immer automatisch veröffentlichen willst, sie nicht automatisch veröffentlichen willst, oder nur für eingeloggte Benutzer veröffentlichen willst.
+			</td>
+		</tr>
+		<tr>
+	<td>
+		Bewertungssterne in der Kategorieansicht anzeigen, wenn noch keine Bewertung vorhanden ist
+	</td>
+	<td>
+		Aktivieren, um leere Bewertungssterne anzuzeigen, solange noch keine Bewertungen abgegeben wurden.
+	</td>
+	</tr>
+	<tr>
+	<td>
+		Filter für Artikelbewertung anzeigen
+	</td>
+	<td>
+		Aktivieren, um es Kunden zu ermöglichen, die Suchergbenisse von Kundenrezensionen durch Filtereinstellungen einzugrenzen.
+	</td>
+	</tr>
+	<tr>
+	<td>
+		Sortierung in Artikellisten anzeigen
+	</td>
+	<td>
+		Aktivieren, um es Kunden zu ermöglichen, die Artikellisten nach Bewertung zu sortieren.
+	</td>
+	</tr>
+</table>
 
-##### Kundenrezensionen im Webshop anzeigen:
 
-1. Öffnen Sie das Menü **CMS » Container-Verknüpfungen**.
-2. Wählen Sie den Bereich **Feedback Javascript**.
-3. Aktivieren Sie den Container **Script loader: Register/load JS**.
-4. Wählen Sie den Bereich **Feedback CSS (Ceres)**.
-5. Aktivieren Sie den Container **Template: Style**.
-6. Wählen Sie den Bereich **Feedback ratings**.
-7. Aktivieren Sie den Container **Single item: Container for customer feedback**.
-8. Wählen Sie den Bereich **Feedback category ratings**.
-9. Aktivieren Sie den Container **Category item list: Before prices container**.
-10. **Speichern** Sie die Einstellungen.<br />→ Kundenrezensionen werden in der Einzelansicht eines Artikels angezeigt.
+## Kundenrezensionen in der Kategorieansicht anzeigen
+
+Solange die Kategorieansicht noch nicht über den ShopBuilder bearbeitet werden kann, kannst du Kundenrezensionen in der Kategorieansicht über Container-Verknüpfungen umsetzen. Gehe wie im Folgenden beschrieben vor, um Kundenrezensionen in der Kategorieansicht anzuzeigen.
+
+##### Kundenrezensionen in der Kategorieansicht anzeigen:
+
+1. Öffne das Menü **Plugins » Plugin-Set-Übersicht**.
+2. Öffne dein Plugin-Set.
+3. Klicke auf das Feedback-Plugin, um die Plugin-Einstellungen zu öffnen.
+4. Klicke im Navigationsbaum links auf den untersten Reiter **Container-Verknüpfungen**.
+5. Klicke auf den Bereich **Standard-Container-Links**.
+6. Aktiviere die Checkbox für den Container **Ceres::CategoryItem.BeforePrices**.
+7. **Speichere** die Einstellungen.<br />→ Kundenrezensionen werden in der Kategorieansicht vor Artikelpreisen angezeigt.
 
 ## Kundenrezensionen verwalten
 
-Kundenrezensionen verwalten Sie im Menü **CMS » Feedback-Bewertungen**. Weitere Informationen zu Kundenrezensionen finden Sie auf der Handbuchseite <a href="https://knowledge.plentymarkets.com/omni-channel/online-shop/feedbacks-verwalten" target="_blank"><b>Feedbacks verwalten</b></a>.
+Kundenrezensionen verwaltest du im Menü **CMS » Feedback-Bewertungen**. Weitere Informationen zu Kundenrezensionen findest du auf der Handbuchseite <a href="https://knowledge.plentymarkets.com/omni-channel/online-shop/feedbacks-verwalten" target="_blank"><b>Feedbacks verwalten</b></a>.
