@@ -9,6 +9,7 @@
 ### Behoben
 
 - The use of multiple instances of the feedback widget for the single item view lead to errors. This has been fixed.
+- There was a visible error in the markup, when editing a feedback.
 
 ## v4.0.3 (2021-05-10)
 

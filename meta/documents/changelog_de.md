@@ -9,6 +9,7 @@
 ### Behoben
 
 - Die Nutzung von mehreren Instanzen des Artikelbewertung-Widgets für die Artikeleinzelansicht hat zu Fehlern geführt. Dies wurde behoben.
+- Bei Editieren eines Feedbacks war ein Fehler im Markup zu sehen. Dies wurde behoben.
 
 
 ## v4.0.3 (2021-05-10)

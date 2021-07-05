@@ -1471,7 +1471,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'FeedbackListEntry',
@@ -9277,7 +9276,7 @@ var render = function() {
             : "<!---->") +
           " " +
           (!!_vm.editableFeedback && !_vm.isReply
-            ? '<div>\n    {% set uid = uid() %}\n    <div class="stars">' +
+            ? '<div><div class="stars">' +
               _vm._ssrList(5, function(i) {
                 return (
                   "<input" +

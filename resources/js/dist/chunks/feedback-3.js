@@ -948,7 +948,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'FeedbackListEntry',
@@ -3046,7 +3045,6 @@ var render = function() {
       _vm._v(" "),
       !!_vm.editableFeedback && !_vm.isReply
         ? _c("div", [
-            _vm._v("\n    {% set uid = uid() %}\n    "),
             _c(
               "div",
               { staticClass: "stars" },
