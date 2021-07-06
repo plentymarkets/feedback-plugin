@@ -79,7 +79,6 @@
     </div>
 
     <div v-if="!!editableFeedback && !isReply">
-      {% set uid = uid() %}
       <div class="stars">
         <template v-for="i in 5">
           <input

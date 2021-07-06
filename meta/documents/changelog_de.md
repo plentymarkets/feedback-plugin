@@ -1,5 +1,16 @@
 # Release Notes für Feedback
 
+## v4.0.4 (2021-07-06)
+
+### TODO
+
+- Nach dem Update auf Version 4.0.4 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden.
+
+### Behoben
+
+- Die gleichzeitige Nutzung von mehreren Artikelbewertung-Widgets für die Artikeleinzelansicht führte zu Fehlern. Dies wurde behoben.
+- Bei Editieren einer Rezension wurde fehlerhaftes Markup angezeigt. Dies wurde behoben.
+
 ## v4.0.3 (2021-05-10)
 
 ### TODO
