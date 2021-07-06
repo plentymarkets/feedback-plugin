@@ -1,6 +1,6 @@
 # Release Notes für Feedback
 
-## v4.0.4 (2021-07-05)
+## v4.0.4 (2021-07-06)
 
 ### TODO
 
@@ -8,9 +8,8 @@
 
 ### Behoben
 
-- Die Nutzung von mehreren Instanzen des Artikelbewertung-Widgets für die Artikeleinzelansicht hat zu Fehlern geführt. Dies wurde behoben.
-- Bei Editieren eines Feedbacks war ein Fehler im Markup zu sehen. Dies wurde behoben.
-
+- Die gleichzeitige Nutzung von mehreren Artikelbewertung-Widgets für die Artikeleinzelansicht führte zu Fehlern. Dies wurde behoben.
+- Bei Editieren einer Rezension wurde fehlerhaftes Markup angezeigt. Dies wurde behoben.
 
 ## v4.0.3 (2021-05-10)
 
