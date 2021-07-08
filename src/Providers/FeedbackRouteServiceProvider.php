@@ -26,9 +26,9 @@ class  FeedbackRouteServiceProvider extends RouteServiceProvider
         $apiRouter->version(['v1'], ['namespace' => 'Feedback\Controllers'], function ($apiRouter) {
             $apiRouter->get('feedbacks/user/{itemId}/{variationId}', 'FeedbacksController@getAuthenticatedUser');
             $apiRouter->get('feedbacks/user', 'FeedbacksController@getAuthenticatedUserMulti');
-            $apiRouter->post('feedbacks/feedback/create', 'FeedbacksController@create');
+            $apiRouter->post('feedbacks/feedback/create', 'FeedbacksController@create')->middleware('sanitize:title,authorName,message');
             $apiRouter->put('feedbacks/feedback/update/{feedbackId}', 'FeedbacksController@update')->where('feedbackId',
-                '\d+');
+                '\d+')->middleware('sanitize:title,message');
             $apiRouter->delete('feedbacks/feedback/delete/{feedbackId}',
                 'FeedbacksController@delete')->where('feedbackId', '\d+');
             $apiRouter->get('feedbacks/feedback/helper/feedbacklist/{targetId}/{page}',
