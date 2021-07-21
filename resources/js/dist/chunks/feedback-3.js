@@ -953,7 +953,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   name: 'FeedbackListEntry',
   components: {
     'feedback-comment': function feedbackComment() {
-      return Promise.all(/*! import() */[__webpack_require__.e(6), __webpack_require__.e(2)]).then(__webpack_require__.bind(__webpack_require__, /*! ./FeedbackComment.vue */ "./resources/js/src/app/components/item/singleitem/FeedbackComment.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(7), __webpack_require__.e(2)]).then(__webpack_require__.bind(__webpack_require__, /*! ./FeedbackComment.vue */ "./resources/js/src/app/components/item/singleitem/FeedbackComment.vue"));
     }
   },
   props: {

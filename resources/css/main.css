@@ -176,6 +176,9 @@
   .feedback-container #comment-textfield {
     display: none; }
 
+.orderFeedback-confirmation {
+  padding: 20px; }
+
 .feedback-orderitem-container {
   /* form stars wrapper */ }
   .feedback-orderitem-container div.stars {

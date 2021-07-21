@@ -8,6 +8,7 @@ use Feedback\Helpers\FeedbackCoreHelper;
 use Feedback\Widgets\FeedbackAverageWidget;
 use Feedback\Widgets\FeedbackOrderWidget;
 use Feedback\Widgets\FeedbackWidget;
+use Feedback\Widgets\OrderFeedbackWidget;
 use Feedback\Widgets\RatingFilterWidget;
 use IO\Helper\ResourceContainer;
 use IO\Services\ItemService;
@@ -70,6 +71,7 @@ class FeedbackServiceProvider extends ServiceProvider
         $widgetRepository->registerWidget(FeedbackAverageWidget::class);
         $widgetRepository->registerWidget(FeedbackOrderWidget::class);
         $widgetRepository->registerWidget(RatingFilterWidget::class);
+        $widgetRepository->registerWidget(OrderFeedbackWidget::class);
     }
 
     public function register()

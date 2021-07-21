@@ -2256,6 +2256,44 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/src/app/components/order/OrderFeedbackConfirmation.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/src/app/components/order/OrderFeedbackConfirmation.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************************************/
+/*! namespace exports */
+/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_exports__, __webpack_require__.r, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+
+/***/ }),
+
 /***/ "./resources/js/src/app/mixins/loadFeedbackModule.js":
 /*!***********************************************************!*\
   !*** ./resources/js/src/app/mixins/loadFeedbackModule.js ***!
@@ -2557,6 +2595,9 @@ function beforeCreate(context) {
   });
   Vue.component('FeedbackOrderContainer', function () {
     return Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./app/components/order/FeedbackOrder.vue */ "./resources/js/src/app/components/order/FeedbackOrder.vue"));
+  });
+  Vue.component('OrderFeedbackContainer', function () {
+    return Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./app/components/order/OrderFeedbackConfirmation.vue */ "./resources/js/src/app/components/order/OrderFeedbackConfirmation.vue"));
   });
 }
 
@@ -7535,7 +7576,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "16b5acce"
+  "67790123"
   
 )
 
@@ -7576,7 +7617,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "d97f2816"
+  "f3994baa"
   
 )
 
@@ -7617,7 +7658,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "613d7cd2"
+  "5d5d0b66"
   
 )
 
@@ -7658,7 +7699,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "283c28c4"
+  "41d29928"
   
 )
 
@@ -7699,7 +7740,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "1fdb1278"
+  "75cbc002"
   
 )
 
@@ -7740,7 +7781,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "102ade0a"
+  "121b16c0"
   
 )
 
@@ -7781,7 +7822,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "5af7025b"
+  "45e51191"
   
 )
 
@@ -7822,7 +7863,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "6ee1d7bf"
+  "09295bf5"
   
 )
 
@@ -7863,11 +7904,52 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "ce54f2e4"
+  "331d0ac4"
   
 )
 
 component.options.__file = "resources/js/src/app/components/order/FeedbackOrderItem.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/src/app/components/order/OrderFeedbackConfirmation.vue":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/src/app/components/order/OrderFeedbackConfirmation.vue ***!
+  \*****************************************************************************/
+/*! namespace exports */
+/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.r, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _OrderFeedbackConfirmation_vue_vue_type_template_id_06badc36___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./OrderFeedbackConfirmation.vue?vue&type=template&id=06badc36& */ "./resources/js/src/app/components/order/OrderFeedbackConfirmation.vue?vue&type=template&id=06badc36&");
+/* harmony import */ var _OrderFeedbackConfirmation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OrderFeedbackConfirmation.vue?vue&type=script&lang=js& */ "./resources/js/src/app/components/order/OrderFeedbackConfirmation.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _OrderFeedbackConfirmation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _OrderFeedbackConfirmation_vue_vue_type_template_id_06badc36___WEBPACK_IMPORTED_MODULE_0__.render,
+  _OrderFeedbackConfirmation_vue_vue_type_template_id_06badc36___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  "59181010"
+  
+)
+
+component.options.__file = "resources/js/src/app/components/order/OrderFeedbackConfirmation.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -8049,6 +8131,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_FeedbackOrderItem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib/index.js!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./FeedbackOrderItem.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/src/app/components/order/FeedbackOrderItem.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_FeedbackOrderItem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/src/app/components/order/OrderFeedbackConfirmation.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************!*\
+  !*** ./resources/js/src/app/components/order/OrderFeedbackConfirmation.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************/
+/*! namespace exports */
+/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.r, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_OrderFeedbackConfirmation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib/index.js!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./OrderFeedbackConfirmation.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/src/app/components/order/OrderFeedbackConfirmation.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_OrderFeedbackConfirmation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
 
 /***/ }),
 
@@ -8246,6 +8348,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FeedbackOrderItem_vue_vue_type_template_id_713d3199___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FeedbackOrderItem_vue_vue_type_template_id_713d3199___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./FeedbackOrderItem.vue?vue&type=template&id=713d3199& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/src/app/components/order/FeedbackOrderItem.vue?vue&type=template&id=713d3199&");
+
+
+/***/ }),
+
+/***/ "./resources/js/src/app/components/order/OrderFeedbackConfirmation.vue?vue&type=template&id=06badc36&":
+/*!************************************************************************************************************!*\
+  !*** ./resources/js/src/app/components/order/OrderFeedbackConfirmation.vue?vue&type=template&id=06badc36& ***!
+  \************************************************************************************************************/
+/*! namespace exports */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/src/app/components/order/OrderFeedbackConfirmation.vue?vue&type=template&id=06badc36& .render */
+/*! export staticRenderFns [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/src/app/components/order/OrderFeedbackConfirmation.vue?vue&type=template&id=06badc36& .staticRenderFns */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OrderFeedbackConfirmation_vue_vue_type_template_id_06badc36___WEBPACK_IMPORTED_MODULE_0__.render,
+/* harmony export */   "staticRenderFns": () => /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OrderFeedbackConfirmation_vue_vue_type_template_id_06badc36___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OrderFeedbackConfirmation_vue_vue_type_template_id_06badc36___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./OrderFeedbackConfirmation.vue?vue&type=template&id=06badc36& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/src/app/components/order/OrderFeedbackConfirmation.vue?vue&type=template&id=06badc36&");
 
 
 /***/ }),
@@ -9627,6 +9751,85 @@ var render = function() {
           ">" +
           _vm._ssrEscape(_vm._s(_vm.item.name)) +
           "</a></div>"
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/src/app/components/order/OrderFeedbackConfirmation.vue?vue&type=template&id=06badc36&":
+/*!***************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/src/app/components/order/OrderFeedbackConfirmation.vue?vue&type=template&id=06badc36& ***!
+  \***************************************************************************************************************************************************************************************************************************************************/
+/*! namespace exports */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export staticRenderFns [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => /* binding */ render,
+/* harmony export */   "staticRenderFns": () => /* binding */ staticRenderFns
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "section",
+    {
+      staticClass:
+        "feedback-container orderFeedback-confirmation widget-primary border"
+    },
+    [
+      _vm._ssrNode(
+        '<div class="h1">' +
+          _vm._ssrEscape(
+            "\n    " +
+              _vm._s(
+                _vm.$translate(
+                  "Feedback::Feedback.orderFeedbackConfirmationTitle"
+                )
+              ) +
+              "\n  "
+          ) +
+          '</div> <p class="pt-2 pb-2">' +
+          _vm._ssrEscape(
+            "\n    " +
+              _vm._s(
+                _vm.$translate(
+                  "Feedback::Feedback.orderFeedbackConfirmationQuestion"
+                )
+              ) +
+              "\n  "
+          ) +
+          '</p> <div class="btn-group"><button class="btn btn-appearance">' +
+          _vm._ssrEscape(
+            "\n      " +
+              _vm._s(
+                _vm.$translate(
+                  "Feedback::Feedback.orderFeedbackConfirmationYes"
+                )
+              ) +
+              "\n    "
+          ) +
+          '</button> <button class="btn btn-default ml-4">' +
+          _vm._ssrEscape(
+            "\n      " +
+              _vm._s(
+                _vm.$translate("Feedback::Feedback.orderFeedbackConfirmationNo")
+              ) +
+              "\n    "
+          ) +
+          "</button></div>"
       )
     ]
   )
