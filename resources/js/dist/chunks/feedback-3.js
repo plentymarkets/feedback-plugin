@@ -401,7 +401,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.feedbacks.forEach(function (feedback) {
           var author;
 
-          if ((feedback.sourceRelation[0].feedbackRelationType === 'user' || feedback.sourceRelation[0].feedbackRelationType === 'contact') && feedback.sourceRelation[0].feedbackRelationSourceId > 0) {
+          if ((feedback.sourceRelation[0].feedbackRelationType === 'user' || feedback.sourceRelation[0].feedbackRelationType === 'contact') && feedback.sourceRelation[0].feedbackRelationSourceId > 0 && feedback.authorName.trim().length > 0) {
             author = feedback.sourceRelation[0].sourceRelationLabel;
           } else if (feedback.sourceRelation[0].feedbackRelationSourceId === '0' && feedback.authorName.trim().length > 0) {
             author = feedback.authorName;
