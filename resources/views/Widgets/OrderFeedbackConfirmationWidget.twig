@@ -2,15 +2,17 @@
 {% import "Ceres::Widgets.Helper.WidgetHelper" as WidgetHelper %}
 
 {% set customClass = widget.settings.customClass.mobile %}
-{% set appearance = widget.settings.appearance.mobile %}
-
 {% set spacingSettings = widget.settings.spacing %}
 {% set inlinePadding   = WidgetHelper.getInlineSpacings(spacingSettings, spacingSettings.customPadding.mobile, "") %}
 {% set inlineMargin    = WidgetHelper.getInlineSpacings(spacingSettings, "", spacingSettings.customMargin.mobile) %}
 {% set spacingPadding  = WidgetHelper.getSpacingClasses(spacingSettings, spacingSettings.customPadding.mobile, "") %}
 {% set spacingMargin   = WidgetHelper.getSpacingClasses(spacingSettings, "",spacingSettings.customMargin.mobile) %}
 
-<div data-feedback class="widget widget-orderFeedback-confirmation widget-{{ appearance | default("primary") }} {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
+<div data-feedback class="widget widget-orderFeedback-confirmation widget border
+        {% if customClass | length > 0 %} {{ customClass }}{% endif %}
+        {% if spacingPadding | length > 0 %} {{ spacingPadding }}{% else %} px-4 pt-3{% endif %}
+        {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
+        {% if inlinePadding | length > 0 %} style="{{ inlinePadding }}"{% endif %}
         {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
     <order-feedback-container class="widget-inner"
                         :options="{{ options | json_encode}}"

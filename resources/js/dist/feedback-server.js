@@ -9787,7 +9787,7 @@ var render = function() {
     "section",
     {
       staticClass:
-        "feedback-container orderFeedback-confirmation widget-primary border"
+        "feedback-container orderFeedback-confirmation widget-primary"
     },
     [
       _vm._ssrNode(
@@ -9801,7 +9801,7 @@ var render = function() {
               ) +
               "\n  "
           ) +
-          '</div> <p class="pt-2 pb-2">' +
+          "</div> <p>" +
           _vm._ssrEscape(
             "\n    " +
               _vm._s(
@@ -9811,7 +9811,7 @@ var render = function() {
               ) +
               "\n  "
           ) +
-          '</p> <div class="btn-group"><button class="btn btn-appearance">' +
+          '</p> <div class="btn-group"><button class="btn btn-primary">' +
           _vm._ssrEscape(
             "\n      " +
               _vm._s(
@@ -9821,7 +9821,7 @@ var render = function() {
               ) +
               "\n    "
           ) +
-          '</button> <button class="btn btn-default ml-4">' +
+          '</button> <button class="btn ml-3 btn-light ">' +
           _vm._ssrEscape(
             "\n      " +
               _vm._s(

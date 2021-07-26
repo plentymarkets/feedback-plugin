@@ -139,7 +139,7 @@ var render = function() {
     "section",
     {
       staticClass:
-        "feedback-container orderFeedback-confirmation widget-primary border"
+        "feedback-container orderFeedback-confirmation widget-primary"
     },
     [
       _c("div", { staticClass: "h1" }, [
@@ -154,7 +154,7 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("p", { staticClass: "pt-2 pb-2" }, [
+      _c("p", [
         _vm._v(
           "\n    " +
             _vm._s(
@@ -167,7 +167,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "btn-group" }, [
-        _c("button", { staticClass: "btn btn-appearance" }, [
+        _c("button", { staticClass: "btn btn-primary" }, [
           _vm._v(
             "\n      " +
               _vm._s(
@@ -179,7 +179,7 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("button", { staticClass: "btn btn-default ml-4" }, [
+        _c("button", { staticClass: "btn ml-3 btn-light " }, [
           _vm._v(
             "\n      " +
               _vm._s(
