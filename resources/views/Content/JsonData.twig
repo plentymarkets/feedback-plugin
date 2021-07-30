@@ -1,0 +1,36 @@
+{% set feedbackList = feedbackServices.feedback.paginate(item.documents[0].data.item.id,1,50) %}
+{% set feedbackCounts = feedbackServices.feedback.getCounts(item.documents[0].data.item.id) %}
+
+{% if feedbackList.feedbacks | length > 0 %}
+    <script type="application/ld+json">
+{
+            "@context"          : "http://schema.org/",
+            "@type"             : "Product",
+            "@id"               : "{{ item.documents[0].data.variation.id }}",
+            "aggregateRating"   :
+             {
+                  "@type"           : "AggregateRating",
+                  "bestRating"      : "5",
+                  "ratingValue"     : "{{ feedbackCounts.counts.averageValue }}",
+                  "reviewCount"     : "{{ feedbackCounts.counts.ratingsCountTotal }}"
+             },
+            "review": [
+                     {% for feedback in feedbackList.feedbacks %}
+                          {
+                            "@type"             : "Review",
+                            "author"            : "{{ feedback.authorName}}",
+                            "datePublished"     : "{{ feedback.createdAt }}",
+                            "name"              : "{{ feedback.title }}",
+                            "reviewBody"       : "{{ feedback.feedbackComment.comment.message }}",
+                            "reviewRating": {
+                              "@type"               : "Rating",
+                              "bestRating"          : "5",
+                              "worstRating"         : "1",
+                              "ratingValue"         : "{{ feedback.feedbackRating.rating.ratingValue }}"
+                            }
+                          }{% if not loop.last %},{% endif %}
+        {% endfor %}
+            ]
+ }
+</script>
+{% endif %}

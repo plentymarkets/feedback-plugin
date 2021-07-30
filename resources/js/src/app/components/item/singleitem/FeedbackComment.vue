@@ -170,7 +170,6 @@
 
 <script>
 import FeedbackListEntry from './FeedbackListEntry.vue'
-import { mapState } from 'vuex'
 
 export default {
   name: 'FeedbackComment',
@@ -263,10 +262,12 @@ export default {
         })
     },
 
-    ...mapState({
-      authenticatedUser: state => state.feedback.authenticatedUser,
-      itemAttributes: state => state.feedback.itemAttributes
-    })
+    authenticatedUser () {
+      return this.$store.state.feedback.authenticatedUser
+    },
+    itemAttributes () {
+      return this.$store.state.feedback.itemAttributes
+    }
   },
 
   created () {

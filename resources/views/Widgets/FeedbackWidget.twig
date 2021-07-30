@@ -3,6 +3,7 @@
 
 {% set customClass = widget.settings.customClass.mobile %}
 {% set appearance = widget.settings.appearance.mobile %}
+{% set lazyLoad = widget.settings.lazyLoad.mobile %}
 
 {% set spacingSettings = widget.settings.spacing %}
 {% set inlinePadding   = WidgetHelper.getInlineSpacings(spacingSettings, spacingSettings.customPadding.mobile, "") %}
@@ -12,9 +13,11 @@
 
 <div data-feedback class="widget widget-feedback widget-{{ appearance | default("primary") }} {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
         {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
-    <feedback-container class="widget-inner"
-            :options="{{ options | json_encode}}"
-            classes="{{ spacingPadding }}"
-            styles="{{ inlinePadding }}">
-    </feedback-container>
+    <lazy-hydrate {% if lazyLoad %}when-visible{% else %}when-idle{% endif %}>
+        <feedback-container class="widget-inner"
+                :options="{{ options | json_encode}}"
+                classes="{{ spacingPadding }}"
+                styles="{{ inlinePadding }}">
+        </feedback-container>
+    </lazy-hydrate>
 </div>

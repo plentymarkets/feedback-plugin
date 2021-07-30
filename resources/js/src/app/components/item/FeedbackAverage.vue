@@ -40,7 +40,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import loadFeedbackModule from '../../mixins/loadFeedbackModule'
 
 export default {
@@ -72,9 +71,9 @@ export default {
       return this.sizeOfStars.indexOf('-stars') !== -1 ? this.sizeOfStars : this.sizeOfStars + '-stars'
     },
 
-    ...mapState({
-      counts: state => state.feedback.counts
-    })
+    counts () {
+      return this.$store.state.feedback.counts
+    }
   },
 
   mounted () {

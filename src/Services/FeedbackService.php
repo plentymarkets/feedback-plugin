@@ -256,9 +256,10 @@ class FeedbackService
      * Get an array of feedbacks by pagination
      * @param $itemId
      * @param $page
+     * @param int $itemsPerPage
      * @return array
      */
-    public function paginate($itemId, $page)
+    public function paginate($itemId, $page, $itemsPerPage = 50)
     {
         $lang = $this->localizationRepository->getLanguage();
         $itemVariations = [];
@@ -317,7 +318,10 @@ class FeedbackService
         }
 
         $page = isset($page) && $page != 0 ? $page : 1;
-        $itemsPerPage = (int)$this->request->input('feedbacksPerPage');
+        if (((int)$this->request->input('feedbacksPerPage')))
+        {
+            $itemsPerPage = (int)$this->request->input('feedbacksPerPage');
+        }
         $with = [];
         $filters = [
             'isVisible' => 1,
