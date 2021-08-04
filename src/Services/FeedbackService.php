@@ -15,6 +15,7 @@ use Plenty\Modules\Item\Attribute\Contracts\AttributeValueNameRepositoryContract
 use Plenty\Modules\Item\Item\Contracts\ItemRepositoryContract;
 use Plenty\Modules\Item\Variation\Contracts\VariationRepositoryContract;
 use Plenty\Plugin\Log\Loggable;
+use Plenty\Modules\Order\Property\Models\OrderPropertyType;
 
 
 class FeedbackService
@@ -97,6 +98,37 @@ class FeedbackService
 
         return $data;
     }
+
+    /**
+     * Set data for the orderFeedback-container Vue component
+     * @param int $orderId
+     *  @param int $permission
+     */
+    public function setPermissionOrderFeedback(int $orderId, int $permission)
+    {
+        /** @var OrderRepositoryContract $orderRepository */
+        $orderRepository = pluginApp(OrderRepositoryContract::class);
+        $order = $orderRepository->findOrderById($orderId);
+        array_push($order->properties, [
+            'typeId'=> OrderPropertyType::PERMISSION_ORDER_FEEDBACK,
+            'orderId' => $order->id,
+            'value' => $permission
+        ]);
+        $orderRepository->update($orderId, $order->toArray());
+
+
+    }
+
+    /**
+     * Get data for the orderFeedback-container Vue component
+     * @param int $orderId
+     * @return string
+     */
+    /**public function getPermissionOrderFeedback(int $orderId)
+    {
+
+        return $data;
+    }*/
 
     /**
      * Create a feedback entry in the db

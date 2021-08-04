@@ -2,6 +2,7 @@
 
 namespace Feedback\Controllers;
 
+use Feedback\Helpers\FeedbackCoreHelper;
 use Feedback\Services\FeedbackService;
 use Plenty\Plugin\Controller;
 
@@ -86,4 +87,25 @@ class FeedbacksController extends Controller
     {
         return $feedbackService->getCounts($itemId);
     }
+
+    /**
+     * @param int $orderId
+     * @param int $permission
+     * @param FeedbackService $feedbackService
+     * @return string
+     */
+    public function setPermissionOrderFeedback(int $orderId, FeedbackService $feedbackService, int $permission)
+    {
+        return $feedbackService->setPermissionOrderFeedback($orderId, $permission);
+    }
+
+    /**
+     * @param int $orderId
+     * @param FeedbackService $feedbackService
+     * @return string
+     */
+    /**public function getPermissionOrderFeedback(int $orderId, FeedbackService $feedbackService)
+    {
+        return $feedbackService->getPermissionOrderFeedback($orderId);
+    }*/
 }

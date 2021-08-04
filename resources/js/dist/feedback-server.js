@@ -2290,7 +2290,47 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    orderId: null
+  },
+  data: function data() {
+    return {
+      isDisabled: false
+    };
+  },
+  methods: {
+    feedback: function feedback(value) {
+      $.ajax({
+        type: 'POST',
+        url: '/rest/feedbacks/feedback/order/notification',
+        data: {
+          permissionOrderFeedback: value,
+          orderId: this.orderId
+        },
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+        dataType: 'json',
+        xhrFields: {
+          withCredentials: true
+        },
+        success: function success(data) {
+          console.log(data);
+        },
+        error: function error(jqXHR, textStatus, errorThrown) {
+          console.error(errorThrown);
+        }
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -9811,7 +9851,9 @@ var render = function() {
               ) +
               "\n  "
           ) +
-          '</p> <div class="btn-group"><button class="btn btn-primary">' +
+          '</p> <div class="btn-group"><button' +
+          _vm._ssrAttr("disabled", _vm.isDisabled) +
+          ' class="btn btn-primary btn-appearance">' +
           _vm._ssrEscape(
             "\n      " +
               _vm._s(
@@ -9821,7 +9863,9 @@ var render = function() {
               ) +
               "\n    "
           ) +
-          '</button> <button class="btn ml-3 btn-light ">' +
+          "</button> <button" +
+          _vm._ssrAttr("disabled", _vm.isDisabled) +
+          ' class="btn ml-3 btn-light btn-appearance">' +
           _vm._ssrEscape(
             "\n      " +
               _vm._s(

@@ -31,7 +31,47 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    orderId: null
+  },
+  data: function data() {
+    return {
+      isDisabled: false
+    };
+  },
+  methods: {
+    feedback: function feedback(value) {
+      $.ajax({
+        type: 'POST',
+        url: '/rest/feedbacks/feedback/order/notification',
+        data: {
+          permissionOrderFeedback: value,
+          orderId: this.orderId
+        },
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+        dataType: 'json',
+        xhrFields: {
+          withCredentials: true
+        },
+        success: function success(data) {
+          console.log(data);
+        },
+        error: function error(jqXHR, textStatus, errorThrown) {
+          console.error(errorThrown);
+        }
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -167,27 +207,53 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "btn-group" }, [
-        _c("button", { staticClass: "btn btn-primary" }, [
-          _vm._v(
-            "\n      " +
-              _vm._s(
-                _vm.$translate(
-                  "Feedback::Feedback.orderFeedbackConfirmationYes"
-                )
-              ) +
-              "\n    "
-          )
-        ]),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary btn-appearance",
+            attrs: { disabled: _vm.isDisabled },
+            on: {
+              click: function($event) {
+                return _vm.feedback(1)
+              }
+            }
+          },
+          [
+            _vm._v(
+              "\n      " +
+                _vm._s(
+                  _vm.$translate(
+                    "Feedback::Feedback.orderFeedbackConfirmationYes"
+                  )
+                ) +
+                "\n    "
+            )
+          ]
+        ),
         _vm._v(" "),
-        _c("button", { staticClass: "btn ml-3 btn-light " }, [
-          _vm._v(
-            "\n      " +
-              _vm._s(
-                _vm.$translate("Feedback::Feedback.orderFeedbackConfirmationNo")
-              ) +
-              "\n    "
-          )
-        ])
+        _c(
+          "button",
+          {
+            staticClass: "btn ml-3 btn-light btn-appearance",
+            attrs: { disabled: _vm.isDisabled },
+            on: {
+              click: function($event) {
+                return _vm.feedback(0)
+              }
+            }
+          },
+          [
+            _vm._v(
+              "\n      " +
+                _vm._s(
+                  _vm.$translate(
+                    "Feedback::Feedback.orderFeedbackConfirmationNo"
+                  )
+                ) +
+                "\n    "
+            )
+          ]
+        )
       ])
     ]
   )
