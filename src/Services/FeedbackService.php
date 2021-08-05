@@ -346,6 +346,11 @@ class FeedbackService
                     $feedback->targetRelation->targetRelationName
                 );
             }
+            if(($feedback->sourceRelation[0]->feedbackRelationType  === 'user' || $feedback->sourceRelation[0]->feedbackRelationType === 'contact' )
+                && $feedback->sourceRelation[0]->feedbackRelationSourceId > 0 && !(trim($feedback->authorName) > 0) )
+            {
+                $feedback->authorName = $feedback->sourceRelation[0]->sourceRelationLabel;
+            }
         }
 
         return [
