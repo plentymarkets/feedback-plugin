@@ -101,34 +101,52 @@ class FeedbackService
 
     /**
      * Set data for the orderFeedback-container Vue component
-     * @param int $orderId
-     *  @param int $permission
+
      */
-    public function setPermissionOrderFeedback(int $orderId, int $permission)
+    public function setPermissionOrderFeedback()
     {
+        $orderId = $this->request->get('orderId');
+        $permission = $this->request->get('permissionOrderFeedback');
+
         /** @var OrderRepositoryContract $orderRepository */
+
         $orderRepository = pluginApp(OrderRepositoryContract::class);
-        $order = $orderRepository->findOrderById($orderId);
-        array_push($order->properties, [
-            'typeId'=> OrderPropertyType::PERMISSION_ORDER_FEEDBACK,
-            'orderId' => $order->id,
-            'value' => $permission
-        ]);
-        $orderRepository->update($orderId, $order->toArray());
+        $authHelper = pluginApp(AuthHelper::class);
 
+        $order = $authHelper->processUnguarded(
+            function () use ( $orderId, $orderRepository ) {
+              return $orderRepository->findOrderById($orderId);
+            }
+        );
 
+        $originalOrderProperties = $order->properties->toArray();
+
+        $propertyExists = false;
+        foreach ($originalOrderProperties as &$property) {
+            if ($property['typeId'] == OrderPropertyType::PERMISSION_ORDER_FEEDBACK)
+            {
+                $propertyExists = true;
+                $property['value'] = $permission;
+                break;
+            }
+        }
+
+        if (!$propertyExists)
+        {
+            array_push($originalOrderProperties, [
+                'typeId'=> OrderPropertyType::PERMISSION_ORDER_FEEDBACK,
+                'value' => $permission
+            ]);
+        }
+
+        $order = $authHelper->processUnguarded(
+            function () use ( $orderId, $orderRepository, $originalOrderProperties ) {
+                return $orderRepository->update($orderId, ['properties' => $originalOrderProperties]);
+            }
+        );
+
+        return $order;
     }
-
-    /**
-     * Get data for the orderFeedback-container Vue component
-     * @param int $orderId
-     * @return string
-     */
-    /**public function getPermissionOrderFeedback(int $orderId)
-    {
-
-        return $data;
-    }*/
 
     /**
      * Create a feedback entry in the db

@@ -89,14 +89,12 @@ class FeedbacksController extends Controller
     }
 
     /**
-     * @param int $orderId
-     * @param int $permission
      * @param FeedbackService $feedbackService
      * @return string
      */
-    public function setPermissionOrderFeedback(int $orderId, FeedbackService $feedbackService, int $permission)
+    public function setPermissionOrderFeedback( FeedbackService $feedbackService )
     {
-        return $feedbackService->setPermissionOrderFeedback($orderId, $permission);
+        return $feedbackService->setPermissionOrderFeedback();
     }
 
     /**
