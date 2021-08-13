@@ -1,4 +1,4 @@
-{% if urls.is("item") %}
+{% if urls.is("item") and item | length > 0 %}
     {% set feedbackList = feedbackServices.feedback.paginate(item.documents[0].data.item.id,1,50) %}
     {% set feedbackCounts = feedbackServices.feedback.getCounts(item.documents[0].data.item.id) %}
 
