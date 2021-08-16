@@ -1,5 +1,15 @@
 # Release Notes für Feedback
 
+## v4.0.5 (2021-08-17)
+
+### TODO
+
+- Nach dem Update auf Version 4.0.5 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden.
+
+### Behoben
+
+- Ein Fehler in der Namensauflösung für Autoren-Felder bei strukturierten Daten wurde behoben.
+
 ## v4.0.4 (2021-07-06)
 
 ### TODO

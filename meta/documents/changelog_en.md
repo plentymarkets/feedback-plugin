@@ -1,5 +1,15 @@
 # Release Notes for Feedback
 
+## v4.0.5 (2021-08-17)
+
+### TODO
+
+- After updating the feedback plugin to v4.0.5, it is necessary to regenerate ShopBuilder widgets via the **Regenerate contents** button in the **CMS » ShopBuilder** menu.
+
+### Behoben
+
+- An error in the name resolution for author fields of the structured data has been fixed.
+
 ## v4.0.4 (2021-07-06)
 
 ### TODO
