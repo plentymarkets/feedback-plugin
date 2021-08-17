@@ -8,7 +8,7 @@
 
 ### Behoben
 
-- Ein Fehler in der Namensauflösung für Autoren-Felder bei strukturierten Daten wurde behoben.
+- Durch einen Fehler in der Namensauflösung für Autoren-Felder konnte der Autorenname in den strukturierten Daten fehlen. Dies wurde behoben.
 
 ## v4.0.4 (2021-07-06)
 
