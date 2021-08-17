@@ -8,7 +8,7 @@
 
 ### Behoben
 
-- An error in the name resolution for author fields of the structured data has been fixed.
+- Due to an error in the name resolution for author fields, the author name was sometimes not included in the structured data. This has been fixed.
 
 ## v4.0.4 (2021-07-06)
 
