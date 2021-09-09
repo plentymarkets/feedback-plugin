@@ -15,6 +15,7 @@ use Plenty\Modules\Item\Attribute\Contracts\AttributeValueNameRepositoryContract
 use Plenty\Modules\Item\Item\Contracts\ItemRepositoryContract;
 use Plenty\Modules\Item\Variation\Contracts\VariationRepositoryContract;
 use Plenty\Plugin\Log\Loggable;
+use Plenty\Modules\Order\Property\Models\OrderPropertyType;
 
 
 class FeedbackService
@@ -96,6 +97,70 @@ class FeedbackService
         $data['counts'] = $counts;
 
         return $data;
+    }
+
+    /**
+     * Set data for the orderFeedback-container Vue component
+     */
+    public function setPermissionOrderFeedback()
+    {
+        $orderId = $this->request->get('orderId');
+        $permission = $this->request->get('permission');
+
+        /** @var OrderRepositoryContract $orderRepository */
+
+        $orderRepository = pluginApp(OrderRepositoryContract::class);
+        $authHelper = pluginApp(AuthHelper::class);
+
+        $order = $authHelper->processUnguarded(
+            function () use ( $orderId, $orderRepository ) {
+                return $orderRepository->findOrderById($orderId);
+            }
+        );
+
+        $originalOrderProperties = $order->properties->toArray();
+
+        $propertyExists = false;
+        foreach ($originalOrderProperties as &$property) {
+            if ($property['typeId'] == OrderPropertyType::PERMISSION_ORDER_FEEDBACK)
+            {
+                $propertyExists = true;
+                $property['value'] = $permission;
+                break;
+            }
+        }
+
+        if (!$propertyExists)
+        {
+            array_push($originalOrderProperties, [
+                'typeId'=> OrderPropertyType::PERMISSION_ORDER_FEEDBACK,
+                'value' => $permission
+            ]);
+        }
+
+        $order = $authHelper->processUnguarded(
+            function () use ( $orderId, $orderRepository, $originalOrderProperties ) {
+                return $orderRepository->update($orderId, ['properties' => $originalOrderProperties]);
+            }
+        );
+
+        return $order;
+    }
+
+    /**
+     * Get data for the OrderFeedbackConfirmationWidget twig component
+     */
+   public function getPermissionOrderFeedback($order)
+    {
+        $display = false;
+        foreach ($order['properties'] as $property) {
+            if ($property['typeId'] == OrderPropertyType::PERMISSION_ORDER_FEEDBACK)
+            {
+                $display = (bool)$property['value'];
+                break;
+            }
+        }
+        return $display;
     }
 
     /**
