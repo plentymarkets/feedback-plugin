@@ -1,34 +1,36 @@
 <template>
   <section class="feedback-container orderFeedback-confirmation">
-      <div v-if="noFeedback" class="h4 mb-3">
+    <div v-if="noDisplay">
+      <div class="mb-3">
         {{ $translate("Feedback::Feedback.orderFeeedbackConfirmationAfterNo") }}
       </div>
       <div class="d-flex">
         <button
-            class="btn btn-outline-appearance mx-auto"
-            :disabled="isDisabled"
-            @click="feedback(NULL)"
-        >
-          {{ $translate("Feedback::Feedback.orderFeedbackConfirmationRevoke") }}
-        </button>
-      </div>
-    <div
-      v-if="display"
-    >
-      <div class="h4 mb-3">
-        {{ $translate("Feedback::Feedback.orderFeeedbackConfirmationAfterYes") }}
-      </div>
-      <div class="d-flex">
-        <button
-            class="btn btn-outline-appearance mx-auto"
-            :disabled="isDisabled"
-            @click="feedback(0)"
+          class="btn btn-light mx-auto"
+          :disabled="isDisabled"
+          @click="feedback(2)"
         >
           {{ $translate("Feedback::Feedback.orderFeedbackConfirmationRevoke") }}
         </button>
       </div>
     </div>
-    <div v-else-if="!noFeedback">
+    <div
+      v-if="display"
+    >
+      <div class="mb-3">
+        {{ $translate("Feedback::Feedback.orderFeeedbackConfirmationAfterYes") }}
+      </div>
+      <div class="d-flex">
+        <button
+          class="btn btn-light mx-auto"
+          :disabled="isDisabled"
+          @click="feedback(2);"
+        >
+          {{ $translate("Feedback::Feedback.orderFeedbackConfirmationRevoke") }}
+        </button>
+      </div>
+    </div>
+    <div v-else-if="initial">
       <div class="h1">
         {{ $translate("Feedback::Feedback.orderFeedbackConfirmationTitle") }}
       </div>
@@ -63,8 +65,9 @@ export default {
   data () {
     return {
       isDisabled: false,
-      noFeedback: false,
-      revokation: false
+      display: false,
+      noDisplay: false,
+      initial: true
     }
   },
 
@@ -84,10 +87,15 @@ export default {
             success: (data) => {
               console.log(data)
               if (value === 1) {
+                this.initial = false
                 this.display = true
+              } else if (value === 0) {
+                this.initial = false
+                this.noDisplay = true
               } else {
+                this.initial = true
                 this.display = false
-                this.noFeedback = true
+                this.noDisplay = false
               }
               this.isDisabled = false
             },
