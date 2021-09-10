@@ -31,7 +31,7 @@
       </div>
     </div>
     <div v-else-if="initial">
-      <div class="h1">
+      <div class="h3">
         {{ $translate("Feedback::Feedback.orderFeedbackConfirmationTitle") }}
       </div>
       <p>
