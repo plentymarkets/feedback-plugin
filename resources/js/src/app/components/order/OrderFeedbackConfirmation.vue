@@ -1,21 +1,7 @@
 <template>
   <section class="feedback-container orderFeedback-confirmation">
-    <div v-if="noDisplay">
-      <div class="mb-3">
-        {{ $translate("Feedback::Feedback.orderFeeedbackConfirmationAfterNo") }}
-      </div>
-      <div class="d-flex">
-        <button
-          class="btn btn-light mx-auto"
-          :disabled="isDisabled"
-          @click="feedback(2)"
-        >
-          {{ $translate("Feedback::Feedback.orderFeedbackConfirmationRevoke") }}
-        </button>
-      </div>
-    </div>
     <div
-      v-if="display"
+      v-if="display === 1"
     >
       <div class="mb-3">
         {{ $translate("Feedback::Feedback.orderFeeedbackConfirmationAfterYes") }}
@@ -24,13 +10,13 @@
         <button
           class="btn btn-light mx-auto"
           :disabled="isDisabled"
-          @click="feedback(2);"
+          @click="feedback(0);"
         >
           {{ $translate("Feedback::Feedback.orderFeedbackConfirmationRevoke") }}
         </button>
       </div>
     </div>
-    <div v-else-if="initial">
+    <div v-else>
       <div class="h3">
         {{ $translate("Feedback::Feedback.orderFeedbackConfirmationTitle") }}
       </div>
@@ -45,13 +31,6 @@
         >
           {{ $translate("Feedback::Feedback.orderFeedbackConfirmationYes") }}
         </button>
-        <button
-          class="btn ml-3 btn-outline-appearance"
-          :disabled="isDisabled"
-          @click="feedback(0)"
-        >
-          {{ $translate("Feedback::Feedback.orderFeedbackConfirmationNo") }}
-        </button>
       </div>
     </div>
   </section>
@@ -60,14 +39,12 @@
 <script>
 export default {
   name: 'OrderFeedbackContainer',
-  props: { orderId: null },
+  props: { orderId: null, displayMode: null },
 
   data () {
     return {
-      isDisabled: false,
-      display: false,
-      noDisplay: false,
-      initial: true
+      display: this.displayMode,
+      isDisabled: false
     }
   },
 
@@ -86,17 +63,7 @@ export default {
             },
             success: (data) => {
               console.log(data)
-              if (value === 1) {
-                this.initial = false
-                this.display = true
-              } else if (value === 0) {
-                this.initial = false
-                this.noDisplay = true
-              } else {
-                this.initial = true
-                this.display = false
-                this.noDisplay = false
-              }
+              this.display = value
               this.isDisabled = false
             },
             error: (jqXHR, textStatus, errorThrown) => {

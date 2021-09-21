@@ -151,12 +151,12 @@ class FeedbackService
      * Get data for the OrderFeedbackConfirmationWidget twig component
      */
    public function getPermissionOrderFeedback($order)
-    {
+   {
         $display = false;
         foreach ($order['properties'] as $property) {
             if ($property['typeId'] == OrderPropertyType::PERMISSION_ORDER_FEEDBACK)
             {
-                $display = (bool)$property['value'];
+                $display = $property['value'];
                 break;
             }
         }

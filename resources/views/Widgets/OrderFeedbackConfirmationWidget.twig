@@ -17,7 +17,7 @@
         {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
     <order-feedback-container class="widget-inner"
                               :order-Id="{{ Twig.print('data.order.id') }}"
-                              :display="{{ Twig.print(Twig.call("feedbackServices.feedback.getPermissionOrderFeedback", [Twig.var("data.order")])) }}"
+                              :display-Mode="{{ Twig.if("#{ isPreview | json_encode }") }}0{{ Twig.else() }}{{ Twig.print(Twig.call("feedbackServices.feedback.getPermissionOrderFeedback", [Twig.var("data.order")])) }}{{ Twig.endif() }}"
                               classes="{{ spacingPadding }}"
                               styles="{{ inlinePadding }}">
     </order-feedback-container>
