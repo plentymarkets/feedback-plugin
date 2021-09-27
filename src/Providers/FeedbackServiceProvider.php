@@ -5,6 +5,7 @@ namespace Feedback\Providers;
 use Feedback\Extensions\FeedbackFacet;
 use Feedback\Extensions\TwigServiceProvider;
 use Feedback\Helpers\FeedbackCoreHelper;
+use Feedback\Jobs\SendingFeedbackMail;
 use Feedback\Widgets\FeedbackAverageWidget;
 use Feedback\Widgets\FeedbackOrderWidget;
 use Feedback\Widgets\FeedbackWidget;
@@ -14,9 +15,11 @@ use IO\Helper\ResourceContainer;
 use IO\Services\ItemService;
 use Plenty\Modules\ShopBuilder\Contracts\ContentWidgetRepositoryContract;
 use Plenty\Modules\Webshop\ItemSearch\Helpers\FacetExtensionContainer;
+use Plenty\Modules\Cron\Services\CronContainer;
 use Plenty\Plugin\Events\Dispatcher;
 use Plenty\Plugin\ServiceProvider;
 use Plenty\Plugin\Templates\Twig;
+
 
 class FeedbackServiceProvider extends ServiceProvider
 {
@@ -25,7 +28,7 @@ class FeedbackServiceProvider extends ServiceProvider
      * @param FeedbackCoreHelper $coreHelper
      * @param Twig $twig
      */
-    public function boot(Dispatcher $dispatcher, FeedbackCoreHelper $coreHelper, Twig $twig)
+    public function boot(Dispatcher $dispatcher, FeedbackCoreHelper $coreHelper, Twig $twig, CronContainer $cronContainer)
     {
         $showRatingFacet = $coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_SHOW_RATING_FACET);
         $showRatingSorting = $coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_SHOW_RATING_SORTING);
@@ -72,6 +75,8 @@ class FeedbackServiceProvider extends ServiceProvider
         $widgetRepository->registerWidget(FeedbackOrderWidget::class);
         $widgetRepository->registerWidget(RatingFilterWidget::class);
         $widgetRepository->registerWidget(OrderFeedbackWidget::class);
+
+        $cronContainer->add(CronContainer::DAILY, SendingFeedbackMail::class);
     }
 
     public function register()
