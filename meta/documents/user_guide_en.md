@@ -1,6 +1,6 @@
 ﻿# Feedback
 
-Display customer reviews in the online store and reply to feedbacks. The feedback plugin requires the Ceres ShopBuilder.
+Display customer reviews in the online store and reply to feedbacks. The feedback plugin requires the plentyShop LTS ShopBuilder.
 
 ## Setting up customer reviews
 

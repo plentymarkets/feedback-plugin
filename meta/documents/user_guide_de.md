@@ -1,6 +1,6 @@
 # Feedback
 
-Zeige Kundenrezensionen im Webshop an und antworte auf Feedback. Das Feedback-Plugin erfordert den Ceres ShopBuilder.
+Zeige Kundenrezensionen im Webshop an und antworte auf Feedback. Das Feedback-Plugin erfordert den plentyShop LTS ShopBuilder.
 
 ## Kundenrezensionen einrichten
 
