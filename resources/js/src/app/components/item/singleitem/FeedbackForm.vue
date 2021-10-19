@@ -144,8 +144,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
 export default {
   props: {
     variationId: Number,
@@ -170,9 +168,9 @@ export default {
   },
 
   computed: {
-    ...mapState({
-      authenticatedUser: state => state.feedback.authenticatedUser
-    })
+    authenticatedUser () {
+      return this.$store.state.feedback.authenticatedUser
+    }
   },
 
   methods: {

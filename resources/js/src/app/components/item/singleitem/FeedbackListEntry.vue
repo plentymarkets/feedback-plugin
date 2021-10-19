@@ -165,9 +165,9 @@ export default {
   },
 
   computed: {
-    ...mapState({
-      authenticatedUser: state => state.feedback.authenticatedUser
-    })
+    authenticatedUser () {
+      return this.$store.state.feedback.authenticatedUser
+    }
   },
 
   methods: {

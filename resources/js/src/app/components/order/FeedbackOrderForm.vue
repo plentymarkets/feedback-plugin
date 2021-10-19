@@ -156,8 +156,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
 export default {
   props: {
     allowGuestFeedbacks: Boolean,
@@ -218,9 +216,9 @@ export default {
       return this.authenticatedUser.limitReached[key]
     },
 
-    ...mapState({
-      authenticatedUser: state => state.feedback.authenticatedUser
-    })
+    authenticatedUser () {
+      return this.$store.state.feedback.authenticatedUser
+    }
   },
 
   mounted: function () {
