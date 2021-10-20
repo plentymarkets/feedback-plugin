@@ -1,5 +1,16 @@
 # Release Notes for Feedback
 
+## v4.0.6 (2021-10-20)
+
+### Changed
+
+- The feedback plugin was adapted to the rebranding to **plentyShop LTS".
+
+### Fixed
+
+- When selecting a rating filter, it was not displayed as selected.
+- In the structured data, an explicit type was stored for the author.
+
 ## v4.0.5 (2021-08-17)
 
 ### TODO

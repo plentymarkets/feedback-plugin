@@ -1,5 +1,16 @@
 # Release Notes für Feedback
 
+## v4.0.6 (2021-10-20)
+
+### Geändert
+
+- Das Feedback Plugin wurde auf das Rebranding zu **plentyShop LTS" angepasst.
+
+### Behoben
+
+- Bei Auswahl eines Bewertungsfilter wurde dieser nicht als selektiert angezeigt.
+- In den strukturierten Daten wurde beim Autor ein expliziter Typ hinterlegt.
+
 ## v4.0.5 (2021-08-17)
 
 ### TODO
