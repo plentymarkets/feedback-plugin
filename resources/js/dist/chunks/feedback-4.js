@@ -717,6 +717,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var loadPaginatedFeedbacksLock = false;
+var loadFeedbackUserLock = false;
 
 var state = function state() {
   return {
@@ -797,23 +799,29 @@ var actions = {
     var data = _ref3.data,
         itemId = _ref3.itemId,
         variationId = _ref3.variationId;
-    var itemString = '';
 
-    if (itemId !== undefined && variationId !== undefined) {
-      itemString = "/".concat(itemId, "/").concat(variationId);
-    }
+    if (!loadFeedbackUserLock) {
+      loadFeedbackUserLock = true;
+      var itemString = '';
 
-    return $.ajax({
-      type: 'GET',
-      url: '/rest/feedbacks/user' + itemString,
-      data: data,
-      success: function success(data) {
-        commit('setFeedbackAuthenticatedUser', data);
-      },
-      error: function error(jqXHR, textStatus, errorThrown) {
-        console.error(errorThrown);
+      if (itemId !== undefined && variationId !== undefined) {
+        itemString = "/".concat(itemId, "/").concat(variationId);
       }
-    });
+
+      return $.ajax({
+        type: 'GET',
+        url: '/rest/feedbacks/user' + itemString,
+        data: data,
+        success: function success(data) {
+          commit('setFeedbackAuthenticatedUser', data);
+          loadFeedbackUserLock = false;
+        },
+        error: function error(jqXHR, textStatus, errorThrown) {
+          loadFeedbackUserLock = false;
+          console.error(errorThrown);
+        }
+      });
+    }
   },
   loadFeedbackCounts: function loadFeedbackCounts(_ref4, itemId) {
     var commit = _ref4.commit,
@@ -838,23 +846,29 @@ var actions = {
         state = _ref5.state;
     var itemId = _ref6.itemId,
         feedbacksPerPage = _ref6.feedbacksPerPage;
-    var request = $.ajax({
-      type: 'GET',
-      url: '/rest/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
-      data: {
-        feedbacksPerPage: feedbacksPerPage
-      },
-      success: function success(data) {
-        commit('setFeedbacks', data.feedbacks);
-        commit('setFeedbackItemAttributes', data.itemAttributes);
-        commit('setFeedbackPagination', data.pagination);
-      },
-      error: function error(jqXHR, textStatus, errorThrown) {
-        console.error(errorThrown);
-      }
-    });
-    commit('incrementCurrentFeedbackPage');
-    return request;
+
+    if (!loadPaginatedFeedbacksLock) {
+      loadPaginatedFeedbacksLock = true;
+      var request = $.ajax({
+        type: 'GET',
+        url: '/rest/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
+        data: {
+          feedbacksPerPage: feedbacksPerPage
+        },
+        success: function success(data) {
+          commit('setFeedbacks', data.feedbacks);
+          commit('setFeedbackItemAttributes', data.itemAttributes);
+          commit('setFeedbackPagination', data.pagination);
+          loadPaginatedFeedbacksLock = false;
+        },
+        error: function error(jqXHR, textStatus, errorThrown) {
+          console.error(errorThrown);
+          loadPaginatedFeedbacksLock = false;
+        }
+      });
+      commit('incrementCurrentFeedbackPage');
+      return request;
+    }
   },
   deleteFeedback: function deleteFeedback(_ref7, _ref8) {
     var commit = _ref7.commit,

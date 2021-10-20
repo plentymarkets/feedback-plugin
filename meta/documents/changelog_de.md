@@ -1,5 +1,37 @@
 # Release Notes für Feedback
 
+## v4.0.6 (2021-10-20)
+
+### Geändert
+
+- Das Feedback Plugin wurde auf das Rebranding zu **plentyShop LTS" angepasst.
+
+### Behoben
+
+- Bei Auswahl eines Bewertungsfilter wurde dieser nicht als selektiert angezeigt.
+- In den strukturierten Daten wurde beim Autor ein expliziter Typ hinterlegt.
+
+## v4.0.5 (2021-08-17)
+
+### TODO
+
+- Nach dem Update auf Version 4.0.5 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden.
+
+### Behoben
+
+- Durch einen Fehler in der Namensauflösung für Autoren-Felder konnte der Autorenname in den strukturierten Daten fehlen. Dies wurde behoben.
+
+## v4.0.4 (2021-07-06)
+
+### TODO
+
+- Nach dem Update auf Version 4.0.4 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden.
+
+### Behoben
+
+- Die gleichzeitige Nutzung von mehreren Artikelbewertung-Widgets für die Artikeleinzelansicht führte zu Fehlern. Dies wurde behoben.
+- Bei Editieren einer Rezension wurde fehlerhaftes Markup angezeigt. Dies wurde behoben.
+
 ## v4.0.3 (2021-05-10)
 
 ### TODO

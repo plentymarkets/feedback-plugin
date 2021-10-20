@@ -9,6 +9,7 @@ use Plenty\Modules\Pim\SearchService\Aggregations\Processors\FeedbackRangeAggreg
 use Plenty\Modules\Pim\SearchService\Filter\FeedbackRangeFilter;
 use Plenty\Modules\Webshop\Contracts\LocalizationRepositoryContract;
 use Plenty\Modules\Webshop\ItemSearch\Contracts\FacetExtension;
+use Plenty\Plugin\Http\Request;
 use Plenty\Plugin\Log\Loggable;
 
 /**
@@ -60,6 +61,8 @@ class FeedbackFacet implements FacetExtension
                 'type' => 'feedback'
             ];
 
+            /** @var Request $request */
+            $request = pluginApp(Request::class);
             for ($i = 1; $i <= 5; $i++) {
                 if (isset($result[$i]) && (is_null(
                             $this->currentActiveRatingFilter
@@ -70,6 +73,7 @@ class FeedbackFacet implements FacetExtension
                             ['lang' => 'de', 'name' => '']
                         ],
                         'count' => $result[$i],
+                        'selected' => strpos($request->getQueryString(),'feedback-' . $i)
                     ];
                 }
             }

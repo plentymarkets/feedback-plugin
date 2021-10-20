@@ -1,3 +1,6 @@
+let loadPaginatedFeedbacksLock = false
+let loadFeedbackUserLock = false
+
 const state = () => ({
   authenticatedUser: {},
   counts: {},
@@ -77,23 +80,28 @@ const mutations =
 const actions =
     {
       loadFeedbackUser ({ commit }, { data, itemId, variationId }) {
-        let itemString = ''
+        if (!loadFeedbackUserLock) {
+          loadFeedbackUserLock = true
+          let itemString = ''
 
-        if (itemId !== undefined && variationId !== undefined) {
-          itemString = `/${itemId}/${variationId}`
-        }
-
-        return $.ajax({
-          type: 'GET',
-          url: '/rest/feedbacks/user' + itemString,
-          data: data,
-          success: function (data) {
-            commit('setFeedbackAuthenticatedUser', data)
-          },
-          error: function (jqXHR, textStatus, errorThrown) {
-            console.error(errorThrown)
+          if (itemId !== undefined && variationId !== undefined) {
+            itemString = `/${itemId}/${variationId}`
           }
-        })
+
+          return $.ajax({
+            type: 'GET',
+            url: '/rest/feedbacks/user' + itemString,
+            data: data,
+            success: function (data) {
+              commit('setFeedbackAuthenticatedUser', data)
+              loadFeedbackUserLock = false
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+              loadFeedbackUserLock = false
+              console.error(errorThrown)
+            }
+          })
+        }
       },
 
       loadFeedbackCounts ({ commit, state }, itemId) {
@@ -114,23 +122,28 @@ const actions =
       },
 
       loadPaginatedFeedbacks ({ commit, state }, { itemId, feedbacksPerPage }) {
-        const request = $.ajax({
-          type: 'GET',
-          url: '/rest/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
-          data: {
-            feedbacksPerPage: feedbacksPerPage
-          },
-          success: function (data) {
-            commit('setFeedbacks', data.feedbacks)
-            commit('setFeedbackItemAttributes', data.itemAttributes)
-            commit('setFeedbackPagination', data.pagination)
-          },
-          error: function (jqXHR, textStatus, errorThrown) {
-            console.error(errorThrown)
-          }
-        })
-        commit('incrementCurrentFeedbackPage')
-        return request
+        if (!loadPaginatedFeedbacksLock) {
+          loadPaginatedFeedbacksLock = true
+          const request = $.ajax({
+            type: 'GET',
+            url: '/rest/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
+            data: {
+              feedbacksPerPage: feedbacksPerPage
+            },
+            success: function (data) {
+              commit('setFeedbacks', data.feedbacks)
+              commit('setFeedbackItemAttributes', data.itemAttributes)
+              commit('setFeedbackPagination', data.pagination)
+              loadPaginatedFeedbacksLock = false
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+              console.error(errorThrown)
+              loadPaginatedFeedbacksLock = false
+            }
+          })
+          commit('incrementCurrentFeedbackPage')
+          return request
+        }
       },
 
       deleteFeedback ({ commit, state }, { feedbackId, parentFeedbackId, feedback }) {

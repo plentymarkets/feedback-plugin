@@ -1,5 +1,37 @@
 # Release Notes for Feedback
 
+## v4.0.6 (2021-10-20)
+
+### Changed
+
+- The feedback plugin was adapted to the rebranding to **plentyShop LTS".
+
+### Fixed
+
+- When selecting a rating filter, it was not displayed as selected.
+- In the structured data, an explicit type was stored for the author.
+
+## v4.0.5 (2021-08-17)
+
+### TODO
+
+- After updating the feedback plugin to v4.0.5, it is necessary to regenerate ShopBuilder widgets via the **Regenerate contents** button in the **CMS » ShopBuilder** menu.
+
+### Behoben
+
+- Due to an error in the name resolution for author fields, the author name was sometimes not included in the structured data. This has been fixed.
+
+## v4.0.4 (2021-07-06)
+
+### TODO
+
+- After updating the feedback plugin to v4.0.4, it is necessary to regenerate ShopBuilder widgets via the **Regenerate contents** button in the **CMS » ShopBuilder** menu.
+
+### Behoben
+
+- The use of multiple feedback widgets on the single item view led to errors. This has been fixed.
+- While editing a customer review, a markup error was visible. This has been fixed.
+
 ## v4.0.3 (2021-05-10)
 
 ### TODO
