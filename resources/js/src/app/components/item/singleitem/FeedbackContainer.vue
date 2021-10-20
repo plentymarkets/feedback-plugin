@@ -373,8 +373,8 @@ export default {
             const review = {
               '@type': 'Review',
               author: {
-                "name": author,
-                "@type": "Person"
+                name: author,
+                '@type': 'Person'
               },
               datePublished: feedback.createdAt,
               reviewBody: feedback.feedbackComment.comment.message,

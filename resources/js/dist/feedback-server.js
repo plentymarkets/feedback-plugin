@@ -925,7 +925,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
           var review = {
             '@type': 'Review',
-            author: author,
+            author: {
+              name: author,
+              '@type': 'Person'
+            },
             datePublished: feedback.createdAt,
             reviewBody: feedback.feedbackComment.comment.message,
             name: feedback.title,
@@ -7535,7 +7538,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "16b5acce"
+  "7790f59d"
   
 )
 
@@ -7576,7 +7579,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "d97f2816"
+  "4e03b571"
   
 )
 
@@ -7617,7 +7620,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "613d7cd2"
+  "330fc7da"
   
 )
 
@@ -7658,7 +7661,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "283c28c4"
+  "2d5373a2"
   
 )
 
@@ -7699,7 +7702,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "1fdb1278"
+  "614c9a7c"
   
 )
 
@@ -7740,7 +7743,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "102ade0a"
+  "2741b886"
   
 )
 
@@ -7781,7 +7784,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "5af7025b"
+  "1d1fa5d7"
   
 )
 
@@ -7822,7 +7825,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "6ee1d7bf"
+  "4657458a"
   
 )
 
@@ -7863,7 +7866,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "ce54f2e4"
+  "06c80c0a"
   
 )
 

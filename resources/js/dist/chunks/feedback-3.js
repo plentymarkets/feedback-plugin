@@ -411,7 +411,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
           var review = {
             '@type': 'Review',
-            author: author,
+            author: {
+              name: author,
+              '@type': 'Person'
+            },
             datePublished: feedback.createdAt,
             reviewBody: feedback.feedbackComment.comment.message,
             name: feedback.title,
