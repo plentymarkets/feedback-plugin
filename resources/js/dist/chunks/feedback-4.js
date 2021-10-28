@@ -74,6 +74,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'FeedbackOrder',
   components: {
     'feedback-order-form': _FeedbackOrderForm_vue__WEBPACK_IMPORTED_MODULE_5__.default,
     'feedback-order-item': _FeedbackOrderItem_vue__WEBPACK_IMPORTED_MODULE_6__.default
@@ -404,6 +405,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'FeedbackOrderForm',
   props: {
     allowGuestFeedbacks: Boolean,
     numberOfFeedbacks: Number,
@@ -609,6 +611,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'FeedbackOrderItem',
   props: {
     item: Object,
     numberOfColumns: Number

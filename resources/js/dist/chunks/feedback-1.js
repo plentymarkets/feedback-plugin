@@ -89,6 +89,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'FeedbackAverage',
   mixins: [_mixins_loadFeedbackModule__WEBPACK_IMPORTED_MODULE_8__.default],
   inject: {
     itemId: {

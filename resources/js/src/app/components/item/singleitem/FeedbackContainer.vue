@@ -226,6 +226,7 @@ import loadFeedbackModule from '../../../mixins/loadFeedbackModule'
 
 export default {
 
+  name: 'FeedbackContainer',
   components: {
     'feedback-form': FeedbackForm,
     'feedback-list': FeedbackList
