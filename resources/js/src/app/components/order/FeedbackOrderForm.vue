@@ -159,6 +159,7 @@
 import { mapState } from 'vuex'
 
 export default {
+  name: 'FeedbackOrderForm',
   props: {
     allowGuestFeedbacks: Boolean,
     numberOfFeedbacks: Number,

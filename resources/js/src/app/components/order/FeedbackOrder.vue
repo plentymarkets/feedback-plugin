@@ -44,7 +44,7 @@ import FeedbackOrderItem from './FeedbackOrderItem.vue'
 import loadFeedbackModule from '../../mixins/loadFeedbackModule'
 
 export default {
-
+  name: 'FeedbackOrder',
   components: {
     'feedback-order-form': FeedbackOrderForm,
     'feedback-order-item': FeedbackOrderItem

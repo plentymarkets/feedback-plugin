@@ -278,6 +278,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'FeedbackContainer',
   components: {
     'feedback-form': _FeedbackForm_vue__WEBPACK_IMPORTED_MODULE_10__.default,
     'feedback-list': _FeedbackList_vue__WEBPACK_IMPORTED_MODULE_11__.default
@@ -627,6 +628,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'FeedbackForm',
   props: {
     variationId: Number,
     options: Object
@@ -749,6 +751,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'FeedbackList',
   components: {
     'feedback-list-entry': _FeedbackListEntry_vue__WEBPACK_IMPORTED_MODULE_0__.default
   },

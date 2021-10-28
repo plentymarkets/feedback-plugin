@@ -94,6 +94,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'FeedbackAverage',
   mixins: [_mixins_loadFeedbackModule__WEBPACK_IMPORTED_MODULE_8__.default],
   inject: {
     itemId: {
@@ -792,6 +793,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'FeedbackContainer',
   components: {
     'feedback-form': _FeedbackForm_vue__WEBPACK_IMPORTED_MODULE_10__.default,
     'feedback-list': _FeedbackList_vue__WEBPACK_IMPORTED_MODULE_11__.default
@@ -1144,6 +1146,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'FeedbackForm',
   props: {
     variationId: Number,
     options: Object
@@ -1269,6 +1272,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'FeedbackList',
   components: {
     'feedback-list-entry': _FeedbackListEntry_vue__WEBPACK_IMPORTED_MODULE_0__.default
   },
@@ -1657,6 +1661,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'FeedbackOrder',
   components: {
     'feedback-order-form': _FeedbackOrderForm_vue__WEBPACK_IMPORTED_MODULE_5__.default,
     'feedback-order-item': _FeedbackOrderItem_vue__WEBPACK_IMPORTED_MODULE_6__.default
@@ -1990,6 +1995,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'FeedbackOrderForm',
   props: {
     allowGuestFeedbacks: Boolean,
     numberOfFeedbacks: Number,
@@ -2198,6 +2204,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'FeedbackOrderItem',
   props: {
     item: Object,
     numberOfColumns: Number
@@ -7538,7 +7545,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "7790f59d"
+  "16b5acce"
   
 )
 
@@ -7579,7 +7586,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "4e03b571"
+  "d97f2816"
   
 )
 
@@ -7620,7 +7627,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "330fc7da"
+  "613d7cd2"
   
 )
 
@@ -7661,7 +7668,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "2d5373a2"
+  "283c28c4"
   
 )
 
@@ -7702,7 +7709,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "614c9a7c"
+  "1fdb1278"
   
 )
 
@@ -7743,7 +7750,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "2741b886"
+  "102ade0a"
   
 )
 
@@ -7784,7 +7791,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "1d1fa5d7"
+  "5af7025b"
   
 )
 
@@ -7825,7 +7832,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "4657458a"
+  "6ee1d7bf"
   
 )
 
@@ -7866,7 +7873,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "06c80c0a"
+  "ce54f2e4"
   
 )
 
@@ -11102,30 +11109,7 @@ var index = {
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/compat */
-/******/ 	
-/******/ 	// WebpackRequireFrom - monkey-patching
-/******/ 	if (typeof jsonpScriptSrc === 'function') {
-/******/ 	  var original_jsonpScriptSrc = jsonpScriptSrc;
-/******/ 	  function patchJsonpScriptSrc () {
-/******/ 	    try {
-/******/ 	      if (typeof __loadPluginChunk !== "function") {
-/******/ 	        throw new Error("WebpackRequireFrom: '__loadPluginChunk' is not a function or not available at runtime. See https://github.com/agoldis/webpack-require-from#troubleshooting");
-/******/ 	      }
-/******/ 	      var newSrc = __loadPluginChunk(original_jsonpScriptSrc.apply(this, arguments));
-/******/ 	      if (!newSrc || typeof newSrc !== 'string') {
-/******/ 	        throw new Error("WebpackRequireFrom: '__loadPluginChunk' does not return string. See https://github.com/agoldis/webpack-require-from#troubleshooting");
-/******/ 	      }
-/******/ 	      return newSrc;
-/******/ 	    } catch (e) {
-/******/ 	      if (!false) {
-/******/ 	        console.error(e);
-/******/ 	      }
-/******/ 	      return original_jsonpScriptSrc.apply(this, arguments);
-/******/ 	    }
-/******/ 	  }
-/******/ 	  jsonpScriptSrc = patchJsonpScriptSrc
-/******/ 	}/************************************************************************/
+/************************************************************************/
 /******/ 	// module exports must be returned from runtime so entry inlining is disabled
 /******/ 	// startup
 /******/ 	// Load entry module and return exports

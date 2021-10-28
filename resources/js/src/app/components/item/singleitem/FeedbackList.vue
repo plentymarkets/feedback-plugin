@@ -26,7 +26,7 @@
 import FeedbackListEntry from './FeedbackListEntry.vue'
 
 export default {
-
+  name: 'FeedbackList',
   components: {
     'feedback-list-entry': FeedbackListEntry
   },

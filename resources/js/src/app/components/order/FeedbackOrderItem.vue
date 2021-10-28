@@ -58,6 +58,7 @@
 
 <script>
 export default {
+  name: 'FeedbackOrderItem',
   props: {
     item: Object,
     numberOfColumns: Number

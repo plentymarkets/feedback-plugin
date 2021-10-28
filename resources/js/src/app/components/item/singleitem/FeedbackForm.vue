@@ -147,6 +147,7 @@
 import { mapState } from 'vuex'
 
 export default {
+  name: 'FeedbackForm',
   props: {
     variationId: Number,
     options: Object
