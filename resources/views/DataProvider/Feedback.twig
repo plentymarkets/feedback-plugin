@@ -3,6 +3,14 @@
 {% set secondView = config('Feedback.secondView') == 'true' ? true : false %}
 {% set columns = secondView ? '12' : '6' %}
 
+
+{% set ratingWidth5 = (counts.ratingsCountOf5 and counts.highestCount ? counts.ratingsCountOf5 / counts.highestCount * 100 : 0) %}
+{% set ratingWidth4 = (counts.ratingsCountOf5 and counts.highestCount ? counts.ratingsCountOf4 / counts.highestCount * 100 : 0) %}
+{% set ratingWidth3 = (counts.ratingsCountOf5 and counts.highestCount ? counts.ratingsCountOf3 / counts.highestCount * 100 : 0) %}
+{% set ratingWidth2 = (counts.ratingsCountOf5 and counts.highestCount ? counts.ratingsCountOf2 / counts.highestCount * 100 : 0) %}
+{% set ratingWidth1 = (counts.ratingsCountOf5 and counts.highestCount ? counts.ratingsCountOf1 / counts.highestCount * 100 : 0) %}
+
+
 <section id="feedbacks">
 
     {% if not secondView %}
@@ -69,7 +77,7 @@
                 <div class="feedback-bar-wrap">
                     <p class="feedback-bar-text-before">5 <i class="fa fa-star"></i></p>
                     <div class="feedback-bar">
-                        <div class="feedback-bar-fill" style="width:{{ counts.ratingsCountOf5 / counts.highestCount * 100 }}%"></div>
+                        <div class="feedback-bar-fill" style="width:{{ ratingWidth5 }}%"></div>
                     </div>
                     <p class="feedback-bar-text-after">{{ counts.ratingsCountOf5 }}</p>
                 </div>
@@ -77,7 +85,7 @@
                 <div class="feedback-bar-wrap">
                     <p class="feedback-bar-text-before">4 <i class="fa fa-star"></i></p>
                     <div class="feedback-bar">
-                        <div class="feedback-bar-fill" style="width:{{ counts.ratingsCountOf4 / counts.highestCount * 100 }}%"></div>
+                        <div class="feedback-bar-fill" style="width:{{ ratingWidth4 }}%"></div>
                     </div>
                     <p class="feedback-bar-text-after">{{ counts.ratingsCountOf4 }}</p>
                 </div>
@@ -85,7 +93,7 @@
                 <div class="feedback-bar-wrap">
                     <p class="feedback-bar-text-before">3 <i class="fa fa-star"></i></p>
                     <div class="feedback-bar">
-                        <div class="feedback-bar-fill" style="width:{{ counts.ratingsCountOf3 / counts.highestCount * 100}}%"></div>
+                        <div class="feedback-bar-fill" style="width:{{ ratingWidth3 }}%"></div>
                     </div>
                     <p class="feedback-bar-text-after">{{ counts.ratingsCountOf3 }}</p>
                 </div>
@@ -93,7 +101,7 @@
                 <div class="feedback-bar-wrap">
                     <p class="feedback-bar-text-before">2 <i class="fa fa-star"></i></p>
                     <div class="feedback-bar">
-                        <div class="feedback-bar-fill" style="width:{{ counts.ratingsCountOf2 / counts.highestCount * 100 }}%"></div>
+                        <div class="feedback-bar-fill" style="width:{{ ratingWidth2 }}%"></div>
                     </div>
                     <p class="feedback-bar-text-after">{{ counts.ratingsCountOf2 }}</p>
                 </div>
@@ -101,7 +109,7 @@
                 <div class="feedback-bar-wrap">
                     <p class="feedback-bar-text-before">1 <i class="fa fa-star"></i></p>
                     <div class="feedback-bar">
-                        <div class="feedback-bar-fill" style="width:{{ counts.ratingsCountOf1 / counts.highestCount * 100 }}%"></div>
+                        <div class="feedback-bar-fill" style="width:{{ ratingWidth1 }}%"></div>
                     </div>
                     <p class="feedback-bar-text-after">{{ counts.ratingsCountOf1 }}</p>
                 </div>
