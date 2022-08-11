@@ -80,7 +80,7 @@
 
     <div v-if="!!editableFeedback && !isReply">
       <div class="stars">
-        <template v-for="i in [5,4,3,2,1]">
+        <template v-for="i in 5">
           <input
             :id="'star-' + _uid + '-' + i"
             :key="'stars_input_' + i"
