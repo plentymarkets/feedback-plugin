@@ -4,12 +4,10 @@
 
 ### Geändert
 - 
-- Clicking the image of an item in the rating widget for the order confirmation now leads to the item page.
-  We would like to thank user @MaxBentz for their contribution.
+- Clicking the image of an item in the rating widget for the order confirmation now leads to the item page. We would like to thank user @MaxBentz for their contribution.
 ### Behoben
  
-- The order of the rating stars was incorrect when editing a feedback. This has been fixed.
-We would like to thank user @MaxBentz for their contribution.
+- The order of the rating stars was incorrect when editing a feedback. This has been fixed. We would like to thank user @MaxBentz for their contribution.
 
 ## v4.0.6 (2021-10-20)
 
