@@ -1,6 +1,6 @@
 # Release Notes for Feedback
 
-## v4.0.7 (2022-10-21)
+## v4.0.7 (2022-10-21) <a href="https://github.com/plentymarkets/feedback-plugin/compare/4.0.6...4.0.7" target="_blank" rel="noopener"><b>Overview of all changes</b></a>
 
 ### Geändert
 - 
