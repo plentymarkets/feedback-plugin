@@ -1,5 +1,14 @@
 # Release Notes for Feedback
 
+## v4.0.7 (2022-10-21) <a href="https://github.com/plentymarkets/feedback-plugin/compare/4.0.6...4.0.7" target="_blank" rel="noopener"><b>Overview of all changes</b></a>
+
+### Geändert
+- 
+- Clicking the image of an item in the rating widget for the order confirmation now leads to the item page. We would like to thank user @MaxBentz for their contribution.
+### Behoben
+ 
+- The order of the rating stars was incorrect when editing a feedback. This has been fixed. We would like to thank user @MaxBentz for their contribution.
+
 ## v4.0.6 (2021-10-20)
 
 ### Changed
