@@ -1,5 +1,16 @@
 # Release Notes für Feedback
 
+## v4.0.7 (2022-10-21)
+
+### Geändert
+
+- Das Anklicken der Artikelbilder im Bewertungswidget für die Bestellbestätigung leitet nun auf die Artikelseite weiter.
+  Wir bedanken uns bei User @MaxBentz für den Beitrag.
+
+### Behoben
+
+- Beim Editieren von einer Bewertung war die Reihenfolge der Bewertungssterne falsch. Dies wurde behoben.
+  Wir bedanken uns bei User @MaxBentz für den Beitrag.
 ## v4.0.6 (2021-10-20)
 
 ### Geändert
