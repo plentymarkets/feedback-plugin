@@ -11,6 +11,7 @@
 
 - Beim Editieren von einer Bewertung war die Reihenfolge der Bewertungssterne falsch. Dies wurde behoben.
   Wir bedanken uns bei User @MaxBentz für den Beitrag.
+
 ## v4.0.6 (2021-10-20)
 
 ### Geändert
