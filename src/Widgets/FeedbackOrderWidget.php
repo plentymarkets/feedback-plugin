@@ -44,12 +44,6 @@ class FeedbackOrderWidget extends OrderConfirmationBaseWidget
             'useMargin' => true
         ]);
 
-        $settings->createSetting('numberOfFeedbacks')
-            ->withType('number')
-            ->withDefaultValue(1)
-            ->withName('Widget.numberOfFeedbacks')
-            ->withTooltip('Widget.numberOfFeedbacksTooltip');
-
         $settings->createSetting('itemsPerRow', SelectSettingFactory::class)
             ->withName('Widget.itemsPerRow')
             ->withTooltip('Widget.itemsPerRowTooltip')
@@ -75,11 +69,12 @@ class FeedbackOrderWidget extends OrderConfirmationBaseWidget
     {
         $coreHelper = pluginApp(FeedbackCoreHelper::class);
         $allowGuestFeedbacks = $coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_GUEST_FEEDBACKS);
+        $numberOfFeedbacks = pluginApp(FeedbackCoreHelper::class)->configValue(FeedbackCoreHelper::KEY_NUMBER_OF_FEEDBACKS);
 
         // As only mobile is currently used, flatten breakpoints
         return [
             "options" => [
-                "numberOfFeedbacks" => $widgetSettings["numberOfFeedbacks"]["mobile"],
+                "numberOfFeedbacks" => $numberOfFeedbacks,
                 "allowGuestFeedbacks" => $allowGuestFeedbacks,
                 "itemsPerRow" => $widgetSettings["itemsPerRow"]["mobile"],
                 "rowsPerPage" => $widgetSettings["rowsPerPage"]["mobile"]
