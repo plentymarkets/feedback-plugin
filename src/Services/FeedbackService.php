@@ -149,13 +149,13 @@ class FeedbackService
             $options['feedbackRelationTargetType'] = 'variation';
 
             // Limit the feedbacks count of a user per item
-            $numberOfFeedbacks = (int)$this->request->input('options.numberOfFeedbacks');
+            $numberOfFeedbacks = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_NUMBER_OF_FEEDBACKS);
             $autoreleaseFeedbacks = (int)$this->coreHelper->configValue(
                 FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY
             );
             $options['isVisible'] = $this->determineVisibility($autoreleaseFeedbacks, $creatorContactId);
-            $allowNoRatingFeedbacks = $this->request->input('options.allowNoRatingFeedbacks') === 'true';
-            $allowFeedbacksOnlyIfPurchased = $this->request->input('options.allowFeedbacksOnlyIfPurchased') === 'true';
+            $allowNoRatingFeedbacks = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_NO_RATING_FEEDBACK) === 'true';
+            $allowFeedbacksOnlyIfPurchased = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_FEEDBACK_ONLY_IF_PURCHASED) === 'true';
 
             if ($allowNoRatingFeedbacks && empty($this->request->input('ratingValue'))) {
                 return 'Can\'t create review with no rating';
