@@ -69,7 +69,7 @@ class FeedbackOrderWidget extends OrderConfirmationBaseWidget
     {
         $coreHelper = pluginApp(FeedbackCoreHelper::class);
         $allowGuestFeedbacks = $coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_GUEST_FEEDBACKS);
-        $numberOfFeedbacks = pluginApp(FeedbackCoreHelper::class)->configValue(FeedbackCoreHelper::KEY_NUMBER_OF_FEEDBACKS);
+        $numberOfFeedbacks = $coreHelper->configValue(FeedbackCoreHelper::KEY_NUMBER_OF_FEEDBACKS);
 
         // As only mobile is currently used, flatten breakpoints
         return [
