@@ -58,14 +58,17 @@ class FeedbackWidget extends BaseWidget
     protected function getTemplateData($widgetSettings, $isPreview)
     {
         $allowGuestFeedbacks = pluginApp(FeedbackCoreHelper::class)->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_GUEST_FEEDBACKS);
+        $numberOfFeedbacks = pluginApp(FeedbackCoreHelper::class)->configValue(FeedbackCoreHelper::KEY_NUMBER_OF_FEEDBACKS);
+        $allowFeedbacksOnlyIfPurchased = pluginApp(FeedbackCoreHelper::class)->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_FEEDBACK_ONLY_IF_PURCHASED) === 'true';
+        $allowNoRatingFeedback = pluginApp(FeedbackCoreHelper::class)->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_NO_RATING_FEEDBACK) === 'true';
 
         // As only mobile is currently used, flatten breakpoints
         return [
             "options" => [
-                "allowFeedbacksOnlyIfPurchased" => $widgetSettings["allowFeedbacksOnlyIfPurchased"]["mobile"],
-                "allowNoRatingFeedback" => $widgetSettings["allowNoRatingFeedback"]["mobile"],
+                "allowFeedbacksOnlyIfPurchased" => $allowFeedbacksOnlyIfPurchased,
+                "allowNoRatingFeedback" => $allowNoRatingFeedback,
                 "feedbacksPerPage" => $widgetSettings["feedbacksPerPage"]["mobile"],
-                "numberOfFeedbacks" => $widgetSettings["numberOfFeedbacks"]["mobile"],
+                "numberOfFeedbacks" => $numberOfFeedbacks,
                 "timestampVisibility" => $widgetSettings["timestampVisibility"]["mobile"],
                 "allowGuestFeedbacks" => $allowGuestFeedbacks
             ]
