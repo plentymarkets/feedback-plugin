@@ -67,15 +67,9 @@ class FeedbackOrderWidget extends OrderConfirmationBaseWidget
 
     protected function getTemplateData($widgetSettings, $isPreview)
     {
-        $coreHelper = pluginApp(FeedbackCoreHelper::class);
-        $allowGuestFeedbacks = $coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_GUEST_FEEDBACKS);
-        $numberOfFeedbacks = $coreHelper->configValue(FeedbackCoreHelper::KEY_NUMBER_OF_FEEDBACKS);
-
         // As only mobile is currently used, flatten breakpoints
         return [
             "options" => [
-                "numberOfFeedbacks" => $numberOfFeedbacks,
-                "allowGuestFeedbacks" => $allowGuestFeedbacks,
                 "itemsPerRow" => $widgetSettings["itemsPerRow"]["mobile"],
                 "rowsPerPage" => $widgetSettings["rowsPerPage"]["mobile"]
             ]

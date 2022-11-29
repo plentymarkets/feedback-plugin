@@ -7,6 +7,10 @@
 {% set inlineMargin    = WidgetHelper.getInlineSpacings(spacingSettings, "", spacingSettings.customMargin.mobile) %}
 {% set spacingMargin   = WidgetHelper.getSpacingClasses(spacingSettings, "",spacingSettings.customMargin.mobile) %}
 
+{{ Twig.set("configOptions", Twig.call("feedbackServices.feedback.getOrderFrontendOptions") ) }}
+{{ Twig.set("options", options | json_encode) }}
+{{ Twig.set("options", "options | merge(configOptions)") }}
+
 {{ Twig.if("data.order is defined and data.order is not null and urls.is('confirmation')") }}
 <div class="widget widget-feedback-orderconfirmation widget-{{ appearance | default("primary") }} {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
         {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
@@ -15,7 +19,7 @@
             :items="{{ Twig.print("data.order.orderItems | json_encode") }}"
             :item-urls="{{ Twig.print("data.itemURLs | json_encode") }}"
             :item-images="{{ Twig.print("data.itemImages | json_encode") }}"
-            :options="{{ options | json_encode }}"
+            :options="{{ Twig.print('options | json_encode') }}"
             :split-item-bundles="{{ Twig.print("splitItemBundle | json_encode") }}"
             access-key="{{ Twig.print(Twig.call("feedbackServices.feedback.getOrderAccessKey", [Twig.var("data.order.id")])) }}"
             order-id="{{ Twig.print("data.order.id | json_encode") }}">
