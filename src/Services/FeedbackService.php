@@ -552,6 +552,26 @@ class FeedbackService
     }
 
     /**
+     * Get config values for the frontend
+     * @return array[]
+     */
+    public function getFrontendOptions()
+    {
+        $allowGuestFeedbacks = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_GUEST_FEEDBACKS);
+        $numberOfFeedbacks = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_NUMBER_OF_FEEDBACKS);
+        $allowFeedbacksOnlyIfPurchased = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_FEEDBACK_ONLY_IF_PURCHASED);
+        $allowNoRatingFeedback = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_NO_RATING_FEEDBACK);
+
+        // As only mobile is currently used, flatten breakpoints
+        return [
+                "allowFeedbacksOnlyIfPurchased" => $allowFeedbacksOnlyIfPurchased,
+                "allowNoRatingFeedback" => $allowNoRatingFeedback,
+                "numberOfFeedbacks" => $numberOfFeedbacks,
+                "allowGuestFeedbacks" => $allowGuestFeedbacks
+        ];
+    }
+
+    /**
      * Get raw feedbacks from the database
      * @return \Plenty\Repositories\Models\PaginatedResult
      */

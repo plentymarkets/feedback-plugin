@@ -79,7 +79,7 @@ const mutations =
 
 const actions =
     {
-      loadFeedbackUser ({ commit }, { data, itemId, variationId }) {
+      loadFeedbackUser ({ commit }, { itemId, variationId }) {
         if (!loadFeedbackUserLock) {
           loadFeedbackUserLock = true
           let itemString = ''
@@ -91,7 +91,6 @@ const actions =
           return $.ajax({
             type: 'GET',
             url: '/rest/feedbacks/user' + itemString,
-            data: data,
             success: function (data) {
               commit('setFeedbackAuthenticatedUser', data)
               loadFeedbackUserLock = false

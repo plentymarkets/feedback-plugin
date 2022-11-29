@@ -10,10 +10,14 @@
 {% set spacingPadding  = WidgetHelper.getSpacingClasses(spacingSettings, spacingSettings.customPadding.mobile, "") %}
 {% set spacingMargin   = WidgetHelper.getSpacingClasses(spacingSettings, "",spacingSettings.customMargin.mobile) %}
 
+{{ Twig.set("configOptions", Twig.call("feedbackServices.feedback.getFrontendOptions") ) }}
+{{ Twig.set("widgetOptions", options | json_encode) }}
+{{ Twig.set("widgetOptions", "widgetOptions | merge(configOptions)") }}
+
 <div data-feedback class="widget widget-feedback widget-{{ appearance | default("primary") }} {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
         {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
     <feedback-container class="widget-inner"
-            :options="{{ options | json_encode}}"
+            :options="{{ Twig.print('widgetOptions | json_encode') }}"
             classes="{{ spacingPadding }}"
             styles="{{ inlinePadding }}">
     </feedback-container>
