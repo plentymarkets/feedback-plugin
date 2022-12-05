@@ -230,19 +230,7 @@ export default {
 
     displayName () {
       const rawName = this.feedbackData.sourceRelation[0].sourceRelationLabel
-
-      if (rawName !== ' ') {
-        return rawName.split(' ')
-          .map(function (namePart, index) {
-            if (index === 0) {
-              return namePart + ' '
-            }
-            return namePart.substr(0, 1) + '.'
-          })
-          .join('')
-      } else {
-        return this.$translate('Feedback::Feedback.guestName')
-      }
+      return rawName !== ' ' ? rawName : this.$translate('Feedback::Feedback.guestName')
     },
 
     message () {
