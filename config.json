@@ -26,11 +26,24 @@
                         ]
                     }
                 },
-                "releaseFeedbacks": {
+                "numberOfFeedbacks": {
+                    "type": "number",
+                    "required": false,
+                    "defaultValue": 1,
+                    "label": "Config.numberOfFeedbacks"
+                },
+                "allowNoRatingFeedback": {
                     "type": "checkBox",
                     "required": false,
-                    "deprecated": true,
-                    "label": "Config.releaseFeedbacks",
+                    "label": "Config.allowNoRatingFeedback",
+                    "options": {
+                        "defaultValue": "false"
+                    }
+                },
+                "allowFeedbacksOnlyIfPurchased": {
+                    "type": "checkBox",
+                    "required": false,
+                    "label": "Config.allowFeedbacksOnlyIfPurchased",
                     "options": {
                         "defaultValue": "false"
                     }

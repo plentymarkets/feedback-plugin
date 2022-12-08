@@ -149,13 +149,13 @@ class FeedbackService
             $options['feedbackRelationTargetType'] = 'variation';
 
             // Limit the feedbacks count of a user per item
-            $numberOfFeedbacks = (int)$this->request->input('options.numberOfFeedbacks');
+            $numberOfFeedbacks = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_NUMBER_OF_FEEDBACKS);
             $autoreleaseFeedbacks = (int)$this->coreHelper->configValue(
                 FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY
             );
             $options['isVisible'] = $this->determineVisibility($autoreleaseFeedbacks, $creatorContactId);
-            $allowNoRatingFeedbacks = $this->request->input('options.allowNoRatingFeedbacks') === 'true';
-            $allowFeedbacksOnlyIfPurchased = $this->request->input('options.allowFeedbacksOnlyIfPurchased') === 'true';
+            $allowNoRatingFeedbacks = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_NO_RATING_FEEDBACK) === 'true';
+            $allowFeedbacksOnlyIfPurchased = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_FEEDBACK_ONLY_IF_PURCHASED) === 'true';
 
             if ($allowNoRatingFeedbacks && empty($this->request->input('ratingValue'))) {
                 return 'Can\'t create review with no rating';
@@ -369,7 +369,7 @@ class FeedbackService
         }
 
         $allowFeedbacksOnlyIfPurchased = $this->request->input('allowFeedbacksOnlyIfPurchased') === 'true';
-        $numberOfFeedbacks = (int)$this->request->input('numberOfFeedbacks');
+        $numberOfFeedbacks = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_NUMBER_OF_FEEDBACKS);
 
         $contactId = $this->accountService->getAccountContactId();
 
@@ -549,6 +549,40 @@ class FeedbackService
         }
 
         return $counts;
+    }
+
+    /**
+     * Get config values for the feedback widget
+     * @return array[]
+     */
+    public function getFrontendOptions()
+    {
+        $allowGuestFeedbacks = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_GUEST_FEEDBACKS);
+        $numberOfFeedbacks = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_NUMBER_OF_FEEDBACKS);
+        $allowFeedbacksOnlyIfPurchased = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_FEEDBACK_ONLY_IF_PURCHASED);
+        $allowNoRatingFeedback = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_NO_RATING_FEEDBACK);
+
+        return [
+                "allowFeedbacksOnlyIfPurchased" => $allowFeedbacksOnlyIfPurchased,
+                "allowNoRatingFeedback" => $allowNoRatingFeedback,
+                "numberOfFeedbacks" => $numberOfFeedbacks,
+                "allowGuestFeedbacks" => $allowGuestFeedbacks
+        ];
+    }
+
+    /**
+     * Get config values for the feedback order widget
+     * @return array
+     */
+    public function getOrderFrontendOptions()
+    {
+        $allowGuestFeedbacks = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_GUEST_FEEDBACKS);
+        $numberOfFeedbacks = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_NUMBER_OF_FEEDBACKS);
+
+        return [
+            "numberOfFeedbacks" => $numberOfFeedbacks,
+            "allowGuestFeedbacks" => $allowGuestFeedbacks
+        ];
     }
 
     /**

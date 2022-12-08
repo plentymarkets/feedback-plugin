@@ -198,8 +198,6 @@ export default {
 
       this.isLoading = true
 
-      this.feedback.options = this.options
-
       $.ajax({
         type: 'POST',
         url: '/rest/feedbacks/feedback/create',
