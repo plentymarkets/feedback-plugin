@@ -1993,6 +1993,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'FeedbackOrderForm',
@@ -2398,8 +2400,7 @@ var mutations = {
 var actions = {
   loadFeedbackUser: function loadFeedbackUser(_ref2, _ref3) {
     var commit = _ref2.commit;
-    var data = _ref3.data,
-        itemId = _ref3.itemId,
+    var itemId = _ref3.itemId,
         variationId = _ref3.variationId;
 
     if (!loadFeedbackUserLock) {
@@ -2413,7 +2414,6 @@ var actions = {
       return $.ajax({
         type: 'GET',
         url: '/rest/feedbacks/user' + itemString,
-        data: data,
         success: function success(data) {
           commit('setFeedbackAuthenticatedUser', data);
           loadFeedbackUserLock = false;
@@ -7545,7 +7545,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "16b5acce"
+  "5dd5b0e6"
   
 )
 
@@ -7586,7 +7586,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "d97f2816"
+  "5d9c24fe"
   
 )
 
@@ -7627,7 +7627,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "613d7cd2"
+  "56f89023"
   
 )
 
@@ -7668,7 +7668,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "283c28c4"
+  "478294dc"
   
 )
 
@@ -7709,7 +7709,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "1fdb1278"
+  "1037dc6c"
   
 )
 
@@ -7750,7 +7750,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "102ade0a"
+  "d07ba6d4"
   
 )
 
@@ -7791,7 +7791,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "5af7025b"
+  "6a5575e7"
   
 )
 
@@ -7832,7 +7832,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "6ee1d7bf"
+  "08f8b56a"
   
 )
 
@@ -7873,7 +7873,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "ce54f2e4"
+  "2577541a"
   
 )
 
@@ -9287,7 +9287,7 @@ var render = function() {
           " " +
           (!!_vm.editableFeedback && !_vm.isReply
             ? '<div><div class="stars">' +
-              _vm._ssrList(5, function(i) {
+              _vm._ssrList([5, 4, 3, 2, 1], function(i) {
                 return (
                   "<input" +
                   _vm._ssrAttr("id", "star-" + _vm._uid + "-" + i) +
@@ -9468,10 +9468,12 @@ var render = function() {
           _vm._ssrEscape(
             _vm._s(_vm.$translate("Feedback::Feedback.customerReviews"))
           ) +
-          '</span> <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button></div> <div class="modal-body row"><div class="col-4"><img' +
+          '</span> <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button></div> <div class="modal-body row"><div class="col-4"><a' +
+          _vm._ssrAttr("href", _vm.item.url) +
+          "><img" +
           _vm._ssrAttr("alt", _vm.item.name) +
           _vm._ssrAttr("src", _vm.item.image) +
-          '> <div class="stars">' +
+          '></a> <div class="stars">' +
           _vm._ssrList(_vm.starIds, function(starId) {
             return (
               "<input" +
