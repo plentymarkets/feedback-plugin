@@ -369,7 +369,7 @@ class FeedbackService
         }
 
         $allowFeedbacksOnlyIfPurchased = $this->request->input('allowFeedbacksOnlyIfPurchased') === 'true';
-        $numberOfFeedbacks = (int)$this->request->input('numberOfFeedbacks');
+        $numberOfFeedbacks = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_NUMBER_OF_FEEDBACKS);
 
         $contactId = $this->accountService->getAccountContactId();
 
