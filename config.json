@@ -64,6 +64,14 @@
                         "defaultValue": "false"
                     }
                 },
+                "showRatingCountInCategoryView": {
+                    "type": "checkBox",
+                    "required": false,
+                    "label": "Config.showRatingCountInCategoryViewLabel",
+                    "options": {
+                        "defaultValue": "false"
+                    }
+                },
                 "showRatingFacet": {
                     "type": "checkBox",
                     "required": false,

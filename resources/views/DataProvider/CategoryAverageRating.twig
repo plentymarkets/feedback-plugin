@@ -13,5 +13,8 @@
             {% endfor %}
         </div>
     </div>
+        {% if counts.ratingsCountTotal > 0 and options.showRatingCountInCategoryView %}
+            <span>({{ Twig.print('counts.ratingsCountTotal') }})</span>
+        {% endif %}
     {% endif %}
 </div>

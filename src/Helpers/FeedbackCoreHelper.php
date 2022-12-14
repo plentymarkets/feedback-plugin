@@ -11,6 +11,7 @@ class FeedbackCoreHelper
     const KEY_RELEASE_FEEDBACKS_AUTOMATICALLY = "autoreleaseFeedbacks";
     const KEY_ALLOW_GUEST_FEEDBACKS = "allowGuestFeedbacks";
     const KEY_SHOW_EMPTY_RATINGS_IN_CATEGORY_VIEW = "showEmptyRatingsInCategoryView";
+    const KEY_SHOW_RATING_COUNT_IN_CATEGORY_VIEW = "showRatingCountInCategoryView";
     const KEY_SHOW_RATING_SORTING = "showRatingSorting";
     const KEY_SHOW_RATING_FACET = "showRatingFacet";
     const KEY_NUMBER_OF_FEEDBACKS = "numberOfFeedbacks";
