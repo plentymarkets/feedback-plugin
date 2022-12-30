@@ -8215,6 +8215,22 @@ var render = function() {
                       )
                     ]
                   )
+                : _vm.feedbackData.sourceRelation[0].feedbackRelationType ===
+                    "contact" &&
+                  _vm.feedbackData.sourceRelation[0].feedbackRelationSourceId >
+                    0
+                ? _vm._ssrNode(
+                    "<span>" +
+                      _vm._ssrEscape(
+                        "\n          " +
+                          _vm._s(
+                            _vm.feedbackData.sourceRelation[0]
+                              .sourceRelationLabel
+                          ) +
+                          "\n        "
+                      ) +
+                      "</span>"
+                  )
                 : _vm.feedbackData.sourceRelation[0].feedbackRelationSourceId ==
                     0 && _vm.feedback.authorName.length > 0
                 ? _vm._ssrNode(
@@ -8222,19 +8238,6 @@ var render = function() {
                       _vm._ssrEscape(
                         "\n          " +
                           _vm._s(_vm.feedbackData.authorName) +
-                          "\n        "
-                      ) +
-                      "</span>"
-                  )
-                : _vm.feedbackData.sourceRelation[0].feedbackRelationSourceId ==
-                  0
-                ? _vm._ssrNode(
-                    "<span>" +
-                      _vm._ssrEscape(
-                        "\n          " +
-                          _vm._s(
-                            _vm.$translate("Feedback::Feedback.guestName")
-                          ) +
                           "\n        "
                       ) +
                       "</span>"
