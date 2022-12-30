@@ -363,12 +363,12 @@ export default {
             let author
 
             if ((feedback.sourceRelation[0].feedbackRelationType === 'user' ||
-                        feedback.sourceRelation[0].feedbackRelationType === 'contact') && feedback.sourceRelation[0].feedbackRelationSourceId > 0 && feedback.authorName.trim().length > 0) {
+                        feedback.sourceRelation[0].feedbackRelationType === 'contact') && feedback.sourceRelation[0].feedbackRelationSourceId > 0) {
               author = feedback.sourceRelation[0].sourceRelationLabel
             } else if (feedback.sourceRelation[0].feedbackRelationSourceId === '0' && feedback.authorName.trim().length > 0) {
               author = feedback.authorName
             } else {
-              author = 'Anonymous'
+              author = this.$translate('Feedback::Feedback.anonymous') || 'Anonymous'
             }
 
             const review = {
