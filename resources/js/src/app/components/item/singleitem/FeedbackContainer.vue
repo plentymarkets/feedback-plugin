@@ -359,6 +359,7 @@ export default {
             review: []
           }
 
+          const anonymous = this.$translate('Feedback::Feedback.anonymous') || 'Anonymous'
           this.feedbacks.forEach(function (feedback) {
             let author
 
@@ -368,7 +369,7 @@ export default {
             } else if (feedback.sourceRelation[0].feedbackRelationSourceId === '0' && feedback.authorName.trim().length > 0) {
               author = feedback.authorName
             } else {
-              author = this.translate('Feedback::Feedback.anonymous') || 'Anonymous'
+              author = anonymous
             }
 
             const review = {

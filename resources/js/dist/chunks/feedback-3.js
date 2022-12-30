@@ -399,6 +399,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           },
           review: []
         };
+        var anonymous = this.$translate('Feedback::Feedback.anonymous') || 'Anonymous';
         this.feedbacks.forEach(function (feedback) {
           var author;
 
@@ -407,7 +408,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           } else if (feedback.sourceRelation[0].feedbackRelationSourceId === '0' && feedback.authorName.trim().length > 0) {
             author = feedback.authorName;
           } else {
-            author = this.translate('Feedback::Feedback.anonymous') || 'Anonymous';
+            author = anonymous;
           }
 
           var review = {
