@@ -402,12 +402,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.feedbacks.forEach(function (feedback) {
           var author;
 
-          if ((feedback.sourceRelation[0].feedbackRelationType === 'user' || feedback.sourceRelation[0].feedbackRelationType === 'contact') && feedback.sourceRelation[0].feedbackRelationSourceId > 0 && feedback.authorName.trim().length > 0) {
+          if ((feedback.sourceRelation[0].feedbackRelationType === 'user' || feedback.sourceRelation[0].feedbackRelationType === 'contact') && feedback.sourceRelation[0].feedbackRelationSourceId > 0) {
             author = feedback.sourceRelation[0].sourceRelationLabel;
           } else if (feedback.sourceRelation[0].feedbackRelationSourceId === '0' && feedback.authorName.trim().length > 0) {
             author = feedback.authorName;
           } else {
-            author = 'Anonymous';
+            author = this.$translate('Feedback::Feedback.anonymous') || 'Anonymous';
           }
 
           var review = {
@@ -959,7 +959,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   name: 'FeedbackListEntry',
   components: {
     'feedback-comment': function feedbackComment() {
-      return Promise.all(/*! import() */[__webpack_require__.e(6), __webpack_require__.e(2)]).then(__webpack_require__.bind(__webpack_require__, /*! ./FeedbackComment.vue */ "./resources/js/src/app/components/item/singleitem/FeedbackComment.vue"));
+      return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(__webpack_require__, /*! ./FeedbackComment.vue */ "./resources/js/src/app/components/item/singleitem/FeedbackComment.vue"));
     }
   },
   props: {
@@ -3055,7 +3055,7 @@ var render = function() {
               "div",
               { staticClass: "stars" },
               [
-                _vm._l(5, function(i) {
+                _vm._l([5, 4, 3, 2, 1], function(i) {
                   return [
                     _c("input", {
                       directives: [
