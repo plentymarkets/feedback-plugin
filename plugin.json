@@ -13,6 +13,9 @@
         "IO": ">=5.0.26",
         "Ceres": ">=5.0.27"
     },
+    "platform": {
+        "php": ">=7.3 <8.1"
+    },
     "isClosedSource": false,
     "serviceProvider": "Feedback\\Providers\\FeedbackServiceProvider",
     "runOnBuild": [
