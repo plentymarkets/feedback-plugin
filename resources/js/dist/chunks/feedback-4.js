@@ -403,6 +403,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'FeedbackOrderForm',
@@ -1316,7 +1318,11 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "modal-body row" }, [
             _c("div", { staticClass: "col-4" }, [
-              _c("img", { attrs: { alt: _vm.item.name, src: _vm.item.image } }),
+              _c("a", { attrs: { href: _vm.item.url } }, [
+                _c("img", {
+                  attrs: { alt: _vm.item.name, src: _vm.item.image }
+                })
+              ]),
               _vm._v(" "),
               _c(
                 "div",

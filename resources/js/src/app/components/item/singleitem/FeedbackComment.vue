@@ -59,11 +59,11 @@
             <i class="fa fa-check-square" />
             {{ feedbackData.sourceRelation[0].sourceRelationLabel }}
           </span>
+          <span v-else-if="feedbackData.sourceRelation[0].feedbackRelationType === 'contact' && feedbackData.sourceRelation[0].feedbackRelationSourceId > 0">
+            {{ feedbackData.sourceRelation[0].sourceRelationLabel }}
+          </span>
           <span v-else-if="feedbackData.sourceRelation[0].feedbackRelationSourceId == 0 && feedback.authorName.length > 0">
             {{ feedbackData.authorName }}
-          </span>
-          <span v-else-if="feedbackData.sourceRelation[0].feedbackRelationSourceId == 0">
-            {{ $translate("Feedback::Feedback.guestName") }}
           </span>
           <span v-else>
             {{ displayName }}
@@ -230,19 +230,8 @@ export default {
 
     displayName () {
       const rawName = this.feedbackData.sourceRelation[0].sourceRelationLabel
-
-      if (rawName !== ' ') {
-        return rawName.split(' ')
-          .map(function (namePart, index) {
-            if (index === 0) {
-              return namePart + ' '
-            }
-            return namePart.substr(0, 1) + '.'
-          })
-          .join('')
-      } else {
-        return this.$translate('Feedback::Feedback.guestName')
-      }
+      const guestName = this.$translate('Feedback::Feedback.guestName')
+      return guestName !== ' ' ? guestName : rawName
     },
 
     message () {
