@@ -5,7 +5,7 @@
 ### Geändert
 
 - Die Logik für die Anonymisierung wurde in den Kern verschoben.
-- Einstellung zur Sichtbarkeit wurden aus dem Widget in die Plugin Konfiguration überführt.
+- Die Einstellungen zur Sichtbarkeit wurden aus dem Widget in die Plugin-Konfiguration überführt.
 
 ## v4.0.7 (2022-10-21) <a href="https://github.com/plentymarkets/feedback-plugin/compare/4.0.6...4.0.7" target="_blank" rel="noopener"><b>Übersicht aller Änderungen</b></a>
 
