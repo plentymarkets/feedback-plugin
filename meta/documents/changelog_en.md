@@ -1,11 +1,19 @@
 # Release Notes for Feedback
 
+## v4.0.8 (2023-01-05) <a href="https://github.com/plentymarkets/feedback-plugin/compare/4.0.7...4.0.8" target="_blank" rel="noopener"><b>Overview of all changes</b></a>
+
+### Changed
+
+- The logic for anonymisation was moved to the core.
+- Visibility settings were moved from the widget to the plugin configuration.
+
 ## v4.0.7 (2022-10-21) <a href="https://github.com/plentymarkets/feedback-plugin/compare/4.0.6...4.0.7" target="_blank" rel="noopener"><b>Overview of all changes</b></a>
 
-### Geändert
+### Changed
 - 
 - Clicking the image of an item in the rating widget for the order confirmation now leads to the item page. We would like to thank user @MaxBentz for their contribution.
-### Behoben
+
+### Fixed
  
 - The order of the rating stars was incorrect when editing a feedback. This has been fixed. We would like to thank user @MaxBentz for their contribution.
 
