@@ -469,6 +469,11 @@
         line-height: 22px;
         font-size: 17px;
     }
+    .feedback-count {
+        position: absolute;
+        right: -20px
+        top: -1px;
+    }
 }
 
 .widget-feedback-average {
