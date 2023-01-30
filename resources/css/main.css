@@ -321,6 +321,10 @@
     width: 17px;
     line-height: 22px;
     font-size: 17px; }
+  .feedback-stars-average.feedback-category-view .feedback-count {
+    position: absolute;
+    right: -20px;
+    top: -1px; }
 
 .widget-feedback-average .small-stars {
   width: 85px;

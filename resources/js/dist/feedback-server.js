@@ -1177,7 +1177,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       this.isLoading = true;
-      this.feedback.options = this.options;
       $.ajax({
         type: 'POST',
         url: '/rest/feedbacks/feedback/create',
@@ -2382,8 +2381,7 @@ var mutations = {
 var actions = {
   loadFeedbackUser: function loadFeedbackUser(_ref2, _ref3) {
     var commit = _ref2.commit;
-    var data = _ref3.data,
-        itemId = _ref3.itemId,
+    var itemId = _ref3.itemId,
         variationId = _ref3.variationId;
 
     if (!loadFeedbackUserLock) {
@@ -2397,7 +2395,6 @@ var actions = {
       return $.ajax({
         type: 'GET',
         url: '/rest/feedbacks/user' + itemString,
-        data: data,
         success: function success(data) {
           commit('setFeedbackAuthenticatedUser', data);
           loadFeedbackUserLock = false;
@@ -7326,7 +7323,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "7a1cb439"
+  "16b5acce"
   
 )
 
@@ -7367,7 +7364,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "5f95fd55"
+  "d97f2816"
   
 )
 
@@ -7408,7 +7405,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "46d00a12"
+  "613d7cd2"
   
 )
 
@@ -7449,7 +7446,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "ce165384"
+  "283c28c4"
   
 )
 
@@ -7490,7 +7487,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "662405d0"
+  "1fdb1278"
   
 )
 
@@ -7531,7 +7528,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "1d61976a"
+  "102ade0a"
   
 )
 
@@ -7572,7 +7569,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "cdd8b88a"
+  "5af7025b"
   
 )
 
@@ -7613,7 +7610,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "210ec91f"
+  "6ee1d7bf"
   
 )
 
@@ -7654,7 +7651,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "4b0277ee"
+  "ce54f2e4"
   
 )
 
