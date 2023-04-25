@@ -73,7 +73,7 @@
             </div>
           </div>
           <div class="col-8">
-            <a :href="item.url">{{ item.name }}</a>
+            <a :href="item.url" class="mb-3">{{ item.name }}</a>
 
             <div
               v-if="!authenticatedUser.isLoggedIn"
