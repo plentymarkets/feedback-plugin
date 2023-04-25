@@ -45,11 +45,13 @@
         </template>
       </form>
     </div>
-    <img
-      :alt="item.name"
-      :src="item.image"
-      class="py-2"
-    >
+    <a :href="item.url">
+      <img
+        :alt="item.name"
+        :src="item.image"
+        class="py-2"
+      >
+    </a>
     <div class="feedback-item-link">
       <a :href="item.url">{{ item.name }}</a>
     </div>
