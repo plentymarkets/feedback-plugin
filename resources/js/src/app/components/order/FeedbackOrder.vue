@@ -100,7 +100,8 @@ export default {
                 image: this.itemImages[variationId],
                 url: this.itemUrls[variationId],
                 variationId: variationId,
-                itemId: this.items[i].bundleComponents[j].data.itemId
+                itemId: this.items[i].bundleComponents[j].data.itemId,
+                attributes: this.items[i].bundleComponents[j].data.attributes
               })
             }
           }

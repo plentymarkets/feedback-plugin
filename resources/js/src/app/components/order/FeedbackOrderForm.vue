@@ -73,7 +73,9 @@
             </div>
           </div>
           <div class="col-8">
-            <a :href="item.url">{{ item.name }}</a>
+            <a :href="item.url">{{ item.name }}
+              <template v-for="attribute in item.attributes"> | {{ attribute.attribute.names.name }}: {{ attribute.value.names.name }}</template>
+            </a>
 
             <div
               v-if="!authenticatedUser.isLoggedIn"
@@ -188,7 +190,8 @@ export default {
         image: '',
         variationId: 0,
         name: '',
-        itemId: 0
+        itemId: 0,
+        attributes: {}
       }
     }
   },
