@@ -86,7 +86,8 @@ export default {
             image: this.itemImages[key],
             url: this.itemUrls[key],
             variationId: key,
-            itemId: this.variations[key].item.id
+            itemId: this.variations[key].item.id,
+            attributes: this.variations[key].attributes
           })
 
           // Check itemBundleSplit

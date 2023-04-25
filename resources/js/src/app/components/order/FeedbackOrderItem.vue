@@ -52,6 +52,13 @@
     >
     <div class="feedback-item-link">
       <a :href="item.url">{{ item.name }}</a>
+      <div
+        v-for="attribute in item.attributes"
+        :key="item.itemId+'-'+attribute.valueId"
+      >
+        <strong>{{ attribute.attribute.names.name }}: </strong>
+        <span>{{ attribute.value.names.name }}</span>
+      </div>
     </div>
   </div>
 </template>
@@ -95,6 +102,9 @@ export default {
       }
 
       return ids
+    },
+    variationAttributes () {
+      return null
     }
   },
 
