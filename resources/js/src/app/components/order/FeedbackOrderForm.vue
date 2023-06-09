@@ -73,7 +73,10 @@
             </div>
           </div>
           <div class="col-8">
-            <a :href="item.url" class="mb-3">{{ item.name }}
+            <a
+              :href="item.url"
+              class="mb-3"
+            >{{ item.name }}
               <template v-for="attribute in item.attributes"> | {{ attribute.attribute.names.name }}: {{ attribute.value.names.name }}</template>
             </a>
 
