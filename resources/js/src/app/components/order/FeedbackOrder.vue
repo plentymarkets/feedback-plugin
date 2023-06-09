@@ -86,7 +86,8 @@ export default {
             image: this.itemImages[key],
             url: this.itemUrls[key],
             variationId: key,
-            itemId: this.variations[key].item.id
+            itemId: this.variations[key].item.id,
+            attributes: this.variations[key].attributes
           })
 
           // Check itemBundleSplit
@@ -99,7 +100,8 @@ export default {
                 image: this.itemImages[variationId],
                 url: this.itemUrls[variationId],
                 variationId: variationId,
-                itemId: this.items[i].bundleComponents[j].data.itemId
+                itemId: this.items[i].bundleComponents[j].data.itemId,
+                attributes: this.items[i].bundleComponents[j].data.attributes
               })
             }
           }
