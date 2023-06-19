@@ -1,5 +1,12 @@
 # Release Notes für Feedback
 
+## v4.0.9 (2023-06-19) <a href="https://github.com/plentymarkets/feedback-plugin/compare/4.0.8...4.0.9" target="_blank" rel="noopener"><b>Übersicht aller Änderungen</b></a>
+
+### Geändert
+
+- Durchschnitsswertanzeige auf Kategorieebene jetzt möglich. Wir bedanken uns bei User @MaxBentz für den Beitrag.
+- Option der Bewertung von Gastbestellungen ergänzt. Wir bedanken uns auch hier bei User @MaxBentz für den Beitrag.
+
 ## v4.0.8 (2023-01-05) <a href="https://github.com/plentymarkets/feedback-plugin/compare/4.0.7...4.0.8" target="_blank" rel="noopener"><b>Übersicht aller Änderungen</b></a>
 
 ### Geändert
