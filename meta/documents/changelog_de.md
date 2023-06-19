@@ -4,7 +4,7 @@
 
 ### Geändert
 
-- Durchschnitsswertanzeige auf Kategorieebene jetzt möglich. Wir bedanken uns bei User @MaxBentz für den Beitrag.
+- Durchschnittswertanzeige auf Kategorieebene jetzt möglich. Wir bedanken uns bei User @MaxBentz für den Beitrag.
 - Ausgabe von Attributen auf der Bestellbestätigungsseite. Wir bedanken uns bei User @MaxBentz für den Beitrag.
 - CSS Anpassungen. Wir bedanken uns bei User @MaxBentz für den Beitrag.
   
