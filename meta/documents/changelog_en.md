@@ -4,7 +4,7 @@
 
 ### Changed
 
-- Average rating view on category level now possible. We would like to thank user @MaxBentz for their contribution.
+- It's now possible to display the average rating on category level. We would like to thank user @MaxBentz for their contribution.
 - Display of attributes on the order confirmation page. We would like to thank user @MaxBentz for their contribution.
 - CSS adjustments. We would like to thank user @MaxBentz for their contribution.
 
