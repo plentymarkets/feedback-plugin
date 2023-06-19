@@ -1,5 +1,13 @@
 # Release Notes for Feedback
 
+## v4.0.9 (2023-06-19) <a href="https://github.com/plentymarkets/feedback-plugin/compare/4.0.8...4.0.9" target="_blank" rel="noopener"><b>Overview of all changes</b></a>
+
+### Changed
+
+- It's now possible to display the average rating on category level. We would like to thank user @MaxBentz for their contribution.
+- It's now possible to display attributes on the order confirmation page. We would like to thank user @MaxBentz for their contribution.
+- CSS adjustments. We would like to thank user @MaxBentz for their contribution.
+
 ## v4.0.8 (2023-01-05) <a href="https://github.com/plentymarkets/feedback-plugin/compare/4.0.7...4.0.8" target="_blank" rel="noopener"><b>Overview of all changes</b></a>
 
 ### Changed
