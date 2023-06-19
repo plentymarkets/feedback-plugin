@@ -6,7 +6,7 @@
 
 - Durchschnitsswertanzeige auf Kategorieebene jetzt möglich. Wir bedanken uns bei User @MaxBentz für den Beitrag.
 - Ausgabe von Attributen auf der Bestellbestätigungsseite. Wir bedanken uns bei User @MaxBentz für den Beitrag.
-- Anpassungen im Bereich CSS. Wir bedanken uns bei User @MaxBentz für den Beitrag.
+- CSS Anpassungen. Wir bedanken uns bei User @MaxBentz für den Beitrag.
   
 ## v4.0.8 (2023-01-05) <a href="https://github.com/plentymarkets/feedback-plugin/compare/4.0.7...4.0.8" target="_blank" rel="noopener"><b>Übersicht aller Änderungen</b></a>
 
