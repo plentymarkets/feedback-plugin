@@ -62,6 +62,11 @@ class FeedbackOrderWidget extends OrderConfirmationBaseWidget
             ->withName('Widget.rowsPerPage')
             ->withTooltip('Widget.rowsPerPageTooltip');
 
+        $settings->createSetting('hideWhenNotCompleted')
+            ->withType('checkbox')
+            ->withDefaultValue(false)
+            ->withName('Widget.hideWhenOrderNotCompleted');
+
         return $settings->toArray();
     }
 
