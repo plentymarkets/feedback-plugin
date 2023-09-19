@@ -44,7 +44,7 @@
         "glob": "^7.1.6",
         "mini-css-extract-plugin": "^1.0.0",
         "moment-locales-webpack-plugin": "^1.2.0",
-        "node-sass": "^7.0.0",
+        "node-sass": "^9.0.0",
         "postcss": "^8.2.13",
         "postcss-loader": "^4.0.4",
         "postcss-scss": "^3.0.2",
