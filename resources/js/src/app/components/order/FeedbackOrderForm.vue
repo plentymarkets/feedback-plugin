@@ -171,7 +171,8 @@ export default {
     allowGuestFeedbacks: Boolean,
     numberOfFeedbacks: Number,
     accessKey: String,
-    orderId: String
+    orderId: String,
+    showEmptyRatings: Boolean
   },
 
   data: function () {

@@ -66,6 +66,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -410,7 +411,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     allowGuestFeedbacks: Boolean,
     numberOfFeedbacks: Number,
     accessKey: String,
-    orderId: String
+    orderId: String,
+    showEmptyRatings: Boolean
   },
   data: function data() {
     return {
@@ -1188,7 +1190,9 @@ var render = function() {
               "allow-guest-feedbacks": _vm.options.allowGuestFeedbacks,
               "number-of-feedbacks": _vm.options.numberOfFeedbacks,
               "access-key": _vm.accessKey,
-              "order-id": _vm.orderId
+              "order-id": _vm.orderId,
+              "show-empty-ratings":
+                _vm.options.showEmptyRatingsInOrderConfirmation
             }
           })
         : _vm._e()
