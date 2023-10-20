@@ -1518,7 +1518,10 @@ var render = function() {
                   "button",
                   {
                     staticClass: "btn btn-primary btn-appearance btn-block",
-                    attrs: { type: "button", disabled: _vm.isRated },
+                    attrs: {
+                      type: "button",
+                      disabled: _vm.isRated || _vm.feedback.ratingValue === 0
+                    },
                     on: {
                       click: function($event) {
                         return _vm.createFeedback()

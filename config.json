@@ -4,28 +4,7 @@
         "Config.FeedbackSettingsTab": {
             "label": "Config.FeedbackSettingsTab",
             "formFields": {
-                "autoreleaseFeedbacks": {
-                    "type": "selectBox",
-                    "required": false,
-                    "label": "Config.releaseFeedbacks",
-                    "options": {
-                        "defaultValue": 0,
-                        "selectBoxValues":[
-                            {
-                                "value": 0,
-                                "caption": "Config.doNotRelease"
-                            },
-                            {
-                                "value": 1,
-                                "caption": "Config.releaseAuthenticated"
-                            },
-                            {
-                                "value": 2,
-                                "caption": "Config.releaseAll"
-                            }
-                        ]
-                    }
-                },
+
                 "numberOfFeedbacks": {
                     "type": "number",
                     "required": false,
