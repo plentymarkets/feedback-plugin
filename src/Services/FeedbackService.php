@@ -578,10 +578,12 @@ class FeedbackService
     {
         $allowGuestFeedbacks = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_GUEST_FEEDBACKS);
         $numberOfFeedbacks = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_NUMBER_OF_FEEDBACKS);
+        $showEmptyRatingsInOrderConfirmation = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_SHOW_EMPTY_RATINGS_IN_ORDER_CONFIRMATION_VIEW);
 
         return [
             "numberOfFeedbacks" => $numberOfFeedbacks,
-            "allowGuestFeedbacks" => $allowGuestFeedbacks
+            "allowGuestFeedbacks" => $allowGuestFeedbacks,
+            "showEmptyRatingsInOrderConfirmation" => $showEmptyRatingsInOrderConfirmation
         ];
     }
 
