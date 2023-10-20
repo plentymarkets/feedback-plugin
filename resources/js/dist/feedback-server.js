@@ -8745,7 +8745,8 @@ var render = function() {
             ? '<button type="button"' +
               _vm._ssrAttr(
                 "disabled",
-                _vm.isRated || _vm.feedback.ratingValue === 0
+                _vm.isRated ||
+                  (_vm.showEmptyRatings && _vm.feedback.ratingValue === 0)
               ) +
               ' class="btn btn-primary btn-appearance btn-block">' +
               _vm._ssrEscape(

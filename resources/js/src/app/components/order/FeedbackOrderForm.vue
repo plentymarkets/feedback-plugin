@@ -139,7 +139,7 @@
             v-if="!isRated && !limitReached"
             type="button"
             class="btn btn-primary btn-appearance btn-block"
-            :disabled="isRated || feedback.ratingValue === 0"
+            :disabled="isRated || (showEmptyRatings && feedback.ratingValue === 0)"
             @click="createFeedback()"
           >
             {{ $translate("Feedback::Feedback.submitReview") }}
