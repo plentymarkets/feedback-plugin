@@ -3,7 +3,7 @@
 
 {% set customClass = widget.settings.customClass.mobile %}
 {% set appearance = widget.settings.appearance.mobile %}
-{#{% set hideWhenNotCompleted = widget.settings.hideWhenNotCompleted.mobile %}#}
+{% set hideWhenNotCompleted = widget.settings.hideWhenNotCompleted.mobile %}
 {% set spacingSettings = widget.settings.spacing %}
 {% set inlineMargin    = WidgetHelper.getInlineSpacings(spacingSettings, "", spacingSettings.customMargin.mobile) %}
 {% set spacingMargin   = WidgetHelper.getSpacingClasses(spacingSettings, "",spacingSettings.customMargin.mobile) %}
@@ -11,27 +11,35 @@
 {{ Twig.set("configOptions", Twig.call("feedbackServices.feedback.getOrderFrontendOptions") ) }}
 {{ Twig.set("options", options | json_encode) }}
 {{ Twig.set("options", "options | merge(configOptions)") }}
-{#{{ Twig.set("hideWidget", false) }}#}
+{{ Twig.set("hideWidget", "false") }}
 
 {{ Twig.if("data.order is defined and data.order is not null and urls.is('confirmation')") }}
-    <div class="widget widget-feedback-orderconfirmation widget-{{ appearance | default("primary") }} {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
-            {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
-        <feedback-order-container
-                :variations="{{ Twig.print("data.variations | json_encode") }}"
-                :items="{{ Twig.print("data.order.orderItems | json_encode") }}"
-                :item-urls="{{ Twig.print("data.itemURLs | json_encode") }}"
-                :item-images="{{ Twig.print("data.itemImages | json_encode") }}"
-                :options="{{ Twig.print('options | json_encode') }}"
-                :split-item-bundles="{{ Twig.print("splitItemBundle | json_encode") }}"
-                access-key="{{ Twig.print(Twig.call("feedbackServices.feedback.getOrderAccessKey", [Twig.var("data.order.id")])) }}"
-                order-id="{{ Twig.print("data.order.id | json_encode") }}">
-        </feedback-order-container>
-    </div>
+    {{ Twig.if("hideWhenNotCompleted is true and data.order.dates is defined and data.order.dates is not null") }}
+    {{ Twig.set("hideWidget", "true") }}
+            {{ Twig.for(dates, data.order.dates, dates.typeId == "5") }}
+                {{ Twig.set("hideWidget", "false") }}
+            {{ Twig.endfor() }}
+    {{ Twig.endif() }}
+    {{ Twig.if("hideWidget is false") }}
+<div class="widget widget-feedback-orderconfirmation widget-{{ appearance | default("primary") }} {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
+        {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
+    <feedback-order-container
+            :variations="{{ Twig.print("data.variations | json_encode") }}"
+            :items="{{ Twig.print("data.order.orderItems | json_encode") }}"
+            :item-urls="{{ Twig.print("data.itemURLs | json_encode") }}"
+            :item-images="{{ Twig.print("data.itemImages | json_encode") }}"
+            :options="{{ Twig.print('options | json_encode') }}"
+            :split-item-bundles="{{ Twig.print("splitItemBundle | json_encode") }}"
+            access-key="{{ Twig.print(Twig.call("feedbackServices.feedback.getOrderAccessKey", [Twig.var("data.order.id")])) }}"
+            order-id="{{ Twig.print("data.order.id | json_encode") }}">
+    </feedback-order-container>
+</div>
+{{ Twig.endif() }}
 {{ Twig.elseif("#{ isPreview | json_encode } and not urls.is('confirmation')") }}
-    <div class="widget-placeholder">
-        <div>
-            <p class="title">{{ Twig.trans("Feedback::Widget.feedbackLabel") }}</p>
-            <p class="description">{{ Twig.trans("Feedback::Widget.feedbackOrderitemPlaceholderDescription") }}</p>
-        </div>
+<div class="widget-placeholder">
+    <div>
+        <p class="title">{{ Twig.trans("Feedback::Widget.feedbackLabel") }}</p>
+        <p class="description">{{ Twig.trans("Feedback::Widget.feedbackOrderitemPlaceholderDescription") }}</p>
     </div>
+</div>
 {{ Twig.endif() }}
