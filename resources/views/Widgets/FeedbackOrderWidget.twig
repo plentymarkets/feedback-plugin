@@ -13,8 +13,8 @@
 {{ Twig.set("options", "options | merge(configOptions)") }}
 {{ Twig.set("hideWidget", "false") }}
 
-{{ Twig.if(data.order is defined and data.order is not null and urls.is('confirmation')) }}
-    {{ Twig.if(hideWhenNotCompleted == true and data.order.dates is defined and data.order.dates is not null) }}
+{{ Twig.if("data.order is defined and data.order is not null and urls.is('confirmation')") }}
+    {{ Twig.if("hideWhenNotCompleted == true and data.order.dates is defined and data.order.dates is not null and data.order.dates is not empty") }}
         {{ Twig.set("hideWidget", "true") }}
         {{ Twig.for(dates, data.order.dates, dates.typeId == "5") }}
             {{ Twig.set("hideWidget", "false") }}
