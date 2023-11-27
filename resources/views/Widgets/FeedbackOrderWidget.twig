@@ -15,7 +15,7 @@
 
 <p>dataOrderDates: {{ data.order.dates | raw }}</p>
 <p>data ORDER: {{ data.order | raw }}</p>
-<p>checkbox value here: {{ hideWhenNotCompleted | get_type }}</p>
+<p>checkbox value here: {{ gettype(hideWhenNotCompleted) }}</p>
 
 {{ Twig.if("data.order is defined and data.order is not null and urls.is('confirmation')") }}
     {% if hideWhenNotCompleted == true and data.order.dates is defined and data.order.dates is not null %}
