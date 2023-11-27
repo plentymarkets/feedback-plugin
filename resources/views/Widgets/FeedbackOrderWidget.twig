@@ -23,7 +23,7 @@
         {{ Twig.endfor() }}
     {% endif %}
 
-    {{ Twig.if("hideWidget == false") }}
+    {%  if hideWidget == false %}
         <div class="widget widget-feedback-orderconfirmation widget-{{ appearance | default("primary") }} {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
         {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
             <feedback-order-container
@@ -37,7 +37,7 @@
                     order-id="{{ Twig.print("data.order.id | json_encode") }}">
             </feedback-order-container>
         </div>
-    {{ Twig.endif() }}
+    {% endif %}
 {{ Twig.elseif("#{ isPreview | json_encode } and not urls.is('confirmation')") }}
 <div class="widget-placeholder">
     <div>
