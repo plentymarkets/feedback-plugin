@@ -43,7 +43,7 @@
             </feedback-order-container>
         </div>
     {% endif %}
-{{ Twig.elseif("{ isPreview | json_encode } and not urls.is('confirmation')") }}
+{{ Twig.elseif("#{ isPreview | json_encode } and not urls.is('confirmation')") }}
 <div class="widget-placeholder">
     <div>
         <p class="title">{{ Twig.trans("Feedback::Widget.feedbackLabel") }}</p>
