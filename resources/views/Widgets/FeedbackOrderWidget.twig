@@ -14,13 +14,11 @@
 {{ Twig.set("hideWidget", "false") }}
 
 {{ Twig.if("data.order is defined and data.order is not null and urls.is('confirmation')") }}
-    {{ Twig.if("hideWhenNotCompleted is not empty") }}
-        {{ Twig.if("hideWhenNotCompleted is true and data.order.dates is defined and data.order.dates is not null") }}
-            {{ Twig.set("hideWidget", "true") }}
-            {{ Twig.for(dates, data.order.dates, dates.typeId == "5") }}
-                {{ Twig.set("hideWidget", "false") }}
-            {{ Twig.endfor() }}
-        {{ Twig.endif() }}
+    {{ Twig.if("hideWhenNotCompleted == true and data.order.dates is defined and data.order.dates is not null") }}
+        {{ Twig.set("hideWidget", "true") }}
+        {{ Twig.for(dates, data.order.dates, dates.typeId == "5") }}
+            {{ Twig.set("hideWidget", "false") }}
+        {{ Twig.endfor() }}
     {{ Twig.endif() }}
     {{ Twig.if("hideWidget is false") }}
         <div class="widget widget-feedback-orderconfirmation widget-{{ appearance | default("primary") }} {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
