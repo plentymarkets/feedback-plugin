@@ -14,7 +14,7 @@
 {{ Twig.set("hideWidget", "false") }}
 
 <p>dataOrderDates: {{ data.order.dates | raw }}</p>
-<p>data ORDER: {{ Twig.var("data.order") }}</p>
+<p>data ORDER: {{ Twig.print("data | json_encode") }}</p>
 <p>DATA: {{ data | raw }}</p>
 <p>checkbox value === "1": {{ hideWhenNotCompleted is same as ("1") }}</p>
 <p>checkbox value === true: {{ hideWhenNotCompleted is same as (true) }}</p>
@@ -27,9 +27,9 @@
 {{ Twig.if("data.order is defined and data.order is not null and urls.is('confirmation')") }}
     {{  Twig.if("hideWhenNotCompleted is same as (true) and data.order.dates is defined and data.order.dates is not null") }}
         {{ Twig.set("hideWidget", "true") }}
-        {{ Twig.for(dates, data.order.dates, dates.typeId == "5") }}
-            {{ Twig.set("hideWidget", "false") }}
-        {{ Twig.endfor() }}
+{#        {{ Twig.for(dates, data.order.dates, dates.typeId == "5") }}#}
+{#            {{ Twig.set("hideWidget", "false") }}#}
+{#        {{ Twig.endfor() }}#}
     {{ Twig.endif() }}
 
     {{ Twig.if("hideWidget is same as (false)")  }}
