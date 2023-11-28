@@ -14,7 +14,7 @@
 {{ Twig.set("hideWidget", "false") }}
 
 <p>dataOrderDates: {{ data.order.dates | raw }}</p>
-<p>data ORDER: {{ data.order | raw }}</p>
+<p>data ORDER: {{ Twig.var("data.order") }}</p>
 <p>DATA: {{ data | raw }}</p>
 <p>checkbox value === "1": {{ hideWhenNotCompleted is same as ("1") }}</p>
 <p>checkbox value === true: {{ hideWhenNotCompleted is same as (true) }}</p>
@@ -25,18 +25,14 @@
 
 
 {{ Twig.if("data.order is defined and data.order is not null and urls.is('confirmation')") }}
-    {% if hideWhenNotCompleted == true and data.order.dates is defined and data.order.dates is not null %}
-        <p>hideWidget1: {{ hideWidget }}</p>
-        <p>hideWhenNotCompleted1: {{ hideWhenNotCompleted }}</p>
+    {{  Twig.if("hideWhenNotCompleted is same as (true) and data.order.dates is defined and data.order.dates is not null") }}
         {{ Twig.set("hideWidget", "true") }}
         {{ Twig.for(dates, data.order.dates, dates.typeId == "5") }}
             {{ Twig.set("hideWidget", "false") }}
         {{ Twig.endfor() }}
-    {% endif %}
+    {{ Twig.endif() }}
 
-    <p>hideWidget2: {{ hideWidget }}</p>
-    <p>hideWhenNotCompleted2: {{ hideWhenNotCompleted }}</p>
-    {%  if hideWidget == false  %}
+    {{ Twig.if("hideWidget is same as (false)")  }}
         <div class="widget widget-feedback-orderconfirmation widget-{{ appearance | default("primary") }} {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
         {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
             <feedback-order-container
@@ -50,7 +46,7 @@
                     order-id="{{ Twig.print("data.order.id | json_encode") }}">
             </feedback-order-container>
         </div>
-    {% endif %}
+    {{ Twig.endif() }}
 {{ Twig.elseif("#{ isPreview | json_encode } and not urls.is('confirmation')") }}
 <div class="widget-placeholder">
     <div>
