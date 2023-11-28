@@ -13,9 +13,10 @@
 {{ Twig.set("options", "options | merge(configOptions)") }}
 {{ Twig.set("hideWidget", "false") }}
 
-<p>dataOrderDates: {{ data.order.dates }}</p>
+<p>dataOrderDates: {{ data['order']['dates'] }}</p>
 <p>data ORDER: {{ Twig.print("data | json_encode") }}</p>
 <p>DATA: {{ data.order }}</p>
+<p>DATA with Twig.var: {{ Twig.var("data.order.dates") }}</p>
 <p>checkbox value === "1": {{ hideWhenNotCompleted is same as ("1") }}</p>
 <p>checkbox value === true: {{ hideWhenNotCompleted is same as (true) }}</p>
 
