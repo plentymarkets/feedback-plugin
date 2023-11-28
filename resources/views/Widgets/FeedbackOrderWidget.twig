@@ -15,11 +15,12 @@
 
 <p>dataOrderDates: {{ data.order.dates | raw }}</p>
 <p>data ORDER: {{ data.order | raw }}</p>
-<p>checkbox value === "1": {{ hideWhenNotCompleted === "1" }}</p>
-<p>checkbox value === true: {{ hideWhenNotCompleted === true }}</p>
+<p>DATA: {{ data | raw }}</p>
+<p>checkbox value === "1": {{ hideWhenNotCompleted is same as ("1") }}</p>
+<p>checkbox value === true: {{ hideWhenNotCompleted is same as (true) }}</p>
 
-<p>checkbox value === "0": {{ hideWhenNotCompleted === "0" }}</p>
-<p>checkbox value === false: {{ hideWhenNotCompleted === false }}</p>
+<p>checkbox value === "0": {{ hideWhenNotCompleted is same as ("0") }}</p>
+<p>checkbox value === false: {{ hideWhenNotCompleted is same as (false) }}</p>
 
 
 
