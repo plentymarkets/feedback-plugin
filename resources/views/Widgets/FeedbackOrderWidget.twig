@@ -7,21 +7,14 @@
 {% set spacingSettings = widget.settings.spacing %}
 {% set inlineMargin    = WidgetHelper.getInlineSpacings(spacingSettings, "", spacingSettings.customMargin.mobile) %}
 {% set spacingMargin   = WidgetHelper.getSpacingClasses(spacingSettings, "",spacingSettings.customMargin.mobile) %}
-{% set formatedData = data %}
 
 {{ Twig.set("configOptions", Twig.call("feedbackServices.feedback.getOrderFrontendOptions") ) }}
 {{ Twig.set("options", options | json_encode) }}
 {{ Twig.set("options", "options | merge(configOptions)") }}
 {{ Twig.set("hideWidget", "false") }}
+{{ Twig.set("formatedData", data | json_encode | json_decode) }}
 
 <p>dataOrderDates: {{ formatedData.order }}</p>
-<p>DATA with Twig.var: {{ Twig.var("data.order.dates") }}</p>
-<p>checkbox value === "1": {{ hideWhenNotCompleted is same as ("1") }}</p>
-<p>checkbox value === true: {{ hideWhenNotCompleted is same as (true) }}</p>
-
-<p>checkbox value === "0": {{ hideWhenNotCompleted is same as ("0") }}</p>
-<p>checkbox value === false: {{ hideWhenNotCompleted is same as (false) }}</p>
-
 
 
 {{ Twig.if("data.order is defined and data.order is not null and urls.is('confirmation')") }}
