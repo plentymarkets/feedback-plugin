@@ -12,7 +12,7 @@
 {{ Twig.set("options", options | json_encode) }}
 {{ Twig.set("options", "options | merge(configOptions)") }}
 {{ Twig.set("hideWidget", "false") }}
-{{ Twig.set("formatedData", data | json_encode | json_decode) }}
+{{ Twig.set("formatedData", "(array)data") }}
 
 <p>dataOrderDates: {{ formatedData.order }}</p>
 
