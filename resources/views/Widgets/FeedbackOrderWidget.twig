@@ -12,14 +12,15 @@
 {{ Twig.set("options", options | json_encode) }}
 {{ Twig.set("options", "options | merge(configOptions)") }}
 {{ Twig.set("hideWidget", "false") }}
-{{ Twig.set("formatedData", "(array)data") }}
-
-<p>dataOrderDates: {{ formatedData.order }}</p>
-
 
 {{ Twig.if("data.order is defined and data.order is not null and urls.is('confirmation')") }}
     {{  Twig.if("hideWhenNotCompleted is same as (true) and data.order.dates is defined and data.order.dates is not null") }}
         {{ Twig.set("hideWidget", "true") }}
+        {% for date in data.order.dates %}
+            {% if date.typeId is same as "5" %}
+                {{ Twig.set("hideWidget", "false") }}
+            {% endif %}
+        {% endfor %}
 {#        {{ Twig.for(dates, data.order.dates, dates.typeId == "5") }}#}
 {#            {{ Twig.set("hideWidget", "false") }}#}
 {#        {{ Twig.endfor() }}#}
