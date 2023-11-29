@@ -12,13 +12,13 @@
 {{ Twig.set("options", options | json_encode) }}
 {{ Twig.set("options", "options | merge(configOptions)") }}
 {{ Twig.set("hideWidget", "false") }}
-
+<p>data ORDER: {{ Twig.print("data | json_encode") }}</p>
 {{ Twig.if("data.order is defined and data.order is not null and urls.is('confirmation')") }}
     {{ Twig.if("hideWhenNotCompleted is same as (true) and data.order.dates is defined and data.order.dates is not null") }}
         {{ Twig.set("hideWidget", "true") }}
-        {{ Twig.if("data.order.statusId >= 5") }}
-            {{ Twig.set("hideWidget", "false") }}
-        {{ Twig.endif() }}
+            {% if (int)[Twig.var("data.order.statusId")] >= 5 %}
+                {{ Twig.set("hideWidget", "false") }}
+            {% endif %}
     {{ Twig.endif() }}
     {{ Twig.if("hideWidget is same as (false)") }}
     <div class="widget widget-feedback-orderconfirmation widget-{{ appearance | default("primary") }} {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
