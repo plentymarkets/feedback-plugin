@@ -1609,6 +1609,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -1957,7 +1958,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     allowGuestFeedbacks: Boolean,
     numberOfFeedbacks: Number,
     accessKey: String,
-    orderId: String
+    orderId: String,
+    showEmptyRatings: Boolean
   },
   data: function data() {
     return {
@@ -6885,7 +6887,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "780302ce"
+  "3ce42ced"
   
 )
 
@@ -6922,7 +6924,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "43a01216"
+  "ce4867be"
   
 )
 
@@ -6959,7 +6961,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "1c9a0c97"
+  "48b5727a"
   
 )
 
@@ -6996,7 +6998,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "0b16409e"
+  "0e3b4a1c"
   
 )
 
@@ -7033,7 +7035,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "3f0f6778"
+  "2cdb81cc"
   
 )
 
@@ -7070,7 +7072,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "5d63a90a"
+  "1c6ee336"
   
 )
 
@@ -7107,7 +7109,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "409f0d5b"
+  "a03f76f2"
   
 )
 
@@ -7144,7 +7146,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "48e73a82"
+  "6873b82a"
   
 )
 
@@ -7181,7 +7183,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "0580118e"
+  "148c5a8c"
   
 )
 
@@ -8607,7 +8609,9 @@ var render = function() {
               "allow-guest-feedbacks": _vm.options.allowGuestFeedbacks,
               "number-of-feedbacks": _vm.options.numberOfFeedbacks,
               "access-key": _vm.accessKey,
-              "order-id": _vm.orderId
+              "order-id": _vm.orderId,
+              "show-empty-ratings":
+                _vm.options.showEmptyRatingsInOrderConfirmation
             }
           })
         : _vm._e()
@@ -8739,7 +8743,11 @@ var render = function() {
           '</textarea></div></div></div> <div class="modal-footer">' +
           (!_vm.isRated && !_vm.limitReached
             ? '<button type="button"' +
-              _vm._ssrAttr("disabled", _vm.isRated) +
+              _vm._ssrAttr(
+                "disabled",
+                _vm.isRated ||
+                  (_vm.showEmptyRatings && _vm.feedback.ratingValue === 0)
+              ) +
               ' class="btn btn-primary btn-appearance btn-block">' +
               _vm._ssrEscape(
                 "\n          " +

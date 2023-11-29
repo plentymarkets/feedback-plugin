@@ -34,6 +34,7 @@
       :number-of-feedbacks="options.numberOfFeedbacks"
       :access-key="accessKey"
       :order-id="orderId"
+      :show-empty-ratings="options.showEmptyRatingsInOrderConfirmation"
     />
   </section>
 </template>
