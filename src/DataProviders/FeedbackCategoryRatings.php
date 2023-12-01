@@ -10,27 +10,15 @@ class FeedbackCategoryRatings
 {
     /**
      * @param Request $request
-     * @param FeedbackAverageRepositoryContract $feedbackAverageRepository
      * @param Twig $twig
      * @param $itemData
      * @param FeedbackCoreHelper $coreHelper
      * @return string
      */
-    public function call(Request $request, FeedbackAverageRepositoryContract $feedbackAverageRepository, FeedbackCoreHelper $coreHelper, Twig $twig, $itemData)
+    public function call(Request $request, FeedbackCoreHelper $coreHelper, Twig $twig, $itemData)
     {
-        $itemId = $itemData[0]['item']['id'];
-
-        if ((int)$itemId > 0) {
-            $average = $feedbackAverageRepository->getFeedbackAverage($itemId);
-        }
-
-        if( empty($average)) {
-            $counts['averageValue'] = 0;
-            $counts['ratingsCountTotal'] = 0;
-        } else {
-            $counts['averageValue'] = $average->averageValue;
-            $counts['ratingsCountTotal'] = $average->ratingsCountTotal;
-        }
+        $counts['averageValue'] = $itemData[0]['item']['FeedbackDecimal'] ?? 0;
+        $counts['ratingsCountTotal'] = $itemData[0]['item']['FeedbackCount'] ?? 0;
 
         $data['counts'] = $counts;
 
