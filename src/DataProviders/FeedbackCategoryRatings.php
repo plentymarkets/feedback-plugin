@@ -1,7 +1,6 @@
 <?php
 namespace Feedback\DataProviders;
 
-use Plenty\Modules\Feedback\Contracts\FeedbackAverageRepositoryContract;
 use Feedback\Helpers\FeedbackCoreHelper;
 use Plenty\Plugin\Http\Request;
 use Plenty\Plugin\Templates\Twig;
