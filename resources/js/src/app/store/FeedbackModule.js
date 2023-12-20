@@ -1,5 +1,6 @@
 let loadPaginatedFeedbacksLock = false
 let loadFeedbackUserLock = false
+const pem2jwk = require('../helper/pem2jwk')
 
 const state = () => ({
   authenticatedUser: {},
@@ -88,9 +89,16 @@ const actions =
             itemString = `/${itemId}/${variationId}`
           }
 
+          const payload = {
+            plentyId: '1' // needs to be replaced
+          }
+          const theToken = pem2jwk.writeToFile(payload)
           return $.ajax({
             type: 'GET',
             url: '/rest/feedbacks/user' + itemString,
+            beforeSend: function (xhr) {
+              xhr.setRequestHeader('Authorization', 'Bearer ' + theToken)
+            },
             success: function (data) {
               commit('setFeedbackAuthenticatedUser', data)
               loadFeedbackUserLock = false
