@@ -271,6 +271,8 @@ class FeedbackService
                 $lang,
                 ['variations']
             );
+
+            var_dump($itemDataList); die;
         } catch (\Exception $e) {
             $this->getLogger(__METHOD__)->error(
                 'Feedback::Debug.FeedbackService_itemDoesNotExistError',
