@@ -1,5 +1,11 @@
 # Release Notes for Feedback
 
+## v4.0.10 (2024-01-XX) <a href="https://github.com/plentymarkets/feedback-plugin/compare/4.0.9...4.0.10" target="_blank" rel="noopener"><b>Overview of all changes</b></a>
+
+### Changed
+
+-  The rating on the category pages is now loaded via   the item list (itemList).
+
 ## v4.0.9 (2023-06-19) <a href="https://github.com/plentymarkets/feedback-plugin/compare/4.0.8...4.0.9" target="_blank" rel="noopener"><b>Overview of all changes</b></a>
 
 ### Changed
