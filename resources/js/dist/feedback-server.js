@@ -2371,7 +2371,7 @@ var actions = {
 
       return $.ajax({
         type: 'GET',
-        url: '/rest/feedbacks/user' + itemString,
+        url: '/rest/storefront/feedbacks/user' + itemString,
         success: function success(data) {
           commit('setFeedbackAuthenticatedUser', data);
           loadFeedbackUserLock = false;
@@ -2391,7 +2391,7 @@ var actions = {
       countsLoaded = true;
       return $.ajax({
         type: 'GET',
-        url: '/rest/feedbacks/feedback/helper/counts/' + itemId,
+        url: '/rest/storefront/feedbacks/feedback/helper/counts/' + itemId,
         success: function success(data) {
           commit('setFeedbackCounts', data.counts);
         },
@@ -2411,7 +2411,7 @@ var actions = {
       loadPaginatedFeedbacksLock = true;
       var request = $.ajax({
         type: 'GET',
-        url: '/rest/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
+        url: '/rest/storefront/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
         data: {
           feedbacksPerPage: feedbacksPerPage
         },
@@ -6887,7 +6887,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "3ce42ced"
+  "1a304a59"
   
 )
 
@@ -6924,7 +6924,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "ce4867be"
+  "12bd5335"
   
 )
 
@@ -6961,7 +6961,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "48b5727a"
+  "634158d7"
   
 )
 
@@ -6998,7 +6998,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "0e3b4a1c"
+  "17a04c5e"
   
 )
 
@@ -7035,7 +7035,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "2cdb81cc"
+  "4b997338"
   
 )
 
@@ -7072,7 +7072,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "1c6ee336"
+  "b7ea156c"
   
 )
 
@@ -7109,7 +7109,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "a03f76f2"
+  "3b24c99b"
   
 )
 
@@ -7146,7 +7146,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "6873b82a"
+  "6859feff"
   
 )
 
@@ -7183,7 +7183,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "148c5a8c"
+  "db64a464"
   
 )
 

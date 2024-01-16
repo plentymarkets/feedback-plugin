@@ -275,7 +275,7 @@ var actions = {
 
       return $.ajax({
         type: 'GET',
-        url: '/rest/feedbacks/user' + itemString,
+        url: '/rest/storefront/feedbacks/user' + itemString,
         success: function success(data) {
           commit('setFeedbackAuthenticatedUser', data);
           loadFeedbackUserLock = false;
@@ -295,7 +295,7 @@ var actions = {
       countsLoaded = true;
       return $.ajax({
         type: 'GET',
-        url: '/rest/feedbacks/feedback/helper/counts/' + itemId,
+        url: '/rest/storefront/feedbacks/feedback/helper/counts/' + itemId,
         success: function success(data) {
           commit('setFeedbackCounts', data.counts);
         },
@@ -315,7 +315,7 @@ var actions = {
       loadPaginatedFeedbacksLock = true;
       var request = $.ajax({
         type: 'GET',
-        url: '/rest/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
+        url: '/rest/storefront/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
         data: {
           feedbacksPerPage: feedbacksPerPage
         },
