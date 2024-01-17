@@ -1175,7 +1175,7 @@ var actions = {
 
       return $.ajax({
         type: 'GET',
-        url: '/rest/storefront/feedbacks/user' + itemString,
+        url: '/rest/feedbacks/user' + itemString,
         success: function success(data) {
           commit('setFeedbackAuthenticatedUser', data);
           loadFeedbackUserLock = false;
@@ -1215,7 +1215,7 @@ var actions = {
       loadPaginatedFeedbacksLock = true;
       var request = $.ajax({
         type: 'GET',
-        url: '/rest/storefront/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
+        url: '/rest/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
         data: {
           feedbacksPerPage: feedbacksPerPage
         },
