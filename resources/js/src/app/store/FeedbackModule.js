@@ -90,7 +90,7 @@ const actions =
 
           return $.ajax({
             type: 'GET',
-            url: '/rest/feedbacks/user' + itemString,
+            url: '/rest/storefront/feedbacks/user' + itemString,
             success: function (data) {
               commit('setFeedbackAuthenticatedUser', data)
               loadFeedbackUserLock = false
@@ -125,7 +125,7 @@ const actions =
           loadPaginatedFeedbacksLock = true
           const request = $.ajax({
             type: 'GET',
-            url: '/rest/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
+            url: '/rest/storefront/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
             data: {
               feedbacksPerPage: feedbacksPerPage
             },
