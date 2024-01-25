@@ -12,21 +12,17 @@
 {{ Twig.set("options", options | json_encode) }}
 {{ Twig.set("options", "options | merge(configOptions)") }}
 {{ Twig.set("hideWidget", "false") }}
-{% if hideWhenNotCompleted == 1  %}
-    <p>something here</p>
-{% endif %}
+{% if hideWhenNotCompleted == 1 and data.order.dates is defined %}
+    {% for value in data.order.dates %}
+        {% if value.typeId == 5 %}
+            <p>goes here</p>
+        {% endif %}
 
-{% if data.order.dates is defined %}
-    <p>dates are with isdefined: {{ data.order.dates }} </p>
+        {% if value.typeId == 2 %}
+            <p>the type id is 2</p>
+        {% endif %}
+    {% endfor %}
 {% endif %}
-
-{% for value in data.order.dates %}
-    <p>value of for is: {{ value }}</p>
-    <p>val of typeId: {{ value.typeId }}</p>
-    {% if value.typeId == "5" %}
-        <p>goes here</p>
-    {% endif %}
-{% endfor %}
 
 {{ Twig.if("data.order is defined and data.order is not null and urls.is('confirmation')") }}
     <p>condition is true line 17</p>
