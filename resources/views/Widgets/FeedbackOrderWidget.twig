@@ -12,6 +12,9 @@
 {{ Twig.set("options", options | json_encode) }}
 {{ Twig.set("options", "options | merge(configOptions)") }}
 {{ Twig.set("hideWidget", "false") }}
+{% if hideWhenNotCompleted == 1 %}
+    <p>something here</p>
+{% endif %}
 {{ Twig.if("hideWhenNotCompleted is same as (true)") }}
     <p>hideWhenNotCompleted with twigif value is: {{ hideWhenNotCompleted }}</p>
 {{ Twig.endif() }}
