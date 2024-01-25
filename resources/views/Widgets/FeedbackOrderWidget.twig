@@ -12,14 +12,14 @@
 {{ Twig.set("options", options | json_encode) }}
 {{ Twig.set("options", "options | merge(configOptions)") }}
 {{ Twig.set("hideWidget", "false") }}
-{%  if hideWhenNotCompleted == 1 %}
+{% if hideWhenNotCompleted === 1 %}
     <p>hideWhenNotCompleted value is: {{ hideWhenNotCompleted }}</p>
 {% endif %}
-{{ Twig.if("hideWhenNotCompleted is same as (1)") }}
+{{ Twig.if("hideWhenNotCompleted is same as ('1')") }}
     <p>hideWhenNotCompleted with twigif value is: {{ hideWhenNotCompleted }}</p>
 {{ Twig.endif() }}
-{{ Twig.if("data.order.dates is defined") }}
-    <p>data order dates is defined here: {{ data.order.dates }}</p>
+{{ Twig.if("hideWhenNotCompleted is same as ('')") }}
+    <p>hideWhenNotCompleted with twigif empty value is: {{ hideWhenNotCompleted }}</p>
 {{ Twig.endif() }}
 
 {{ Twig.if("data.order is defined and data.order is not null and urls.is('confirmation')") }}
