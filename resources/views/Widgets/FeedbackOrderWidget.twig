@@ -12,15 +12,19 @@
 {{ Twig.set("options", options | json_encode) }}
 {{ Twig.set("options", "options | merge(configOptions)") }}
 {{ Twig.set("hideWidget", "false") }}
-<p>data ORDER: {{ Twig.print("data | json_encode") }}</p>
+
 {{ Twig.if("data.order is defined and data.order is not null and urls.is('confirmation')") }}
+    <p>condition is true line 17</p>
     {{ Twig.if("hideWhenNotCompleted is same as (true) and data.order.dates is defined and data.order.dates is not null") }}
+        <p>condition is true line 19</p>
             {{ Twig.set("hideWidget", "true") }}
             {% if (int)[Twig.var("data.order.statusId")] >= 5 %}
+                <p>condition is true line 22</p>
                 {{ Twig.set("hideWidget", "false") }}
             {% endif %}
     {{ Twig.endif() }}
     {{ Twig.if("hideWidget is same as (false)") }}
+        <p>condition is true line 27</p>
 <div class="widget widget-feedback-orderconfirmation widget-{{ appearance | default("primary") }} {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
         {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
     <feedback-order-container
