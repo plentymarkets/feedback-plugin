@@ -12,7 +12,7 @@
 {{ Twig.set("options", options | json_encode) }}
 {{ Twig.set("options", "options | merge(configOptions)") }}
 {{ Twig.set("hideWidget", "false") }}
-{{ Twig.if("hideWhenNotCompleted is same as ('1')") }}
+{{ Twig.if("hideWhenNotCompleted is same as (1)") }}
     <p>hideWhenNotCompleted with twigif value is: {{ hideWhenNotCompleted }}</p>
 {{ Twig.endif() }}
 {{ Twig.if("hideWhenNotCompleted is same as ('')") }}
