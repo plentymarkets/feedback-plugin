@@ -15,7 +15,7 @@
 
 {{ Twig.if("data.order is defined and data.order is not null and urls.is('confirmation')") }}
     <p>condition is true line 17</p>
-    {{ Twig.if("hideWhenNotCompleted is same as (true) and data.order.dates is defined and data.order.dates is not null") }}
+    {{ Twig.if("hideWhenNotCompleted is same as (true)") }}
         <p>condition is true line 19</p>
             {{ Twig.set("hideWidget", "true") }}
             {% if (int)[Twig.var("data.order.statusId")] >= 5 %}
