@@ -15,12 +15,14 @@
 {% if hideWhenNotCompleted == 1 %}
     <p>something here</p>
 {% endif %}
-{{ Twig.if("hideWhenNotCompleted is same as (true)") }}
-    <p>hideWhenNotCompleted with twigif value is: {{ hideWhenNotCompleted }}</p>
-{{ Twig.endif() }}
-{{ Twig.if("hideWhenNotCompleted is same as ('')") }}
-    <p>hideWhenNotCompleted with twigif empty value is: {{ hideWhenNotCompleted }}</p>
-{{ Twig.endif() }}
+
+{% if isset(data.order.dates) %}
+    <p>dates are: {{ data.order.dates }} </p>
+{% endif %}
+
+{% if data.order.dates is defined %}
+    <p>dates are with isdefined: {{ data.order.dates }} </p>
+{% endif %}
 
 {{ Twig.if("data.order is defined and data.order is not null and urls.is('confirmation')") }}
     <p>condition is true line 17</p>
