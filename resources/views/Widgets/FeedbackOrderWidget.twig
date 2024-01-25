@@ -12,7 +12,7 @@
 {{ Twig.set("options", options | json_encode) }}
 {{ Twig.set("options", "options | merge(configOptions)") }}
 {{ Twig.set("hideWidget", "false") }}
-
+<p>hideWhenNotCompleted value is: {{ hideWhenNotCompleted }}</p>
 {{ Twig.if("data.order is defined and data.order is not null and urls.is('confirmation')") }}
     <p>condition is true line 17</p>
     {{ Twig.if("hideWhenNotCompleted is same as (true)") }}
