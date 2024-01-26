@@ -14,30 +14,16 @@
 {{ Twig.set("hideWidget", "false") }}
 
 {{ Twig.if("data.order is defined and data.order is not null and urls.is('confirmation')") }}
-    <p>condition is true line 17</p>
-    {% if hideWhenNotCompleted == 1 and data.order.dates is defined %}
+    {% if hideWhenNotCompleted == 1 and data.order.dates is defined and data.order.dates is not null %}
         {{ Twig.set("hideWidget", "true") }}
-        <p>the value of hidewidget is: {{ hideWidget }}</p>
-        <p>condition is true line 20</p>
-
         {% for value in data.order.dates %}
-            {{ value.typeId == 5 }}
             {% if value.typeId == 5 %}
                 {{ Twig.set("hideWidget", "false") }}
-                <p>condition is true line 25</p>
             {% endif %}
         {% endfor %}
     {% endif %}
 
-    <p>value for hideWidget {{ hideWidget }}</p>
     {{ Twig.if("hideWidget is same as (false)") }}
-        <p>using false</p>
-    {{ Twig.endif() }}
-
-
-
-    {{ Twig.if("hideWidget is same as (false)") }}
-        <p>condition is true line 41</p>
         <div class="widget widget-feedback-orderconfirmation widget-{{ appearance | default("primary") }} {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
                 {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
             <feedback-order-container
