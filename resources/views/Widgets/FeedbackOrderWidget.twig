@@ -14,26 +14,29 @@
 {{ Twig.set("hideWidget", "false") }}
 
 {{ Twig.if("data.order is defined and data.order is not null and urls.is('confirmation')") }}
-    {{ Twig.if("hideWhenNotCompleted is same as (true) and data.order.dates is defined and data.order.dates is not null") }}
+    {% if hideWhenNotCompleted == 1 and data.order.dates is defined and data.order.dates is not null %}
         {{ Twig.set("hideWidget", "true") }}
-            {{ Twig.for("date", "data.order.dates", "date.typeId == 5") }}
+        {% for value in data.order.dates %}
+            {% if value.typeId == 5 %}
                 {{ Twig.set("hideWidget", "false") }}
-            {{ Twig.endfor() }}
-    {{ Twig.endif() }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
     {{ Twig.if("hideWidget is same as (false)") }}
-    <div class="widget widget-feedback-orderconfirmation widget-{{ appearance | default("primary") }} {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
-            {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
-        <feedback-order-container
-                :variations="{{ Twig.print("data.variations | json_encode") }}"
-                :items="{{ Twig.print("data.order.orderItems | json_encode") }}"
-                :item-urls="{{ Twig.print("data.itemURLs | json_encode") }}"
-                :item-images="{{ Twig.print("data.itemImages | json_encode") }}"
-                :options="{{ Twig.print('options | json_encode') }}"
-                :split-item-bundles="{{ Twig.print("splitItemBundle | json_encode") }}"
-                access-key="{{ Twig.print(Twig.call("feedbackServices.feedback.getOrderAccessKey", [Twig.var("data.order.id")])) }}"
-                order-id="{{ Twig.print("data.order.id | json_encode") }}">
-        </feedback-order-container>
-    </div>
+        <div class="widget widget-feedback-orderconfirmation widget-{{ appearance | default("primary") }} {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
+                {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
+            <feedback-order-container
+                    :variations="{{ Twig.print("data.variations | json_encode") }}"
+                    :items="{{ Twig.print("data.order.orderItems | json_encode") }}"
+                    :item-urls="{{ Twig.print("data.itemURLs | json_encode") }}"
+                    :item-images="{{ Twig.print("data.itemImages | json_encode") }}"
+                    :options="{{ Twig.print('options | json_encode') }}"
+                    :split-item-bundles="{{ Twig.print("splitItemBundle | json_encode") }}"
+                    access-key="{{ Twig.print(Twig.call("feedbackServices.feedback.getOrderAccessKey", [Twig.var("data.order.id")])) }}"
+                    order-id="{{ Twig.print("data.order.id | json_encode") }}">
+            </feedback-order-container>
+        </div>
     {{ Twig.endif() }}
 {{ Twig.elseif("#{ isPreview | json_encode } and not urls.is('confirmation')") }}
 <div class="widget-placeholder">
@@ -43,3 +46,4 @@
     </div>
 </div>
 {{ Twig.endif() }}
+

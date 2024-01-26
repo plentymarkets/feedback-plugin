@@ -17,6 +17,7 @@ class FeedbackCoreHelper
     const KEY_NUMBER_OF_FEEDBACKS = "numberOfFeedbacks";
     const KEY_ALLOW_NO_RATING_FEEDBACK = "allowNoRatingFeedback";
     const KEY_ALLOW_FEEDBACK_ONLY_IF_PURCHASED = "allowFeedbacksOnlyIfPurchased";
+    const KEY_SHOW_EMPTY_RATINGS_IN_ORDER_CONFIRMATION_VIEW = "showEmptyRatingsInOrderConfirmationView";
 
     /**
      * @var ConfigRepository $config

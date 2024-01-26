@@ -72,6 +72,14 @@
                         "defaultValue": "false"
                     }
                 },
+                "showEmptyRatingsInOrderConfirmationView": {
+                    "type": "checkBox",
+                    "required": false,
+                    "label": "Config.showEmptyRatingsInOrderConfirmationViewLabel",
+                    "options": {
+                        "defaultValue": "false"
+                    }
+                },
                 "showRatingFacet": {
                     "type": "checkBox",
                     "required": false,

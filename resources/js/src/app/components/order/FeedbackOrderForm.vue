@@ -139,7 +139,7 @@
             v-if="!isRated && !limitReached"
             type="button"
             class="btn btn-primary btn-appearance btn-block"
-            :disabled="isRated"
+            :disabled="isRated || (showEmptyRatings && feedback.ratingValue === 0)"
             @click="createFeedback()"
           >
             {{ $translate("Feedback::Feedback.submitReview") }}
@@ -171,7 +171,8 @@ export default {
     allowGuestFeedbacks: Boolean,
     numberOfFeedbacks: Number,
     accessKey: String,
-    orderId: String
+    orderId: String,
+    showEmptyRatings: Boolean
   },
 
   data: function () {
