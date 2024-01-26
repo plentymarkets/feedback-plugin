@@ -20,7 +20,7 @@
         <p>condition is true line 20</p>
 
         {% for value in data.order.dates %}
-            {% if value.typeId == 2 %}
+            {% if value.typeId == 5 %}
                 {{ Twig.set("hideWidget", "false") }}
                 <p>condition is true line 25</p>
             {% endif %}
@@ -32,9 +32,6 @@
         <p>using false</p>
     {{ Twig.endif() }}
 
-    {{ Twig.if("hideWidget is same as ('false')") }}
-        <p>using false quoted</p>
-    {{ Twig.endif() }}
 
 
     {{ Twig.if("hideWidget is same as (false)") }}
