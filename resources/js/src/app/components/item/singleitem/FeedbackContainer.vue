@@ -126,19 +126,9 @@
     <hr>
 
     <feedback-list
-      :feedbacks="authenticatedUser.feedbacks"
-      :is-last-page="true"
-      :show-controls="true"
-      :classes="classes"
-      :styles="styles"
-      :options="optionsList"
-      @delete="showDeleteConfirmation($event)"
-    />
-
-    <feedback-list
       :feedbacks="feedbacks"
       :is-last-page="pagination.isLastPage"
-      :show-controls="false"
+      :show-controls="true"
       :classes="classes"
       :styles="styles"
       :options="optionsList"

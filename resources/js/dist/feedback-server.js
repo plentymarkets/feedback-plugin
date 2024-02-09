@@ -746,16 +746,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -7992,25 +7982,9 @@ var render = function() {
       _vm._ssrNode(" <hr> "),
       _c("feedback-list", {
         attrs: {
-          feedbacks: _vm.authenticatedUser.feedbacks,
-          "is-last-page": true,
-          "show-controls": true,
-          classes: _vm.classes,
-          styles: _vm.styles,
-          options: _vm.optionsList
-        },
-        on: {
-          delete: function($event) {
-            return _vm.showDeleteConfirmation($event)
-          }
-        }
-      }),
-      _vm._ssrNode(" "),
-      _c("feedback-list", {
-        attrs: {
           feedbacks: _vm.feedbacks,
           "is-last-page": _vm.pagination.isLastPage,
-          "show-controls": false,
+          "show-controls": true,
           classes: _vm.classes,
           styles: _vm.styles,
           options: _vm.optionsList
