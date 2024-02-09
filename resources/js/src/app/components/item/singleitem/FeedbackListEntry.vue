@@ -6,9 +6,7 @@
     <div
       v-if="
       !editableFeedback &&
-      showControls &&
-      (feedbackData.sourceRelation[0].feedbackRelationSourceId &&
-      parseInt(feedbackData.sourceRelation[0].feedbackRelationSourceId) == authenticatedUser.id)"
+      showControls && canUserEdit()"
       class="feedback-options"
     >
       <span
@@ -175,6 +173,14 @@ export default {
   },
 
   methods: {
+    canUserEdit () {
+      console.log(this.feedbackData.sourceRelation[0].feedbackRelationSourceId);
+      console.log(this.authenticatedUser.id);
+      if (!this.feedbackData.sourceRelation[0].feedbackRelationSourceId) {
+        return false;
+      }
+      return parseInt(this.feedbackData.sourceRelation[0].feedbackRelationSourceId) === this.authenticatedUser.id;
+    },
     showDeleteConfirmation () {
       let parentFeedbackId = null
       if (this.isReply) {
