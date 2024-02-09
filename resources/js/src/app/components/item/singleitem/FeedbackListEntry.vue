@@ -3,12 +3,7 @@
     class="feedback clearfix"
     :class="{'loading':isLoading}"
   >
-    <span v-if="canUserEdit()">{{ feedbackData.sourceRelation[0].feedbackRelationSourceId }}</span>
-    <span v-if="canUserEdit()">{{ authenticatedUser.id }}</span>
-    <span>aa: {{ authenticatedUser.id }}</span>
-    <span>bb: {{ authenticatedUser.id }}</span>
-    <span v-if="showControls">showControls is true</span>
-    <span v-if="!editableFeedback">not editableFeedback is true</span>
+    <span>{{ feedback.sourceRelation[0].feedbackRelationSourceId }}</span>
     <span>test here</span>
     <div
       v-if="
@@ -181,14 +176,15 @@ export default {
 
   methods: {
     canUserEdit () {
-      console.log(this.feedbackData.sourceRelation[0].feedbackRelationSourceId);
+      console.log(this.feedback.sourceRelation[0].feedbackRelationSourceId);
       console.log(this.authenticatedUser.id);
-      if (!this.feedbackData.sourceRelation[0].feedbackRelationSourceId) {
+      if (!this.feedback.sourceRelation[0].feedbackRelationSourceId) {
         return false;
       }
       return parseInt(this.feedbackData.sourceRelation[0].feedbackRelationSourceId) === this.authenticatedUser.id;
     },
     showDeleteConfirmation () {
+      console.log(this.feedback.sourceRelation[0].feedbackRelationSourceId);
       let parentFeedbackId = null
       if (this.isReply) {
         parentFeedbackId = parseInt(this.feedbackData.targetRelation.feedbackRelationTargetId)
