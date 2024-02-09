@@ -325,7 +325,7 @@ class FeedbackService
         ];
 
         if ($this->accountService->getAccountContactId() > 0) {
-            $filters['hideSourceId'] = $this->accountService->getAccountContactId();
+            $filters['hideSourceId'] = 0;
         }
 
         $feedbacks = $this->listFeedbacks(
