@@ -1424,10 +1424,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'FeedbackListEntry',
@@ -1461,14 +1457,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   })),
   methods: {
     canUserEdit: function canUserEdit() {
-      console.log(this.feedbackData.sourceRelation[0].feedbackRelationSourceId);
-      console.log(this.authenticatedUser.id);
-
       if (!this.feedbackData.sourceRelation[0].feedbackRelationSourceId) {
         return false;
       }
 
-      return parseInt(this.feedbackData.sourceRelation[0].feedbackRelationSourceId) === this.authenticatedUser.id;
+      return this.feedbackData.sourceRelation[0].feedbackRelationType === 'contact' && parseInt(this.feedbackData.sourceRelation[0].feedbackRelationSourceId) === this.authenticatedUser.id;
     },
     showDeleteConfirmation: function showDeleteConfirmation() {
       console.log(this.feedback.sourceRelation[0].feedbackRelationSourceId);
@@ -8360,13 +8353,6 @@ var render = function() {
     "div",
     { staticClass: "feedback clearfix", class: { loading: _vm.isLoading } },
     [
-      _vm._ssrNode(
-        "<span>" +
-          _vm._ssrEscape(
-            _vm._s(_vm.feedbackData.sourceRelation[0].feedbackRelationSourceId)
-          ) +
-          "</span> <span>test here</span> "
-      ),
       !_vm.editableFeedback && _vm.showControls && _vm.canUserEdit()
         ? _vm._ssrNode(
             '<div class="feedback-options">',

@@ -3,12 +3,8 @@
     class="feedback clearfix"
     :class="{'loading':isLoading}"
   >
-    <span>{{ feedbackData.sourceRelation[0].feedbackRelationSourceId }}</span>
-    <span>test here</span>
     <div
-      v-if="
-        !editableFeedback &&
-          showControls && canUserEdit()"
+      v-if="!editableFeedback && showControls && canUserEdit()"
       class="feedback-options"
     >
       <span
@@ -176,12 +172,11 @@ export default {
 
   methods: {
     canUserEdit () {
-      console.log(this.feedbackData.sourceRelation[0].feedbackRelationSourceId)
-      console.log(this.authenticatedUser.id)
       if (!this.feedbackData.sourceRelation[0].feedbackRelationSourceId) {
         return false
       }
-      return parseInt(this.feedbackData.sourceRelation[0].feedbackRelationSourceId) === this.authenticatedUser.id
+      return this.feedbackData.sourceRelation[0].feedbackRelationType === 'contact' &&
+          parseInt(this.feedbackData.sourceRelation[0].feedbackRelationSourceId) === this.authenticatedUser.id
     },
     showDeleteConfirmation () {
       console.log(this.feedback.sourceRelation[0].feedbackRelationSourceId)
