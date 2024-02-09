@@ -928,6 +928,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'FeedbackListEntry',
@@ -960,7 +964,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   })),
   methods: {
+    canUserEdit: function canUserEdit() {
+      console.log(this.feedbackData.sourceRelation[0].feedbackRelationSourceId);
+      console.log(this.authenticatedUser.id);
+
+      if (!this.feedbackData.sourceRelation[0].feedbackRelationSourceId) {
+        return false;
+      }
+
+      return parseInt(this.feedbackData.sourceRelation[0].feedbackRelationSourceId) === this.authenticatedUser.id;
+    },
     showDeleteConfirmation: function showDeleteConfirmation() {
+      console.log(this.feedback.sourceRelation[0].feedbackRelationSourceId);
       var parentFeedbackId = null;
 
       if (this.isReply) {
@@ -2738,7 +2753,15 @@ var render = function() {
     "div",
     { staticClass: "feedback clearfix", class: { loading: _vm.isLoading } },
     [
-      !_vm.editableFeedback && _vm.showControls
+      _c("span", [
+        _vm._v(
+          _vm._s(_vm.feedbackData.sourceRelation[0].feedbackRelationSourceId)
+        )
+      ]),
+      _vm._v(" "),
+      _c("span", [_vm._v("test here")]),
+      _vm._v(" "),
+      !_vm.editableFeedback && _vm.showControls && _vm.canUserEdit()
         ? _c("div", { staticClass: "feedback-options" }, [
             !_vm.feedbackData.isVisible
               ? _c(
