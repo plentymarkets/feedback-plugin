@@ -9,6 +9,7 @@
     <span>bb: {{ authenticatedUser.id }}</span>
     <span v-if="showControls">showControls is true</span>
     <span v-if="!editableFeedback">not editableFeedback is true</span>
+    <span>test here</span>
     <div
       v-if="
       !editableFeedback &&
