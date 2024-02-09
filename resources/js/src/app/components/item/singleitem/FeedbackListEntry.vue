@@ -3,6 +3,10 @@
     class="feedback clearfix"
     :class="{'loading':isLoading}"
   >
+    <span v-if="canUserEdit()">{{ feedbackData.sourceRelation[0].feedbackRelationSourceId }}</span>
+    <span v-if="canUserEdit()">{{ authenticatedUser.id }}</span>
+    <span v-if="showControls">showControls is true</span>
+    <span v-if="!editableFeedback">not editableFeedback is true</span>
     <div
       v-if="
       !editableFeedback &&
