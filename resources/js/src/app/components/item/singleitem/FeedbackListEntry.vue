@@ -4,7 +4,11 @@
     :class="{'loading':isLoading}"
   >
     <div
-      v-if="!editableFeedback && showControls"
+      v-if="
+      !editableFeedback &&
+      showControls &&
+      (feedbackData.sourceRelation[0].feedbackRelationSourceId &&
+      parseInt(feedbackData.sourceRelation[0].feedbackRelationSourceId) == authenticatedUser.id)"
       class="feedback-options"
     >
       <span
