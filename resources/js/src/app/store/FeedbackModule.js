@@ -125,7 +125,7 @@ const actions =
           loadPaginatedFeedbacksLock = true
           const request = $.ajax({
             type: 'GET',
-            url: 'http://localhost:8042/rest/storefront/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
+            url: 'https://feedback-api.eks-114-1.plenty.rocks/rest/storefront/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
             data: {
               feedbacksPerPage: feedbacksPerPage
             },
