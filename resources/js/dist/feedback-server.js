@@ -2409,7 +2409,7 @@ var actions = {
       loadPaginatedFeedbacksLock = true;
       var request = $.ajax({
         type: 'GET',
-        url: '/rest/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
+        url: 'http://localhost:8042/rest/storefront/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
         data: {
           feedbacksPerPage: feedbacksPerPage
         },
