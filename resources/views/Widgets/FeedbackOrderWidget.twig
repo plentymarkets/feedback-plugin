@@ -14,12 +14,11 @@
 {{ Twig.set("hideWidget", "false") }}
 {{ Twig.set("hideWhenNotCompleted", hideWhenNotCompleted | json_encode) }}
 
-<span>test if44</span><br>
-<span>test if55</span><br>
 <span>test if66</span><br>
+<span>test if77</span><br>
 {{ Twig.if("data.order is defined and data.order is not null and urls.is('confirmation')") }}
     <span>inside data.order</span><br>
-    {{ Twig.if("hideWhenNotCompleted is same as true") }}
+    {{ Twig.if("hideWhenNotCompleted is same as (true)") }}
         <span>inside hideWhenNotCompleted if</span><br>
     {{ Twig.if("data.order.dates is defined and data.order.dates is not null") }}
         <span>inside data.order.dates if</span><br>
