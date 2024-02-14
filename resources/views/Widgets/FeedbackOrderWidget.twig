@@ -3,7 +3,7 @@
 
 {% set customClass = widget.settings.customClass.mobile %}
 {% set appearance = widget.settings.appearance.mobile %}
-{% set hideWhenNotCompleted = widget.settings.hideWhenNotCompleted.mobile | default(true) %}
+{% set hideWhenNotCompleted = widget.settings.hideWhenNotCompleted.mobile %}
 {% set spacingSettings = widget.settings.spacing %}
 {% set inlineMargin    = WidgetHelper.getInlineSpacings(spacingSettings, "", spacingSettings.customMargin.mobile) %}
 {% set spacingMargin   = WidgetHelper.getSpacingClasses(spacingSettings, "",spacingSettings.customMargin.mobile) %}
