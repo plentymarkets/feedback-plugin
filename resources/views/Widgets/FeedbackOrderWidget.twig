@@ -13,11 +13,11 @@
 {{ Twig.set("options", "options | merge(configOptions)") }}
 {{ Twig.set("hideWidget", "false") }}
 
-<span>test iffff</span><br>
-<span>test if222</span><br>
 <span>test if23333333</span><br>
+<span>test if44</span><br>
 {{ Twig.if("data.order is defined and data.order is not null and urls.is('confirmation')") }}
-    {{ Twig.if("hideWhenNotCompleted == 1") }}
+    <span>inside data.order</span><br>
+    {{ Twig.if("hideWhenNotCompleted is same as 1") }}
         <span>inside hideWhenNotCompleted if</span><br>
     {{ Twig.if("data.order.dates is defined and data.order.dates is not null") }}
         <span>inside data.order.dates if</span><br>
@@ -27,12 +27,6 @@
             {{ Twig.set("hideWidget", "false") }}
         {{ Twig.endfor() }}
     {{ Twig.endif() }}
-    {{ Twig.endif() }}
-
-    {{ Twig.if("hideWidget == false") }}
-        <span>Hide3 widget e 'false'</span>
-    {{ Twig.else() }}
-        <span>Hide3 widget e 'true'</span>
     {{ Twig.endif() }}
 
     {{ Twig.if("hideWidget == 'false'") }}
