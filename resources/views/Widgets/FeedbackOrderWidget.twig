@@ -10,19 +10,16 @@
 
 {{ Twig.set("configOptions", Twig.call("feedbackServices.feedback.getOrderFrontendOptions") ) }}
 {{ Twig.set("options", options | json_encode) }}
-{{ Twig.set("options", "options | merge(configOptions)") }}
-{{ Twig.set("hideWidget", "false") }}
+{{ Twig.set("options", options | merge(configOptions)) }}
+{{ Twig.set("hideWidget", false) }}
 
 {{ Twig.if("data.order is defined and data.order is not null and urls.is('confirmation')") }}
-    {% if hideWhenNotCompleted == 1 and data.order.dates is defined and data.order.dates is not null %}
+    {{ Twig.if("hideWhenNotCompleted and data.order.dates is defined and data.order.dates is not null") }}
         {{ Twig.set("hideWidget", "true") }}
-        {% for value in data.order.dates %}
-            {% if value.typeId == 5 %}
-                {{ Twig.set("hideWidget", "false") }}
-            {% endif %}
-        {% endfor %}
-    {% endif %}
-
+        {{ Twig.for("dates", "data.order.dates", "dates.typeId == 5") }}
+            {{ Twig.set("hideWidget", false) }}
+        {{ Twig.endfor() }}
+    {{ Twig.endif() }}
     {{ Twig.if("hideWidget is same as (false)") }}
 <div class="widget widget-feedback-orderconfirmation widget-{{ appearance | default("primary") }} {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
         {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
