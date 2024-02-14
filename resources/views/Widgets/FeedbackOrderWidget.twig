@@ -20,6 +20,7 @@
     {{ Twig.if("hideWhenNotCompleted == 1") }}
         <span>inside hideWhenNotCompleted if</span><br>
     {{ Twig.if("data.order.dates is defined and data.order.dates is not null") }}
+        <span>inside data.order.dates if</span><br>
         {{ Twig.set("hideWidget", "true") }}
         {{ Twig.for("dates", "data.order.dates", "dates.typeId == 5") }}
             <span>inside for loop</span><br>
