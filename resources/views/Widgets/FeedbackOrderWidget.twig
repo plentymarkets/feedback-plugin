@@ -20,8 +20,21 @@
             {{ Twig.set("hideWidget", "false") }}
         {{ Twig.endfor() }}
     {{ Twig.endif() }}
+
     {{ Twig.if("hideWidget == 'false'") }}
-<div class="widget test2-{{ hideWidget}} widget-feedback-orderconfirmation widget-{{ appearance | default("primary") }} {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
+        <span>Hide widget e 'false'</span>
+    {{ Twig.else() }}
+        <span>Hide widget e 'true'</span>
+    {{ Twig.endif() }}
+
+    {{ Twig.if("hideWidget is same as (false)") }}
+        <span>Hide2 widget e 'false'</span>
+    {{ Twig.else() }}
+        <span>Hide2 widget e 'true'</span>
+    {{ Twig.endif() }}
+
+    {{ Twig.if("hideWidget == 'false'") }}
+<div class="widget widget-feedback-orderconfirmation widget-{{ appearance | default("primary") }} {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
         {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
     <feedback-order-container
             :variations="{{ Twig.print("data.variations | json_encode") }}"
