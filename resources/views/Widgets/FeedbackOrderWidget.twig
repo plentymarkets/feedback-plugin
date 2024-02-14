@@ -27,6 +27,12 @@
         <span>Hide widget e 'true'</span>
     {{ Twig.endif() }}
 
+    {{ Twig.if("hideWidget == false") }}
+        <span>Hide3 widget e 'false'</span>
+    {{ Twig.else() }}
+        <span>Hide3 widget e 'true'</span>
+    {{ Twig.endif() }}
+
     {{ Twig.if("hideWidget is same as (false)") }}
         <span>Hide2 widget e 'false'</span>
     {{ Twig.else() }}
