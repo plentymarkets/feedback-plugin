@@ -12,7 +12,7 @@
 {{ Twig.set("options", options | json_encode) }}
 {{ Twig.set("options", "options | merge(configOptions)") }}
 {{ Twig.set("hideWidget", "false") }}
-{{ Twig.set("hideWhenNotCompleted", hideWhenNotCompleted | json_encode) }}
+{{ Twig.set("hideWhenNotCompleted", hideWhenNotCompleted | raw) }}
 
 <span>test if66</span><br>
 <span>test if77</span><br>
