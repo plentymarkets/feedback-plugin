@@ -15,14 +15,17 @@
 
 <span>test iffff</span><br>
 <span>test if222</span><br>
+<span>test if23333333</span><br>
 {{ Twig.if("data.order is defined and data.order is not null and urls.is('confirmation')") }}
-    {{ Twig.if("hideWhenNotCompleted is same as (true) and data.order.dates is defined and data.order.dates is not null") }}
-        <span>inside if</span><br>
+    {{ Twig.if("hideWhenNotCompleted == 1") }}
+        <span>inside hideWhenNotCompleted if</span><br>
+    {{ Twig.if("data.order.dates is defined and data.order.dates is not null") }}
         {{ Twig.set("hideWidget", "true") }}
         {{ Twig.for("dates", "data.order.dates", "dates.typeId == 5") }}
             <span>inside for loop</span><br>
             {{ Twig.set("hideWidget", "false") }}
         {{ Twig.endfor() }}
+    {{ Twig.endif() }}
     {{ Twig.endif() }}
 
     {{ Twig.if("hideWidget == false") }}
