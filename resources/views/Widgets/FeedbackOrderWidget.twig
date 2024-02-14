@@ -14,8 +14,6 @@
 {{ Twig.set("hideWidget", false | json_encode) }}
 {{ Twig.set("hideWhenNotCompleted", hideWhenNotCompleted | json_encode) }}
 
-<span>new version</span>
-
 {{ Twig.if("data.order is defined and data.order is not null and urls.is('confirmation')") }}
     {{ Twig.if("hideWhenNotCompleted is same as (true)") }}
     {{ Twig.if("data.order.dates is defined and data.order.dates is not null") }}
