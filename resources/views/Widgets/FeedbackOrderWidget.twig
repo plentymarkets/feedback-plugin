@@ -14,6 +14,7 @@
 {{ Twig.set("hideWidget", "false") }}
 
 <span>test iffff</span><br>
+<span>test if222</span><br>
 {{ Twig.if("data.order is defined and data.order is not null and urls.is('confirmation')") }}
     {{ Twig.if("hideWhenNotCompleted is same as (true) and data.order.dates is defined and data.order.dates is not null") }}
         <span>inside if</span><br>
