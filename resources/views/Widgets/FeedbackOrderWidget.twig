@@ -33,6 +33,12 @@
         <span>Hide3 widget e 'true'</span>
     {{ Twig.endif() }}
 
+    {{ Twig.if("hideWidget is sameas (false)") }}
+    <span>Hide4 widget e 'false'</span>
+    {{ Twig.else() }}
+    <span>Hide4 widget e 'true'</span>
+    {{ Twig.endif() }}
+
     {{ Twig.if("hideWidget is same as (false)") }}
         <span>Hide2 widget e 'false'</span>
     {{ Twig.else() }}
