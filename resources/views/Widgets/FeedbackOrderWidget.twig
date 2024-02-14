@@ -12,9 +12,10 @@
 {{ Twig.set("options", options | json_encode) }}
 {{ Twig.set("options", "options | merge(configOptions)") }}
 {{ Twig.set("hideWidget", "false") }}
+{{ Twig.set("hideWhenNotCompleted", hideWhenNotCompleted) }}
 
-<span>test if23333333</span><br>
 <span>test if44</span><br>
+<span>test if55</span><br>
 {{ Twig.if("data.order is defined and data.order is not null and urls.is('confirmation')") }}
     <span>inside data.order</span><br>
     {{ Twig.if("hideWhenNotCompleted is same as 1") }}
