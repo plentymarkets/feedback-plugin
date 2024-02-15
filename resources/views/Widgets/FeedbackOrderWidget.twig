@@ -15,13 +15,14 @@
 {{ Twig.set("hideWhenNotCompleted", hideWhenNotCompleted | json_encode) }}
 
 {{ Twig.if("data.order is defined and data.order is not null and urls.is('confirmation')") }}
-    {{ Twig.if("hideWhenNotCompleted is same as (true)") }}
-    {{ Twig.if("data.order.dates is defined and data.order.dates is not null") }}
+    {{ Twig.if("hideWhenNotCompleted is same as (true) and data.order.dates is defined and data.order.dates is not null") }}
+        <span>goes to line 19</span>
         {{ Twig.set("hideWidget", true | json_encode) }}
         {{ Twig.for("dates", "data.order.dates", "dates.typeId == '5'") }}
+            <span>goes to for loop line 22</span>
             {{ Twig.set("hideWidget", false | json_encode) }}
         {{ Twig.endfor() }}
-    {{ Twig.endif() }}
+
     {{ Twig.endif() }}
 
     {{ Twig.if("hideWidget is same as (false)") }}
