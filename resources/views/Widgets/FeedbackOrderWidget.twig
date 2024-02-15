@@ -18,20 +18,7 @@
     {{ Twig.if("hideWhenNotCompleted is same as (true) and data.order.dates is defined and data.order.dates is not null") }}
         <span>the hideWhenNotCompleted is true</span>
         {{ Twig.set("hideWidget", true | json_encode) }}
-        {{ Twig.for("dates", "data.order.dates") }}
-            <span>enters the for loop hereeee</span>
-            {{ Twig.if("dates.typeId is same as (5)") }}
-                <span>goes to the condition without strings</span>
-            {{ Twig.endif() }}
-
-            {{ Twig.if("dates.typeId is same as ('5')") }}
-                <span>goes to the condition with strings</span>
-            {{ Twig.endif() }}
-
-            {{ Twig.if("dates.typeId == 5") }}
-            <span>goes to the condition == 5</span>
-            {{ Twig.endif() }}
-
+        {{ Twig.for("dates", "data.order.dates", "dates.typeId is same as (5)") }}
             {{ Twig.set("hideWidget", false | json_encode) }}
         {{ Twig.endfor() }}
 
