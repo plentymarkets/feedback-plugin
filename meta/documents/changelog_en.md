@@ -2,6 +2,10 @@
 
 ## v4.0.10 (2024-01-XX) <a href="https://github.com/plentymarkets/feedback-plugin/compare/4.0.9...4.0.10" target="_blank" rel="noopener"><b>Overview of all changes</b></a>
 
+### Added
+
+-  Widget setting to hide the feedback widget on the order confirmation page if the shipping date has not been set yet. We would like to thank user @MaxBentz for their contribution.
+
 ### Changed
 
 -  The rating on the category pages is now loaded via   the item list (itemList).
