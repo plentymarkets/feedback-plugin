@@ -16,7 +16,6 @@
 
 {{ Twig.if("data.order is defined and data.order is not null and urls.is('confirmation')") }}
     {{ Twig.if("hideWhenNotCompleted is same as (true) and data.order.dates is defined and data.order.dates is not null") }}
-        <span>the hideWhenNotCompleted is true</span>
         {{ Twig.set("hideWidget", true | json_encode) }}
         {{ Twig.for("dates", "data.order.dates", "dates.typeId is same as (5)") }}
             {{ Twig.set("hideWidget", false | json_encode) }}
