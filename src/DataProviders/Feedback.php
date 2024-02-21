@@ -23,11 +23,9 @@ use Plenty\Modules\Item\Variation\Contracts\VariationRepositoryContract;
 use Plenty\Modules\Order\Contracts\OrderRepositoryContract;
 use Plenty\Plugin\Http\Request;
 use Plenty\Plugin\Templates\Twig;
-use Plenty\Plugin\Log\Loggable;
 
 class Feedback
 {
-    use Loggable;
     /**
      * @param $item
      * @param Request $request
@@ -104,30 +102,18 @@ class Feedback
             // get variations bought
             $hasPurchased = false;
             $purchasedVariations = [];
-            if($itemId == 54789) {
-                $this->getLogger(__METHOD__)->error('Step 1:');
-            }
             do {
-                if($itemId == 54789) {
-                    $this->getLogger(__METHOD__)->error('Step 2:'.$page);
-                }
                 $orders = pluginApp(OrderRepositoryContract::class)->allOrdersByContact($accountService->getAccountContactId(), $page, 20);
                 foreach ($orders->getResult() as $order) {
                     foreach ($order->orderItems as $orderItem) {
                         if ($itemId == $orderItem->variation->itemId) {
                             $hasPurchased = true;
-                            if($itemId == 54789) {
-                                $this->getLogger(__METHOD__)->error('Step 3:'.$page);
-                            }
                             break 2;
                         }
                     }
                 }
                 $page++;
             } while(!$orders->isLastPage() && $hasPurchased == false);
-            if($itemId == 54789) {
-                $this->getLogger(__METHOD__)->error('Step 4:'.$page);
-            }
 
             $authenticatedContact['hasPurchased'] = $hasPurchased;
 
