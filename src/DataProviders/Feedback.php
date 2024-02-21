@@ -98,18 +98,24 @@ class Feedback
 
         if($allowFeedbacksOnlyIfPurchased && $accountService->getIsAccountLoggedIn()) {
 
+            $page = 1;
             // get variations bought
-            $orders = pluginApp(OrderRepositoryContract::class)->allOrdersByContact($accountService->getAccountContactId());
-
+            $hasPurchased = false;
             $purchasedVariations = [];
-
-            foreach ($orders->getResult() as $order) {
-                foreach ($order->orderItems as $orderItem) {
-                    $purchasedVariations[] = $orderItem->variation->itemId;
+            do {
+                $orders = pluginApp(OrderRepositoryContract::class)->allOrdersByContact($accountService->getAccountContactId(), $page, 20);
+                foreach ($orders->getResult() as $order) {
+                    foreach ($order->orderItems as $orderItem) {
+                        if ($itemId == $orderItem->variation->itemId) {
+                            $hasPurchased = true;
+                            break 2;
+                        }
+                    }
                 }
-            }
+                $page++;
+            } while(!$orders->isLastPage() && $hasPurchased == false);
 
-            $authenticatedContact['hasPurchased'] = in_array($itemId, $purchasedVariations) ? true : false;
+            $authenticatedContact['hasPurchased'] = $hasPurchased;
 
         }
 
