@@ -210,7 +210,7 @@ class FeedbackService
             $options['isVisible'] = $this->determineVisibility($autoreleaseFeedbacks, $creatorContactId);
 
             $this->getLogger(__METHOD__)->debug('Feedback::Debug.determineVisibilityResponse', [
-                'options' => $options
+                'options' => 123
             ]);
 
             $feedbackRepository = $this->feedbackRepository;
