@@ -209,6 +209,10 @@ class FeedbackService
             $options['feedbackRelationTargetType'] = 'feedback';
             $options['isVisible'] = $this->determineVisibility($autoreleaseFeedbacks, $creatorContactId);
 
+            $this->getLogger(__METHOD__)->debug('Feedback::Debug.determineVisibilityResponse', [
+                'options' => $options
+            ]);
+
             $feedbackRepository = $this->feedbackRepository;
             $feedbackObject = array_merge($this->request->all(), $options);
 
