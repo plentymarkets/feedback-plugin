@@ -144,15 +144,16 @@ class FeedbackService
             'ratingRelationTargetType' => 'feedbackRating'
         ];
 
+        $autoreleaseFeedbacks = (int)$this->coreHelper->configValue(
+            FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY
+        );
         // Check the type and set the target accordingly
         if ($this->request->input('type') === 'review') {
             $options['feedbackRelationTargetType'] = 'variation';
 
             // Limit the feedbacks count of a user per item
             $numberOfFeedbacks = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_NUMBER_OF_FEEDBACKS);
-            $autoreleaseFeedbacks = (int)$this->coreHelper->configValue(
-                FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY
-            );
+
             $options['isVisible'] = $this->determineVisibility($autoreleaseFeedbacks, $creatorContactId);
             $allowNoRatingFeedbacks = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_NO_RATING_FEEDBACK) === 'true';
             $allowFeedbacksOnlyIfPurchased = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_FEEDBACK_ONLY_IF_PURCHASED) === 'true';
@@ -206,7 +207,7 @@ class FeedbackService
             return $result;
         } elseif ($this->request->input('type') === 'reply') {
             $options['feedbackRelationTargetType'] = 'feedback';
-            $options['isVisible'] = true;
+            $options['isVisible'] = $this->determineVisibility($autoreleaseFeedbacks, $creatorContactId);
 
             $feedbackRepository = $this->feedbackRepository;
             $feedbackObject = array_merge($this->request->all(), $options);
