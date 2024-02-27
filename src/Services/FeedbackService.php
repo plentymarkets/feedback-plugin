@@ -14,6 +14,8 @@ use Plenty\Modules\Item\Attribute\Contracts\AttributeNameRepositoryContract;
 use Plenty\Modules\Item\Attribute\Contracts\AttributeValueNameRepositoryContract;
 use Plenty\Modules\Item\Item\Contracts\ItemRepositoryContract;
 use Plenty\Modules\Item\Variation\Contracts\VariationRepositoryContract;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Plenty\Modules\Feedback\Models\Feedback;
 use Plenty\Plugin\Log\Loggable;
 
 
@@ -206,12 +208,15 @@ class FeedbackService
 
             return $result;
         } elseif ($this->request->input('type') === 'reply') {
+            $feedbackId     = (int) $options['feedbackRelationTargetId'];
+            $feedbackExists = $this->feedbackExists($feedbackId);
+
+            if (!$feedbackExists) {
+                return 'Feedback does not exist.';
+            }
+
             $options['feedbackRelationTargetType'] = 'feedback';
             $options['isVisible'] = $this->determineVisibility($autoreleaseFeedbacks, $creatorContactId);
-
-            $this->getLogger(__METHOD__)->debug('Feedback::Debug.determineVisibilityResponse', [
-                'options' => 123
-            ]);
 
             $feedbackRepository = $this->feedbackRepository;
             $feedbackObject = array_merge($this->request->all(), $options);
@@ -637,6 +642,10 @@ class FeedbackService
         return $order;
     }
 
+    /**
+     * @param $order
+     * @return int|mixed
+     */
     private function getUserIdFromOrder($order)
     {
         if ($order !== null) {
@@ -648,5 +657,29 @@ class FeedbackService
         }
 
         return 0;
+    }
+
+    /**
+     * @param int $feedbackId
+     *
+     * @return bool
+     */
+    private function feedbackExists(int $feedbackId): bool
+    {
+        try {
+            /** @var Feedback $feedback */
+            $feedback = $this->feedbackRepository->getFeedback($feedbackId);
+        } catch (ModelNotFoundException) {}
+
+        $this->getLogger(__METHOD__)->debug('Feedback::Debug.feedbackExistsResult', [
+            'expectedFeedbackId' => $feedbackId,
+            'obtainedFeedbackId' => $feedback->id
+        ]);
+
+        if ($feedback instanceof Feedback) {
+            return true;
+        }
+
+        return false;
     }
 }
