@@ -669,7 +669,7 @@ class FeedbackService
         try {
             /** @var Feedback $feedback */
             $feedback = $this->feedbackRepository->getFeedback($feedbackId);
-        } catch (ModelNotFoundException) {}
+        } catch (ModelNotFoundException $exception) {}
 
         $this->getLogger(__METHOD__)->debug('Feedback::Debug.feedbackExistsResult', [
             'expectedFeedbackId' => $feedbackId,
