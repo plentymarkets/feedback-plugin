@@ -208,12 +208,12 @@ class FeedbackService
 
             return $result;
         } elseif ($this->request->input('type') === 'reply') {
-//            $feedbackId     = (int) $options['feedbackRelationTargetId'];
-//            $feedbackExists = $this->feedbackExists($feedbackId);
-//
-//            if (!$feedbackExists) {
-//                return 'Feedback does not exist.';
-//            }
+            $feedbackId     = (int) $options['feedbackRelationTargetId'];
+            $feedbackExists = $this->feedbackExists($feedbackId);
+
+            if (!$feedbackExists) {
+                return 'Feedback does not exist.';
+            }
 
             $options['feedbackRelationTargetType'] = 'feedback';
             $options['isVisible'] = $this->determineVisibility($autoreleaseFeedbacks, $creatorContactId);
@@ -667,8 +667,11 @@ class FeedbackService
     private function feedbackExists(int $feedbackId): bool
     {
         try {
+            /** @var FeedbackRepositoryContract $feedbackRepository */
+            $feedbackRepository = pluginApp(FeedbackRepositoryContract::class);
+
             /** @var Feedback $feedback */
-            $feedback = $this->feedbackRepository->getFeedback($feedbackId);
+            $feedback = $feedbackRepository->getFeedback($feedbackId);
         } catch (ModelNotFoundException) {}
 
         $this->getLogger(__METHOD__)->debug('Feedback::Debug.feedbackExistsResult', [
