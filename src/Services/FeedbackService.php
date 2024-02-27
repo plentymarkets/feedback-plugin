@@ -673,7 +673,7 @@ class FeedbackService
 
         $this->getLogger(__METHOD__)->debug('Feedback::Debug.feedbackExistsResult', [
             'expectedFeedbackId' => $feedbackId,
-            'obtainedFeedbackId' => $feedback->id
+            'obtainedFeedbackId' => $feedback->id ?? null
         ]);
 
         if ($feedback instanceof Feedback) {
