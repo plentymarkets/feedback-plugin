@@ -4,7 +4,7 @@
     :class="{'loading':isLoading}"
   >
     <div
-      v-if="!editableFeedback && showControls && canUserEditReply()"
+      v-if="!editableFeedback && showControls || canUserEditReply()"
       class="feedback-options"
     >
       <span

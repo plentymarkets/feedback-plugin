@@ -8378,7 +8378,7 @@ var render = function() {
     "div",
     { staticClass: "feedback clearfix", class: { loading: _vm.isLoading } },
     [
-      !_vm.editableFeedback && _vm.showControls && _vm.canUserEditReply()
+      (!_vm.editableFeedback && _vm.showControls) || _vm.canUserEditReply()
         ? _vm._ssrNode(
             '<div class="feedback-options">',
             "</div>",
