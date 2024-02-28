@@ -1038,6 +1038,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       this.editableFeedback = null;
+    },
+    canUserEditReply: function canUserEditReply() {
+      if (this.isReply && (this.authenticatedUser.isLoggedIn || this.options.allowGuestFeedbacks) && this.feedbackData.sourceRelation[0].feedbackRelationType === 'contact' && parseInt(this.feedbackData.sourceRelation[0].feedbackRelationSourceId) === this.authenticatedUser.id) {
+        return true;
+      }
+
+      return false;
     }
   }
 });
@@ -2764,7 +2771,7 @@ var render = function() {
     "div",
     { staticClass: "feedback clearfix", class: { loading: _vm.isLoading } },
     [
-      !_vm.editableFeedback && _vm.showControls
+      !_vm.editableFeedback && _vm.showControls && _vm.canUserEditReply()
         ? _c("div", { staticClass: "feedback-options" }, [
             !_vm.feedbackData.isVisible
               ? _c(
