@@ -209,11 +209,11 @@ class FeedbackService
             return $result;
         } elseif ($this->request->input('type') === 'reply') {
             $feedbackId     = (int) $options['feedbackRelationTargetId'];
-            $feedbackExists = $this->feedbackExists($feedbackId);
-
-            if (!$feedbackExists) {
-                return 'Feedback does not exist.';
-            }
+//            $feedbackExists = $this->feedbackExists($feedbackId);
+//
+//            if (!$feedbackExists) {
+//                return 'Feedback does not exist.';
+//            }
 
             $options['feedbackRelationTargetType'] = 'feedback';
             $options['isVisible'] = $this->determineVisibility($autoreleaseFeedbacks, $creatorContactId);
