@@ -667,8 +667,9 @@ class FeedbackService
     private function feedbackExists(int $feedbackId): bool
     {
         try {
-            /** @var Feedback $feedback */
-            $feedback = $this->feedbackRepository->getFeedback($feedbackId);
+            /** @var FeedbackRepositoryContract $feedbackRepository */
+            $feedbackRepository = pluginApp(FeedbackRepositoryContract::class);
+            $feedback           = $feedbackRepository->getFeedback($feedbackId);
         } catch (ModelNotFoundException $exception) {}
 
         $this->getLogger(__METHOD__)->debug('Feedback::Debug.feedbackExistsResult', [
