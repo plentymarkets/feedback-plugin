@@ -2771,7 +2771,7 @@ var render = function() {
     "div",
     { staticClass: "feedback clearfix", class: { loading: _vm.isLoading } },
     [
-      (!_vm.editableFeedback && _vm.showControls) || _vm.canUserEditReply()
+      !_vm.editableFeedback && _vm.showControls && _vm.canUserEditReply()
         ? _c("div", { staticClass: "feedback-options" }, [
             !_vm.feedbackData.isVisible
               ? _c(
