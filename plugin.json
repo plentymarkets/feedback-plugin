@@ -10,8 +10,8 @@
     "author": "plentysystems AG",
     "type": "general",
     "require": {
-        "IO": ">=5.0.62",
-        "Ceres": ">=5.0.62"
+        "IO": ">=5.0.61",
+        "Ceres": ">=5.0.61"
     },
     "platform": {
         "php": ">=7.3 <8.1"
