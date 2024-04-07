@@ -361,7 +361,8 @@ class FeedbackService
                 'page' => $page,
                 'lastPage' => $feedbacks->getLastPage(),
                 'isLastPage' => $feedbacks->isLastPage()
-            ]
+            ],
+            'frontendSettings' =>$this->getFrontendOptions()
         ];
     }
 
