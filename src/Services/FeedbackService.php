@@ -397,7 +397,6 @@ class FeedbackService
         $isLoggedIn = !!$contactId;
         $hasPurchased = [];
         $limitReached = [];
-        $userFeedbacks = [];
 
         if (count($variationIds)) {
             if ($isLoggedIn && $allowFeedbacksOnlyIfPurchased) {
@@ -424,30 +423,12 @@ class FeedbackService
             }
         }
 
-        if ($isLoggedIn && count($itemIds) === 1 && count($variationIds) === 1) {
-            $filters = [
-                'itemId' => $itemId,
-                'sourceId' => $contactId
-            ];
-
-            $feedbacks = $this->listFeedbacks(1, 50, [], $filters);
-            $userFeedbacks = $feedbacks->getResult();
-
-            foreach ($userFeedbacks as &$feedback) {
-                if ($feedback->targetRelation->feedbackRelationType === 'variation') {
-                    $feedback->targetRelation->variationAttributes = json_decode(
-                        $feedback->targetRelation->targetRelationName
-                    );
-                }
-            }
-        }
-
         return [
             'id' => $contactId,
             'isLoggedIn' => $isLoggedIn,
             'limitReached' => $limitReached,
             'hasPurchased' => $hasPurchased,
-            'feedbacks' => $userFeedbacks
+            'feedbacks' => []
         ];
     }
 

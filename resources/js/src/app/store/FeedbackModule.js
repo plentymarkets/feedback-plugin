@@ -109,7 +109,7 @@ const actions =
 
           return $.ajax({
             type: 'GET',
-            url: '/rest/feedbacks/feedback/helper/counts/' + itemId,
+            url: '/rest/storefront/feedbacks/feedback/helper/counts/' + itemId,
             success: function (data) {
               commit('setFeedbackCounts', data.counts)
             },
@@ -125,7 +125,7 @@ const actions =
           loadPaginatedFeedbacksLock = true
           const request = $.ajax({
             type: 'GET',
-            url: '/rest/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
+            url: '/rest/storefront/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
             data: {
               feedbacksPerPage: feedbacksPerPage
             },
