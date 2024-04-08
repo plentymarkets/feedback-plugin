@@ -249,7 +249,8 @@ export default {
         allowNoRatingFeedback: this.options.allowNoRatingFeedback,
         numberOfFeedbacks: this.options.numberOfFeedbacks,
         allowGuestFeedbacks: this.options.allowGuestFeedbacks
-      }
+      },
+      language: this.options.language
     }
   },
 
@@ -311,7 +312,8 @@ export default {
       loadFeedbacks () {
         return this.$store.dispatch('loadPaginatedFeedbacks', {
           itemId: this.itemId,
-          feedbacksPerPage: this.options.feedbacksPerPage
+          feedbacksPerPage: this.options.feedbacksPerPage,
+          language: this.options.language
         })
       },
 

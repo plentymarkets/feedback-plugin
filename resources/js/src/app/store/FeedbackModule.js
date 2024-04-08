@@ -120,12 +120,15 @@ const actions =
         }
       },
 
-      loadPaginatedFeedbacks ({ commit, state }, { itemId, feedbacksPerPage }) {
+      loadPaginatedFeedbacks ({ commit, state }, { itemId, feedbacksPerPage, language }) {
         if (!loadPaginatedFeedbacksLock) {
           loadPaginatedFeedbacksLock = true
           const request = $.ajax({
             type: 'GET',
             url: '/rest/storefront/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
+            beforeSend: function (xhr) {
+              xhr.setRequestHeader('lang', language)
+            },
             data: {
               feedbacksPerPage: feedbacksPerPage
             },
