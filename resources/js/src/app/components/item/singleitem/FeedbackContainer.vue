@@ -249,7 +249,8 @@ export default {
         allowNoRatingFeedback: this.options.allowNoRatingFeedback,
         numberOfFeedbacks: this.options.numberOfFeedbacks,
         allowGuestFeedbacks: this.options.allowGuestFeedbacks
-      }
+      },
+      language: this.options.language
     }
   },
 

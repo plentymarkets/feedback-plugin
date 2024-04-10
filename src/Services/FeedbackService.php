@@ -542,12 +542,14 @@ class FeedbackService
         $numberOfFeedbacks = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_NUMBER_OF_FEEDBACKS);
         $allowFeedbacksOnlyIfPurchased = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_FEEDBACK_ONLY_IF_PURCHASED);
         $allowNoRatingFeedback = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_NO_RATING_FEEDBACK);
+        $language = $this->localizationRepository->getLanguage();
 
         return [
                 "allowFeedbacksOnlyIfPurchased" => $allowFeedbacksOnlyIfPurchased,
                 "allowNoRatingFeedback" => $allowNoRatingFeedback,
                 "numberOfFeedbacks" => $numberOfFeedbacks,
-                "allowGuestFeedbacks" => $allowGuestFeedbacks
+                "allowGuestFeedbacks" => $allowGuestFeedbacks,
+                "language" => $language
         ];
     }
 
