@@ -24,7 +24,7 @@
       </div>
 
       <p
-        v-if="ratingMissing && !options.allowNoRatingFeedback"
+        v-if="ratingMissing"
         class="feedback-error alert alert-danger"
       >
         {{ $translate("Feedback::Feedback.ratingRequired") }}
@@ -186,7 +186,7 @@ export default {
         return
       }
 
-      if (!this.options.allowNoRatingFeedback && this.feedback.ratingValue <= 0) {
+      if (this.feedback.ratingValue <= 0) {
         this.ratingMissing = true
         return
       }
