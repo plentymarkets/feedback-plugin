@@ -8,7 +8,8 @@
 
 ### Changed
 
--  The rating on the category pages is now loaded via   the item list (itemList).
+- The rating on the category pages is now loaded via   the item list (itemList).
+- Removed `Allow reviews without rating` option from plugin configuration.
 
 ## v4.0.9 (2023-06-19) <a href="https://github.com/plentymarkets/feedback-plugin/compare/4.0.8...4.0.9" target="_blank" rel="noopener"><b>Overview of all changes</b></a>
 
