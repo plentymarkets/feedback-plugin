@@ -157,10 +157,10 @@ class FeedbackService
             $numberOfFeedbacks = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_NUMBER_OF_FEEDBACKS);
 
             $options['isVisible'] = $this->determineVisibility($autoreleaseFeedbacks, $creatorContactId);
-            $allowNoRatingFeedbacks = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_NO_RATING_FEEDBACK) === 'true';
+
             $allowFeedbacksOnlyIfPurchased = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_FEEDBACK_ONLY_IF_PURCHASED) === 'true';
 
-            if ($allowNoRatingFeedbacks && empty($this->request->input('ratingValue'))) {
+            if (empty($this->request->input('ratingValue'))) {
                 return 'Can\'t create review with no rating';
             }
 
@@ -570,11 +570,9 @@ class FeedbackService
         $allowGuestFeedbacks = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_GUEST_FEEDBACKS);
         $numberOfFeedbacks = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_NUMBER_OF_FEEDBACKS);
         $allowFeedbacksOnlyIfPurchased = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_FEEDBACK_ONLY_IF_PURCHASED);
-        $allowNoRatingFeedback = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_NO_RATING_FEEDBACK);
 
         return [
                 "allowFeedbacksOnlyIfPurchased" => $allowFeedbacksOnlyIfPurchased,
-                "allowNoRatingFeedback" => $allowNoRatingFeedback,
                 "numberOfFeedbacks" => $numberOfFeedbacks,
                 "allowGuestFeedbacks" => $allowGuestFeedbacks
         ];

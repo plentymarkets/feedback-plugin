@@ -256,7 +256,7 @@ export default {
       },
       optionsForm: {
         allowFeedbacksOnlyIfPurchased: this.options.allowFeedbacksOnlyIfPurchased,
-        allowNoRatingFeedback: this.options.allowNoRatingFeedback,
+
         numberOfFeedbacks: this.options.numberOfFeedbacks,
         allowGuestFeedbacks: this.options.allowGuestFeedbacks
       }
