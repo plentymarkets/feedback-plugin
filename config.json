@@ -32,14 +32,7 @@
                     "defaultValue": 1,
                     "label": "Config.numberOfFeedbacks"
                 },
-                "allowNoRatingFeedback": {
-                    "type": "checkBox",
-                    "required": false,
-                    "label": "Config.allowNoRatingFeedback",
-                    "options": {
-                        "defaultValue": "false"
-                    }
-                },
+
                 "allowFeedbacksOnlyIfPurchased": {
                     "type": "checkBox",
                     "required": false,

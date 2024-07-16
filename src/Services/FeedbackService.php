@@ -14,6 +14,8 @@ use Plenty\Modules\Item\Attribute\Contracts\AttributeNameRepositoryContract;
 use Plenty\Modules\Item\Attribute\Contracts\AttributeValueNameRepositoryContract;
 use Plenty\Modules\Item\Item\Contracts\ItemRepositoryContract;
 use Plenty\Modules\Item\Variation\Contracts\VariationRepositoryContract;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Plenty\Modules\Feedback\Models\Feedback;
 use Plenty\Plugin\Log\Loggable;
 
 
@@ -144,20 +146,21 @@ class FeedbackService
             'ratingRelationTargetType' => 'feedbackRating'
         ];
 
+        $autoreleaseFeedbacks = (int)$this->coreHelper->configValue(
+            FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY
+        );
         // Check the type and set the target accordingly
         if ($this->request->input('type') === 'review') {
             $options['feedbackRelationTargetType'] = 'variation';
 
             // Limit the feedbacks count of a user per item
             $numberOfFeedbacks = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_NUMBER_OF_FEEDBACKS);
-            $autoreleaseFeedbacks = (int)$this->coreHelper->configValue(
-                FeedbackCoreHelper::KEY_RELEASE_FEEDBACKS_AUTOMATICALLY
-            );
+
             $options['isVisible'] = $this->determineVisibility($autoreleaseFeedbacks, $creatorContactId);
-            $allowNoRatingFeedbacks = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_NO_RATING_FEEDBACK) === 'true';
+
             $allowFeedbacksOnlyIfPurchased = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_FEEDBACK_ONLY_IF_PURCHASED) === 'true';
 
-            if ($allowNoRatingFeedbacks && empty($this->request->input('ratingValue'))) {
+            if (empty($this->request->input('ratingValue'))) {
                 return 'Can\'t create review with no rating';
             }
 
@@ -205,8 +208,15 @@ class FeedbackService
 
             return $result;
         } elseif ($this->request->input('type') === 'reply') {
+            $feedbackId     = (int) $options['feedbackRelationTargetId'];
+            $feedbackExists = $this->feedbackExists($feedbackId);
+
+            if (!$feedbackExists) {
+                return 'Feedback does not exist.';
+            }
+
             $options['feedbackRelationTargetType'] = 'feedback';
-            $options['isVisible'] = true;
+            $options['isVisible'] = $this->determineVisibility($autoreleaseFeedbacks, $creatorContactId);
 
             $feedbackRepository = $this->feedbackRepository;
             $feedbackObject = array_merge($this->request->all(), $options);
@@ -541,12 +551,10 @@ class FeedbackService
         $allowGuestFeedbacks = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_GUEST_FEEDBACKS);
         $numberOfFeedbacks = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_NUMBER_OF_FEEDBACKS);
         $allowFeedbacksOnlyIfPurchased = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_FEEDBACK_ONLY_IF_PURCHASED);
-        $allowNoRatingFeedback = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_NO_RATING_FEEDBACK);
         $language = $this->localizationRepository->getLanguage();
 
         return [
                 "allowFeedbacksOnlyIfPurchased" => $allowFeedbacksOnlyIfPurchased,
-                "allowNoRatingFeedback" => $allowNoRatingFeedback,
                 "numberOfFeedbacks" => $numberOfFeedbacks,
                 "allowGuestFeedbacks" => $allowGuestFeedbacks,
                 "language" => $language
@@ -615,6 +623,10 @@ class FeedbackService
         return $order;
     }
 
+    /**
+     * @param $order
+     * @return int|mixed
+     */
     private function getUserIdFromOrder($order)
     {
         if ($order !== null) {
@@ -626,5 +638,29 @@ class FeedbackService
         }
 
         return 0;
+    }
+
+    /**
+     * @param int $feedbackId
+     *
+     * @return bool
+     */
+    private function feedbackExists(int $feedbackId): bool
+    {
+        try {
+            /** @var Feedback $feedback */
+            $feedback = $this->feedbackRepository->getFeedback($feedbackId);
+        } catch (ModelNotFoundException $exception) {}
+
+        $this->getLogger(__METHOD__)->debug('Feedback::Debug.feedbackExistsResult', [
+            'expectedFeedbackId' => $feedbackId,
+            'obtainedFeedbackId' => $feedback->id ?? null
+        ]);
+
+        if ($feedback instanceof Feedback) {
+            return true;
+        }
+
+        return false;
     }
 }
