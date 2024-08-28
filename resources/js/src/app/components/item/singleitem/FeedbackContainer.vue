@@ -350,6 +350,7 @@ export default {
           const jsonld = {
             '@context': 'http://schema.org/',
             '@type': 'Product',
+            'name': this.$store.getters[this.itemId + '/currentItemVariation'].texts.name1
             '@id': this.variationId.toString(),
             aggregateRating: {
               '@type': 'AggregateRating',
