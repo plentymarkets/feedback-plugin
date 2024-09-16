@@ -746,16 +746,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -790,7 +780,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         allowNoRatingFeedback: this.options.allowNoRatingFeedback,
         numberOfFeedbacks: this.options.numberOfFeedbacks,
         allowGuestFeedbacks: this.options.allowGuestFeedbacks
-      }
+      },
+      language: this.options.language
     };
   },
   computed: _objectSpread({
@@ -1466,7 +1457,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   })),
   methods: {
+    canUserEdit: function canUserEdit() {
+      if (!this.feedbackData.sourceRelation[0].feedbackRelationSourceId) {
+        return false;
+      }
+
+      return this.feedbackData.sourceRelation[0].feedbackRelationType === 'contact' && parseInt(this.feedbackData.sourceRelation[0].feedbackRelationSourceId) === this.authenticatedUser.id;
+    },
     showDeleteConfirmation: function showDeleteConfirmation() {
+      console.log(this.feedback.sourceRelation[0].feedbackRelationSourceId);
       var parentFeedbackId = null;
 
       if (this.isReply) {
@@ -2391,7 +2390,7 @@ var actions = {
       countsLoaded = true;
       return $.ajax({
         type: 'GET',
-        url: '/rest/feedbacks/feedback/helper/counts/' + itemId,
+        url: '/rest/storefront/feedbacks/feedback/helper/counts/' + itemId,
         success: function success(data) {
           commit('setFeedbackCounts', data.counts);
         },
@@ -2405,13 +2404,17 @@ var actions = {
     var commit = _ref5.commit,
         state = _ref5.state;
     var itemId = _ref6.itemId,
-        feedbacksPerPage = _ref6.feedbacksPerPage;
+        feedbacksPerPage = _ref6.feedbacksPerPage,
+        language = _ref6.language;
 
     if (!loadPaginatedFeedbacksLock) {
       loadPaginatedFeedbacksLock = true;
       var request = $.ajax({
         type: 'GET',
-        url: '/rest/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
+        url: '/rest/storefront/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
+        beforeSend: function beforeSend(xhr) {
+          xhr.setRequestHeader('lang', language);
+        },
         data: {
           feedbacksPerPage: feedbacksPerPage
         },
@@ -6887,7 +6890,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "3ce42ced"
+  "1a304a59"
   
 )
 
@@ -6924,7 +6927,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "ce4867be"
+  "12bd5335"
   
 )
 
@@ -6961,7 +6964,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "48b5727a"
+  "634158d7"
   
 )
 
@@ -6998,7 +7001,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "0e3b4a1c"
+  "17a04c5e"
   
 )
 
@@ -7035,7 +7038,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "2cdb81cc"
+  "4b997338"
   
 )
 
@@ -7072,7 +7075,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "1c6ee336"
+  "b7ea156c"
   
 )
 
@@ -7109,7 +7112,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "a03f76f2"
+  "3b24c99b"
   
 )
 
@@ -7146,7 +7149,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "6873b82a"
+  "6859feff"
   
 )
 
@@ -7183,7 +7186,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "148c5a8c"
+  "db64a464"
   
 )
 
@@ -7992,25 +7995,9 @@ var render = function() {
       _vm._ssrNode(" <hr> "),
       _c("feedback-list", {
         attrs: {
-          feedbacks: _vm.authenticatedUser.feedbacks,
-          "is-last-page": true,
-          "show-controls": true,
-          classes: _vm.classes,
-          styles: _vm.styles,
-          options: _vm.optionsList
-        },
-        on: {
-          delete: function($event) {
-            return _vm.showDeleteConfirmation($event)
-          }
-        }
-      }),
-      _vm._ssrNode(" "),
-      _c("feedback-list", {
-        attrs: {
           feedbacks: _vm.feedbacks,
           "is-last-page": _vm.pagination.isLastPage,
-          "show-controls": false,
+          "show-controls": true,
           classes: _vm.classes,
           styles: _vm.styles,
           options: _vm.optionsList
@@ -8371,7 +8358,7 @@ var render = function() {
     "div",
     { staticClass: "feedback clearfix", class: { loading: _vm.isLoading } },
     [
-      !_vm.editableFeedback && _vm.showControls
+      !_vm.editableFeedback && _vm.showControls && _vm.canUserEdit()
         ? _vm._ssrNode(
             '<div class="feedback-options">',
             "</div>",
