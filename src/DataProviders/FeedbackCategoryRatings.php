@@ -16,8 +16,8 @@ class FeedbackCategoryRatings
      */
     public function call(Request $request, FeedbackCoreHelper $coreHelper, Twig $twig, $itemData)
     {
-        $counts['averageValue'] = $itemData[0]['item']['FeedbackDecimal'] ?? 0;
-        $counts['ratingsCountTotal'] = $itemData[0]['item']['FeedbackCount'] ?? 0;
+        $counts['averageValue'] = $itemData[0]['item']['feedbackDecimal'] ?? 0;
+        $counts['ratingsCountTotal'] = $itemData[0]['item']['feedbackCount'] ?? 0;
 
         $data['counts'] = $counts;
 
