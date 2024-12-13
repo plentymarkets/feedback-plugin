@@ -42,7 +42,7 @@ const mutations =
 
       addFeedback (state, feedback) {
         // Add the feedback to the current users feedback list
-        state.authenticatedUser.feedbacks.unshift(feedback)
+        state.feedbacks.unshift(feedback)
 
         if (feedback.isVisible) {
           const ratingValue = parseInt(feedback.feedbackRating.rating.ratingValue)
