@@ -713,6 +713,7 @@ var mutations = {
   addFeedback: function addFeedback(state, feedback) {
     // Add the feedback to the current users feedback list
     state.feedbacks.unshift(feedback);
+    this.loadPaginatedFeedbacks(state, feedback);
     if (feedback.isVisible) {
       var ratingValue = parseInt(feedback.feedbackRating.rating.ratingValue);
       if (ratingValue > 0 && ratingValue <= 5) {
