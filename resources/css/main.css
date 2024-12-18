@@ -209,7 +209,8 @@
         max-width: 100%;
         max-height: 200px;
         margin: auto;
-        object-fit: contain; }
+        -o-object-fit: contain;
+           object-fit: contain; }
       .feedback-orderitem-container .feedback-items .feedback-item .feedback-item-link {
         align-self: flex-end;
         width: 100%;
