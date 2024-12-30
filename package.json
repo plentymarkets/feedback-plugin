@@ -55,7 +55,7 @@
         "tapable": "^2.2.0",
         "vue-loader": "^15.9.3",
         "vue-template-compiler": "^2.6.11",
-        "webpack": "^5.76.0",
+        "webpack": "^5.97.1",
         "webpack-cli": "^4.10.0",
         "webpack-remove-empty-scripts": "^1.0.4",
         "webpack-require-from": "^1.8.6"
