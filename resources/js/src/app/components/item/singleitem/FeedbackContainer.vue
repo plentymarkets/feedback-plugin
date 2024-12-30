@@ -168,6 +168,10 @@
       >
         <div class="modal-content">
           <div class="modal-header">
+            <span
+              :id="'feedbackConfirmDeleteLabel-' + _uid"
+              class="modal-title h5"
+            >{{ $translate("Feedback::Feedback.deleteConfirm") }}</span>
             <button
               type="button"
               class="close"
@@ -176,11 +180,6 @@
             >
               <span aria-hidden="true">&times;</span>
             </button>
-
-            <span
-              :id="'feedbackConfirmDeleteLabel-' + _uid"
-              class="modal-title h5"
-            >{{ $translate("Feedback::Feedback.deleteConfirm") }}</span>
           </div>
           <div class="modal-body">
             <p
