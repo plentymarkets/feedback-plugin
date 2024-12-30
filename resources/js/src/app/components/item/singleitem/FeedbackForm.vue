@@ -144,8 +144,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
 export default {
   name: 'FeedbackForm',
   props: {
@@ -171,9 +169,9 @@ export default {
   },
 
   computed: {
-    ...mapState({
-      authenticatedUser: state => state.feedback.authenticatedUser
-    })
+    authenticatedUser () {
+      return this.$store.state.feedback.authenticatedUser
+    }
   },
 
   methods: {

@@ -46,6 +46,27 @@ class FeedbackWidget extends BaseWidget
             ->withName('Widget.timestampVisibility')
             ->withTooltip('Widget.timestampVisibilityTooltip');
 
+        $settings->createSetting('allowNoRatingFeedback', CheckboxSettingFactory::class)
+            ->withDefaultValue(false)
+            ->withName('Widget.allowNoRatingFeedback')
+            ->withTooltip('Widget.allowNoRatingFeedbackTooltip');
+
+        $settings->createSetting('allowFeedbacksOnlyIfPurchased', CheckboxSettingFactory::class)
+            ->withDefaultValue(false)
+            ->withName('Widget.allowFeedbacksOnlyIfPurchased')
+            ->withTooltip('Widget.allowFeedbacksOnlyIfPurchasedTooltip');
+
+        $settings->createSetting('lazyLoad', CheckboxSettingFactory::class)
+            ->withDefaultValue(false)
+            ->withName('Widget.lazyLoad')
+            ->withTooltip('Widget.lazyLoadTooltip');
+
+        $settings->createSetting('numberOfFeedbacks')
+            ->withType('number')
+            ->withDefaultValue(1)
+            ->withName('Widget.numberOfFeedbacks')
+            ->withTooltip('Widget.numberOfFeedbacksTooltip');
+
         $settings->createSetting('feedbacksPerPage')
             ->withType('number')
             ->withDefaultValue(10)

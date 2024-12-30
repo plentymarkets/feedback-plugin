@@ -163,8 +163,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
 export default {
   name: 'FeedbackOrderForm',
   props: {
@@ -228,9 +226,9 @@ export default {
       return this.authenticatedUser.limitReached[key]
     },
 
-    ...mapState({
-      authenticatedUser: state => state.feedback.authenticatedUser
-    })
+    authenticatedUser () {
+      return this.$store.state.feedback.authenticatedUser
+    }
   },
 
   mounted: function () {
