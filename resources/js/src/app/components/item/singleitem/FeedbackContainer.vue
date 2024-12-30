@@ -225,6 +225,7 @@ import loadFeedbackModule from '../../../mixins/loadFeedbackModule'
 
 export default {
 
+  name: 'FeedbackContainer',
   components: {
     'feedback-form': FeedbackForm,
     'feedback-list': FeedbackList
@@ -254,7 +255,7 @@ export default {
       },
       optionsForm: {
         allowFeedbacksOnlyIfPurchased: this.options.allowFeedbacksOnlyIfPurchased,
-        allowNoRatingFeedback: this.options.allowNoRatingFeedback,
+
         numberOfFeedbacks: this.options.numberOfFeedbacks,
         allowGuestFeedbacks: this.options.allowGuestFeedbacks
       }

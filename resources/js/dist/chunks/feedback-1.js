@@ -1,16 +1,12 @@
+"use strict";
 (self["webpackChunkplentymarkets_feedback"] = self["webpackChunkplentymarkets_feedback"] || []).push([[1],{
 
 /***/ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/src/app/components/item/FeedbackAverage.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/src/app/components/item/FeedbackAverage.vue?vue&type=script&lang=js& ***!
   \***********************************************************************************************************************************************************************************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_symbol__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.symbol */ "./node_modules/core-js/modules/es.symbol.js");
 /* harmony import */ var core_js_modules_es_symbol__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol__WEBPACK_IMPORTED_MODULE_0__);
@@ -89,7 +85,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mixins: [_mixins_loadFeedbackModule__WEBPACK_IMPORTED_MODULE_8__.default],
+  name: 'FeedbackAverage',
+  mixins: [_mixins_loadFeedbackModule__WEBPACK_IMPORTED_MODULE_8__["default"]],
   inject: {
     itemId: {
       default: null
@@ -153,20 +150,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /*!***********************************************************!*\
   !*** ./resources/js/src/app/mixins/loadFeedbackModule.js ***!
   \***********************************************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_FeedbackModule__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../store/FeedbackModule */ "./resources/js/src/app/store/FeedbackModule.js");
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {
     if (!this.$store.hasModule('feedback') && !App.isSSR) {
-      this.$store.registerModule('feedback', _store_FeedbackModule__WEBPACK_IMPORTED_MODULE_0__.default, {
+      this.$store.registerModule('feedback', _store_FeedbackModule__WEBPACK_IMPORTED_MODULE_0__["default"], {
         preserveState: !!this.$store.state.feedback
       });
     }
@@ -179,13 +171,8 @@ __webpack_require__.r(__webpack_exports__);
 /*!******************************************************!*\
   !*** ./resources/js/src/app/store/FeedbackModule.js ***!
   \******************************************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_array_concat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.concat */ "./node_modules/core-js/modules/es.array.concat.js");
 /* harmony import */ var core_js_modules_es_array_concat__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_concat__WEBPACK_IMPORTED_MODULE_0__);
@@ -275,8 +262,7 @@ var mutations = {
 var actions = {
   loadFeedbackUser: function loadFeedbackUser(_ref2, _ref3) {
     var commit = _ref2.commit;
-    var data = _ref3.data,
-        itemId = _ref3.itemId,
+    var itemId = _ref3.itemId,
         variationId = _ref3.variationId;
 
     if (!loadFeedbackUserLock) {
@@ -290,7 +276,6 @@ var actions = {
       return $.ajax({
         type: 'GET',
         url: '/rest/feedbacks/user' + itemString,
-        data: data,
         success: function success(data) {
           commit('setFeedbackAuthenticatedUser', data);
           loadFeedbackUserLock = false;
@@ -413,15 +398,12 @@ function recalculateAverage(state) {
 /*!***********************************************************!*\
   !*** ./node_modules/core-js/modules/es.array.index-of.js ***!
   \***********************************************************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements: __webpack_require__ */
 /***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
 
-"use strict";
 
 /* eslint-disable es/no-array-prototype-indexof -- required for testing */
 var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js/internals/export.js");
-var $indexOf = __webpack_require__(/*! ../internals/array-includes */ "./node_modules/core-js/internals/array-includes.js").indexOf;
+var $indexOf = (__webpack_require__(/*! ../internals/array-includes */ "./node_modules/core-js/internals/array-includes.js").indexOf);
 var arrayMethodIsStrict = __webpack_require__(/*! ../internals/array-method-is-strict */ "./node_modules/core-js/internals/array-method-is-strict.js");
 
 var nativeIndexOf = [].indexOf;
@@ -447,13 +429,8 @@ $({ target: 'Array', proto: true, forced: NEGATIVE_ZERO || !STRICT_METHOD }, {
 /*!******************************************************************!*\
   !*** ./resources/js/src/app/components/item/FeedbackAverage.vue ***!
   \******************************************************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _FeedbackAverage_vue_vue_type_template_id_84655b24___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FeedbackAverage.vue?vue&type=template&id=84655b24& */ "./resources/js/src/app/components/item/FeedbackAverage.vue?vue&type=template&id=84655b24&");
 /* harmony import */ var _FeedbackAverage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FeedbackAverage.vue?vue&type=script&lang=js& */ "./resources/js/src/app/components/item/FeedbackAverage.vue?vue&type=script&lang=js&");
@@ -464,9 +441,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* normalize component */
-
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
-  _FeedbackAverage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _FeedbackAverage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _FeedbackAverage_vue_vue_type_template_id_84655b24___WEBPACK_IMPORTED_MODULE_0__.render,
   _FeedbackAverage_vue_vue_type_template_id_84655b24___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
@@ -487,16 +464,11 @@ component.options.__file = "resources/js/src/app/components/item/FeedbackAverage
 /*!*******************************************************************************************!*\
   !*** ./resources/js/src/app/components/item/FeedbackAverage.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_FeedbackAverage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib/index.js!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./FeedbackAverage.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/src/app/components/item/FeedbackAverage.vue?vue&type=script&lang=js&");
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_FeedbackAverage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_FeedbackAverage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -504,14 +476,8 @@ __webpack_require__.r(__webpack_exports__);
 /*!*************************************************************************************************!*\
   !*** ./resources/js/src/app/components/item/FeedbackAverage.vue?vue&type=template&id=84655b24& ***!
   \*************************************************************************************************/
-/*! namespace exports */
-/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/src/app/components/item/FeedbackAverage.vue?vue&type=template&id=84655b24& .render */
-/*! export staticRenderFns [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/src/app/components/item/FeedbackAverage.vue?vue&type=template&id=84655b24& .staticRenderFns */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "render": function() { return /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FeedbackAverage_vue_vue_type_template_id_84655b24___WEBPACK_IMPORTED_MODULE_0__.render; },
@@ -526,14 +492,8 @@ __webpack_require__.r(__webpack_exports__);
 /*!****************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/src/app/components/item/FeedbackAverage.vue?vue&type=template&id=84655b24& ***!
   \****************************************************************************************************************************************************************************************************************************************/
-/*! namespace exports */
-/*! export render [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export staticRenderFns [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "render": function() { return /* binding */ render; },

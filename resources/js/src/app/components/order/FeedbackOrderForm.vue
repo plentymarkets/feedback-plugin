@@ -29,10 +29,12 @@
         </div>
         <div class="modal-body row">
           <div class="col-4">
-            <img
-              :alt="item.name"
-              :src="item.image"
-            >
+            <a :href="item.url">
+              <img
+                :alt="item.name"
+                :src="item.image"
+              >
+            </a>
             <div class="stars">
               <template v-for="starId in starIds">
                 <input
@@ -71,7 +73,12 @@
             </div>
           </div>
           <div class="col-8">
-            <a :href="item.url">{{ item.name }}</a>
+            <a
+              :href="item.url"
+              class="mb-3"
+            >{{ item.name }}
+              <template v-for="attribute in item.attributes"> | {{ attribute.attribute.names.name }}: {{ attribute.value.names.name }}</template>
+            </a>
 
             <div
               v-if="!authenticatedUser.isLoggedIn"
@@ -132,7 +139,7 @@
             v-if="!isRated && !limitReached"
             type="button"
             class="btn btn-primary btn-appearance btn-block"
-            :disabled="isRated"
+            :disabled="isRated || (showEmptyRatings && feedback.ratingValue === 0)"
             @click="createFeedback()"
           >
             {{ $translate("Feedback::Feedback.submitReview") }}
@@ -157,11 +164,13 @@
 
 <script>
 export default {
+  name: 'FeedbackOrderForm',
   props: {
     allowGuestFeedbacks: Boolean,
     numberOfFeedbacks: Number,
     accessKey: String,
-    orderId: String
+    orderId: String,
+    showEmptyRatings: Boolean
   },
 
   data: function () {
@@ -183,7 +192,8 @@ export default {
         image: '',
         variationId: 0,
         name: '',
-        itemId: 0
+        itemId: 0,
+        attributes: {}
       }
     }
   },

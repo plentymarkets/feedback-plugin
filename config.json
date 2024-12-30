@@ -26,11 +26,17 @@
                         ]
                     }
                 },
-                "releaseFeedbacks": {
+                "numberOfFeedbacks": {
+                    "type": "number",
+                    "required": false,
+                    "defaultValue": 1,
+                    "label": "Config.numberOfFeedbacks"
+                },
+
+                "allowFeedbacksOnlyIfPurchased": {
                     "type": "checkBox",
                     "required": false,
-                    "deprecated": true,
-                    "label": "Config.releaseFeedbacks",
+                    "label": "Config.allowFeedbacksOnlyIfPurchased",
                     "options": {
                         "defaultValue": "false"
                     }
@@ -47,6 +53,22 @@
                     "type": "checkBox",
                     "required": false,
                     "label": "Config.showEmptyRatingsInCategoryViewLabel",
+                    "options": {
+                        "defaultValue": "false"
+                    }
+                },
+                "showRatingCountInCategoryView": {
+                    "type": "checkBox",
+                    "required": false,
+                    "label": "Config.showRatingCountInCategoryViewLabel",
+                    "options": {
+                        "defaultValue": "false"
+                    }
+                },
+                "showEmptyRatingsInOrderConfirmationView": {
+                    "type": "checkBox",
+                    "required": false,
+                    "label": "Config.showEmptyRatingsInOrderConfirmationViewLabel",
                     "options": {
                         "defaultValue": "false"
                     }

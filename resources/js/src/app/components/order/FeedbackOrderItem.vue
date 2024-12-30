@@ -45,19 +45,29 @@
         </template>
       </form>
     </div>
-    <img
-      :alt="item.name"
-      :src="item.image"
-      class="py-2"
-    >
+    <a :href="item.url">
+      <img
+        :alt="item.name"
+        :src="item.image"
+        class="py-2"
+      >
+    </a>
     <div class="feedback-item-link">
       <a :href="item.url">{{ item.name }}</a>
+      <div
+        v-for="attribute in item.attributes"
+        :key="item.itemId+'-'+attribute.valueId"
+      >
+        <strong>{{ attribute.attribute.names.name }}: </strong>
+        <span>{{ attribute.value.names.name }}</span>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  name: 'FeedbackOrderItem',
   props: {
     item: Object,
     numberOfColumns: Number
@@ -94,6 +104,9 @@ export default {
       }
 
       return ids
+    },
+    variationAttributes () {
+      return null
     }
   },
 

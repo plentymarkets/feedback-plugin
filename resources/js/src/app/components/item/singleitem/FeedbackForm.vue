@@ -24,7 +24,7 @@
       </div>
 
       <p
-        v-if="ratingMissing && !options.allowNoRatingFeedback"
+        v-if="ratingMissing"
         class="feedback-error alert alert-danger"
       >
         {{ $translate("Feedback::Feedback.ratingRequired") }}
@@ -145,6 +145,7 @@
 
 <script>
 export default {
+  name: 'FeedbackForm',
   props: {
     variationId: Number,
     options: Object
@@ -183,7 +184,7 @@ export default {
         return
       }
 
-      if (!this.options.allowNoRatingFeedback && this.feedback.ratingValue <= 0) {
+      if (this.feedback.ratingValue <= 0) {
         this.ratingMissing = true
         return
       }
@@ -194,8 +195,6 @@ export default {
       }
 
       this.isLoading = true
-
-      this.feedback.options = this.options
 
       $.ajax({
         type: 'POST',

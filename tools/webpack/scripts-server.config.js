@@ -2,7 +2,6 @@ const path = require("path");
 const ESLintPlugin = require('eslint-webpack-plugin');
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const TerserPlugin = require('terser-webpack-plugin');
-const WebpackRequireFrom = require("webpack-require-from");
 const webpack = require("webpack");
 
 module.exports = env =>
@@ -47,9 +46,6 @@ module.exports = env =>
                 extensions: ['js', 'vue'],
                 context: path.resolve(__dirname, "..", "..", "resources/js/src/"),
                 fix: true
-            }),
-            new WebpackRequireFrom({
-                replaceSrcMethodName: "__loadPluginChunk"
             }),
             new webpack.optimize.LimitChunkCountPlugin({
                 maxChunks: 1

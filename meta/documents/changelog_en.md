@@ -1,5 +1,62 @@
 # Release Notes for Feedback
 
+## v4.0.10 (2024-01-XX) <a href="https://github.com/plentymarkets/feedback-plugin/compare/4.0.9...4.0.10" target="_blank" rel="noopener"><b>Overview of all changes</b></a>
+
+### Added
+
+-  Widget setting to hide the feedback widget on the order confirmation page if the shipping date has not been set yet. We would like to thank user @MaxBentz for their contribution.
+
+### Changed
+
+- The rating on the category pages is now loaded via   the item list (itemList).
+- Removed `Allow reviews without rating` option from plugin configuration.
+
+## v4.0.9 (2023-06-19) <a href="https://github.com/plentymarkets/feedback-plugin/compare/4.0.8...4.0.9" target="_blank" rel="noopener"><b>Overview of all changes</b></a>
+
+### Changed
+
+- It's now possible to display the average rating on category level. We would like to thank user @MaxBentz for their contribution.
+- It's now possible to display attributes on the order confirmation page. We would like to thank user @MaxBentz for their contribution.
+- CSS adjustments. We would like to thank user @MaxBentz for their contribution.
+
+## v4.0.8 (2023-01-05) <a href="https://github.com/plentymarkets/feedback-plugin/compare/4.0.7...4.0.8" target="_blank" rel="noopener"><b>Overview of all changes</b></a>
+
+### Changed
+
+- The logic for anonymisation was moved to the core.
+- Visibility settings were moved from the widget to the plugin configuration.
+
+## v4.0.7 (2022-10-21) <a href="https://github.com/plentymarkets/feedback-plugin/compare/4.0.6...4.0.7" target="_blank" rel="noopener"><b>Overview of all changes</b></a>
+
+### Changed
+- 
+- Clicking the image of an item in the rating widget for the order confirmation now leads to the item page. We would like to thank user @MaxBentz for their contribution.
+
+### Fixed
+ 
+- The order of the rating stars was incorrect when editing a feedback. This has been fixed. We would like to thank user @MaxBentz for their contribution.
+
+## v4.0.6 (2021-10-20)
+
+### Changed
+
+- The feedback plugin was adapted to the rebranding to **plentyShop LTS".
+
+### Fixed
+
+- When selecting a rating filter, it was not displayed as selected.
+- In the structured data, an explicit type was stored for the author.
+
+## v4.0.5 (2021-08-17)
+
+### TODO
+
+- After updating the feedback plugin to v4.0.5, it is necessary to regenerate ShopBuilder widgets via the **Regenerate contents** button in the **CMS » ShopBuilder** menu.
+
+### Behoben
+
+- Due to an error in the name resolution for author fields, the author name was sometimes not included in the structured data. This has been fixed.
+
 ## v4.0.4 (2021-07-06)
 
 ### TODO

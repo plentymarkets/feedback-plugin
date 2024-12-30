@@ -1,5 +1,62 @@
 # Release Notes für Feedback
 
+## v4.0.10 (2024-01-XX) <a href="https://github.com/plentymarkets/feedback-plugin/compare/4.0.9...4.0.10" target="_blank" rel="noopener"><b>Übersicht aller Änderungen</b></a>
+
+### Hinzugefügt
+
+- Widget-Einstellung zum Ausblenden des Feedback-Widgets auf der Bestellbestätigungsseite, wenn das Versanddatum noch nicht festgelegt wurde. Wir möchten dem Benutzer @MaxBentz für seinen Beitrag danken.
+
+### Geändert
+
+- Für die Anzeige des Ratings auf den Kategorieseiten werden  die Daten jetzt über die Artikelliste (itemList) geladen.
+- Die Option „Bewertungen ohne Bewertung zulassen“ wurde aus der Plugin-Konfiguration entfernt.
+
+## v4.0.9 (2023-06-19) <a href="https://github.com/plentymarkets/feedback-plugin/compare/4.0.8...4.0.9" target="_blank" rel="noopener"><b>Übersicht aller Änderungen</b></a>
+
+### Geändert
+
+- Durchschnittswertanzeige auf Kategorieebene jetzt möglich. Wir bedanken uns bei User @MaxBentz für den Beitrag.
+- Ausgabe von Attributen auf der Bestellbestätigungsseite. Wir bedanken uns bei User @MaxBentz für den Beitrag.
+- CSS-Anpassungen. Wir bedanken uns bei User @MaxBentz für den Beitrag.
+  
+## v4.0.8 (2023-01-05) <a href="https://github.com/plentymarkets/feedback-plugin/compare/4.0.7...4.0.8" target="_blank" rel="noopener"><b>Übersicht aller Änderungen</b></a>
+
+### Geändert
+
+- Die Logik für die Anonymisierung wurde in den Kern verschoben.
+- Die Einstellungen zur Sichtbarkeit wurden aus dem Widget in die Plugin-Konfiguration überführt.
+
+## v4.0.7 (2022-10-21) <a href="https://github.com/plentymarkets/feedback-plugin/compare/4.0.6...4.0.7" target="_blank" rel="noopener"><b>Übersicht aller Änderungen</b></a>
+
+### Geändert
+
+- Das Anklicken der Artikelbilder im Bewertungswidget für die Bestellbestätigung leitet nun auf die Artikelseite weiter. Wir bedanken uns bei User @MaxBentz für den Beitrag.
+
+### Behoben
+
+- Beim Editieren von einer Bewertung war die Reihenfolge der Bewertungssterne falsch. Dies wurde behoben. Wir bedanken uns bei User @MaxBentz für den Beitrag.
+
+## v4.0.6 (2021-10-20)
+
+### Geändert
+
+- Das Feedback Plugin wurde auf das Rebranding zu **plentyShop LTS" angepasst.
+
+### Behoben
+
+- Bei Auswahl eines Bewertungsfilter wurde dieser nicht als selektiert angezeigt.
+- In den strukturierten Daten wurde beim Autor ein expliziter Typ hinterlegt.
+
+## v4.0.5 (2021-08-17)
+
+### TODO
+
+- Nach dem Update auf Version 4.0.5 müssen Widgets im Menü **CMS » ShopBuilder** durch Klick auf **Inhalte neu generieren** aktualisiert werden.
+
+### Behoben
+
+- Durch einen Fehler in der Namensauflösung für Autoren-Felder konnte der Autorenname in den strukturierten Daten fehlen. Dies wurde behoben.
+
 ## v4.0.4 (2021-07-06)
 
 ### TODO

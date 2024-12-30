@@ -34,6 +34,7 @@
       :number-of-feedbacks="options.numberOfFeedbacks"
       :access-key="accessKey"
       :order-id="orderId"
+      :show-empty-ratings="options.showEmptyRatingsInOrderConfirmation"
     />
   </section>
 </template>
@@ -44,7 +45,7 @@ import FeedbackOrderItem from './FeedbackOrderItem.vue'
 import loadFeedbackModule from '../../mixins/loadFeedbackModule'
 
 export default {
-
+  name: 'FeedbackOrder',
   components: {
     'feedback-order-form': FeedbackOrderForm,
     'feedback-order-item': FeedbackOrderItem
@@ -86,7 +87,8 @@ export default {
             image: this.itemImages[key],
             url: this.itemUrls[key],
             variationId: key,
-            itemId: this.variations[key].item.id
+            itemId: this.variations[key].item.id,
+            attributes: this.variations[key].attributes
           })
 
           // Check itemBundleSplit
@@ -99,7 +101,8 @@ export default {
                 image: this.itemImages[variationId],
                 url: this.itemUrls[variationId],
                 variationId: variationId,
-                itemId: this.items[i].bundleComponents[j].data.itemId
+                itemId: this.items[i].bundleComponents[j].data.itemId,
+                attributes: this.items[i].bundleComponents[j].data.attributes
               })
             }
           }

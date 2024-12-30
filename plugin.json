@@ -1,5 +1,5 @@
 {
-    "version": "4.0.4",
+    "version": "4.0.10",
     "name": "Feedback",
     "marketplaceName": {
         "de": "Kunden-Feedback",
@@ -10,8 +10,11 @@
     "author": "plentysystems AG",
     "type": "general",
     "require": {
-        "IO": ">=5.0.35",
-        "Ceres": ">=5.0.35"
+        "IO": ">=5.0.62",
+        "Ceres": ">=5.0.62"
+    },
+    "platform": {
+        "php": ">=7.3 <8.1"
     },
     "isClosedSource": false,
     "serviceProvider": "Feedback\\Providers\\FeedbackServiceProvider",
@@ -25,7 +28,7 @@
     },
     "authorIcon": "icon_author_xs.png",
     "pluginIcon": "icon_plugin_xs.png",
-    "email": "sales@plentymarkets.com",
+    "email": "sales@plentysystems.com",
     "phone": "+49 561 98 681 100",
     "categories": [
         "3527"

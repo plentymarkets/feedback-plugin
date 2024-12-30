@@ -1,0 +1,7 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"  # The directory containing your package.json file
+    ignore:
+      - dependency-name: "vue"
+        versions: [">=3.0.0"]  # Ignores all versions of Vue >= 3.0.0

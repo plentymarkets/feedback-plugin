@@ -1,5 +1,5 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
+const RemoveEmptyScripts = require('webpack-remove-empty-scripts');
 const path = require("path");
 
 module.exports = env =>
@@ -49,7 +49,7 @@ module.exports = env =>
             ]
         },
         plugins: [
-            new FixStyleOnlyEntriesPlugin(),
+            new RemoveEmptyScripts(),
             new MiniCssExtractPlugin({
                 filename: "../../css/[name]" + (env.production ? ".min" : "") + ".css",
             })
