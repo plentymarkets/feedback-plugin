@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Constantin Purcaru
@@ -26,7 +27,6 @@ use Plenty\Plugin\Templates\Twig;
 
 class FeedbacksController extends Controller
 {
-
     /**
      * @param Request $request
      * @param FeedbackRepositoryContract $feedbackRepository
@@ -53,8 +53,7 @@ class FeedbacksController extends Controller
 
 
         // Check the type and set the target accordingly
-        if($request->input('type') == 'review'){
-
+        if ($request->input('type') == 'review') {
             $options['feedbackRelationTargetType'] = 'variation';
 
             // Limit the feedbacks count of a user per item
@@ -68,7 +67,7 @@ class FeedbacksController extends Controller
             // Allow feedbacks with no rating
             $allowNoRatingFeedbacks = $coreHelper->configValue(FeedbackCoreHelper::KEY_ALLOW_NO_RATING_FEEDBACK) == 'true' ? true : false;
 
-            if( !$allowNoRatingFeedbacks && empty($request->input('ratingValue')) ){
+            if (!$allowNoRatingFeedbacks && empty($request->input('ratingValue'))) {
                 return 'Can\'t create review with no rating';
             }
 
@@ -82,15 +81,35 @@ class FeedbacksController extends Controller
 
             $purchasedVariations = [];
 
-            foreach($orders->getResult() as $order){
-                foreach($order->orderItems as $orderItem){
+            foreach ($orders->getResult() as $order) {
+                foreach ($order->orderItems as $orderItem) {
                     $purchasedVariations[] = $orderItem->variation->itemId;
                 }
             }
 
-            if(in_array($request->input('itemId'), $purchasedVariations)){
+            $page = 1;
+            // get variations bought
+            $hasPurchased = false;
+            $requestedItemId = $request->input('itemId');
+            do {
+                $orders = pluginApp(OrderRepositoryContract::class)->allOrdersByContact(
+                    $accountService->getAccountContactId(),
+                    $page,
+                    20
+                );
+                foreach ($orders->getResult() as $order) {
+                    foreach ($order->orderItems as $orderItem) {
+                        if ($requestedItemId == $orderItem->variation->itemId) {
+                            $hasPurchased = true;
+                            break 2;
+                        }
+                    }
+                }
+                $page++;
+            } while (!$orders->isLastPage() && $hasPurchased == false);
 
-                $creatorPurchasedThisVariation = true;
+
+            if ($hasPurchased) {
                 $options['feedbackRelationSources'][] =
                     [
                         "feedbackRelationSourceType" => 'orderItem',
@@ -99,40 +118,30 @@ class FeedbacksController extends Controller
                 ;
             }
 
-            if($allowFeedbacksOnlyIfPurchased && !$creatorPurchasedThisVariation){
+            if ($allowFeedbacksOnlyIfPurchased && !$hasPurchased) {
                 return 'Not allowed to create review without purchasing the item first';
             }
 
 
-
-            if(!empty($limitPerUserPerItem) && $limitPerUserPerItem != 0){
-
+            if (!empty($limitPerUserPerItem) && $limitPerUserPerItem != 0) {
                 // Get the feedbacks that this user created on this item
-                $countFeedbacksOfUserPerItem = $feedbackRepository->listFeedbacks(1,50,[],[
+                $countFeedbacksOfUserPerItem = $feedbackRepository->listFeedbacks(1, 50, [], [
                     'sourceId' => $creatorContactId,
                     'targetId' => $options['feedbackRelationTargetId']
                 ])->getTotalCount();
 
-                if($countFeedbacksOfUserPerItem >= $limitPerUserPerItem) {
+                if ($countFeedbacksOfUserPerItem >= $limitPerUserPerItem) {
                     return 'Too many reviews';
                 }
-
             }
 
             return $feedbackRepository->createFeedback(array_merge($request->all(), $options));
-
-
-
-        }elseif($request->input('type') == 'reply'){
-
+        } elseif ($request->input('type') == 'reply') {
             $options['feedbackRelationTargetType'] = 'feedback';
             $options['isVisible'] = true;
 
             return $feedbackRepository->createFeedback(array_merge($request->all(), $options));
-
         }
-
-
     }
 
 
@@ -147,8 +156,7 @@ class FeedbacksController extends Controller
         $feedback = $feedbackRepository->getFeedback($feedbackId);
 
         // Check if frontend user is the creator
-        if($accountService->getAccountContactId() == $feedback->sourceRelation[0]->feedbackRelationSourceId)
-        {
+        if ($accountService->getAccountContactId() == $feedback->sourceRelation[0]->feedbackRelationSourceId) {
             return $feedbackRepository->deleteFeedback($feedbackId);
         }
 
@@ -184,20 +192,24 @@ class FeedbacksController extends Controller
         $systemLanguage = $sessionStorage->getLang();
 
         $itemVariations = [];
-        $itemDatas = pluginApp(ItemRepositoryContract::class)->show($itemId,['id'],$systemLanguage,['variations']);
-        foreach($itemDatas['variations'] as $itemData){
+        $itemDatas = pluginApp(ItemRepositoryContract::class)->show($itemId, ['id'], $systemLanguage, ['variations']);
+        foreach ($itemDatas['variations'] as $itemData) {
             $itemVariations[] = $itemData['id'];
         }
 
         $itemAttributes = [];
-        foreach($itemVariations as $itemVariation){
-            $variationAttributes = pluginApp(VariationRepositoryContract::class)->show($itemVariation,['variationAttributeValues' => true],'*');
+        foreach ($itemVariations as $itemVariation) {
+            $variationAttributes = pluginApp(VariationRepositoryContract::class)->show(
+                $itemVariation,
+                ['variationAttributeValues' => true],
+                '*'
+            );
 
             $a[0] = $variationAttributes;
             $b[0] = $a;
             $actualVariationAttributes = $b[0][0]['variationAttributeValues'];
 
-            foreach($actualVariationAttributes as $variationAttribute){
+            foreach ($actualVariationAttributes as $variationAttribute) {
                 $attributeName = pluginApp(AttributeNameRepositoryContract::class)->findOne($variationAttribute->attribute_id, $systemLanguage);
                 $attributeValue = pluginApp(AttributeValueNameRepositoryContract::class)->findOne($variationAttribute->value_id, $systemLanguage);
 
@@ -233,8 +245,8 @@ class FeedbacksController extends Controller
         $feedbacks = $feedbackService->listFeedbacks($feedbackRepository, $page, $itemsPerPage, $with, $filters);
         $feedbackResults = $feedbacks->getResult();
 
-        foreach($feedbackResults as &$feedback){
-            if($feedback->targetRelation->feedbackRelationType == 'variation'){
+        foreach ($feedbackResults as &$feedback) {
+            if ($feedback->targetRelation->feedbackRelationType == 'variation') {
                 $feedback->targetRelation->variationAttributes = json_decode($feedback->targetRelation->targetRelationName);
             }
         }
@@ -254,6 +266,5 @@ class FeedbacksController extends Controller
         ];
 
         return $twig->render('Feedback::DataProvider.Feedbacks.FeedbacksList', $data);
-
     }
 }
