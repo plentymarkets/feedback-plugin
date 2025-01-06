@@ -75,18 +75,7 @@ class FeedbacksController extends Controller
 
             // Allow creation of feedbacks only if the item/variation was already bought
             $allowFeedbacksOnlyIfPurchased = $coreHelper->configValue(FeedbackCoreHelper::KEY_ALLOW_FEEDBACKS_ONLY_IF_PURCHASED) == 'true' ? true : false;
-
-            // get variations bought
-            $orders = pluginApp(OrderRepositoryContract::class)->allOrdersByContact($creatorContactId);
-
-            $purchasedVariations = [];
-
-            foreach ($orders->getResult() as $order) {
-                foreach ($order->orderItems as $orderItem) {
-                    $purchasedVariations[] = $orderItem->variation->itemId;
-                }
-            }
-
+            
             $page = 1;
             // get variations bought
             $hasPurchased = false;
