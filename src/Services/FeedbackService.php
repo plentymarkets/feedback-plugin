@@ -360,7 +360,8 @@ class FeedbackService
             'pagination' => [
                 'page' => $page,
                 'lastPage' => $feedbacks->getLastPage(),
-                'isLastPage' => $feedbacks->isLastPage()
+                'isLastPage' => $feedbacks->isLastPage(),
+                'totalCount' => $feedbacks->getTotalCount()
             ]
         ];
     }
