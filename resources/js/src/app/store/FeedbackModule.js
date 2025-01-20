@@ -42,7 +42,6 @@ const mutations =
 
       addFeedback (state, feedback) {
         // Add the feedback to the current users feedback list
-        state.authenticatedUser.feedbacks.unshift(feedback)
 
         if (feedback.isVisible) {
           const ratingValue = parseInt(feedback.feedbackRating.rating.ratingValue)
@@ -109,7 +108,7 @@ const actions =
 
           return $.ajax({
             type: 'GET',
-            url: '/rest/feedbacks/feedback/helper/counts/' + itemId,
+            url: '/rest/storefront/feedbacks/feedback/helper/counts/' + itemId,
             success: function (data) {
               commit('setFeedbackCounts', data.counts)
             },
@@ -120,12 +119,15 @@ const actions =
         }
       },
 
-      loadPaginatedFeedbacks ({ commit, state }, { itemId, feedbacksPerPage }) {
+      loadPaginatedFeedbacks ({ commit, state }, { itemId, feedbacksPerPage, language }) {
         if (!loadPaginatedFeedbacksLock) {
           loadPaginatedFeedbacksLock = true
           const request = $.ajax({
             type: 'GET',
-            url: '/rest/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
+            url: '/rest/storefront/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
+            beforeSend: function (xhr) {
+              xhr.setRequestHeader('lang', language)
+            },
             data: {
               feedbacksPerPage: feedbacksPerPage
             },

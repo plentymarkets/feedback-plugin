@@ -398,7 +398,6 @@ class FeedbackService
         $isLoggedIn = !!$contactId;
         $hasPurchased = [];
         $limitReached = [];
-        $userFeedbacks = [];
 
         if (count($variationIds)) {
             if ($isLoggedIn && $allowFeedbacksOnlyIfPurchased) {
@@ -425,30 +424,12 @@ class FeedbackService
             }
         }
 
-        if ($isLoggedIn && count($itemIds) === 1 && count($variationIds) === 1) {
-            $filters = [
-                'itemId' => $itemId,
-                'sourceId' => $contactId
-            ];
-
-            $feedbacks = $this->listFeedbacks(1, 50, [], $filters);
-            $userFeedbacks = $feedbacks->getResult();
-
-            foreach ($userFeedbacks as &$feedback) {
-                if ($feedback->targetRelation->feedbackRelationType === 'variation') {
-                    $feedback->targetRelation->variationAttributes = json_decode(
-                        $feedback->targetRelation->targetRelationName
-                    );
-                }
-            }
-        }
-
         return [
             'id' => $contactId,
             'isLoggedIn' => $isLoggedIn,
             'limitReached' => $limitReached,
             'hasPurchased' => $hasPurchased,
-            'feedbacks' => $userFeedbacks
+            'feedbacks' => []
         ];
     }
 
@@ -571,11 +552,13 @@ class FeedbackService
         $allowGuestFeedbacks = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_GUEST_FEEDBACKS);
         $numberOfFeedbacks = $this->coreHelper->configValue(FeedbackCoreHelper::KEY_NUMBER_OF_FEEDBACKS);
         $allowFeedbacksOnlyIfPurchased = $this->coreHelper->configValueAsBool(FeedbackCoreHelper::KEY_ALLOW_FEEDBACK_ONLY_IF_PURCHASED);
+        $language = $this->localizationRepository->getLanguage();
 
         return [
                 "allowFeedbacksOnlyIfPurchased" => $allowFeedbacksOnlyIfPurchased,
                 "numberOfFeedbacks" => $numberOfFeedbacks,
-                "allowGuestFeedbacks" => $allowGuestFeedbacks
+                "allowGuestFeedbacks" => $allowGuestFeedbacks,
+                "language" => $language
         ];
     }
 
