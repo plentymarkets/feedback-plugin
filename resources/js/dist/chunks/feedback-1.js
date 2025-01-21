@@ -194,7 +194,7 @@ var mutations = {
   },
   addFeedback: function addFeedback(state, feedback) {
     // Add the feedback to the current users feedback list
-    state.authenticatedUser.feedbacks.unshift(feedback);
+    state.feedbacks.unshift(feedback);
     console.log(state);
     if (feedback.isVisible) {
       var ratingValue = parseInt(feedback.feedbackRating.rating.ratingValue);
