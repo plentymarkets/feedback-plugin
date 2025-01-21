@@ -8,85 +8,61 @@
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var core_js_modules_es_symbol__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.symbol */ "./node_modules/core-js/modules/es.symbol.js");
-/* harmony import */ var core_js_modules_es_symbol__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es_array_filter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.array.filter */ "./node_modules/core-js/modules/es.array.filter.js");
-/* harmony import */ var core_js_modules_es_array_filter__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_filter__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es_array_for_each__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.array.for-each */ "./node_modules/core-js/modules/es.array.for-each.js");
-/* harmony import */ var core_js_modules_es_array_for_each__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_for_each__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var core_js_modules_es_array_index_of__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.array.index-of */ "./node_modules/core-js/modules/es.array.index-of.js");
-/* harmony import */ var core_js_modules_es_array_index_of__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_index_of__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var core_js_modules_es_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es.object.get-own-property-descriptor */ "./node_modules/core-js/modules/es.object.get-own-property-descriptor.js");
-/* harmony import */ var core_js_modules_es_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var core_js_modules_es_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/es.object.get-own-property-descriptors */ "./node_modules/core-js/modules/es.object.get-own-property-descriptors.js");
-/* harmony import */ var core_js_modules_es_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var core_js_modules_es_object_keys__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! core-js/modules/es.object.keys */ "./node_modules/core-js/modules/es.object.keys.js");
-/* harmony import */ var core_js_modules_es_object_keys__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_keys__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
-/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _mixins_loadFeedbackModule__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../mixins/loadFeedbackModule */ "./resources/js/src/app/mixins/loadFeedbackModule.js");
-
-
-
-
-
-
-
-
+/* harmony import */ var core_js_modules_es_array_index_of__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.index-of */ "./node_modules/core-js/modules/es.array.index-of.js");
+/* harmony import */ var core_js_modules_es_array_index_of__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_index_of__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _mixins_loadFeedbackModule__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixins/loadFeedbackModule */ "./resources/js/src/app/mixins/loadFeedbackModule.js");
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'FeedbackAverage',
-  mixins: [_mixins_loadFeedbackModule__WEBPACK_IMPORTED_MODULE_8__["default"]],
+  mixins: [_mixins_loadFeedbackModule__WEBPACK_IMPORTED_MODULE_1__["default"]],
   inject: {
     itemId: {
       default: null
@@ -109,7 +85,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     size: function size() {
       return this.sizeOfStars.indexOf('-stars') !== -1 ? this.sizeOfStars : this.sizeOfStars + '-stars';
     }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_9__.mapState)({
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)({
     counts: function counts(state) {
       return state.feedback.counts;
     }
@@ -126,12 +102,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     scrollTo: function scrollTo() {
       var targetElement = document.querySelector('[data-feedback]');
       var headerMargin = document.querySelector('#vue-app').offsetTop;
-
       if (targetElement) {
         while (!(targetElement.clientHeight && targetElement.classList.contains('widget')) && !!targetElement.parentElement) {
           targetElement = targetElement.parentElement;
         }
-
         if (targetElement) {
           var elementTop = targetElement.getBoundingClientRect().top + window.scrollY - headerMargin;
           window.scrollTo({
@@ -185,7 +159,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var loadPaginatedFeedbacksLock = false;
 var loadFeedbackUserLock = false;
-
 var state = function state() {
   return {
     authenticatedUser: {},
@@ -199,7 +172,6 @@ var state = function state() {
     }
   };
 };
-
 var mutations = {
   setFeedbackAuthenticatedUser: function setFeedbackAuthenticatedUser(state, authenticatedUser) {
     state.authenticatedUser = authenticatedUser;
@@ -222,11 +194,9 @@ var mutations = {
   },
   addFeedback: function addFeedback(state, feedback) {
     // Add the feedback to the current users feedback list
-    state.authenticatedUser.feedbacks.unshift(feedback);
-
+    state.feedbacks.unshift(feedback);
     if (feedback.isVisible) {
       var ratingValue = parseInt(feedback.feedbackRating.rating.ratingValue);
-
       if (ratingValue > 0 && ratingValue <= 5) {
         state.counts['ratingsCountOf' + ratingValue]++;
         state.counts.ratingsCountTotal++;
@@ -236,20 +206,17 @@ var mutations = {
   },
   deleteFeedback: function deleteFeedback(state, _ref) {
     var feedbackId = _ref.feedbackId,
-        parentFeedbackId = _ref.parentFeedbackId,
-        feedback = _ref.feedback;
-
+      parentFeedbackId = _ref.parentFeedbackId,
+      feedback = _ref.feedback;
     // If visible, adjust counts
     if (feedback.isVisible && parentFeedbackId === null) {
       var ratingValue = parseInt(feedback.feedbackRating.rating.ratingValue);
-
       if (ratingValue > 0 && ratingValue <= 5) {
         state.counts['ratingsCountOf' + ratingValue]--;
         state.counts.ratingsCountTotal--;
         recalculateAverage(state);
       }
     }
-
     if (parentFeedbackId === null) {
       state.feedbacks = filterFeedbackList(state.feedbacks, feedbackId);
       state.authenticatedUser.feedbacks = filterFeedbackList(state.authenticatedUser.feedbacks, feedbackId);
@@ -263,16 +230,13 @@ var actions = {
   loadFeedbackUser: function loadFeedbackUser(_ref2, _ref3) {
     var commit = _ref2.commit;
     var itemId = _ref3.itemId,
-        variationId = _ref3.variationId;
-
+      variationId = _ref3.variationId;
     if (!loadFeedbackUserLock) {
       loadFeedbackUserLock = true;
       var itemString = '';
-
       if (itemId !== undefined && variationId !== undefined) {
         itemString = "/".concat(itemId, "/").concat(variationId);
       }
-
       return $.ajax({
         type: 'GET',
         url: '/rest/feedbacks/user' + itemString,
@@ -289,13 +253,12 @@ var actions = {
   },
   loadFeedbackCounts: function loadFeedbackCounts(_ref4, itemId) {
     var commit = _ref4.commit,
-        state = _ref4.state;
-
+      state = _ref4.state;
     if (!countsLoaded) {
       countsLoaded = true;
       return $.ajax({
         type: 'GET',
-        url: '/rest/feedbacks/feedback/helper/counts/' + itemId,
+        url: '/rest/storefront/feedbacks/feedback/helper/counts/' + itemId,
         success: function success(data) {
           commit('setFeedbackCounts', data.counts);
         },
@@ -307,15 +270,18 @@ var actions = {
   },
   loadPaginatedFeedbacks: function loadPaginatedFeedbacks(_ref5, _ref6) {
     var commit = _ref5.commit,
-        state = _ref5.state;
+      state = _ref5.state;
     var itemId = _ref6.itemId,
-        feedbacksPerPage = _ref6.feedbacksPerPage;
-
+      feedbacksPerPage = _ref6.feedbacksPerPage,
+      language = _ref6.language;
     if (!loadPaginatedFeedbacksLock) {
       loadPaginatedFeedbacksLock = true;
       var request = $.ajax({
         type: 'GET',
-        url: '/rest/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
+        url: '/rest/storefront/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
+        beforeSend: function beforeSend(xhr) {
+          xhr.setRequestHeader('lang', language);
+        },
         data: {
           feedbacksPerPage: feedbacksPerPage
         },
@@ -336,10 +302,10 @@ var actions = {
   },
   deleteFeedback: function deleteFeedback(_ref7, _ref8) {
     var commit = _ref7.commit,
-        state = _ref7.state;
+      state = _ref7.state;
     var feedbackId = _ref8.feedbackId,
-        parentFeedbackId = _ref8.parentFeedbackId,
-        feedback = _ref8.feedback;
+      parentFeedbackId = _ref8.parentFeedbackId,
+      feedback = _ref8.feedback;
     return $.ajax({
       type: 'DELETE',
       url: '/rest/feedbacks/feedback/delete/' + feedbackId,
@@ -360,14 +326,14 @@ var countsLoaded = false;
   mutations: mutations,
   actions: actions,
   getters: getters
-}); // Utility functions
+});
 
+// Utility functions
 function filterFeedbackList(feedbackList, feedbackId) {
   return feedbackList.filter(function (feedback) {
     return feedback.id !== feedbackId;
   });
 }
-
 function filterReplyList(feedbackList, feedbackId, replyId) {
   return feedbackList.map(function (feedback) {
     if (feedbackId === feedback.id) {
@@ -375,11 +341,9 @@ function filterReplyList(feedbackList, feedbackId, replyId) {
         return reply.id !== replyId;
       });
     }
-
     return feedback;
   });
 }
-
 function recalculateAverage(state) {
   // Calculate average anew
   var average = 0;
@@ -480,8 +444,8 @@ __webpack_require__.r(__webpack_exports__);
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": function() { return /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FeedbackAverage_vue_vue_type_template_id_84655b24___WEBPACK_IMPORTED_MODULE_0__.render; },
-/* harmony export */   "staticRenderFns": function() { return /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FeedbackAverage_vue_vue_type_template_id_84655b24___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns; }
+/* harmony export */   render: function() { return /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FeedbackAverage_vue_vue_type_template_id_84655b24___WEBPACK_IMPORTED_MODULE_0__.render; },
+/* harmony export */   staticRenderFns: function() { return /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FeedbackAverage_vue_vue_type_template_id_84655b24___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns; }
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FeedbackAverage_vue_vue_type_template_id_84655b24___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./FeedbackAverage.vue?vue&type=template&id=84655b24& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/src/app/components/item/FeedbackAverage.vue?vue&type=template&id=84655b24&");
 
@@ -496,8 +460,8 @@ __webpack_require__.r(__webpack_exports__);
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": function() { return /* binding */ render; },
-/* harmony export */   "staticRenderFns": function() { return /* binding */ staticRenderFns; }
+/* harmony export */   render: function() { return /* binding */ render; },
+/* harmony export */   staticRenderFns: function() { return /* binding */ staticRenderFns; }
 /* harmony export */ });
 var render = function() {
   var _vm = this
