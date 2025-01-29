@@ -43,7 +43,10 @@
           :placeholder="$translate('Feedback::Feedback.authorName')"
           :disabled="authenticatedUser.limitReached || !authenticatedUser.hasPurchased"
         >
-        <label class="position-absolute"  for="author"><span class="d-none">{{ $translate("Feedback::Feedback.authorName") }}</span></label>
+        <label
+          class="position-absolute"
+          for="author"
+        ><span class="d-none">{{ $translate("Feedback::Feedback.authorName") }}</span></label>
 
         <input
           id="feedback-textfield"
@@ -52,7 +55,10 @@
           class="form-control"
           name="feedback-textfield"
         >
-        <label class="position-absolute" for="feedback-textfield"><span class="d-none">{{ $translate("Feedback::Feedback.feedbackTextLabel") }}</span></label>
+        <label
+          class="position-absolute"
+          for="feedback-textfield"
+        ><span class="d-none">{{ $translate("Feedback::Feedback.feedbackTextLabel") }}</span></label>
       </div>
 
       <div class="form-group">
@@ -66,7 +72,10 @@
           :placeholder="$translate('Feedback::Feedback.title')"
           :disabled="authenticatedUser.limitReached || !authenticatedUser.hasPurchased"
         >
-        <label class="position-absolute" for="title"><span class="d-none">{{ $translate("Feedback::Feedback.title") }}</span></label>
+        <label
+          class="position-absolute"
+          for="title"
+        ><span class="d-none">{{ $translate("Feedback::Feedback.title") }}</span></label>
         <div class="invalid-feedback">
           {{ $translate("Feedback::Feedback.titleRequired") }}
         </div>
@@ -82,7 +91,10 @@
           :placeholder="$translate('Feedback::Feedback.reviewMessage')"
           :disabled="authenticatedUser.limitReached || !authenticatedUser.hasPurchased"
         />
-        <label class="position-absolute" for="message">
+        <label
+          class="position-absolute"
+          for="message"
+        >
           <span class="d-none">{{ $translate("Feedback::Feedback.reviewMessage") }}</span>
         </label>
       </div>
