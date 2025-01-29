@@ -2419,6 +2419,7 @@ $({ target: PROMISE, stat: true, forced: INCORRECT_ITERATION }, {
 /******/ 					script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 				}
 /******/ 				script.setAttribute("data-webpack", dataWebpackPrefix + key);
+/******/ 		
 /******/ 				script.src = url;
 /******/ 			}
 /******/ 			inProgress[url] = [done];
@@ -2431,7 +2432,7 @@ $({ target: PROMISE, stat: true, forced: INCORRECT_ITERATION }, {
 /******/ 				script.parentNode && script.parentNode.removeChild(script);
 /******/ 				doneFns && doneFns.forEach(function(fn) { return fn(event); });
 /******/ 				if(prev) return prev(event);
-/******/ 			};
+/******/ 			}
 /******/ 			var timeout = setTimeout(onScriptComplete.bind(null, undefined, { type: 'timeout', target: script }), 120000);
 /******/ 			script.onerror = onScriptComplete.bind(null, script.onerror);
 /******/ 			script.onload = onScriptComplete.bind(null, script.onload);
@@ -2456,11 +2457,14 @@ $({ target: PROMISE, stat: true, forced: INCORRECT_ITERATION }, {
 /******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
 /******/ 		var document = __webpack_require__.g.document;
 /******/ 		if (!scriptUrl && document) {
-/******/ 			if (document.currentScript)
-/******/ 				scriptUrl = document.currentScript.src
+/******/ 			if (document.currentScript && document.currentScript.tagName.toUpperCase() === 'SCRIPT')
+/******/ 				scriptUrl = document.currentScript.src;
 /******/ 			if (!scriptUrl) {
 /******/ 				var scripts = document.getElementsByTagName("script");
-/******/ 				if(scripts.length) scriptUrl = scripts[scripts.length - 1].src
+/******/ 				if(scripts.length) {
+/******/ 					var i = scripts.length - 1;
+/******/ 					while (i > -1 && (!scriptUrl || !/^http(s?):/.test(scriptUrl))) scriptUrl = scripts[i--].src;
+/******/ 				}
 /******/ 			}
 /******/ 		}
 /******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
@@ -2542,7 +2546,7 @@ $({ target: PROMISE, stat: true, forced: INCORRECT_ITERATION }, {
 /******/ 								}
 /******/ 							};
 /******/ 							__webpack_require__.l(url, loadingEnded, "chunk-" + chunkId, chunkId);
-/******/ 						} else installedChunks[chunkId] = 0;
+/******/ 						}
 /******/ 					}
 /******/ 				}
 /******/ 		};
@@ -2591,7 +2595,7 @@ $({ target: PROMISE, stat: true, forced: INCORRECT_ITERATION }, {
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
 !function() {
 "use strict";
 /*!******************************************!*\
@@ -2609,13 +2613,13 @@ __webpack_require__.r(__webpack_exports__);
 
 var Vue = window.Vue;
 Vue.component('FeedbackAverage', function () {
-  return Promise.all(/*! import() */[__webpack_require__.e(6), __webpack_require__.e(1)]).then(__webpack_require__.bind(__webpack_require__, /*! ./app/components/item/FeedbackAverage.vue */ "./resources/js/src/app/components/item/FeedbackAverage.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(7), __webpack_require__.e(1)]).then(__webpack_require__.bind(__webpack_require__, /*! ./app/components/item/FeedbackAverage.vue */ "./resources/js/src/app/components/item/FeedbackAverage.vue"));
 });
 Vue.component('FeedbackContainer', function () {
-  return Promise.all(/*! import() */[__webpack_require__.e(6), __webpack_require__.e(3)]).then(__webpack_require__.bind(__webpack_require__, /*! ./app/components/item/singleitem/FeedbackContainer.vue */ "./resources/js/src/app/components/item/singleitem/FeedbackContainer.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(7), __webpack_require__.e(5), __webpack_require__.e(3)]).then(__webpack_require__.bind(__webpack_require__, /*! ./app/components/item/singleitem/FeedbackContainer.vue */ "./resources/js/src/app/components/item/singleitem/FeedbackContainer.vue"));
 });
 Vue.component('FeedbackOrderContainer', function () {
-  return Promise.all(/*! import() */[__webpack_require__.e(6), __webpack_require__.e(5), __webpack_require__.e(4)]).then(__webpack_require__.bind(__webpack_require__, /*! ./app/components/order/FeedbackOrder.vue */ "./resources/js/src/app/components/order/FeedbackOrder.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(7), __webpack_require__.e(5), __webpack_require__.e(6), __webpack_require__.e(4)]).then(__webpack_require__.bind(__webpack_require__, /*! ./app/components/order/FeedbackOrder.vue */ "./resources/js/src/app/components/order/FeedbackOrder.vue"));
 });
 }();
 /******/ })()
