@@ -107,6 +107,7 @@
             <div class="form-group">
               <input
                 id="title"
+                aria-label="feedback.title"
                 v-model="feedback.title"
                 type="text"
                 class="form-control"
@@ -124,6 +125,7 @@
             <div class="form-group">
               <textarea
                 id="message"
+                aria-label="feedback.message"
                 v-model="feedback.message"
                 class="form-control"
                 name="message"
