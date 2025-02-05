@@ -75,6 +75,7 @@
           <div class="col-8">
             <a
               :href="item.url"
+              :id="'feedbackOrderItem-' + _uid"
               class="mb-3"
             >{{ item.name }}
               <template v-for="attribute in item.attributes"> | {{ attribute.attribute.names.name }}: {{ attribute.value.names.name }}</template>
