@@ -31,7 +31,6 @@
           <div class="col-4">
             <a :href="item.url">
               <img
-                :alt="item.name"
                 :src="item.image"
               >
             </a>
