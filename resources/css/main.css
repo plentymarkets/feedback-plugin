@@ -33,7 +33,7 @@
   .feedback-container div.stars {
     width: 165px;
     display: inline-block; }
-  .feedback-container div.new_star {
+  .feedback-container label.new_star {
     display: block; }
   .feedback-container input.star, .feedback-container input.star-rated {
     display: none; }
@@ -192,10 +192,10 @@
     float: right;
     cursor: pointer;
     fill: rgba(0, 0, 0, 0.1); }
-  .feedback-orderitem-container div.new_star:hover ~ div.new_star svg,
-  .feedback-orderitem-container div.new_star:hover svg {
+  .feedback-orderitem-container label.new_star:hover ~ label.new_star svg,
+  .feedback-orderitem-container label.new_star:hover svg {
     fill: orange !important; }
-  .feedback-orderitem-container input.star:checked ~ div.new_star svg, .feedback-orderitem-container input.star-rated:checked ~ div.new_star svg {
+.feedback-orderitem-container input.star:checked ~ label.new_star svg, .feedback-orderitem-container input.star-rated:checked ~ label.new_star svg {
     fill: orange; }
   .feedback-orderitem-container .feedback-items {
     display: flex; }
