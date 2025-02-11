@@ -573,6 +573,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2781,6 +2793,7 @@ var render = function() {
                       class: "star star-" + i,
                       attrs: {
                         id: "star-" + _vm._uid + "-" + i,
+                        "aria-label": "stars_label_" + i,
                         type: "radio",
                         name: "ratingValue"
                       },
@@ -2799,10 +2812,9 @@ var render = function() {
                       }
                     }),
                     _vm._v(" "),
-                    _c("label", {
+                    _c("div", {
                       key: "stars_label_" + i,
-                      class: "star star-" + i,
-                      attrs: { for: "star-" + _vm._uid + "-" + i }
+                      class: "star star-" + i
                     })
                   ]
                 })

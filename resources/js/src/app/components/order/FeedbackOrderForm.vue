@@ -39,8 +39,8 @@
                 <input
                   :id="starId.id"
                   :key="'stars_input_' + starId.id"
-                  :aria-label="'stars_label_' + starId.id"
                   v-model="feedback.ratingValue"
+                  :aria-label="'stars_label_' + starId.id"
                   :class="starId.class"
                   type="radio"
                   :value="starId.value"
@@ -73,8 +73,8 @@
           </div>
           <div class="col-8">
             <a
-              :href="item.url"
               :id="'feedbackOrderItem-' + _uid"
+              :href="item.url"
               class="mb-3"
             >{{ item.name }}
               <template v-for="attribute in item.attributes"> | {{ attribute.attribute.names.name }}: {{ attribute.value.names.name }}</template>
@@ -107,8 +107,8 @@
             <div class="form-group">
               <input
                 id="title"
-                aria-label="feedback.title"
                 v-model="feedback.title"
+                aria-label="feedback.title"
                 type="text"
                 class="form-control"
                 :class="{'is-invalid': titleMissing}"
@@ -125,8 +125,8 @@
             <div class="form-group">
               <textarea
                 id="message"
-                aria-label="feedback.message"
                 v-model="feedback.message"
+                aria-label="feedback.message"
                 class="form-control"
                 name="message"
                 :rows="rows"

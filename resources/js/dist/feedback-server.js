@@ -1791,6 +1791,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -1932,6 +1934,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_number_constructor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.number.constructor */ "./node_modules/core-js/modules/es.number.constructor.js");
 /* harmony import */ var core_js_modules_es_number_constructor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_number_constructor__WEBPACK_IMPORTED_MODULE_0__);
 
+//
+//
+//
 //
 //
 //
@@ -7860,6 +7865,7 @@ var render = function() {
                 return (
                   "<input" +
                   _vm._ssrAttr("id", "star-" + _vm._uid + "-" + i) +
+                  _vm._ssrAttr("aria-label", "stars_label_" + i) +
                   ' type="radio" name="ratingValue"' +
                   _vm._ssrAttr("value", i) +
                   _vm._ssrAttr(
@@ -7867,10 +7873,9 @@ var render = function() {
                     _vm._q(_vm.editableFeedback.ratingValue, i)
                   ) +
                   _vm._ssrClass(null, "star star-" + i) +
-                  "> <label" +
-                  _vm._ssrAttr("for", "star-" + _vm._uid + "-" + i) +
+                  "> <div" +
                   _vm._ssrClass(null, "star star-" + i) +
-                  "></label>"
+                  "></div>"
                 )
               }) +
               '</div> <div class="form-group"><input type="text" name="title"' +
@@ -8032,13 +8037,13 @@ var render = function() {
           '</span> <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button></div> <div class="modal-body row"><div class="col-4"><a' +
           _vm._ssrAttr("href", _vm.item.url) +
           "><img" +
-          _vm._ssrAttr("alt", _vm.item.name) +
           _vm._ssrAttr("src", _vm.item.image) +
           '></a> <div class="stars">' +
           _vm._ssrList(_vm.starIds, function(starId) {
             return (
               "<input" +
               _vm._ssrAttr("id", starId.id) +
+              _vm._ssrAttr("aria-label", "stars_label_" + starId.id) +
               ' type="radio"' +
               _vm._ssrAttr("disabled", _vm.isRated) +
               ' name="ratingValue"' +
@@ -8048,16 +8053,15 @@ var render = function() {
                 _vm._q(_vm.feedback.ratingValue, starId.value)
               ) +
               _vm._ssrClass(null, starId.class) +
-              "> <label" +
-              _vm._ssrAttr("for", starId.id) +
-              ' class="new_star"><svg' +
+              '> <div class="new_star"><svg' +
               _vm._ssrAttr("for", starId.id) +
               ' width="100%" height="100%" viewBox="0 0 31 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/"' +
               _vm._ssrClass(null, starId.class) +
-              ' style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><path d="M30.5,11.564c0,0.265 -0.156,0.553 -0.469,0.866l-6.544,6.382l1.55,9.014c0.012,0.085 0.018,0.205 0.018,0.361c0,0.252 -0.063,0.466 -0.189,0.64c-0.126,0.174 -0.31,0.261 -0.55,0.261c-0.228,0 -0.469,-0.072 -0.721,-0.216l-8.095,-4.255l-8.095,4.255c-0.264,0.144 -0.505,0.216 -0.721,0.216c-0.253,0 -0.442,-0.087 -0.568,-0.261c-0.126,-0.174 -0.189,-0.388 -0.189,-0.64c0,-0.072 0.012,-0.192 0.036,-0.361l1.55,-9.014l-6.562,-6.382c-0.301,-0.325 -0.451,-0.613 -0.451,-0.866c0,-0.444 0.337,-0.721 1.01,-0.829l9.05,-1.316l4.057,-8.203c0.228,-0.493 0.522,-0.739 0.883,-0.739c0.361,0 0.655,0.246 0.883,0.739l4.057,8.203l9.05,1.316c0.673,0.108 1.01,0.385 1.01,0.829Z" style="fill-rule:nonzero;"></path></svg></label>'
+              ' style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><path d="M30.5,11.564c0,0.265 -0.156,0.553 -0.469,0.866l-6.544,6.382l1.55,9.014c0.012,0.085 0.018,0.205 0.018,0.361c0,0.252 -0.063,0.466 -0.189,0.64c-0.126,0.174 -0.31,0.261 -0.55,0.261c-0.228,0 -0.469,-0.072 -0.721,-0.216l-8.095,-4.255l-8.095,4.255c-0.264,0.144 -0.505,0.216 -0.721,0.216c-0.253,0 -0.442,-0.087 -0.568,-0.261c-0.126,-0.174 -0.189,-0.388 -0.189,-0.64c0,-0.072 0.012,-0.192 0.036,-0.361l1.55,-9.014l-6.562,-6.382c-0.301,-0.325 -0.451,-0.613 -0.451,-0.866c0,-0.444 0.337,-0.721 1.01,-0.829l9.05,-1.316l4.057,-8.203c0.228,-0.493 0.522,-0.739 0.883,-0.739c0.361,0 0.655,0.246 0.883,0.739l4.057,8.203l9.05,1.316c0.673,0.108 1.01,0.385 1.01,0.829Z" style="fill-rule:nonzero;"></path></svg></div>'
             )
           }) +
           '</div></div> <div class="col-8"><a' +
+          _vm._ssrAttr("id", "feedbackOrderItem-" + _vm._uid) +
           _vm._ssrAttr("href", _vm.item.url) +
           ' class="mb-3">' +
           _vm._ssrEscape(_vm._s(_vm.item.name) + "\n            ") +
@@ -8084,7 +8088,7 @@ var render = function() {
               _vm._ssrAttr("value", _vm.feedback.honeypot) +
               ' class="form-control"></div>'
             : "<!---->") +
-          ' <div class="form-group"><input id="title" type="text" name="title"' +
+          ' <div class="form-group"><input id="title" aria-label="feedback.title" type="text" name="title"' +
           _vm._ssrAttr("disabled", _vm.isRated || _vm.limitReached) +
           _vm._ssrAttr(
             "placeholder",
@@ -8098,7 +8102,7 @@ var render = function() {
               _vm._s(_vm.$translate("Feedback::Feedback.titleRequired")) +
               "\n            "
           ) +
-          '</div></div> <div class="form-group"><textarea id="message" name="message"' +
+          '</div></div> <div class="form-group"><textarea id="message" aria-label="feedback.message" name="message"' +
           _vm._ssrAttr("rows", _vm.rows) +
           _vm._ssrAttr("disabled", _vm.isRated || _vm.limitReached) +
           _vm._ssrAttr(
@@ -8177,11 +8181,14 @@ var render = function() {
     },
     [
       _vm._ssrNode(
-        '<div class="stars"><form>' +
+        '<div class="stars"><form><fieldset class="d-flex"><legend>' +
+          _vm._ssrEscape(_vm._s(_vm.item.name)) +
+          "</legend> " +
           _vm._ssrList(_vm.starIds, function(starId) {
             return (
               "<input" +
               _vm._ssrAttr("id", starId.id) +
+              _vm._ssrAttr("aria-label", "stars_label_" + starId.id) +
               ' type="radio" name="ratingValue"' +
               _vm._ssrAttr("disabled", _vm.isRated) +
               _vm._ssrAttr("value", starId.value) +
@@ -8190,16 +8197,14 @@ var render = function() {
                 _vm._q(_vm.feedback.ratingValue, starId.value)
               ) +
               _vm._ssrClass(null, starId.class) +
-              "> <label" +
-              _vm._ssrAttr("for", starId.id) +
-              ' class="new_star"><svg' +
+              '> <div class="new_star"><svg' +
               _vm._ssrAttr("for", starId.id) +
               ' width="100%" height="100%" viewBox="0 0 31 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/"' +
               _vm._ssrClass(null, starId.class) +
-              ' style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><path d="M30.5,11.564c0,0.265 -0.156,0.553 -0.469,0.866l-6.544,6.382l1.55,9.014c0.012,0.085 0.018,0.205 0.018,0.361c0,0.252 -0.063,0.466 -0.189,0.64c-0.126,0.174 -0.31,0.261 -0.55,0.261c-0.228,0 -0.469,-0.072 -0.721,-0.216l-8.095,-4.255l-8.095,4.255c-0.264,0.144 -0.505,0.216 -0.721,0.216c-0.253,0 -0.442,-0.087 -0.568,-0.261c-0.126,-0.174 -0.189,-0.388 -0.189,-0.64c0,-0.072 0.012,-0.192 0.036,-0.361l1.55,-9.014l-6.562,-6.382c-0.301,-0.325 -0.451,-0.613 -0.451,-0.866c0,-0.444 0.337,-0.721 1.01,-0.829l9.05,-1.316l4.057,-8.203c0.228,-0.493 0.522,-0.739 0.883,-0.739c0.361,0 0.655,0.246 0.883,0.739l4.057,8.203l9.05,1.316c0.673,0.108 1.01,0.385 1.01,0.829Z" style="fill-rule:nonzero;"></path></svg></label>'
+              ' style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><path d="M30.5,11.564c0,0.265 -0.156,0.553 -0.469,0.866l-6.544,6.382l1.55,9.014c0.012,0.085 0.018,0.205 0.018,0.361c0,0.252 -0.063,0.466 -0.189,0.64c-0.126,0.174 -0.31,0.261 -0.55,0.261c-0.228,0 -0.469,-0.072 -0.721,-0.216l-8.095,-4.255l-8.095,4.255c-0.264,0.144 -0.505,0.216 -0.721,0.216c-0.253,0 -0.442,-0.087 -0.568,-0.261c-0.126,-0.174 -0.189,-0.388 -0.189,-0.64c0,-0.072 0.012,-0.192 0.036,-0.361l1.55,-9.014l-6.562,-6.382c-0.301,-0.325 -0.451,-0.613 -0.451,-0.866c0,-0.444 0.337,-0.721 1.01,-0.829l9.05,-1.316l4.057,-8.203c0.228,-0.493 0.522,-0.739 0.883,-0.739c0.361,0 0.655,0.246 0.883,0.739l4.057,8.203l9.05,1.316c0.673,0.108 1.01,0.385 1.01,0.829Z" style="fill-rule:nonzero;"></path></svg></div>'
             )
           }) +
-          "</form></div> <a" +
+          "</fieldset></form></div> <a" +
           _vm._ssrAttr("href", _vm.item.url) +
           "><img" +
           _vm._ssrAttr("alt", _vm.item.name) +
