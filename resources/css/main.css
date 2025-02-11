@@ -217,6 +217,9 @@
         .feedback-orderitem-container .feedback-items .feedback-item .feedback-item-link a {
           display: block;
           font-size: 1.3em; }
+      .feedback-orderitem-container .feedback-items .feedback-item .feedback-item-title {
+        display: block;
+        font-size: 1.3em; }
   .feedback-orderitem-container .modal .stars svg {
     width: 20%; }
   .feedback-orderitem-container .modal img {

@@ -52,13 +52,12 @@
     </div>
     <a :href="item.url">
       <img
-        :alt="item.name"
         :src="item.image"
         class="py-2"
       >
+      <span class="feedback-item-title">{{ item.name }}</span>
     </a>
     <div class="feedback-item-link">
-      <a :href="item.url">{{ item.name }}</a>
       <div
         v-for="attribute in item.attributes"
         :key="item.itemId+'-'+attribute.valueId"

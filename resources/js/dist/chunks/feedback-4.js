@@ -581,7 +581,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'FeedbackOrderItem',
@@ -1681,35 +1680,26 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("a", { attrs: { href: _vm.item.url } }, [
-        _c("img", {
-          staticClass: "py-2",
-          attrs: { alt: _vm.item.name, src: _vm.item.image }
-        })
+        _c("img", { staticClass: "py-2", attrs: { src: _vm.item.image } }),
+        _vm._v(" "),
+        _c("span", { staticClass: "feedback-item-title" }, [
+          _vm._v(_vm._s(_vm.item.name))
+        ])
       ]),
       _vm._v(" "),
       _c(
         "div",
         { staticClass: "feedback-item-link" },
-        [
-          _c("a", { attrs: { href: _vm.item.url } }, [
-            _vm._v(_vm._s(_vm.item.name))
-          ]),
-          _vm._v(" "),
-          _vm._l(_vm.item.attributes, function(attribute) {
-            return _c(
-              "div",
-              { key: _vm.item.itemId + "-" + attribute.valueId },
-              [
-                _c("strong", [
-                  _vm._v(_vm._s(attribute.attribute.names.name) + ": ")
-                ]),
-                _vm._v(" "),
-                _c("span", [_vm._v(_vm._s(attribute.value.names.name))])
-              ]
-            )
-          })
-        ],
-        2
+        _vm._l(_vm.item.attributes, function(attribute) {
+          return _c("div", { key: _vm.item.itemId + "-" + attribute.valueId }, [
+            _c("strong", [
+              _vm._v(_vm._s(attribute.attribute.names.name) + ": ")
+            ]),
+            _vm._v(" "),
+            _c("span", [_vm._v(_vm._s(attribute.value.names.name))])
+          ])
+        }),
+        0
       )
     ]
   )
