@@ -84,8 +84,8 @@
           <input
             :id="'star-' + _uid + '-' + i"
             :key="'stars_input_' + i"
-            :aria-label="'stars_label_' + i"
             v-model="editableFeedback.ratingValue"
+            :aria-label="'stars_label_' + i"
             :class="'star star-' + i"
             type="radio"
             :value="i"
