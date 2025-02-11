@@ -9,7 +9,9 @@
     >
       <form>
         <fieldset class="d-flex">
-          <legend>{{ item.name }}</legend>
+          <legend>
+            <span class="d-none">{{ item.name }}</span>
+          </legend>
           <template v-for="starId in starIds">
             <input
               :id="starId.id"
