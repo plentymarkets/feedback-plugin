@@ -580,6 +580,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'FeedbackOrderItem',
@@ -1302,8 +1304,8 @@ var render = function() {
                 {
                   staticClass: "mb-3",
                   attrs: {
-                    href: _vm.item.url,
-                    id: "feedbackOrderItem-" + _vm._uid
+                    id: "feedbackOrderItem-" + _vm._uid,
+                    href: _vm.item.url
                   }
                 },
                 [
@@ -1582,9 +1584,13 @@ var render = function() {
           _c("form", [
             _c(
               "fieldset",
-              { staticClass: "d-flex" },
+              { staticClass: "d-flex flex-row-reverse" },
               [
-                _c("legend", [_vm._v(_vm._s(_vm.item.name))]),
+                _c("legend", [
+                  _c("span", { staticClass: "d-none" }, [
+                    _vm._v(_vm._s(_vm.item.name))
+                  ])
+                ]),
                 _vm._v(" "),
                 _vm._l(_vm.starIds, function(starId) {
                   return [

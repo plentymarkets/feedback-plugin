@@ -8,7 +8,7 @@
       @click="handleRating(0)"
     >
       <form>
-        <fieldset class="d-flex">
+        <fieldset class="d-flex flex-row-reverse">
           <legend>
             <span class="d-none">{{ item.name }}</span>
           </legend>

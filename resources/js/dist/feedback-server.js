@@ -2004,6 +2004,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'FeedbackOrderItem',
@@ -8181,9 +8183,9 @@ var render = function() {
     },
     [
       _vm._ssrNode(
-        '<div class="stars"><form><fieldset class="d-flex"><legend>' +
+        '<div class="stars"><form><fieldset class="d-flex flex-row-reverse"><legend><span class="d-none">' +
           _vm._ssrEscape(_vm._s(_vm.item.name)) +
-          "</legend> " +
+          "</span></legend> " +
           _vm._ssrList(_vm.starIds, function(starId) {
             return (
               "<input" +
