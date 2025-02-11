@@ -581,6 +581,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'FeedbackOrderItem',
@@ -1680,7 +1681,10 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("a", { attrs: { href: _vm.item.url } }, [
-        _c("img", { staticClass: "py-2", attrs: { src: _vm.item.image } }),
+        _c("img", {
+          staticClass: "py-2",
+          attrs: { alt: "image " + _vm.item.name, src: _vm.item.image }
+        }),
         _vm._v(" "),
         _c("span", { staticClass: "feedback-item-title" }, [
           _vm._v(_vm._s(_vm.item.name))

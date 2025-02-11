@@ -52,6 +52,7 @@
     </div>
     <a :href="item.url">
       <img
+        :alt="'image '+ item.name"
         :src="item.image"
         class="py-2"
       >

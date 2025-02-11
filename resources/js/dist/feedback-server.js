@@ -2005,6 +2005,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'FeedbackOrderItem',
@@ -8208,6 +8209,7 @@ var render = function() {
           "</fieldset></form></div> <a" +
           _vm._ssrAttr("href", _vm.item.url) +
           "><img" +
+          _vm._ssrAttr("alt", "image " + _vm.item.name) +
           _vm._ssrAttr("src", _vm.item.image) +
           ' class="py-2"> <span class="feedback-item-title">' +
           _vm._ssrEscape(_vm._s(_vm.item.name)) +
