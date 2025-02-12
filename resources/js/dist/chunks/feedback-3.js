@@ -2793,7 +2793,6 @@ var render = function() {
                       class: "star star-" + i,
                       attrs: {
                         id: "star-" + _vm._uid + "-" + i,
-                        "aria-label": "stars_label_" + i,
                         type: "radio",
                         name: "ratingValue"
                       },
@@ -2812,9 +2811,10 @@ var render = function() {
                       }
                     }),
                     _vm._v(" "),
-                    _c("div", {
+                    _c("label", {
                       key: "stars_label_" + i,
-                      class: "star star-" + i
+                      class: "star star-" + i,
+                      attrs: { for: "star-" + _vm._uid + "-" + i }
                     })
                   ]
                 })

@@ -7869,7 +7869,6 @@ var render = function() {
                 return (
                   "<input" +
                   _vm._ssrAttr("id", "star-" + _vm._uid + "-" + i) +
-                  _vm._ssrAttr("aria-label", "stars_label_" + i) +
                   ' type="radio" name="ratingValue"' +
                   _vm._ssrAttr("value", i) +
                   _vm._ssrAttr(
@@ -7877,9 +7876,10 @@ var render = function() {
                     _vm._q(_vm.editableFeedback.ratingValue, i)
                   ) +
                   _vm._ssrClass(null, "star star-" + i) +
-                  "> <div" +
+                  "> <label" +
+                  _vm._ssrAttr("for", "star-" + _vm._uid + "-" + i) +
                   _vm._ssrClass(null, "star star-" + i) +
-                  "></div>"
+                  "></label>"
                 )
               }) +
               '</div> <div class="form-group"><input type="text" name="title"' +

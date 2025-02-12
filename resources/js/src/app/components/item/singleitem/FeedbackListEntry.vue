@@ -85,15 +85,15 @@
             :id="'star-' + _uid + '-' + i"
             :key="'stars_input_' + i"
             v-model="editableFeedback.ratingValue"
-            :aria-label="'stars_label_' + i"
             :class="'star star-' + i"
             type="radio"
             :value="i"
             name="ratingValue"
           >
-          <div
+          <label
             :key="'stars_label_' + i"
             :class="'star star-' + i"
+            :for="'star-' + _uid + '-' + i"
           />
         </template>
       </div>
