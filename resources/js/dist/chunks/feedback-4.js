@@ -583,6 +583,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'FeedbackOrderItem',
@@ -1639,6 +1640,10 @@ var render = function() {
                         attrs: { for: starId.id }
                       },
                       [
+                        _c("span", { staticClass: "d-none" }, [
+                          _vm._v(_vm._s(starId.id))
+                        ]),
+                        _vm._v(" "),
                         _c(
                           "svg",
                           {

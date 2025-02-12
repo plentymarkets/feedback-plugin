@@ -30,6 +30,7 @@
               :for="starId.id"
               class="new_star"
             >
+              <span class="d-none">{{ starId.id }}</span>
               <svg
                 :class="starId.class"
                 :for="starId.id"
