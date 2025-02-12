@@ -1413,7 +1413,7 @@ var render = function() {
                   class: { "is-invalid": _vm.titleMissing },
                   attrs: {
                     id: "title",
-                    "aria-label": "feedback.title",
+                    "aria-label": _vm.$translate("Feedback::Feedback.title"),
                     type: "text",
                     name: "title",
                     disabled: _vm.isRated || _vm.limitReached,
@@ -1454,7 +1454,9 @@ var render = function() {
                   staticClass: "form-control",
                   attrs: {
                     id: "message",
-                    "aria-label": "feedback.message",
+                    "aria-label": _vm.$translate(
+                      "Feedback::Feedback.reviewMessage"
+                    ),
                     name: "message",
                     rows: _vm.rows,
                     disabled: _vm.isRated || _vm.limitReached,
