@@ -35,8 +35,8 @@
                 :alt="'image ' + item.name"
               >
             </a>
-            <div class="stars">
-              <fieldset>
+            <fieldset>
+              <div class="stars">
                 <legend>
                   <span class="d-none">{{ $translate("Feedback::Feedback.customerReviews") }}</span>
                 </legend>
@@ -75,8 +75,8 @@
                     /></svg>
                   </label>
                 </template>
-              </fieldset>
-            </div>
+              </div>
+            </fieldset>
           </div>
           <div class="col-8">
             <a
