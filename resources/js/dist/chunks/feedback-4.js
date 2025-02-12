@@ -374,6 +374,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1207,101 +1213,114 @@ var render = function() {
           _c("div", { staticClass: "modal-body row" }, [
             _c("div", { staticClass: "col-4" }, [
               _c("a", { attrs: { href: _vm.item.url } }, [
-                _c("img", { attrs: { src: _vm.item.image } })
+                _c("img", {
+                  attrs: { src: _vm.item.image, alt: "image " + _vm.item.name }
+                })
               ]),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "stars" },
-                [
-                  _vm._l(_vm.starIds, function(starId) {
-                    return [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.feedback.ratingValue,
-                            expression: "feedback.ratingValue"
-                          }
-                        ],
-                        key: "stars_input_" + starId.id,
-                        class: starId.class,
-                        attrs: {
-                          id: starId.id,
-                          type: "radio",
-                          disabled: _vm.isRated,
-                          name: "ratingValue"
-                        },
-                        domProps: {
-                          value: starId.value,
-                          checked: _vm._q(
-                            _vm.feedback.ratingValue,
-                            starId.value
+              _c("div", { staticClass: "stars" }, [
+                _c(
+                  "fieldset",
+                  [
+                    _c("legend", [
+                      _c("span", { staticClass: "d-none" }, [
+                        _vm._v(
+                          _vm._s(
+                            _vm.$translate("Feedback::Feedback.customerReviews")
                           )
-                        },
-                        on: {
-                          change: function($event) {
-                            return _vm.$set(
-                              _vm.feedback,
-                              "ratingValue",
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.starIds, function(starId) {
+                      return [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.feedback.ratingValue,
+                              expression: "feedback.ratingValue"
+                            }
+                          ],
+                          key: "stars_input_" + starId.id,
+                          class: starId.class,
+                          attrs: {
+                            id: starId.id,
+                            type: "radio",
+                            disabled: _vm.isRated,
+                            name: "ratingValue"
+                          },
+                          domProps: {
+                            value: starId.value,
+                            checked: _vm._q(
+                              _vm.feedback.ratingValue,
                               starId.value
                             )
+                          },
+                          on: {
+                            change: function($event) {
+                              return _vm.$set(
+                                _vm.feedback,
+                                "ratingValue",
+                                starId.value
+                              )
+                            }
                           }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "label",
-                        {
-                          key: "stars_label_" + starId.id,
-                          staticClass: "new_star",
-                          attrs: { for: starId.id }
-                        },
-                        [
-                          _c("span", { staticClass: "d-none" }, [
-                            _vm._v(_vm._s(starId.id))
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "svg",
-                            {
-                              class: starId.class,
-                              staticStyle: {
-                                "fill-rule": "evenodd",
-                                "clip-rule": "evenodd",
-                                "stroke-linejoin": "round",
-                                "stroke-miterlimit": "2"
-                              },
-                              attrs: {
-                                for: starId.id,
-                                width: "100%",
-                                height: "100%",
-                                viewBox: "0 0 31 30",
-                                version: "1.1",
-                                xmlns: "http://www.w3.org/2000/svg",
-                                "xmlns:xlink": "http://www.w3.org/1999/xlink",
-                                "xml:space": "preserve",
-                                "xmlns:serif": "http://www.serif.com/"
-                              }
-                            },
-                            [
-                              _c("path", {
-                                staticStyle: { "fill-rule": "nonzero" },
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "label",
+                          {
+                            key: "stars_label_" + starId.id,
+                            staticClass: "new_star",
+                            attrs: { for: starId.id }
+                          },
+                          [
+                            _c("span", { staticClass: "d-none" }, [
+                              _vm._v(_vm._s(starId.id))
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "svg",
+                              {
+                                class: starId.class,
+                                staticStyle: {
+                                  "fill-rule": "evenodd",
+                                  "clip-rule": "evenodd",
+                                  "stroke-linejoin": "round",
+                                  "stroke-miterlimit": "2"
+                                },
                                 attrs: {
-                                  d:
-                                    "M30.5,11.564c0,0.265 -0.156,0.553 -0.469,0.866l-6.544,6.382l1.55,9.014c0.012,0.085 0.018,0.205 0.018,0.361c0,0.252 -0.063,0.466 -0.189,0.64c-0.126,0.174 -0.31,0.261 -0.55,0.261c-0.228,0 -0.469,-0.072 -0.721,-0.216l-8.095,-4.255l-8.095,4.255c-0.264,0.144 -0.505,0.216 -0.721,0.216c-0.253,0 -0.442,-0.087 -0.568,-0.261c-0.126,-0.174 -0.189,-0.388 -0.189,-0.64c0,-0.072 0.012,-0.192 0.036,-0.361l1.55,-9.014l-6.562,-6.382c-0.301,-0.325 -0.451,-0.613 -0.451,-0.866c0,-0.444 0.337,-0.721 1.01,-0.829l9.05,-1.316l4.057,-8.203c0.228,-0.493 0.522,-0.739 0.883,-0.739c0.361,0 0.655,0.246 0.883,0.739l4.057,8.203l9.05,1.316c0.673,0.108 1.01,0.385 1.01,0.829Z"
+                                  for: starId.id,
+                                  width: "100%",
+                                  height: "100%",
+                                  viewBox: "0 0 31 30",
+                                  version: "1.1",
+                                  xmlns: "http://www.w3.org/2000/svg",
+                                  "xmlns:xlink": "http://www.w3.org/1999/xlink",
+                                  "xml:space": "preserve",
+                                  "xmlns:serif": "http://www.serif.com/"
                                 }
-                              })
-                            ]
-                          )
-                        ]
-                      )
-                    ]
-                  })
-                ],
-                2
-              )
+                              },
+                              [
+                                _c("path", {
+                                  staticStyle: { "fill-rule": "nonzero" },
+                                  attrs: {
+                                    d:
+                                      "M30.5,11.564c0,0.265 -0.156,0.553 -0.469,0.866l-6.544,6.382l1.55,9.014c0.012,0.085 0.018,0.205 0.018,0.361c0,0.252 -0.063,0.466 -0.189,0.64c-0.126,0.174 -0.31,0.261 -0.55,0.261c-0.228,0 -0.469,-0.072 -0.721,-0.216l-8.095,-4.255l-8.095,4.255c-0.264,0.144 -0.505,0.216 -0.721,0.216c-0.253,0 -0.442,-0.087 -0.568,-0.261c-0.126,-0.174 -0.189,-0.388 -0.189,-0.64c0,-0.072 0.012,-0.192 0.036,-0.361l1.55,-9.014l-6.562,-6.382c-0.301,-0.325 -0.451,-0.613 -0.451,-0.866c0,-0.444 0.337,-0.721 1.01,-0.829l9.05,-1.316l4.057,-8.203c0.228,-0.493 0.522,-0.739 0.883,-0.739c0.361,0 0.655,0.246 0.883,0.739l4.057,8.203l9.05,1.316c0.673,0.108 1.01,0.385 1.01,0.829Z"
+                                  }
+                                })
+                              ]
+                            )
+                          ]
+                        )
+                      ]
+                    })
+                  ],
+                  2
+                )
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-8" }, [
