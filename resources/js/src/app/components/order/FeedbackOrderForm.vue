@@ -32,10 +32,15 @@
             <a :href="item.url">
               <img
                 :src="item.image"
+                :alt="'image ' + item.name"
               >
             </a>
             <div class="stars">
-              <template v-for="starId in starIds">
+              <fieldset>
+                <legend>
+                  <span class="d-none">{{ $translate("Feedback::Feedback.customerReviews") }}</span>
+                </legend>
+                <template v-for="starId in starIds">
                 <input
                   :id="starId.id"
                   :key="'stars_input_' + starId.id"
@@ -70,6 +75,7 @@
                   /></svg>
                 </label>
               </template>
+              </fieldset>
             </div>
           </div>
           <div class="col-8">
