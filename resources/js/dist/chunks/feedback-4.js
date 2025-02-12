@@ -373,6 +373,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -510,7 +511,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_number_constructor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.number.constructor */ "./node_modules/core-js/modules/es.number.constructor.js");
 /* harmony import */ var core_js_modules_es_number_constructor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_number_constructor__WEBPACK_IMPORTED_MODULE_0__);
 
-//
 //
 //
 //
@@ -1229,7 +1229,6 @@ var render = function() {
                         class: starId.class,
                         attrs: {
                           id: starId.id,
-                          "aria-label": "stars_label_" + starId.id,
                           type: "radio",
                           disabled: _vm.isRated,
                           name: "ratingValue"
@@ -1253,12 +1252,17 @@ var render = function() {
                       }),
                       _vm._v(" "),
                       _c(
-                        "div",
+                        "label",
                         {
                           key: "stars_label_" + starId.id,
-                          staticClass: "new_star"
+                          staticClass: "new_star",
+                          attrs: { for: starId.id }
                         },
                         [
+                          _c("span", { staticClass: "d-none" }, [
+                            _vm._v(_vm._s(starId.id))
+                          ]),
+                          _vm._v(" "),
                           _c(
                             "svg",
                             {
@@ -1609,7 +1613,6 @@ var render = function() {
                       class: starId.class,
                       attrs: {
                         id: starId.id,
-                        "aria-label": "stars_label_" + starId.id,
                         type: "radio",
                         name: "ratingValue",
                         disabled: _vm.isRated

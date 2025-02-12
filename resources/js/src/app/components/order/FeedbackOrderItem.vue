@@ -17,7 +17,6 @@
               :id="starId.id"
               :key="'stars_input_' + starId.id"
               v-model="feedback.ratingValue"
-              :aria-label="'stars_label_' + starId.id"
               :class="starId.class"
               type="radio"
               :value="starId.value"
