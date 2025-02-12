@@ -1140,7 +1140,7 @@ var render = function() {
               "access-key": _vm.accessKey,
               "order-id": _vm.orderId,
               "show-empty-ratings":
-                _vm.options.showEmptyRatingsInOrderConfirmation
+                _vm.options.showEmptyRatingsInOrderConfirmation === "true"
             }
           })
         : _vm._e()
