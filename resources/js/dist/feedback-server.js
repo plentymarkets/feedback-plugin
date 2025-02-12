@@ -8095,7 +8095,12 @@ var render = function() {
               _vm._ssrAttr("value", _vm.feedback.honeypot) +
               ' class="form-control"></div>'
             : "<!---->") +
-          ' <div class="form-group"><input id="title" aria-label="feedback.title" type="text" name="title"' +
+          ' <div class="form-group"><input id="title"' +
+          _vm._ssrAttr(
+            "aria-label",
+            _vm.$translate("Feedback::Feedback.title")
+          ) +
+          ' type="text" name="title"' +
           _vm._ssrAttr("disabled", _vm.isRated || _vm.limitReached) +
           _vm._ssrAttr(
             "placeholder",
@@ -8109,7 +8114,12 @@ var render = function() {
               _vm._s(_vm.$translate("Feedback::Feedback.titleRequired")) +
               "\n            "
           ) +
-          '</div></div> <div class="form-group"><textarea id="message" aria-label="feedback.message" name="message"' +
+          '</div></div> <div class="form-group"><textarea id="message"' +
+          _vm._ssrAttr(
+            "aria-label",
+            _vm.$translate("Feedback::Feedback.reviewMessage")
+          ) +
+          ' name="message"' +
           _vm._ssrAttr("rows", _vm.rows) +
           _vm._ssrAttr("disabled", _vm.isRated || _vm.limitReached) +
           _vm._ssrAttr(

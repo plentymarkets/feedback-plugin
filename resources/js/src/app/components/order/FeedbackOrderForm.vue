@@ -109,7 +109,7 @@
               <input
                 id="title"
                 v-model="feedback.title"
-                aria-label="feedback.title"
+                :aria-label="$translate('Feedback::Feedback.title')"
                 type="text"
                 class="form-control"
                 :class="{'is-invalid': titleMissing}"
@@ -127,7 +127,7 @@
               <textarea
                 id="message"
                 v-model="feedback.message"
-                aria-label="feedback.message"
+                :aria-label="$translate('Feedback::Feedback.reviewMessage')"
                 class="form-control"
                 name="message"
                 :rows="rows"
