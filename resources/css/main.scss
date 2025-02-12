@@ -41,7 +41,8 @@
     }
 
     /* each label ( star in :before ) */
-    label.star, label.star-rated {
+    label.star, label.star-rated,
+    div.star, div.star-rated {
         float: right;
         height: 40px;
         width: 33px;
@@ -55,7 +56,8 @@
 
     /* color lower value stars when the radio is checked */
     /* stars are added from 5 to 1 and positioned right to left so that "~" works */
-    input.star:checked ~ label.star:before, input.star-rated:checked ~ label.star-rated:before {
+    input.star:checked ~ label.star:before, input.star-rated:checked ~ label.star-rated:before,
+    input.star:checked ~ div.star:before, input.star-rated:checked ~ div.star-rated:before{
         content: '\f005';
         color: orange;
     }
@@ -67,17 +69,20 @@
     /* input.star-5:checked ~ label.star:before {*/
     /* } */
     /* when hovering the wrapper that holds the stars make them all empty and colorless */
-    div.stars:hover label.star:before {
+    div.stars:hover label.star:before,
+    div.stars:hover div.star:before {
         color: rgba(0, 0, 0, .1);
     }
 
     /* hovered star ( full and colored ) */
-    label.star:hover:before {
+    label.star:hover:before,
+    div.star:hover:before {
         color: orange !important;
     }
 
     /* stars of lower value on hover ( full and colored ) */
-    label.star:hover ~ label.star:before {
+    label.star:hover ~ label.star:before,
+    div.star:hover ~ div.star:before {
         color: orange;
     }
     svg.star:hover ~ svg.star {
@@ -85,7 +90,8 @@
     }
 
     /* all visible stars ( full but colorless ) */
-    label.star:before, label.star-rated:before {
+    label.star:before, label.star-rated:before,
+    div.star:before, div.star-rated:before {
         content: '\f005';
         font-family: FontAwesome;
     }
