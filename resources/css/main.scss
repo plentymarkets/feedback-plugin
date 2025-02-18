@@ -30,7 +30,8 @@
         display: inline-block;
     }
 
-    label.new_star {
+    label.new_star,
+    div.new_star {
         display: block;
     }
 
@@ -320,12 +321,13 @@
     }
 
     label.new_star:hover ~ label.new_star,
-    label.new_star:hover {
+    div.new_star:hover ~ div.new_star {
         svg {
             fill: orange !important;
         }
     }
-    input.star:checked ~ label.new_star, input.star-rated:checked ~ label.new_star {
+    input.star:checked ~ label.new_star, input.star-rated:checked ~ label.new_star,
+    input.star:checked ~ div.new_star, input.star-rated:checked ~ div.new_star {
         svg {
             fill: orange;
         }
