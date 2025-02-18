@@ -4,7 +4,7 @@
       v-if="authenticatedUser.isLoggedIn || options.allowGuestFeedbacks"
       class="createFeedback"
     >
-      <div class="stars">
+      <div role="radiogroup" class="stars">
         <template v-for="i in [5,4,3,2,1]">
           <input
             :id="'star-' + i + _uid"
@@ -14,12 +14,12 @@
             type="radio"
             :value="i "
             :name="'ratingValue' + _uid"
+            :aria-label='$translate("Feedback::Feedback.feedbackAverageLabel")'
           >
-          <label
+          <div
             :key="'star_label_' + i"
             :class="'star star-' + i"
-            :for="'star-' + i + _uid"
-          ><span class="d-none">{{ $translate("Feedback::Feedback.feedbackAverageLabel") }}</span></label>
+          ></div>
         </template>
       </div>
 
@@ -42,11 +42,9 @@
           name="author"
           :placeholder="$translate('Feedback::Feedback.authorName')"
           :disabled="authenticatedUser.limitReached || !authenticatedUser.hasPurchased"
+          :aria-label='$translate("Feedback::Feedback.authorName")'
         >
-        <label
-          class="position-absolute"
-          for="author"
-        ><span class="d-none">{{ $translate("Feedback::Feedback.authorName") }}</span></label>
+        <div class="position-absolute"></div>
 
         <input
           id="feedback-textfield"
@@ -54,11 +52,9 @@
           type="text"
           class="form-control"
           name="feedback-textfield"
+          :aria-label='$translate("Feedback::Feedback.feedbackTextLabel")'
         >
-        <label
-          class="position-absolute"
-          for="feedback-textfield"
-        ><span class="d-none">{{ $translate("Feedback::Feedback.feedbackTextLabel") }}</span></label>
+        <div class="position-absolute"></div>
       </div>
 
       <div class="form-group">
@@ -71,11 +67,10 @@
           name="title"
           :placeholder="$translate('Feedback::Feedback.title')"
           :disabled="authenticatedUser.limitReached || !authenticatedUser.hasPurchased"
+          :aria-label='$translate("Feedback::Feedback.title")'
         >
-        <label
-          class="position-absolute"
-          for="title"
-        ><span class="d-none">{{ $translate("Feedback::Feedback.title") }}</span></label>
+        <div class="position-absolute"></div>
+
         <div class="invalid-feedback">
           {{ $translate("Feedback::Feedback.titleRequired") }}
         </div>
@@ -90,13 +85,10 @@
           rows="3"
           :placeholder="$translate('Feedback::Feedback.reviewMessage')"
           :disabled="authenticatedUser.limitReached || !authenticatedUser.hasPurchased"
+          :aria-label='$translate("Feedback::Feedback.reviewMessage")'
         />
-        <label
-          class="position-absolute"
-          for="message"
-        >
-          <span class="d-none">{{ $translate("Feedback::Feedback.reviewMessage") }}</span>
-        </label>
+        <div class="position-absolute">
+        </div>
       </div>
 
       <div
