@@ -37,7 +37,8 @@
     display: block; }
   .feedback-container input.star, .feedback-container input.star-rated {
     display: none; }
-  .feedback-container label.star, .feedback-container label.star-rated {
+  .feedback-container label.star, .feedback-container label.star-rated,
+  .feedback-container div.star, .feedback-container div.star-rated {
     float: right;
     height: 40px;
     width: 33px;
@@ -47,20 +48,25 @@
     margin-bottom: 0px;
     color: rgba(0, 0, 0, 0.1);
     cursor: pointer; }
-  .feedback-container input.star:checked ~ label.star:before, .feedback-container input.star-rated:checked ~ label.star-rated:before {
+  .feedback-container input.star:checked ~ label.star:before, .feedback-container input.star-rated:checked ~ label.star-rated:before,
+  .feedback-container input.star:checked ~ div.star:before, .feedback-container input.star-rated:checked ~ div.star-rated:before {
     content: '\f005';
     color: orange; }
   .feedback-container input.star:checked ~ svg.star, .feedback-container input.star-rated:checked ~ svg.star-rated {
     fill: orange; }
-  .feedback-container div.stars:hover label.star:before {
+  .feedback-container div.stars:hover label.star:before,
+  .feedback-container div.stars:hover div.star:before {
     color: rgba(0, 0, 0, 0.1); }
-  .feedback-container label.star:hover:before {
+  .feedback-container label.star:hover:before,
+  .feedback-container div.star:hover:before {
     color: orange !important; }
-  .feedback-container label.star:hover ~ label.star:before {
+  .feedback-container label.star:hover ~ label.star:before,
+  .feedback-container div.star:hover ~ div.star:before {
     color: orange; }
   .feedback-container svg.star:hover ~ svg.star {
     fill: orange; }
-  .feedback-container label.star:before, .feedback-container label.star-rated:before {
+  .feedback-container label.star:before, .feedback-container label.star-rated:before,
+  .feedback-container div.star:before, .feedback-container div.star-rated:before {
     content: '\f005';
     font-family: FontAwesome; }
   .feedback-container .feedback-bars {

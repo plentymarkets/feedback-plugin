@@ -4,7 +4,10 @@
       v-if="authenticatedUser.isLoggedIn || options.allowGuestFeedbacks"
       class="createFeedback"
     >
-      <div role="radiogroup" class="stars">
+      <div
+        role="radiogroup"
+        class="stars"
+      >
         <template v-for="i in [5,4,3,2,1]">
           <input
             :id="'star-' + i + _uid"
@@ -14,12 +17,12 @@
             type="radio"
             :value="i "
             :name="'ratingValue' + _uid"
-            :aria-label='$translate("Feedback::Feedback.feedbackAverageLabel")'
+            :aria-label="$translate(&quot;Feedback::Feedback.feedbackAverageLabel&quot;)"
           >
           <div
             :key="'star_label_' + i"
             :class="'star star-' + i"
-          ></div>
+          />
         </template>
       </div>
 
@@ -42,9 +45,9 @@
           name="author"
           :placeholder="$translate('Feedback::Feedback.authorName')"
           :disabled="authenticatedUser.limitReached || !authenticatedUser.hasPurchased"
-          :aria-label='$translate("Feedback::Feedback.authorName")'
+          :aria-label="$translate(&quot;Feedback::Feedback.authorName&quot;)"
         >
-        <div class="position-absolute"></div>
+        <div class="position-absolute" />
 
         <input
           id="feedback-textfield"
@@ -52,9 +55,9 @@
           type="text"
           class="form-control"
           name="feedback-textfield"
-          :aria-label='$translate("Feedback::Feedback.feedbackTextLabel")'
+          :aria-label="$translate(&quot;Feedback::Feedback.feedbackTextLabel&quot;)"
         >
-        <div class="position-absolute"></div>
+        <div class="position-absolute" />
       </div>
 
       <div class="form-group">
@@ -67,9 +70,9 @@
           name="title"
           :placeholder="$translate('Feedback::Feedback.title')"
           :disabled="authenticatedUser.limitReached || !authenticatedUser.hasPurchased"
-          :aria-label='$translate("Feedback::Feedback.title")'
+          :aria-label="$translate(&quot;Feedback::Feedback.title&quot;)"
         >
-        <div class="position-absolute"></div>
+        <div class="position-absolute" />
 
         <div class="invalid-feedback">
           {{ $translate("Feedback::Feedback.titleRequired") }}
@@ -85,10 +88,9 @@
           rows="3"
           :placeholder="$translate('Feedback::Feedback.reviewMessage')"
           :disabled="authenticatedUser.limitReached || !authenticatedUser.hasPurchased"
-          :aria-label='$translate("Feedback::Feedback.reviewMessage")'
+          :aria-label="$translate(&quot;Feedback::Feedback.reviewMessage&quot;)"
         />
-        <div class="position-absolute">
-        </div>
+        <div class="position-absolute" />
       </div>
 
       <div

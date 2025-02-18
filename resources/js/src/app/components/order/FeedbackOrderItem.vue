@@ -8,7 +8,10 @@
       @click="handleRating(0)"
     >
       <form>
-        <div role="radiogroup" class="d-flex flex-row-reverse">
+        <div
+          role="radiogroup"
+          class="d-flex flex-row-reverse"
+        >
           <template v-for="starId in starIds">
             <input
               :id="starId.id"
@@ -19,10 +22,13 @@
               :value="starId.value"
               name="ratingValue"
               :disabled="isRated"
-              @click="handleRating(starId.value)"
               :aria-label="'stars_input_' + starId.id"
+              @click="handleRating(starId.value)"
             >
-            <div :key="'stars_label_' + starId.id" class="new_star">
+            <div
+              :key="'stars_label_' + starId.id"
+              class="new_star"
+            >
               <svg
                 :class="starId.class"
                 :for="starId.id"

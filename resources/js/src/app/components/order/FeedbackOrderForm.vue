@@ -35,7 +35,10 @@
                 :alt="'image ' + item.name"
               >
             </a>
-            <div role="radiogroup" class="stars">
+            <div
+              role="radiogroup"
+              class="stars"
+            >
               <template v-for="starId in starIds">
                 <input
                   :id="starId.id"
@@ -48,7 +51,10 @@
                   name="ratingValue"
                   :aria-label="'stars_input' + starId.id"
                 >
-                <div :key="'stars_label_' + starId.id" class="new_star">
+                <div
+                  :key="'stars_label_' + starId.id"
+                  class="new_star"
+                >
                   <svg
                     :class="starId.class"
                     :for="starId.id"

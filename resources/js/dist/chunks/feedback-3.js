@@ -577,14 +577,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2134,7 +2126,7 @@ var render = function() {
       ? _c("div", { staticClass: "createFeedback" }, [
           _c(
             "div",
-            { staticClass: "stars" },
+            { staticClass: "stars", attrs: { role: "radiogroup" } },
             [
               _vm._l([5, 4, 3, 2, 1], function(i) {
                 return [
@@ -2152,7 +2144,10 @@ var render = function() {
                     attrs: {
                       id: "star-" + i + _vm._uid,
                       type: "radio",
-                      name: "ratingValue" + _vm._uid
+                      name: "ratingValue" + _vm._uid,
+                      "aria-label": _vm.$translate(
+                        "Feedback::Feedback.feedbackAverageLabel"
+                      )
                     },
                     domProps: {
                       value: i,
@@ -2165,25 +2160,7 @@ var render = function() {
                     }
                   }),
                   _vm._v(" "),
-                  _c(
-                    "label",
-                    {
-                      key: "star_label_" + i,
-                      class: "star star-" + i,
-                      attrs: { for: "star-" + i + _vm._uid }
-                    },
-                    [
-                      _c("span", { staticClass: "d-none" }, [
-                        _vm._v(
-                          _vm._s(
-                            _vm.$translate(
-                              "Feedback::Feedback.feedbackAverageLabel"
-                            )
-                          )
-                        )
-                      ])
-                    ]
-                  )
+                  _c("div", { key: "star_label_" + i, class: "star star-" + i })
                 ]
               })
             ],
@@ -2223,7 +2200,10 @@ var render = function() {
                     ),
                     disabled:
                       _vm.authenticatedUser.limitReached ||
-                      !_vm.authenticatedUser.hasPurchased
+                      !_vm.authenticatedUser.hasPurchased,
+                    "aria-label": _vm.$translate(
+                      "Feedback::Feedback.authorName"
+                    )
                   },
                   domProps: { value: _vm.feedback.authorName },
                   on: {
@@ -2236,20 +2216,7 @@ var render = function() {
                   }
                 }),
                 _vm._v(" "),
-                _c(
-                  "label",
-                  {
-                    staticClass: "position-absolute",
-                    attrs: { for: "author" }
-                  },
-                  [
-                    _c("span", { staticClass: "d-none" }, [
-                      _vm._v(
-                        _vm._s(_vm.$translate("Feedback::Feedback.authorName"))
-                      )
-                    ])
-                  ]
-                ),
+                _c("div", { staticClass: "position-absolute" }),
                 _vm._v(" "),
                 _c("input", {
                   directives: [
@@ -2264,7 +2231,10 @@ var render = function() {
                   attrs: {
                     id: "feedback-textfield",
                     type: "text",
-                    name: "feedback-textfield"
+                    name: "feedback-textfield",
+                    "aria-label": _vm.$translate(
+                      "Feedback::Feedback.feedbackTextLabel"
+                    )
                   },
                   domProps: { value: _vm.feedback.honeypot },
                   on: {
@@ -2277,22 +2247,7 @@ var render = function() {
                   }
                 }),
                 _vm._v(" "),
-                _c(
-                  "label",
-                  {
-                    staticClass: "position-absolute",
-                    attrs: { for: "feedback-textfield" }
-                  },
-                  [
-                    _c("span", { staticClass: "d-none" }, [
-                      _vm._v(
-                        _vm._s(
-                          _vm.$translate("Feedback::Feedback.feedbackTextLabel")
-                        )
-                      )
-                    ])
-                  ]
-                )
+                _c("div", { staticClass: "position-absolute" })
               ])
             : _vm._e(),
           _vm._v(" "),
@@ -2315,7 +2270,8 @@ var render = function() {
                 placeholder: _vm.$translate("Feedback::Feedback.title"),
                 disabled:
                   _vm.authenticatedUser.limitReached ||
-                  !_vm.authenticatedUser.hasPurchased
+                  !_vm.authenticatedUser.hasPurchased,
+                "aria-label": _vm.$translate("Feedback::Feedback.title")
               },
               domProps: { value: _vm.feedback.title },
               on: {
@@ -2328,15 +2284,7 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _c(
-              "label",
-              { staticClass: "position-absolute", attrs: { for: "title" } },
-              [
-                _c("span", { staticClass: "d-none" }, [
-                  _vm._v(_vm._s(_vm.$translate("Feedback::Feedback.title")))
-                ])
-              ]
-            ),
+            _c("div", { staticClass: "position-absolute" }),
             _vm._v(" "),
             _c("div", { staticClass: "invalid-feedback" }, [
               _vm._v(
@@ -2365,7 +2313,8 @@ var render = function() {
                 placeholder: _vm.$translate("Feedback::Feedback.reviewMessage"),
                 disabled:
                   _vm.authenticatedUser.limitReached ||
-                  !_vm.authenticatedUser.hasPurchased
+                  !_vm.authenticatedUser.hasPurchased,
+                "aria-label": _vm.$translate("Feedback::Feedback.reviewMessage")
               },
               domProps: { value: _vm.feedback.message },
               on: {
@@ -2378,17 +2327,7 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _c(
-              "label",
-              { staticClass: "position-absolute", attrs: { for: "message" } },
-              [
-                _c("span", { staticClass: "d-none" }, [
-                  _vm._v(
-                    _vm._s(_vm.$translate("Feedback::Feedback.reviewMessage"))
-                  )
-                ])
-              ]
-            )
+            _c("div", { staticClass: "position-absolute" })
           ]),
           _vm._v(" "),
           _vm.authenticatedUser.limitReached
