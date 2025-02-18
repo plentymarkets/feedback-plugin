@@ -8,10 +8,7 @@
       @click="handleRating(0)"
     >
       <form>
-        <fieldset class="d-flex flex-row-reverse">
-          <legend>
-            <span class="d-none">{{ item.name }}</span>
-          </legend>
+        <div role="radiogroup" class="d-flex flex-row-reverse">
           <template v-for="starId in starIds">
             <input
               :id="starId.id"
@@ -48,7 +45,7 @@
               /></svg>
             </label>
           </template>
-        </fieldset>
+        </div>
       </form>
     </div>
     <a :href="item.url">
