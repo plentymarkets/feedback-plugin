@@ -17,7 +17,7 @@
             type="radio"
             :value="i "
             :name="'ratingValue' + _uid"
-            :aria-label="$translate(&quot;Feedback::Feedback.feedbackAverageLabel&quot;)"
+            :aria-label="$translate('Feedback::Feedback.feedbackAverageLabel')"
           >
           <div
             :key="'star_label_' + i"
@@ -45,7 +45,7 @@
           name="author"
           :placeholder="$translate('Feedback::Feedback.authorName')"
           :disabled="authenticatedUser.limitReached || !authenticatedUser.hasPurchased"
-          :aria-label="$translate(&quot;Feedback::Feedback.authorName&quot;)"
+          :aria-label="$translate('Feedback::Feedback.authorName')"
         >
         <div class="position-absolute" />
 
@@ -55,7 +55,7 @@
           type="text"
           class="form-control"
           name="feedback-textfield"
-          :aria-label="$translate(&quot;Feedback::Feedback.feedbackTextLabel&quot;)"
+          :aria-label="$translate('Feedback::Feedback.feedbackTextLabel')"
         >
         <div class="position-absolute" />
       </div>
@@ -70,7 +70,7 @@
           name="title"
           :placeholder="$translate('Feedback::Feedback.title')"
           :disabled="authenticatedUser.limitReached || !authenticatedUser.hasPurchased"
-          :aria-label="$translate(&quot;Feedback::Feedback.title&quot;)"
+          :aria-label="$translate('Feedback::Feedback.title')"
         >
         <div class="position-absolute" />
 
@@ -88,7 +88,7 @@
           rows="3"
           :placeholder="$translate('Feedback::Feedback.reviewMessage')"
           :disabled="authenticatedUser.limitReached || !authenticatedUser.hasPurchased"
-          :aria-label="$translate(&quot;Feedback::Feedback.reviewMessage&quot;)"
+          :aria-label="$translate('Feedback::Feedback.reviewMessage')"
         />
         <div class="position-absolute" />
       </div>
