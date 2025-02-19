@@ -5,7 +5,7 @@
     :class="{'loading':isLoading}"
   >
     <div
-      v-if="!editableFeedback && showControls"
+      v-if="(!editableFeedback && showControls) || isFeedbackEditable(feedbackData.id)"
       class="feedback-options"
     >
       <span
@@ -148,7 +148,6 @@ export default {
     feedback: Object,
     isReply: Boolean,
     showControls: Boolean,
-    fromAuthenticated: Boolean,
     classes: String,
     styles: String,
     options: Object
@@ -238,6 +237,20 @@ export default {
         })
       }
       this.editableFeedback = null
+    },
+
+    isFeedbackEditable (id) {
+      // we are on the list from the microservice
+      const ids = []
+      if (this.showControls === false) {
+        this.authenticatedUser.feedbacks.forEach((feedbackItem) => {
+          if (feedbackItem.isVisible) {
+            ids.push(feedbackItem.id)
+          }
+        })
+      }
+
+      return ids.includes(id)
     }
   }
 }
