@@ -306,7 +306,7 @@ export default {
         })
       }
 
-      return ids.includes(id)
+      return ids.includes(parseInt(id))
     }
   }
 }

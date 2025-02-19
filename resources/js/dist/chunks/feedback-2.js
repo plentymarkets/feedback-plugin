@@ -315,7 +315,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }
         });
       }
-      return ids.includes(id);
+      return ids.includes(parseInt(id));
     }
   }
 });
