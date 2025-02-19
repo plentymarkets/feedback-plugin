@@ -380,7 +380,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -518,8 +517,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_number_constructor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.number.constructor */ "./node_modules/core-js/modules/es.number.constructor.js");
 /* harmony import */ var core_js_modules_es_number_constructor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_number_constructor__WEBPACK_IMPORTED_MODULE_0__);
 
-//
-//
 //
 //
 //
@@ -1623,41 +1620,6 @@ var render = function() {
                 _vm._v(" "),
                 _vm._l(_vm.starIds, function(starId) {
                   return [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.feedback.ratingValue,
-                          expression: "feedback.ratingValue"
-                        }
-                      ],
-                      key: "stars_input_" + starId.id,
-                      class: starId.class,
-                      attrs: {
-                        id: starId.id,
-                        type: "radio",
-                        name: "ratingValue",
-                        disabled: _vm.isRated
-                      },
-                      domProps: {
-                        value: starId.value,
-                        checked: _vm._q(_vm.feedback.ratingValue, starId.value)
-                      },
-                      on: {
-                        click: function($event) {
-                          return _vm.handleRating(starId.value)
-                        },
-                        change: function($event) {
-                          return _vm.$set(
-                            _vm.feedback,
-                            "ratingValue",
-                            starId.value
-                          )
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
                     _c(
                       "label",
                       {
@@ -1666,9 +1628,43 @@ var render = function() {
                         attrs: { for: starId.id }
                       },
                       [
-                        _c("span", { staticClass: "d-none" }, [
-                          _vm._v(_vm._s(starId.id))
-                        ]),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.feedback.ratingValue,
+                              expression: "feedback.ratingValue"
+                            }
+                          ],
+                          key: "stars_input_" + starId.id,
+                          class: starId.class,
+                          attrs: {
+                            id: starId.id,
+                            type: "radio",
+                            name: "ratingValue",
+                            disabled: _vm.isRated
+                          },
+                          domProps: {
+                            value: starId.value,
+                            checked: _vm._q(
+                              _vm.feedback.ratingValue,
+                              starId.value
+                            )
+                          },
+                          on: {
+                            click: function($event) {
+                              return _vm.handleRating(starId.value)
+                            },
+                            change: function($event) {
+                              return _vm.$set(
+                                _vm.feedback,
+                                "ratingValue",
+                                starId.value
+                              )
+                            }
+                          }
+                        }),
                         _vm._v(" "),
                         _c(
                           "svg",

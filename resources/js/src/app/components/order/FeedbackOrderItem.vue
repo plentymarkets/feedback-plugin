@@ -13,23 +13,22 @@
             <span class="d-none">{{ item.name }}</span>
           </legend>
           <template v-for="starId in starIds">
-            <input
-              :id="starId.id"
-              :key="'stars_input_' + starId.id"
-              v-model="feedback.ratingValue"
-              :class="starId.class"
-              type="radio"
-              :value="starId.value"
-              name="ratingValue"
-              :disabled="isRated"
-              @click="handleRating(starId.value)"
-            >
             <label
               :key="'stars_label_' + starId.id"
               :for="starId.id"
               class="new_star"
             >
-              <span class="d-none">{{ starId.id }}</span>
+              <input
+                :id="starId.id"
+                :key="'stars_input_' + starId.id"
+                v-model="feedback.ratingValue"
+                :class="starId.class"
+                type="radio"
+                :value="starId.value"
+                name="ratingValue"
+                :disabled="isRated"
+                @click="handleRating(starId.value)"
+              >
               <svg
                 :class="starId.class"
                 :for="starId.id"

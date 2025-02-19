@@ -2013,7 +2013,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'FeedbackOrderItem',
@@ -8214,7 +8213,9 @@ var render = function() {
           "</span></legend> " +
           _vm._ssrList(_vm.starIds, function(starId) {
             return (
-              "<input" +
+              "<label" +
+              _vm._ssrAttr("for", starId.id) +
+              ' class="new_star"><input' +
               _vm._ssrAttr("id", starId.id) +
               ' type="radio" name="ratingValue"' +
               _vm._ssrAttr("disabled", _vm.isRated) +
@@ -8224,11 +8225,7 @@ var render = function() {
                 _vm._q(_vm.feedback.ratingValue, starId.value)
               ) +
               _vm._ssrClass(null, starId.class) +
-              "> <label" +
-              _vm._ssrAttr("for", starId.id) +
-              ' class="new_star"><span class="d-none">' +
-              _vm._ssrEscape(_vm._s(starId.id)) +
-              "</span> <svg" +
+              "> <svg" +
               _vm._ssrAttr("for", starId.id) +
               ' width="100%" height="100%" viewBox="0 0 31 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/"' +
               _vm._ssrClass(null, starId.class) +
