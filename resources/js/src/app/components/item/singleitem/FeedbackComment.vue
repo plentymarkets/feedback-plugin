@@ -158,7 +158,7 @@
         :key="reply.id"
         :feedback="reply"
         :is-reply="true"
-        :show-controls="isFeedbackEditable(reply.id)"
+        :show-controls="canUserEdit()"
         :classes="classes"
         :styles="styles"
         :options="options"
@@ -295,18 +295,13 @@ export default {
       })
     },
 
-    isFeedbackEditable (id) {
-      // we are on the list from the microservice
-      const ids = []
-      if (this.showControls === false && this.authenticatedUser.feedbacks) {
-        this.authenticatedUser.feedbacks.forEach((feedbackItem) => {
-          if (feedbackItem.isVisible) {
-            ids.push(feedbackItem.id)
-          }
-        })
+    canUserEdit () {
+      if (!this.feedbackData.sourceRelation[0].feedbackRelationSourceId) {
+        return false
       }
-
-      return ids.includes(parseInt(id))
+      return this.feedbackData.sourceRelation[0].feedbackRelationType === 'contact' &&
+          parseInt(this.feedbackData.sourceRelation[0].feedbackRelationSourceId) === this.authenticatedUser.id &&
+          this.authenticatedUser.isLoggedIn
     }
   }
 }
