@@ -295,12 +295,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           _self.replyListVisible = true;
         }
       });
-    },
-    canUserEdit: function canUserEdit() {
-      if (!this.feedbackData.sourceRelation[0].feedbackRelationSourceId) {
-        return false;
-      }
-      return this.feedbackData.sourceRelation[0].feedbackRelationType === 'contact' && parseInt(this.feedbackData.sourceRelation[0].feedbackRelationSourceId) === this.authenticatedUser.id && this.authenticatedUser.isLoggedIn;
     }
   }
 });
@@ -771,7 +765,7 @@ var render = function() {
                 attrs: {
                   feedback: reply,
                   "is-reply": true,
-                  "show-controls": _vm.canUserEdit(),
+                  "show-controls": _vm.showControls,
                   classes: _vm.classes,
                   styles: _vm.styles,
                   options: _vm.options

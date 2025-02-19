@@ -158,7 +158,7 @@
         :key="reply.id"
         :feedback="reply"
         :is-reply="true"
-        :show-controls="canUserEdit()"
+        :show-controls="showControls"
         :classes="classes"
         :styles="styles"
         :options="options"
@@ -293,15 +293,6 @@ export default {
           _self.replyListVisible = true
         }
       })
-    },
-
-    canUserEdit () {
-      if (!this.feedbackData.sourceRelation[0].feedbackRelationSourceId) {
-        return false
-      }
-      return this.feedbackData.sourceRelation[0].feedbackRelationType === 'contact' &&
-          parseInt(this.feedbackData.sourceRelation[0].feedbackRelationSourceId) === this.authenticatedUser.id &&
-          this.authenticatedUser.isLoggedIn
     }
   }
 }
