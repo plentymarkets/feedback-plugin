@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="showControls && !feedbackData.isVisible"
+    v-if="(showControls && !feedbackData.isVisible) || !showControls"
     class="feedback clearfix"
     :class="{'loading':isLoading}"
   >
@@ -148,6 +148,7 @@ export default {
     feedback: Object,
     isReply: Boolean,
     showControls: Boolean,
+    fromAuthenticated: Boolean,
     classes: String,
     styles: String,
     options: Object

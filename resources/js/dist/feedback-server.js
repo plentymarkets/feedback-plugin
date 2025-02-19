@@ -1331,6 +1331,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     feedback: Object,
     isReply: Boolean,
     showControls: Boolean,
+    fromAuthenticated: Boolean,
     classes: String,
     styles: String,
     options: Object
@@ -7756,7 +7757,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.showControls && !_vm.feedbackData.isVisible
+  return (_vm.showControls && !_vm.feedbackData.isVisible) || !_vm.showControls
     ? _c(
         "div",
         { staticClass: "feedback clearfix", class: { loading: _vm.isLoading } },
