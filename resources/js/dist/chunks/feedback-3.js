@@ -983,7 +983,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     isFeedbackEditable: function isFeedbackEditable(id) {
       // we are on the list from the microservice
       var ids = [];
-      if (this.showControls === false) {
+      if (this.showControls === false && this.authenticatedUser.feedbacks) {
         this.authenticatedUser.feedbacks.forEach(function (feedbackItem) {
           if (feedbackItem.isVisible) {
             ids.push(feedbackItem.id);
@@ -2772,7 +2772,7 @@ var render = function() {
                 attrs: {
                   feedback: _vm.feedbackData,
                   "is-reply": _vm.isReply,
-                  "show-controls": _vm.showControls,
+                  "show-controls": _vm.isFeedbackEditable(_vm.feedbackData.id),
                   classes: _vm.classes,
                   styles: _vm.styles,
                   options: _vm.options

@@ -49,7 +49,7 @@
       v-if="!editableFeedback"
       :feedback="feedbackData"
       :is-reply="isReply"
-      :show-controls="showControls"
+      :show-controls="isFeedbackEditable(feedbackData.id)"
       :classes="classes"
       :styles="styles"
       :options="options"
@@ -242,7 +242,7 @@ export default {
     isFeedbackEditable (id) {
       // we are on the list from the microservice
       const ids = []
-      if (this.showControls === false) {
+      if (this.showControls === false && this.authenticatedUser.feedbacks) {
         this.authenticatedUser.feedbacks.forEach((feedbackItem) => {
           if (feedbackItem.isVisible) {
             ids.push(feedbackItem.id)
