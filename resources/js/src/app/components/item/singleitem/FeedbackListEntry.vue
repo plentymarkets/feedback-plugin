@@ -49,7 +49,7 @@
       v-if="!editableFeedback"
       :feedback="feedbackData"
       :is-reply="isReply"
-      :show-controls="isFeedbackEditable(feedbackData.id)"
+      :show-controls="showControls"
       :classes="classes"
       :styles="styles"
       :options="options"

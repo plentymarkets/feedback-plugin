@@ -2772,7 +2772,7 @@ var render = function() {
                 attrs: {
                   feedback: _vm.feedbackData,
                   "is-reply": _vm.isReply,
-                  "show-controls": _vm.isFeedbackEditable(_vm.feedbackData.id),
+                  "show-controls": _vm.showControls,
                   classes: _vm.classes,
                   styles: _vm.styles,
                   options: _vm.options

@@ -139,10 +139,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_array_filter__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_filter__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_es_array_find__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.array.find */ "./node_modules/core-js/modules/es.array.find.js");
 /* harmony import */ var core_js_modules_es_array_find__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_find__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es_array_map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.array.map */ "./node_modules/core-js/modules/es.array.map.js");
-/* harmony import */ var core_js_modules_es_array_map__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_map__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _FeedbackListEntry_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FeedbackListEntry.vue */ "./resources/js/src/app/components/item/singleitem/FeedbackListEntry.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var core_js_modules_es_array_for_each__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.array.for-each */ "./node_modules/core-js/modules/es.array.for-each.js");
+/* harmony import */ var core_js_modules_es_array_for_each__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_for_each__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es_array_includes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.array.includes */ "./node_modules/core-js/modules/es.array.includes.js");
+/* harmony import */ var core_js_modules_es_array_includes__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_includes__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_es_array_map__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es.array.map */ "./node_modules/core-js/modules/es.array.map.js");
+/* harmony import */ var core_js_modules_es_array_map__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_map__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _FeedbackListEntry_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./FeedbackListEntry.vue */ "./resources/js/src/app/components/item/singleitem/FeedbackListEntry.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
+
 
 
 
@@ -325,7 +334,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'FeedbackComment',
   components: {
-    'feedback-list-entry': _FeedbackListEntry_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+    'feedback-list-entry': _FeedbackListEntry_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
   },
   props: {
     feedback: Object,
@@ -381,7 +390,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return relation.feedbackRelationType === 'orderItem';
       });
     }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)({
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_7__.mapState)({
     authenticatedUser: function authenticatedUser(state) {
       return state.feedback.authenticatedUser;
     },
@@ -422,6 +431,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           _self.replyListVisible = true;
         }
       });
+    },
+    isFeedbackEditable: function isFeedbackEditable(id) {
+      // we are on the list from the microservice
+      var ids = [];
+      if (this.showControls === false && this.authenticatedUser.feedbacks) {
+        this.authenticatedUser.feedbacks.forEach(function (feedbackItem) {
+          if (feedbackItem.isVisible) {
+            ids.push(feedbackItem.id);
+          }
+        });
+      }
+      return ids.includes(id);
     }
   }
 });
@@ -7215,7 +7236,7 @@ var render = function() {
                 attrs: {
                   feedback: reply,
                   "is-reply": true,
-                  "show-controls": _vm.showControls,
+                  "show-controls": _vm.isFeedbackEditable(reply.id),
                   classes: _vm.classes,
                   styles: _vm.styles,
                   options: _vm.options
@@ -7896,7 +7917,7 @@ var render = function() {
                 attrs: {
                   feedback: _vm.feedbackData,
                   "is-reply": _vm.isReply,
-                  "show-controls": _vm.isFeedbackEditable(_vm.feedbackData.id),
+                  "show-controls": _vm.showControls,
                   classes: _vm.classes,
                   styles: _vm.styles,
                   options: _vm.options

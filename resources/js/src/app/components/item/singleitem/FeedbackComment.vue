@@ -158,7 +158,7 @@
         :key="reply.id"
         :feedback="reply"
         :is-reply="true"
-        :show-controls="showControls"
+        :show-controls="isFeedbackEditable(reply.id)"
         :classes="classes"
         :styles="styles"
         :options="options"
@@ -293,6 +293,20 @@ export default {
           _self.replyListVisible = true
         }
       })
+    },
+
+    isFeedbackEditable (id) {
+      // we are on the list from the microservice
+      const ids = []
+      if (this.showControls === false && this.authenticatedUser.feedbacks) {
+        this.authenticatedUser.feedbacks.forEach((feedbackItem) => {
+          if (feedbackItem.isVisible) {
+            ids.push(feedbackItem.id)
+          }
+        })
+      }
+
+      return ids.includes(id)
     }
   }
 }
