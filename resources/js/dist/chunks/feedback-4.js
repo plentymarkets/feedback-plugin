@@ -380,7 +380,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -806,12 +805,16 @@ var actions = {
     var commit = _ref5.commit,
       state = _ref5.state;
     var itemId = _ref6.itemId,
-      feedbacksPerPage = _ref6.feedbacksPerPage;
+      feedbacksPerPage = _ref6.feedbacksPerPage,
+      language = _ref6.language;
     if (!loadPaginatedFeedbacksLock) {
       loadPaginatedFeedbacksLock = true;
       var request = $.ajax({
         type: 'GET',
-        url: '/rest/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
+        url: '/rest/storefront/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
+        beforeSend: function beforeSend(xhr) {
+          xhr.setRequestHeader('lang', language);
+        },
         data: {
           feedbacksPerPage: feedbacksPerPage
         },

@@ -710,6 +710,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         timestampVisibility: this.options.timestampVisibility,
         allowGuestFeedbacks: this.options.allowGuestFeedbacks
       },
+      language: this.options.language,
       optionsForm: {
         allowFeedbacksOnlyIfPurchased: this.options.allowFeedbacksOnlyIfPurchased,
         numberOfFeedbacks: this.options.numberOfFeedbacks,
@@ -770,7 +771,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     loadFeedbacks: function loadFeedbacks() {
       return this.$store.dispatch('loadPaginatedFeedbacks', {
         itemId: this.itemId,
-        feedbacksPerPage: this.options.feedbacksPerPage
+        feedbacksPerPage: this.options.feedbacksPerPage,
+        language: this.options.language
       });
     },
     showDeleteConfirmation: function showDeleteConfirmation(feedbackToDelete) {
@@ -2237,12 +2239,16 @@ var actions = {
     var commit = _ref5.commit,
       state = _ref5.state;
     var itemId = _ref6.itemId,
-      feedbacksPerPage = _ref6.feedbacksPerPage;
+      feedbacksPerPage = _ref6.feedbacksPerPage,
+      language = _ref6.language;
     if (!loadPaginatedFeedbacksLock) {
       loadPaginatedFeedbacksLock = true;
       var request = $.ajax({
         type: 'GET',
-        url: '/rest/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
+        url: '/rest/storefront/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
+        beforeSend: function beforeSend(xhr) {
+          xhr.setRequestHeader('lang', language);
+        },
         data: {
           feedbacksPerPage: feedbacksPerPage
         },

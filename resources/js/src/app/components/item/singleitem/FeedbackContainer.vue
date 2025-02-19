@@ -253,6 +253,7 @@ export default {
         timestampVisibility: this.options.timestampVisibility,
         allowGuestFeedbacks: this.options.allowGuestFeedbacks
       },
+      language: this.options.language,
       optionsForm: {
         allowFeedbacksOnlyIfPurchased: this.options.allowFeedbacksOnlyIfPurchased,
 
@@ -320,7 +321,8 @@ export default {
       loadFeedbacks () {
         return this.$store.dispatch('loadPaginatedFeedbacks', {
           itemId: this.itemId,
-          feedbacksPerPage: this.options.feedbacksPerPage
+          feedbacksPerPage: this.options.feedbacksPerPage,
+          language: this.options.language
         })
       },
 
