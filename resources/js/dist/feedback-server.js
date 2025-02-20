@@ -1086,7 +1086,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           _this.feedback.ratingValue = 0;
           _this.titleMissing = false;
           _this.ratingMissing = false;
-          vueEventHub.$emit('feedback_created');
         },
         error: function error(jqXHR, textStatus, errorThrown) {
           console.error(errorThrown);
@@ -1355,13 +1354,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   created: function created() {
     this.feedbackData = this.feedback;
   },
-  mounted: function mounted() {
-    var _self = this;
-    vueEventHub.$on('feedback_created', function (event) {
-      console.log(event);
-      _self.forceComponentUpdate();
-    });
-  },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapState)({
     authenticatedUser: function authenticatedUser(state) {
       return state.feedback.authenticatedUser;
@@ -1445,10 +1437,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return false;
       }
       return this.feedbackData.sourceRelation[0].feedbackRelationType === 'contact' && parseInt(this.feedbackData.sourceRelation[0].feedbackRelationSourceId) === this.authenticatedUser.id;
-    },
-    forceComponentUpdate: function forceComponentUpdate() {
-      console.log('forceComponentUpdate');
-      this.$forceUpdate();
     }
   }
 });

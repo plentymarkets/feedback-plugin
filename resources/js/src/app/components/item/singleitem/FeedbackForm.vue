@@ -233,7 +233,6 @@ export default {
           this.feedback.ratingValue = 0
           this.titleMissing = false
           this.ratingMissing = false
-          vueEventHub.$emit('feedback_created')
         },
         error: (jqXHR, textStatus, errorThrown) => {
           console.error(errorThrown)
