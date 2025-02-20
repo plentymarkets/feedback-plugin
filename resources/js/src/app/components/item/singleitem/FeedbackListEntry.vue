@@ -1,6 +1,5 @@
 <template>
   <div
-    v-if="showControls && (!feedbackData.isVisible || !showControls)"
     class="feedback clearfix"
     :class="{'loading':isLoading}"
   >
