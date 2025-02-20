@@ -1078,6 +1078,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           withCredentials: true
         },
         success: function success(data) {
+          data.isVisible = false;
           _this.$store.commit('addFeedback', data);
           _this.isLoading = false;
           _this.feedback.authorName = '';
@@ -7809,8 +7810,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return (_vm.showControls && !_vm.feedbackData.isVisible) ||
-    (!_vm.showControls && _vm.feedbackData.isVisible)
+  return _vm.showControls && !_vm.feedbackData.isVisible
     ? _c(
         "div",
         { staticClass: "feedback clearfix", class: { loading: _vm.isLoading } },
