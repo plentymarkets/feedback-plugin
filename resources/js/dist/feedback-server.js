@@ -1086,6 +1086,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           _this.feedback.ratingValue = 0;
           _this.titleMissing = false;
           _this.ratingMissing = false;
+          vueEventHub.$emit('feedback_created');
         },
         error: function error(jqXHR, textStatus, errorThrown) {
           console.error(errorThrown);
@@ -1327,8 +1328,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -1355,6 +1354,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   created: function created() {
     this.feedbackData = this.feedback;
+  },
+  mounted: function mounted() {
+    var _self = this;
+    vueEventHub.$on('feedback_created', function (event) {
+      console.log(event);
+      _self.forceComponentUpdate();
+    });
   },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapState)({
     authenticatedUser: function authenticatedUser(state) {
@@ -1439,6 +1445,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return false;
       }
       return this.feedbackData.sourceRelation[0].feedbackRelationType === 'contact' && parseInt(this.feedbackData.sourceRelation[0].feedbackRelationSourceId) === this.authenticatedUser.id;
+    },
+    forceComponentUpdate: function forceComponentUpdate() {
+      console.log('forceComponentUpdate');
+      this.$forceUpdate();
     }
   }
 });
@@ -7811,12 +7821,13 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.showControls && !_vm.feedbackData.isVisible
+  return (_vm.showControls && !_vm.feedbackData.isVisible) || !_vm.showControls
     ? _c(
         "div",
         { staticClass: "feedback clearfix", class: { loading: _vm.isLoading } },
         [
-          !_vm.editableFeedback && _vm.showControls
+          (!_vm.editableFeedback && _vm.showControls) ||
+          _vm.isFeedbackEditable(_vm.feedbackData.id) || _vm.canUserEdit()
             ? _vm._ssrNode(
                 '<div class="feedback-options">',
                 "</div>",

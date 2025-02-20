@@ -1,13 +1,11 @@
 <template>
-  <!--  || !showControls -->
   <div
-    v-if="showControls && !feedbackData.isVisible"
+    v-if="showControls && !feedbackData.isVisible || !showControls"
     class="feedback clearfix"
     :class="{'loading':isLoading}"
   >
-    <!--  || (isFeedbackEditable(feedbackData.id) || canUserEdit())  -->
     <div
-      v-if="(!editableFeedback && showControls)"
+      v-if="(!editableFeedback && showControls) || (isFeedbackEditable(feedbackData.id) || canUserEdit())"
       class="feedback-options"
     >
       <span
@@ -167,6 +165,14 @@ export default {
     this.feedbackData = this.feedback
   },
 
+  mounted: function () {
+    const _self = this
+    vueEventHub.$on('feedback_created', function (event) {
+      console.log(event)
+      _self.forceComponentUpdate()
+    })
+  },
+
   computed: {
     ...mapState({
       authenticatedUser: state => state.feedback.authenticatedUser
@@ -261,6 +267,11 @@ export default {
       }
       return this.feedbackData.sourceRelation[0].feedbackRelationType === 'contact' &&
           parseInt(this.feedbackData.sourceRelation[0].feedbackRelationSourceId) === this.authenticatedUser.id
+    },
+
+    forceComponentUpdate () {
+      console.log('forceComponentUpdate')
+      this.$forceUpdate()
     }
   }
 }
