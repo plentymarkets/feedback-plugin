@@ -1,12 +1,12 @@
 <template>
-  <!-- || !showControls -->
   <div
-    v-if="showControls && !feedbackData.isVisible"
+    v-if="showControls && !feedbackData.isVisible || !showControls"
     class="feedback clearfix"
     :class="{'loading':isLoading}"
   >
+    <!--     || (isFeedbackEditable(feedbackData.id) || canUserEdit())    -->
     <div
-      v-if="(!editableFeedback && showControls) || (isFeedbackEditable(feedbackData.id) || canUserEdit())"
+      v-if="(!editableFeedback && showControls)"
       class="feedback-options"
     >
       <span

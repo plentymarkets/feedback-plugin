@@ -2699,13 +2699,12 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.showControls && !_vm.feedbackData.isVisible
+  return (_vm.showControls && !_vm.feedbackData.isVisible) || !_vm.showControls
     ? _c(
         "div",
         { staticClass: "feedback clearfix", class: { loading: _vm.isLoading } },
         [
-          (!_vm.editableFeedback && _vm.showControls) ||
-          _vm.isFeedbackEditable(_vm.feedbackData.id) || _vm.canUserEdit()
+          !_vm.editableFeedback && _vm.showControls
             ? _c("div", { staticClass: "feedback-options" }, [
                 !_vm.feedbackData.isVisible
                   ? _c(
@@ -2839,9 +2838,9 @@ var render = function() {
                   },
                   [
                     _vm._v(
-                      "\n        " +
+                      "\n      " +
                         _vm._s(_vm.$translate("Feedback::Feedback.editReply")) +
-                        "\n      "
+                        "\n    "
                     )
                   ]
                 ),
@@ -2858,9 +2857,9 @@ var render = function() {
                   },
                   [
                     _vm._v(
-                      "\n        " +
+                      "\n      " +
                         _vm._s(_vm.$translate("Feedback::Feedback.cancel")) +
-                        "\n      "
+                        "\n    "
                     )
                   ]
                 )
@@ -2994,11 +2993,11 @@ var render = function() {
                   },
                   [
                     _vm._v(
-                      "\n        " +
+                      "\n      " +
                         _vm._s(
                           _vm.$translate("Feedback::Feedback.editReview")
                         ) +
-                        "\n      "
+                        "\n    "
                     )
                   ]
                 ),
@@ -3015,9 +3014,9 @@ var render = function() {
                   },
                   [
                     _vm._v(
-                      "\n        " +
+                      "\n      " +
                         _vm._s(_vm.$translate("Feedback::Feedback.cancel")) +
-                        "\n      "
+                        "\n    "
                     )
                   ]
                 )
