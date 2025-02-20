@@ -5,7 +5,7 @@
     :class="{'loading':isLoading}"
   >
     <div
-      v-if="(!editableFeedback && showControls) || isFeedbackEditable(feedbackData.id)"
+      v-if="(!editableFeedback && showControls) || (isFeedbackEditable(feedbackData.id) || canUserEdit())"
       class="feedback-options"
     >
       <span
@@ -251,6 +251,14 @@ export default {
       }
 
       return ids.includes(id)
+    },
+
+    canUserEdit () {
+      if (!this.feedbackData.sourceRelation[0].feedbackRelationSourceId) {
+        return false
+      }
+      return this.feedbackData.sourceRelation[0].feedbackRelationType === 'contact' &&
+          parseInt(this.feedbackData.sourceRelation[0].feedbackRelationSourceId) === this.authenticatedUser.id
     }
   }
 }
