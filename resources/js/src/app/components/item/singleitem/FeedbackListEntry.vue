@@ -56,7 +56,7 @@
       @delete="$emit('delete', $event)"
     />
 
-    <div v-if="!!editableFeedback && isReply || isFeedbackEditable(feedbackData.id)">
+    <div v-if="!!editableFeedback && isReply || canUserEdit()">
       <div class="form-group">
         <textarea
           v-model="editableFeedback.message"
@@ -251,6 +251,14 @@ export default {
       }
 
       return ids.includes(id)
+    },
+
+    canUserEdit () {
+      if (!this.feedbackData.sourceRelation[0].feedbackRelationSourceId) {
+        return false
+      }
+      return this.feedbackData.sourceRelation[0].feedbackRelationType === 'contact' &&
+          parseInt(this.feedbackData.sourceRelation[0].feedbackRelationSourceId) === this.authenticatedUser.id
     }
   }
 }

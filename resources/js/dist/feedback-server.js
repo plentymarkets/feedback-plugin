@@ -1431,6 +1431,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
       }
       return ids.includes(id);
+    },
+    canUserEdit: function canUserEdit() {
+      if (!this.feedbackData.sourceRelation[0].feedbackRelationSourceId) {
+        return false;
+      }
+      return this.feedbackData.sourceRelation[0].feedbackRelationType === 'contact' && parseInt(this.feedbackData.sourceRelation[0].feedbackRelationSourceId) === this.authenticatedUser.id;
     }
   }
 });
@@ -7910,8 +7916,7 @@ var render = function() {
             : _vm._e(),
           _vm._ssrNode(
             " " +
-              ((!!_vm.editableFeedback && _vm.isReply) ||
-              _vm.isFeedbackEditable(_vm.feedbackData.id)
+              ((!!_vm.editableFeedback && _vm.isReply) || _vm.canUserEdit()
                 ? '<div><div class="form-group"><textarea rows="3"' +
                   _vm._ssrAttr(
                     "placeholder",
