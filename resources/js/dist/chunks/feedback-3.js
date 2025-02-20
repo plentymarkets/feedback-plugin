@@ -2698,7 +2698,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return (_vm.showControls && !_vm.feedbackData.isVisible) || !_vm.showControls
+  return _vm.showControls && (!_vm.feedbackData.isVisible || !_vm.showControls)
     ? _c(
         "div",
         { staticClass: "feedback clearfix", class: { loading: _vm.isLoading } },
