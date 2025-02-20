@@ -888,6 +888,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2699,7 +2700,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return (_vm.showControls && !_vm.feedbackData.isVisible) || !_vm.showControls
+  return _vm.showControls && !_vm.feedbackData.isVisible
     ? _c(
         "div",
         { staticClass: "feedback clearfix", class: { loading: _vm.isLoading } },
@@ -2838,9 +2839,9 @@ var render = function() {
                   },
                   [
                     _vm._v(
-                      "\n      " +
+                      "\n        " +
                         _vm._s(_vm.$translate("Feedback::Feedback.editReply")) +
-                        "\n    "
+                        "\n      "
                     )
                   ]
                 ),
@@ -2857,9 +2858,9 @@ var render = function() {
                   },
                   [
                     _vm._v(
-                      "\n      " +
+                      "\n        " +
                         _vm._s(_vm.$translate("Feedback::Feedback.cancel")) +
-                        "\n    "
+                        "\n      "
                     )
                   ]
                 )
@@ -2993,11 +2994,11 @@ var render = function() {
                   },
                   [
                     _vm._v(
-                      "\n      " +
+                      "\n        " +
                         _vm._s(
                           _vm.$translate("Feedback::Feedback.editReview")
                         ) +
-                        "\n    "
+                        "\n      "
                     )
                   ]
                 ),
@@ -3014,9 +3015,9 @@ var render = function() {
                   },
                   [
                     _vm._v(
-                      "\n      " +
+                      "\n        " +
                         _vm._s(_vm.$translate("Feedback::Feedback.cancel")) +
-                        "\n    "
+                        "\n      "
                     )
                   ]
                 )
