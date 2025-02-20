@@ -56,7 +56,7 @@
       @delete="$emit('delete', $event)"
     />
 
-    <div v-if="!!editableFeedback && isReply">
+    <div v-if="!!editableFeedback && isReply || isFeedbackEditable(feedbackData.id)">
       <div class="form-group">
         <textarea
           v-model="editableFeedback.message"

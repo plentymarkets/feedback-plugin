@@ -7910,7 +7910,8 @@ var render = function() {
             : _vm._e(),
           _vm._ssrNode(
             " " +
-              (!!_vm.editableFeedback && _vm.isReply
+              ((!!_vm.editableFeedback && _vm.isReply) ||
+              _vm.isFeedbackEditable(_vm.feedbackData.id)
                 ? '<div><div class="form-group"><textarea rows="3"' +
                   _vm._ssrAttr(
                     "placeholder",

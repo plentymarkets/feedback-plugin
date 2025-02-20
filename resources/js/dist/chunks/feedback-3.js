@@ -2785,7 +2785,8 @@ var render = function() {
               })
             : _vm._e(),
           _vm._v(" "),
-          !!_vm.editableFeedback && _vm.isReply
+          (!!_vm.editableFeedback && _vm.isReply) ||
+          _vm.isFeedbackEditable(_vm.feedbackData.id)
             ? _c("div", [
                 _c("div", { staticClass: "form-group" }, [
                   _c("textarea", {
