@@ -884,7 +884,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2440,334 +2439,324 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.showControls && !_vm.feedbackData.isVisible
-    ? _c(
-        "div",
-        { staticClass: "feedback clearfix", class: { loading: _vm.isLoading } },
-        [
-          (!_vm.editableFeedback && _vm.showControls) ||
-          _vm.isFeedbackEditable(_vm.feedbackData.id) || _vm.canUserEdit()
-            ? _c("div", { staticClass: "feedback-options" }, [
-                !_vm.feedbackData.isVisible
-                  ? _c(
-                      "span",
-                      {
-                        directives: [{ name: "tooltip", rawName: "v-tooltip" }],
-                        staticClass: "btn-sm btn-danger",
-                        attrs: {
-                          "data-toggle": "tooltip",
-                          "data-placement": "top",
-                          "data-original-title": _vm.$translate(
-                            "Feedback::Feedback.moderationMessage"
-                          )
-                        }
-                      },
-                      [_c("i", { staticClass: "fa fa-eye-slash" })]
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.authenticatedUser.isLoggedIn
-                  ? _c(
-                      "span",
-                      {
-                        directives: [{ name: "tooltip", rawName: "v-tooltip" }],
-                        ref: "editButton",
-                        staticClass: "btn btn-sm btn-danger",
-                        attrs: {
-                          "data-toggle": "tooltip",
-                          "data-placement": "top",
-                          "data-original-title": _vm.isReply
-                            ? _vm.$translate("Feedback::Feedback.editReply")
-                            : _vm.$translate("Feedback::Feedback.editReview")
-                        },
-                        on: {
-                          click: function($event) {
-                            return _vm.editFeedback()
-                          }
-                        }
-                      },
-                      [_c("i", { staticClass: "fa fa-pencil" })]
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.authenticatedUser.isLoggedIn
-                  ? _c(
-                      "span",
-                      {
-                        directives: [{ name: "tooltip", rawName: "v-tooltip" }],
-                        staticClass: "btn btn-sm btn-danger",
-                        attrs: {
-                          "data-toggle": "tooltip",
-                          "data-placement": "top",
-                          "data-original-title": _vm.isReply
-                            ? _vm.$translate("Feedback::Feedback.deleteReply")
-                            : _vm.$translate("Feedback::Feedback.deleteReview")
-                        },
-                        on: {
-                          click: function($event) {
-                            return _vm.showDeleteConfirmation()
-                          }
-                        }
-                      },
-                      [_c("i", { staticClass: "fa fa-trash-o" })]
-                    )
-                  : _vm._e()
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          !_vm.editableFeedback
-            ? _c("feedback-comment", {
+  return _c(
+    "div",
+    { staticClass: "feedback clearfix", class: { loading: _vm.isLoading } },
+    [
+      (!_vm.editableFeedback && _vm.showControls) ||
+      _vm.isFeedbackEditable(_vm.feedbackData.id) || _vm.canUserEdit()
+        ? _c("div", { staticClass: "feedback-options" }, [
+            !_vm.feedbackData.isVisible
+              ? _c(
+                  "span",
+                  {
+                    directives: [{ name: "tooltip", rawName: "v-tooltip" }],
+                    staticClass: "btn-sm btn-danger",
+                    attrs: {
+                      "data-toggle": "tooltip",
+                      "data-placement": "top",
+                      "data-original-title": _vm.$translate(
+                        "Feedback::Feedback.moderationMessage"
+                      )
+                    }
+                  },
+                  [_c("i", { staticClass: "fa fa-eye-slash" })]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.authenticatedUser.isLoggedIn
+              ? _c(
+                  "span",
+                  {
+                    directives: [{ name: "tooltip", rawName: "v-tooltip" }],
+                    ref: "editButton",
+                    staticClass: "btn btn-sm btn-danger",
+                    attrs: {
+                      "data-toggle": "tooltip",
+                      "data-placement": "top",
+                      "data-original-title": _vm.isReply
+                        ? _vm.$translate("Feedback::Feedback.editReply")
+                        : _vm.$translate("Feedback::Feedback.editReview")
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.editFeedback()
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "fa fa-pencil" })]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.authenticatedUser.isLoggedIn
+              ? _c(
+                  "span",
+                  {
+                    directives: [{ name: "tooltip", rawName: "v-tooltip" }],
+                    staticClass: "btn btn-sm btn-danger",
+                    attrs: {
+                      "data-toggle": "tooltip",
+                      "data-placement": "top",
+                      "data-original-title": _vm.isReply
+                        ? _vm.$translate("Feedback::Feedback.deleteReply")
+                        : _vm.$translate("Feedback::Feedback.deleteReview")
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.showDeleteConfirmation()
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "fa fa-trash-o" })]
+                )
+              : _vm._e()
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      !_vm.editableFeedback
+        ? _c("feedback-comment", {
+            attrs: {
+              feedback: _vm.feedbackData,
+              "is-reply": _vm.isReply,
+              "show-controls": _vm.showControls,
+              classes: _vm.classes,
+              styles: _vm.styles,
+              options: _vm.options
+            },
+            on: {
+              delete: function($event) {
+                return _vm.$emit("delete", $event)
+              }
+            }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      !!_vm.editableFeedback && _vm.isReply
+        ? _c("div", [
+            _c("div", { staticClass: "form-group" }, [
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.editableFeedback.message,
+                    expression: "editableFeedback.message"
+                  }
+                ],
+                staticClass: "form-control",
                 attrs: {
-                  feedback: _vm.feedbackData,
-                  "is-reply": _vm.isReply,
-                  "show-controls": _vm.showControls,
-                  classes: _vm.classes,
-                  styles: _vm.styles,
-                  options: _vm.options
+                  rows: "3",
+                  placeholder: _vm.$translate("Feedback::Feedback.replyMessage")
                 },
+                domProps: { value: _vm.editableFeedback.message },
                 on: {
-                  delete: function($event) {
-                    return _vm.$emit("delete", $event)
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.editableFeedback,
+                      "message",
+                      $event.target.value
+                    )
                   }
                 }
               })
-            : _vm._e(),
-          _vm._v(" "),
-          !!_vm.editableFeedback && _vm.isReply
-            ? _c("div", [
-                _c("div", { staticClass: "form-group" }, [
-                  _c("textarea", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.editableFeedback.message,
-                        expression: "editableFeedback.message"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: {
-                      rows: "3",
-                      placeholder: _vm.$translate(
-                        "Feedback::Feedback.replyMessage"
-                      )
-                    },
-                    domProps: { value: _vm.editableFeedback.message },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.editableFeedback,
-                          "message",
-                          $event.target.value
-                        )
-                      }
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary btn-appearance",
-                    on: {
-                      click: function($event) {
-                        return _vm.saveEditableFeedback()
-                      }
-                    }
-                  },
-                  [
-                    _vm._v(
-                      "\n      " +
-                        _vm._s(_vm.$translate("Feedback::Feedback.editReply")) +
-                        "\n    "
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-secondary feedback-edit-cancel",
-                    on: {
-                      click: function($event) {
-                        _vm.editableFeedback = null
-                      }
-                    }
-                  },
-                  [
-                    _vm._v(
-                      "\n      " +
-                        _vm._s(_vm.$translate("Feedback::Feedback.cancel")) +
-                        "\n    "
-                    )
-                  ]
+            ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary btn-appearance",
+                on: {
+                  click: function($event) {
+                    return _vm.saveEditableFeedback()
+                  }
+                }
+              },
+              [
+                _vm._v(
+                  "\n      " +
+                    _vm._s(_vm.$translate("Feedback::Feedback.editReply")) +
+                    "\n    "
                 )
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          !!_vm.editableFeedback && !_vm.isReply
-            ? _c("div", [
-                _c(
-                  "div",
-                  { staticClass: "stars" },
-                  [
-                    _vm._l([5, 4, 3, 2, 1], function(i) {
-                      return [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.editableFeedback.ratingValue,
-                              expression: "editableFeedback.ratingValue"
-                            }
-                          ],
-                          key: "stars_input_" + i,
-                          class: "star star-" + i,
-                          attrs: {
-                            id: "star-" + _vm._uid + "-" + i,
-                            type: "radio",
-                            name: "ratingValue"
-                          },
-                          domProps: {
-                            value: i,
-                            checked: _vm._q(_vm.editableFeedback.ratingValue, i)
-                          },
-                          on: {
-                            change: function($event) {
-                              return _vm.$set(
-                                _vm.editableFeedback,
-                                "ratingValue",
-                                i
-                              )
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("label", {
-                          key: "stars_label_" + i,
-                          class: "star star-" + i,
-                          attrs: { for: "star-" + _vm._uid + "-" + i }
-                        })
-                      ]
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-secondary feedback-edit-cancel",
+                on: {
+                  click: function($event) {
+                    _vm.editableFeedback = null
+                  }
+                }
+              },
+              [
+                _vm._v(
+                  "\n      " +
+                    _vm._s(_vm.$translate("Feedback::Feedback.cancel")) +
+                    "\n    "
+                )
+              ]
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      !!_vm.editableFeedback && !_vm.isReply
+        ? _c("div", [
+            _c(
+              "div",
+              { staticClass: "stars" },
+              [
+                _vm._l([5, 4, 3, 2, 1], function(i) {
+                  return [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.editableFeedback.ratingValue,
+                          expression: "editableFeedback.ratingValue"
+                        }
+                      ],
+                      key: "stars_input_" + i,
+                      class: "star star-" + i,
+                      attrs: {
+                        id: "star-" + _vm._uid + "-" + i,
+                        type: "radio",
+                        name: "ratingValue"
+                      },
+                      domProps: {
+                        value: i,
+                        checked: _vm._q(_vm.editableFeedback.ratingValue, i)
+                      },
+                      on: {
+                        change: function($event) {
+                          return _vm.$set(
+                            _vm.editableFeedback,
+                            "ratingValue",
+                            i
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("label", {
+                      key: "stars_label_" + i,
+                      class: "star star-" + i,
+                      attrs: { for: "star-" + _vm._uid + "-" + i }
                     })
-                  ],
-                  2
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.editableFeedback.title,
-                        expression: "editableFeedback.title"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "text",
-                      name: "title",
-                      placeholder: _vm.$translate("Feedback::Feedback.title"),
-                      required: ""
-                    },
-                    domProps: { value: _vm.editableFeedback.title },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.editableFeedback,
-                          "title",
-                          $event.target.value
-                        )
-                      }
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("textarea", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.editableFeedback.message,
-                        expression: "editableFeedback.message"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: {
-                      name: "message",
-                      rows: "3",
-                      placeholder: _vm.$translate("Feedback::Feedback.title")
-                    },
-                    domProps: { value: _vm.editableFeedback.message },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.editableFeedback,
-                          "message",
-                          $event.target.value
-                        )
-                      }
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary btn-appearance",
-                    on: {
-                      click: function($event) {
-                        return _vm.saveEditableFeedback()
-                      }
-                    }
-                  },
-                  [
-                    _vm._v(
-                      "\n      " +
-                        _vm._s(
-                          _vm.$translate("Feedback::Feedback.editReview")
-                        ) +
-                        "\n    "
-                    )
                   ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
+                })
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("input", {
+                directives: [
                   {
-                    staticClass: "btn btn-secondary feedback-edit-cancel",
-                    on: {
-                      click: function($event) {
-                        _vm.editableFeedback = null
-                      }
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.editableFeedback.title,
+                    expression: "editableFeedback.title"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  name: "title",
+                  placeholder: _vm.$translate("Feedback::Feedback.title"),
+                  required: ""
+                },
+                domProps: { value: _vm.editableFeedback.title },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
                     }
-                  },
-                  [
-                    _vm._v(
-                      "\n      " +
-                        _vm._s(_vm.$translate("Feedback::Feedback.cancel")) +
-                        "\n    "
+                    _vm.$set(_vm.editableFeedback, "title", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.editableFeedback.message,
+                    expression: "editableFeedback.message"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  name: "message",
+                  rows: "3",
+                  placeholder: _vm.$translate("Feedback::Feedback.title")
+                },
+                domProps: { value: _vm.editableFeedback.message },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.editableFeedback,
+                      "message",
+                      $event.target.value
                     )
-                  ]
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary btn-appearance",
+                on: {
+                  click: function($event) {
+                    return _vm.saveEditableFeedback()
+                  }
+                }
+              },
+              [
+                _vm._v(
+                  "\n      " +
+                    _vm._s(_vm.$translate("Feedback::Feedback.editReview")) +
+                    "\n    "
                 )
-              ])
-            : _vm._e()
-        ],
-        1
-      )
-    : _vm._e()
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-secondary feedback-edit-cancel",
+                on: {
+                  click: function($event) {
+                    _vm.editableFeedback = null
+                  }
+                }
+              },
+              [
+                _vm._v(
+                  "\n      " +
+                    _vm._s(_vm.$translate("Feedback::Feedback.cancel")) +
+                    "\n    "
+                )
+              ]
+            )
+          ])
+        : _vm._e()
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
