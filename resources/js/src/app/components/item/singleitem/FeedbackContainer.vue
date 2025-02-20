@@ -126,7 +126,7 @@
     <hr>
 
     <feedback-list
-      :feedbacks="authenticatedUser.feedbacks"
+      :feedbacks="invisibleFeedbacks"
       :is-last-page="true"
       :show-controls="true"
       :classes="classes"
@@ -251,7 +251,8 @@ export default {
       feedbackToDelete: null,
       optionsList: {
         timestampVisibility: this.options.timestampVisibility,
-        allowGuestFeedbacks: this.options.allowGuestFeedbacks
+        allowGuestFeedbacks: this.options.allowGuestFeedbacks,
+        publishReview: this.options.publishReview
       },
       language: this.options.language,
       optionsForm: {

@@ -3,6 +3,7 @@ let loadFeedbackUserLock = false
 
 const state = () => ({
   authenticatedUser: {},
+  invisibleFeedbacks: [],
   counts: {},
   feedbacks: [],
   itemAttributes: [],
@@ -17,6 +18,7 @@ const mutations =
     {
       setFeedbackAuthenticatedUser (state, authenticatedUser) {
         state.authenticatedUser = authenticatedUser
+        state.invisibleFeedbacks = state.authenticatedUser.feedbacks.filter((item) => item.isVisible)
       },
 
       setFeedbackCounts (state, counts) {
@@ -25,6 +27,7 @@ const mutations =
 
       setFeedbacks (state, feedbacks) {
         state.feedbacks = state.feedbacks.concat(feedbacks)
+        state.feedbacks = state.feedbacks.filter((item) => state.invisibleFeedbacks.includes(item))
       },
 
       setFeedbackItemAttributes (state, attributes) {

@@ -225,7 +225,6 @@ export default {
           withCredentials: true
         },
         success: (data) => {
-          data.isVisible = false
           this.$store.commit('addFeedback', data)
           this.isLoading = false
           this.feedback.authorName = ''

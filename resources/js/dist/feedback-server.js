@@ -708,7 +708,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       feedbackToDelete: null,
       optionsList: {
         timestampVisibility: this.options.timestampVisibility,
-        allowGuestFeedbacks: this.options.allowGuestFeedbacks
+        allowGuestFeedbacks: this.options.allowGuestFeedbacks,
+        publishReview: this.options.publishReview
       },
       language: this.options.language,
       optionsForm: {
@@ -1078,7 +1079,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           withCredentials: true
         },
         success: function success(data) {
-          data.isVisible = false;
           _this.$store.commit('addFeedback', data);
           _this.isLoading = false;
           _this.feedback.authorName = '';
@@ -2148,8 +2148,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_array_concat__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_concat__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_es_array_filter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.array.filter */ "./node_modules/core-js/modules/es.array.filter.js");
 /* harmony import */ var core_js_modules_es_array_filter__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_filter__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es_array_map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.array.map */ "./node_modules/core-js/modules/es.array.map.js");
-/* harmony import */ var core_js_modules_es_array_map__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_map__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es_array_includes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.array.includes */ "./node_modules/core-js/modules/es.array.includes.js");
+/* harmony import */ var core_js_modules_es_array_includes__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_includes__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es_array_map__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.array.map */ "./node_modules/core-js/modules/es.array.map.js");
+/* harmony import */ var core_js_modules_es_array_map__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_map__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_es_string_includes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es.string.includes */ "./node_modules/core-js/modules/es.string.includes.js");
+/* harmony import */ var core_js_modules_es_string_includes__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_includes__WEBPACK_IMPORTED_MODULE_4__);
+
+
 
 
 
@@ -2158,6 +2164,7 @@ var loadFeedbackUserLock = false;
 var state = function state() {
   return {
     authenticatedUser: {},
+    invisibleFeedbacks: [],
     counts: {},
     feedbacks: [],
     itemAttributes: [],
@@ -2171,12 +2178,18 @@ var state = function state() {
 var mutations = {
   setFeedbackAuthenticatedUser: function setFeedbackAuthenticatedUser(state, authenticatedUser) {
     state.authenticatedUser = authenticatedUser;
+    state.invisibleFeedbacks = state.authenticatedUser.feedbacks.filter(function (item) {
+      return item.isVisible;
+    });
   },
   setFeedbackCounts: function setFeedbackCounts(state, counts) {
     state.counts = counts;
   },
   setFeedbacks: function setFeedbacks(state, feedbacks) {
     state.feedbacks = state.feedbacks.concat(feedbacks);
+    state.feedbacks = state.feedbacks.filter(function (item) {
+      return state.invisibleFeedbacks.includes(item);
+    });
   },
   setFeedbackItemAttributes: function setFeedbackItemAttributes(state, attributes) {
     state.itemAttributes = attributes;
@@ -2812,6 +2825,31 @@ module.exports = function (target, source) {
     var key = keys[i];
     if (!has(target, key)) defineProperty(target, key, getOwnPropertyDescriptor(source, key));
   }
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/correct-is-regexp-logic.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/core-js/internals/correct-is-regexp-logic.js ***!
+  \*******************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "./node_modules/core-js/internals/well-known-symbol.js");
+
+var MATCH = wellKnownSymbol('match');
+
+module.exports = function (METHOD_NAME) {
+  var regexp = /./;
+  try {
+    '/./'[METHOD_NAME](regexp);
+  } catch (error1) {
+    try {
+      regexp[MATCH] = false;
+      return '/./'[METHOD_NAME](regexp);
+    } catch (error2) { /* empty */ }
+  } return false;
 };
 
 
@@ -3746,6 +3784,28 @@ module.exports = false;
 
 /***/ }),
 
+/***/ "./node_modules/core-js/internals/is-regexp.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/core-js/internals/is-regexp.js ***!
+  \*****************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var isObject = __webpack_require__(/*! ../internals/is-object */ "./node_modules/core-js/internals/is-object.js");
+var classof = __webpack_require__(/*! ../internals/classof-raw */ "./node_modules/core-js/internals/classof-raw.js");
+var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "./node_modules/core-js/internals/well-known-symbol.js");
+
+var MATCH = wellKnownSymbol('match');
+
+// `IsRegExp` abstract operation
+// https://tc39.es/ecma262/#sec-isregexp
+module.exports = function (it) {
+  var isRegExp;
+  return isObject(it) && ((isRegExp = it[MATCH]) !== undefined ? !!isRegExp : classof(it) == 'RegExp');
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/internals/iterate.js":
 /*!***************************************************!*\
   !*** ./node_modules/core-js/internals/iterate.js ***!
@@ -4008,6 +4068,23 @@ var PromiseCapability = function (C) {
 // 25.4.1.5 NewPromiseCapability(C)
 module.exports.f = function (C) {
   return new PromiseCapability(C);
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/not-a-regexp.js":
+/*!********************************************************!*\
+  !*** ./node_modules/core-js/internals/not-a-regexp.js ***!
+  \********************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var isRegExp = __webpack_require__(/*! ../internals/is-regexp */ "./node_modules/core-js/internals/is-regexp.js");
+
+module.exports = function (it) {
+  if (isRegExp(it)) {
+    throw TypeError("The method doesn't accept regular expressions");
+  } return it;
 };
 
 
@@ -6119,6 +6196,31 @@ if (NOT_GENERIC || INCORRECT_NAME) {
 
 /***/ }),
 
+/***/ "./node_modules/core-js/modules/es.string.includes.js":
+/*!************************************************************!*\
+  !*** ./node_modules/core-js/modules/es.string.includes.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js/internals/export.js");
+var notARegExp = __webpack_require__(/*! ../internals/not-a-regexp */ "./node_modules/core-js/internals/not-a-regexp.js");
+var requireObjectCoercible = __webpack_require__(/*! ../internals/require-object-coercible */ "./node_modules/core-js/internals/require-object-coercible.js");
+var correctIsRegExpLogic = __webpack_require__(/*! ../internals/correct-is-regexp-logic */ "./node_modules/core-js/internals/correct-is-regexp-logic.js");
+
+// `String.prototype.includes` method
+// https://tc39.es/ecma262/#sec-string.prototype.includes
+$({ target: 'String', proto: true, forced: !correctIsRegExpLogic('includes') }, {
+  includes: function includes(searchString /* , position = 0 */) {
+    return !!~String(requireObjectCoercible(this))
+      .indexOf(notARegExp(searchString), arguments.length > 1 ? arguments[1] : undefined);
+  }
+});
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/modules/es.string.replace.js":
 /*!***********************************************************!*\
   !*** ./node_modules/core-js/modules/es.string.replace.js ***!
@@ -7409,7 +7511,7 @@ var render = function() {
       _vm._ssrNode(" <hr> "),
       _c("feedback-list", {
         attrs: {
-          feedbacks: _vm.authenticatedUser.feedbacks,
+          feedbacks: _vm.invisibleFeedbacks,
           "is-last-page": true,
           "show-controls": true,
           classes: _vm.classes,
@@ -7810,8 +7912,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return (_vm.showControls && !_vm.feedbackData.isVisible) ||
-    (!_vm.showControls && _vm.feedbackData.isVisible)
+  return _vm.showControls && !_vm.feedbackData.isVisible
     ? _c(
         "div",
         { staticClass: "feedback clearfix", class: { loading: _vm.isLoading } },
