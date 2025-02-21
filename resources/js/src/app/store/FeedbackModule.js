@@ -18,7 +18,7 @@ const mutations =
     {
       setFeedbackAuthenticatedUser (state, authenticatedUser) {
         state.authenticatedUser = authenticatedUser
-        state.invisibleFeedbacks = state.authenticatedUser.feedbacks.filter((item) => item.isVisible)
+        // state.invisibleFeedbacks = state.authenticatedUser.feedbacks.filter((item) => item.isVisible)
       },
 
       setFeedbackCounts (state, counts) {
@@ -27,7 +27,7 @@ const mutations =
 
       setFeedbacks (state, feedbacks) {
         state.feedbacks = state.feedbacks.concat(feedbacks)
-        state.feedbacks = state.feedbacks.filter((item) => state.invisibleFeedbacks.includes(item))
+        // state.feedbacks = state.feedbacks.filter((item) => state.invisibleFeedbacks.includes(item))
       },
 
       setFeedbackItemAttributes (state, attributes) {

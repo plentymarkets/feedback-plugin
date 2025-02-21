@@ -2616,10 +2616,10 @@ Vue.component('FeedbackAverage', function () {
   return Promise.all(/*! import() */[__webpack_require__.e(7), __webpack_require__.e(1)]).then(__webpack_require__.bind(__webpack_require__, /*! ./app/components/item/FeedbackAverage.vue */ "./resources/js/src/app/components/item/FeedbackAverage.vue"));
 });
 Vue.component('FeedbackContainer', function () {
-  return Promise.all(/*! import() */[__webpack_require__.e(7), __webpack_require__.e(6), __webpack_require__.e(3)]).then(__webpack_require__.bind(__webpack_require__, /*! ./app/components/item/singleitem/FeedbackContainer.vue */ "./resources/js/src/app/components/item/singleitem/FeedbackContainer.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(7), __webpack_require__.e(5), __webpack_require__.e(3)]).then(__webpack_require__.bind(__webpack_require__, /*! ./app/components/item/singleitem/FeedbackContainer.vue */ "./resources/js/src/app/components/item/singleitem/FeedbackContainer.vue"));
 });
 Vue.component('FeedbackOrderContainer', function () {
-  return Promise.all(/*! import() */[__webpack_require__.e(7), __webpack_require__.e(5), __webpack_require__.e(4)]).then(__webpack_require__.bind(__webpack_require__, /*! ./app/components/order/FeedbackOrder.vue */ "./resources/js/src/app/components/order/FeedbackOrder.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(7), __webpack_require__.e(5), __webpack_require__.e(6), __webpack_require__.e(4)]).then(__webpack_require__.bind(__webpack_require__, /*! ./app/components/order/FeedbackOrder.vue */ "./resources/js/src/app/components/order/FeedbackOrder.vue"));
 });
 }();
 /******/ })()
