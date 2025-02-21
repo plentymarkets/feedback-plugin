@@ -176,7 +176,9 @@ var state = function state() {
 var mutations = {
   setFeedbackAuthenticatedUser: function setFeedbackAuthenticatedUser(state, authenticatedUser) {
     state.authenticatedUser = authenticatedUser;
-    // state.invisibleFeedbacks = state.authenticatedUser.feedbacks.filter((item) => item.isVisible)
+    state.invisibleFeedbacks = state.authenticatedUser.feedbacks.filter(function (item) {
+      return item.isVisible;
+    });
   },
   setFeedbackCounts: function setFeedbackCounts(state, counts) {
     state.counts = counts;
