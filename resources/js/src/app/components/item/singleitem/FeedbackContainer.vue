@@ -277,7 +277,7 @@ export default {
         authenticatedUser: state => state.feedback.authenticatedUser,
         counts: state => state.feedback.counts,
         feedbacks: state => state.feedback.feedbacks,
-        invisibleFeedbacks: state => state.invisibleFeedbacks,
+        invisibleFeedbacks: state => state.feedback.invisibleFeedbacks,
         pagination: state => state.feedback.pagination
       })
     },

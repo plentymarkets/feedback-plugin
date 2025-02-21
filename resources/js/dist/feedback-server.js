@@ -736,7 +736,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return state.feedback.feedbacks;
     },
     invisibleFeedbacks: function invisibleFeedbacks(state) {
-      return state.invisibleFeedbacks;
+      return state.feedback.invisibleFeedbacks;
     },
     pagination: function pagination(state) {
       return state.feedback.pagination;
