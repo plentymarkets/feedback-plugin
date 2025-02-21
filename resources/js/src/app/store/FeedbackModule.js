@@ -27,7 +27,6 @@ const mutations =
 
       setFeedbacks (state, feedbacks) {
         state.feedbacks = state.feedbacks.concat(feedbacks)
-        // state.feedbacks = state.feedbacks.filter((item) => state.invisibleFeedbacks.includes(item))
       },
 
       setFeedbackItemAttributes (state, attributes) {

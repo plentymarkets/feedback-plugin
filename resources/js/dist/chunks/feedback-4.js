@@ -718,7 +718,6 @@ var mutations = {
   },
   setFeedbacks: function setFeedbacks(state, feedbacks) {
     state.feedbacks = state.feedbacks.concat(feedbacks);
-    // state.feedbacks = state.feedbacks.filter((item) => state.invisibleFeedbacks.includes(item))
   },
   setFeedbackItemAttributes: function setFeedbackItemAttributes(state, attributes) {
     state.itemAttributes = attributes;
