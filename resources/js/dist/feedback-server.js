@@ -2174,7 +2174,7 @@ var mutations = {
   setFeedbackAuthenticatedUser: function setFeedbackAuthenticatedUser(state, authenticatedUser) {
     state.authenticatedUser = authenticatedUser;
     state.invisibleFeedbacks = state.authenticatedUser.feedbacks.filter(function (item) {
-      return item.isVisible;
+      return !item.isVisible;
     });
   },
   setFeedbackCounts: function setFeedbackCounts(state, counts) {
