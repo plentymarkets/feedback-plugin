@@ -251,8 +251,7 @@ export default {
       feedbackToDelete: null,
       optionsList: {
         timestampVisibility: this.options.timestampVisibility,
-        allowGuestFeedbacks: this.options.allowGuestFeedbacks,
-        publishReview: this.options.publishReview
+        allowGuestFeedbacks: this.options.allowGuestFeedbacks
       },
       language: this.options.language,
       optionsForm: {
