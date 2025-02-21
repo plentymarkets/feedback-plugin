@@ -314,7 +314,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     if (!App.isShopBuilder) {
       var _self = this;
-      $.when(this.getUser(), this.getCounts(), this.loadFeedbacks()).done(function () {
+      $.when(this.getUser(), this.loadFeedbacks()).done(function () {
         _self.isLoading = false;
         _self.generateJsonLD();
         Vue.nextTick(function () {
@@ -1152,7 +1152,7 @@ var actions = {
       countsLoaded = true;
       return $.ajax({
         type: 'GET',
-        url: '/rest/feedbacks/feedback/helper/counts/' + itemId,
+        url: '/rest/storefront/feedbacks/feedback/helper/counts/' + itemId,
         success: function success(data) {
           commit('setFeedbackCounts', data.counts);
         },
@@ -1184,6 +1184,7 @@ var actions = {
           commit('setFeedbackItemAttributes', data.itemAttributes);
           commit('setFeedbackPagination', data.pagination);
           loadPaginatedFeedbacksLock = false;
+          commit('setFeedbackCounts', data.counts);
         },
         error: function error(jqXHR, textStatus, errorThrown) {
           console.error(errorThrown);

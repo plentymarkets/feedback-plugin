@@ -287,7 +287,6 @@ export default {
       const _self = this
       $.when(
         this.getUser(),
-        this.getCounts(),
         this.loadFeedbacks()
       ).done(function () {
         _self.isLoading = false

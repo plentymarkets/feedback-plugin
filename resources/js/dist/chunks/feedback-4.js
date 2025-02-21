@@ -798,7 +798,7 @@ var actions = {
       countsLoaded = true;
       return $.ajax({
         type: 'GET',
-        url: '/rest/feedbacks/feedback/helper/counts/' + itemId,
+        url: '/rest/storefront/feedbacks/feedback/helper/counts/' + itemId,
         success: function success(data) {
           commit('setFeedbackCounts', data.counts);
         },
@@ -830,6 +830,7 @@ var actions = {
           commit('setFeedbackItemAttributes', data.itemAttributes);
           commit('setFeedbackPagination', data.pagination);
           loadPaginatedFeedbacksLock = false;
+          commit('setFeedbackCounts', data.counts);
         },
         error: function error(jqXHR, textStatus, errorThrown) {
           console.error(errorThrown);

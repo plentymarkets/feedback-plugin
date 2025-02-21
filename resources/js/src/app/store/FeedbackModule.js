@@ -114,7 +114,7 @@ const actions =
 
           return $.ajax({
             type: 'GET',
-            url: '/rest/feedbacks/feedback/helper/counts/' + itemId,
+            url: '/rest/storefront/feedbacks/feedback/helper/counts/' + itemId,
             success: function (data) {
               commit('setFeedbackCounts', data.counts)
             },
@@ -142,6 +142,7 @@ const actions =
               commit('setFeedbackItemAttributes', data.itemAttributes)
               commit('setFeedbackPagination', data.pagination)
               loadPaginatedFeedbacksLock = false
+              commit('setFeedbackCounts', data.counts)
             },
             error: function (jqXHR, textStatus, errorThrown) {
               console.error(errorThrown)
