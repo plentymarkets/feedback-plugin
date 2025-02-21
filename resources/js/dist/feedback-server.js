@@ -2196,6 +2196,7 @@ var mutations = {
   },
   addFeedback: function addFeedback(state, feedback) {
     // Add the feedback to the current users feedback list
+    state.authenticatedUser.feedbacks.unshift(feedback);
     state.invisibleFeedbacks.unshift(feedback);
     if (feedback.isVisible) {
       var ratingValue = parseInt(feedback.feedbackRating.rating.ratingValue);
@@ -2222,9 +2223,11 @@ var mutations = {
     if (parentFeedbackId === null) {
       state.feedbacks = filterFeedbackList(state.feedbacks, feedbackId);
       state.authenticatedUser.feedbacks = filterFeedbackList(state.authenticatedUser.feedbacks, feedbackId);
+      state.invisibleFeedbacks = filterFeedbackList(state.invisibleFeedbacks, feedbackId);
     } else {
       state.feedbacks = filterReplyList(state.feedbacks, parentFeedbackId, feedbackId);
       state.authenticatedUser.feedbacks = filterReplyList(state.authenticatedUser.feedbacks, parentFeedbackId, feedbackId);
+      state.invisibleFeedbacks = filterReplyList(state.invisibleFeedbacks, parentFeedbackId, feedbackId);
     }
   }
 };
