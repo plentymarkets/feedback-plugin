@@ -66,7 +66,7 @@ class FeedbackServiceProvider extends ServiceProvider
         // register shop builder widgets
         /** @var ContentWidgetRepositoryContract $widgetRepository */
         $widgetRepository = pluginApp(ContentWidgetRepositoryContract::class);
-        $widgetRepository->registerWidget(FeedbackWidget::class);
+//        $widgetRepository->registerWidget(FeedbackWidget::class);
         $widgetRepository->registerWidget(FeedbackAverageWidget::class);
         $widgetRepository->registerWidget(FeedbackOrderWidget::class);
         $widgetRepository->registerWidget(RatingFilterWidget::class);
