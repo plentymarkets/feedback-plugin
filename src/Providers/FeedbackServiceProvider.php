@@ -69,7 +69,7 @@ class FeedbackServiceProvider extends ServiceProvider
         $widgetRepository->registerWidget(FeedbackWidget::class);
         $widgetRepository->registerWidget(FeedbackAverageWidget::class);
         $widgetRepository->registerWidget(FeedbackOrderWidget::class);
-//        $widgetRepository->registerWidget(RatingFilterWidget::class);
+        $widgetRepository->registerWidget(RatingFilterWidget::class);
     }
 
     public function register()
