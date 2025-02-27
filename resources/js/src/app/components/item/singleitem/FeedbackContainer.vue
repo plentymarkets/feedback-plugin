@@ -126,7 +126,7 @@
     <hr>
 
     <feedback-list
-      :feedbacks="authenticatedUser.feedbacks"
+      :feedbacks="invisibleFeedbacks"
       :is-last-page="true"
       :show-controls="true"
       :classes="classes"
@@ -253,6 +253,7 @@ export default {
         timestampVisibility: this.options.timestampVisibility,
         allowGuestFeedbacks: this.options.allowGuestFeedbacks
       },
+      language: this.options.language,
       optionsForm: {
         allowFeedbacksOnlyIfPurchased: this.options.allowFeedbacksOnlyIfPurchased,
 
@@ -276,6 +277,7 @@ export default {
         authenticatedUser: state => state.feedback.authenticatedUser,
         counts: state => state.feedback.counts,
         feedbacks: state => state.feedback.feedbacks,
+        invisibleFeedbacks: state => state.feedback.invisibleFeedbacks,
         pagination: state => state.feedback.pagination
       })
     },
@@ -285,7 +287,6 @@ export default {
       const _self = this
       $.when(
         this.getUser(),
-        this.getCounts(),
         this.loadFeedbacks()
       ).done(function () {
         _self.isLoading = false
@@ -320,7 +321,8 @@ export default {
       loadFeedbacks () {
         return this.$store.dispatch('loadPaginatedFeedbacks', {
           itemId: this.itemId,
-          feedbacksPerPage: this.options.feedbacksPerPage
+          feedbacksPerPage: this.options.feedbacksPerPage,
+          language: this.options.language
         })
       },
 

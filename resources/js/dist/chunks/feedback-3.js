@@ -279,6 +279,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         timestampVisibility: this.options.timestampVisibility,
         allowGuestFeedbacks: this.options.allowGuestFeedbacks
       },
+      language: this.options.language,
       optionsForm: {
         allowFeedbacksOnlyIfPurchased: this.options.allowFeedbacksOnlyIfPurchased,
         numberOfFeedbacks: this.options.numberOfFeedbacks,
@@ -303,6 +304,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     feedbacks: function feedbacks(state) {
       return state.feedback.feedbacks;
     },
+    invisibleFeedbacks: function invisibleFeedbacks(state) {
+      return state.feedback.invisibleFeedbacks;
+    },
     pagination: function pagination(state) {
       return state.feedback.pagination;
     }
@@ -310,7 +314,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     if (!App.isShopBuilder) {
       var _self = this;
-      $.when(this.getUser(), this.getCounts(), this.loadFeedbacks()).done(function () {
+      $.when(this.getUser(), this.loadFeedbacks()).done(function () {
         _self.isLoading = false;
         _self.generateJsonLD();
         Vue.nextTick(function () {
@@ -339,7 +343,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     loadFeedbacks: function loadFeedbacks() {
       return this.$store.dispatch('loadPaginatedFeedbacks', {
         itemId: this.itemId,
-        feedbacksPerPage: this.options.feedbacksPerPage
+        feedbacksPerPage: this.options.feedbacksPerPage,
+        language: this.options.language
       });
     },
     showDeleteConfirmation: function showDeleteConfirmation(feedbackToDelete) {
@@ -730,11 +735,20 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.object.to-string */ "./node_modules/core-js/modules/es.object.to-string.js");
-/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.promise */ "./node_modules/core-js/modules/es.promise.js");
-/* harmony import */ var core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var core_js_modules_es_array_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.for-each */ "./node_modules/core-js/modules/es.array.for-each.js");
+/* harmony import */ var core_js_modules_es_array_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_for_each__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_array_includes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.array.includes */ "./node_modules/core-js/modules/es.array.includes.js");
+/* harmony import */ var core_js_modules_es_array_includes__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_includes__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.object.to-string */ "./node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.promise */ "./node_modules/core-js/modules/es.promise.js");
+/* harmony import */ var core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
+
 
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -902,7 +916,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   created: function created() {
     this.feedbackData = this.feedback;
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)({
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapState)({
     authenticatedUser: function authenticatedUser(state) {
       return state.feedback.authenticatedUser;
     }
@@ -967,6 +981,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
       }
       this.editableFeedback = null;
+    },
+    isFeedbackEditable: function isFeedbackEditable(id) {
+      // we are on the list from the microservice
+      var ids = [];
+      if (this.showControls === false && this.authenticatedUser.feedbacks) {
+        this.authenticatedUser.feedbacks.forEach(function (feedbackItem) {
+          if (feedbackItem.isVisible) {
+            ids.push(feedbackItem.id);
+          }
+        });
+      }
+      return ids.includes(id);
+    },
+    canUserEdit: function canUserEdit() {
+      if (!this.feedbackData.sourceRelation[0].feedbackRelationSourceId) {
+        return false;
+      }
+      return this.feedbackData.sourceRelation[0].feedbackRelationType === 'contact' && parseInt(this.feedbackData.sourceRelation[0].feedbackRelationSourceId) === this.authenticatedUser.id;
     }
   }
 });
@@ -1017,6 +1049,7 @@ var loadFeedbackUserLock = false;
 var state = function state() {
   return {
     authenticatedUser: {},
+    invisibleFeedbacks: [],
     counts: {},
     feedbacks: [],
     itemAttributes: [],
@@ -1030,6 +1063,9 @@ var state = function state() {
 var mutations = {
   setFeedbackAuthenticatedUser: function setFeedbackAuthenticatedUser(state, authenticatedUser) {
     state.authenticatedUser = authenticatedUser;
+    state.invisibleFeedbacks = state.authenticatedUser.feedbacks.filter(function (item) {
+      return !item.isVisible;
+    });
   },
   setFeedbackCounts: function setFeedbackCounts(state, counts) {
     state.counts = counts;
@@ -1050,6 +1086,7 @@ var mutations = {
   addFeedback: function addFeedback(state, feedback) {
     // Add the feedback to the current users feedback list
     state.authenticatedUser.feedbacks.unshift(feedback);
+    state.invisibleFeedbacks.unshift(feedback);
     if (feedback.isVisible) {
       var ratingValue = parseInt(feedback.feedbackRating.rating.ratingValue);
       if (ratingValue > 0 && ratingValue <= 5) {
@@ -1075,9 +1112,11 @@ var mutations = {
     if (parentFeedbackId === null) {
       state.feedbacks = filterFeedbackList(state.feedbacks, feedbackId);
       state.authenticatedUser.feedbacks = filterFeedbackList(state.authenticatedUser.feedbacks, feedbackId);
+      state.invisibleFeedbacks = filterFeedbackList(state.invisibleFeedbacks, feedbackId);
     } else {
       state.feedbacks = filterReplyList(state.feedbacks, parentFeedbackId, feedbackId);
       state.authenticatedUser.feedbacks = filterReplyList(state.authenticatedUser.feedbacks, parentFeedbackId, feedbackId);
+      state.invisibleFeedbacks = filterReplyList(state.invisibleFeedbacks, parentFeedbackId, feedbackId);
     }
   }
 };
@@ -1113,7 +1152,7 @@ var actions = {
       countsLoaded = true;
       return $.ajax({
         type: 'GET',
-        url: '/rest/feedbacks/feedback/helper/counts/' + itemId,
+        url: '/rest/storefront/feedbacks/feedback/helper/counts/' + itemId,
         success: function success(data) {
           commit('setFeedbackCounts', data.counts);
         },
@@ -1127,12 +1166,16 @@ var actions = {
     var commit = _ref5.commit,
       state = _ref5.state;
     var itemId = _ref6.itemId,
-      feedbacksPerPage = _ref6.feedbacksPerPage;
+      feedbacksPerPage = _ref6.feedbacksPerPage,
+      language = _ref6.language;
     if (!loadPaginatedFeedbacksLock) {
       loadPaginatedFeedbacksLock = true;
       var request = $.ajax({
         type: 'GET',
-        url: '/rest/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
+        url: '/rest/storefront/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
+        beforeSend: function beforeSend(xhr) {
+          xhr.setRequestHeader('lang', language);
+        },
         data: {
           feedbacksPerPage: feedbacksPerPage
         },
@@ -1141,6 +1184,7 @@ var actions = {
           commit('setFeedbackItemAttributes', data.itemAttributes);
           commit('setFeedbackPagination', data.pagination);
           loadPaginatedFeedbacksLock = false;
+          commit('setFeedbackCounts', data.counts);
         },
         error: function error(jqXHR, textStatus, errorThrown) {
           console.error(errorThrown);
@@ -1206,6 +1250,36 @@ function recalculateAverage(state) {
   average /= state.counts.ratingsCountTotal;
   state.counts.averageValue = average;
 }
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/add-to-unscopables.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/core-js/internals/add-to-unscopables.js ***!
+  \**************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "./node_modules/core-js/internals/well-known-symbol.js");
+var create = __webpack_require__(/*! ../internals/object-create */ "./node_modules/core-js/internals/object-create.js");
+var definePropertyModule = __webpack_require__(/*! ../internals/object-define-property */ "./node_modules/core-js/internals/object-define-property.js");
+
+var UNSCOPABLES = wellKnownSymbol('unscopables');
+var ArrayPrototype = Array.prototype;
+
+// Array.prototype[@@unscopables]
+// https://tc39.es/ecma262/#sec-array.prototype-@@unscopables
+if (ArrayPrototype[UNSCOPABLES] == undefined) {
+  definePropertyModule.f(ArrayPrototype, UNSCOPABLES, {
+    configurable: true,
+    value: create(null)
+  });
+}
+
+// add a key to Array.prototype[@@unscopables]
+module.exports = function (key) {
+  ArrayPrototype[UNSCOPABLES][key] = true;
+};
+
 
 /***/ }),
 
@@ -1316,6 +1390,32 @@ var forEach = __webpack_require__(/*! ../internals/array-for-each */ "./node_mod
 $({ target: 'Array', proto: true, forced: [].forEach != forEach }, {
   forEach: forEach
 });
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/modules/es.array.includes.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/core-js/modules/es.array.includes.js ***!
+  \***********************************************************/
+/***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js/internals/export.js");
+var $includes = (__webpack_require__(/*! ../internals/array-includes */ "./node_modules/core-js/internals/array-includes.js").includes);
+var addToUnscopables = __webpack_require__(/*! ../internals/add-to-unscopables */ "./node_modules/core-js/internals/add-to-unscopables.js");
+
+// `Array.prototype.includes` method
+// https://tc39.es/ecma262/#sec-array.prototype.includes
+$({ target: 'Array', proto: true }, {
+  includes: function includes(el /* , fromIndex = 0 */) {
+    return $includes(this, el, arguments.length > 1 ? arguments[1] : undefined);
+  }
+});
+
+// https://tc39.es/ecma262/#sec-array.prototype-@@unscopables
+addToUnscopables('includes');
 
 
 /***/ }),
@@ -1894,7 +1994,7 @@ var render = function() {
       _vm._v(" "),
       _c("feedback-list", {
         attrs: {
-          feedbacks: _vm.authenticatedUser.feedbacks,
+          feedbacks: _vm.invisibleFeedbacks,
           "is-last-page": true,
           "show-controls": true,
           classes: _vm.classes,
@@ -2612,7 +2712,8 @@ var render = function() {
     "div",
     { staticClass: "feedback clearfix", class: { loading: _vm.isLoading } },
     [
-      !_vm.editableFeedback && _vm.showControls
+      (!_vm.editableFeedback && _vm.showControls) ||
+      _vm.isFeedbackEditable(_vm.feedbackData.id) || _vm.canUserEdit()
         ? _c("div", { staticClass: "feedback-options" }, [
             !_vm.feedbackData.isVisible
               ? _c(

@@ -380,7 +380,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -696,6 +695,7 @@ var loadFeedbackUserLock = false;
 var state = function state() {
   return {
     authenticatedUser: {},
+    invisibleFeedbacks: [],
     counts: {},
     feedbacks: [],
     itemAttributes: [],
@@ -709,6 +709,9 @@ var state = function state() {
 var mutations = {
   setFeedbackAuthenticatedUser: function setFeedbackAuthenticatedUser(state, authenticatedUser) {
     state.authenticatedUser = authenticatedUser;
+    state.invisibleFeedbacks = state.authenticatedUser.feedbacks.filter(function (item) {
+      return !item.isVisible;
+    });
   },
   setFeedbackCounts: function setFeedbackCounts(state, counts) {
     state.counts = counts;
@@ -729,6 +732,7 @@ var mutations = {
   addFeedback: function addFeedback(state, feedback) {
     // Add the feedback to the current users feedback list
     state.authenticatedUser.feedbacks.unshift(feedback);
+    state.invisibleFeedbacks.unshift(feedback);
     if (feedback.isVisible) {
       var ratingValue = parseInt(feedback.feedbackRating.rating.ratingValue);
       if (ratingValue > 0 && ratingValue <= 5) {
@@ -754,9 +758,11 @@ var mutations = {
     if (parentFeedbackId === null) {
       state.feedbacks = filterFeedbackList(state.feedbacks, feedbackId);
       state.authenticatedUser.feedbacks = filterFeedbackList(state.authenticatedUser.feedbacks, feedbackId);
+      state.invisibleFeedbacks = filterFeedbackList(state.invisibleFeedbacks, feedbackId);
     } else {
       state.feedbacks = filterReplyList(state.feedbacks, parentFeedbackId, feedbackId);
       state.authenticatedUser.feedbacks = filterReplyList(state.authenticatedUser.feedbacks, parentFeedbackId, feedbackId);
+      state.invisibleFeedbacks = filterReplyList(state.invisibleFeedbacks, parentFeedbackId, feedbackId);
     }
   }
 };
@@ -792,7 +798,7 @@ var actions = {
       countsLoaded = true;
       return $.ajax({
         type: 'GET',
-        url: '/rest/feedbacks/feedback/helper/counts/' + itemId,
+        url: '/rest/storefront/feedbacks/feedback/helper/counts/' + itemId,
         success: function success(data) {
           commit('setFeedbackCounts', data.counts);
         },
@@ -806,12 +812,16 @@ var actions = {
     var commit = _ref5.commit,
       state = _ref5.state;
     var itemId = _ref6.itemId,
-      feedbacksPerPage = _ref6.feedbacksPerPage;
+      feedbacksPerPage = _ref6.feedbacksPerPage,
+      language = _ref6.language;
     if (!loadPaginatedFeedbacksLock) {
       loadPaginatedFeedbacksLock = true;
       var request = $.ajax({
         type: 'GET',
-        url: '/rest/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
+        url: '/rest/storefront/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
+        beforeSend: function beforeSend(xhr) {
+          xhr.setRequestHeader('lang', language);
+        },
         data: {
           feedbacksPerPage: feedbacksPerPage
         },
@@ -820,6 +830,7 @@ var actions = {
           commit('setFeedbackItemAttributes', data.itemAttributes);
           commit('setFeedbackPagination', data.pagination);
           loadPaginatedFeedbacksLock = false;
+          commit('setFeedbackCounts', data.counts);
         },
         error: function error(jqXHR, textStatus, errorThrown) {
           console.error(errorThrown);
