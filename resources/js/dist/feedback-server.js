@@ -1014,16 +1014,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -6313,7 +6303,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "1a304a59"
+  "606f3631"
   
 )
 
@@ -6350,7 +6340,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "12bd5335"
+  "ab1ddf46"
   
 )
 
@@ -6387,7 +6377,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "634158d7"
+  "460b2802"
   
 )
 
@@ -6424,7 +6414,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "17a04c5e"
+  "2b81e036"
   
 )
 
@@ -6461,7 +6451,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "4b997338"
+  "5f7b0710"
   
 )
 
@@ -6498,7 +6488,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "b7ea156c"
+  "1dc40872"
   
 )
 
@@ -6535,7 +6525,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "3b24c99b"
+  "4ded02c3"
   
 )
 
@@ -6572,7 +6562,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "6859feff"
+  "06dd37b2"
   
 )
 
@@ -6609,7 +6599,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "db64a464"
+  "268512f6"
   
 )
 
@@ -7580,7 +7570,11 @@ var render = function() {
                 " " +
                 (!_vm.authenticatedUser.isLoggedIn &&
                 _vm.options.allowGuestFeedbacks
-                  ? '<div class="form-group"><input id="author" type="text" name="author"' +
+                  ? '<div class="form-group"><input id="author" type="text" name="author" aria-hidden="true"' +
+                    _vm._ssrAttr(
+                      "aria-label",
+                      _vm.$translate("Feedback::Feedback.authorName")
+                    ) +
                     _vm._ssrAttr(
                       "placeholder",
                       _vm.$translate("Feedback::Feedback.authorName")
@@ -7591,19 +7585,13 @@ var render = function() {
                         !_vm.authenticatedUser.hasPurchased
                     ) +
                     _vm._ssrAttr("value", _vm.feedback.authorName) +
-                    ' class="form-control"> <label for="author" class="position-absolute"><span class="d-none">' +
-                    _vm._ssrEscape(
-                      _vm._s(_vm.$translate("Feedback::Feedback.authorName"))
+                    ' class="form-control"> <input id="feedback-textfield" type="text" name="feedback-textfield" aria-hidden="true"' +
+                    _vm._ssrAttr(
+                      "aria-label",
+                      _vm.$translate("Feedback::Feedback.feedbackTextLabel")
                     ) +
-                    '</span></label> <input id="feedback-textfield" type="text" name="feedback-textfield"' +
                     _vm._ssrAttr("value", _vm.feedback.honeypot) +
-                    ' class="form-control"> <label for="feedback-textfield" class="position-absolute"><span class="d-none">' +
-                    _vm._ssrEscape(
-                      _vm._s(
-                        _vm.$translate("Feedback::Feedback.feedbackTextLabel")
-                      )
-                    ) +
-                    "</span></label></div>"
+                    ' class="form-control"></div>'
                   : "<!---->") +
                 ' <div class="form-group"><input id="title" type="text" name="title"' +
                 _vm._ssrAttr(
@@ -7615,15 +7603,16 @@ var render = function() {
                   _vm.authenticatedUser.limitReached ||
                     !_vm.authenticatedUser.hasPurchased
                 ) +
+                ' aria-hidden="true"' +
+                _vm._ssrAttr(
+                  "aria-label",
+                  _vm.$translate("Feedback::Feedback.title")
+                ) +
                 _vm._ssrAttr("value", _vm.feedback.title) +
                 _vm._ssrClass("form-control", {
                   "is-invalid": _vm.titleMissing
                 }) +
-                '> <label for="title" class="position-absolute"><span class="d-none">' +
-                _vm._ssrEscape(
-                  _vm._s(_vm.$translate("Feedback::Feedback.title"))
-                ) +
-                '</span></label> <div class="invalid-feedback">' +
+                '> <div class="invalid-feedback">' +
                 _vm._ssrEscape(
                   "\n        " +
                     _vm._s(_vm.$translate("Feedback::Feedback.titleRequired")) +
@@ -7639,13 +7628,14 @@ var render = function() {
                   _vm.authenticatedUser.limitReached ||
                     !_vm.authenticatedUser.hasPurchased
                 ) +
+                ' aria-hidden="true"' +
+                _vm._ssrAttr(
+                  "aria-label",
+                  _vm.$translate("Feedback::Feedback.reviewMessage")
+                ) +
                 ' class="form-control">' +
                 _vm._ssrEscape(_vm._s(_vm.feedback.message)) +
-                '</textarea> <label for="message" class="position-absolute"><span class="d-none">' +
-                _vm._ssrEscape(
-                  _vm._s(_vm.$translate("Feedback::Feedback.reviewMessage"))
-                ) +
-                "</span></label></div> "
+                "</textarea></div> "
             ),
             _vm.authenticatedUser.limitReached
               ? _c(

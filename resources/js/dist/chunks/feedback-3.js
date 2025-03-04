@@ -580,16 +580,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2318,6 +2308,10 @@ var render = function() {
                     id: "author",
                     type: "text",
                     name: "author",
+                    "aria-hidden": "true",
+                    "aria-label": _vm.$translate(
+                      "Feedback::Feedback.authorName"
+                    ),
                     placeholder: _vm.$translate(
                       "Feedback::Feedback.authorName"
                     ),
@@ -2336,21 +2330,6 @@ var render = function() {
                   }
                 }),
                 _vm._v(" "),
-                _c(
-                  "label",
-                  {
-                    staticClass: "position-absolute",
-                    attrs: { for: "author" }
-                  },
-                  [
-                    _c("span", { staticClass: "d-none" }, [
-                      _vm._v(
-                        _vm._s(_vm.$translate("Feedback::Feedback.authorName"))
-                      )
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
                 _c("input", {
                   directives: [
                     {
@@ -2364,7 +2343,11 @@ var render = function() {
                   attrs: {
                     id: "feedback-textfield",
                     type: "text",
-                    name: "feedback-textfield"
+                    name: "feedback-textfield",
+                    "aria-hidden": "true",
+                    "aria-label": _vm.$translate(
+                      "Feedback::Feedback.feedbackTextLabel"
+                    )
                   },
                   domProps: { value: _vm.feedback.honeypot },
                   on: {
@@ -2375,24 +2358,7 @@ var render = function() {
                       _vm.$set(_vm.feedback, "honeypot", $event.target.value)
                     }
                   }
-                }),
-                _vm._v(" "),
-                _c(
-                  "label",
-                  {
-                    staticClass: "position-absolute",
-                    attrs: { for: "feedback-textfield" }
-                  },
-                  [
-                    _c("span", { staticClass: "d-none" }, [
-                      _vm._v(
-                        _vm._s(
-                          _vm.$translate("Feedback::Feedback.feedbackTextLabel")
-                        )
-                      )
-                    ])
-                  ]
-                )
+                })
               ])
             : _vm._e(),
           _vm._v(" "),
@@ -2415,7 +2381,9 @@ var render = function() {
                 placeholder: _vm.$translate("Feedback::Feedback.title"),
                 disabled:
                   _vm.authenticatedUser.limitReached ||
-                  !_vm.authenticatedUser.hasPurchased
+                  !_vm.authenticatedUser.hasPurchased,
+                "aria-hidden": "true",
+                "aria-label": _vm.$translate("Feedback::Feedback.title")
               },
               domProps: { value: _vm.feedback.title },
               on: {
@@ -2427,16 +2395,6 @@ var render = function() {
                 }
               }
             }),
-            _vm._v(" "),
-            _c(
-              "label",
-              { staticClass: "position-absolute", attrs: { for: "title" } },
-              [
-                _c("span", { staticClass: "d-none" }, [
-                  _vm._v(_vm._s(_vm.$translate("Feedback::Feedback.title")))
-                ])
-              ]
-            ),
             _vm._v(" "),
             _c("div", { staticClass: "invalid-feedback" }, [
               _vm._v(
@@ -2465,7 +2423,9 @@ var render = function() {
                 placeholder: _vm.$translate("Feedback::Feedback.reviewMessage"),
                 disabled:
                   _vm.authenticatedUser.limitReached ||
-                  !_vm.authenticatedUser.hasPurchased
+                  !_vm.authenticatedUser.hasPurchased,
+                "aria-hidden": "true",
+                "aria-label": _vm.$translate("Feedback::Feedback.reviewMessage")
               },
               domProps: { value: _vm.feedback.message },
               on: {
@@ -2476,19 +2436,7 @@ var render = function() {
                   _vm.$set(_vm.feedback, "message", $event.target.value)
                 }
               }
-            }),
-            _vm._v(" "),
-            _c(
-              "label",
-              { staticClass: "position-absolute", attrs: { for: "message" } },
-              [
-                _c("span", { staticClass: "d-none" }, [
-                  _vm._v(
-                    _vm._s(_vm.$translate("Feedback::Feedback.reviewMessage"))
-                  )
-                ])
-              ]
-            )
+            })
           ]),
           _vm._v(" "),
           _vm.authenticatedUser.limitReached
