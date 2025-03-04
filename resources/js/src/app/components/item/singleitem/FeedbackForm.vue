@@ -40,13 +40,11 @@
           type="text"
           class="form-control"
           name="author"
+          aria-hidden="true"
+          :aria-label="$translate('Feedback::Feedback.authorName')"
           :placeholder="$translate('Feedback::Feedback.authorName')"
           :disabled="authenticatedUser.limitReached || !authenticatedUser.hasPurchased"
         >
-        <label
-          class="position-absolute"
-          for="author"
-        ><span class="d-none">{{ $translate("Feedback::Feedback.authorName") }}</span></label>
 
         <input
           id="feedback-textfield"
@@ -54,11 +52,9 @@
           type="text"
           class="form-control"
           name="feedback-textfield"
+          aria-hidden="true"
+          :aria-label="$translate('Feedback::Feedback.feedbackTextLabel')"
         >
-        <label
-          class="position-absolute"
-          for="feedback-textfield"
-        ><span class="d-none">{{ $translate("Feedback::Feedback.feedbackTextLabel") }}</span></label>
       </div>
 
       <div class="form-group">
@@ -71,11 +67,9 @@
           name="title"
           :placeholder="$translate('Feedback::Feedback.title')"
           :disabled="authenticatedUser.limitReached || !authenticatedUser.hasPurchased"
+          aria-hidden="true"
+          :aria-label="$translate('Feedback::Feedback.title')"
         >
-        <label
-          class="position-absolute"
-          for="title"
-        ><span class="d-none">{{ $translate("Feedback::Feedback.title") }}</span></label>
         <div class="invalid-feedback">
           {{ $translate("Feedback::Feedback.titleRequired") }}
         </div>
@@ -90,13 +84,9 @@
           rows="3"
           :placeholder="$translate('Feedback::Feedback.reviewMessage')"
           :disabled="authenticatedUser.limitReached || !authenticatedUser.hasPurchased"
+          aria-hidden="true"
+          :aria-label="$translate('Feedback::Feedback.reviewMessage')"
         />
-        <label
-          class="position-absolute"
-          for="message"
-        >
-          <span class="d-none">{{ $translate("Feedback::Feedback.reviewMessage") }}</span>
-        </label>
       </div>
 
       <div
