@@ -1024,6 +1024,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -7538,7 +7541,13 @@ var render = function() {
           "</div>",
           [
             _vm._ssrNode(
-              '<div class="stars">' +
+              '<div class="stars"><fieldset><legend><span class="d-none">' +
+                _vm._ssrEscape(
+                  _vm._s(
+                    _vm.$translate("Feedback::Feedback.feedbackTextLegend")
+                  )
+                ) +
+                "</span></legend> " +
                 _vm._ssrList([5, 4, 3, 2, 1], function(i) {
                   return (
                     "<input" +
@@ -7565,7 +7574,7 @@ var render = function() {
                     "</span></label>"
                   )
                 }) +
-                "</div> " +
+                "</fieldset></div> " +
                 (_vm.ratingMissing
                   ? '<p class="feedback-error alert alert-danger">' +
                     _vm._ssrEscape(

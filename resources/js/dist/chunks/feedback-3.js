@@ -590,6 +590,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2232,63 +2235,74 @@ var render = function() {
   return _c("div", [
     _vm.authenticatedUser.isLoggedIn || _vm.options.allowGuestFeedbacks
       ? _c("div", { staticClass: "createFeedback" }, [
-          _c(
-            "div",
-            { staticClass: "stars" },
-            [
-              _vm._l([5, 4, 3, 2, 1], function(i) {
-                return [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.feedback.ratingValue,
-                        expression: "feedback.ratingValue"
-                      }
-                    ],
-                    key: "star_input_" + i,
-                    class: "star star-" + i,
-                    attrs: {
-                      id: "star-" + i + _vm._uid,
-                      type: "radio",
-                      name: "ratingValue" + _vm._uid
-                    },
-                    domProps: {
-                      value: i,
-                      checked: _vm._q(_vm.feedback.ratingValue, i)
-                    },
-                    on: {
-                      change: function($event) {
-                        return _vm.$set(_vm.feedback, "ratingValue", i)
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "label",
-                    {
-                      key: "star_label_" + i,
+          _c("div", { staticClass: "stars" }, [
+            _c(
+              "fieldset",
+              [
+                _c("legend", [
+                  _c("span", { staticClass: "d-none" }, [
+                    _vm._v(
+                      _vm._s(
+                        _vm.$translate("Feedback::Feedback.feedbackTextLegend")
+                      )
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._l([5, 4, 3, 2, 1], function(i) {
+                  return [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.feedback.ratingValue,
+                          expression: "feedback.ratingValue"
+                        }
+                      ],
+                      key: "star_input_" + i,
                       class: "star star-" + i,
-                      attrs: { for: "star-" + i + _vm._uid }
-                    },
-                    [
-                      _c("span", { staticClass: "d-none" }, [
-                        _vm._v(
-                          _vm._s(
-                            _vm.$translate(
-                              "Feedback::Feedback.feedbackAverageLabel"
+                      attrs: {
+                        id: "star-" + i + _vm._uid,
+                        type: "radio",
+                        name: "ratingValue" + _vm._uid
+                      },
+                      domProps: {
+                        value: i,
+                        checked: _vm._q(_vm.feedback.ratingValue, i)
+                      },
+                      on: {
+                        change: function($event) {
+                          return _vm.$set(_vm.feedback, "ratingValue", i)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        key: "star_label_" + i,
+                        class: "star star-" + i,
+                        attrs: { for: "star-" + i + _vm._uid }
+                      },
+                      [
+                        _c("span", { staticClass: "d-none" }, [
+                          _vm._v(
+                            _vm._s(
+                              _vm.$translate(
+                                "Feedback::Feedback.feedbackAverageLabel"
+                              )
                             )
                           )
-                        )
-                      ])
-                    ]
-                  )
-                ]
-              })
-            ],
-            2
-          ),
+                        ])
+                      ]
+                    )
+                  ]
+                })
+              ],
+              2
+            )
+          ]),
           _vm._v(" "),
           _vm.ratingMissing
             ? _c("p", { staticClass: "feedback-error alert alert-danger" }, [
