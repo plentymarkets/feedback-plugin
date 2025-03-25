@@ -1,6 +1,6 @@
 # Release Notes for Feedback
 
-## v5.0.0 (2025-03-25) <a href="https://github.com/plentymarkets/feedback-plugin/compare/4.0.10...5.0.0" target="_blank" rel="noopener"><b>Overview of all changes</b></a>
+## v5.0.0 (2025-03-25) <a href="https://github.com/plentymarkets/feedback-plugin/compare/4.0.9...5.0.0" target="_blank" rel="noopener"><b>Overview of all changes</b></a>
 
 ### TODO
 
@@ -8,21 +8,13 @@
 
 ### Added
 
-- Fixed/Added elements of accessibility for feedback plugin interface.
+- Accessibility was improved.
+- Widget setting to hide the feedback widget on the order confirmation page if the shipping date has not been set yet. We would like to thank user @MaxBentz for their contribution.
 
 ### Changed
 
 - Made feedback plugin to get its data through the feedback miroservice instead of its old php logic.
 - Changed feedback counts data to be delivered by the feedback microservice instead of being fetched from the old php logic.
-
-## v4.0.10 (2024-01-XX) <a href="https://github.com/plentymarkets/feedback-plugin/compare/4.0.9...4.0.10" target="_blank" rel="noopener"><b>Overview of all changes</b></a>
-
-### Added
-
--  Widget setting to hide the feedback widget on the order confirmation page if the shipping date has not been set yet. We would like to thank user @MaxBentz for their contribution.
-
-### Changed
-
 - The rating on the category pages is now loaded via the item list (itemList).
 - Removed `Allow reviews without rating` option from plugin configuration.
 - Change translation for a configuration label.
