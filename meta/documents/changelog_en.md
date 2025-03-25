@@ -4,7 +4,7 @@
 
 ### TODO
 
-- Test the new version inside a development setup.
+- Due to the extent of modifications, we recommend testing the new version within a separate plugin set to ensure compatibility and prevent any potential conflicts with existing plugins or themes.
 
 ### Added
 
