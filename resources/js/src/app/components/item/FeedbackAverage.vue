@@ -85,7 +85,7 @@ export default {
 
   methods: {
     getAverage () {
-      this.$store.dispatch('loadFeedbackCounts', this.itemId)
+      console.log(this.counts)
     },
 
     scrollTo () {

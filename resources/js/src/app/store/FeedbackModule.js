@@ -108,23 +108,6 @@ const actions =
         }
       },
 
-      loadFeedbackCounts ({ commit, state }, itemId) {
-        if (!countsLoaded) {
-          countsLoaded = true
-
-          return $.ajax({
-            type: 'GET',
-            url: '/rest/storefront/feedbacks/feedback/helper/counts/' + itemId,
-            success: function (data) {
-              commit('setFeedbackCounts', data.counts)
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-              console.error(errorThrown)
-            }
-          })
-        }
-      },
-
       loadPaginatedFeedbacks ({ commit, state }, { itemId, feedbacksPerPage, language }) {
         if (!loadPaginatedFeedbacksLock) {
           loadPaginatedFeedbacksLock = true
@@ -171,8 +154,6 @@ const actions =
 
 const getters =
     {}
-
-let countsLoaded = false
 
 export default {
   state,

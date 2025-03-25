@@ -791,29 +791,12 @@ var actions = {
       });
     }
   },
-  loadFeedbackCounts: function loadFeedbackCounts(_ref4, itemId) {
+  loadPaginatedFeedbacks: function loadPaginatedFeedbacks(_ref4, _ref5) {
     var commit = _ref4.commit,
       state = _ref4.state;
-    if (!countsLoaded) {
-      countsLoaded = true;
-      return $.ajax({
-        type: 'GET',
-        url: '/rest/storefront/feedbacks/feedback/helper/counts/' + itemId,
-        success: function success(data) {
-          commit('setFeedbackCounts', data.counts);
-        },
-        error: function error(jqXHR, textStatus, errorThrown) {
-          console.error(errorThrown);
-        }
-      });
-    }
-  },
-  loadPaginatedFeedbacks: function loadPaginatedFeedbacks(_ref5, _ref6) {
-    var commit = _ref5.commit,
-      state = _ref5.state;
-    var itemId = _ref6.itemId,
-      feedbacksPerPage = _ref6.feedbacksPerPage,
-      language = _ref6.language;
+    var itemId = _ref5.itemId,
+      feedbacksPerPage = _ref5.feedbacksPerPage,
+      language = _ref5.language;
     if (!loadPaginatedFeedbacksLock) {
       loadPaginatedFeedbacksLock = true;
       var request = $.ajax({
@@ -841,12 +824,12 @@ var actions = {
       return request;
     }
   },
-  deleteFeedback: function deleteFeedback(_ref7, _ref8) {
-    var commit = _ref7.commit,
-      state = _ref7.state;
-    var feedbackId = _ref8.feedbackId,
-      parentFeedbackId = _ref8.parentFeedbackId,
-      feedback = _ref8.feedback;
+  deleteFeedback: function deleteFeedback(_ref6, _ref7) {
+    var commit = _ref6.commit,
+      state = _ref6.state;
+    var feedbackId = _ref7.feedbackId,
+      parentFeedbackId = _ref7.parentFeedbackId,
+      feedback = _ref7.feedback;
     return $.ajax({
       type: 'DELETE',
       url: '/rest/feedbacks/feedback/delete/' + feedbackId,
@@ -861,7 +844,6 @@ var actions = {
   }
 };
 var getters = {};
-var countsLoaded = false;
 /* harmony default export */ __webpack_exports__["default"] = ({
   state: state,
   mutations: mutations,
