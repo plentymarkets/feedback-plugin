@@ -1,6 +1,6 @@
 PlentyONE Feedback Plugin
 
-Copyright © 2019-2025 PlentyONE
+Copyright © 2019-2025 PlentyONE GmbH
 
 According to our dual licensing model, this program can be used either
 under the terms of the GNU Affero General Public License, version 3,
