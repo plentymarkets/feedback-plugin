@@ -2,6 +2,10 @@
 
 ## v5.0.0 (2025-03-19) <a href="https://github.com/plentymarkets/feedback-plugin/compare/4.0.10...5.0.0" target="_blank" rel="noopener"><b>Übersicht aller Änderungen</b></a>
 
+### TODO
+
+- Testen Sie die neue Version in einer Entwicklungsumgebung.
+
 ### Hinzugefügt
 
 - Es wurden Elemente zum Feedback Plugin Interface hinzugefügt, um die Barrierefreiheit zu verbessern.
