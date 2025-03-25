@@ -85,6 +85,10 @@ export default {
 
   methods: {
     getAverage () {
+      console.log(this.counts.averageValue)
+      if (!this.counts.averageValue) {
+        console.log('do this')
+      }
       this.$store.dispatch('loadPaginatedFeedbacks', {
         itemId: this.itemId,
         feedbacksPerPage: 1
