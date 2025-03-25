@@ -4,7 +4,7 @@
 
 ### TODO
 
-- Testen Sie die neue Version in einer Entwicklungsumgebung.
+- Aufgrund des Umfangs der Änderungen empfehlen wir, die neue Version in einem separaten Plugin-Set zu testen, um Kompatibilität sicherzustellen und mögliche Konflikte mit bestehenden Plugins oder Themes zu vermeiden.
 
 ### Hinzugefügt
 
