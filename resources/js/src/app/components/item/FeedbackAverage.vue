@@ -77,7 +77,20 @@ export default {
     })
   },
 
+  mounted () {
+    if (!App.isShopBuilder) {
+      this.getAverage()
+    }
+  },
+
   methods: {
+    getAverage () {
+      this.$store.dispatch('loadPaginatedFeedbacks', {
+        itemId: this.itemId,
+        feedbacksPerPage: 1
+      })
+    },
+
     scrollTo () {
       let targetElement = document.querySelector('[data-feedback]')
       const headerMargin = document.querySelector('#vue-app').offsetTop

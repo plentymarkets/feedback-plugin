@@ -90,7 +90,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return state.feedback.counts;
     }
   })),
+  mounted: function mounted() {
+    if (!App.isShopBuilder) {
+      this.getAverage();
+    }
+  },
   methods: {
+    getAverage: function getAverage() {
+      this.$store.dispatch('loadPaginatedFeedbacks', {
+        itemId: this.itemId,
+        feedbacksPerPage: 1
+      });
+    },
     scrollTo: function scrollTo() {
       var targetElement = document.querySelector('[data-feedback]');
       var headerMargin = document.querySelector('#vue-app').offsetTop;
