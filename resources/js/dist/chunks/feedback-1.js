@@ -97,16 +97,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     getAverage: function getAverage() {
+      var _self = this;
       Vue.nextTick(function () {
         console.log('vue nextTick');
-        console.log(this.counts.averageValue);
-      });
-      if (!this.counts.averageValue) {
-        console.log('do this');
-      }
-      this.$store.dispatch('loadPaginatedFeedbacks', {
-        itemId: this.itemId,
-        feedbacksPerPage: 1
+        console.log(_self.counts.averageValue);
+        if (!_self.counts.averageValue) {
+          console.log('do this');
+        }
+        _self.$store.dispatch('loadPaginatedFeedbacks', {
+          itemId: _self.itemId,
+          feedbacksPerPage: 1
+        });
       });
     },
     scrollTo: function scrollTo() {
