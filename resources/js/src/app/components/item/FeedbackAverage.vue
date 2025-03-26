@@ -86,18 +86,14 @@ export default {
   methods: {
     getAverage () {
       const _self = this
-      Vue.nextTick(function () {
-        console.log('vue nextTick')
-        console.log(_self.counts.averageValue)
-
+      setTimeout(() => {
         if (!_self.counts.averageValue) {
-          console.log('do this')
+          _self.$store.dispatch('loadPaginatedFeedbacks', {
+            itemId: _self.itemId,
+            feedbacksPerPage: 1
+          })
         }
-        _self.$store.dispatch('loadPaginatedFeedbacks', {
-          itemId: _self.itemId,
-          feedbacksPerPage: 1
-        })
-      })
+      }, 500)
     },
 
     scrollTo () {

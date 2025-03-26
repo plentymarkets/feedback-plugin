@@ -98,17 +98,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: {
     getAverage: function getAverage() {
       var _self = this;
-      Vue.nextTick(function () {
-        console.log('vue nextTick');
-        console.log(_self.counts.averageValue);
+      setTimeout(function () {
         if (!_self.counts.averageValue) {
-          console.log('do this');
+          _self.$store.dispatch('loadPaginatedFeedbacks', {
+            itemId: _self.itemId,
+            feedbacksPerPage: 1
+          });
         }
-        _self.$store.dispatch('loadPaginatedFeedbacks', {
-          itemId: _self.itemId,
-          feedbacksPerPage: 1
-        });
-      });
+      }, 500);
     },
     scrollTo: function scrollTo() {
       var targetElement = document.querySelector('[data-feedback]');
