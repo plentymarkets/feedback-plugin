@@ -101,15 +101,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     getAverage: function getAverage() {
-      var _self = this;
-      setTimeout(function () {
-        if (!_self.counts.averageValue) {
-          _self.$store.dispatch('loadPaginatedFeedbacks', {
-            itemId: _self.itemId,
-            feedbacksPerPage: 10
-          });
-        }
-      }, 1000);
+      this.$store.dispatch('loadPaginatedFeedbacks', {
+        itemId: this.itemId,
+        feedbacksPerPage: 10
+      });
     },
     scrollTo: function scrollTo() {
       var targetElement = document.querySelector('[data-feedback]');
@@ -2284,11 +2279,13 @@ var actions = {
           commit('setFeedbacks', data.feedbacks);
           commit('setFeedbackItemAttributes', data.itemAttributes);
           commit('setFeedbackPagination', data.pagination);
-          loadPaginatedFeedbacksLock = false;
           commit('setFeedbackCounts', data.counts);
         },
         error: function error(jqXHR, textStatus, errorThrown) {
           console.error(errorThrown);
+          loadPaginatedFeedbacksLock = false;
+        },
+        complete: function complete() {
           loadPaginatedFeedbacksLock = false;
         }
       });

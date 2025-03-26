@@ -124,11 +124,13 @@ const actions =
               commit('setFeedbacks', data.feedbacks)
               commit('setFeedbackItemAttributes', data.itemAttributes)
               commit('setFeedbackPagination', data.pagination)
-              loadPaginatedFeedbacksLock = false
               commit('setFeedbackCounts', data.counts)
             },
             error: function (jqXHR, textStatus, errorThrown) {
               console.error(errorThrown)
+              loadPaginatedFeedbacksLock = false
+            },
+            complete: function () {
               loadPaginatedFeedbacksLock = false
             }
           })
