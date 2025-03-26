@@ -121,6 +121,7 @@ const actions =
               feedbacksPerPage: feedbacksPerPage
             },
             success: function (data) {
+              loadPaginatedFeedbacksLock = false
               commit('setFeedbacks', data.feedbacks)
               commit('setFeedbackItemAttributes', data.itemAttributes)
               commit('setFeedbackPagination', data.pagination)
@@ -128,9 +129,6 @@ const actions =
             },
             error: function (jqXHR, textStatus, errorThrown) {
               console.error(errorThrown)
-              loadPaginatedFeedbacksLock = false
-            },
-            complete: function () {
               loadPaginatedFeedbacksLock = false
             }
           })

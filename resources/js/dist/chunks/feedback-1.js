@@ -279,6 +279,7 @@ var actions = {
           feedbacksPerPage: feedbacksPerPage
         },
         success: function success(data) {
+          loadPaginatedFeedbacksLock = false;
           commit('setFeedbacks', data.feedbacks);
           commit('setFeedbackItemAttributes', data.itemAttributes);
           commit('setFeedbackPagination', data.pagination);
@@ -286,9 +287,6 @@ var actions = {
         },
         error: function error(jqXHR, textStatus, errorThrown) {
           console.error(errorThrown);
-          loadPaginatedFeedbacksLock = false;
-        },
-        complete: function complete() {
           loadPaginatedFeedbacksLock = false;
         }
       });
