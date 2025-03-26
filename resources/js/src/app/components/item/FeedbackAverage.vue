@@ -90,10 +90,10 @@ export default {
         if (!_self.counts.averageValue) {
           _self.$store.dispatch('loadPaginatedFeedbacks', {
             itemId: _self.itemId,
-            feedbacksPerPage: 1
+            feedbacksPerPage: 10
           })
         }
-      }, 500)
+      }, 1000)
     },
 
     scrollTo () {
