@@ -86,12 +86,15 @@ export default {
 
   methods: {
     getAverage () {
-      if (!this.counts.averageValue) {
-        this.$store.dispatch('loadPaginatedFeedbacks', {
-          itemId: this.itemId,
-          feedbacksPerPage: this.options.feedbacksPerPage
-        })
-      }
+      const _self = this
+      Vue.nextTick(function () {
+        if (!_self.counts.averageValue) {
+          _self.$store.dispatch('loadPaginatedFeedbacks', {
+            itemId: _self.itemId,
+            feedbacksPerPage: _self.options.feedbacksPerPage
+          })
+        }
+      })
     },
 
     scrollTo () {

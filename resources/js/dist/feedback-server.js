@@ -102,12 +102,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     getAverage: function getAverage() {
-      if (!this.counts.averageValue) {
-        this.$store.dispatch('loadPaginatedFeedbacks', {
-          itemId: this.itemId,
-          feedbacksPerPage: this.options.feedbacksPerPage
-        });
-      }
+      var _self = this;
+      Vue.nextTick(function () {
+        if (!_self.counts.averageValue) {
+          _self.$store.dispatch('loadPaginatedFeedbacks', {
+            itemId: _self.itemId,
+            feedbacksPerPage: _self.options.feedbacksPerPage
+          });
+        }
+      });
     },
     scrollTo: function scrollTo() {
       var targetElement = document.querySelector('[data-feedback]');
@@ -2290,7 +2293,9 @@ var actions = {
           loadPaginatedFeedbacksLock = false;
         }
       });
-      commit('incrementCurrentFeedbackPage');
+      if (language) {
+        commit('incrementCurrentFeedbackPage');
+      }
       return request;
     }
   },

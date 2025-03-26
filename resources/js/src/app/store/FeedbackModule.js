@@ -132,7 +132,9 @@ const actions =
               loadPaginatedFeedbacksLock = false
             }
           })
-          commit('incrementCurrentFeedbackPage')
+          if (language) {
+            commit('incrementCurrentFeedbackPage')
+          }
           return request
         }
       },
