@@ -78,7 +78,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       type: String,
       default: 'small'
     },
-    showRatingsAmount: Boolean
+    showRatingsAmount: Boolean,
+    options: Object
   },
   computed: _objectSpread({
     fill: function fill() {
@@ -101,10 +102,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     getAverage: function getAverage() {
-      this.$store.dispatch('loadPaginatedFeedbacks', {
-        itemId: this.itemId,
-        feedbacksPerPage: 10
-      });
+      if (!this.counts.averageValue) {
+        this.$store.dispatch('loadPaginatedFeedbacks', {
+          itemId: this.itemId,
+          feedbacksPerPage: this.options.feedbacksPerPage
+        });
+      }
     },
     scrollTo: function scrollTo() {
       var targetElement = document.querySelector('[data-feedback]');
