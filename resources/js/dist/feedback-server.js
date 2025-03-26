@@ -78,8 +78,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       type: String,
       default: 'small'
     },
-    showRatingsAmount: Boolean,
-    options: Object
+    showRatingsAmount: Boolean
   },
   computed: _objectSpread({
     fill: function fill() {
@@ -107,7 +106,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         if (!_self.counts.averageValue) {
           _self.$store.dispatch('loadPaginatedFeedbacks', {
             itemId: _self.itemId,
-            feedbacksPerPage: _self.options.feedbacksPerPage
+            feedbacksPerPage: 10
           });
         }
       });

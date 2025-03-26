@@ -58,8 +58,7 @@ export default {
       type: String,
       default: 'small'
     },
-    showRatingsAmount: Boolean,
-    options: Object
+    showRatingsAmount: Boolean
   },
 
   computed: {
@@ -91,7 +90,7 @@ export default {
         if (!_self.counts.averageValue) {
           _self.$store.dispatch('loadPaginatedFeedbacks', {
             itemId: _self.itemId,
-            feedbacksPerPage: _self.options.feedbacksPerPage
+            feedbacksPerPage: 10
           })
         }
       })
