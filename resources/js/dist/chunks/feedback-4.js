@@ -809,11 +809,11 @@ var actions = {
           feedbacksPerPage: feedbacksPerPage
         },
         success: function success(data) {
-          loadPaginatedFeedbacksLock = false;
           commit('setFeedbacks', data.feedbacks);
           commit('setFeedbackItemAttributes', data.itemAttributes);
           commit('setFeedbackPagination', data.pagination);
           commit('setFeedbackCounts', data.counts);
+          loadPaginatedFeedbacksLock = false;
         },
         error: function error(jqXHR, textStatus, errorThrown) {
           console.error(errorThrown);

@@ -98,14 +98,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: {
     getAverage: function getAverage() {
       var _self = this;
-      Vue.nextTick(function () {
-        if (!_self.counts.averageValue) {
+      setTimeout(function () {
+        if (typeof _self.counts.averageValue === 'undefined') {
           _self.$store.dispatch('loadPaginatedFeedbacks', {
             itemId: _self.itemId,
             feedbacksPerPage: 10
           });
         }
-      });
+      }, 1000);
     },
     scrollTo: function scrollTo() {
       var targetElement = document.querySelector('[data-feedback]');
@@ -284,11 +284,11 @@ var actions = {
           feedbacksPerPage: feedbacksPerPage
         },
         success: function success(data) {
-          loadPaginatedFeedbacksLock = false;
           commit('setFeedbacks', data.feedbacks);
           commit('setFeedbackItemAttributes', data.itemAttributes);
           commit('setFeedbackPagination', data.pagination);
           commit('setFeedbackCounts', data.counts);
+          loadPaginatedFeedbacksLock = false;
         },
         error: function error(jqXHR, textStatus, errorThrown) {
           console.error(errorThrown);
