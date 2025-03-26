@@ -97,7 +97,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     getAverage: function getAverage() {
-      console.log(this.counts.averageValue);
+      Vue.nextTick(function () {
+        console.log('vue nextTick');
+        console.log(this.counts.averageValue);
+      });
       if (!this.counts.averageValue) {
         console.log('do this');
       }

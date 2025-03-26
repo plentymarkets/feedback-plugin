@@ -85,7 +85,10 @@ export default {
 
   methods: {
     getAverage () {
-      console.log(this.counts.averageValue)
+      Vue.nextTick(function () {
+        console.log('vue nextTick')
+        console.log(this.counts.averageValue)
+      })
       if (!this.counts.averageValue) {
         console.log('do this')
       }
