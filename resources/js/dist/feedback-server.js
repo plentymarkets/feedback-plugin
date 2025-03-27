@@ -102,14 +102,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: {
     getAverage: function getAverage() {
       var _self = this;
-      setTimeout(function () {
-        if (typeof _self.counts.averageValue === 'undefined') {
+      Vue.nextTick(function () {
+        if (!_self.loading) {
           _self.$store.dispatch('loadPaginatedFeedbacks', {
             itemId: _self.itemId,
             feedbacksPerPage: 10
           });
         }
-      }, 1000);
+      });
     },
     scrollTo: function scrollTo() {
       var targetElement = document.querySelector('[data-feedback]');
@@ -2175,10 +2175,14 @@ var state = function state() {
       isLastPage: true,
       lastPage: 1,
       currentPage: 1
-    }
+    },
+    loading: false
   };
 };
 var mutations = {
+  setLoading: function setLoading(state, loading) {
+    state.loading = loading;
+  },
   setFeedbackAuthenticatedUser: function setFeedbackAuthenticatedUser(state, authenticatedUser) {
     state.authenticatedUser = authenticatedUser;
     state.invisibleFeedbacks = state.authenticatedUser.feedbacks.filter(function (item) {
@@ -2269,6 +2273,7 @@ var actions = {
     var itemId = _ref5.itemId,
       feedbacksPerPage = _ref5.feedbacksPerPage,
       language = _ref5.language;
+    commit('setLoading', true);
     if (!loadPaginatedFeedbacksLock) {
       loadPaginatedFeedbacksLock = true;
       var request = $.ajax({

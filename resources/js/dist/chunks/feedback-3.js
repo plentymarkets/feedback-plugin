@@ -1057,10 +1057,14 @@ var state = function state() {
       isLastPage: true,
       lastPage: 1,
       currentPage: 1
-    }
+    },
+    loading: false
   };
 };
 var mutations = {
+  setLoading: function setLoading(state, loading) {
+    state.loading = loading;
+  },
   setFeedbackAuthenticatedUser: function setFeedbackAuthenticatedUser(state, authenticatedUser) {
     state.authenticatedUser = authenticatedUser;
     state.invisibleFeedbacks = state.authenticatedUser.feedbacks.filter(function (item) {
@@ -1151,6 +1155,7 @@ var actions = {
     var itemId = _ref5.itemId,
       feedbacksPerPage = _ref5.feedbacksPerPage,
       language = _ref5.language;
+    commit('setLoading', true);
     if (!loadPaginatedFeedbacksLock) {
       loadPaginatedFeedbacksLock = true;
       var request = $.ajax({
