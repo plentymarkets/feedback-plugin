@@ -1,12 +1,12 @@
-![plentymarkets Logo](http://www.plentymarkets.eu/layout/pm/images/logo/plentymarkets-logo.jpg)
+![PlentyONE Logo](https://cdn01.plentymarkets.com/avw8j9fg70hi/frontend/plentyShop_LTS/PlentyONE_Logo_Black_RGB.svg)
 
 # Feedback Plugin
 
-This is the **Feedback** plugin developed by plentymarkets. It provides the feedback widget for the ShopBuilder.
+This is the **Feedback** plugin developed by PlentyONE. It provides the feedback widget for the ShopBuilder.
 
 ## Requirements
 
-This is a plugin for [plentymarkets](https://www.plentymarkets.com). The plugin [IO](https://github.com/plentymarkets/plugin-io) is required to run the **Feedback** plugin. The **plentyShop LTS** ShopBuilder is required to integrate the feedback functionality. 
+This is a plugin for [PlentyONE](https://www.plentyone.com). The plugin [IO](https://github.com/plentymarkets/plugin-io) is required to run the **Feedback** plugin. The **plentyShop LTS** ShopBuilder is required to integrate the feedback functionality. 
 
 ## Installing
 
@@ -14,7 +14,7 @@ After purchasing the plugin, open the **Plugins » Plugin overview** menu and en
 
 ## Documentation
 
-For a detailed documentation of how to set up ShopBuilder widgets, please refer to the [plentymarkets manual](https://knowledge.plentymarkets.com/en/online-store/shop-builder) documentation.
+For a detailed documentation of how to set up ShopBuilder widgets, please refer to the [PlentyONE manual](https://knowledge.plentymarkets.com/en/online-store/shop-builder) documentation.
 
 ## Join our community
 
