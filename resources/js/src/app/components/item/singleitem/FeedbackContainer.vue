@@ -314,10 +314,6 @@ export default {
         })
       },
 
-      getCounts () {
-        return this.$store.dispatch('loadFeedbackCounts', this.itemId)
-      },
-
       loadFeedbacks () {
         return this.$store.dispatch('loadPaginatedFeedbacks', {
           itemId: this.itemId,

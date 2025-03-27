@@ -85,7 +85,15 @@ export default {
 
   methods: {
     getAverage () {
-      this.$store.dispatch('loadFeedbackCounts', this.itemId)
+      const _self = this
+      setTimeout(() => {
+        if (typeof _self.counts.averageValue === 'undefined') {
+          _self.$store.dispatch('loadPaginatedFeedbacks', {
+            itemId: _self.itemId,
+            feedbacksPerPage: 10
+          })
+        }
+      }, 1000)
     },
 
     scrollTo () {

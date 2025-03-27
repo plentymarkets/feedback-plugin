@@ -12,7 +12,6 @@
 {% if isPreview %}
     {% set showEmptyRatings = isPreview %}
 {% endif %}
-
 <div class="widget widget-feedback-average {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
         {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
     <feedback-average
