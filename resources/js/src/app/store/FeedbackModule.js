@@ -137,6 +137,8 @@ const actions =
               console.error(errorThrown)
               loadPaginatedFeedbacksLock = false
             }
+          }).then(function () {
+            commit('setLoading', false)
           })
           if (language) {
             commit('incrementCurrentFeedbackPage')
