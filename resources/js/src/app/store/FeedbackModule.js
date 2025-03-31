@@ -11,11 +11,16 @@ const state = () => ({
     isLastPage: true,
     lastPage: 1,
     currentPage: 1
-  }
+  },
+  loading: false
 })
 
 const mutations =
     {
+      setLoading (state, loading) {
+        state.loading = loading
+      },
+
       setFeedbackAuthenticatedUser (state, authenticatedUser) {
         state.authenticatedUser = authenticatedUser
         state.invisibleFeedbacks = state.authenticatedUser.feedbacks.filter((item) => !item.isVisible)
@@ -109,6 +114,7 @@ const actions =
       },
 
       loadPaginatedFeedbacks ({ commit, state }, { itemId, feedbacksPerPage, language }) {
+        commit('setLoading', true)
         if (!loadPaginatedFeedbacksLock) {
           loadPaginatedFeedbacksLock = true
           const request = $.ajax({
@@ -126,10 +132,12 @@ const actions =
               commit('setFeedbackPagination', data.pagination)
               commit('setFeedbackCounts', data.counts)
               loadPaginatedFeedbacksLock = false
+              commit('setLoading', false)
             },
             error: function (jqXHR, textStatus, errorThrown) {
               console.error(errorThrown)
               loadPaginatedFeedbacksLock = false
+              commit('setLoading', false)
             }
           })
           if (language) {

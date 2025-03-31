@@ -12,13 +12,9 @@
 {% if isPreview %}
     {% set showEmptyRatings = isPreview %}
 {% endif %}
-
-{{ Twig.set("configOptions", Twig.call("feedbackServices.feedback.getFrontendOptions") ) }}
-
 <div class="widget widget-feedback-average {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
         {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
     <feedback-average
-            :options="{{ Twig.print('configOptions | json_encode') }}"
             :show-empty-ratings="{{ showEmptyRatings | json_encode }}"
             size-of-stars="{{ sizeOfStars }}"
             :show-ratings-amount="{{ showNumberOfRatings | json_encode }}">
