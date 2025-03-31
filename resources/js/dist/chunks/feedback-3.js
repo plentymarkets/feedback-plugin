@@ -1173,13 +1173,13 @@ var actions = {
           commit('setFeedbackPagination', data.pagination);
           commit('setFeedbackCounts', data.counts);
           loadPaginatedFeedbacksLock = false;
+          commit('setLoading', false);
         },
         error: function error(jqXHR, textStatus, errorThrown) {
           console.error(errorThrown);
           loadPaginatedFeedbacksLock = false;
+          commit('setLoading', false);
         }
-      }).then(function () {
-        commit('setLoading', false);
       });
       if (language) {
         commit('incrementCurrentFeedbackPage');
