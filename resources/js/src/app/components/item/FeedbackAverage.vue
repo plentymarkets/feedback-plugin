@@ -58,7 +58,8 @@ export default {
       type: String,
       default: 'small'
     },
-    showRatingsAmount: Boolean
+    showRatingsAmount: Boolean,
+    options: Object
   },
 
   computed: {
@@ -86,14 +87,15 @@ export default {
   methods: {
     getAverage () {
       const _self = this
-      Vue.nextTick(function () {
-        if (!_self.loading) {
+      setTimeout(() => {
+        if (typeof _self.counts.averageValue === 'undefined') {
           _self.$store.dispatch('loadPaginatedFeedbacks', {
             itemId: _self.itemId,
-            feedbacksPerPage: 10
+            feedbacksPerPage: _self.options.feedbacksPerPage,
+            language: _self.options.language
           })
         }
-      })
+      }, 1000)
     },
 
     scrollTo () {

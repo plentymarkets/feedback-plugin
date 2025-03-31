@@ -1057,14 +1057,10 @@ var state = function state() {
       isLastPage: true,
       lastPage: 1,
       currentPage: 1
-    },
-    loading: false
+    }
   };
 };
 var mutations = {
-  setLoading: function setLoading(state, loading) {
-    state.loading = loading;
-  },
   setFeedbackAuthenticatedUser: function setFeedbackAuthenticatedUser(state, authenticatedUser) {
     state.authenticatedUser = authenticatedUser;
     state.invisibleFeedbacks = state.authenticatedUser.feedbacks.filter(function (item) {
@@ -1155,7 +1151,6 @@ var actions = {
     var itemId = _ref5.itemId,
       feedbacksPerPage = _ref5.feedbacksPerPage,
       language = _ref5.language;
-    commit('setLoading', true);
     if (!loadPaginatedFeedbacksLock) {
       loadPaginatedFeedbacksLock = true;
       var request = $.ajax({
@@ -1173,12 +1168,10 @@ var actions = {
           commit('setFeedbackPagination', data.pagination);
           commit('setFeedbackCounts', data.counts);
           loadPaginatedFeedbacksLock = false;
-          commit('setLoading', false);
         },
         error: function error(jqXHR, textStatus, errorThrown) {
           console.error(errorThrown);
           loadPaginatedFeedbacksLock = false;
-          commit('setLoading', false);
         }
       });
       if (language) {
