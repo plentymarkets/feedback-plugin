@@ -103,8 +103,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         if (typeof _self.counts.averageValue === 'undefined') {
           _self.$store.dispatch('loadPaginatedFeedbacks', {
             itemId: _self.itemId,
-            feedbacksPerPage: _self.options.feedbacksPerPage,
-            language: _self.options.language
+            feedbacksPerPage: _self.options.feedbacksPerPage
           });
         }
       }, 1000);
