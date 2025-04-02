@@ -4,7 +4,7 @@ Zeige Kundenrezensionen im Webshop an und antworte auf Feedback. Das Feedback-Pl
 
 ## Kundenrezensionen einrichten
 
-Bevor Kundenrezensionen im Webshop angezeigt werden, musst du Einstellungen in deinem Backend und im ShopBuilder vornehmen.
+Bevor Kundenrezensionen im Webshop angezeigt werden, musst du Einstellungen in deinem PlentyONE Backend und im ShopBuilder vornehmen.
 
 ##### Kundenrezensionen einrichten:
 
