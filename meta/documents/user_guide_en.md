@@ -4,7 +4,7 @@ Display customer reviews in the online store and reply to feedbacks. The feedbac
 
 ## Setting up customer reviews
 
-In order to display customer reviews in your online store, you have to carry out a few settings in the plentymarkets backend.
+In order to display customer reviews in your online store, you have to carry out a few settings in the PlentyONE backend and ShopBuilder.
 
 ##### Setting up customer reviews:
 

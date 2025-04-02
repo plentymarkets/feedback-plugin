@@ -1,15 +1,23 @@
 # Release Notes für Feedback
 
-## v4.0.10 (2024-01-XX) <a href="https://github.com/plentymarkets/feedback-plugin/compare/4.0.9...4.0.10" target="_blank" rel="noopener"><b>Übersicht aller Änderungen</b></a>
+## v5.0.0 (2025-04-02) <a href="https://github.com/plentymarkets/feedback-plugin/compare/4.0.9...5.0.0" target="_blank" rel="noopener"><b>Übersicht aller Änderungen</b></a>
+
+### TODO
+
+- Aufgrund des Umfangs der Änderungen empfehlen wir, die neue Version in einem separaten Plugin-Set zu testen, um Kompatibilität sicherzustellen und mögliche Konflikte mit bestehenden Plugins oder Themes zu vermeiden.
 
 ### Hinzugefügt
 
+- Die Barrierefreiheit wurde verbessert.
 - Widget-Einstellung zum Ausblenden des Feedback-Widgets auf der Bestellbestätigungsseite, wenn das Versanddatum noch nicht festgelegt wurde. Wir möchten dem Benutzer @MaxBentz für seinen Beitrag danken.
 
 ### Geändert
 
+- Das Feedback-Plugin erhält seine Daten jetzt über den Feedback-Microservice und nicht mehr über die alte PHP-Logik.
+- Die Daten für die Anzahl der Bewertungen werden nun vom Feedback-Microservice geliefert und nicht mehr von der alten PHP-Logik abgerufen.
 - Für die Anzeige des Ratings auf den Kategorieseiten werden  die Daten jetzt über die Artikelliste (itemList) geladen.
-- Die Option „Bewertungen ohne Bewertung zulassen“ wurde aus der Plugin-Konfiguration entfernt.
+- Die Option `Bewertungen ohne Bewertung zulassen` wurde aus der Plugin-Konfiguration entfernt.
+- Die Übersetzung für den Namen einer Einstellung wurde geändert.
 
 ## v4.0.9 (2023-06-19) <a href="https://github.com/plentymarkets/feedback-plugin/compare/4.0.8...4.0.9" target="_blank" rel="noopener"><b>Übersicht aller Änderungen</b></a>
 

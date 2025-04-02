@@ -1,13 +1,13 @@
 {
-    "version": "4.0.10",
+    "version": "5.0.0",
     "name": "Feedback",
     "marketplaceName": {
         "de": "Kunden-Feedback",
         "en": "Customer feedback"
     },
-    "description": "This is the official feedback plugin developed by plentysystems.",
+    "description": "This is the official feedback plugin developed by PlentyONE.",
     "namespace": "Feedback",
-    "author": "plentysystems AG",
+    "author": "PlentyONE GmbH",
     "type": "general",
     "require": {
         "IO": ">=5.0.62",
@@ -23,23 +23,28 @@
     "license": "AGPL-3.0",
     "price": 0.00,
     "shortDescription": {
-        "de": "Das offizielle, von plentysystems entwickelte Feedback-Plugin. Zeigen Sie Kundenrezensionen im Webshop an.",
-        "en": "The official feedback plugin developed by plentysystems. Display customer reviews in your online store."
+        "de": "Das offizielle, von PlentyONE entwickelte Feedback-Plugin. Zeigen Sie Kundenrezensionen im Webshop an.",
+        "en": "The official feedback plugin developed by PlentyONE. Display customer reviews in your online store."
     },
     "authorIcon": "icon_author_xs.png",
     "pluginIcon": "icon_plugin_xs.png",
-    "email": "sales@plentysystems.com",
+    "email": "sales@plentyone.com",
     "phone": "+49 561 98 681 100",
     "categories": [
         "3527"
     ],
     "keywords": [
         "feedback",
+        "feedbacks",
         "customer feedback",
         "rating",
+        "ratings",
         "widget",
         "shopbuilder",
-        "shop builder"
+        "shop builder",
+        "review",
+        "reviews",
+        "customer experience"
     ],
     "containers": [],
     "dataProviders": [
