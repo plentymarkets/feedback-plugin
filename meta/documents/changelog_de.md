@@ -13,8 +13,8 @@
 
 ### Geändert
 
-- Das Feedback-Plugin erhält seine Daten jetzt über den Feedback-Microservice und nicht mehr über die alte PHP-Logik.
-- Die Daten für die Anzahl der Bewertungen werden nun vom Feedback-Microservice geliefert und nicht mehr von der alten PHP-Logik abgerufen.
+- Das Feedback-Plugin erhält seine Daten jetzt über den Feedback-Microservice und nicht mehr über die PHP-Logik.
+- Die Daten für die Anzahl der Bewertungen werden nun vom Feedback-Microservice geliefert und nicht mehr von der PHP-Logik abgerufen.
 - Für die Anzeige des Ratings auf den Kategorieseiten werden  die Daten jetzt über die Artikelliste (itemList) geladen.
 - Die Option `Bewertungen ohne Bewertung zulassen` wurde aus der Plugin-Konfiguration entfernt.
 - Die Übersetzung für den Namen einer Einstellung wurde geändert.
