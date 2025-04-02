@@ -13,8 +13,8 @@
 
 ### Changed
 
-- Made feedback plugin to get its data through the feedback miroservice instead of its old php logic.
-- Changed feedback counts data to be delivered by the feedback microservice instead of being fetched from the old php logic.
+- Made feedback plugin to get its data through the feedback microservice instead of its PHP logic.
+- Changed feedback counts data to be delivered by the feedback microservice instead of being fetched from the PHP logic.
 - The rating on the category pages is now loaded via the item list (itemList).
 - Removed `Allow reviews without rating` option from plugin configuration.
 - Change translation for a configuration label.
