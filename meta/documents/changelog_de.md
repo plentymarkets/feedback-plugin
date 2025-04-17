@@ -1,5 +1,11 @@
 # Release Notes für Feedback
 
+## v5.0.1 (2025-04-17) <a href="https://github.com/plentymarkets/feedback-plugin/compare/5.0.0...5.0.1" target="_blank" rel="noopener"><b>Übersicht aller Änderungen</b></a>
+
+### Behoben
+
+- Ein Fehler im Zusammenhang mit Webpack wurde behoben.
+
 ## v5.0.0 (2025-04-02) <a href="https://github.com/plentymarkets/feedback-plugin/compare/4.0.9...5.0.0" target="_blank" rel="noopener"><b>Übersicht aller Änderungen</b></a>
 
 ### TODO
