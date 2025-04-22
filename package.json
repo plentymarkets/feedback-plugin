@@ -6,6 +6,9 @@
         "type": "git",
         "url": "https://github.com/plentymarkets/feedback-plugin.git"
     },
+    "engines": {
+        "node": "16.*"
+    },
     "scripts": {
         "build": "npm run build:prod && npm run build:dev",
         "build:dev": "npm run build:js:dev && npm run build:sass:dev",
