@@ -94,7 +94,9 @@
             :key="'stars_label_' + i"
             :class="'star star-' + i"
             :for="'star-' + _uid + '-' + i"
-          />
+          >
+            <span class="d-none">{{ $translate("Feedback::Feedback.feedbackAverageLabel") }}</span>
+          </label>
         </template>
       </div>
       <div class="form-group">
@@ -104,6 +106,7 @@
           class="form-control"
           name="title"
           :placeholder="$translate('Feedback::Feedback.title')"
+          :title="$translate('Feedback::Feedback.title')"
           required
         >
       </div>
@@ -114,6 +117,7 @@
           name="message"
           rows="3"
           :placeholder="$translate('Feedback::Feedback.title')"
+          :title="$translate('Feedback::Feedback.feedbackLabel')"
         />
       </div>
 

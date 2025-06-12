@@ -869,8 +869,7 @@ var render = function render() {
       attrs: {
         id: "star-" + i + _vm._uid,
         type: "radio",
-        name: "ratingValue" + _vm._uid,
-        title: "ratingValue" + _vm._uid
+        name: "ratingValue" + _vm._uid
       },
       domProps: {
         value: i,
@@ -1295,7 +1294,9 @@ var render = function render() {
       attrs: {
         for: "star-" + _vm._uid + "-" + i
       }
-    })];
+    }, [_c("span", {
+      staticClass: "d-none"
+    }, [_vm._v(_vm._s(_vm.$translate("Feedback::Feedback.feedbackAverageLabel")))])])];
   })], 2), _vm._v(" "), _c("div", {
     staticClass: "form-group"
   }, [_c("input", {
@@ -1310,6 +1311,7 @@ var render = function render() {
       type: "text",
       name: "title",
       placeholder: _vm.$translate("Feedback::Feedback.title"),
+      title: _vm.$translate("Feedback::Feedback.title"),
       required: ""
     },
     domProps: {
@@ -1334,7 +1336,8 @@ var render = function render() {
     attrs: {
       name: "message",
       rows: "3",
-      placeholder: _vm.$translate("Feedback::Feedback.title")
+      placeholder: _vm.$translate("Feedback::Feedback.title"),
+      title: _vm.$translate("Feedback::Feedback.feedbackLabel")
     },
     domProps: {
       value: _vm.editableFeedback.message
