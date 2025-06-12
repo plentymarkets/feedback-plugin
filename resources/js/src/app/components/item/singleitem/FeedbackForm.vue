@@ -16,12 +16,13 @@
               type="radio"
               :value="i "
               :name="'ratingValue' + _uid"
+              :title="'ratingValue' + _uid"
             >
             <label
               :key="'star_label_' + i"
               :class="'star star-' + i"
               :for="'star-' + i + _uid"
-            ><span class="d-none">{{ $translate("Feedback::Feedback.feedbackAverageLabel") }}</span></label>
+            ><span>{{ $translate("Feedback::Feedback.feedbackAverageLabel") }}</span></label>
           </template>
         </fieldset>
       </div>

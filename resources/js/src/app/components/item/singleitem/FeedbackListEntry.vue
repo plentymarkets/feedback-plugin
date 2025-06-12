@@ -28,6 +28,7 @@
         :data-original-title="isReply ? $translate('Feedback::Feedback.editReply') : $translate('Feedback::Feedback.editReview')"
         @click="editFeedback()"
       >
+        pencil
         <i class="fa fa-pencil" />
       </span>
 
@@ -43,7 +44,7 @@
         <i class="fa fa-trash-o" />
       </span>
     </div>
-
+    feedback-comment
     <feedback-comment
       v-if="!editableFeedback"
       :feedback="feedbackData"
@@ -54,7 +55,7 @@
       :options="options"
       @delete="$emit('delete', $event)"
     />
-
+    aaa
     <div v-if="!!editableFeedback && isReply">
       <div class="form-group">
         <textarea
@@ -79,6 +80,7 @@
     </div>
 
     <div v-if="!!editableFeedback && !isReply">
+      test
       <div class="stars">
         <template v-for="i in [5,4,3,2,1]">
           <input

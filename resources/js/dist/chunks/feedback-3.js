@@ -869,7 +869,8 @@ var render = function render() {
       attrs: {
         id: "star-" + i + _vm._uid,
         type: "radio",
-        name: "ratingValue" + _vm._uid
+        name: "ratingValue" + _vm._uid,
+        title: "ratingValue" + _vm._uid
       },
       domProps: {
         value: i,
@@ -886,9 +887,7 @@ var render = function render() {
       attrs: {
         for: "star-" + i + _vm._uid
       }
-    }, [_c("span", {
-      staticClass: "d-none"
-    }, [_vm._v(_vm._s(_vm.$translate("Feedback::Feedback.feedbackAverageLabel")))])])];
+    }, [_c("span", [_vm._v(_vm._s(_vm.$translate("Feedback::Feedback.feedbackAverageLabel")))])])];
   })], 2)]), _vm._v(" "), _vm.ratingMissing ? _c("p", {
     staticClass: "feedback-error alert alert-danger"
   }, [_vm._v("\n      " + _vm._s(_vm.$translate("Feedback::Feedback.ratingRequired")) + "\n    ")]) : _vm._e(), _vm._v(" "), !_vm.authenticatedUser.isLoggedIn && _vm.options.allowGuestFeedbacks ? _c("div", {
@@ -1191,7 +1190,7 @@ var render = function render() {
         return _vm.editFeedback();
       }
     }
-  }, [_c("i", {
+  }, [_vm._v("\n      pencil\n      "), _c("i", {
     staticClass: "fa fa-pencil"
   })]) : _vm._e(), _vm._v(" "), _vm.authenticatedUser.isLoggedIn ? _c("span", {
     directives: [{
@@ -1211,7 +1210,7 @@ var render = function render() {
     }
   }, [_c("i", {
     staticClass: "fa fa-trash-o"
-  })]) : _vm._e()]) : _vm._e(), _vm._v(" "), !_vm.editableFeedback ? _c("feedback-comment", {
+  })]) : _vm._e()]) : _vm._e(), _vm._v("\n  feedback-comment\n  "), !_vm.editableFeedback ? _c("feedback-comment", {
     attrs: {
       feedback: _vm.feedbackData,
       "is-reply": _vm.isReply,
@@ -1225,7 +1224,7 @@ var render = function render() {
         return _vm.$emit("delete", $event);
       }
     }
-  }) : _vm._e(), _vm._v(" "), !!_vm.editableFeedback && _vm.isReply ? _c("div", [_c("div", {
+  }) : _vm._e(), _vm._v("\n  aaa\n  "), !!_vm.editableFeedback && _vm.isReply ? _c("div", [_c("div", {
     staticClass: "form-group"
   }, [_c("textarea", {
     directives: [{
@@ -1262,7 +1261,7 @@ var render = function render() {
         _vm.editableFeedback = null;
       }
     }
-  }, [_vm._v("\n      " + _vm._s(_vm.$translate("Feedback::Feedback.cancel")) + "\n    ")])]) : _vm._e(), _vm._v(" "), !!_vm.editableFeedback && !_vm.isReply ? _c("div", [_c("div", {
+  }, [_vm._v("\n      " + _vm._s(_vm.$translate("Feedback::Feedback.cancel")) + "\n    ")])]) : _vm._e(), _vm._v(" "), !!_vm.editableFeedback && !_vm.isReply ? _c("div", [_vm._v("\n    test\n    "), _c("div", {
     staticClass: "stars"
   }, [_vm._l([5, 4, 3, 2, 1], function (i) {
     return [_c("input", {
