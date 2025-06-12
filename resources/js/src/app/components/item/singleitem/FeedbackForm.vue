@@ -16,6 +16,7 @@
               type="radio"
               :value="i "
               :name="'ratingValue' + _uid"
+              :title="'ratingValue' + _uid"
             >
             <label
               :key="'star_label_' + i"
