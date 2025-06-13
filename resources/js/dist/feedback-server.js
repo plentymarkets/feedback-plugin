@@ -1340,6 +1340,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -7945,12 +7958,9 @@ var render = function() {
             ? '<div><div class="stars">' +
               _vm._ssrList([5, 4, 3, 2, 1], function(i) {
                 return (
-                  _vm._ssrEscape(
-                    "\n        test feedback entry:" + _vm._s(i) + "\n        "
-                  ) +
                   "<input" +
                   _vm._ssrAttr("id", "star-" + _vm._uid + "-" + i) +
-                  ' type="radio" name="ratingValue2"' +
+                  ' type="radio" name="ratingValue"' +
                   _vm._ssrAttr("value", i) +
                   _vm._ssrAttr(
                     "checked",
@@ -7969,21 +7979,29 @@ var render = function() {
                   "</span></label>"
                 )
               }) +
-              '</div> <div class="form-group"><input type="text" name="title"' +
+              '</div> <div class="form-group"><input id="title" type="text" name="title"' +
               _vm._ssrAttr(
                 "placeholder",
                 _vm.$translate("Feedback::Feedback.title")
               ) +
               ' required="required"' +
               _vm._ssrAttr("value", _vm.editableFeedback.title) +
-              ' class="form-control"></div> <div class="form-group"><textarea name="message" rows="3"' +
+              ' class="form-control"> <label for="title"><span class="d-none">' +
+              _vm._ssrEscape(
+                _vm._s(_vm.$translate("Feedback::Feedback.title"))
+              ) +
+              '</span></label></div> <div class="form-group"><textarea id="message" name="message" rows="3"' +
               _vm._ssrAttr(
                 "placeholder",
                 _vm.$translate("Feedback::Feedback.title")
               ) +
               ' class="form-control">' +
               _vm._ssrEscape(_vm._s(_vm.editableFeedback.message)) +
-              '</textarea></div> <button class="btn btn-primary btn-appearance">' +
+              '</textarea> <label for="message"><span class="d-none">' +
+              _vm._ssrEscape(
+                _vm._s(_vm.$translate("Feedback::Feedback.commentMessage"))
+              ) +
+              '</span></label></div> <button class="btn btn-primary btn-appearance">' +
               _vm._ssrEscape(
                 "\n      " +
                   _vm._s(_vm.$translate("Feedback::Feedback.editReview")) +
@@ -8141,7 +8159,7 @@ var render = function() {
               _vm._ssrAttr("id", starId.id) +
               ' type="radio"' +
               _vm._ssrAttr("disabled", _vm.isRated) +
-              ' name="ratingValue3"' +
+              ' name="ratingValue"' +
               _vm._ssrAttr("value", starId.value) +
               _vm._ssrAttr(
                 "checked",
@@ -8297,7 +8315,7 @@ var render = function() {
             return (
               "<input" +
               _vm._ssrAttr("id", starId.id) +
-              ' type="radio" name="ratingValue4"' +
+              ' type="radio" name="ratingValue"' +
               _vm._ssrAttr("disabled", _vm.isRated) +
               _vm._ssrAttr("value", starId.value) +
               _vm._ssrAttr(

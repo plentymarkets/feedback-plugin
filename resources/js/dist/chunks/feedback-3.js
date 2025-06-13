@@ -892,6 +892,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2879,11 +2892,6 @@ var render = function() {
               [
                 _vm._l([5, 4, 3, 2, 1], function(i) {
                   return [
-                    _vm._v(
-                      "\n        test feedback entry:" +
-                        _vm._s(i) +
-                        "\n        "
-                    ),
                     _c("input", {
                       directives: [
                         {
@@ -2898,7 +2906,7 @@ var render = function() {
                       attrs: {
                         id: "star-" + _vm._uid + "-" + i,
                         type: "radio",
-                        name: "ratingValue2"
+                        name: "ratingValue"
                       },
                       domProps: {
                         value: i,
@@ -2952,6 +2960,7 @@ var render = function() {
                 ],
                 staticClass: "form-control",
                 attrs: {
+                  id: "title",
                   type: "text",
                   name: "title",
                   placeholder: _vm.$translate("Feedback::Feedback.title"),
@@ -2966,7 +2975,13 @@ var render = function() {
                     _vm.$set(_vm.editableFeedback, "title", $event.target.value)
                   }
                 }
-              })
+              }),
+              _vm._v(" "),
+              _c("label", { key: "title_label", attrs: { for: "title" } }, [
+                _c("span", { staticClass: "d-none" }, [
+                  _vm._v(_vm._s(_vm.$translate("Feedback::Feedback.title")))
+                ])
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -2981,6 +2996,7 @@ var render = function() {
                 ],
                 staticClass: "form-control",
                 attrs: {
+                  id: "message",
                   name: "message",
                   rows: "3",
                   placeholder: _vm.$translate("Feedback::Feedback.title")
@@ -2998,7 +3014,15 @@ var render = function() {
                     )
                   }
                 }
-              })
+              }),
+              _vm._v(" "),
+              _c("label", { key: "message_label", attrs: { for: "message" } }, [
+                _c("span", { staticClass: "d-none" }, [
+                  _vm._v(
+                    _vm._s(_vm.$translate("Feedback::Feedback.commentMessage"))
+                  )
+                ])
+              ])
             ]),
             _vm._v(" "),
             _c(

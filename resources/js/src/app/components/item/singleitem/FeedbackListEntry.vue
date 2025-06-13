@@ -81,7 +81,6 @@
     <div v-if="!!editableFeedback && !isReply">
       <div class="stars">
         <template v-for="i in [5,4,3,2,1]">
-          test feedback entry:{{ i }}
           <input
             :id="'star-' + _uid + '-' + i"
             :key="'stars_input_' + i"
@@ -89,7 +88,7 @@
             :class="'star star-' + i"
             type="radio"
             :value="i"
-            name="ratingValue2"
+            name="ratingValue"
           >
           <label
             :key="'stars_label_' + i"
@@ -102,6 +101,7 @@
       </div>
       <div class="form-group">
         <input
+          id="title"
           v-model="editableFeedback.title"
           type="text"
           class="form-control"
@@ -109,15 +109,28 @@
           :placeholder="$translate('Feedback::Feedback.title')"
           required
         >
+        <label
+          key="title_label"
+          for="title"
+        >
+          <span class="d-none">{{ $translate('Feedback::Feedback.title') }}</span>
+        </label>
       </div>
       <div class="form-group">
         <textarea
+          id="message"
           v-model="editableFeedback.message"
           class="form-control"
           name="message"
           rows="3"
           :placeholder="$translate('Feedback::Feedback.title')"
         />
+        <label
+          key="message_label"
+          for="message"
+        >
+          <span class="d-none">{{ $translate('Feedback::Feedback.commentMessage') }}</span>
+        </label>
       </div>
 
       <button
