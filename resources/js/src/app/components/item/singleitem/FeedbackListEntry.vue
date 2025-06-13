@@ -81,6 +81,7 @@
     <div v-if="!!editableFeedback && !isReply">
       <div class="stars">
         <template v-for="i in [5,4,3,2,1]">
+          test feedback entry:{{ i }}
           <input
             :id="'star-' + _uid + '-' + i"
             :key="'stars_input_' + i"
@@ -94,7 +95,9 @@
             :key="'stars_label_' + i"
             :class="'star star-' + i"
             :for="'star-' + _uid + '-' + i"
-          />
+          >
+            <span class="d-none">{{ $translate("Feedback::Feedback.feedbackAverageLabel") }}</span>
+          </label>
         </template>
       </div>
       <div class="form-group">

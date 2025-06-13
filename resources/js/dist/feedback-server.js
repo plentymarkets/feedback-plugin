@@ -1032,7 +1032,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -1203,6 +1202,9 @@ __webpack_require__.r(__webpack_exports__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+//
+//
+//
 //
 //
 //
@@ -7540,9 +7542,6 @@ var render = function() {
                 "</span></legend> " +
                 _vm._ssrList([5, 4, 3, 2, 1], function(i) {
                   return (
-                    _vm._ssrEscape(
-                      "\n          test:" + _vm._s(i) + "\n          "
-                    ) +
                     "<input" +
                     _vm._ssrAttr("id", "star-" + i + _vm._uid) +
                     ' type="radio"' +
@@ -7556,7 +7555,7 @@ var render = function() {
                     "> <label" +
                     _vm._ssrAttr("for", "star-" + i + _vm._uid) +
                     _vm._ssrClass(null, "star star-" + i) +
-                    "><span>" +
+                    '><span class="d-none">' +
                     _vm._ssrEscape(
                       _vm._s(
                         _vm.$translate(
@@ -7946,6 +7945,9 @@ var render = function() {
             ? '<div><div class="stars">' +
               _vm._ssrList([5, 4, 3, 2, 1], function(i) {
                 return (
+                  _vm._ssrEscape(
+                    "\n        test feedback entry:" + _vm._s(i) + "\n        "
+                  ) +
                   "<input" +
                   _vm._ssrAttr("id", "star-" + _vm._uid + "-" + i) +
                   ' type="radio" name="ratingValue"' +
@@ -7958,7 +7960,13 @@ var render = function() {
                   "> <label" +
                   _vm._ssrAttr("for", "star-" + _vm._uid + "-" + i) +
                   _vm._ssrClass(null, "star star-" + i) +
-                  "></label>"
+                  '><span class="d-none">' +
+                  _vm._ssrEscape(
+                    _vm._s(
+                      _vm.$translate("Feedback::Feedback.feedbackAverageLabel")
+                    )
+                  ) +
+                  "</span></label>"
                 )
               }) +
               '</div> <div class="form-group"><input type="text" name="title"' +
