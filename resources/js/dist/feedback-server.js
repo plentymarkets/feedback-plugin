@@ -1337,6 +1337,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -6305,7 +6321,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "1ac6542f"
+  "e6dcf9aa"
   
 )
 
@@ -6342,7 +6358,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "b49030c2"
+  "35a2c323"
   
 )
 
@@ -6379,7 +6395,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "21e87ac1"
+  "628a8545"
   
 )
 
@@ -6416,7 +6432,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "7b522034"
+  "316c9330"
   
 )
 
@@ -6453,7 +6469,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "a16971e4"
+  "6565ba0a"
   
 )
 
@@ -6490,7 +6506,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "62b21734"
+  "b957bc90"
   
 )
 
@@ -6527,7 +6543,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "015b2d05"
+  "ab9fa2ee"
   
 )
 
@@ -6564,7 +6580,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "c706c52e"
+  "2fa58626"
   
 )
 
@@ -6601,7 +6617,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "731f6790"
+  "1220ebbc"
   
 )
 
@@ -7954,24 +7970,42 @@ var render = function() {
                   "> <label" +
                   _vm._ssrAttr("for", "star-" + _vm._uid + "-" + i) +
                   _vm._ssrClass(null, "star star-" + i) +
-                  "></label>"
+                  '><span class="d-none">' +
+                  _vm._ssrEscape(
+                    _vm._s(
+                      _vm.$translate("Feedback::Feedback.feedbackAverageLabel")
+                    )
+                  ) +
+                  "</span></label>"
                 )
               }) +
-              '</div> <div class="form-group"><input type="text" name="title"' +
+              '</div> <div class="form-group"><input id="title" type="text" name="title"' +
               _vm._ssrAttr(
                 "placeholder",
                 _vm.$translate("Feedback::Feedback.title")
               ) +
               ' required="required"' +
               _vm._ssrAttr("value", _vm.editableFeedback.title) +
-              ' class="form-control"></div> <div class="form-group"><textarea name="message" rows="3"' +
+              ' class="form-control"> <label for="title"><span class="d-none">' +
+              _vm._ssrEscape(
+                _vm._s(_vm.$translate("Feedback::Feedback.editReview")) +
+                  " " +
+                  _vm._s(_vm.$translate("Feedback::Feedback.title"))
+              ) +
+              '</span></label></div> <div class="form-group"><textarea id="message" name="message" rows="3"' +
               _vm._ssrAttr(
                 "placeholder",
                 _vm.$translate("Feedback::Feedback.title")
               ) +
               ' class="form-control">' +
               _vm._ssrEscape(_vm._s(_vm.editableFeedback.message)) +
-              '</textarea></div> <button class="btn btn-primary btn-appearance">' +
+              '</textarea> <label for="message"><span class="d-none">' +
+              _vm._ssrEscape(
+                _vm._s(_vm.$translate("Feedback::Feedback.editReview")) +
+                  " " +
+                  _vm._s(_vm.$translate("Feedback::Feedback.commentMessage"))
+              ) +
+              '</span></label></div> <button class="btn btn-primary btn-appearance">' +
               _vm._ssrEscape(
                 "\n      " +
                   _vm._s(_vm.$translate("Feedback::Feedback.editReview")) +

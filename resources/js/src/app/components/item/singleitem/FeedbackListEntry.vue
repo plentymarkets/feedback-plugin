@@ -94,11 +94,14 @@
             :key="'stars_label_' + i"
             :class="'star star-' + i"
             :for="'star-' + _uid + '-' + i"
-          />
+          >
+            <span class="d-none">{{ $translate("Feedback::Feedback.feedbackAverageLabel") }}</span>
+          </label>
         </template>
       </div>
       <div class="form-group">
         <input
+          id="title"
           v-model="editableFeedback.title"
           type="text"
           class="form-control"
@@ -106,15 +109,28 @@
           :placeholder="$translate('Feedback::Feedback.title')"
           required
         >
+        <label
+          key="title_label"
+          for="title"
+        >
+          <span class="d-none">{{ $translate('Feedback::Feedback.editReview') }} {{ $translate('Feedback::Feedback.title') }}</span>
+        </label>
       </div>
       <div class="form-group">
         <textarea
+          id="message"
           v-model="editableFeedback.message"
           class="form-control"
           name="message"
           rows="3"
           :placeholder="$translate('Feedback::Feedback.title')"
         />
+        <label
+          key="message_label"
+          for="message"
+        >
+          <span class="d-none">{{ $translate('Feedback::Feedback.editReview') }} {{ $translate('Feedback::Feedback.commentMessage') }}</span>
+        </label>
       </div>
 
       <button
