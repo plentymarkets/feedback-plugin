@@ -20,7 +20,7 @@
               :class="starId.class"
               type="radio"
               :value="starId.value"
-              name="ratingValue"
+              name="ratingValue4"
               :disabled="isRated"
               @click="handleRating(starId.value)"
             >

@@ -89,7 +89,7 @@
             :class="'star star-' + i"
             type="radio"
             :value="i"
-            name="ratingValue"
+            name="ratingValue2"
           >
           <label
             :key="'stars_label_' + i"

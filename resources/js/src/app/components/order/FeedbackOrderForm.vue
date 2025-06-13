@@ -49,7 +49,7 @@
                     type="radio"
                     :value="starId.value"
                     :disabled="isRated"
-                    name="ratingValue"
+                    name="ratingValue3"
                   >
                   <label
                     :key="'stars_label_' + starId.id"

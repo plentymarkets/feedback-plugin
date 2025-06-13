@@ -2898,7 +2898,7 @@ var render = function() {
                       attrs: {
                         id: "star-" + _vm._uid + "-" + i,
                         type: "radio",
-                        name: "ratingValue"
+                        name: "ratingValue2"
                       },
                       domProps: {
                         value: i,

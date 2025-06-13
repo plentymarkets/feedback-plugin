@@ -7950,7 +7950,7 @@ var render = function() {
                   ) +
                   "<input" +
                   _vm._ssrAttr("id", "star-" + _vm._uid + "-" + i) +
-                  ' type="radio" name="ratingValue"' +
+                  ' type="radio" name="ratingValue2"' +
                   _vm._ssrAttr("value", i) +
                   _vm._ssrAttr(
                     "checked",
@@ -8141,7 +8141,7 @@ var render = function() {
               _vm._ssrAttr("id", starId.id) +
               ' type="radio"' +
               _vm._ssrAttr("disabled", _vm.isRated) +
-              ' name="ratingValue"' +
+              ' name="ratingValue3"' +
               _vm._ssrAttr("value", starId.value) +
               _vm._ssrAttr(
                 "checked",
@@ -8297,7 +8297,7 @@ var render = function() {
             return (
               "<input" +
               _vm._ssrAttr("id", starId.id) +
-              ' type="radio" name="ratingValue"' +
+              ' type="radio" name="ratingValue4"' +
               _vm._ssrAttr("disabled", _vm.isRated) +
               _vm._ssrAttr("value", starId.value) +
               _vm._ssrAttr(

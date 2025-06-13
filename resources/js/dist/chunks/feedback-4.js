@@ -1246,7 +1246,7 @@ var render = function() {
                             id: starId.id,
                             type: "radio",
                             disabled: _vm.isRated,
-                            name: "ratingValue"
+                            name: "ratingValue3"
                           },
                           domProps: {
                             value: starId.value,
@@ -1632,7 +1632,7 @@ var render = function() {
                       attrs: {
                         id: starId.id,
                         type: "radio",
-                        name: "ratingValue",
+                        name: "ratingValue4",
                         disabled: _vm.isRated
                       },
                       domProps: {
