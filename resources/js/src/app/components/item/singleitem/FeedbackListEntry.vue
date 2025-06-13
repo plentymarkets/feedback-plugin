@@ -30,7 +30,7 @@
       >
         <i class="fa fa-pencil" />
       </span>
-      test change
+      test change 2
 
       <span
         v-if="authenticatedUser.isLoggedIn"

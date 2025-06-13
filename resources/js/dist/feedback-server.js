@@ -7869,7 +7869,7 @@ var render = function() {
                     [_vm._ssrNode('<i class="fa fa-pencil"></i>')]
                   )
                 : _vm._e(),
-              _vm._ssrNode("\n    test change\n\n    "),
+              _vm._ssrNode("\n    test change 2\n\n    "),
               _vm.authenticatedUser.isLoggedIn
                 ? _c(
                     "span",

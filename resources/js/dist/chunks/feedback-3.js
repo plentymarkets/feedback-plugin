@@ -2752,7 +2752,7 @@ var render = function() {
                   [_c("i", { staticClass: "fa fa-pencil" })]
                 )
               : _vm._e(),
-            _vm._v("\n    test change\n\n    "),
+            _vm._v("\n    test change 2\n\n    "),
             _vm.authenticatedUser.isLoggedIn
               ? _c(
                   "span",
