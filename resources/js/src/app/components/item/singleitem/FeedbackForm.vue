@@ -8,6 +8,7 @@
         <fieldset>
           <legend><span class="d-none">{{ $translate("Feedback::Feedback.feedbackTextLegend") }}</span></legend>
           <template v-for="i in [5,4,3,2,1]">
+            test:{{ i }}
             <input
               :id="'star-' + i + _uid"
               :key="'star_input_' + i"
@@ -21,7 +22,7 @@
               :key="'star_label_' + i"
               :class="'star star-' + i"
               :for="'star-' + i + _uid"
-            ><span class="d-none">{{ $translate("Feedback::Feedback.feedbackAverageLabel") }}</span></label>
+            ><span>{{ $translate("Feedback::Feedback.feedbackAverageLabel") }}</span></label>
           </template>
         </fieldset>
       </div>

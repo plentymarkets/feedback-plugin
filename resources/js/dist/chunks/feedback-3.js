@@ -590,6 +590,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -754,7 +755,6 @@ __webpack_require__.r(__webpack_exports__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-//
 //
 //
 //
@@ -2233,6 +2233,7 @@ var render = function() {
                 _vm._v(" "),
                 _vm._l([5, 4, 3, 2, 1], function(i) {
                   return [
+                    _vm._v("\n          test:" + _vm._s(i) + "\n          "),
                     _c("input", {
                       directives: [
                         {
@@ -2268,7 +2269,7 @@ var render = function() {
                         attrs: { for: "star-" + i + _vm._uid }
                       },
                       [
-                        _c("span", { staticClass: "d-none" }, [
+                        _c("span", [
                           _vm._v(
                             _vm._s(
                               _vm.$translate(
@@ -2752,7 +2753,7 @@ var render = function() {
                   [_c("i", { staticClass: "fa fa-pencil" })]
                 )
               : _vm._e(),
-            _vm._v("\n    test change 2\n\n    "),
+            _vm._v(" "),
             _vm.authenticatedUser.isLoggedIn
               ? _c(
                   "span",
