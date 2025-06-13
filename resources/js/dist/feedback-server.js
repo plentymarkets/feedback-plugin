@@ -7988,7 +7988,9 @@ var render = function() {
               _vm._ssrAttr("value", _vm.editableFeedback.title) +
               ' class="form-control"> <label for="title"><span class="d-none">' +
               _vm._ssrEscape(
-                _vm._s(_vm.$translate("Feedback::Feedback.title"))
+                _vm._s(_vm.$translate("Feedback::Feedback.editReview")) +
+                  " " +
+                  _vm._s(_vm.$translate("Feedback::Feedback.title"))
               ) +
               '</span></label></div> <div class="form-group"><textarea id="message" name="message" rows="3"' +
               _vm._ssrAttr(
@@ -7999,7 +8001,9 @@ var render = function() {
               _vm._ssrEscape(_vm._s(_vm.editableFeedback.message)) +
               '</textarea> <label for="message"><span class="d-none">' +
               _vm._ssrEscape(
-                _vm._s(_vm.$translate("Feedback::Feedback.commentMessage"))
+                _vm._s(_vm.$translate("Feedback::Feedback.editReview")) +
+                  " " +
+                  _vm._s(_vm.$translate("Feedback::Feedback.commentMessage"))
               ) +
               '</span></label></div> <button class="btn btn-primary btn-appearance">' +
               _vm._ssrEscape(

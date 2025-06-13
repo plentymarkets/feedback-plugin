@@ -113,7 +113,7 @@
           key="title_label"
           for="title"
         >
-          <span class="d-none">{{ $translate('Feedback::Feedback.title') }}</span>
+          <span class="d-none">{{ $translate('Feedback::Feedback.editReview') }} {{ $translate('Feedback::Feedback.title') }}</span>
         </label>
       </div>
       <div class="form-group">
@@ -129,7 +129,7 @@
           key="message_label"
           for="message"
         >
-          <span class="d-none">{{ $translate('Feedback::Feedback.commentMessage') }}</span>
+          <span class="d-none">{{ $translate('Feedback::Feedback.editReview') }} {{ $translate('Feedback::Feedback.commentMessage') }}</span>
         </label>
       </div>
 

@@ -2979,7 +2979,11 @@ var render = function() {
               _vm._v(" "),
               _c("label", { key: "title_label", attrs: { for: "title" } }, [
                 _c("span", { staticClass: "d-none" }, [
-                  _vm._v(_vm._s(_vm.$translate("Feedback::Feedback.title")))
+                  _vm._v(
+                    _vm._s(_vm.$translate("Feedback::Feedback.editReview")) +
+                      " " +
+                      _vm._s(_vm.$translate("Feedback::Feedback.title"))
+                  )
                 ])
               ])
             ]),
@@ -3019,7 +3023,11 @@ var render = function() {
               _c("label", { key: "message_label", attrs: { for: "message" } }, [
                 _c("span", { staticClass: "d-none" }, [
                   _vm._v(
-                    _vm._s(_vm.$translate("Feedback::Feedback.commentMessage"))
+                    _vm._s(_vm.$translate("Feedback::Feedback.editReview")) +
+                      " " +
+                      _vm._s(
+                        _vm.$translate("Feedback::Feedback.commentMessage")
+                      )
                   )
                 ])
               ])
