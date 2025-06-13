@@ -889,6 +889,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2751,7 +2752,7 @@ var render = function() {
                   [_c("i", { staticClass: "fa fa-pencil" })]
                 )
               : _vm._e(),
-            _vm._v(" "),
+            _vm._v("\n    test change\n\n    "),
             _vm.authenticatedUser.isLoggedIn
               ? _c(
                   "span",
