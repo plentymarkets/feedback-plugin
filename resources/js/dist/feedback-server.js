@@ -7979,27 +7979,27 @@ var render = function() {
                   "</span></label>"
                 )
               }) +
-              '</div> <div class="form-group"><input id="title" type="text" name="title"' +
+              '</div> <div class="form-group"><input id="edit_title" type="text" name="title"' +
               _vm._ssrAttr(
                 "placeholder",
                 _vm.$translate("Feedback::Feedback.title")
               ) +
               ' required="required"' +
               _vm._ssrAttr("value", _vm.editableFeedback.title) +
-              ' class="form-control"> <label for="title"><span class="d-none">' +
+              ' class="form-control"> <label for="edit_title"><span class="d-none">' +
               _vm._ssrEscape(
                 _vm._s(_vm.$translate("Feedback::Feedback.editReview")) +
                   " " +
                   _vm._s(_vm.$translate("Feedback::Feedback.title"))
               ) +
-              '</span></label></div> <div class="form-group"><textarea id="message" name="message" rows="3"' +
+              '</span></label></div> <div class="form-group"><textarea id="edit_message" name="message" rows="3"' +
               _vm._ssrAttr(
                 "placeholder",
                 _vm.$translate("Feedback::Feedback.title")
               ) +
               ' class="form-control">' +
               _vm._ssrEscape(_vm._s(_vm.editableFeedback.message)) +
-              '</textarea> <label for="message"><span class="d-none">' +
+              '</textarea> <label for="edit_message"><span class="d-none">' +
               _vm._ssrEscape(
                 _vm._s(_vm.$translate("Feedback::Feedback.editReview")) +
                   " " +

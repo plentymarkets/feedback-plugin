@@ -101,7 +101,7 @@
       </div>
       <div class="form-group">
         <input
-          id="title"
+          id="edit_title"
           v-model="editableFeedback.title"
           type="text"
           class="form-control"
@@ -111,14 +111,14 @@
         >
         <label
           key="title_label"
-          for="title"
+          for="edit_title"
         >
           <span class="d-none">{{ $translate('Feedback::Feedback.editReview') }} {{ $translate('Feedback::Feedback.title') }}</span>
         </label>
       </div>
       <div class="form-group">
         <textarea
-          id="message"
+          id="edit_message"
           v-model="editableFeedback.message"
           class="form-control"
           name="message"
@@ -127,7 +127,7 @@
         />
         <label
           key="message_label"
-          for="message"
+          for="edit_message"
         >
           <span class="d-none">{{ $translate('Feedback::Feedback.editReview') }} {{ $translate('Feedback::Feedback.commentMessage') }}</span>
         </label>

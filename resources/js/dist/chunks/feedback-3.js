@@ -2960,7 +2960,7 @@ var render = function() {
                 ],
                 staticClass: "form-control",
                 attrs: {
-                  id: "title",
+                  id: "edit_title",
                   type: "text",
                   name: "title",
                   placeholder: _vm.$translate("Feedback::Feedback.title"),
@@ -2977,15 +2977,19 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c("label", { key: "title_label", attrs: { for: "title" } }, [
-                _c("span", { staticClass: "d-none" }, [
-                  _vm._v(
-                    _vm._s(_vm.$translate("Feedback::Feedback.editReview")) +
-                      " " +
-                      _vm._s(_vm.$translate("Feedback::Feedback.title"))
-                  )
-                ])
-              ])
+              _c(
+                "label",
+                { key: "title_label", attrs: { for: "edit_title" } },
+                [
+                  _c("span", { staticClass: "d-none" }, [
+                    _vm._v(
+                      _vm._s(_vm.$translate("Feedback::Feedback.editReview")) +
+                        " " +
+                        _vm._s(_vm.$translate("Feedback::Feedback.title"))
+                    )
+                  ])
+                ]
+              )
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -3000,7 +3004,7 @@ var render = function() {
                 ],
                 staticClass: "form-control",
                 attrs: {
-                  id: "message",
+                  id: "edit_message",
                   name: "message",
                   rows: "3",
                   placeholder: _vm.$translate("Feedback::Feedback.title")
@@ -3020,17 +3024,21 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c("label", { key: "message_label", attrs: { for: "message" } }, [
-                _c("span", { staticClass: "d-none" }, [
-                  _vm._v(
-                    _vm._s(_vm.$translate("Feedback::Feedback.editReview")) +
-                      " " +
-                      _vm._s(
-                        _vm.$translate("Feedback::Feedback.commentMessage")
-                      )
-                  )
-                ])
-              ])
+              _c(
+                "label",
+                { key: "message_label", attrs: { for: "edit_message" } },
+                [
+                  _c("span", { staticClass: "d-none" }, [
+                    _vm._v(
+                      _vm._s(_vm.$translate("Feedback::Feedback.editReview")) +
+                        " " +
+                        _vm._s(
+                          _vm.$translate("Feedback::Feedback.commentMessage")
+                        )
+                    )
+                  ])
+                ]
+              )
             ]),
             _vm._v(" "),
             _c(
