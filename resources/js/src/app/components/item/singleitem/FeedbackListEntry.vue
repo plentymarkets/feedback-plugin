@@ -89,8 +89,12 @@
             type="radio"
             :value="i"
             name="ratingValue"
-            :aria-label="$translate('Feedback::Feedback.feedbackAverageLabel')"
           >
+          <label
+            :key="'stars_label_' + i"
+            :class="'star star-' + i"
+            :for="'star-' + _uid + '-' + i"
+          />
         </template>
       </div>
       <div class="form-group">
