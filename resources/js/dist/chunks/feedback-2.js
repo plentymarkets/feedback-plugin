@@ -8,20 +8,41 @@
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var core_js_modules_es_array_filter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.filter */ "./node_modules/core-js/modules/es.array.filter.js");
-/* harmony import */ var core_js_modules_es_array_filter__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_filter__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es_array_find__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.array.find */ "./node_modules/core-js/modules/es.array.find.js");
-/* harmony import */ var core_js_modules_es_array_find__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_find__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es_array_map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.array.map */ "./node_modules/core-js/modules/es.array.map.js");
-/* harmony import */ var core_js_modules_es_array_map__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_map__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _FeedbackListEntry_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FeedbackListEntry.vue */ "./resources/js/src/app/components/item/singleitem/FeedbackListEntry.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var core_js_modules_es_symbol__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.symbol */ "./node_modules/core-js/modules/es.symbol.js");
+/* harmony import */ var core_js_modules_es_symbol__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_symbol_description__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.symbol.description */ "./node_modules/core-js/modules/es.symbol.description.js");
+/* harmony import */ var core_js_modules_es_symbol_description__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_description__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es_symbol_to_primitive__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.symbol.to-primitive */ "./node_modules/core-js/modules/es.symbol.to-primitive.js");
+/* harmony import */ var core_js_modules_es_symbol_to_primitive__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_to_primitive__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es_array_filter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.array.filter */ "./node_modules/core-js/modules/es.array.filter.js");
+/* harmony import */ var core_js_modules_es_array_filter__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_filter__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_es_array_find__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es.array.find */ "./node_modules/core-js/modules/es.array.find.js");
+/* harmony import */ var core_js_modules_es_array_find__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_find__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var core_js_modules_es_array_map__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/es.array.map */ "./node_modules/core-js/modules/es.array.map.js");
+/* harmony import */ var core_js_modules_es_array_map__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_map__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var core_js_modules_es_date_to_primitive__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! core-js/modules/es.date.to-primitive */ "./node_modules/core-js/modules/es.date.to-primitive.js");
+/* harmony import */ var core_js_modules_es_date_to_primitive__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_date_to_primitive__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var core_js_modules_es_number_constructor__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! core-js/modules/es.number.constructor */ "./node_modules/core-js/modules/es.number.constructor.js");
+/* harmony import */ var core_js_modules_es_number_constructor__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_number_constructor__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! core-js/modules/es.object.to-string */ "./node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _FeedbackListEntry_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./FeedbackListEntry.vue */ "./resources/js/src/app/components/item/singleitem/FeedbackListEntry.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 
 
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 //
 //
 //
@@ -198,7 +219,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'FeedbackComment',
   components: {
-    'feedback-list-entry': _FeedbackListEntry_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+    'feedback-list-entry': _FeedbackListEntry_vue__WEBPACK_IMPORTED_MODULE_9__["default"]
   },
   props: {
     feedback: Object,
@@ -254,7 +275,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return relation.feedbackRelationType === 'orderItem';
       });
     }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)({
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_10__.mapState)({
     authenticatedUser: function authenticatedUser(state) {
       return state.feedback.authenticatedUser;
     },
@@ -406,7 +427,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   render: function() { return /* binding */ render; },
 /* harmony export */   staticRenderFns: function() { return /* binding */ staticRenderFns; }
 /* harmony export */ });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -417,14 +438,14 @@ var render = function() {
       !_vm.isReply
         ? _c("div", [
             _c("p", { staticClass: "feedback-comment-title" }, [
-              _vm._v("\n      " + _vm._s(_vm.feedbackData.title) + "\n    ")
+              _vm._v("\n      " + _vm._s(_vm.feedbackData.title) + "\n    "),
             ]),
             _vm._v(" "),
             _vm.feedbackData.feedbackRating.rating.ratingValue > 0
               ? _c(
                   "div",
                   { staticClass: "feedback-rating" },
-                  _vm._l(5, function(i) {
+                  _vm._l(5, function (i) {
                     return _c("i", {
                       key: "feedback_rating_" + i,
                       staticClass: "fa fa-star",
@@ -433,8 +454,9 @@ var render = function() {
                           _vm.feedbackData.feedbackRating.rating.ratingValue >=
                           i,
                         empty:
-                          _vm.feedbackData.feedbackRating.rating.ratingValue < i
-                      }
+                          _vm.feedbackData.feedbackRating.rating.ratingValue <
+                          i,
+                      },
                     })
                   }),
                   0
@@ -455,41 +477,41 @@ var render = function() {
                               )
                             ) +
                             "\n        "
-                        )
+                        ),
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm._l(_vm.variationAttributes, function(
-                    variationAttribute,
-                    index
-                  ) {
-                    return _c(
-                      "span",
-                      {
-                        key: "feedback_attributes_" + index,
-                        staticClass: "feedback-attributes"
-                      },
-                      [
-                        _vm._v(
-                          "\n          " +
-                            _vm._s(variationAttribute.name) +
-                            ": " +
-                            _vm._s(variationAttribute.value) +
-                            "\n        "
-                        )
-                      ]
-                    )
-                  })
+                  _vm._l(
+                    _vm.variationAttributes,
+                    function (variationAttribute, index) {
+                      return _c(
+                        "span",
+                        {
+                          key: "feedback_attributes_" + index,
+                          staticClass: "feedback-attributes",
+                        },
+                        [
+                          _vm._v(
+                            "\n          " +
+                              _vm._s(variationAttribute.name) +
+                              ": " +
+                              _vm._s(variationAttribute.value) +
+                              "\n        "
+                          ),
+                        ]
+                      )
+                    }
+                  ),
                 ],
                 2
-              )
-            ])
+              ),
+            ]),
           ])
         : _vm._e(),
       _vm._v(" "),
       _c("p", {
         staticClass: "feedback-comment-text",
-        domProps: { textContent: _vm._s(_vm.message) }
+        domProps: { textContent: _vm._s(_vm.message) },
       }),
       _vm._v(" "),
       _c("p", { staticClass: "feedback-info" }, [
@@ -506,8 +528,8 @@ var render = function() {
                       "data-placement": "top",
                       "data-original-title": _vm.$translate(
                         "Feedback::Feedback.shopManagerLabel"
-                      )
-                    }
+                      ),
+                    },
                   },
                   [
                     _c("i", { staticClass: "fa fa-check-square" }),
@@ -517,7 +539,7 @@ var render = function() {
                           _vm.feedbackData.sourceRelation[0].sourceRelationLabel
                         ) +
                         "\n        "
-                    )
+                    ),
                   ]
                 )
               : _vm.feedbackData.sourceRelation[0].feedbackRelationType ===
@@ -530,7 +552,7 @@ var render = function() {
                         _vm.feedbackData.sourceRelation[0].sourceRelationLabel
                       ) +
                       "\n        "
-                  )
+                  ),
                 ])
               : _vm.feedbackData.sourceRelation[0].feedbackRelationSourceId ==
                   0 && _vm.feedback.authorName.length > 0
@@ -539,14 +561,14 @@ var render = function() {
                     "\n          " +
                       _vm._s(_vm.feedbackData.authorName) +
                       "\n        "
-                  )
+                  ),
                 ])
               : _c("span", [
                   _vm._v(
                     "\n          " + _vm._s(_vm.displayName) + "\n        "
-                  )
-                ])
-          ])
+                  ),
+                ]),
+          ]),
         ]),
         _vm._v(" "),
         _vm.options.timestampVisibility
@@ -562,7 +584,7 @@ var render = function() {
                     )
                   ) +
                   "\n    "
-              )
+              ),
             ])
           : _vm._e(),
         _vm._v(" "),
@@ -573,17 +595,17 @@ var render = function() {
               {
                 staticClass: "feedback-info-segment btn btn-sm btn-default",
                 on: {
-                  click: function($event) {
+                  click: function ($event) {
                     _vm.replyFormVisible = !_vm.replyFormVisible
-                  }
-                }
+                  },
+                },
               },
               [
                 _vm._v(
                   "\n      " +
                     _vm._s(_vm.$translate("Feedback::Feedback.addComment")) +
                     "\n    "
-                )
+                ),
               ]
             )
           : _vm._e(),
@@ -596,10 +618,10 @@ var render = function() {
               {
                 staticClass: "feedback-info-segment btn btn-sm btn-default",
                 on: {
-                  click: function($event) {
+                  click: function ($event) {
                     _vm.replyListVisible = !_vm.replyListVisible
-                  }
-                }
+                  },
+                },
               },
               [
                 _vm._v(
@@ -608,7 +630,7 @@ var render = function() {
                     " (" +
                     _vm._s(_vm.feedbackData.replies.length) +
                     ")\n    "
-                )
+                ),
               ]
             )
           : !!_vm.feedbackData.replies &&
@@ -619,20 +641,20 @@ var render = function() {
               {
                 staticClass: "feedback-info-segment btn btn-sm btn-default",
                 on: {
-                  click: function($event) {
+                  click: function ($event) {
                     _vm.replyListVisible = !_vm.replyListVisible
-                  }
-                }
+                  },
+                },
               },
               [
                 _vm._v(
                   "\n      " +
                     _vm._s(_vm.$translate("Feedback::Feedback.hideComments")) +
                     "\n    "
-                )
+                ),
               ]
             )
-          : _vm._e()
+          : _vm._e(),
       ]),
       _vm._v(" "),
       _vm.replyFormVisible &&
@@ -647,8 +669,8 @@ var render = function() {
                         name: "model",
                         rawName: "v-model",
                         value: _vm.authorName,
-                        expression: "authorName"
-                      }
+                        expression: "authorName",
+                      },
                     ],
                     staticClass: "form-control",
                     attrs: {
@@ -660,17 +682,17 @@ var render = function() {
                       ),
                       disabled:
                         _vm.authenticatedUser.limitReached ||
-                        !_vm.authenticatedUser.hasPurchased
+                        !_vm.authenticatedUser.hasPurchased,
                     },
                     domProps: { value: _vm.authorName },
                     on: {
-                      input: function($event) {
+                      input: function ($event) {
                         if ($event.target.composing) {
                           return
                         }
                         _vm.authorName = $event.target.value
-                      }
-                    }
+                      },
+                    },
                   }),
                   _vm._v(" "),
                   _c("input", {
@@ -679,25 +701,25 @@ var render = function() {
                         name: "model",
                         rawName: "v-model",
                         value: _vm.honeypot,
-                        expression: "honeypot"
-                      }
+                        expression: "honeypot",
+                      },
                     ],
                     staticClass: "form-control",
                     attrs: {
                       id: "comment-textfield",
                       type: "text",
-                      name: "comment-textfield"
+                      name: "comment-textfield",
                     },
                     domProps: { value: _vm.honeypot },
                     on: {
-                      input: function($event) {
+                      input: function ($event) {
                         if ($event.target.composing) {
                           return
                         }
                         _vm.honeypot = $event.target.value
-                      }
-                    }
-                  })
+                      },
+                    },
+                  }),
                 ])
               : _vm._e(),
             _vm._v(" "),
@@ -708,8 +730,8 @@ var render = function() {
                     name: "model",
                     rawName: "v-model",
                     value: _vm.replyMessage,
-                    expression: "replyMessage"
-                  }
+                    expression: "replyMessage",
+                  },
                 ],
                 staticClass: "form-control",
                 attrs: {
@@ -717,18 +739,18 @@ var render = function() {
                   rows: "3",
                   placeholder: _vm.$translate(
                     "Feedback::Feedback.commentMessage"
-                  )
+                  ),
                 },
                 domProps: { value: _vm.replyMessage },
                 on: {
-                  input: function($event) {
+                  input: function ($event) {
                     if ($event.target.composing) {
                       return
                     }
                     _vm.replyMessage = $event.target.value
-                  }
-                }
-              })
+                  },
+                },
+              }),
             ]),
             _vm._v(" "),
             _c(
@@ -737,19 +759,19 @@ var render = function() {
                 staticClass: "btn btn-primary btn-appearance",
                 attrs: { disabled: !_vm.replyMessage },
                 on: {
-                  click: function($event) {
+                  click: function ($event) {
                     return _vm.createReply()
-                  }
-                }
+                  },
+                },
               },
               [
                 _vm._v(
                   "\n      " +
                     _vm._s(_vm.$translate("Feedback::Feedback.submitComment")) +
                     "\n    "
-                )
+                ),
               ]
-            )
+            ),
           ])
         : _vm._e(),
       _vm._v(" "),
@@ -759,7 +781,7 @@ var render = function() {
         ? _c(
             "div",
             { staticClass: "feedback-replies" },
-            _vm._l(_vm.feedbackData.replies, function(reply) {
+            _vm._l(_vm.feedbackData.replies, function (reply) {
               return _c("feedback-list-entry", {
                 key: reply.id,
                 attrs: {
@@ -768,18 +790,18 @@ var render = function() {
                   "show-controls": _vm.showControls,
                   classes: _vm.classes,
                   styles: _vm.styles,
-                  options: _vm.options
+                  options: _vm.options,
                 },
                 on: {
-                  delete: function($event) {
+                  delete: function ($event) {
                     return _vm.$emit("delete", $event)
-                  }
-                }
+                  },
+                },
               })
             }),
             1
           )
-        : _vm._e()
+        : _vm._e(),
     ]
   )
 }

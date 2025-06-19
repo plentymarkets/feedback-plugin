@@ -107,7 +107,6 @@
       </div>
       <div class="form-group">
         <textarea
-          id="edit_message"
           v-model="editableFeedback.message"
           class="form-control"
           name="message"
