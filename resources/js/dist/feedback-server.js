@@ -1425,7 +1425,6 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 //
 //
 //
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -8606,7 +8605,7 @@ var render = function () {
                   ">"
                 )
               }) +
-              '</div> <div class="form-group"><input id="edit_title" type="text" name="title"' +
+              '</div> <div class="form-group"><input type="text" name="title"' +
               _vm._ssrAttr(
                 "placeholder",
                 _vm.$translate("Feedback::Feedback.title")

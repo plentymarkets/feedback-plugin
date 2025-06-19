@@ -938,7 +938,6 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3096,7 +3095,6 @@ var render = function () {
                 ],
                 staticClass: "form-control",
                 attrs: {
-                  id: "edit_title",
                   type: "text",
                   name: "title",
                   placeholder: _vm.$translate("Feedback::Feedback.title"),

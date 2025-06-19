@@ -95,7 +95,6 @@
       </div>
       <div class="form-group">
         <input
-          id="edit_title"
           v-model="editableFeedback.title"
           type="text"
           class="form-control"
