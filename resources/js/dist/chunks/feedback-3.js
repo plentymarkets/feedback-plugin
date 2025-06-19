@@ -889,22 +889,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2906,7 +2890,10 @@ var render = function() {
                       attrs: {
                         id: "star-" + _vm._uid + "-" + i,
                         type: "radio",
-                        name: "ratingValue"
+                        name: "ratingValue",
+                        "aria-label": _vm.$translate(
+                          "Feedback::Feedback.feedbackAverageLabel"
+                        )
                       },
                       domProps: {
                         value: i,
@@ -2921,27 +2908,7 @@ var render = function() {
                           )
                         }
                       }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "label",
-                      {
-                        key: "stars_label_" + i,
-                        class: "star star-" + i,
-                        attrs: { for: "star-" + _vm._uid + "-" + i }
-                      },
-                      [
-                        _c("span", { staticClass: "d-none" }, [
-                          _vm._v(
-                            _vm._s(
-                              _vm.$translate(
-                                "Feedback::Feedback.feedbackAverageLabel"
-                              )
-                            )
-                          )
-                        ])
-                      ]
-                    )
+                    })
                   ]
                 })
               ],
@@ -2964,7 +2931,11 @@ var render = function() {
                   type: "text",
                   name: "title",
                   placeholder: _vm.$translate("Feedback::Feedback.title"),
-                  required: ""
+                  required: "",
+                  "aria-label":
+                    _vm.$translate("Feedback::Feedback.editReview") +
+                    "-" +
+                    _vm.$translate("Feedback::Feedback.title")
                 },
                 domProps: { value: _vm.editableFeedback.title },
                 on: {
@@ -2975,21 +2946,7 @@ var render = function() {
                     _vm.$set(_vm.editableFeedback, "title", $event.target.value)
                   }
                 }
-              }),
-              _vm._v(" "),
-              _c(
-                "label",
-                { key: "title_label", attrs: { for: "edit_title" } },
-                [
-                  _c("span", { staticClass: "d-none" }, [
-                    _vm._v(
-                      _vm._s(_vm.$translate("Feedback::Feedback.editReview")) +
-                        " " +
-                        _vm._s(_vm.$translate("Feedback::Feedback.title"))
-                    )
-                  ])
-                ]
-              )
+              })
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -3007,7 +2964,11 @@ var render = function() {
                   id: "edit_message",
                   name: "message",
                   rows: "3",
-                  placeholder: _vm.$translate("Feedback::Feedback.title")
+                  placeholder: _vm.$translate("Feedback::Feedback.title"),
+                  "aria-label":
+                    _vm.$translate("Feedback::Feedback.editReview") +
+                    "-" +
+                    _vm.$translate("Feedback::Feedback.commentMessage")
                 },
                 domProps: { value: _vm.editableFeedback.message },
                 on: {
@@ -3022,23 +2983,7 @@ var render = function() {
                     )
                   }
                 }
-              }),
-              _vm._v(" "),
-              _c(
-                "label",
-                { key: "message_label", attrs: { for: "edit_message" } },
-                [
-                  _c("span", { staticClass: "d-none" }, [
-                    _vm._v(
-                      _vm._s(_vm.$translate("Feedback::Feedback.editReview")) +
-                        " " +
-                        _vm._s(
-                          _vm.$translate("Feedback::Feedback.commentMessage")
-                        )
-                    )
-                  ])
-                ]
-              )
+              })
             ]),
             _vm._v(" "),
             _c(

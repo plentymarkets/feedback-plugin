@@ -1337,22 +1337,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -7961,22 +7945,17 @@ var render = function() {
                   "<input" +
                   _vm._ssrAttr("id", "star-" + _vm._uid + "-" + i) +
                   ' type="radio" name="ratingValue"' +
+                  _vm._ssrAttr(
+                    "aria-label",
+                    _vm.$translate("Feedback::Feedback.feedbackAverageLabel")
+                  ) +
                   _vm._ssrAttr("value", i) +
                   _vm._ssrAttr(
                     "checked",
                     _vm._q(_vm.editableFeedback.ratingValue, i)
                   ) +
                   _vm._ssrClass(null, "star star-" + i) +
-                  "> <label" +
-                  _vm._ssrAttr("for", "star-" + _vm._uid + "-" + i) +
-                  _vm._ssrClass(null, "star star-" + i) +
-                  '><span class="d-none">' +
-                  _vm._ssrEscape(
-                    _vm._s(
-                      _vm.$translate("Feedback::Feedback.feedbackAverageLabel")
-                    )
-                  ) +
-                  "</span></label>"
+                  ">"
                 )
               }) +
               '</div> <div class="form-group"><input id="edit_title" type="text" name="title"' +
@@ -7985,27 +7964,27 @@ var render = function() {
                 _vm.$translate("Feedback::Feedback.title")
               ) +
               ' required="required"' +
-              _vm._ssrAttr("value", _vm.editableFeedback.title) +
-              ' class="form-control"> <label for="edit_title"><span class="d-none">' +
-              _vm._ssrEscape(
-                _vm._s(_vm.$translate("Feedback::Feedback.editReview")) +
-                  " " +
-                  _vm._s(_vm.$translate("Feedback::Feedback.title"))
+              _vm._ssrAttr(
+                "aria-label",
+                _vm.$translate("Feedback::Feedback.editReview") +
+                  "-" +
+                  _vm.$translate("Feedback::Feedback.title")
               ) +
-              '</span></label></div> <div class="form-group"><textarea id="edit_message" name="message" rows="3"' +
+              _vm._ssrAttr("value", _vm.editableFeedback.title) +
+              ' class="form-control"></div> <div class="form-group"><textarea id="edit_message" name="message" rows="3"' +
               _vm._ssrAttr(
                 "placeholder",
                 _vm.$translate("Feedback::Feedback.title")
               ) +
+              _vm._ssrAttr(
+                "aria-label",
+                _vm.$translate("Feedback::Feedback.editReview") +
+                  "-" +
+                  _vm.$translate("Feedback::Feedback.commentMessage")
+              ) +
               ' class="form-control">' +
               _vm._ssrEscape(_vm._s(_vm.editableFeedback.message)) +
-              '</textarea> <label for="edit_message"><span class="d-none">' +
-              _vm._ssrEscape(
-                _vm._s(_vm.$translate("Feedback::Feedback.editReview")) +
-                  " " +
-                  _vm._s(_vm.$translate("Feedback::Feedback.commentMessage"))
-              ) +
-              '</span></label></div> <button class="btn btn-primary btn-appearance">' +
+              '</textarea></div> <button class="btn btn-primary btn-appearance">' +
               _vm._ssrEscape(
                 "\n      " +
                   _vm._s(_vm.$translate("Feedback::Feedback.editReview")) +

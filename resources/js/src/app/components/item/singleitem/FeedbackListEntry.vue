@@ -89,14 +89,8 @@
             type="radio"
             :value="i"
             name="ratingValue"
+            :aria-label="$translate('Feedback::Feedback.feedbackAverageLabel')"
           >
-          <label
-            :key="'stars_label_' + i"
-            :class="'star star-' + i"
-            :for="'star-' + _uid + '-' + i"
-          >
-            <span class="d-none">{{ $translate("Feedback::Feedback.feedbackAverageLabel") }}</span>
-          </label>
         </template>
       </div>
       <div class="form-group">
@@ -108,13 +102,8 @@
           name="title"
           :placeholder="$translate('Feedback::Feedback.title')"
           required
+          :aria-label="`${$translate('Feedback::Feedback.editReview')}-${$translate('Feedback::Feedback.title')}`"
         >
-        <label
-          key="title_label"
-          for="edit_title"
-        >
-          <span class="d-none">{{ $translate('Feedback::Feedback.editReview') }} {{ $translate('Feedback::Feedback.title') }}</span>
-        </label>
       </div>
       <div class="form-group">
         <textarea
@@ -124,13 +113,8 @@
           name="message"
           rows="3"
           :placeholder="$translate('Feedback::Feedback.title')"
+          :aria-label="`${$translate('Feedback::Feedback.editReview')}-${$translate('Feedback::Feedback.commentMessage')}`"
         />
-        <label
-          key="message_label"
-          for="edit_message"
-        >
-          <span class="d-none">{{ $translate('Feedback::Feedback.editReview') }} {{ $translate('Feedback::Feedback.commentMessage') }}</span>
-        </label>
       </div>
 
       <button
