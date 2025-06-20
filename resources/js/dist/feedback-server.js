@@ -1339,6 +1339,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -7956,7 +7958,17 @@ var render = function() {
                   "> <label" +
                   _vm._ssrAttr("for", "star-" + _vm._uid + "-" + i) +
                   _vm._ssrClass(null, "star star-" + i) +
-                  "></label>"
+                  ">" +
+                  _vm._ssrEscape(
+                    "\n          " +
+                      _vm._s(
+                        _vm.$$translate("Feedback::Feedback.feedbackTextLegend")
+                      ) +
+                      " - " +
+                      _vm._s(i) +
+                      "\n        "
+                  ) +
+                  "</label>"
                 )
               }) +
               '</div> <div class="form-group"><input type="text" name="title"' +

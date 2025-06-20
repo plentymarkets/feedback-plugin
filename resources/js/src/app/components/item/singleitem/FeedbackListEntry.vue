@@ -94,7 +94,9 @@
             :key="'stars_label_' + i"
             :class="'star star-' + i"
             :for="'star-' + _uid + '-' + i"
-          />
+          >
+            {{ $$translate('Feedback::Feedback.feedbackTextLegend') }} - {{ i }}
+          </label>
         </template>
       </div>
       <div class="form-group">
