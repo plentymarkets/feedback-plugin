@@ -2922,7 +2922,7 @@ var render = function() {
                         _vm._v(
                           "\n          " +
                             _vm._s(
-                              _vm.$$translate(
+                              _vm.$translate(
                                 "Feedback::Feedback.feedbackTextLegend"
                               )
                             ) +

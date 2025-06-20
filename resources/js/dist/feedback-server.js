@@ -7962,7 +7962,7 @@ var render = function() {
                   _vm._ssrEscape(
                     "\n          " +
                       _vm._s(
-                        _vm.$$translate("Feedback::Feedback.feedbackTextLegend")
+                        _vm.$translate("Feedback::Feedback.feedbackTextLegend")
                       ) +
                       " - " +
                       _vm._s(i) +

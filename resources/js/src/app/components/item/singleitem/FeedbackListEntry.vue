@@ -95,7 +95,7 @@
             :class="'star star-' + i"
             :for="'star-' + _uid + '-' + i"
           >
-            {{ $$translate('Feedback::Feedback.feedbackTextLegend') }} - {{ i }}
+            {{ $translate('Feedback::Feedback.feedbackTextLegend') }} - {{ i }}
           </label>
         </template>
       </div>
