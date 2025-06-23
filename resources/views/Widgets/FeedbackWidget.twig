@@ -17,7 +17,7 @@
 <div data-feedback class="widget widget-feedback widget-{{ appearance | default("primary") }} {% if customClass | length > 0 %} {{ customClass }}{% endif %} {% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif %}"
         {% if inlineMargin | length > 0 %} style="{{ inlineMargin }}"{% endif %}>
     <feedback-container class="widget-inner"
-            :options="{{ Twig.print('options | json_encode') }}"
+            :optionss="{{ Twig.print('options | json_encode') }}"
             classes="{{ spacingPadding }}"
             styles="{{ inlinePadding }}">
     </feedback-container>
