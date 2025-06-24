@@ -89,12 +89,11 @@
             type="radio"
             :value="i"
             name="ratingValue"
-            :aria-label="`${$translate('Feedback::Feedback.feedbackTextLegend')}-${i}`"
           >
-          <span
+          <label
             :key="'stars_label_' + i"
-            :aria-hidden="true"
             :class="'star star-' + i"
+            :aria-label="`${$translate('Feedback::Feedback.feedbackTextLegend')}-${i}`"
           />
         </template>
       </div>
