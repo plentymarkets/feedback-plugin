@@ -91,7 +91,7 @@
             name="ratingValue"
             :aria-label="`${$translate('Feedback::Feedback.feedbackTextLegend')}-${i}`"
           >
-          <label
+          <span
             :key="'stars_label_' + i"
             :aria-hidden="true"
             :class="'star star-' + i"

@@ -2916,7 +2916,7 @@ var render = function() {
                       }
                     }),
                     _vm._v(" "),
-                    _c("label", {
+                    _c("span", {
                       key: "stars_label_" + i,
                       class: "star star-" + i,
                       attrs: { "aria-hidden": true }
