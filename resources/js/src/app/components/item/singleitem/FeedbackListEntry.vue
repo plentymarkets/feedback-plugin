@@ -91,6 +91,11 @@
             name="ratingValue"
             :aria-label="`${$translate('Feedback::Feedback.feedbackTextLegend')}-${i}`"
           >
+          <label
+            :key="'stars_label_' + i"
+            :aria-hidden="true"
+            :class="'star star-' + i"
+          />
         </template>
       </div>
       <div class="form-group">

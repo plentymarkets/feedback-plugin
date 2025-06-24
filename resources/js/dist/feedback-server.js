@@ -1335,6 +1335,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -7955,7 +7960,10 @@ var render = function() {
                     _vm._q(_vm.editableFeedback.ratingValue, i)
                   ) +
                   _vm._ssrClass(null, "star star-" + i) +
-                  ">"
+                  "> <label" +
+                  _vm._ssrAttr("aria-hidden", true) +
+                  _vm._ssrClass(null, "star star-" + i) +
+                  "></label>"
                 )
               }) +
               '</div> <div class="form-group"><input type="text" name="title"' +
