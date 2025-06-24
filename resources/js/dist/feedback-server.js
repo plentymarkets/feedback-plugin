@@ -7960,10 +7960,10 @@ var render = function() {
                     _vm._q(_vm.editableFeedback.ratingValue, i)
                   ) +
                   _vm._ssrClass(null, "star star-" + i) +
-                  "> <label" +
+                  "> <span" +
                   _vm._ssrAttr("aria-hidden", true) +
                   _vm._ssrClass(null, "star star-" + i) +
-                  "></label>"
+                  "></span>"
                 )
               }) +
               '</div> <div class="form-group"><input type="text" name="title"' +
