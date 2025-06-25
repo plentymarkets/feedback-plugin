@@ -1339,7 +1339,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -7946,9 +7945,9 @@ var render = function() {
               _vm._ssrList([5, 4, 3, 2, 1], function(i) {
                 return (
                   "<input" +
-                  _vm._ssrAttr("id", "star-" + _vm._uid + "-" + i) +
-                  ' type="radio" name="ratingValue"' +
-                  _vm._ssrAttr("aria-hidden", true) +
+                  _vm._ssrAttr("id", "edit-star-" + _vm._uid + "-" + i) +
+                  ' type="radio"' +
+                  _vm._ssrAttr("name", "star-ratingValue" + _vm._uid) +
                   _vm._ssrAttr("value", i) +
                   _vm._ssrAttr(
                     "checked",
@@ -7956,15 +7955,15 @@ var render = function() {
                   ) +
                   _vm._ssrClass(null, "star star-" + i) +
                   "> <label" +
-                  _vm._ssrAttr(
-                    "aria-label",
-                    "star-" +
-                      _vm.$translate("Feedback::Feedback.feedbackTextLegend") +
-                      "-" +
-                      i
-                  ) +
+                  _vm._ssrAttr("for", "edit-star-" + i + "-" + _vm._uid) +
                   _vm._ssrClass(null, "star star-" + i) +
-                  "></label>"
+                  '><span class="d-none">' +
+                  _vm._ssrEscape(
+                    _vm._s(
+                      _vm.$translate("Feedback::Feedback.feedbackTextLegend")
+                    )
+                  ) +
+                  "</span></label>"
                 )
               }) +
               '</div> <div class="form-group"><input type="text" name="title"' +

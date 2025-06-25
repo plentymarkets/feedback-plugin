@@ -82,20 +82,19 @@
       <div class="stars">
         <template v-for="i in [5,4,3,2,1]">
           <input
-            :id="'star-' + _uid + '-' + i"
-            :key="'stars_input_' + i"
+            :id="'edit-star-' + _uid + '-' + i"
+            :key="'edit_stars_input_' + i"
             v-model="editableFeedback.ratingValue"
             :class="'star star-' + i"
             type="radio"
             :value="i"
-            name="ratingValue"
-            :aria-hidden="true"
+            :name="'star-ratingValue' + _uid"
           >
           <label
-            :key="'stars_label_' + i"
+            :key="'edit_star_label_' + i"
             :class="'star star-' + i"
-            :aria-label="`star-${$translate('Feedback::Feedback.feedbackTextLegend')}-${i}`"
-          />
+            :for="'edit-star-' + i + '-' + _uid"
+          ><span class="d-none">{{ $translate("Feedback::Feedback.feedbackTextLegend") }}</span></label>
         </template>
       </div>
       <div class="form-group">

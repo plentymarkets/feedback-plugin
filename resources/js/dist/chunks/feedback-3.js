@@ -891,7 +891,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2888,13 +2887,12 @@ var render = function() {
                           expression: "editableFeedback.ratingValue"
                         }
                       ],
-                      key: "stars_input_" + i,
+                      key: "edit_stars_input_" + i,
                       class: "star star-" + i,
                       attrs: {
-                        id: "star-" + _vm._uid + "-" + i,
+                        id: "edit-star-" + _vm._uid + "-" + i,
                         type: "radio",
-                        name: "ratingValue",
-                        "aria-hidden": true
+                        name: "star-ratingValue" + _vm._uid
                       },
                       domProps: {
                         value: i,
@@ -2911,19 +2909,25 @@ var render = function() {
                       }
                     }),
                     _vm._v(" "),
-                    _c("label", {
-                      key: "stars_label_" + i,
-                      class: "star star-" + i,
-                      attrs: {
-                        "aria-label":
-                          "star-" +
-                          _vm.$translate(
-                            "Feedback::Feedback.feedbackTextLegend"
-                          ) +
-                          "-" +
-                          i
-                      }
-                    })
+                    _c(
+                      "label",
+                      {
+                        key: "edit_star_label_" + i,
+                        class: "star star-" + i,
+                        attrs: { for: "edit-star-" + i + "-" + _vm._uid }
+                      },
+                      [
+                        _c("span", { staticClass: "d-none" }, [
+                          _vm._v(
+                            _vm._s(
+                              _vm.$translate(
+                                "Feedback::Feedback.feedbackTextLegend"
+                              )
+                            )
+                          )
+                        ])
+                      ]
+                    )
                   ]
                 })
               ],
