@@ -106,7 +106,7 @@
           v-model="editableFeedback.title"
           type="text"
           class="form-control"
-          name="title"
+          :name="'title_' + _uid"
           :placeholder="$translate('Feedback::Feedback.title')"
           required
         >
@@ -120,13 +120,13 @@
           :id="'label_message_' + _uid"
           v-model="editableFeedback.message"
           class="form-control"
-          name="message"
+          :name="'message_' + _uid"
           rows="3"
           :placeholder="$translate('Feedback::Feedback.title')"
         />
         <label
           class="position-absolute"
-          :for="'label_title_' + _uid"
+          :for="'label_message_' + _uid"
         ><span class="d-none">{{ $translate("Feedback::Feedback.title") }}</span></label>
       </div>
 

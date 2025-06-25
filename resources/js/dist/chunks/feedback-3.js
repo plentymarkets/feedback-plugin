@@ -2970,11 +2970,11 @@ var render = function() {
                 ],
                 staticClass: "form-control",
                 attrs: {
+                  id: "label_title_" + _vm._uid,
                   type: "text",
-                  name: "title",
+                  name: "title_" + _vm._uid,
                   placeholder: _vm.$translate("Feedback::Feedback.title"),
-                  required: "",
-                  id: "label_title_" + _vm._uid
+                  required: ""
                 },
                 domProps: { value: _vm.editableFeedback.title },
                 on: {
@@ -3013,10 +3013,10 @@ var render = function() {
                 ],
                 staticClass: "form-control",
                 attrs: {
-                  name: "message",
+                  id: "label_message_" + _vm._uid,
+                  name: "message_" + _vm._uid,
                   rows: "3",
-                  placeholder: _vm.$translate("Feedback::Feedback.title"),
-                  id: "label_message_" + _vm._uid
+                  placeholder: _vm.$translate("Feedback::Feedback.title")
                 },
                 domProps: { value: _vm.editableFeedback.message },
                 on: {
@@ -3037,7 +3037,7 @@ var render = function() {
                 "label",
                 {
                   staticClass: "position-absolute",
-                  attrs: { for: "label_title_" + _vm._uid }
+                  attrs: { for: "label_message_" + _vm._uid }
                 },
                 [
                   _c("span", { staticClass: "d-none" }, [

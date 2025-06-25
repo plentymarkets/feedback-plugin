@@ -7982,7 +7982,8 @@ var render = function() {
               }) +
               '</fieldset></div> <div class="form-group"><input' +
               _vm._ssrAttr("id", "label_title_" + _vm._uid) +
-              ' type="text" name="title"' +
+              ' type="text"' +
+              _vm._ssrAttr("name", "title_" + _vm._uid) +
               _vm._ssrAttr(
                 "placeholder",
                 _vm.$translate("Feedback::Feedback.title")
@@ -7997,7 +7998,8 @@ var render = function() {
               ) +
               '</span></label></div> <div class="form-group"><textarea' +
               _vm._ssrAttr("id", "label_message_" + _vm._uid) +
-              ' name="message" rows="3"' +
+              _vm._ssrAttr("name", "message_" + _vm._uid) +
+              ' rows="3"' +
               _vm._ssrAttr(
                 "placeholder",
                 _vm.$translate("Feedback::Feedback.title")
@@ -8005,7 +8007,7 @@ var render = function() {
               ' class="form-control">' +
               _vm._ssrEscape(_vm._s(_vm.editableFeedback.message)) +
               "</textarea> <label" +
-              _vm._ssrAttr("for", "label_title_" + _vm._uid) +
+              _vm._ssrAttr("for", "label_message_" + _vm._uid) +
               ' class="position-absolute"><span class="d-none">' +
               _vm._ssrEscape(
                 _vm._s(_vm.$translate("Feedback::Feedback.title"))
