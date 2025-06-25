@@ -80,22 +80,25 @@
 
     <div v-if="!!editableFeedback && !isReply">
       <div class="stars">
-        <template v-for="i in [5,4,3,2,1]">
-          <input
-            :id="'star-' + _uid + '-' + i"
-            :key="'stars_input_' + i"
-            v-model="editableFeedback.ratingValue"
-            :class="'star star-' + i"
-            type="radio"
-            :value="i"
-            name="ratingValue"
-          >
-          <label
-            :key="'stars_label_' + i"
-            :class="'star star-' + i"
-            :for="'star-' + _uid + '-' + i"
-          />
-        </template>
+        <fieldset>
+          <legend><span class="d-none">{{ $translate("Feedback::Feedback.feedbackTextLegend") }}</span></legend>
+          <template v-for="i in [5,4,3,2,1]">
+            <input
+              :id="'star-' + _uid + '-' + i"
+              :key="'stars_input_' + i"
+              v-model="editableFeedback.ratingValue"
+              :class="'star star-' + i"
+              type="radio"
+              :value="i"
+              name="ratingValue"
+            >
+            <label
+              :key="'stars_label_' + i"
+              :class="'star star-' + i"
+              :for="'star-' + _uid + '-' + i"
+            ><span class="d-none">{{ $translate("Feedback::Feedback.feedbackAverageLabel") }}</span></label>
+          </template>
+        </fieldset>
       </div>
       <div class="form-group">
         <input
@@ -105,6 +108,7 @@
           name="title"
           :placeholder="$translate('Feedback::Feedback.title')"
           required
+          :aria-label="`${$translate('Feedback::Feedback.editReview')}-${$translate('Feedback::Feedback.title')}`"
         >
       </div>
       <div class="form-group">
@@ -114,6 +118,7 @@
           name="message"
           rows="3"
           :placeholder="$translate('Feedback::Feedback.title')"
+          :aria-label="`${$translate('Feedback::Feedback.editReview')}-${$translate('Feedback::Feedback.commentMessage')}`"
         />
       </div>
 

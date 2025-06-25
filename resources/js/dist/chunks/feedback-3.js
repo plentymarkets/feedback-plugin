@@ -889,6 +889,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2870,53 +2875,80 @@ var render = function() {
       _vm._v(" "),
       !!_vm.editableFeedback && !_vm.isReply
         ? _c("div", [
-            _c(
-              "div",
-              { staticClass: "stars" },
-              [
-                _vm._l([5, 4, 3, 2, 1], function(i) {
-                  return [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.editableFeedback.ratingValue,
-                          expression: "editableFeedback.ratingValue"
-                        }
-                      ],
-                      key: "stars_input_" + i,
-                      class: "star star-" + i,
-                      attrs: {
-                        id: "star-" + _vm._uid + "-" + i,
-                        type: "radio",
-                        name: "ratingValue"
-                      },
-                      domProps: {
-                        value: i,
-                        checked: _vm._q(_vm.editableFeedback.ratingValue, i)
-                      },
-                      on: {
-                        change: function($event) {
-                          return _vm.$set(
-                            _vm.editableFeedback,
-                            "ratingValue",
-                            i
+            _c("div", { staticClass: "stars" }, [
+              _c(
+                "fieldset",
+                [
+                  _c("legend", [
+                    _c("span", { staticClass: "d-none" }, [
+                      _vm._v(
+                        _vm._s(
+                          _vm.$translate(
+                            "Feedback::Feedback.feedbackTextLegend"
                           )
+                        )
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm._l([5, 4, 3, 2, 1], function(i) {
+                    return [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.editableFeedback.ratingValue,
+                            expression: "editableFeedback.ratingValue"
+                          }
+                        ],
+                        key: "stars_input_" + i,
+                        class: "star star-" + i,
+                        attrs: {
+                          id: "star-" + _vm._uid + "-" + i,
+                          type: "radio",
+                          name: "ratingValue"
+                        },
+                        domProps: {
+                          value: i,
+                          checked: _vm._q(_vm.editableFeedback.ratingValue, i)
+                        },
+                        on: {
+                          change: function($event) {
+                            return _vm.$set(
+                              _vm.editableFeedback,
+                              "ratingValue",
+                              i
+                            )
+                          }
                         }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("label", {
-                      key: "stars_label_" + i,
-                      class: "star star-" + i,
-                      attrs: { for: "star-" + _vm._uid + "-" + i }
-                    })
-                  ]
-                })
-              ],
-              2
-            ),
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          key: "stars_label_" + i,
+                          class: "star star-" + i,
+                          attrs: { for: "star-" + _vm._uid + "-" + i }
+                        },
+                        [
+                          _c("span", { staticClass: "d-none" }, [
+                            _vm._v(
+                              _vm._s(
+                                _vm.$translate(
+                                  "Feedback::Feedback.feedbackAverageLabel"
+                                )
+                              )
+                            )
+                          ])
+                        ]
+                      )
+                    ]
+                  })
+                ],
+                2
+              )
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
               _c("input", {
@@ -2933,7 +2965,11 @@ var render = function() {
                   type: "text",
                   name: "title",
                   placeholder: _vm.$translate("Feedback::Feedback.title"),
-                  required: ""
+                  required: "",
+                  "aria-label":
+                    _vm.$translate("Feedback::Feedback.editReview") +
+                    "-" +
+                    _vm.$translate("Feedback::Feedback.title")
                 },
                 domProps: { value: _vm.editableFeedback.title },
                 on: {
@@ -2961,7 +2997,11 @@ var render = function() {
                 attrs: {
                   name: "message",
                   rows: "3",
-                  placeholder: _vm.$translate("Feedback::Feedback.title")
+                  placeholder: _vm.$translate("Feedback::Feedback.title"),
+                  "aria-label":
+                    _vm.$translate("Feedback::Feedback.editReview") +
+                    "-" +
+                    _vm.$translate("Feedback::Feedback.commentMessage")
                 },
                 domProps: { value: _vm.editableFeedback.message },
                 on: {

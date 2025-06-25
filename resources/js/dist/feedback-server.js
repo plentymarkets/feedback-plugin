@@ -1337,6 +1337,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -6305,7 +6310,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "1ac6542f"
+  "1a304a59"
   
 )
 
@@ -6342,7 +6347,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "b49030c2"
+  "12bd5335"
   
 )
 
@@ -6379,7 +6384,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "21e87ac1"
+  "634158d7"
   
 )
 
@@ -6416,7 +6421,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "7b522034"
+  "17a04c5e"
   
 )
 
@@ -6453,7 +6458,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "a16971e4"
+  "4b997338"
   
 )
 
@@ -6490,7 +6495,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "62b21734"
+  "b7ea156c"
   
 )
 
@@ -6527,7 +6532,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "015b2d05"
+  "3b24c99b"
   
 )
 
@@ -6564,7 +6569,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "c706c52e"
+  "6859feff"
   
 )
 
@@ -6601,7 +6606,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "731f6790"
+  "db64a464"
   
 )
 
@@ -7939,7 +7944,11 @@ var render = function() {
             : "<!---->") +
           " " +
           (!!_vm.editableFeedback && !_vm.isReply
-            ? '<div><div class="stars">' +
+            ? '<div><div class="stars"><fieldset><legend><span class="d-none">' +
+              _vm._ssrEscape(
+                _vm._s(_vm.$translate("Feedback::Feedback.feedbackTextLegend"))
+              ) +
+              "</span></legend> " +
               _vm._ssrList([5, 4, 3, 2, 1], function(i) {
                 return (
                   "<input" +
@@ -7954,20 +7963,38 @@ var render = function() {
                   "> <label" +
                   _vm._ssrAttr("for", "star-" + _vm._uid + "-" + i) +
                   _vm._ssrClass(null, "star star-" + i) +
-                  "></label>"
+                  '><span class="d-none">' +
+                  _vm._ssrEscape(
+                    _vm._s(
+                      _vm.$translate("Feedback::Feedback.feedbackAverageLabel")
+                    )
+                  ) +
+                  "</span></label>"
                 )
               }) +
-              '</div> <div class="form-group"><input type="text" name="title"' +
+              '</fieldset></div> <div class="form-group"><input type="text" name="title"' +
               _vm._ssrAttr(
                 "placeholder",
                 _vm.$translate("Feedback::Feedback.title")
               ) +
               ' required="required"' +
+              _vm._ssrAttr(
+                "aria-label",
+                _vm.$translate("Feedback::Feedback.editReview") +
+                  "-" +
+                  _vm.$translate("Feedback::Feedback.title")
+              ) +
               _vm._ssrAttr("value", _vm.editableFeedback.title) +
               ' class="form-control"></div> <div class="form-group"><textarea name="message" rows="3"' +
               _vm._ssrAttr(
                 "placeholder",
                 _vm.$translate("Feedback::Feedback.title")
+              ) +
+              _vm._ssrAttr(
+                "aria-label",
+                _vm.$translate("Feedback::Feedback.editReview") +
+                  "-" +
+                  _vm.$translate("Feedback::Feedback.commentMessage")
               ) +
               ' class="form-control">' +
               _vm._ssrEscape(_vm._s(_vm.editableFeedback.message)) +
