@@ -102,24 +102,32 @@
       </div>
       <div class="form-group">
         <input
+          :id="'label_title_' + _uid"
           v-model="editableFeedback.title"
           type="text"
           class="form-control"
           name="title"
           :placeholder="$translate('Feedback::Feedback.title')"
           required
-          :aria-label="`${$translate('Feedback::Feedback.editReview')}-${$translate('Feedback::Feedback.title')}`"
         >
+        <label
+          class="position-absolute"
+          :for="'label_title_' + _uid"
+        ><span class="d-none">{{ $translate("Feedback::Feedback.title") }}</span></label>
       </div>
       <div class="form-group">
         <textarea
+          :id="'label_message_' + _uid"
           v-model="editableFeedback.message"
           class="form-control"
           name="message"
           rows="3"
           :placeholder="$translate('Feedback::Feedback.title')"
-          :aria-label="`${$translate('Feedback::Feedback.editReview')}-${$translate('Feedback::Feedback.commentMessage')}`"
         />
+        <label
+          class="position-absolute"
+          :for="'label_title_' + _uid"
+        ><span class="d-none">{{ $translate("Feedback::Feedback.title") }}</span></label>
       </div>
 
       <button

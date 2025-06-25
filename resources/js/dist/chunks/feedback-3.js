@@ -894,6 +894,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2966,10 +2974,7 @@ var render = function() {
                   name: "title",
                   placeholder: _vm.$translate("Feedback::Feedback.title"),
                   required: "",
-                  "aria-label":
-                    _vm.$translate("Feedback::Feedback.editReview") +
-                    "-" +
-                    _vm.$translate("Feedback::Feedback.title")
+                  id: "label_title_" + _vm._uid
                 },
                 domProps: { value: _vm.editableFeedback.title },
                 on: {
@@ -2980,7 +2985,20 @@ var render = function() {
                     _vm.$set(_vm.editableFeedback, "title", $event.target.value)
                   }
                 }
-              })
+              }),
+              _vm._v(" "),
+              _c(
+                "label",
+                {
+                  staticClass: "position-absolute",
+                  attrs: { for: "label_title_" + _vm._uid }
+                },
+                [
+                  _c("span", { staticClass: "d-none" }, [
+                    _vm._v(_vm._s(_vm.$translate("Feedback::Feedback.title")))
+                  ])
+                ]
+              )
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -2998,10 +3016,7 @@ var render = function() {
                   name: "message",
                   rows: "3",
                   placeholder: _vm.$translate("Feedback::Feedback.title"),
-                  "aria-label":
-                    _vm.$translate("Feedback::Feedback.editReview") +
-                    "-" +
-                    _vm.$translate("Feedback::Feedback.commentMessage")
+                  id: "label_message_" + _vm._uid
                 },
                 domProps: { value: _vm.editableFeedback.message },
                 on: {
@@ -3016,7 +3031,20 @@ var render = function() {
                     )
                   }
                 }
-              })
+              }),
+              _vm._v(" "),
+              _c(
+                "label",
+                {
+                  staticClass: "position-absolute",
+                  attrs: { for: "label_title_" + _vm._uid }
+                },
+                [
+                  _c("span", { staticClass: "d-none" }, [
+                    _vm._v(_vm._s(_vm.$translate("Feedback::Feedback.title")))
+                  ])
+                ]
+              )
             ]),
             _vm._v(" "),
             _c(
