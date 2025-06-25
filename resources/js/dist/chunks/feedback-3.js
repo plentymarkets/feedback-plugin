@@ -891,6 +891,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2892,7 +2893,8 @@ var render = function() {
                       attrs: {
                         id: "star-" + _vm._uid + "-" + i,
                         type: "radio",
-                        name: "ratingValue"
+                        name: "ratingValue",
+                        "aria-hidden": true
                       },
                       domProps: {
                         value: i,
@@ -2914,6 +2916,7 @@ var render = function() {
                       class: "star star-" + i,
                       attrs: {
                         "aria-label":
+                          "star-" +
                           _vm.$translate(
                             "Feedback::Feedback.feedbackTextLegend"
                           ) +

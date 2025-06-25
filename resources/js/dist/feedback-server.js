@@ -1339,6 +1339,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -7947,6 +7948,7 @@ var render = function() {
                   "<input" +
                   _vm._ssrAttr("id", "star-" + _vm._uid + "-" + i) +
                   ' type="radio" name="ratingValue"' +
+                  _vm._ssrAttr("aria-hidden", true) +
                   _vm._ssrAttr("value", i) +
                   _vm._ssrAttr(
                     "checked",
@@ -7956,7 +7958,8 @@ var render = function() {
                   "> <label" +
                   _vm._ssrAttr(
                     "aria-label",
-                    _vm.$translate("Feedback::Feedback.feedbackTextLegend") +
+                    "star-" +
+                      _vm.$translate("Feedback::Feedback.feedbackTextLegend") +
                       "-" +
                       i
                   ) +
