@@ -81,7 +81,7 @@
     <div v-if="!!editableFeedback && !isReply">
       <div class="stars">
         <fieldset>
-          <legend><span class="d-none">{{ $translate("Feedback::Feedback.feedbackTextLegend") }}</span></legend>
+          <legend><span class="visually-hidden">{{ $translate("Feedback::Feedback.feedbackTextLegend") }}</span></legend>
           <template v-for="i in [5,4,3,2,1]">
             <input
               :id="'star-' + _uid + '-' + i"
@@ -96,7 +96,7 @@
               :key="'stars_label_' + i"
               :class="'star star-' + i"
               :for="'star-' + _uid + '-' + i"
-            ><span class="d-none">{{ $translate("Feedback::Feedback.feedbackAverageLabel") }}</span></label>
+            ><span class="visually-hidden">{{ i }} {{ $translate("Feedback::Feedback.feedbackAverageLabel") }}</span></label>
           </template>
         </fieldset>
       </div>
@@ -113,7 +113,7 @@
         <label
           class="position-absolute"
           :for="'label_title_' + _uid"
-        ><span class="d-none">{{ $translate("Feedback::Feedback.title") }}</span></label>
+        ><span class="visually-hidden">{{ $translate("Feedback::Feedback.title") }}</span></label>
       </div>
       <div class="form-group">
         <textarea
@@ -127,7 +127,7 @@
         <label
           class="position-absolute"
           :for="'label_message_' + _uid"
-        ><span class="d-none">{{ $translate("Feedback::Feedback.title") }}</span></label>
+        ><span class="visually-hidden">{{ $translate("Feedback::Feedback.title") }}</span></label>
       </div>
 
       <button
