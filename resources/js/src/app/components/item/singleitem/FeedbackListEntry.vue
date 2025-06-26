@@ -96,8 +96,8 @@
               :key="'stars_label_' + i"
               :class="'star star-' + i"
               :for="'star-' + _uid + '-' + i"
-            ><span class="visually-hidden">{{ i }} - {{ $translate("Feedback::Feedback.feedbackAverageLabel") }}</span></label>
-          </template>
+            ><span class="visually-hidden">{{ i }} - {{ $translate("Feedback::Feedback.feedbackAverageLabel", {"count": i }) }}</span></label>
+            </template>
         </fieldset>
       </div>
       <div class="form-group">
