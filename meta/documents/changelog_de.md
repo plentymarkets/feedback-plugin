@@ -3,7 +3,7 @@
 ## v5.0.2  <a href="https://github.com/plentymarkets/feedback-plugin/compare/5.0.1...5.0.2" target="_blank" rel="noopener"><b>Übersicht aller Änderungen</b></a>
 
 ### Behoben
-- Ein Problem mit der Barrierefreiheit des Bewertungsformulars wurde behoben.
+- Die Barrierefreiheit des Bewertungsformulars wurde verbessert.
 
 ## v5.0.1 (2025-04-17) <a href="https://github.com/plentymarkets/feedback-plugin/compare/5.0.0...5.0.1" target="_blank" rel="noopener"><b>Übersicht aller Änderungen</b></a>
 
