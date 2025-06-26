@@ -49,7 +49,7 @@
         <label
           class="position-absolute"
           for="author"
-        ><span class="d-none">{{ $translate("Feedback::Feedback.authorName") }}</span></label>
+        ><span class="visually-hidden">{{ $translate("Feedback::Feedback.authorName") }}</span></label>
 
         <input
           id="feedback-textfield"
@@ -61,7 +61,7 @@
         <label
           class="position-absolute"
           for="feedback-textfield"
-        ><span class="d-none">{{ $translate("Feedback::Feedback.feedbackTextLabel") }}</span></label>
+        ><span class="visually-hidden">{{ $translate("Feedback::Feedback.feedbackTextLabel") }}</span></label>
       </div>
 
       <div class="form-group">
@@ -78,7 +78,7 @@
         <label
           class="position-absolute"
           for="title"
-        ><span class="d-none">{{ $translate("Feedback::Feedback.title") }}</span></label>
+        ><span class="visually-hidden">{{ $translate("Feedback::Feedback.title") }}</span></label>
         <div class="invalid-feedback">
           {{ $translate("Feedback::Feedback.titleRequired") }}
         </div>
@@ -98,7 +98,7 @@
           class="position-absolute"
           for="message"
         >
-          <span class="d-none">{{ $translate("Feedback::Feedback.reviewMessage") }}</span>
+          <span class="visually-hidden">{{ $translate("Feedback::Feedback.reviewMessage") }}</span>
         </label>
       </div>
 
