@@ -1298,7 +1298,7 @@ var render = function render() {
       }
     }, [_c("span", {
       staticClass: "visually-hidden"
-    }, [_vm._v(_vm._s(i) + " " + _vm._s(_vm.$translate("Feedback::Feedback.feedbackAverageLabel")))])])];
+    }, [_vm._v(_vm._s(i) + " - " + _vm._s(_vm.$translate("Feedback::Feedback.feedbackAverageLabel")))])])];
   })], 2)]), _vm._v(" "), _c("div", {
     staticClass: "form-group"
   }, [_c("input", {
