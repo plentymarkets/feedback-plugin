@@ -327,6 +327,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -867,8 +869,6 @@ __webpack_require__.r(__webpack_exports__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-//
-//
 //
 //
 //
@@ -1680,6 +1680,8 @@ __webpack_require__.r(__webpack_exports__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+//
+//
 //
 //
 //
@@ -7201,7 +7203,7 @@ var render = function() {
                       !_vm.authenticatedUser.hasPurchased
                   ) +
                   _vm._ssrAttr("value", _vm.authorName) +
-                  ' class="form-control"> <input id="comment-textfield" type="text" name="comment-textfield"' +
+                  ' class="form-control"> <input id="comment-textfield" type="text" name="comment-textfield" aria-hidden="true" tabindex="-1"' +
                   _vm._ssrAttr("value", _vm.honeypot) +
                   ' class="form-control"></div>'
                 : "<!---->") +
@@ -7567,14 +7569,12 @@ var render = function() {
                     _vm._ssrClass(null, "star star-" + i) +
                     '><span class="visually-hidden">' +
                     _vm._ssrEscape(
-                      _vm._s(i) +
-                        " - " +
-                        _vm._s(
-                          _vm.$translate(
-                            "Feedback::Feedback.feedbackAverageLabel",
-                            { count: i }
-                          )
+                      _vm._s(
+                        _vm.$translate(
+                          "Feedback::Feedback.feedbackAverageLabel",
+                          { count: i }
                         )
+                      )
                     ) +
                     "</span></label>"
                   )
@@ -7609,15 +7609,9 @@ var render = function() {
                     _vm._ssrEscape(
                       _vm._s(_vm.$translate("Feedback::Feedback.authorName"))
                     ) +
-                    '</span></label> <input id="feedback-textfield" type="text" name="feedback-textfield"' +
+                    '</span></label> <input id="feedback-textfield" type="text" name="feedback-textfield" aria-hidden="true" tabindex="-1"' +
                     _vm._ssrAttr("value", _vm.feedback.honeypot) +
-                    ' class="form-control"> <label for="feedback-textfield" class="position-absolute"><span class="visually-hidden">' +
-                    _vm._ssrEscape(
-                      _vm._s(
-                        _vm.$translate("Feedback::Feedback.feedbackTextLabel")
-                      )
-                    ) +
-                    "</span></label></div>"
+                    ' class="form-control"></div>'
                   : "<!---->") +
                 ' <div class="form-group"><input id="title" type="text" name="title"' +
                 _vm._ssrAttr(
@@ -7976,14 +7970,12 @@ var render = function() {
                   _vm._ssrClass(null, "star star-" + i) +
                   '><span class="visually-hidden">' +
                   _vm._ssrEscape(
-                    _vm._s(i) +
-                      " - " +
-                      _vm._s(
-                        _vm.$translate(
-                          "Feedback::Feedback.feedbackAverageLabel",
-                          { count: i }
-                        )
+                    _vm._s(
+                      _vm.$translate(
+                        "Feedback::Feedback.feedbackAverageLabel",
+                        { count: i }
                       )
+                    )
                   ) +
                   "</span></label>"
                 )
@@ -8220,7 +8212,7 @@ var render = function() {
               _vm._ssrAttr("value", _vm.feedback.authorName) +
               ' class="form-control"> <input id="feedback-textfield" type="text"' +
               _vm._ssrAttr("disabled", _vm.isRated || _vm.limitReached) +
-              ' name="feedback-textfield"' +
+              ' name="feedback-textfield" aria-hidden="true" tabindex="-1"' +
               _vm._ssrAttr("value", _vm.feedback.honeypot) +
               ' class="form-control"></div>'
             : "<!---->") +

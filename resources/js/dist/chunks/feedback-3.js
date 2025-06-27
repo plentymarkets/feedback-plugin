@@ -588,8 +588,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2282,14 +2280,12 @@ var render = function() {
                       [
                         _c("span", { staticClass: "visually-hidden" }, [
                           _vm._v(
-                            _vm._s(i) +
-                              " - " +
-                              _vm._s(
-                                _vm.$translate(
-                                  "Feedback::Feedback.feedbackAverageLabel",
-                                  { count: i }
-                                )
+                            _vm._s(
+                              _vm.$translate(
+                                "Feedback::Feedback.feedbackAverageLabel",
+                                { count: i }
                               )
+                            )
                           )
                         ])
                       ]
@@ -2375,7 +2371,9 @@ var render = function() {
                   attrs: {
                     id: "feedback-textfield",
                     type: "text",
-                    name: "feedback-textfield"
+                    name: "feedback-textfield",
+                    "aria-hidden": "true",
+                    tabindex: "-1"
                   },
                   domProps: { value: _vm.feedback.honeypot },
                   on: {
@@ -2386,24 +2384,7 @@ var render = function() {
                       _vm.$set(_vm.feedback, "honeypot", $event.target.value)
                     }
                   }
-                }),
-                _vm._v(" "),
-                _c(
-                  "label",
-                  {
-                    staticClass: "position-absolute",
-                    attrs: { for: "feedback-textfield" }
-                  },
-                  [
-                    _c("span", { staticClass: "visually-hidden" }, [
-                      _vm._v(
-                        _vm._s(
-                          _vm.$translate("Feedback::Feedback.feedbackTextLabel")
-                        )
-                      )
-                    ])
-                  ]
-                )
+                })
               ])
             : _vm._e(),
           _vm._v(" "),
@@ -2945,14 +2926,12 @@ var render = function() {
                         [
                           _c("span", { staticClass: "visually-hidden" }, [
                             _vm._v(
-                              _vm._s(i) +
-                                " - " +
-                                _vm._s(
-                                  _vm.$translate(
-                                    "Feedback::Feedback.feedbackAverageLabel",
-                                    { count: i }
-                                  )
+                              _vm._s(
+                                _vm.$translate(
+                                  "Feedback::Feedback.feedbackAverageLabel",
+                                  { count: i }
                                 )
+                              )
                             )
                           ])
                         ]
