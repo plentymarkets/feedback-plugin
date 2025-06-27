@@ -59,7 +59,10 @@
           name="feedback-textfield"
           aria-hidden="true"
           tabindex="-1"
-        >
+        ><label
+          class="position-absolute"
+          for="feedback-textfield"
+        ><span class="visually-hidden">{{ $translate("Feedback::Feedback.honeypotLabel") }}</span></label>
       </div>
 
       <div class="form-group">
