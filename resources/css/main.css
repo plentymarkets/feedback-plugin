@@ -357,3 +357,7 @@
   line-height: 30px;
   font-size: 1.25em; }
 
+.widget-feedback-average .visually-hidden {
+  color: #000 !important;
+  background-color: #fff !important; }
+

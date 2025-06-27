@@ -520,4 +520,9 @@
         line-height: 30px;
         font-size: 1.25em;
     }
+    // hotfix for visually-hidden so it does not introduce contrast errors
+    .visually-hidden {
+        color: #000 !important;
+        background-color: #fff !important;
+    }
 }
