@@ -21,7 +21,7 @@
               :key="'star_label_' + i"
               :class="'star star-' + i"
               :for="'star-' + i + _uid"
-            ><span class="visually-hidden">{{ i }} - {{ $translate("Feedback::Feedback.feedbackAverageLabel", {"count": i }) }}</span></label>
+            ><span class="visually-hidden">{{ $translate("Feedback::Feedback.feedbackAverageLabel", {"count": i }) }}</span></label>
           </template>
         </fieldset>
       </div>
