@@ -57,11 +57,9 @@
           type="text"
           class="form-control"
           name="feedback-textfield"
+          aria-hidden="true"
+          tabindex="-1"
         >
-        <label
-          class="position-absolute"
-          for="feedback-textfield"
-        ><span class="visually-hidden">{{ $translate("Feedback::Feedback.feedbackTextLabel") }}</span></label>
       </div>
 
       <div class="form-group">
