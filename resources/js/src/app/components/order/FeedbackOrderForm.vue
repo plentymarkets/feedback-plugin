@@ -108,6 +108,8 @@
                 class="form-control"
                 :disabled="isRated || limitReached"
                 name="feedback-textfield"
+                aria-hidden="true"
+                tabindex="-1"
               >
             </div>
 

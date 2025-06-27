@@ -127,6 +127,8 @@
           type="text"
           class="form-control"
           name="comment-textfield"
+          aria-hidden="true"
+          tabindex="-1"
         >
       </div>
 
