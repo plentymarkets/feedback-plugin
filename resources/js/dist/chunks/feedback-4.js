@@ -380,6 +380,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1396,7 +1398,9 @@ var render = function() {
                         id: "feedback-textfield",
                         type: "text",
                         disabled: _vm.isRated || _vm.limitReached,
-                        name: "feedback-textfield"
+                        name: "feedback-textfield",
+                        "aria-hidden": "true",
+                        tabindex: "-1"
                       },
                       domProps: { value: _vm.feedback.honeypot },
                       on: {

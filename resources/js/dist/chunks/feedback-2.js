@@ -192,6 +192,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -686,7 +688,9 @@ var render = function() {
                     attrs: {
                       id: "comment-textfield",
                       type: "text",
-                      name: "comment-textfield"
+                      name: "comment-textfield",
+                      "aria-hidden": "true",
+                      tabindex: "-1"
                     },
                     domProps: { value: _vm.honeypot },
                     on: {
