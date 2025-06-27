@@ -2234,7 +2234,7 @@ var render = function() {
               "fieldset",
               [
                 _c("legend", [
-                  _c("span", { staticClass: "d-none" }, [
+                  _c("span", { staticClass: "visually-hidden" }, [
                     _vm._v(
                       _vm._s(
                         _vm.$translate("Feedback::Feedback.feedbackTextLegend")
@@ -2280,13 +2280,16 @@ var render = function() {
                         attrs: { for: "star-" + i + _vm._uid }
                       },
                       [
-                        _c("span", { staticClass: "d-none" }, [
+                        _c("span", { staticClass: "visually-hidden" }, [
                           _vm._v(
-                            _vm._s(
-                              _vm.$translate(
-                                "Feedback::Feedback.feedbackAverageLabel"
+                            _vm._s(i) +
+                              " - " +
+                              _vm._s(
+                                _vm.$translate(
+                                  "Feedback::Feedback.feedbackAverageLabel",
+                                  { count: i }
+                                )
                               )
-                            )
                           )
                         ])
                       ]
@@ -2351,7 +2354,7 @@ var render = function() {
                     attrs: { for: "author" }
                   },
                   [
-                    _c("span", { staticClass: "d-none" }, [
+                    _c("span", { staticClass: "visually-hidden" }, [
                       _vm._v(
                         _vm._s(_vm.$translate("Feedback::Feedback.authorName"))
                       )
@@ -2392,7 +2395,7 @@ var render = function() {
                     attrs: { for: "feedback-textfield" }
                   },
                   [
-                    _c("span", { staticClass: "d-none" }, [
+                    _c("span", { staticClass: "visually-hidden" }, [
                       _vm._v(
                         _vm._s(
                           _vm.$translate("Feedback::Feedback.feedbackTextLabel")
@@ -2440,7 +2443,7 @@ var render = function() {
               "label",
               { staticClass: "position-absolute", attrs: { for: "title" } },
               [
-                _c("span", { staticClass: "d-none" }, [
+                _c("span", { staticClass: "visually-hidden" }, [
                   _vm._v(_vm._s(_vm.$translate("Feedback::Feedback.title")))
                 ])
               ]
@@ -2490,7 +2493,7 @@ var render = function() {
               "label",
               { staticClass: "position-absolute", attrs: { for: "message" } },
               [
-                _c("span", { staticClass: "d-none" }, [
+                _c("span", { staticClass: "visually-hidden" }, [
                   _vm._v(
                     _vm._s(_vm.$translate("Feedback::Feedback.reviewMessage"))
                   )
@@ -2946,7 +2949,8 @@ var render = function() {
                                 " - " +
                                 _vm._s(
                                   _vm.$translate(
-                                    "Feedback::Feedback.feedbackAverageLabel"
+                                    "Feedback::Feedback.feedbackAverageLabel",
+                                    { count: i }
                                   )
                                 )
                             )

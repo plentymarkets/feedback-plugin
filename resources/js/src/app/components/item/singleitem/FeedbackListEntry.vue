@@ -97,7 +97,7 @@
               :class="'star star-' + i"
               :for="'star-' + _uid + '-' + i"
             ><span class="visually-hidden">{{ i }} - {{ $translate("Feedback::Feedback.feedbackAverageLabel", {"count": i }) }}</span></label>
-            </template>
+          </template>
         </fieldset>
       </div>
       <div class="form-group">

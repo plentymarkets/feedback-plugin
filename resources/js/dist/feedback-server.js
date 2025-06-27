@@ -7543,7 +7543,7 @@ var render = function() {
           "</div>",
           [
             _vm._ssrNode(
-              '<div class="stars"><fieldset><legend><span class="d-none">' +
+              '<div class="stars"><fieldset><legend><span class="visually-hidden">' +
                 _vm._ssrEscape(
                   _vm._s(
                     _vm.$translate("Feedback::Feedback.feedbackTextLegend")
@@ -7565,13 +7565,16 @@ var render = function() {
                     "> <label" +
                     _vm._ssrAttr("for", "star-" + i + _vm._uid) +
                     _vm._ssrClass(null, "star star-" + i) +
-                    '><span class="d-none">' +
+                    '><span class="visually-hidden">' +
                     _vm._ssrEscape(
-                      _vm._s(
-                        _vm.$translate(
-                          "Feedback::Feedback.feedbackAverageLabel"
+                      _vm._s(i) +
+                        " - " +
+                        _vm._s(
+                          _vm.$translate(
+                            "Feedback::Feedback.feedbackAverageLabel",
+                            { count: i }
+                          )
                         )
-                      )
                     ) +
                     "</span></label>"
                   )
@@ -7602,13 +7605,13 @@ var render = function() {
                         !_vm.authenticatedUser.hasPurchased
                     ) +
                     _vm._ssrAttr("value", _vm.feedback.authorName) +
-                    ' class="form-control"> <label for="author" class="position-absolute"><span class="d-none">' +
+                    ' class="form-control"> <label for="author" class="position-absolute"><span class="visually-hidden">' +
                     _vm._ssrEscape(
                       _vm._s(_vm.$translate("Feedback::Feedback.authorName"))
                     ) +
                     '</span></label> <input id="feedback-textfield" type="text" name="feedback-textfield"' +
                     _vm._ssrAttr("value", _vm.feedback.honeypot) +
-                    ' class="form-control"> <label for="feedback-textfield" class="position-absolute"><span class="d-none">' +
+                    ' class="form-control"> <label for="feedback-textfield" class="position-absolute"><span class="visually-hidden">' +
                     _vm._ssrEscape(
                       _vm._s(
                         _vm.$translate("Feedback::Feedback.feedbackTextLabel")
@@ -7630,7 +7633,7 @@ var render = function() {
                 _vm._ssrClass("form-control", {
                   "is-invalid": _vm.titleMissing
                 }) +
-                '> <label for="title" class="position-absolute"><span class="d-none">' +
+                '> <label for="title" class="position-absolute"><span class="visually-hidden">' +
                 _vm._ssrEscape(
                   _vm._s(_vm.$translate("Feedback::Feedback.title"))
                 ) +
@@ -7652,7 +7655,7 @@ var render = function() {
                 ) +
                 ' class="form-control">' +
                 _vm._ssrEscape(_vm._s(_vm.feedback.message)) +
-                '</textarea> <label for="message" class="position-absolute"><span class="d-none">' +
+                '</textarea> <label for="message" class="position-absolute"><span class="visually-hidden">' +
                 _vm._ssrEscape(
                   _vm._s(_vm.$translate("Feedback::Feedback.reviewMessage"))
                 ) +
@@ -7977,7 +7980,8 @@ var render = function() {
                       " - " +
                       _vm._s(
                         _vm.$translate(
-                          "Feedback::Feedback.feedbackAverageLabel"
+                          "Feedback::Feedback.feedbackAverageLabel",
+                          { count: i }
                         )
                       )
                   ) +
