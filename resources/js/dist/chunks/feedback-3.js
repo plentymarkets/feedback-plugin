@@ -590,6 +590,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -754,6 +755,19 @@ __webpack_require__.r(__webpack_exports__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2221,7 +2235,7 @@ var render = function() {
               "fieldset",
               [
                 _c("legend", [
-                  _c("span", { staticClass: "d-none" }, [
+                  _c("span", { staticClass: "visually-hidden" }, [
                     _vm._v(
                       _vm._s(
                         _vm.$translate("Feedback::Feedback.feedbackTextLegend")
@@ -2267,11 +2281,12 @@ var render = function() {
                         attrs: { for: "star-" + i + _vm._uid }
                       },
                       [
-                        _c("span", { staticClass: "d-none" }, [
+                        _c("span", { staticClass: "visually-hidden" }, [
                           _vm._v(
                             _vm._s(
                               _vm.$translate(
-                                "Feedback::Feedback.feedbackAverageLabel"
+                                "Feedback::Feedback.feedbackAverageLabel",
+                                { count: i }
                               )
                             )
                           )
@@ -2338,7 +2353,7 @@ var render = function() {
                     attrs: { for: "author" }
                   },
                   [
-                    _c("span", { staticClass: "d-none" }, [
+                    _c("span", { staticClass: "visually-hidden" }, [
                       _vm._v(
                         _vm._s(_vm.$translate("Feedback::Feedback.authorName"))
                       )
@@ -2359,7 +2374,9 @@ var render = function() {
                   attrs: {
                     id: "feedback-textfield",
                     type: "text",
-                    name: "feedback-textfield"
+                    name: "feedback-textfield",
+                    "aria-hidden": "true",
+                    tabindex: "-1"
                   },
                   domProps: { value: _vm.feedback.honeypot },
                   on: {
@@ -2371,7 +2388,6 @@ var render = function() {
                     }
                   }
                 }),
-                _vm._v(" "),
                 _c(
                   "label",
                   {
@@ -2379,10 +2395,10 @@ var render = function() {
                     attrs: { for: "feedback-textfield" }
                   },
                   [
-                    _c("span", { staticClass: "d-none" }, [
+                    _c("span", { staticClass: "visually-hidden" }, [
                       _vm._v(
                         _vm._s(
-                          _vm.$translate("Feedback::Feedback.feedbackTextLabel")
+                          _vm.$translate("Feedback::Feedback.honeypotLabel")
                         )
                       )
                     ])
@@ -2427,7 +2443,7 @@ var render = function() {
               "label",
               { staticClass: "position-absolute", attrs: { for: "title" } },
               [
-                _c("span", { staticClass: "d-none" }, [
+                _c("span", { staticClass: "visually-hidden" }, [
                   _vm._v(_vm._s(_vm.$translate("Feedback::Feedback.title")))
                 ])
               ]
@@ -2477,7 +2493,7 @@ var render = function() {
               "label",
               { staticClass: "position-absolute", attrs: { for: "message" } },
               [
-                _c("span", { staticClass: "d-none" }, [
+                _c("span", { staticClass: "visually-hidden" }, [
                   _vm._v(
                     _vm._s(_vm.$translate("Feedback::Feedback.reviewMessage"))
                   )
@@ -2870,53 +2886,81 @@ var render = function() {
       _vm._v(" "),
       !!_vm.editableFeedback && !_vm.isReply
         ? _c("div", [
-            _c(
-              "div",
-              { staticClass: "stars" },
-              [
-                _vm._l([5, 4, 3, 2, 1], function(i) {
-                  return [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.editableFeedback.ratingValue,
-                          expression: "editableFeedback.ratingValue"
-                        }
-                      ],
-                      key: "stars_input_" + i,
-                      class: "star star-" + i,
-                      attrs: {
-                        id: "star-" + _vm._uid + "-" + i,
-                        type: "radio",
-                        name: "ratingValue"
-                      },
-                      domProps: {
-                        value: i,
-                        checked: _vm._q(_vm.editableFeedback.ratingValue, i)
-                      },
-                      on: {
-                        change: function($event) {
-                          return _vm.$set(
-                            _vm.editableFeedback,
-                            "ratingValue",
-                            i
+            _c("div", { staticClass: "stars" }, [
+              _c(
+                "fieldset",
+                [
+                  _c("legend", [
+                    _c("span", { staticClass: "visually-hidden" }, [
+                      _vm._v(
+                        _vm._s(
+                          _vm.$translate(
+                            "Feedback::Feedback.feedbackTextLegend"
                           )
+                        )
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm._l([5, 4, 3, 2, 1], function(i) {
+                    return [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.editableFeedback.ratingValue,
+                            expression: "editableFeedback.ratingValue"
+                          }
+                        ],
+                        key: "stars_input_" + i,
+                        class: "star star-" + i,
+                        attrs: {
+                          id: "star-" + _vm._uid + "-" + i,
+                          type: "radio",
+                          name: "ratingValue"
+                        },
+                        domProps: {
+                          value: i,
+                          checked: _vm._q(_vm.editableFeedback.ratingValue, i)
+                        },
+                        on: {
+                          change: function($event) {
+                            return _vm.$set(
+                              _vm.editableFeedback,
+                              "ratingValue",
+                              i
+                            )
+                          }
                         }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("label", {
-                      key: "stars_label_" + i,
-                      class: "star star-" + i,
-                      attrs: { for: "star-" + _vm._uid + "-" + i }
-                    })
-                  ]
-                })
-              ],
-              2
-            ),
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          key: "stars_label_" + i,
+                          class: "star star-" + i,
+                          attrs: { for: "star-" + _vm._uid + "-" + i }
+                        },
+                        [
+                          _c("span", { staticClass: "visually-hidden" }, [
+                            _vm._v(
+                              _vm._s(
+                                _vm.$translate(
+                                  "Feedback::Feedback.feedbackAverageLabel",
+                                  { count: i }
+                                )
+                              )
+                            )
+                          ])
+                        ]
+                      )
+                    ]
+                  })
+                ],
+                2
+              )
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
               _c("input", {
@@ -2930,8 +2974,9 @@ var render = function() {
                 ],
                 staticClass: "form-control",
                 attrs: {
+                  id: "label_title_" + _vm._uid,
                   type: "text",
-                  name: "title",
+                  name: "title_" + _vm._uid,
                   placeholder: _vm.$translate("Feedback::Feedback.title"),
                   required: ""
                 },
@@ -2944,7 +2989,20 @@ var render = function() {
                     _vm.$set(_vm.editableFeedback, "title", $event.target.value)
                   }
                 }
-              })
+              }),
+              _vm._v(" "),
+              _c(
+                "label",
+                {
+                  staticClass: "position-absolute",
+                  attrs: { for: "label_title_" + _vm._uid }
+                },
+                [
+                  _c("span", { staticClass: "visually-hidden" }, [
+                    _vm._v(_vm._s(_vm.$translate("Feedback::Feedback.title")))
+                  ])
+                ]
+              )
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -2959,7 +3017,8 @@ var render = function() {
                 ],
                 staticClass: "form-control",
                 attrs: {
-                  name: "message",
+                  id: "label_message_" + _vm._uid,
+                  name: "message_" + _vm._uid,
                   rows: "3",
                   placeholder: _vm.$translate("Feedback::Feedback.title")
                 },
@@ -2976,7 +3035,20 @@ var render = function() {
                     )
                   }
                 }
-              })
+              }),
+              _vm._v(" "),
+              _c(
+                "label",
+                {
+                  staticClass: "position-absolute",
+                  attrs: { for: "label_message_" + _vm._uid }
+                },
+                [
+                  _c("span", { staticClass: "visually-hidden" }, [
+                    _vm._v(_vm._s(_vm.$translate("Feedback::Feedback.title")))
+                  ])
+                ]
+              )
             ]),
             _vm._v(" "),
             _c(

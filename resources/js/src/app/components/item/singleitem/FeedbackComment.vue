@@ -127,7 +127,12 @@
           type="text"
           class="form-control"
           name="comment-textfield"
-        >
+          aria-hidden="true"
+          tabindex="-1"
+        ><label
+          class="position-absolute"
+          for="comment-textfield"
+        ><span class="visually-hidden">{{ $translate("Feedback::Feedback.honeypotLabel") }}</span></label>
       </div>
 
       <div class="form-group">

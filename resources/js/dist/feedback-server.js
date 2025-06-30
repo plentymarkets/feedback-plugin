@@ -327,6 +327,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -1032,6 +1037,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -1202,6 +1208,19 @@ __webpack_require__.r(__webpack_exports__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1667,6 +1686,11 @@ __webpack_require__.r(__webpack_exports__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+//
+//
+//
+//
+//
 //
 //
 //
@@ -6305,7 +6329,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "1ac6542f"
+  "e6dcf9aa"
   
 )
 
@@ -6342,7 +6366,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "b49030c2"
+  "35a2c323"
   
 )
 
@@ -6379,7 +6403,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "21e87ac1"
+  "628a8545"
   
 )
 
@@ -6416,7 +6440,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "7b522034"
+  "316c9330"
   
 )
 
@@ -6453,7 +6477,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "a16971e4"
+  "6565ba0a"
   
 )
 
@@ -6490,7 +6514,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "62b21734"
+  "b957bc90"
   
 )
 
@@ -6527,7 +6551,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "015b2d05"
+  "ab9fa2ee"
   
 )
 
@@ -6564,7 +6588,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "c706c52e"
+  "2fa58626"
   
 )
 
@@ -6601,7 +6625,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "731f6790"
+  "1220ebbc"
   
 )
 
@@ -7188,9 +7212,13 @@ var render = function() {
                       !_vm.authenticatedUser.hasPurchased
                   ) +
                   _vm._ssrAttr("value", _vm.authorName) +
-                  ' class="form-control"> <input id="comment-textfield" type="text" name="comment-textfield"' +
+                  ' class="form-control"> <input id="comment-textfield" type="text" name="comment-textfield" aria-hidden="true" tabindex="-1"' +
                   _vm._ssrAttr("value", _vm.honeypot) +
-                  ' class="form-control"></div>'
+                  ' class="form-control"><label for="comment-textfield" class="position-absolute"><span class="visually-hidden">' +
+                  _vm._ssrEscape(
+                    _vm._s(_vm.$translate("Feedback::Feedback.honeypotLabel"))
+                  ) +
+                  "</span></label></div>"
                 : "<!---->") +
               ' <div class="form-group"><textarea name="message" rows="3"' +
               _vm._ssrAttr(
@@ -7530,7 +7558,7 @@ var render = function() {
           "</div>",
           [
             _vm._ssrNode(
-              '<div class="stars"><fieldset><legend><span class="d-none">' +
+              '<div class="stars"><fieldset><legend><span class="visually-hidden">' +
                 _vm._ssrEscape(
                   _vm._s(
                     _vm.$translate("Feedback::Feedback.feedbackTextLegend")
@@ -7552,11 +7580,12 @@ var render = function() {
                     "> <label" +
                     _vm._ssrAttr("for", "star-" + i + _vm._uid) +
                     _vm._ssrClass(null, "star star-" + i) +
-                    '><span class="d-none">' +
+                    '><span class="visually-hidden">' +
                     _vm._ssrEscape(
                       _vm._s(
                         _vm.$translate(
-                          "Feedback::Feedback.feedbackAverageLabel"
+                          "Feedback::Feedback.feedbackAverageLabel",
+                          { count: i }
                         )
                       )
                     ) +
@@ -7589,17 +7618,15 @@ var render = function() {
                         !_vm.authenticatedUser.hasPurchased
                     ) +
                     _vm._ssrAttr("value", _vm.feedback.authorName) +
-                    ' class="form-control"> <label for="author" class="position-absolute"><span class="d-none">' +
+                    ' class="form-control"> <label for="author" class="position-absolute"><span class="visually-hidden">' +
                     _vm._ssrEscape(
                       _vm._s(_vm.$translate("Feedback::Feedback.authorName"))
                     ) +
-                    '</span></label> <input id="feedback-textfield" type="text" name="feedback-textfield"' +
+                    '</span></label> <input id="feedback-textfield" type="text" name="feedback-textfield" aria-hidden="true" tabindex="-1"' +
                     _vm._ssrAttr("value", _vm.feedback.honeypot) +
-                    ' class="form-control"> <label for="feedback-textfield" class="position-absolute"><span class="d-none">' +
+                    ' class="form-control"><label for="feedback-textfield" class="position-absolute"><span class="visually-hidden">' +
                     _vm._ssrEscape(
-                      _vm._s(
-                        _vm.$translate("Feedback::Feedback.feedbackTextLabel")
-                      )
+                      _vm._s(_vm.$translate("Feedback::Feedback.honeypotLabel"))
                     ) +
                     "</span></label></div>"
                   : "<!---->") +
@@ -7617,7 +7644,7 @@ var render = function() {
                 _vm._ssrClass("form-control", {
                   "is-invalid": _vm.titleMissing
                 }) +
-                '> <label for="title" class="position-absolute"><span class="d-none">' +
+                '> <label for="title" class="position-absolute"><span class="visually-hidden">' +
                 _vm._ssrEscape(
                   _vm._s(_vm.$translate("Feedback::Feedback.title"))
                 ) +
@@ -7639,7 +7666,7 @@ var render = function() {
                 ) +
                 ' class="form-control">' +
                 _vm._ssrEscape(_vm._s(_vm.feedback.message)) +
-                '</textarea> <label for="message" class="position-absolute"><span class="d-none">' +
+                '</textarea> <label for="message" class="position-absolute"><span class="visually-hidden">' +
                 _vm._ssrEscape(
                   _vm._s(_vm.$translate("Feedback::Feedback.reviewMessage"))
                 ) +
@@ -7939,7 +7966,11 @@ var render = function() {
             : "<!---->") +
           " " +
           (!!_vm.editableFeedback && !_vm.isReply
-            ? '<div><div class="stars">' +
+            ? '<div><div class="stars"><fieldset><legend><span class="visually-hidden">' +
+              _vm._ssrEscape(
+                _vm._s(_vm.$translate("Feedback::Feedback.feedbackTextLegend"))
+              ) +
+              "</span></legend> " +
               _vm._ssrList([5, 4, 3, 2, 1], function(i) {
                 return (
                   "<input" +
@@ -7954,24 +7985,51 @@ var render = function() {
                   "> <label" +
                   _vm._ssrAttr("for", "star-" + _vm._uid + "-" + i) +
                   _vm._ssrClass(null, "star star-" + i) +
-                  "></label>"
+                  '><span class="visually-hidden">' +
+                  _vm._ssrEscape(
+                    _vm._s(
+                      _vm.$translate(
+                        "Feedback::Feedback.feedbackAverageLabel",
+                        { count: i }
+                      )
+                    )
+                  ) +
+                  "</span></label>"
                 )
               }) +
-              '</div> <div class="form-group"><input type="text" name="title"' +
+              '</fieldset></div> <div class="form-group"><input' +
+              _vm._ssrAttr("id", "label_title_" + _vm._uid) +
+              ' type="text"' +
+              _vm._ssrAttr("name", "title_" + _vm._uid) +
               _vm._ssrAttr(
                 "placeholder",
                 _vm.$translate("Feedback::Feedback.title")
               ) +
               ' required="required"' +
               _vm._ssrAttr("value", _vm.editableFeedback.title) +
-              ' class="form-control"></div> <div class="form-group"><textarea name="message" rows="3"' +
+              ' class="form-control"> <label' +
+              _vm._ssrAttr("for", "label_title_" + _vm._uid) +
+              ' class="position-absolute"><span class="visually-hidden">' +
+              _vm._ssrEscape(
+                _vm._s(_vm.$translate("Feedback::Feedback.title"))
+              ) +
+              '</span></label></div> <div class="form-group"><textarea' +
+              _vm._ssrAttr("id", "label_message_" + _vm._uid) +
+              _vm._ssrAttr("name", "message_" + _vm._uid) +
+              ' rows="3"' +
               _vm._ssrAttr(
                 "placeholder",
                 _vm.$translate("Feedback::Feedback.title")
               ) +
               ' class="form-control">' +
               _vm._ssrEscape(_vm._s(_vm.editableFeedback.message)) +
-              '</textarea></div> <button class="btn btn-primary btn-appearance">' +
+              "</textarea> <label" +
+              _vm._ssrAttr("for", "label_message_" + _vm._uid) +
+              ' class="position-absolute"><span class="visually-hidden">' +
+              _vm._ssrEscape(
+                _vm._s(_vm.$translate("Feedback::Feedback.title"))
+              ) +
+              '</span></label></div> <button class="btn btn-primary btn-appearance">' +
               _vm._ssrEscape(
                 "\n      " +
                   _vm._s(_vm.$translate("Feedback::Feedback.editReview")) +
@@ -8171,9 +8229,13 @@ var render = function() {
               _vm._ssrAttr("value", _vm.feedback.authorName) +
               ' class="form-control"> <input id="feedback-textfield" type="text"' +
               _vm._ssrAttr("disabled", _vm.isRated || _vm.limitReached) +
-              ' name="feedback-textfield"' +
+              ' name="feedback-textfield" aria-hidden="true" tabindex="-1"' +
               _vm._ssrAttr("value", _vm.feedback.honeypot) +
-              ' class="form-control"></div>'
+              ' class="form-control"><label for="feedback-textfield" class="position-absolute"><span class="visually-hidden">' +
+              _vm._ssrEscape(
+                _vm._s(_vm.$translate("Feedback::Feedback.honeypotLabel"))
+              ) +
+              "</span></label></div>"
             : "<!---->") +
           ' <div class="form-group"><input id="title"' +
           _vm._ssrAttr(

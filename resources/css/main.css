@@ -310,8 +310,6 @@
     width: 120px;
     height: 30px;
     overflow: hidden; }
-  .feedback-stars-average .feedback-stars-background .feedback-star {
-    color: rgba(0, 0, 0, 0.1); }
   .feedback-stars-average .feedback-stars-overlay-wrap {
     width: 0%; }
 

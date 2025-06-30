@@ -192,6 +192,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -686,7 +691,9 @@ var render = function() {
                     attrs: {
                       id: "comment-textfield",
                       type: "text",
-                      name: "comment-textfield"
+                      name: "comment-textfield",
+                      "aria-hidden": "true",
+                      tabindex: "-1"
                     },
                     domProps: { value: _vm.honeypot },
                     on: {
@@ -697,7 +704,23 @@ var render = function() {
                         _vm.honeypot = $event.target.value
                       }
                     }
-                  })
+                  }),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "position-absolute",
+                      attrs: { for: "comment-textfield" }
+                    },
+                    [
+                      _c("span", { staticClass: "visually-hidden" }, [
+                        _vm._v(
+                          _vm._s(
+                            _vm.$translate("Feedback::Feedback.honeypotLabel")
+                          )
+                        )
+                      ])
+                    ]
+                  )
                 ])
               : _vm._e(),
             _vm._v(" "),

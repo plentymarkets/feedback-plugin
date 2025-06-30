@@ -6,7 +6,7 @@
     >
       <div class="stars">
         <fieldset>
-          <legend><span class="d-none">{{ $translate("Feedback::Feedback.feedbackTextLegend") }}</span></legend>
+          <legend><span class="visually-hidden">{{ $translate("Feedback::Feedback.feedbackTextLegend") }}</span></legend>
           <template v-for="i in [5,4,3,2,1]">
             <input
               :id="'star-' + i + _uid"
@@ -21,7 +21,7 @@
               :key="'star_label_' + i"
               :class="'star star-' + i"
               :for="'star-' + i + _uid"
-            ><span class="d-none">{{ $translate("Feedback::Feedback.feedbackAverageLabel") }}</span></label>
+            ><span class="visually-hidden">{{ $translate("Feedback::Feedback.feedbackAverageLabel", {"count": i }) }}</span></label>
           </template>
         </fieldset>
       </div>
@@ -49,7 +49,7 @@
         <label
           class="position-absolute"
           for="author"
-        ><span class="d-none">{{ $translate("Feedback::Feedback.authorName") }}</span></label>
+        ><span class="visually-hidden">{{ $translate("Feedback::Feedback.authorName") }}</span></label>
 
         <input
           id="feedback-textfield"
@@ -57,11 +57,12 @@
           type="text"
           class="form-control"
           name="feedback-textfield"
-        >
-        <label
+          aria-hidden="true"
+          tabindex="-1"
+        ><label
           class="position-absolute"
           for="feedback-textfield"
-        ><span class="d-none">{{ $translate("Feedback::Feedback.feedbackTextLabel") }}</span></label>
+        ><span class="visually-hidden">{{ $translate("Feedback::Feedback.honeypotLabel") }}</span></label>
       </div>
 
       <div class="form-group">
@@ -78,7 +79,7 @@
         <label
           class="position-absolute"
           for="title"
-        ><span class="d-none">{{ $translate("Feedback::Feedback.title") }}</span></label>
+        ><span class="visually-hidden">{{ $translate("Feedback::Feedback.title") }}</span></label>
         <div class="invalid-feedback">
           {{ $translate("Feedback::Feedback.titleRequired") }}
         </div>
@@ -98,7 +99,7 @@
           class="position-absolute"
           for="message"
         >
-          <span class="d-none">{{ $translate("Feedback::Feedback.reviewMessage") }}</span>
+          <span class="visually-hidden">{{ $translate("Feedback::Feedback.reviewMessage") }}</span>
         </label>
       </div>
 

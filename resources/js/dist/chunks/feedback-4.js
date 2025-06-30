@@ -380,6 +380,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1396,7 +1401,9 @@ var render = function() {
                         id: "feedback-textfield",
                         type: "text",
                         disabled: _vm.isRated || _vm.limitReached,
-                        name: "feedback-textfield"
+                        name: "feedback-textfield",
+                        "aria-hidden": "true",
+                        tabindex: "-1"
                       },
                       domProps: { value: _vm.feedback.honeypot },
                       on: {
@@ -1411,7 +1418,23 @@ var render = function() {
                           )
                         }
                       }
-                    })
+                    }),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "position-absolute",
+                        attrs: { for: "feedback-textfield" }
+                      },
+                      [
+                        _c("span", { staticClass: "visually-hidden" }, [
+                          _vm._v(
+                            _vm._s(
+                              _vm.$translate("Feedback::Feedback.honeypotLabel")
+                            )
+                          )
+                        ])
+                      ]
+                    )
                   ])
                 : _vm._e(),
               _vm._v(" "),

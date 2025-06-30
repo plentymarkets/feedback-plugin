@@ -1,5 +1,10 @@
 # Release Notes for Feedback
 
+## v5.0.2 Next release <a href="https://github.com/plentymarkets/feedback-plugin/compare/5.0.1...5.0.2" target="_blank" rel="noopener"><b>Overview of all changes</b></a>
+
+### Fixed
+- The accessibility of the review form has been improved.
+
 ## v5.0.1 (2025-04-17) <a href="https://github.com/plentymarkets/feedback-plugin/compare/5.0.0...5.0.1" target="_blank" rel="noopener"><b>Overview of all changes</b></a>
 
 ### Fixed

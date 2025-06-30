@@ -80,41 +80,54 @@
 
     <div v-if="!!editableFeedback && !isReply">
       <div class="stars">
-        <template v-for="i in [5,4,3,2,1]">
-          <input
-            :id="'star-' + _uid + '-' + i"
-            :key="'stars_input_' + i"
-            v-model="editableFeedback.ratingValue"
-            :class="'star star-' + i"
-            type="radio"
-            :value="i"
-            name="ratingValue"
-          >
-          <label
-            :key="'stars_label_' + i"
-            :class="'star star-' + i"
-            :for="'star-' + _uid + '-' + i"
-          />
-        </template>
+        <fieldset>
+          <legend><span class="visually-hidden">{{ $translate("Feedback::Feedback.feedbackTextLegend") }}</span></legend>
+          <template v-for="i in [5,4,3,2,1]">
+            <input
+              :id="'star-' + _uid + '-' + i"
+              :key="'stars_input_' + i"
+              v-model="editableFeedback.ratingValue"
+              :class="'star star-' + i"
+              type="radio"
+              :value="i"
+              name="ratingValue"
+            >
+            <label
+              :key="'stars_label_' + i"
+              :class="'star star-' + i"
+              :for="'star-' + _uid + '-' + i"
+            ><span class="visually-hidden">{{ $translate("Feedback::Feedback.feedbackAverageLabel", {"count": i }) }}</span></label>
+          </template>
+        </fieldset>
       </div>
       <div class="form-group">
         <input
+          :id="'label_title_' + _uid"
           v-model="editableFeedback.title"
           type="text"
           class="form-control"
-          name="title"
+          :name="'title_' + _uid"
           :placeholder="$translate('Feedback::Feedback.title')"
           required
         >
+        <label
+          class="position-absolute"
+          :for="'label_title_' + _uid"
+        ><span class="visually-hidden">{{ $translate("Feedback::Feedback.title") }}</span></label>
       </div>
       <div class="form-group">
         <textarea
+          :id="'label_message_' + _uid"
           v-model="editableFeedback.message"
           class="form-control"
-          name="message"
+          :name="'message_' + _uid"
           rows="3"
           :placeholder="$translate('Feedback::Feedback.title')"
         />
+        <label
+          class="position-absolute"
+          :for="'label_message_' + _uid"
+        ><span class="visually-hidden">{{ $translate("Feedback::Feedback.title") }}</span></label>
       </div>
 
       <button
