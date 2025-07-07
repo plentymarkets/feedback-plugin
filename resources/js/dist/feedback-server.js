@@ -692,7 +692,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -732,6 +731,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: _objectSpread({
+    currentDeleteModalUID: function currentDeleteModalUID() {
+      return "feedbackConfirmDeleteLabel- + ".concat(this._uid);
+    },
     currentVariation: function currentVariation() {
       return this.$store.getters[this.itemId + '/currentItemVariation'];
     },
@@ -6329,7 +6331,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "e6dcf9aa"
+  "1a304a59"
   
 )
 
@@ -6366,7 +6368,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "35a2c323"
+  "12bd5335"
   
 )
 
@@ -6403,7 +6405,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "628a8545"
+  "634158d7"
   
 )
 
@@ -6440,7 +6442,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "316c9330"
+  "17a04c5e"
   
 )
 
@@ -6477,7 +6479,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "6565ba0a"
+  "4b997338"
   
 )
 
@@ -6514,7 +6516,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "b957bc90"
+  "b7ea156c"
   
 )
 
@@ -6551,7 +6553,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "ab9fa2ee"
+  "3b24c99b"
   
 )
 
@@ -6588,7 +6590,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "2fa58626"
+  "6859feff"
   
 )
 
@@ -6625,7 +6627,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "1220ebbc"
+  "db64a464"
   
 )
 
@@ -7484,12 +7486,9 @@ var render = function() {
               "</p>"
             : "<!---->") +
           ' <div tabindex="-1" role="dialog"' +
-          _vm._ssrAttr(
-            "aria-labelledby",
-            "feedbackConfirmDeleteLabel-" + _vm._uid
-          ) +
-          ' aria-hidden="true" class="modal fade"><div role="document" class="modal-dialog"><div class="modal-content"><div class="modal-header"><span' +
-          _vm._ssrAttr("id", "feedbackConfirmDeleteLabel-" + _vm._uid) +
+          _vm._ssrAttr("aria-labelledby", _vm.currentDeleteModalUID) +
+          ' class="modal fade"><div role="document" class="modal-dialog"><div class="modal-content"><div class="modal-header"><span' +
+          _vm._ssrAttr("id", _vm.currentDeleteModalUID) +
           ' class="modal-title h5">' +
           _vm._ssrEscape(
             _vm._s(_vm.$translate("Feedback::Feedback.deleteConfirm"))

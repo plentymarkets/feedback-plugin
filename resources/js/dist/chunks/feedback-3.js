@@ -248,7 +248,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -288,6 +287,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: _objectSpread({
+    currentDeleteModalUID: function currentDeleteModalUID() {
+      return "feedbackConfirmDeleteLabel- + ".concat(this._uid);
+    },
     currentVariation: function currentVariation() {
       return this.$store.getters[this.itemId + '/currentItemVariation'];
     },
@@ -2043,8 +2045,7 @@ var render = function() {
           attrs: {
             tabindex: "-1",
             role: "dialog",
-            "aria-labelledby": "feedbackConfirmDeleteLabel-" + _vm._uid,
-            "aria-hidden": "true"
+            "aria-labelledby": _vm.currentDeleteModalUID
           }
         },
         [
@@ -2058,7 +2059,7 @@ var render = function() {
                     "span",
                     {
                       staticClass: "modal-title h5",
-                      attrs: { id: "feedbackConfirmDeleteLabel-" + _vm._uid }
+                      attrs: { id: _vm.currentDeleteModalUID }
                     },
                     [
                       _vm._v(
