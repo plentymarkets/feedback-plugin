@@ -288,7 +288,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread({
     currentDeleteModalUID: function currentDeleteModalUID() {
-      return "feedbackConfirmDeleteLabel- + ".concat(this._uid);
+      return "feedbackConfirmDeleteLabel-".concat(this._uid);
     },
     currentVariation: function currentVariation() {
       return this.$store.getters[this.itemId + '/currentItemVariation'];

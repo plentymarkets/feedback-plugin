@@ -265,7 +265,7 @@ export default {
   computed:
     {
       currentDeleteModalUID: function () {
-        return `feedbackConfirmDeleteLabel- + ${this._uid}`
+        return `feedbackConfirmDeleteLabel-${this._uid}`
       },
       currentVariation: function () {
         return this.$store.getters[this.itemId + '/currentItemVariation']
