@@ -287,9 +287,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: _objectSpread({
-    currentDeleteModalUID: function currentDeleteModalUID() {
-      return "feedbackConfirmDeleteLabel-".concat(this._uid);
-    },
     currentVariation: function currentVariation() {
       return this.$store.getters[this.itemId + '/currentItemVariation'];
     },
@@ -2045,7 +2042,7 @@ var render = function() {
           attrs: {
             tabindex: "-1",
             role: "dialog",
-            "aria-labelledby": _vm.currentDeleteModalUID
+            "aria-labelledby": "feedbackConfirmDeleteLabel-" + _vm.variationId
           }
         },
         [
@@ -2059,7 +2056,9 @@ var render = function() {
                     "span",
                     {
                       staticClass: "modal-title h5",
-                      attrs: { id: _vm.currentDeleteModalUID }
+                      attrs: {
+                        id: "feedbackConfirmDeleteLabel-" + _vm.variationId
+                      }
                     },
                     [
                       _vm._v(

@@ -159,7 +159,7 @@
       class="modal fade"
       tabindex="-1"
       role="dialog"
-      :aria-labelledby="currentDeleteModalUID"
+      :aria-labelledby="'feedbackConfirmDeleteLabel-' + variationId"
     >
       <div
         class="modal-dialog"
@@ -168,7 +168,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <span
-              :id="currentDeleteModalUID"
+              :id="'feedbackConfirmDeleteLabel-' + variationId"
               class="modal-title h5"
             >{{ $translate("Feedback::Feedback.deleteConfirm") }}</span>
             <button
@@ -264,9 +264,6 @@ export default {
 
   computed:
     {
-      currentDeleteModalUID: function () {
-        return `feedbackConfirmDeleteLabel-${this._uid}`
-      },
       currentVariation: function () {
         return this.$store.getters[this.itemId + '/currentItemVariation']
       },

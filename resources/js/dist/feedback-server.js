@@ -731,9 +731,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: _objectSpread({
-    currentDeleteModalUID: function currentDeleteModalUID() {
-      return "feedbackConfirmDeleteLabel-".concat(this._uid);
-    },
     currentVariation: function currentVariation() {
       return this.$store.getters[this.itemId + '/currentItemVariation'];
     },
@@ -7486,9 +7483,12 @@ var render = function() {
               "</p>"
             : "<!---->") +
           ' <div tabindex="-1" role="dialog"' +
-          _vm._ssrAttr("aria-labelledby", _vm.currentDeleteModalUID) +
+          _vm._ssrAttr(
+            "aria-labelledby",
+            "feedbackConfirmDeleteLabel-" + _vm.variationId
+          ) +
           ' class="modal fade"><div role="document" class="modal-dialog"><div class="modal-content"><div class="modal-header"><span' +
-          _vm._ssrAttr("id", _vm.currentDeleteModalUID) +
+          _vm._ssrAttr("id", "feedbackConfirmDeleteLabel-" + _vm.variationId) +
           ' class="modal-title h5">' +
           _vm._ssrEscape(
             _vm._s(_vm.$translate("Feedback::Feedback.deleteConfirm"))
