@@ -692,7 +692,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -6329,7 +6328,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "e6dcf9aa"
+  "1a304a59"
   
 )
 
@@ -6366,7 +6365,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "35a2c323"
+  "12bd5335"
   
 )
 
@@ -6403,7 +6402,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "628a8545"
+  "634158d7"
   
 )
 
@@ -6440,7 +6439,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "316c9330"
+  "17a04c5e"
   
 )
 
@@ -6477,7 +6476,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "6565ba0a"
+  "4b997338"
   
 )
 
@@ -6514,7 +6513,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "b957bc90"
+  "b7ea156c"
   
 )
 
@@ -6551,7 +6550,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "ab9fa2ee"
+  "3b24c99b"
   
 )
 
@@ -6588,7 +6587,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "2fa58626"
+  "6859feff"
   
 )
 
@@ -6625,7 +6624,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "1220ebbc"
+  "db64a464"
   
 )
 
@@ -7486,10 +7485,10 @@ var render = function() {
           ' <div tabindex="-1" role="dialog"' +
           _vm._ssrAttr(
             "aria-labelledby",
-            "feedbackConfirmDeleteLabel-" + _vm._uid
+            "feedbackConfirmDeleteLabel-" + _vm.variationId
           ) +
-          ' aria-hidden="true" class="modal fade"><div role="document" class="modal-dialog"><div class="modal-content"><div class="modal-header"><span' +
-          _vm._ssrAttr("id", "feedbackConfirmDeleteLabel-" + _vm._uid) +
+          ' class="modal fade"><div role="document" class="modal-dialog"><div class="modal-content"><div class="modal-header"><span' +
+          _vm._ssrAttr("id", "feedbackConfirmDeleteLabel-" + _vm.variationId) +
           ' class="modal-title h5">' +
           _vm._ssrEscape(
             _vm._s(_vm.$translate("Feedback::Feedback.deleteConfirm"))

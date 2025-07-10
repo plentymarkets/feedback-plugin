@@ -248,7 +248,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -2043,8 +2042,7 @@ var render = function() {
           attrs: {
             tabindex: "-1",
             role: "dialog",
-            "aria-labelledby": "feedbackConfirmDeleteLabel-" + _vm._uid,
-            "aria-hidden": "true"
+            "aria-labelledby": "feedbackConfirmDeleteLabel-" + _vm.variationId
           }
         },
         [
@@ -2058,7 +2056,9 @@ var render = function() {
                     "span",
                     {
                       staticClass: "modal-title h5",
-                      attrs: { id: "feedbackConfirmDeleteLabel-" + _vm._uid }
+                      attrs: {
+                        id: "feedbackConfirmDeleteLabel-" + _vm.variationId
+                      }
                     },
                     [
                       _vm._v(
