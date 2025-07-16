@@ -237,10 +237,12 @@ export default {
           this.feedback.ratingValue = 0
           this.titleMissing = false
           this.ratingMissing = false
+          window.CeresNotification.success(this.$translate('Feedback::Feedback.notificationSuccess')).closeAfter(3000)
         },
         error: (jqXHR, textStatus, errorThrown) => {
           console.error(errorThrown)
           this.isLoading = false
+          window.CeresNotification.error(this.$translate('Feedback::Feedback.notificationFailure')).closeAfter(3000)
         }
       })
     },
