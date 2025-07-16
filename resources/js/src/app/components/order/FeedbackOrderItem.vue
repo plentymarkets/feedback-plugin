@@ -51,7 +51,10 @@
         </fieldset>
       </form>
     </div>
-    <a :href="item.url">
+    <a
+      href="#"
+      @click="handleRating(0)"
+    >
       <img
         :alt="'image '+ item.name"
         :src="item.image"
