@@ -1102,10 +1102,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           _this.feedback.ratingValue = 0;
           _this.titleMissing = false;
           _this.ratingMissing = false;
+          window.CeresNotification.success(_this.$translate('Feedback::Feedback.notificationSuccess')).closeAfter(3000);
         },
         error: function error(jqXHR, textStatus, errorThrown) {
           console.error(errorThrown);
           _this.isLoading = false;
+          window.CeresNotification.error(_this.$translate('Feedback::Feedback.notificationFailure')).closeAfter(3000);
         }
       });
     },
@@ -1978,10 +1980,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           _self.titleMissing = false;
           _self.ratingMissing = false;
           $(_self.$refs.orderItemFeedbackModal).modal('hide');
+          window.CeresNotification.success(this.$translate('Feedback::Feedback.notificationSuccess')).closeAfter(3000);
         },
         error: function error(jqXHR, textStatus, errorThrown) {
           console.error(errorThrown);
           _self.isLoading = false;
+          window.CeresNotification.error(this.$translate('Feedback::Feedback.notificationFailure')).closeAfter(3000);
         }
       });
     }
