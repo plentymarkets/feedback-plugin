@@ -311,10 +311,12 @@ export default {
           _self.ratingMissing = false
 
           $(_self.$refs.orderItemFeedbackModal).modal('hide')
+          window.CeresNotification.success(this.$translate('Feedback::Feedback.notificationSuccess')).closeAfter(3000)
         },
         error: function (jqXHR, textStatus, errorThrown) {
           console.error(errorThrown)
           _self.isLoading = false
+          window.CeresNotification.error(this.$translate('Feedback::Feedback.notificationFailure')).closeAfter(3000)
         }
       })
     }
