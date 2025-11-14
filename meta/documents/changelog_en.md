@@ -1,6 +1,10 @@
 # Release Notes for Feedback
 
-## v5.0.2 Next release <a href="https://github.com/plentymarkets/feedback-plugin/compare/5.0.1...5.0.2" target="_blank" rel="noopener"><b>Overview of all changes</b></a>
+## v5.0.2 (2025-11-13) <a href="https://github.com/plentymarkets/feedback-plugin/compare/5.0.1...5.0.2" target="_blank" rel="noopener"><b>Overview of all changes</b></a>
+
+### Added
+- Added error and success messages when saving a review. Thanks to @MaxBentz for the contribution.
+- Clicking an item of the review widget on the order confirmation page now opens the feedback form. Thanks to @MaxBentz for the contribution.
 
 ### Fixed
 - The accessibility of the review form has been improved.
