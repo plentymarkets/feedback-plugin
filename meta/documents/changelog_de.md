@@ -1,6 +1,6 @@
 # Release Notes für Feedback
 
-## v5.0.2 (2025-11-13) <a href="https://github.com/plentymarkets/feedback-plugin/compare/5.0.1...5.0.2" target="_blank" rel="noopener"><b>Übersicht aller Änderungen</b></a>
+## v5.0.2 (2025-11-17) <a href="https://github.com/plentymarkets/feedback-plugin/compare/5.0.1...5.0.2" target="_blank" rel="noopener"><b>Übersicht aller Änderungen</b></a>
 
 ### Hinzugefügt
 - Fehler- und Erfolgsmeldungen beim Speichern einer Bewertung wurden hinzugefügt. Vielen Dank an @MaxBentz für den Beitrag.
