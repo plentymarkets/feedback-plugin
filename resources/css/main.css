@@ -303,6 +303,8 @@
     float: left;
     text-align: center;
     color: orange; }
+  .feedback-stars-average .feedback-stars-background .feedback-star {
+    color: rgba(0, 0, 0, 0.1); }
   .feedback-stars-average .feedback-stars-background, .feedback-stars-average .feedback-stars-overlay, .feedback-stars-average .feedback-stars-overlay-wrap {
     position: absolute;
     top: 0px;
