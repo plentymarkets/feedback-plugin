@@ -443,6 +443,10 @@
         color: orange;
     }
 
+    .feedback-stars-background .feedback-star {
+        color: rgba(0, 0, 0, .1);
+    }
+
     /* each wrapper */
     .feedback-stars-background, .feedback-stars-overlay, .feedback-stars-overlay-wrap {
         position: absolute;
