@@ -1,6 +1,6 @@
 # Release Notes für Feedback
 
-## v5.0.3 (2026-01-05) <a href="https://github.com/plentymarkets/feedback-plugin/compare/5.0.2...5.0.3" target="_blank" rel="noopener"><b>Übersicht aller Änderungen</b></a>
+## v5.0.3 (2026-01-06) <a href="https://github.com/plentymarkets/feedback-plugin/compare/5.0.2...5.0.3" target="_blank" rel="noopener"><b>Übersicht aller Änderungen</b></a>
 
 ### Behoben
 - Eine fehlende CSS - Klasse wurde erneut hinzugefügt.
