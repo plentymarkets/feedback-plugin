@@ -8123,7 +8123,7 @@ var render = function() {
         ? _c("feedback-order-form", {
             attrs: {
               "allow-guest-feedbacks": _vm.options.allowGuestFeedbacks,
-              "number-of-feedbacks": _vm.options.numberOfFeedbacks,
+              "number-of-feedbacks": Number(_vm.options.numberOfFeedbacks) || 0,
               "access-key": _vm.accessKey,
               "order-id": _vm.orderId,
               "show-empty-ratings":
