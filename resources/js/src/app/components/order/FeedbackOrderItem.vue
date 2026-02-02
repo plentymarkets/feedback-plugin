@@ -53,7 +53,7 @@
     </div>
     <a
       href="#"
-      @click.prevent="handleRating(0)"
+      @click="handleRating(0, $event)"
     >
       <img
         :alt="'image '+ item.name"
@@ -129,7 +129,8 @@ export default {
   },
 
   methods: {
-    handleRating (value) {
+    handleRating (value, e) {
+      e.preventDefault()
       if (!this.isRated && value > 0) {
         this.feedback.ratingValue = value
       }
