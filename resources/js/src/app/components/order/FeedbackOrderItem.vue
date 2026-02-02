@@ -53,7 +53,7 @@
     </div>
     <a
       href="#"
-      @click="handleRating(0)"
+      @click.prevent="handleRating(0)"
     >
       <img
         :alt="'image '+ item.name"
