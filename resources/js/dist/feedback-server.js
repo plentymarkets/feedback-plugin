@@ -2132,8 +2132,7 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
-    handleRating: function handleRating(value, e) {
-      e.preventDefault();
+    handleRating: function handleRating(value) {
       if (!this.isRated && value > 0) {
         this.feedback.ratingValue = value;
       }
