@@ -1,5 +1,11 @@
 # Release Notes für Feedback
 
+## v5.0.4 (2026-02-03) <a href="https://github.com/plentymarkets/feedback-plugin/compare/5.0.3...5.0.4" target="_blank" rel="noopener"><b>Übersicht aller Änderungen</b></a>
+
+### Behoben
+- Modifizierte Version von `eslint` und anderen Paketen in package.json.
+- Eine Warnung wegen einer Nichtübereinstimmung der Anzahl der Feedback-Typen wurde behoben.
+
 ## v5.0.3 (2026-01-06) <a href="https://github.com/plentymarkets/feedback-plugin/compare/5.0.2...5.0.3" target="_blank" rel="noopener"><b>Übersicht aller Änderungen</b></a>
 
 ### Behoben
