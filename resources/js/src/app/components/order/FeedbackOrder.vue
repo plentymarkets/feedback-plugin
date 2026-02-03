@@ -31,7 +31,7 @@
     <feedback-order-form
       v-if="!isLoading"
       :allow-guest-feedbacks="options.allowGuestFeedbacks"
-      :number-of-feedbacks="options.numberOfFeedbacks"
+      :number-of-feedbacks="Number(options.numberOfFeedbacks) || 0"
       :access-key="accessKey"
       :order-id="orderId"
       :show-empty-ratings="(options.showEmptyRatingsInOrderConfirmation === 'true')"

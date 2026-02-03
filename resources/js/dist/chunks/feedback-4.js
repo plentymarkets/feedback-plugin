@@ -500,10 +500,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           _self.titleMissing = false;
           _self.ratingMissing = false;
           $(_self.$refs.orderItemFeedbackModal).modal('hide');
+          window.CeresNotification.success(_self.$translate('Feedback::Feedback.notificationSuccess')).closeAfter(3000);
         },
         error: function error(jqXHR, textStatus, errorThrown) {
           console.error(errorThrown);
           _self.isLoading = false;
+          window.CeresNotification.error(_self.$translate('Feedback::Feedback.notificationFailure')).closeAfter(3000);
         }
       });
     }
@@ -522,6 +524,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_number_constructor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.number.constructor */ "./node_modules/core-js/modules/es.number.constructor.js");
 /* harmony import */ var core_js_modules_es_number_constructor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_number_constructor__WEBPACK_IMPORTED_MODULE_0__);
 
+//
+//
+//
 //
 //
 //
@@ -1145,7 +1150,7 @@ var render = function() {
         ? _c("feedback-order-form", {
             attrs: {
               "allow-guest-feedbacks": _vm.options.allowGuestFeedbacks,
-              "number-of-feedbacks": _vm.options.numberOfFeedbacks,
+              "number-of-feedbacks": Number(_vm.options.numberOfFeedbacks) || 0,
               "access-key": _vm.accessKey,
               "order-id": _vm.orderId,
               "show-empty-ratings":
@@ -1731,16 +1736,27 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c("a", { attrs: { href: _vm.item.url } }, [
-        _c("img", {
-          staticClass: "py-2",
-          attrs: { alt: "image " + _vm.item.name, src: _vm.item.image }
-        }),
-        _vm._v(" "),
-        _c("span", { staticClass: "feedback-item-title" }, [
-          _vm._v(_vm._s(_vm.item.name))
-        ])
-      ]),
+      _c(
+        "a",
+        {
+          attrs: { href: "#" },
+          on: {
+            click: function($event) {
+              return _vm.handleRating(0)
+            }
+          }
+        },
+        [
+          _c("img", {
+            staticClass: "py-2",
+            attrs: { alt: "image " + _vm.item.name, src: _vm.item.image }
+          }),
+          _vm._v(" "),
+          _c("span", { staticClass: "feedback-item-title" }, [
+            _vm._v(_vm._s(_vm.item.name))
+          ])
+        ]
+      ),
       _vm._v(" "),
       _c(
         "div",
