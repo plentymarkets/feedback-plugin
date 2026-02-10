@@ -14,7 +14,7 @@ In order to display customer reviews in your online store, you have to carry out
 4. Click on the feedback plugin.
 5. Click the **Install** button in the feedback plugin.
 6. **Publish** the plugin set after the installation has completed.
-7. Open the ShopBuilder by clicking on **CMS » ShopBuilder**. The feedback widgets are now available in the widget category **item**.
+7. Open the ShopBuilder by clicking on **Shop » ShopBuilder**. The feedback widgets are now available in the widget category **item**.
 8. Open an item page, add the feedback widgets to your page and carry out the widget settings according to table 1.
 
 <table>
@@ -132,4 +132,4 @@ The feedback plugin makes it possible to display customer reviews in the categor
 
 ## Managing customer reviews
 
-Manage your customer reviews in the **CMS » Feedback ratings** menu. For further information about customer reviews, refer to the <a href="https://knowledge.plentymarkets.com/en/omni-channel/online-store/managing-feedbacks" target="_blank"><b>Managing feedbacks</b></a> page of the manual.
+Manage your customer reviews in the **Shop » Feedback ratings** menu. For further information about customer reviews, refer to the <a href="https://knowledge.plentyone.com/en-gb/manual/main/online-store/managing-feedbacks.html" target="_blank"><b>Managing feedbacks</b></a> page of the manual.

@@ -132,4 +132,4 @@ Solange die Kategorieansicht noch nicht über den ShopBuilder bearbeitet werden 
 
 ## Kundenrezensionen verwalten
 
-Kundenrezensionen verwaltest du im Menü **CMS » Feedback-Bewertungen**. Weitere Informationen zu Kundenrezensionen findest du auf der Handbuchseite <a href="https://knowledge.plentymarkets.com/omni-channel/online-shop/feedbacks-verwalten" target="_blank"><b>Feedbacks verwalten</b></a>.
+Kundenrezensionen verwaltest du im Menü **Shop » Feedback-Bewertungen**. Weitere Informationen zu Kundenrezensionen findest du auf der Handbuchseite <a href="https://knowledge.plentyone.com/de-de/manual/main/webshop/feedbacks-verwalten.html" target="_blank"><b>Feedbacks verwalten</b></a>.
