@@ -113,7 +113,7 @@ const actions =
           loadPaginatedFeedbacksLock = true
           const request = $.ajax({
             type: 'GET',
-            url: '/rest/storefront/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
+            url: '/rest/storefront/v1/feedbacks/feedback/helper/feedbacklist/' + itemId + '/' + state.pagination.currentPage,
             beforeSend: function (xhr) {
               xhr.setRequestHeader('lang', language)
             },
